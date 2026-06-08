@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GoA2 v2</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="side">
+        <section class="room-card">
+          <h1>GoA2 v2</h1>
+          <input id="roomCode" maxlength="4" placeholder="房间码">
+          <input id="playerName" maxlength="20" placeholder="玩家名">
+          <div class="row">
+            <button id="createBtn">创建</button>
+            <button id="identityBtn">新身份</button>
+          </div>
+          <button id="startBtn" class="primary">开始游戏</button>
+          <div class="row compact">
+            <button id="debugCoinBtn">+1 金</button>
+            <button id="debugCoins99Btn">+99 金</button>
+            <button id="debugRoundBtn">轮末</button>
+            <button id="debugTeleportBtn">传送</button>
+            <button id="debugKillBtn">击杀</button>
+          </div>
+        </section>
+        <section id="players" class="players"></section>
+      </aside>
+
+      <section class="main">
+        <header class="topbar">
+          <div>
+            <strong id="phaseTitle">未加入</strong>
+            <span id="statusLine"></span>
+          </div>
+          <section id="actions" class="actions"></section>
+        </header>
+
+        <section class="board-panel">
+          <div id="boardHelp" class="board-help">队长在大厅点击本队英雄出生点，为队友依次分配出生点。</div>
+          <div id="boardViewport" class="board-viewport">
+            <div id="board" class="board"></div>
+          </div>
+        </section>
+
+        <footer class="hand-panel">
+          <section id="heroPanel" class="hero-panel"></section>
+          <section class="hand-wrap">
+            <div class="hand-title">
+              <strong>手牌</strong>
+              <span id="handHint"></span>
+            </div>
+            <div id="hand" class="hand"></div>
+          </section>
+        </footer>
+      </section>
+
+      <aside class="log-panel">
+        <h2>日志</h2>
+        <div id="log" class="log"></div>
+      </aside>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

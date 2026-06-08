@@ -1,0 +1,2288 @@
+[
+  {
+    "x": 7,
+    "y": -10,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 8,
+    "y": -10,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 3,
+    "y": -9,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 4,
+    "y": -9,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 5,
+    "y": -9,
+    "state": "redMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 6,
+    "y": -9,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 7,
+    "y": -9,
+    "state": "redHeroSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 8,
+    "y": -9,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 1,
+    "y": -8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 2,
+    "y": -8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 3,
+    "y": -8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 4,
+    "y": -8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 5,
+    "y": -8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 6,
+    "y": -8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 7,
+    "y": -8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 8,
+    "y": -8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": -1,
+    "y": -7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 0,
+    "y": -7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 1,
+    "y": -7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 2,
+    "y": -7,
+    "state": "redRangedSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 3,
+    "y": -7,
+    "state": "redHeavySpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 4,
+    "y": -7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 5,
+    "y": -7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 6,
+    "y": -7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 7,
+    "y": -7,
+    "state": "redHeroSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 8,
+    "y": -7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 9,
+    "y": -7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": -2,
+    "y": -6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": -1,
+    "y": -6,
+    "state": "redMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 0,
+    "y": -6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 1,
+    "y": -6,
+    "state": "blueMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 2,
+    "y": -6,
+    "state": "blueHeavySpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 3,
+    "y": -6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 4,
+    "y": -6,
+    "state": "redMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 5,
+    "y": -6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 6,
+    "y": -6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 7,
+    "y": -6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 8,
+    "y": -6,
+    "state": "redHeroSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 9,
+    "y": -6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": -3,
+    "y": -5,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -2,
+    "y": -5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": -1,
+    "y": -5,
+    "state": "blueMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 0,
+    "y": -5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 1,
+    "y": -5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 2,
+    "y": -5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 3,
+    "y": -5,
+    "state": "blueMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 4,
+    "y": -5,
+    "state": "redMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 5,
+    "y": -5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 6,
+    "y": -5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 7,
+    "y": -5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": 8,
+    "y": -5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "red",
+    "region": "redFountain"
+  },
+  {
+    "x": -4,
+    "y": -4,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -3,
+    "y": -4,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -2,
+    "y": -4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": -1,
+    "y": -4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 0,
+    "y": -4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 1,
+    "y": -4,
+    "state": "blueRangedSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 2,
+    "y": -4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 3,
+    "y": -4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 4,
+    "y": -4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 5,
+    "y": -4,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 6,
+    "y": -4,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 7,
+    "y": -4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 8,
+    "y": -4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 9,
+    "y": -4,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -5,
+    "y": -3,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -4,
+    "y": -3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -3,
+    "y": -3,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -2,
+    "y": -3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -1,
+    "y": -3,
+    "state": "redMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 0,
+    "y": -3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 1,
+    "y": -3,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": true,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 2,
+    "y": -3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 3,
+    "y": -3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 4,
+    "y": -3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "redNear"
+  },
+  {
+    "x": 5,
+    "y": -3,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 6,
+    "y": -3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 7,
+    "y": -3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 8,
+    "y": -3,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -6,
+    "y": -2,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -5,
+    "y": -2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -4,
+    "y": -2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -3,
+    "y": -2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -2,
+    "y": -2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -1,
+    "y": -2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 0,
+    "y": -2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 1,
+    "y": -2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 2,
+    "y": -2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 3,
+    "y": -2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 4,
+    "y": -2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 5,
+    "y": -2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 6,
+    "y": -2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 7,
+    "y": -2,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 8,
+    "y": -2,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -7,
+    "y": -1,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -6,
+    "y": -1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -5,
+    "y": -1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -4,
+    "y": -1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -3,
+    "y": -1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -2,
+    "y": -1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -1,
+    "y": -1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 0,
+    "y": -1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 1,
+    "y": -1,
+    "state": "redRangedSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 2,
+    "y": -1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 3,
+    "y": -1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 4,
+    "y": -1,
+    "state": "redMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 5,
+    "y": -1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 6,
+    "y": -1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 7,
+    "y": -1,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 8,
+    "y": -1,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -8,
+    "y": 0,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -7,
+    "y": 0,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -6,
+    "y": 0,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -5,
+    "y": 0,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -4,
+    "y": 0,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -3,
+    "y": 0,
+    "state": "redHeavySpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -2,
+    "y": 0,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -1,
+    "y": 0,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 0,
+    "y": 0,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": true,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 1,
+    "y": 0,
+    "state": "blueMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 2,
+    "y": 0,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 3,
+    "y": 0,
+    "state": "redMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 4,
+    "y": 0,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 5,
+    "y": 0,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 6,
+    "y": 0,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 7,
+    "y": 0,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 8,
+    "y": 0,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -8,
+    "y": 1,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -7,
+    "y": 1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -6,
+    "y": 1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -5,
+    "y": 1,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -4,
+    "y": 1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -3,
+    "y": 1,
+    "state": "blueMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -2,
+    "y": 1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -1,
+    "y": 1,
+    "state": "redMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 0,
+    "y": 1,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": true,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 1,
+    "y": 1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 2,
+    "y": 1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 3,
+    "y": 1,
+    "state": "blueHeavySpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 4,
+    "y": 1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 5,
+    "y": 1,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 6,
+    "y": 1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 7,
+    "y": 1,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 8,
+    "y": 1,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -8,
+    "y": 2,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -7,
+    "y": 2,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -6,
+    "y": 2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -5,
+    "y": 2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -4,
+    "y": 2,
+    "state": "blueMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -3,
+    "y": 2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -2,
+    "y": 2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -1,
+    "y": 2,
+    "state": "blueRangedSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 0,
+    "y": 2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 1,
+    "y": 2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 2,
+    "y": 2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 3,
+    "y": 2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 4,
+    "y": 2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 5,
+    "y": 2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 6,
+    "y": 2,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 7,
+    "y": 2,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -8,
+    "y": 3,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -7,
+    "y": 3,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -6,
+    "y": 3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -5,
+    "y": 3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -4,
+    "y": 3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -3,
+    "y": 3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -2,
+    "y": 3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": -1,
+    "y": 3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 0,
+    "y": 3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 1,
+    "y": 3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 2,
+    "y": 3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 3,
+    "y": 3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 4,
+    "y": 3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 5,
+    "y": 3,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 6,
+    "y": 3,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -8,
+    "y": 4,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -7,
+    "y": 4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -6,
+    "y": 4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -5,
+    "y": 4,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -4,
+    "y": 4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -3,
+    "y": 4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -2,
+    "y": 4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -1,
+    "y": 4,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": true,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 0,
+    "y": 4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 1,
+    "y": 4,
+    "state": "blueMeleeSpawn",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 2,
+    "y": 4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": true,
+    "base": null,
+    "region": "mid"
+  },
+  {
+    "x": 3,
+    "y": 4,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 4,
+    "y": 4,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "bottomGrass"
+  },
+  {
+    "x": 5,
+    "y": 4,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -9,
+    "y": 5,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -8,
+    "y": 5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -7,
+    "y": 5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "topGrass"
+  },
+  {
+    "x": -6,
+    "y": 5,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -5,
+    "y": 5,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -4,
+    "y": 5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -3,
+    "y": 5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -2,
+    "y": 5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -1,
+    "y": 5,
+    "state": "redRangedSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 0,
+    "y": 5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 1,
+    "y": 5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 2,
+    "y": 5,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 3,
+    "y": 5,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": 4,
+    "y": 5,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -8,
+    "y": 6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -7,
+    "y": 6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -6,
+    "y": 6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -5,
+    "y": 6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -4,
+    "y": 6,
+    "state": "blueMeleeSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -3,
+    "y": 6,
+    "state": "redMeleeSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -2,
+    "y": 6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -1,
+    "y": 6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 0,
+    "y": 6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 1,
+    "y": 6,
+    "state": "redMeleeSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 2,
+    "y": 6,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 3,
+    "y": 6,
+    "state": "terrain",
+    "obstacle": true,
+    "lane": false,
+    "base": null,
+    "region": "terrain"
+  },
+  {
+    "x": -9,
+    "y": 7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -8,
+    "y": 7,
+    "state": "blueHeroSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -7,
+    "y": 7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -6,
+    "y": 7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -5,
+    "y": 7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -4,
+    "y": 7,
+    "state": "blueMeleeSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -3,
+    "y": 7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -2,
+    "y": 7,
+    "state": "redHeavySpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -1,
+    "y": 7,
+    "state": "redMeleeSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 0,
+    "y": 7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 1,
+    "y": 7,
+    "state": "blueMeleeSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 2,
+    "y": 7,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -9,
+    "y": 8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -8,
+    "y": 8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -7,
+    "y": 8,
+    "state": "blueHeroSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -6,
+    "y": 8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -5,
+    "y": 8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -4,
+    "y": 8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -3,
+    "y": 8,
+    "state": "blueHeavySpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -2,
+    "y": 8,
+    "state": "blueRangedSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -1,
+    "y": 8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 0,
+    "y": 8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": 1,
+    "y": 8,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -8,
+    "y": 9,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -7,
+    "y": 9,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -6,
+    "y": 9,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -5,
+    "y": 9,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -4,
+    "y": 9,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -3,
+    "y": 9,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -2,
+    "y": 9,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -1,
+    "y": 9,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -8,
+    "y": 10,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -7,
+    "y": 10,
+    "state": "blueHeroSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -6,
+    "y": 10,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -5,
+    "y": 10,
+    "state": "blueMeleeSpawn",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -4,
+    "y": 10,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -3,
+    "y": 10,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": null,
+    "region": "blueNear"
+  },
+  {
+    "x": -8,
+    "y": 11,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  },
+  {
+    "x": -7,
+    "y": 11,
+    "state": "empty",
+    "obstacle": false,
+    "lane": false,
+    "base": "blue",
+    "region": "blueFountain"
+  }
+]
