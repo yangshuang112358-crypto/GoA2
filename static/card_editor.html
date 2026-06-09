@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GoA2 卡牌编辑器</title>
+    <link rel="stylesheet" href="/card_editor.css">
+  </head>
+  <body>
+    <main class="editor-shell">
+      <aside class="library">
+        <header class="library-head">
+          <div>
+            <h1>卡牌编辑器</h1>
+            <p id="fileStatus">等待载入</p>
+          </div>
+          <div class="library-actions">
+            <button id="reloadBtn">重新载入</button>
+            <button id="saveBtn" class="primary">保存</button>
+          </div>
+        </header>
+        <section id="heroList" class="hero-list"></section>
+      </aside>
+
+      <section class="workbench">
+        <header class="workbench-head">
+          <div>
+            <strong id="currentPath">未选择卡牌</strong>
+            <span id="dirtyState">没有未保存修改</span>
+          </div>
+          <a href="/" class="back-link">返回游戏</a>
+        </header>
+
+        <section class="card-stage">
+          <form id="cardForm" class="card-editor-card">
+            <label class="field initiative">
+              <span>先攻</span>
+              <select id="initiativeInput"></select>
+            </label>
+
+            <label class="field card-name">
+              <span>卡牌名</span>
+              <input id="cardNameInput" type="text">
+            </label>
+
+            <label class="field level">
+              <span>等级</span>
+              <select id="levelInput"></select>
+            </label>
+
+            <section class="left-rail">
+              <label class="field color">
+                <span>颜色</span>
+                <select id="colorInput"></select>
+              </label>
+              <label class="field secondary">
+                <span>防御</span>
+                <select id="secondaryDefenseInput"></select>
+              </label>
+              <label class="field secondary">
+                <span>移动</span>
+                <select id="secondaryMoveInput"></select>
+              </label>
+            </section>
+
+            <section class="primary-row">
+              <label class="field primary-category">
+                <span>主要行动</span>
+                <select id="primaryCategoryInput"></select>
+              </label>
+              <label class="field primary-value">
+                <span>数值 / 感叹号</span>
+                <span class="value-combo">
+                  <select id="primaryValueInput"></select>
+                  <select id="exclamationInput" title="感叹号：任意数值都可以防御">
+                    <option value="false">无</option>
+                    <option value="true">!</option>
+                  </select>
+                </span>
+              </label>
+              <label class="field subtype">
+                <span>右下图标</span>
+                <select id="subtypeTypeInput"></select>
+              </label>
+              <label class="field subtype-value">
+                <span>图标值</span>
+                <select id="subtypeValueInput"></select>
+              </label>
+            </section>
+
+            <label class="field primary-text">
+              <span>主要行动文本</span>
+              <textarea id="primaryTextInput"></textarea>
+            </label>
+
+            <label class="field passive">
+              <span>被动加成</span>
+              <select id="passiveInput"></select>
+            </label>
+          </form>
+        </section>
+      </section>
+    </main>
+    <script src="/card_editor.js"></script>
+  </body>
+</html>

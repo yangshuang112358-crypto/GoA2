@@ -1,0 +1,3574 @@
+{
+  "schema_version": "ocr_draft_2026-06-09_subtype_values",
+  "status": "draft",
+  "important_assumptions": [
+    "先攻值、次要行动数值、主要行动数值大多来自图片图标；空值需要人工填写。",
+    "颜色/等级采用页面顺序推断：第1卡页=金/红1/2/2/3/3，第2卡页=银/绿1/2/2/3/3，第3卡页=紫/蓝1/2/2/3/3，需要逐图核对。",
+    "primary_action.subtype 表示右下角主要行动图标；无图标为 null，有图标时为 {type, value}，type 只使用 远程 或 范围。",
+    "次要行动固定为 movement 与 defense 两个槽位；用 has_action 表示该卡是否拥有对应次要行动。",
+    "passive_bonus 只记录 type；加成值默认均为 1。"
+  ],
+  "heroes": [
+    {
+      "hero_id": "wasp",
+      "name": "女武神·黄蜂",
+      "default_team": "red",
+      "cards": [
+        {
+          "card_name": "闪耀之刃",
+          "hero": "女武神·黄蜂",
+          "color": "金",
+          "level": null,
+          "initiative": {
+            "value": 12
+          },
+          "primary_action": {
+            "category": "基础攻击",
+            "text": "选择与你相邻的一个英雄为目标。攻击后：取消与你相邻的敌方英雄技能卡上的激活效果。此回合：与你相邻的敌方英雄无法执行技能行动。",
+            "value": 3,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 1
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 2
+            }
+          }
+        },
+        {
+          "card_name": "电击",
+          "hero": "女武神·黄蜂",
+          "color": "红",
+          "level": 1,
+          "initiative": {
+            "value": 8
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择与你相邻的一个单位为目标。攻击前：最多一个与你相邻的敌方英雄（除攻击目标外）丢弃一张牌（如果可能）。",
+            "value": 5,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "回旋镖",
+          "hero": "女武神·黄蜂",
+          "color": "红",
+          "level": 2,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内与你不在同一直线上的一个单位为目标。（相邻单位也被视为在直线上）",
+            "value": 3,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "电能波",
+          "hero": "女武神·黄蜂",
+          "color": "红",
+          "level": 2,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择与你相邻的一个单位为目标。攻击前：技能范围内最多一个敌方英雄（除攻击目标外）丢弃一张牌（如果可能）。（虽然此卡有技能范围图标，但这不是远程攻击，选中的攻击目标必须与你相邻。）",
+            "value": 5,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "雷霆回旋镖",
+          "hero": "女武神·黄蜂",
+          "color": "红",
+          "level": 3,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内与你不在同一直线上的一个单位为目标。如果你击败一个敌方英雄，可以重复一次。",
+            "value": 4,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "移动"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "电能爆炸",
+          "hero": "女武神·黄蜂",
+          "color": "红",
+          "level": 3,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择与你相邻的一个单位为目标。攻击前：技能范围内最多一名敌方英雄（除攻击目标外）丢弃一张卡牌，否则被击败。",
+            "value": 6,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 7
+            }
+          }
+        },
+        {
+          "card_name": "静电封锁",
+          "hero": "女武神·黄蜂",
+          "color": "银",
+          "level": null,
+          "initiative": {
+            "value": 11
+          },
+          "primary_action": {
+            "category": "基础技能",
+            "text": "此回合：技能范围内的敌方单位无法移动或快速移动来脱离技能范围。技能范围外的敌方单位无法移动或快速移动进入技能范围。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 2
+            }
+          }
+        },
+        {
+          "card_name": "抵挡屏障",
+          "hero": "女武神·黄蜂",
+          "color": "绿",
+          "level": 1,
+          "initiative": {
+            "value": 4
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "如果攻击者不与你相邻，抵挡一次远程攻击。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": true
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "偏转屏障",
+          "hero": "女武神·黄蜂",
+          "color": "绿",
+          "level": 2,
+          "initiative": {
+            "value": 3
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "如果攻击者不与你相邻，抵挡一次远程攻击。若如此做，攻击者丢弃一张卡牌（如果可行）。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": true
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "意念操控",
+          "hero": "女武神·黄蜂",
+          "color": "绿",
+          "level": 2,
+          "initiative": {
+            "value": 3
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "将攻击距离内与你不在同一直线上的一个单位或标志物放置到与你相邻的格子。",
+            "value": 0,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "反射屏障",
+          "hero": "女武神·黄蜂",
+          "color": "绿",
+          "level": 3,
+          "initiative": {
+            "value": 3
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "如果攻击者不与你相邻，抵挡一次远程攻击。若如此做，攻击者丢弃一张卡牌（如果可行），此回合：你免疫不与你相邻的英雄的远程攻击。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": true
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "心灵控制",
+          "hero": "女武神·黄蜂",
+          "color": "绿",
+          "level": 3,
+          "initiative": {
+            "value": 3
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "将攻击距离内与你不在同一直线上的一个单位或标志物放置到与你相邻的格子。可以重复一次。",
+            "value": 0,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "范围"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "电闪雷鸣",
+          "hero": "女武神·黄蜂",
+          "color": "紫",
+          "level": 4,
+          "initiative": {
+            "value": 0
+          },
+          "primary_action": {
+            "category": "终极技能",
+            "text": "在你执行基础技能后，场上的一个敌方英雄丢弃一张卡牌（如果可行）。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "控物",
+          "hero": "女武神·黄蜂",
+          "color": "蓝",
+          "level": 1,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "移动技能范围内不与你相邻的一个单位或标志物最多1格，该移动不能使其远离或靠近你。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 5
+            }
+          }
+        },
+        {
+          "card_name": "动力助推",
+          "hero": "女武神·黄蜂",
+          "color": "蓝",
+          "level": 2,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "将所有与你相邻的敌方单位推动2格；每个被障碍物阻挡的敌方英雄丢弃一张牌（如果可能）。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 5
+            }
+          }
+        },
+        {
+          "card_name": "引力控制",
+          "hero": "女武神·黄蜂",
+          "color": "蓝",
+          "level": 2,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "移动技能范围内不与你相邻的一个单位或标志物最多1格，该移动不能使其远离或靠近你。可以重复1次。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 5
+            }
+          }
+        },
+        {
+          "card_name": "动能震爆",
+          "hero": "女武神·黄蜂",
+          "color": "蓝",
+          "level": 3,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "将所有与你相邻的敌方单位推动3格；每个被障碍物阻挡的敌方英雄丢弃一张牌（如果可行）。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "远程"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "意念黑洞",
+          "hero": "女武神·黄蜂",
+          "color": "蓝",
+          "level": 3,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "移动技能范围内不与你相邻的一个单位或标志物最多1格，该移动不能使其远离或靠近你。可以重复最多2次。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        }
+      ]
+    },
+    {
+      "hero_id": "shargatha",
+      "name": "异变蛇女·夏尔加萨",
+      "default_team": "red",
+      "cards": [
+        {
+          "card_name": "反击",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "金",
+          "level": null,
+          "initiative": {
+            "value": 11
+          },
+          "primary_action": {
+            "category": "基础攻击",
+            "text": "选择与你相邻的一个单位为目标。攻击后：此回合，当你因任何原因丢弃一张卡牌后，如果可行，执行你弃牌堆中一张攻击牌的主要行动。（优先执行完导致弃牌的行动。）",
+            "value": 3,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 1
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 2
+            }
+          }
+        },
+        {
+          "card_name": "劈砍",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "红",
+          "level": 1,
+          "initiative": {
+            "value": 7
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择与你相邻的一个单位为目标。每有一个与你相邻的敌方单位，+1攻击。（计算所有敌方单位，包括攻击目标。）",
+            "value": 4,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 5
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "快速突刺",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "红",
+          "level": 2,
+          "initiative": {
+            "value": 8
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内且与你不相邻的一个单位为目标。",
+            "value": 4,
+            "subtype": {
+              "type": "远程",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "致命横扫",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "红",
+          "level": 2,
+          "initiative": {
+            "value": 8
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择与你相邻的一个单位为目标。每有一个与你相邻的敌方单位，+2攻击。",
+            "value": 3,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 5
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 7
+            }
+          }
+        },
+        {
+          "card_name": "横枪跃马",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "红",
+          "level": 3,
+          "initiative": {
+            "value": 8
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内与你不相邻的一个单位为目标。攻击后：如果你与一个敌方英雄相邻，可以对不同目标重复一次。",
+            "value": 5,
+            "subtype": {
+              "type": "远程",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "范围"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "死亡回旋",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "红",
+          "level": 3,
+          "initiative": {
+            "value": 8
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择与你相邻的一个单位为目标。每有一个与你相邻的敌方单位，+3攻击。",
+            "value": 2,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "移动"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 5
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 7
+            }
+          }
+        },
+        {
+          "card_name": "海妖之歌",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "银",
+          "level": null,
+          "initiative": {
+            "value": 1
+          },
+          "primary_action": {
+            "category": "基础技能",
+            "text": "选择攻击距离内与你不相邻的、最近的、非免疫的敌方单位为目标；沿最短有效路径将该单位向你移动最多2格。可重复一次。",
+            "value": 0,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "魅惑",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "绿",
+          "level": 1,
+          "initiative": {
+            "value": 5
+          },
+          "primary_action": {
+            "category": "移动",
+            "text": "本轮：计算防御总值时，在技能范围内的敌方近战小兵视为友方单位。",
+            "value": 2,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "统治领域",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "绿",
+          "level": 2,
+          "initiative": {
+            "value": 4
+          },
+          "primary_action": {
+            "category": "移动",
+            "text": "本轮：计算防御总值时，在技能范围内的敌方远程小兵和近战小兵均视为友方单位。",
+            "value": 2,
+            "subtype": {
+              "type": "范围",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "致命束缚",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "绿",
+          "level": 2,
+          "initiative": {
+            "value": 4
+          },
+          "primary_action": {
+            "category": "移动",
+            "text": "下回合：与你相邻的所有敌方英雄无法移动，只能执行金色或红色卡牌上的移动。",
+            "value": 2,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "独霸一方",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "绿",
+          "level": 3,
+          "initiative": {
+            "value": 4
+          },
+          "primary_action": {
+            "category": "移动",
+            "text": "本轮：计算防御总值时，技能范围内所有敌方小兵（包括免疫的小兵）视为友方单位。",
+            "value": 2,
+            "subtype": {
+              "type": "范围",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "死亡缠绕",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "绿",
+          "level": 3,
+          "initiative": {
+            "value": 4
+          },
+          "primary_action": {
+            "category": "移动",
+            "text": "下回合：与你相邻的敌方英雄无法移动，只能执行金色卡牌上的移动。",
+            "value": 2,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "幻化",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "紫",
+          "level": 4,
+          "initiative": {
+            "value": 0
+          },
+          "primary_action": {
+            "category": "终极技能",
+            "text": "你可以穿过障碍物。在你执行行动之前，与你相邻的一个敌方英雄丢弃一张卡牌（如果可行）。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "石化",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "蓝",
+          "level": 1,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "此回合：技能范围内最近的敌方英雄获得免疫，无法移动，且视为地形。（若有多个英雄距离相同，则影响多个英雄）",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 5
+            }
+          }
+        },
+        {
+          "card_name": "石化之眼",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "蓝",
+          "level": 2,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "此回合：技能范围内最近的敌方英雄获得免疫，无法移动，且视为地形。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "忠实信徒",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "蓝",
+          "level": 2,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "如果你与一个小兵相邻，你可以拿回一张已丢弃的卡牌。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "石化凝视",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "蓝",
+          "level": 3,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "此回合：技能范围内的所有敌方英雄获得免疫，无法移动，且视为地形。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "远程"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "至死不渝",
+          "hero": "异变蛇女·夏尔加萨",
+          "color": "蓝",
+          "level": 3,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "如果你与一个小兵相邻，你可以拿回一张已丢弃的卡牌，然后此回合：你免疫攻击行动。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        }
+      ]
+    },
+    {
+      "hero_id": "brogan",
+      "name": "毁灭战士·布罗根",
+      "default_team": "blue",
+      "cards": [
+        {
+          "card_name": "猛攻",
+          "hero": "毁灭战士·布罗根",
+          "color": "金",
+          "level": null,
+          "initiative": {
+            "value": 11
+          },
+          "primary_action": {
+            "category": "基础攻击",
+            "text": "选择与你相邻的一个单位为目标。攻击后：移动到对方所在的位置。",
+            "value": 3,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 1
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "冲撞",
+          "hero": "毁灭战士·布罗根",
+          "color": "红",
+          "level": 1,
+          "initiative": {
+            "value": 7
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "攻击前：沿直线移动2格到与敌方单位相邻的位置，然后以该单位为目标。（如果你无法完成此移动，就不能攻击。）",
+            "value": 6,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 7
+            }
+          }
+        },
+        {
+          "card_name": "投掷飞斧",
+          "hero": "毁灭战士·布罗根",
+          "color": "红",
+          "level": 2,
+          "initiative": {
+            "value": 7
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "攻击前：你可以丢弃一张卡牌。若如此做，则+2攻击距离。选择攻击距离内的一个单位为目标。",
+            "value": 3,
+            "subtype": {
+              "type": "远程",
+              "value": 1
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "奋勇冲锋",
+          "hero": "毁灭战士·布罗根",
+          "color": "红",
+          "level": 2,
+          "initiative": {
+            "value": 7
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "攻击前：沿直线移动2或3格到与敌方单位相邻的位置，然后以该单位为目标。",
+            "value": 6,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 8
+            }
+          }
+        },
+        {
+          "card_name": "投掷长矛",
+          "hero": "毁灭战士·布罗根",
+          "color": "红",
+          "level": 3,
+          "initiative": {
+            "value": 8
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "攻击前：你可以丢弃一张卡牌。如果你的弃牌堆中有卡牌，则+2攻击距离。选择攻击距离内的一个单位为目标。",
+            "value": 4,
+            "subtype": {
+              "type": "远程",
+              "value": 1
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "移动"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "勇往直前",
+          "hero": "毁灭战士·布罗根",
+          "color": "红",
+          "level": 3,
+          "initiative": {
+            "value": 8
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "攻击前：沿直线移动2、3或4格到与敌方单位相邻的位置，然后以该单位为目标。",
+            "value": 7,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "范围"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 8
+            }
+          }
+        },
+        {
+          "card_name": "铜墙铁壁",
+          "hero": "毁灭战士·布罗根",
+          "color": "银",
+          "level": null,
+          "initiative": {
+            "value": 5
+          },
+          "primary_action": {
+            "category": "基础技能",
+            "text": "选择一项：本轮，你和技能范围内的友方单位不能被敌方英雄移动、推动、换位或强制移动；或如果你的弃牌堆为空，取回此卡牌。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "保卫",
+          "hero": "毁灭战士·布罗根",
+          "color": "绿",
+          "level": 1,
+          "initiative": {
+            "value": 5
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "本轮：如果技能范围内的一个友方近战小兵将被击败，你可以丢弃一张卡牌。若如此做，该小兵不会被击败。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "战鼓",
+          "hero": "毁灭战士·布罗根",
+          "color": "绿",
+          "level": 2,
+          "initiative": {
+            "value": 5
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "如果你或攻击距离内的一个友方英雄与敌方单位相邻，则该友方英雄可以拿回一张已丢弃的卡牌。",
+            "value": 0,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 5
+            }
+          }
+        },
+        {
+          "card_name": "持盾",
+          "hero": "毁灭战士·布罗根",
+          "color": "绿",
+          "level": 2,
+          "initiative": {
+            "value": 5
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "本轮：如果技能范围内的一个友方非重型小兵将被击败，你可以丢弃一张卡牌。若如此做，该小兵不会被击败。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 5
+            }
+          }
+        },
+        {
+          "card_name": "吟游诗人",
+          "hero": "毁灭战士·布罗根",
+          "color": "绿",
+          "level": 3,
+          "initiative": {
+            "value": 4
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "如果你或攻击距离内的一个友方英雄与敌方单位相邻，则该友方英雄可以拿回一张已结算或已丢弃的卡牌。",
+            "value": 0,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 5
+            }
+          }
+        },
+        {
+          "card_name": "巩固防线",
+          "hero": "毁灭战士·布罗根",
+          "color": "绿",
+          "level": 3,
+          "initiative": {
+            "value": 4
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "本轮：如果技能范围内的一个友方小兵将被击败，你可以丢弃一张卡牌。若如此做，该小兵不会被击败。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 5
+            }
+          }
+        },
+        {
+          "card_name": "一人成军",
+          "hero": "毁灭战士·布罗根",
+          "color": "紫",
+          "level": 4,
+          "initiative": {
+            "value": 0
+          },
+          "primary_action": {
+            "category": "终极技能",
+            "text": "在小兵战斗中，你视为2个小兵。如果在小兵战斗中你将被移除，则本次推线失败而不会被移除。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "冲拳",
+          "hero": "毁灭战士·布罗根",
+          "color": "蓝",
+          "level": 1,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "选择一项：移除与你相邻的一个标志物；或将与你相邻的一个敌方小兵推动最多2格。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "碾压重拳",
+          "hero": "毁灭战士·布罗根",
+          "color": "蓝",
+          "level": 2,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "移动最多1格，然后选择一项：移除与你相邻的一个标志物；或将与你相邻的一个敌方小兵推动最多2格。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 7
+            }
+          }
+        },
+        {
+          "card_name": "盾牌猛击",
+          "hero": "毁灭战士·布罗根",
+          "color": "蓝",
+          "level": 2,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "与你相邻的一个敌方英雄，如果在此回合打出过攻击卡，该英雄丢弃一张卡牌（如果可行）。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 7
+            }
+          }
+        },
+        {
+          "card_name": "野蛮飞踢",
+          "hero": "毁灭战士·布罗根",
+          "color": "蓝",
+          "level": 3,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "移动最多1格，然后选择一项：移除与你相邻的一个标志物；或将与你相邻的一个敌方单位推动最多2格。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "远程"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 7
+            }
+          }
+        },
+        {
+          "card_name": "防守反击",
+          "hero": "毁灭战士·布罗根",
+          "color": "蓝",
+          "level": 3,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "与你相邻的一个敌方英雄，如果在此回合打出过攻击卡，需丢弃一张卡牌，否则被击败。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 7
+            }
+          }
+        }
+      ]
+    },
+    {
+      "hero_id": "arien",
+      "name": "潮汐主宰·艾瑞恩",
+      "default_team": "blue",
+      "cards": [
+        {
+          "card_name": "华丽刀锋",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "金",
+          "level": null,
+          "initiative": {
+            "value": 11
+          },
+          "primary_action": {
+            "category": "基础攻击",
+            "text": "选择与你相邻的一个单位为目标。攻击前：你可以将另一个与目标相邻的单位移动1格。（另一个单位不能选择你自己。）",
+            "value": 4,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 1
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 2
+            }
+          }
+        },
+        {
+          "card_name": "汹涌",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "红",
+          "level": 1,
+          "initiative": {
+            "value": 8
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内的一个单位为目标。攻击后：将最多一个与你相邻的标志物或敌方单位推动1格。",
+            "value": 4,
+            "subtype": {
+              "type": "远程",
+              "value": 1
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "激流",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "红",
+          "level": 2,
+          "initiative": {
+            "value": 8
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择与你相邻的一个单位为目标。攻击前：目标正后方直线3格内的一个敌方英雄丢弃一张卡牌，否则被击败。",
+            "value": 7,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 7
+            }
+          }
+        },
+        {
+          "card_name": "潮起",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "红",
+          "level": 2,
+          "initiative": {
+            "value": 8
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内的一个单位为目标。攻击后：将最多一个与你相邻的标志物或敌方单位推动1格。",
+            "value": 5,
+            "subtype": {
+              "type": "远程",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "惊涛骇浪",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "红",
+          "level": 3,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择与你相邻的一个单位为目标。攻击前：目标正后方直线5格内的一个敌方英雄丢弃一张卡牌，否则被击败。可以对不同目标重复一次。",
+            "value": 7,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "移动"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 7
+            }
+          }
+        },
+        {
+          "card_name": "巨浪滔天",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "红",
+          "level": 3,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内的一个单位为目标。攻击后：将目标移动最多1格。将最多一个与你相邻的标志物或敌方单位推动1格。",
+            "value": 5,
+            "subtype": {
+              "type": "远程",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "打断施法",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "银",
+          "level": null,
+          "initiative": {
+            "value": 12
+          },
+          "primary_action": {
+            "category": "基础技能",
+            "text": "此回合：在技能范围内的敌方英雄不能执行技能。（打断施法不会阻止攻击行动。）",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "潮水",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "绿",
+          "level": 1,
+          "initiative": {
+            "value": 4
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "将你放置到攻击距离内没有出生点，且不与空的出生点相邻的格子内。",
+            "value": 0,
+            "subtype": {
+              "type": "远程",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "奥术换位",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "绿",
+          "level": 2,
+          "initiative": {
+            "value": 4
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "与攻击距离内的一个小兵或友方英雄换位。（与目标换位，这不是移动。）",
+            "value": 0,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "魔法水流",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "绿",
+          "level": 2,
+          "initiative": {
+            "value": 4
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "将你放置到攻击距离内没有出生点，且不与空的出生点相邻的格子内。",
+            "value": 0,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "移形换步",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "绿",
+          "level": 3,
+          "initiative": {
+            "value": 3
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "与攻击距离内的一个单位或一个标志物换位。",
+            "value": 0,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "潮汐之力",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "绿",
+          "level": 3,
+          "initiative": {
+            "value": 3
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "将你放置到攻击距离内没有出生点的格子内。",
+            "value": 0,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "范围"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "潮汐之主",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "紫",
+          "level": 4,
+          "initiative": {
+            "value": 0
+          },
+          "primary_action": {
+            "category": "终极技能",
+            "text": "在你执行基础技能后，可以在你所在的战斗区域触发一场小兵战斗。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "挑战者",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "蓝",
+          "level": 1,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "无视所有的小兵防御修正。",
+            "value": 5,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "滑溜溜",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "蓝",
+          "level": 2,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "此回合：技能范围内敌方单位的移动行动最多移动1格。（技能范围外开始移动的敌人不受影响）",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "决斗家",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "蓝",
+          "level": 2,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "无视所有的小兵防御修正。此回合：你免疫其他敌人的所有攻击行动。",
+            "value": 6,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "传奇决斗家",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "蓝",
+          "level": 3,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "无视所有的小兵防御修正。此回合：你免疫其他敌人的所有行动。",
+            "value": 6,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "洪水",
+          "hero": "潮汐主宰·艾瑞恩",
+          "color": "蓝",
+          "level": 3,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "此回合和下回合：技能范围内敌方单位的移动行动最多移动1格。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "远程"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        }
+      ]
+    },
+    {
+      "hero_id": "tigerclaw",
+      "name": "盗贼·虎爪",
+      "default_team": "reserve",
+      "cards": [
+        {
+          "card_name": "瞬闪打击",
+          "hero": "盗贼·虎爪",
+          "color": "金",
+          "level": null,
+          "initiative": {
+            "value": 13
+          },
+          "primary_action": {
+            "category": "基础攻击",
+            "text": "攻击前：沿直线移动2格且穿过一个敌方单位；选择该单位为目标。（如果你无法完成此移动，就不能攻击。）",
+            "value": 2,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 1
+            }
+          }
+        },
+        {
+          "card_name": "偷袭",
+          "hero": "盗贼·虎爪",
+          "color": "红",
+          "level": 1,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择与你相邻的一个单位为目标。攻击后：你可以移动1格。",
+            "value": 3,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 5
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "背刺",
+          "hero": "盗贼·虎爪",
+          "color": "红",
+          "level": 2,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择与你相邻的一个单位为目标。如果有友方单位与目标相邻，则+2攻击。（友方单位是指除你以外的另一个己方队伍的英雄或小兵）",
+            "value": 4,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 5
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "影袭",
+          "hero": "盗贼·虎爪",
+          "color": "红",
+          "level": 2,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "攻击前：你可以移动1格。选择与你相邻的一个单位为目标。攻击后：如果你在攻击前没有移动，你可以移动1格。",
+            "value": 4,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 5
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "两面夹攻",
+          "hero": "盗贼·虎爪",
+          "color": "红",
+          "level": 3,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内的一个单位为目标。如果有友方单位与目标相邻，则+3攻击且此攻击无法被抵挡。（抵挡是一个关键词-目标英雄仍可以进行防御）",
+            "value": 4,
+            "subtype": {
+              "type": "远程",
+              "value": 1
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "范围"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 5
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "暗影奇袭",
+          "hero": "盗贼·虎爪",
+          "color": "红",
+          "level": 3,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "攻击前：你可以移动1格。选择与你相邻的一个单位为目标。攻击后：你可以移动1格。",
+            "value": 4,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 5
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "伺机待发",
+          "hero": "盗贼·虎爪",
+          "color": "银",
+          "level": null,
+          "initiative": {
+            "value": 3
+          },
+          "primary_action": {
+            "category": "基础技能",
+            "text": "如果你与一个障碍物相邻，将自己放置到技能范围内不与敌方单位相邻的一格。若如此做，下回合：你获得免疫，且移动时可以穿过单位。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 2
+            }
+          }
+        },
+        {
+          "card_name": "偷天妙手",
+          "hero": "盗贼·虎爪",
+          "color": "绿",
+          "level": 1,
+          "initiative": {
+            "value": 2
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "移动最多2格，再从与你相邻的一个敌方英雄处拿取最多1枚金币。然后沿直线移动2格（如果可行）。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 2
+            }
+          }
+        },
+        {
+          "card_name": "淬毒匕首",
+          "hero": "盗贼·虎爪",
+          "color": "绿",
+          "level": 2,
+          "initiative": {
+            "value": 2
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "给攻击距离内一名英雄一枚中毒标记。拥有中毒标记的英雄每个先攻被动和攻击被动的数值减1，而不是增加1。",
+            "value": 0,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 2
+            }
+          }
+        },
+        {
+          "card_name": "探囊取物",
+          "hero": "盗贼·虎爪",
+          "color": "绿",
+          "level": 2,
+          "initiative": {
+            "value": 2
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "移动最多2格，再从与你相邻的一个敌方英雄处拿取最多2枚金币。然后沿直线移动2格（如果可行）。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 2
+            }
+          }
+        },
+        {
+          "card_name": "盗贼大师",
+          "hero": "盗贼·虎爪",
+          "color": "绿",
+          "level": 3,
+          "initiative": {
+            "value": 1
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "移动最多2格，再从与你相邻的一个敌方英雄处拿取最多3枚金币。然后沿直线移动2格（如果可行）。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "移动"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "剧毒飞镖",
+          "hero": "盗贼·虎爪",
+          "color": "绿",
+          "level": 3,
+          "initiative": {
+            "value": 1
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "给攻击距离内一名英雄一枚中毒标记。拥有中毒标记的英雄每个先攻被动、攻击被动和防御被动的数值减1，而不是增加1。",
+            "value": 0,
+            "subtype": {
+              "type": "远程",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "斗篷与匕首",
+          "hero": "盗贼·虎爪",
+          "color": "紫",
+          "level": 4,
+          "initiative": {
+            "value": 0
+          },
+          "primary_action": {
+            "category": "终极技能",
+            "text": "如果你处于免疫：在你执行（或重复）任何行动前，移动最多2格；在你执行基础攻击后，你可以对不同目标重复一次基础攻击。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "近身格挡",
+          "hero": "盗贼·虎爪",
+          "color": "蓝",
+          "level": 2,
+          "initiative": {
+            "value": 11
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "抵挡一次非远程攻击。攻击者丢弃一张卡牌（如果可行）。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": true
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "侧步",
+          "hero": "盗贼·虎爪",
+          "color": "蓝",
+          "level": 2,
+          "initiative": {
+            "value": 11
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "抵挡一次远程攻击。若如此做，你可以沿直线移动2格。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": true
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "暗影步",
+          "hero": "盗贼·虎爪",
+          "color": "蓝",
+          "level": 3,
+          "initiative": {
+            "value": 11
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "抵挡一次远程攻击。若如此做，你可以沿直线移动2格，且可以将此卡与你手中的一张卡牌交换。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": true
+          },
+          "passive_bonus": {
+            "type": "远程"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "近身还击",
+          "hero": "盗贼·虎爪",
+          "color": "蓝",
+          "level": 3,
+          "initiative": {
+            "value": 11
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "抵挡一次非远程攻击。攻击者丢弃一张卡牌，否则被击败。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": true
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "躲闪",
+          "hero": "盗贼·虎爪",
+          "color": "蓝",
+          "level": 1,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "抵挡一次远程攻击",
+            "value": 0,
+            "subtype": null,
+            "exclamation": true
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "hero_id": "sabina",
+      "name": "神枪手·萨彼娜",
+      "default_team": "reserve",
+      "cards": [
+        {
+          "card_name": "近身射击",
+          "hero": "神枪手·萨彼娜",
+          "color": "金",
+          "level": null,
+          "initiative": {
+            "value": 12
+          },
+          "primary_action": {
+            "category": "基础攻击",
+            "text": "选择攻击距离内的一个单位为目标。攻击后：如果目标与你相邻，将目标推动1格。（单位被推动到障碍物上会停下，这算作一次有效的推动。）",
+            "value": 2,
+            "subtype": {
+              "type": "远程",
+              "value": 1
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 1
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 1
+            }
+          }
+        },
+        {
+          "card_name": "拔枪",
+          "hero": "神枪手·萨彼娜",
+          "color": "红",
+          "level": 1,
+          "initiative": {
+            "value": 8
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内且不与你相邻的一个单位为目标。",
+            "value": 4,
+            "subtype": {
+              "type": "远程",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "交叉火力",
+          "hero": "神枪手·萨彼娜",
+          "color": "红",
+          "level": 2,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内的一个单位为目标。攻击后：如果此攻击击败了一个小兵，且攻击距离内没有敌方英雄，你可以移除与你相邻的一个非重型敌方小兵。（你不会因移除小兵而获得金币。）",
+            "value": 3,
+            "subtype": {
+              "type": "远程",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "神枪手",
+          "hero": "神枪手·萨彼娜",
+          "color": "红",
+          "level": 2,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内且不与你相邻的一个单位为目标。如果目标英雄在此回合使用了攻击卡牌，则+2攻击。（已揭示卡视为使用，而非已结算）",
+            "value": 4,
+            "subtype": {
+              "type": "远程",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 6
+            }
+          }
+        },
+        {
+          "card_name": "枪林弹雨",
+          "hero": "神枪手·萨彼娜",
+          "color": "红",
+          "level": 3,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内的一个单位为目标。攻击后：如果此攻击击败了一个小兵，且攻击距离内没有敌方英雄，你可以移除攻击距离内的一个非重型敌方小兵。",
+            "value": 3,
+            "subtype": {
+              "type": "远程",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "范围"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 5
+            }
+          }
+        },
+        {
+          "card_name": "一枪爆头",
+          "hero": "神枪手·萨彼娜",
+          "color": "红",
+          "level": 3,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "攻击",
+            "text": "选择攻击距离内的一个单位为目标。如果目标英雄在此回合使用了攻击卡牌，则+2攻击。",
+            "value": 4,
+            "subtype": {
+              "type": "远程",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "移动"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 4
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 7
+            }
+          }
+        },
+        {
+          "card_name": "并肩作战",
+          "hero": "神枪手·萨彼娜",
+          "color": "银",
+          "level": null,
+          "initiative": {
+            "value": 13
+          },
+          "primary_action": {
+            "category": "基础技能",
+            "text": "你可以和与你相邻的一个友方小兵换位。此回合：你和技能范围内的友方英雄如果与一个或多个友方小兵相邻，则+1防御。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 2
+            }
+          }
+        },
+        {
+          "card_name": "指挥",
+          "hero": "神枪手·萨彼娜",
+          "color": "绿",
+          "level": 1,
+          "initiative": {
+            "value": 4
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "将技能范围内的任意1个友方小兵移动最多2格；无视重型小兵免疫。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 2
+            }
+          }
+        },
+        {
+          "card_name": "带头冲锋",
+          "hero": "神枪手·萨彼娜",
+          "color": "绿",
+          "level": 2,
+          "initiative": {
+            "value": 3
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "如果你与一个友方小兵相邻，抵挡此次攻击。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": true
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "战略控制",
+          "hero": "神枪手·萨彼娜",
+          "color": "绿",
+          "level": 2,
+          "initiative": {
+            "value": 3
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "将技能范围内的任意1个友方小兵移动最多3格；无视重型小兵免疫。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "武装密谋",
+          "hero": "神枪手·萨彼娜",
+          "color": "绿",
+          "level": 3,
+          "initiative": {
+            "value": 3
+          },
+          "primary_action": {
+            "category": "防御",
+            "text": "如果你与一个友方小兵相邻，抵挡此次攻击且此回合你对其他敌方的所有行动免疫。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": true
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "战略优势",
+          "hero": "神枪手·萨彼娜",
+          "color": "绿",
+          "level": 3,
+          "initiative": {
+            "value": 3
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "将技能范围内的任意1个友方小兵移动最多3格；无视重型小兵免疫。可以重复一次。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "先攻"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 2
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        },
+        {
+          "card_name": "重型枪械",
+          "hero": "神枪手·萨彼娜",
+          "color": "紫",
+          "level": 4,
+          "initiative": {
+            "value": 0
+          },
+          "primary_action": {
+            "category": "终极技能",
+            "text": "你的基础攻击+2攻击距离和+2攻击。如果你推动一名敌方英雄，该英雄丢弃一张卡牌，否则被击败。",
+            "value": 0,
+            "subtype": null,
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": false,
+              "value": null
+            }
+          }
+        },
+        {
+          "card_name": "近身支援",
+          "hero": "神枪手·萨彼娜",
+          "color": "蓝",
+          "level": 2,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "如果你与一个友方小兵相邻，技能范围内的一名敌方英雄丢弃一张卡牌（如果可行）。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "战斗演练",
+          "hero": "神枪手·萨彼娜",
+          "color": "蓝",
+          "level": 2,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "移动",
+            "text": "本轮：当你或一名友方英雄执行攻击时，将技能范围内的所有友方小兵（包括免疫的）视为远程单位。",
+            "value": 3,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "防御"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "火力掩护",
+          "hero": "神枪手·萨彼娜",
+          "color": "蓝",
+          "level": 3,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "技能",
+            "text": "如果你与一个友方小兵相邻，则技能范围内的一名敌方英雄丢弃一张卡牌，否则被击败。",
+            "value": 0,
+            "subtype": {
+              "type": "范围",
+              "value": 3
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "攻击"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": true,
+              "value": 3
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "战斗武装",
+          "hero": "神枪手·萨彼娜",
+          "color": "蓝",
+          "level": 3,
+          "initiative": {
+            "value": 10
+          },
+          "primary_action": {
+            "category": "移动",
+            "text": "本轮：当你或一名友方英雄执行攻击时，将技能范围内的所有友方小兵（包括免疫的）视为同时具有近战和远程。（这可以使每个小兵减少敌方英雄最多2点防御总值。）",
+            "value": 3,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": "远程"
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 4
+            }
+          }
+        },
+        {
+          "card_name": "演练",
+          "hero": "神枪手·萨彼娜",
+          "color": "蓝",
+          "level": 1,
+          "initiative": {
+            "value": 9
+          },
+          "primary_action": {
+            "category": "移动",
+            "text": "本轮：当你或一名友方英雄执行基础攻击时，将技能范围内的所有友方小兵（包括免疫的）视为远程单位。",
+            "value": 3,
+            "subtype": {
+              "type": "范围",
+              "value": 2
+            },
+            "exclamation": false
+          },
+          "passive_bonus": {
+            "type": null
+          },
+          "secondary_actions": {
+            "movement": {
+              "type": "移动",
+              "has_action": false,
+              "value": null
+            },
+            "defense": {
+              "type": "防御",
+              "has_action": true,
+              "value": 3
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

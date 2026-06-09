@@ -3,6 +3,7 @@ const $ = (id) => document.getElementById(id);
 let state = null;
 let token = sessionStorage.getItem("goa2v2-token") || crypto.randomUUID();
 let selectedMove = false;
+let selectedFastMove = false;
 let selectedMain = false;
 let debugMode = null;
 let legalCells = new Set();
@@ -29,6 +30,7 @@ async function request(path, body = {}) {
 async function refresh() {
   const code = $("roomCode").value.trim().toUpperCase();
   if (!code) return;
+  if (document.activeElement?.matches("[data-hero-select]")) return;
   try {
     state = await request("/api/state");
     render();
@@ -50,7 +52,7 @@ function renderTop() {
   $("phaseTitle").textContent = phaseName(state.phase);
   const played = publicPlayedCards();
   $("statusLine").innerHTML = `
-    <span>第 ${state.round} 轮 / 第 ${state.turn} 回合 · 生命 蓝${state.lives.blue}/红${state.lives.red} · 破平${teamName(state.tiebreaker)} · 战线 蓝${state.frontMarks.blue}/红${state.frontMarks.red}</span>
+    <span>第 ${state.round} 轮 / 第 ${state.turn} 回合 · 生命 蓝${state.lives.blue}/红${state.lives.red} · 决策币${teamName(state.decisionCoin || state.tiebreaker)} · 战线 蓝${state.frontMarks.blue}/红${state.frontMarks.red}</span>
     ${played ? `<span class="public-cards">${played}</span>` : ""}
   `;
 }
@@ -72,12 +74,14 @@ function renderPlayers() {
           ${passiveLines.map((line) => `<span>${line}</span>`).join("")}
         </div>
         <button data-captain="${p.seat}" ${p.seat !== state.meSeat || state.phase !== "lobby" ? "disabled" : ""}>设队长</button>
+        ${p.seat === state.meSeat && state.phase === "lobby" ? heroSelect(p) : ""}
         <div class="card-track">${allHeroCards(p).map((card) => cardDot(p, card)).join("")}</div>
       </article>
     `;
   }).join("");
   document.querySelectorAll("[data-seat]").forEach((btn) => btn.addEventListener("click", joinSeat));
   document.querySelectorAll("[data-captain]").forEach((btn) => btn.addEventListener("click", setCaptain));
+  document.querySelectorAll("[data-hero-select]").forEach((select) => select.addEventListener("change", selectHero));
 }
 
 function publicPlayedCards() {
@@ -87,12 +91,20 @@ function publicPlayedCards() {
     const p = state.players[seat];
     const card = p?.played ? cardById(p.heroKey, p.played, p) : null;
     if (!p || !card) return "";
-    return `${index + 1}. ${escapeHtml(p.name || `座位${seat + 1}`)}：${escapeHtml(card.name)}（先攻${statText(card, "initiative")}，${escapeHtml(card.text)}）`;
+    return `${index + 1}. ${escapeHtml(p.name || `座位${seat + 1}`)}：${highlightKeywords(card.name)}（先攻${statText(card, "initiative")}，${highlightKeywords(card.text)}）`;
   }).filter(Boolean).join("　");
 }
 
 function allHeroCards(player) {
   return player.effectiveCards || state.cards[player.heroKey] || [];
+}
+
+function heroSelect(player) {
+  const options = Object.entries(state.heroes).map(([key, hero]) => {
+    const suffix = hero.implemented ? "" : "（默认牌）";
+    return `<option value="${key}" ${player.heroKey === key ? "selected" : ""}>${escapeHtml(hero.name)}${suffix}</option>`;
+  }).join("");
+  return `<select class="hero-select" data-hero-select="${player.seat}">${options}</select>`;
 }
 
 function handDisplayCards(player) {
@@ -202,13 +214,14 @@ async function onHexClick(event) {
       render();
       return;
     }
-    if (selectedMove) {
+    if (selectedMove || selectedFastMove) {
       if (!legalCells.has(`${x},${y}`)) {
         setHint("请选择绿色闪烁的合法移动格。");
         return;
       }
       state = await request("/api/move", { x, y });
       selectedMove = false;
+      selectedFastMove = false;
       legalCells.clear();
       render();
     }
@@ -247,7 +260,7 @@ function renderActions() {
   }
   if (state.phase === "defense" && state.activeSeat === me.seat) {
     const damage = state.pendingDefense?.damage ?? 0;
-    const defenseCards = me.hand.map((id) => cardById(me.heroKey, id, me)).filter((c) => (c.defense || 0) >= damage);
+    const defenseCards = me.hand.map((id) => cardById(me.heroKey, id, me)).filter((c) => c.exclamation || (c.defense || 0) >= damage);
     $("actions").innerHTML = `
       <span class="muted">受到 ${damage} 点伤害，弃置防御牌或死亡</span>
       ${defenseCards.map((c) => `<button data-defend="${c.id}">弃 ${escapeHtml(c.name)} 防${c.defense}</button>`).join("")}
@@ -266,28 +279,40 @@ function renderActions() {
   }
   $("actions").innerHTML = `
     <button id="mainBtn" ${!active || me.actionTaken ? "disabled" : ""}>主要动作</button>
-    <button id="moveBtn" ${!active || me.actionTaken || currentCard()?.movement === undefined ? "disabled" : ""}>次要移动</button>
+    <button id="moveBtn" ${!active || me.actionTaken || !cardHasMovement(currentCard()) ? "disabled" : ""}>次要移动</button>
+    <button id="fastMoveBtn" ${!active || me.actionTaken || !cardHasMovement(currentCard()) ? "disabled" : ""}>快速移动</button>
     <button id="skipBtn" ${!active || me.actionTaken ? "disabled" : ""}>放弃效果</button>
     <button id="finishBtn" class="primary" ${!active ? "disabled" : ""}>确认结束</button>
   `;
   $("mainBtn")?.addEventListener("click", () => {
     selectedMain = true;
     selectedMove = false;
+    selectedFastMove = false;
     legalCells = legalMainCells(me);
     setHint("点击绿色闪烁格执行主要动作。");
     renderBoard();
   });
   $("moveBtn")?.addEventListener("click", () => {
     selectedMove = true;
+    selectedFastMove = false;
     selectedMain = false;
     legalCells = legalMoveCells(me);
     setHint("点击绿色闪烁格移动。");
+    renderBoard();
+  });
+  $("fastMoveBtn")?.addEventListener("click", () => {
+    selectedFastMove = true;
+    selectedMove = false;
+    selectedMain = false;
+    legalCells = legalFastMoveCells(me);
+    setHint("点击绿色闪烁格执行快速移动。");
     renderBoard();
   });
   $("skipBtn")?.addEventListener("click", async () => {
     state = await request("/api/skip-action");
     selectedMain = false;
     selectedMove = false;
+    selectedFastMove = false;
     legalCells.clear();
     render();
   });
@@ -295,6 +320,7 @@ function renderActions() {
     state = await request("/api/finish");
     selectedMain = false;
     selectedMove = false;
+    selectedFastMove = false;
     legalCells.clear();
     render();
   });
@@ -313,9 +339,9 @@ function renderHand() {
   $("hand").innerHTML = handDisplayCards(me).map((c) => {
     return `
       <article class="card ${colorClass(c.color)}">
-        <header class="card-head"><strong>${escapeHtml(c.name)}</strong><span>${c.color} · 先攻${statText(c, "initiative")}</span></header>
+        <header class="card-head"><strong>${highlightKeywords(c.name)}</strong><span>${c.color} · 先攻${statText(c, "initiative")}</span></header>
         <div class="stats">${stat("防", c, "defense")}${stat("移", c, "movement")}${stat("攻", c, "attack")}</div>
-        <p>${escapeHtml(c.text)}</p>
+        <p>${highlightKeywords(c.text)}</p>
         <button data-select="${c.id}" ${state.phase !== "planning" || c.displayOnly ? "disabled" : ""}>${c.displayOnly ? "占位" : "选择"}</button>
       </article>
     `;
@@ -329,7 +355,7 @@ function renderLog() {
 
 function legalMoveCells(me) {
   const c = currentCard();
-  if (!c || !me.pos) return new Set();
+  if (!cardHasMovement(c) || !me.pos) return new Set();
   const occupied = new Set([
     ...state.players.filter((p) => p.pos && !p.defeated).map((p) => key(p.pos)),
     ...state.minions.map((m) => key(m)),
@@ -340,27 +366,90 @@ function legalMoveCells(me) {
     .map(key));
 }
 
+function legalFastMoveCells(me) {
+  const c = currentCard();
+  if (!cardHasMovement(c) || !me.pos) return new Set();
+  const occupied = occupiedKeys();
+  return new Set(state.map
+    .filter((cell) => !cell.obstacle && !occupied.has(key(cell)))
+    .filter((cell) => canFastTravel(me, cell))
+    .map(key));
+}
+
 function legalMainCells(me) {
   const c = currentCard();
   if (!c || !me.pos) return new Set();
   if (c.primary === "killMinion") {
     return new Set(state.minions
       .filter((m) => m.team !== me.team && hexDistance(me.pos, m) === 1)
+      .filter((m) => !immuneTo(m, "attack"))
       .filter((m) => m.kind !== "heavy" || !state.minions.some((other) => other.team === m.team && other.kind !== "heavy"))
       .map(key));
   }
   if (c.primary === "attackHero") {
     return new Set(state.players
       .filter((p) => p.team !== me.team && p.pos && !p.defeated && hexDistance(me.pos, p.pos) === 1)
+      .filter((p) => !immuneTo(p, "attack"))
       .map((p) => key(p.pos)));
   }
   if (c.primary === "attackAny") {
     return new Set([
-      ...state.minions.filter((m) => m.team !== me.team).map(key),
-      ...state.players.filter((p) => p.team !== me.team && p.pos && !p.defeated).map((p) => key(p.pos)),
+      ...state.minions.filter((m) => m.team !== me.team && !immuneTo(m, "attack")).map(key),
+      ...state.players.filter((p) => p.team !== me.team && p.pos && !p.defeated && !immuneTo(p, "attack")).map((p) => key(p.pos)),
     ]);
   }
+  if (["attackGeneric", "attackRanged", "attackArea"].includes(c.primary)) {
+    const range = cardRange(c);
+    return new Set([
+      ...state.minions.filter((m) => m.team !== me.team && !immuneTo(m, "attack") && hexDistance(me.pos, m) <= range).map(key),
+      ...state.players.filter((p) => p.team !== me.team && p.pos && !p.defeated && !immuneTo(p, "attack") && hexDistance(me.pos, p.pos) <= range).map((p) => key(p.pos)),
+    ]);
+  }
+  if (["skillGeneric", "defenseGeneric", "effectGeneric"].includes(c.primary)) {
+    return new Set([key(me.pos)]);
+  }
+  if (c.primary === "primaryMove") {
+    const range = cardRange(c);
+    const occupied = occupiedKeys();
+    return new Set(state.map
+      .filter((cell) => !cell.obstacle && !occupied.has(key(cell)))
+      .filter((cell) => walkDistance(me.pos, cell, occupied, Boolean(c.canPhaseThroughWalls)) <= range)
+      .map(key));
+  }
   return new Set();
+}
+
+function cardHasMovement(card) {
+  return !!card && (card.movement !== null && card.movement !== undefined || card.primary === "move" || card.primary === "primaryMove");
+}
+
+function cardRange(card) {
+  return card?.subtype?.value ?? card?.movement ?? 1;
+}
+
+function occupiedKeys() {
+  return new Set([
+    ...state.players.filter((p) => p.pos && !p.defeated).map((p) => key(p.pos)),
+    ...state.minions.map((m) => key(m)),
+  ]);
+}
+
+function normalizedAction(action) {
+  return {
+    basicAttack: "attack",
+    "基础攻击": "attack",
+    "攻击": "attack",
+    basicSkill: "skill",
+    "基础技能": "skill",
+    "技能": "skill",
+  }[action] || action;
+}
+
+function immuneTo(piece, action) {
+  const immunities = piece?.immunities || piece?.immune || [];
+  const list = Array.isArray(immunities) ? immunities : [immunities];
+  const normalized = new Set(list.map(normalizedAction));
+  return normalized.has("all") || normalized.has("全部") || normalized.has(normalizedAction(action));
 }
 
 function walkDistance(start, target, occupied, canPhase) {
@@ -432,6 +521,13 @@ async function setCaptain() {
   } catch (err) { alert(err.message); }
 }
 
+async function selectHero(event) {
+  try {
+    state = await request("/api/select-hero", { heroKey: event.currentTarget.value });
+    render();
+  } catch (err) { alert(err.message); }
+}
+
 async function selectCard(event) {
   try {
     state = await request("/api/select", { cardId: event.currentTarget.dataset.select });
@@ -455,8 +551,8 @@ async function chooseActive(event) {
 
 async function chooseUpgrade(event) {
   try {
-    const [color, direction] = event.currentTarget.dataset.upgrade.split(":");
-    state = await request("/api/upgrade", { color, direction });
+    const [color, cardId] = event.currentTarget.dataset.upgrade.split(":");
+    state = await request("/api/upgrade", { color, cardId });
     render();
   } catch (err) { alert(err.message); }
 }
@@ -582,6 +678,10 @@ function passiveSummaryLines(player) {
   const parts = [];
   if (b.damage) parts.push(`伤害+${b.damage}`);
   if (b.defense) parts.push(`防御+${b.defense}`);
+  if (b.initiative) parts.push(`先攻+${b.initiative}`);
+  if (b.movement) parts.push(`移动+${b.movement}`);
+  if (b.range) parts.push(`范围+${b.range}`);
+  if (b.ranged) parts.push(`远程+${b.ranged}`);
   if (!parts.length) return ["无被动", "", ""];
   return [parts.slice(0, 2).join("、"), parts.slice(2, 4).join("、"), parts.slice(4).join("、")];
 }
@@ -591,14 +691,16 @@ function upgradeButtons(player) {
   if (!colors.length && !player.hasUltimate) return `<span class="muted">已满足大招条件，等待系统授予。</span>`;
   const names = { red: "红", green: "绿", blue: "蓝" };
   return `
-    <span class="muted">选择一张红/绿/蓝卡升级。三色均 2 级后才能升 3，三色均 3 后获得紫色大招。</span>
+    <span class="muted">选择一张下一等级卡替换当前同色卡；未选的另一张提供被动。</span>
     ${colors.map((color) => {
       const next = player.skills[color] + 1;
-      const value = next - 1;
-      return `
-        <button data-upgrade="${color}:initiative">${names[color]}升${next}：先攻+${value} / 被动伤害+${value}</button>
-        <button data-upgrade="${color}:movement">${names[color]}升${next}：移动+${value} / 被动防御+${value}</button>
-      `;
+      const candidates = allHeroCards(player).filter((card) => colorKey(card.color) === color && card.level === next);
+      if (!candidates.length) return `<span class="muted">${names[color]}卡缺少 ${next} 级升级选项。</span>`;
+      return candidates.map((card) => {
+        const other = candidates.find((c) => c.id !== card.id);
+        const passive = other?.passiveBonus ? `${other.passiveBonus}+1` : "无";
+        return `<button data-upgrade="${color}:${card.id}">${names[color]}升${next}：${highlightKeywords(card.name)}（未选被动：${passive}）</button>`;
+      }).join("");
     }).join("")}
   `;
 }
@@ -614,6 +716,7 @@ function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
 function teamName(team) { return team === "blue" ? "蓝方" : "红方"; }
 function phaseName(phase) { return { lobby: "大厅/选出生点", planning: "暗选", reveal: "翻牌结算", defense: "防御响应", minionChoice: "兵线移除", upgrade: "升级", ended: "游戏结束" }[phase] || phase; }
 function colorClass(color) { return { 金: "gold", 银: "silver", 红: "red", 蓝: "blue", 绿: "green", 紫: "purple" }[color] || ""; }
+function colorKey(color) { return { 红: "red", 绿: "green", 蓝: "blue" }[color] || ""; }
 function cellLabel(state) { return { blueHeroSpawn: "蓝英", redHeroSpawn: "红英", blueMeleeSpawn: "蓝近", blueRangedSpawn: "蓝远", blueHeavySpawn: "蓝重", redMeleeSpawn: "红近", redRangedSpawn: "红远", redHeavySpawn: "红重", terrain: "阻" }[state] || ""; }
 function minionName(kind) { return { melee: "近战小兵", ranged: "远程小兵", heavy: "重型小兵" }[kind] || "小兵"; }
 function minionShort(kind) { return { melee: "近", ranged: "远", heavy: "重" }[kind] || "兵"; }
@@ -633,10 +736,36 @@ function errorText(value) {
     "Action already used": "本次行动已经使用",
     "Invalid destination": "目标格不可移动",
     "Too far for card movement": "超过本牌移动距离",
+    "Hero selection only in lobby": "只能在大厅选择英雄",
+    "Unknown hero": "未知英雄",
+    "Need target in range": "目标不在范围内",
+    "Target is immune": "目标免疫该行动",
+    "Card has no movement action": "这张牌没有移动行动",
   }[value] || value || "请求失败";
 }
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[ch]));
+}
+
+const keywordGroups = [
+  { cls: "kw-timing", words: ["攻击后", "攻击前", "攻击结束后", "防御结束后", "下一回合", "本回合", "本轮", "此回合"] },
+  { cls: "kw-active", words: ["激活", "可以", "选择", "取回", "丢弃", "弃置", "交换", "推动"] },
+  { cls: "kw-action", words: ["基础攻击", "攻击", "基础技能", "技能", "终极技能", "防御/技能", "防御", "移动"] },
+  { cls: "kw-range", words: ["远程", "范围", "相邻", "战斗区域"] },
+  { cls: "kw-immune", words: ["免疫"] },
+];
+
+function highlightKeywords(value) {
+  let text = escapeHtml(value);
+  for (const group of keywordGroups) {
+    const words = [...group.words].sort((a, b) => b.length - a.length).map(escapeRegExp).join("|");
+    text = text.replace(new RegExp(words, "g"), (match) => `<span class="${group.cls}">${match}</span>`);
+  }
+  return text;
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 setInterval(refresh, 1000);

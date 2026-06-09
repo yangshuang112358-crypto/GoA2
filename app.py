@@ -15,6 +15,8 @@ ROOT = Path(__file__).resolve().parent
 STATIC = ROOT / "static"
 DATA = ROOT / "data"
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 3207
+CARD_DRAFT = DATA / "cards_draft" / "cards_ocr_draft.json"
+CARD_DATA = DATA / "cards.json"
 
 DIRS = [(1, 0), (1, -1), (0, -1), (-1, 0), (-1, 1), (0, 1)]
 
@@ -69,14 +71,6 @@ MAP = load_map()
 MAP_BY_KEY = {(c["x"], c["y"]): c for c in MAP}
 
 
-HEROES = {
-    "tigerclaw": {"name": "切盗者", "title": "切盗者"},
-    "brogan": {"name": "毁灭者", "title": "毁灭者"},
-    "wasp": {"name": "战争少女", "title": "战争少女"},
-    "arien": {"name": "潮汐大师", "title": "潮汐大师"},
-}
-
-
 def card(id: str, color: str, initiative: int, defense: int | None, movement: int, attack: int | None, name: str, text: str, primary: str) -> dict:
     return {
         "id": id,
@@ -101,14 +95,71 @@ def test_cards(prefix: str) -> list[dict]:
     ]
 
 
-CARDS = {key: test_cards(key) for key in HEROES}
+def formal_cards_to_game_cards(hero: dict) -> list[dict]:
+    result = []
+    for source in hero.get("cards", []):
+        primary_action = source.get("primary_action", {})
+        secondary = source.get("secondary_actions", {})
+        defense = secondary.get("defense", {})
+        movement = secondary.get("movement", {})
+        family = primary_action.get("family")
+        subtype = primary_action.get("subtype")
+        primary = {
+            "attack": "attackGeneric",
+            "skill": "skillGeneric",
+            "ultimate": "skillGeneric",
+            "defense": "defenseGeneric",
+            "defense_skill": "skillGeneric",
+            "movement": "primaryMove",
+        }.get(family, "effectGeneric")
+        if family == "attack" and subtype and subtype.get("type") == "范围":
+            primary = "attackArea"
+        elif family == "attack" and subtype and subtype.get("type") == "远程":
+            primary = "attackRanged"
+        result.append({
+            "id": source["id"],
+            "color": source["color"],
+            "level": source.get("level"),
+            "initiative": source.get("initiative") or 0,
+            "defense": defense.get("value") if defense.get("has_action") else None,
+            "movement": movement.get("value") if movement.get("has_action") else None,
+            "attack": primary_action.get("value") if family == "attack" else None,
+            "name": source.get("name") or "未命名",
+            "text": primary_action.get("text") or "",
+            "primary": primary,
+            "primaryCategory": primary_action.get("category"),
+            "actionFamily": family,
+            "subtype": subtype,
+            "exclamation": bool(primary_action.get("exclamation")),
+            "passiveBonus": (source.get("passive_bonus") or {}).get("type"),
+            "sourceCard": source,
+        })
+    return result
+
+
+def load_card_data() -> tuple[dict, dict]:
+    raw = json.loads(CARD_DATA.read_text(encoding="utf-8"))
+    heroes = {}
+    cards = {}
+    for hero in raw.get("heroes", []):
+        key = hero["hero_id"]
+        heroes[key] = {
+            "name": hero["name"],
+            "title": hero["name"],
+            "implemented": bool(hero.get("implemented")),
+        }
+        cards[key] = formal_cards_to_game_cards(hero) if hero.get("implemented") else test_cards(key)
+    return heroes, cards
+
+
+HEROES, CARDS = load_card_data()
 
 
 ROOMS: dict[str, dict] = {}
 
 
 def new_room(code: str) -> dict:
-    hero_keys = ["tigerclaw", "brogan", "wasp", "arien"]
+    hero_keys = ["brogan", "arien", "wasp", "shargatha"]
     return {
         "code": code,
         "phase": "lobby",
@@ -122,13 +173,15 @@ def new_room(code: str) -> dict:
         "frontMarks": {"blue": 0, "red": 0},
         "activeSeat": None,
         "resolutionOrder": [],
+        "currentTrick": [],
         "pendingDefense": None,
         "pendingCaptainChoice": None,
         "pendingMinionRemoval": None,
         "pendingUpgrades": [],
+        "decisionCoin": None,
         "log": [],
         "players": [
-            {
+            (lambda active_cards: {
                 "seat": i,
                 "token": None,
                 "name": "",
@@ -137,7 +190,8 @@ def new_room(code: str) -> dict:
                 "pos": None,
                 "needsSpawn": True,
                 "defeated": False,
-                "hand": [c["id"] for c in CARDS[hero_keys[i]]],
+                "activeSkillCards": active_cards,
+                "hand": starting_hand(hero_keys[i], {"activeSkillCards": active_cards}),
                 "discard": [],
                 "roundUsed": [],
                 "played": None,
@@ -148,10 +202,10 @@ def new_room(code: str) -> dict:
                 "heroLevel": 1,
                 "skills": {"red": 1, "blue": 1, "green": 1},
                 "passives": [],
-                "bonuses": {"damage": 0, "defense": 0},
+                "bonuses": {"damage": 0, "defense": 0, "initiative": 0, "movement": 0, "range": 0, "ranged": 0},
                 "cardUpgrades": {"red": {"initiative": 0, "movement": 0}, "green": {"initiative": 0, "movement": 0}, "blue": {"initiative": 0, "movement": 0}},
                 "hasUltimate": False,
-            }
+            })(init_active_skill_cards(hero_keys[i]))
             for i in range(4)
         ],
         "minions": spawn_minions(0, []),
@@ -160,6 +214,7 @@ def new_room(code: str) -> dict:
 
 def public_state(room: dict, token: str | None) -> dict:
     state = deepcopy(room)
+    state["decisionCoin"] = room.get("decisionCoin") or room.get("tiebreaker")
     state["map"] = MAP
     state["heroes"] = HEROES
     state["cards"] = CARDS
@@ -175,7 +230,37 @@ def public_state(room: dict, token: str | None) -> dict:
 
 
 def full_hand(hero_key: str) -> list[str]:
-    return [c["id"] for c in CARDS[hero_key]]
+    return starting_hand(hero_key)
+
+
+def is_implemented_hero(hero_key: str) -> bool:
+    return bool(HEROES.get(hero_key, {}).get("implemented"))
+
+
+def starting_hand(hero_key: str, player: dict | None = None) -> list[str]:
+    if not is_implemented_hero(hero_key):
+        return [c["id"] for c in CARDS[hero_key]]
+    result = []
+    active = (player or {}).get("activeSkillCards", {})
+    for c in CARDS[hero_key]:
+        color_key = color_key_for_card(c)
+        if c.get("color") in ("金", "银"):
+            result.append(c["id"])
+        elif color_key and active.get(color_key) == c["id"]:
+            result.append(c["id"])
+        elif color_key and not active.get(color_key) and c.get("level") == 1:
+            result.append(c["id"])
+    return result
+
+
+def init_active_skill_cards(hero_key: str) -> dict:
+    active = {"red": None, "green": None, "blue": None}
+    if not is_implemented_hero(hero_key):
+        return active
+    for color in active:
+        card = next((c for c in CARDS[hero_key] if color_key_for_card(c) == color and c.get("level") == 1), None)
+        active[color] = card["id"] if card else None
+    return active
 
 
 def mark_round_used(player: dict, card_id: str | None) -> None:
@@ -209,6 +294,34 @@ def occupied(room: dict, x: int, y: int, ignore_seat: int | None = None) -> bool
         if p["seat"] != ignore_seat and p.get("pos") and not p["defeated"] and p["pos"] == {"x": x, "y": y}:
             return True
     return any(m["x"] == x and m["y"] == y for m in room["minions"])
+
+
+def has_movement_action(card: dict | None) -> bool:
+    if not card:
+        return False
+    return card.get("movement") is not None or card.get("primary") in ("move", "primaryMove")
+
+
+def normalized_action(action: str | None) -> str | None:
+    return {
+        "basicAttack": "attack",
+        "基础攻击": "attack",
+        "攻击": "attack",
+        "basicSkill": "skill",
+        "基础技能": "skill",
+        "技能": "skill",
+    }.get(action, action)
+
+
+def immune_to(piece: dict | None, action: str | None) -> bool:
+    if not piece:
+        return False
+    action = normalized_action(action)
+    immunities = piece.get("immunities") or piece.get("immune") or []
+    if isinstance(immunities, str):
+        immunities = [immunities]
+    normalized = {normalized_action(item) for item in immunities}
+    return "all" in normalized or "全部" in normalized or action in normalized
 
 
 def walk_distance(room: dict, start: dict, target: dict, ignore_seat: int | None = None, can_phase: bool = False) -> int | None:
@@ -249,8 +362,8 @@ def effective_card(player: dict, card_id: str) -> dict | None:
     color_key = color_key_for_card(c)
     card_upgrade = player.get("cardUpgrades", {}).get(color_key, {}) if color_key else {}
     stat_bonuses = {
-        "initiative": card_upgrade.get("initiative", 0),
-        "movement": card_upgrade.get("movement", 0),
+        "initiative": card_upgrade.get("initiative", 0) + bonuses.get("initiative", 0),
+        "movement": card_upgrade.get("movement", 0) + bonuses.get("movement", 0),
         "attack": bonuses.get("damage", 0) if c["attack"] is not None else 0,
         "defense": bonuses.get("defense", 0) if c["defense"] is not None else 0,
     }
@@ -261,8 +374,10 @@ def effective_card(player: dict, card_id: str) -> dict | None:
         "defense": base["defense"],
     }
     c["bonusStats"] = stat_bonuses
-    c["initiative"] += stat_bonuses["initiative"]
-    c["movement"] += stat_bonuses["movement"]
+    if c["initiative"] is not None:
+        c["initiative"] += stat_bonuses["initiative"]
+    if c["movement"] is not None:
+        c["movement"] += stat_bonuses["movement"]
     if c["attack"] is not None:
         c["attack"] += stat_bonuses["attack"]
     if c["defense"] is not None:
@@ -271,22 +386,28 @@ def effective_card(player: dict, card_id: str) -> dict | None:
 
 
 def effective_cards(player: dict) -> list[dict]:
-    cards = [effective_card(player, c["id"]) for c in CARDS[player["heroKey"]]]
+    cards = [effective_card(player, c["id"]) for c in CARDS[player["heroKey"]] if c.get("color") != "紫"]
     if player.get("hasUltimate"):
-        cards.append({
-            "id": f"{player['heroKey']}-ultimate",
-            "color": "紫",
-            "initiative": None,
-            "defense": None,
-            "movement": None,
-            "attack": None,
-            "name": "大招占位",
-            "text": "紫色大招占位符：当前无效果，不进入手牌逻辑。",
-            "primary": "ultimatePassive",
-            "displayOnly": True,
-            "baseStats": {"initiative": None, "movement": None, "attack": None, "defense": None},
-            "bonusStats": {"initiative": 0, "movement": 0, "attack": 0, "defense": 0},
-        })
+        ultimate = next((c for c in CARDS[player["heroKey"]] if c.get("color") == "紫"), None)
+        if ultimate:
+            ultimate = effective_card(player, ultimate["id"])
+            ultimate["displayOnly"] = True
+            cards.append(ultimate)
+        else:
+            cards.append({
+                "id": f"{player['heroKey']}-ultimate",
+                "color": "紫",
+                "initiative": None,
+                "defense": None,
+                "movement": None,
+                "attack": None,
+                "name": "大招占位",
+                "text": "紫色大招占位符：当前无效果，不可选择。",
+                "primary": "ultimatePassive",
+                "displayOnly": True,
+                "baseStats": {"initiative": None, "movement": None, "attack": None, "defense": None},
+                "bonusStats": {"initiative": 0, "movement": 0, "attack": 0, "defense": 0},
+            })
     return cards
 
 
@@ -382,6 +503,17 @@ def adjacent(a: dict, b: dict) -> bool:
     return dist(a, b) == 1
 
 
+def card_range(card: dict) -> int:
+    subtype = card.get("subtype")
+    if isinstance(subtype, dict) and subtype.get("value") is not None:
+        return int(subtype["value"])
+    return 1
+
+
+def in_card_range(actor: dict, card: dict, target: dict) -> bool:
+    return dist(actor["pos"], target) <= card_range(card)
+
+
 def minion_at(room: dict, x: int, y: int) -> dict | None:
     return next((m for m in room["minions"] if m["x"] == x and m["y"] == y), None)
 
@@ -410,11 +542,54 @@ def damage_after_minions(room: dict, attacker: dict, defender: dict, base: int) 
 
 def minion_name(kind: str) -> str:
     return {"melee": "近战", "ranged": "远程", "heavy": "重型"}.get(kind, "小兵")
+def assist_gold_for_level(level: int) -> int:
+    if level <= 3:
+        return 1
+    if level <= 6:
+        return 2
+    return 3
+
+
+def defeat_hero(room: dict, attacker: dict, defender: dict) -> None:
+    defeated_level = int(defender.get("heroLevel", 1))
+    defender["defeated"] = True
+    defender["needsSpawn"] = True
+    defender["pos"] = None
+    attacker["coins"] += defeated_level
+    assist_gold = assist_gold_for_level(defeated_level)
+    for teammate in room["players"]:
+        if teammate["team"] == attacker["team"] and teammate["seat"] != attacker["seat"]:
+            teammate["coins"] += assist_gold
+    defender_team = defender["team"]
+    room["lives"][defender_team] -= defeated_level
+    touch(room, f"{attacker['name']} 击败 {defender['name']}，获得 {defeated_level} 金；队友助攻获得 {assist_gold} 金；{team_name(defender_team)}生命 -{defeated_level}。")
+    if room["lives"][defender_team] <= 0:
+        room["winner"] = "red" if defender_team == "blue" else "blue"
+        room["phase"] = "ended"
+
+
+def advance_front_after_elimination(room: dict, losing: str) -> None:
+    advancing = "red" if losing == "blue" else "blue"
+    room["minions"] = []
+    room["front"] += 1 if advancing == "blue" else -1
+    room["frontMarks"][advancing] += 1
+    touch(room, f"{team_name(advancing)}推进战线。")
+    if room["frontMarks"][advancing] >= 3 or abs(room["front"]) >= 5:
+        room["winner"] = advancing
+        room["phase"] = "ended"
+        return
+    room["minions"] = spawn_minions(room["front"], [])
+
+
+def after_minion_removed(room: dict, removed_team: str) -> None:
+    if not any(m["team"] == removed_team for m in room["minions"]):
+        advance_front_after_elimination(room, removed_team)
 
 
 def reveal(room: dict) -> None:
     room["phase"] = "reveal"
     order = []
+    room["currentTrick"] = []
     for p in room["players"]:
         if not p["selectedCardId"]:
             p["resolved"] = True
@@ -425,11 +600,10 @@ def reveal(room: dict) -> None:
         p["selectedCardId"] = None
         p["resolved"] = False
         p["actionTaken"] = False
-        if p["played"] in p["hand"]:
-            p["hand"].remove(p["played"])
         mark_round_used(p, p["played"])
         c = effective_card(p, p["played"])
         order.append({"seat": p["seat"], "initiative": c["initiative"] if c else 0})
+        room["currentTrick"].append({"seat": p["seat"], "cardId": p["played"], "resolved": False})
     order.sort(key=lambda item: (-item["initiative"], item["seat"]))
     room["resolutionOrder"] = [item["seat"] for item in order]
     if order:
@@ -462,10 +636,12 @@ def advance_resolution(room: dict) -> None:
         touch(room, f"轮到座位 {room['activeSeat'] + 1} 结算。")
         return
     if len(teams) > 1:
-        preferred = room["tiebreaker"]
+        preferred = room.get("decisionCoin") or room["tiebreaker"]
         candidates = [item for item in tied if item["team"] == preferred]
-        room["tiebreaker"] = "red" if room["tiebreaker"] == "blue" else "blue"
-        touch(room, f"同先攻 {top_init}，破平币指定{team_name(preferred)}先结算并翻面。")
+        next_face = "red" if preferred == "blue" else "blue"
+        room["tiebreaker"] = next_face
+        room["decisionCoin"] = next_face
+        touch(room, f"同先攻 {top_init}，决策币指定{team_name(preferred)}先结算并翻面。")
         if len(candidates) == 1:
             room["activeSeat"] = candidates[0]["seat"]
             return
@@ -485,6 +661,9 @@ def set_captain_choice(room: dict, team: str, seats: list[int], reason: str) -> 
 def finish_active(room: dict) -> None:
     active = room["players"][room["activeSeat"]]
     active["resolved"] = True
+    for item in room.get("currentTrick", []):
+        if item["seat"] == active["seat"] and item["cardId"] == active["played"]:
+            item["resolved"] = True
     if active["played"]:
         active["discard"].append(active["played"])
         active["played"] = None
@@ -501,6 +680,7 @@ def end_turn(room: dict) -> None:
             p["played"] = None
     room["activeSeat"] = None
     room["resolutionOrder"] = []
+    room["currentTrick"] = []
     if room["turn"] < 4:
         room["turn"] += 1
         room["phase"] = "planning"
@@ -511,7 +691,7 @@ def end_turn(room: dict) -> None:
 
 def end_round(room: dict) -> None:
     for p in room["players"]:
-        p["hand"] = full_hand(p["heroKey"])
+        p["hand"] = starting_hand(p["heroKey"], p)
         p["discard"] = []
         p["played"] = None
         p["selectedCardId"] = None
@@ -520,6 +700,7 @@ def end_round(room: dict) -> None:
         p["actionTaken"] = False
     room["activeSeat"] = None
     room["resolutionOrder"] = []
+    room["currentTrick"] = []
     room["pendingDefense"] = None
     room["pendingCaptainChoice"] = None
     touch(room, "一轮结束，回收手牌并结算兵线。")
@@ -547,10 +728,17 @@ def collect_upgrade_payments(room: dict) -> None:
             player["coins"] -= cost
             player["heroLevel"] += 1
             gained += 1
-        for _ in range(gained):
-            room["pendingUpgrades"].append({"seat": player["seat"]})
+        if is_implemented_hero(player["heroKey"]):
+            for _ in range(gained):
+                room["pendingUpgrades"].append({"seat": player["seat"]})
         if gained:
-            touch(room, f"{player['name']} 自动花费金币升至 {player['heroLevel']} 级，需要选择 {gained} 次升级。")
+            if is_implemented_hero(player["heroKey"]):
+                touch(room, f"{player['name']} 自动花费金币升至 {player['heroLevel']} 级，需要选择 {gained} 次升级。")
+            else:
+                touch(room, f"{player['name']} 自动花费金币升至 {player['heroLevel']} 级。")
+        if not gained:
+            player["coins"] += 1
+            touch(room, f"{player['name']} 本轮未升级，获得 1 金补偿（下轮可用）。")
 
 
 def begin_upgrade_phase(room: dict) -> bool:
@@ -589,27 +777,39 @@ def available_upgrade_colors(player: dict) -> list[str]:
     return [color for color in colors if player["skills"][color] < 2]
 
 
-def apply_card_upgrade(player: dict, color: str, direction: str) -> tuple[int, str, str]:
+def upgrade_candidates(player: dict, color: str) -> list[dict]:
+    if color not in available_upgrade_colors(player):
+        return []
+    next_level = player["skills"][color] + 1
+    return [c for c in CARDS[player["heroKey"]] if color_key_for_card(c) == color and c.get("level") == next_level]
+
+
+def add_passive_bonus(player: dict, passive_type: str | None) -> str:
+    if not passive_type:
+        return "无"
+    key = {"攻击": "damage", "防御": "defense", "先攻": "initiative", "移动": "movement", "范围": "range", "远程": "ranged"}.get(passive_type)
+    if key:
+        player["bonuses"][key] = player["bonuses"].get(key, 0) + 1
+    text = f"{passive_type}+1"
+    player["passives"].append(text)
+    return text
+
+
+def apply_card_upgrade(player: dict, color: str, card_id: str) -> tuple[int, str, str]:
     if color not in available_upgrade_colors(player):
         raise ApiError(400, "This color cannot upgrade now")
     next_level = player["skills"][color] + 1
-    value = next_level - 1
     color_name = {"red": "红", "green": "绿", "blue": "蓝"}[color]
-    if direction == "initiative":
-        player["cardUpgrades"][color]["initiative"] += value
-        player["bonuses"]["damage"] += value
-        passive = f"伤害+{value}"
-        active = f"先攻+{value}"
-    elif direction == "movement":
-        player["cardUpgrades"][color]["movement"] += value
-        player["bonuses"]["defense"] += value
-        passive = f"防御+{value}"
-        active = f"移动+{value}"
-    else:
-        raise ApiError(400, "Invalid upgrade direction")
+    candidates = upgrade_candidates(player, color)
+    chosen = next((c for c in candidates if c["id"] == card_id), None)
+    if not chosen:
+        raise ApiError(400, "Invalid upgrade card")
+    unchosen = next((c for c in candidates if c["id"] != card_id), None)
+    passive = add_passive_bonus(player, unchosen.get("passiveBonus") if unchosen else None)
     player["skills"][color] = next_level
-    player["passives"].append(passive)
-    return next_level, f"{color_name}卡{active}", passive
+    player.setdefault("activeSkillCards", {})[color] = chosen["id"]
+    player["hand"] = starting_hand(player["heroKey"], player)
+    return next_level, f"{color_name}卡替换为 {chosen['name']}", passive
 
 
 def legacy_auto_upgrade(player: dict, room: dict) -> None:
@@ -643,17 +843,9 @@ def finish_minion_resolution(room: dict) -> None:
         start_next_round(room)
         return
     if not any(m["team"] == losing for m in room["minions"]):
-        advancing = "red" if losing == "blue" else "blue"
-        room["minions"] = []
-        room["front"] += 1 if advancing == "blue" else -1
-        room["frontMarks"][advancing] += 1
-        touch(room, f"{team_name(advancing)}推进战线。")
-        if room["frontMarks"][advancing] >= 3 or abs(room["front"]) >= 5:
-            room["winner"] = advancing
-            room["phase"] = "ended"
-        else:
-            room["minions"] = spawn_minions(room["front"], [])
-    start_next_round(room)
+        advance_front_after_elimination(room, losing)
+    if not room.get("winner"):
+        start_next_round(room)
 
 
 def team_name(team: str) -> str:
@@ -681,6 +873,16 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_json(500, {"error": str(exc)})
 
     def route(self, path: str, body: dict) -> dict:
+        if path == "/api/card-draft/load":
+            return json.loads(CARD_DATA.read_text(encoding="utf-8"))
+
+        if path == "/api/card-draft/save":
+            draft = body.get("draft")
+            if not isinstance(draft, dict) or not isinstance(draft.get("heroes"), list):
+                raise ApiError(400, "Invalid card draft")
+            CARD_DATA.write_text(json.dumps(draft, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            return {"ok": True, "savedAt": int(time.time())}
+
         if path == "/api/create":
             code = secrets.token_hex(2).upper()
             room = new_room(code)
@@ -729,6 +931,29 @@ class Handler(SimpleHTTPRequestHandler):
             touch(room, f"{actor['name']} 成为{team_name(actor['team'])}队长。")
             return public_state(room, token)
 
+        if path == "/api/select-hero":
+            if room["phase"] != "lobby":
+                raise ApiError(400, "Hero selection only in lobby")
+            hero_key = str(body.get("heroKey", ""))
+            if hero_key not in HEROES:
+                raise ApiError(400, "Unknown hero")
+            actor["heroKey"] = hero_key
+            actor["activeSkillCards"] = init_active_skill_cards(hero_key)
+            actor["hand"] = starting_hand(hero_key, actor)
+            actor["discard"] = []
+            actor["roundUsed"] = []
+            actor["played"] = None
+            actor["selectedCardId"] = None
+            actor["resolved"] = False
+            actor["actionTaken"] = False
+            actor["skills"] = {"red": 1, "blue": 1, "green": 1}
+            actor["passives"] = []
+            actor["bonuses"] = {"damage": 0, "defense": 0, "initiative": 0, "movement": 0, "range": 0, "ranged": 0}
+            actor["cardUpgrades"] = {"red": {"initiative": 0, "movement": 0}, "green": {"initiative": 0, "movement": 0}, "blue": {"initiative": 0, "movement": 0}}
+            actor["hasUltimate"] = False
+            touch(room, f"{actor['name']} 选择 {HEROES[hero_key]['name']}。")
+            return public_state(room, token)
+
         if path == "/api/spawn":
             self_respawn = room["phase"] == "reveal" and room["activeSeat"] == actor["seat"] and actor["needsSpawn"]
             if not self_respawn and room["captains"][actor["team"]] != actor["seat"]:
@@ -742,11 +967,6 @@ class Handler(SimpleHTTPRequestHandler):
             target = actor if self_respawn else next((p for p in room["players"] if p["team"] == actor["team"] and (p["needsSpawn"] or p["defeated"] or not p["pos"])), None)
             if not target:
                 raise ApiError(400, "No hero needs spawn")
-            if self_respawn:
-                room["lives"][actor["team"]] -= 1
-                if room["lives"][actor["team"]] <= 0:
-                    room["winner"] = "red" if actor["team"] == "blue" else "blue"
-                    room["phase"] = "ended"
             target["pos"] = {"x": x, "y": y}
             target["needsSpawn"] = False
             target["defeated"] = False
@@ -768,9 +988,11 @@ class Handler(SimpleHTTPRequestHandler):
             card_id = body["cardId"]
             if card_id not in actor["hand"]:
                 raise ApiError(400, "Card not in hand")
+            if card_id in actor["roundUsed"] or card_id in actor["discard"]:
+                raise ApiError(400, "Card already used this round")
             actor["selectedCardId"] = card_id
             touch(room, f"{actor['name']} 已暗选。")
-            if all(p["selectedCardId"] or not p["hand"] for p in room["players"]):
+            if all(p["selectedCardId"] or not playable_hand(p) for p in room["players"]):
                 reveal(room)
             return public_state(room, token)
 
@@ -786,9 +1008,11 @@ class Handler(SimpleHTTPRequestHandler):
             played = effective_card(actor, actor["played"])
             if not played:
                 raise ApiError(400, "No played card")
+            if not has_movement_action(played):
+                raise ApiError(400, "Card has no movement action")
             can_phase = bool(played.get("canPhaseThroughWalls"))
             steps = walk_distance(room, actor["pos"], {"x": x, "y": y}, actor["seat"], can_phase)
-            if not can_fast_travel(room, actor, target) and (steps is None or steps > played["movement"]):
+            if not can_fast_travel(room, actor, target) and (steps is None or steps > (played.get("movement") or 0)):
                 raise ApiError(400, "Too far for card movement")
             actor["pos"] = {"x": x, "y": y}
             actor["actionTaken"] = True
@@ -806,19 +1030,69 @@ class Handler(SimpleHTTPRequestHandler):
             x, y = int(body["x"]), int(body["y"])
             if not actor.get("pos"):
                 raise ApiError(400, "Actor not on board")
-            if played["primary"] != "attackAny" and not adjacent(actor["pos"], {"x": x, "y": y}):
+            if played["primary"] not in ("attackAny", "attackGeneric", "attackRanged", "attackArea", "skillGeneric", "defenseGeneric", "primaryMove") and not adjacent(actor["pos"], {"x": x, "y": y}):
                 raise ApiError(400, "Need adjacent target")
+            if played["primary"] in ("skillGeneric", "defenseGeneric", "effectGeneric"):
+                actor["actionTaken"] = True
+                touch(room, f"{actor['name']} 执行 {played['name']}：{played['text']}")
+                return public_state(room, token)
+            if played["primary"] == "primaryMove":
+                target = cell_at(x, y)
+                if not target or not in_bounds(x, y) or occupied(room, x, y, actor["seat"]):
+                    raise ApiError(400, "Invalid destination")
+                can_phase = bool(played.get("canPhaseThroughWalls"))
+                steps = walk_distance(room, actor["pos"], {"x": x, "y": y}, actor["seat"], can_phase)
+                if steps is None or steps > card_range(played):
+                    raise ApiError(400, "Too far for card movement")
+                actor["pos"] = {"x": x, "y": y}
+                actor["actionTaken"] = True
+                touch(room, f"{actor['name']} 执行 {played['name']} 移动到 {x},{y}。")
+                return public_state(room, token)
             if played["primary"] == "killMinion":
                 m = minion_at(room, x, y)
                 if not m or m["team"] == actor["team"]:
                     raise ApiError(400, "Need adjacent enemy minion")
+                if immune_to(m, "attack"):
+                    raise ApiError(400, "Target is immune")
                 if m["kind"] == "heavy" and any(mm["team"] == m["team"] and mm["kind"] != "heavy" for mm in room["minions"]):
                     raise ApiError(400, "Heavy minion cannot be killed before other friendly minions")
+                removed_team = m["team"]
                 room["minions"] = [mm for mm in room["minions"] if mm["id"] != m["id"]]
                 gain = 4 if m["kind"] == "heavy" else 2
                 actor["coins"] += gain
                 actor["actionTaken"] = True
                 touch(room, f"{actor['name']} 击杀{team_name(m['team'])}{minion_name(m['kind'])}小兵，获得 {gain} 金。")
+                after_minion_removed(room, removed_team)
+                return public_state(room, token)
+            if played["primary"] in ("attackGeneric", "attackRanged", "attackArea"):
+                defender = hero_at(room, x, y)
+                target_minion = minion_at(room, x, y)
+                target_pos = {"x": x, "y": y}
+                if not in_card_range(actor, played, target_pos):
+                    raise ApiError(400, "Need target in range")
+                if target_minion and target_minion["team"] != actor["team"]:
+                    if immune_to(target_minion, "attack"):
+                        raise ApiError(400, "Target is immune")
+                    if target_minion["kind"] == "heavy" and any(mm["team"] == target_minion["team"] and mm["kind"] != "heavy" for mm in room["minions"]):
+                        raise ApiError(400, "Heavy minion cannot be killed before other friendly minions")
+                    removed_team = target_minion["team"]
+                    room["minions"] = [mm for mm in room["minions"] if mm["id"] != target_minion["id"]]
+                    gain = 4 if target_minion["kind"] == "heavy" else 2
+                    actor["coins"] += gain
+                    actor["actionTaken"] = True
+                    touch(room, f"{actor['name']} 使用 {played['name']} 击杀{team_name(target_minion['team'])}{minion_name(target_minion['kind'])}小兵，获得 {gain} 金。")
+                    after_minion_removed(room, removed_team)
+                    return public_state(room, token)
+                if not defender or defender["team"] == actor["team"]:
+                    raise ApiError(400, "Need enemy target")
+                if immune_to(defender, "attack"):
+                    raise ApiError(400, "Target is immune")
+                damage, notes = damage_after_minions(room, actor, defender, played.get("attack") or 0)
+                room["pendingDefense"] = {"attackerSeat": actor["seat"], "defenderSeat": defender["seat"], "damage": damage, "attackCard": played["id"]}
+                room["activeSeat"] = defender["seat"]
+                room["phase"] = "defense"
+                detail = "；".join(notes) if notes else "无修正"
+                touch(room, f"{actor['name']} 使用 {played['name']} 攻击 {defender['name']}：基础{played.get('attack') or 0}，{detail}，最终伤害{damage}。")
                 return public_state(room, token)
             if played["primary"] in ("attackHero", "attackAny"):
                 defender = hero_at(room, x, y)
@@ -826,16 +1100,22 @@ class Handler(SimpleHTTPRequestHandler):
                 if played["primary"] == "attackHero" and (not defender or defender["team"] == actor["team"]):
                     raise ApiError(400, "Need adjacent enemy hero")
                 if played["primary"] == "attackAny" and target_minion and target_minion["team"] != actor["team"]:
+                    if immune_to(target_minion, "attack"):
+                        raise ApiError(400, "Target is immune")
                     if target_minion["kind"] == "heavy" and any(mm["team"] == target_minion["team"] and mm["kind"] != "heavy" for mm in room["minions"]):
                         raise ApiError(400, "Heavy minion cannot be killed before other friendly minions")
+                    removed_team = target_minion["team"]
                     room["minions"] = [mm for mm in room["minions"] if mm["id"] != target_minion["id"]]
                     gain = 4 if target_minion["kind"] == "heavy" else 2
                     actor["coins"] += gain
                     actor["actionTaken"] = True
                     touch(room, f"{actor['name']} 攻击并击杀{team_name(target_minion['team'])}{minion_name(target_minion['kind'])}小兵，获得 {gain} 金。")
+                    after_minion_removed(room, removed_team)
                     return public_state(room, token)
                 if not defender or defender["team"] == actor["team"]:
                     raise ApiError(400, "Need enemy target")
+                if immune_to(defender, "attack"):
+                    raise ApiError(400, "Target is immune")
                 damage, notes = damage_after_minions(room, actor, defender, played["attack"] or 0)
                 room["pendingDefense"] = {"attackerSeat": actor["seat"], "defenderSeat": defender["seat"], "damage": damage}
                 room["activeSeat"] = defender["seat"]
@@ -868,22 +1148,20 @@ class Handler(SimpleHTTPRequestHandler):
                 if card_id not in actor["hand"]:
                     raise ApiError(400, "Defense card not in hand")
                 defense_card = effective_card(actor, card_id)
-                if (defense_card.get("defense") or 0) < damage:
+                if not defense_card.get("exclamation") and (defense_card.get("defense") or 0) < damage:
                     raise ApiError(400, "Defense too low")
                 actor["hand"].remove(card_id)
                 actor["discard"].append(card_id)
                 touch(room, f"{actor['name']} 弃置 {defense_card['name']} 防御 {defense_card['defense']}，防住伤害 {damage}。")
             else:
-                actor["defeated"] = True
-                actor["needsSpawn"] = True
-                actor["pos"] = None
-                gain = actor["heroLevel"]
-                attacker["coins"] += gain
-                touch(room, f"{actor['name']} 未防住伤害 {damage}，死亡；{attacker['name']} 获得 {gain} 金。")
+                defeat_hero(room, attacker, actor)
             attacker["actionTaken"] = True
             room["pendingDefense"] = None
-            room["phase"] = "reveal"
-            room["activeSeat"] = attacker["seat"]
+            if room.get("winner"):
+                room["activeSeat"] = None
+            else:
+                room["phase"] = "reveal"
+                room["activeSeat"] = attacker["seat"]
             return public_state(room, token)
 
         if path == "/api/skip-action":
@@ -915,8 +1193,8 @@ class Handler(SimpleHTTPRequestHandler):
             if room["phase"] != "upgrade" or room["activeSeat"] != actor["seat"] or not room["pendingUpgrades"]:
                 raise ApiError(400, "Not your upgrade")
             color = str(body.get("color"))
-            direction = str(body.get("direction"))
-            level, active_text, passive_text = apply_card_upgrade(actor, color, direction)
+            card_id = str(body.get("cardId"))
+            level, active_text, passive_text = apply_card_upgrade(actor, color, card_id)
             room["pendingUpgrades"].pop(0)
             touch(room, f"{actor['name']} 将{ {'red':'红','green':'绿','blue':'蓝'}[color] }卡升至 {level} 级：{active_text}，被动{passive_text}。")
             if not begin_upgrade_phase(room):
@@ -958,7 +1236,9 @@ class Handler(SimpleHTTPRequestHandler):
             m = minion_at(room, x, y)
             h = hero_at(room, x, y)
             if m:
+                removed_team = m["team"]
                 room["minions"] = [mm for mm in room["minions"] if mm["id"] != m["id"]]
+                after_minion_removed(room, removed_team)
                 touch(room, f"{actor['name']} 调试击杀{team_name(m['team'])}{minion_name(m['kind'])}小兵。")
             elif h and h["seat"] != actor["seat"]:
                 h["defeated"] = True
