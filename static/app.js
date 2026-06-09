@@ -51,9 +51,11 @@ function render() {
 function renderTop() {
   $("phaseTitle").textContent = phaseName(state.phase);
   const played = publicPlayedCards();
+  const upgrade = upgradePreviewCards();
   $("statusLine").innerHTML = `
     <span>第 ${state.round} 轮 / 第 ${state.turn} 回合 · 生命 蓝${state.lives.blue}/红${state.lives.red} · 决策币${teamName(state.decisionCoin || state.tiebreaker)} · 战线 蓝${state.frontMarks.blue}/红${state.frontMarks.red}</span>
-    ${played ? `<span class="public-cards">${played}</span>` : ""}
+    ${played ? `<div class="public-cards">${played}</div>` : ""}
+    ${upgrade ? `<div class="public-cards upgrade-preview">${upgrade}</div>` : ""}
   `;
 }
 
@@ -75,7 +77,7 @@ function renderPlayers() {
         </div>
         <button data-captain="${p.seat}" ${p.seat !== state.meSeat || state.phase !== "lobby" ? "disabled" : ""}>设队长</button>
         ${p.seat === state.meSeat && state.phase === "lobby" ? heroSelect(p) : ""}
-        <div class="card-track">${allHeroCards(p).map((card) => cardDot(p, card)).join("")}</div>
+        <div class="card-track">${statusCards(p).map((card) => cardDot(p, card)).join("")}</div>
       </article>
     `;
   }).join("");
@@ -85,14 +87,43 @@ function renderPlayers() {
 }
 
 function publicPlayedCards() {
-  if (state.phase !== "reveal") return "";
-  const seats = state.resolutionOrder?.length ? state.resolutionOrder : state.players.map((p) => p.seat);
-  return seats.map((seat, index) => {
-    const p = state.players[seat];
-    const card = p?.played ? cardById(p.heroKey, p.played, p) : null;
+  if (!["reveal", "defense"].includes(state.phase)) return "";
+  const entries = currentTrickEntries();
+  return entries.map((entry) => {
+    const p = state.players[entry.seat];
+    const card = p ? cardById(p.heroKey, entry.cardId, p) : null;
     if (!p || !card) return "";
-    return `${index + 1}. ${escapeHtml(p.name || `座位${seat + 1}`)}：${highlightKeywords(card.name)}（先攻${statText(card, "initiative")}，${highlightKeywords(card.text)}）`;
-  }).filter(Boolean).join("　");
+    return cardHtml(card, {
+      owner: p.name || `座位${entry.seat + 1}`,
+      compact: true,
+      resolved: entry.resolved,
+      button: ""
+    });
+  }).filter(Boolean).join("");
+}
+
+function currentTrickEntries() {
+  if (state.currentTrick?.length) {
+    return [...state.currentTrick].sort((a, b) => {
+      const pa = state.players[a.seat], pb = state.players[b.seat];
+      const ca = pa ? cardById(pa.heroKey, a.cardId, pa) : null;
+      const cb = pb ? cardById(pb.heroKey, b.cardId, pb) : null;
+      return ((cb?.initiative ?? 0) - (ca?.initiative ?? 0)) || a.seat - b.seat;
+    });
+  }
+  return (state.resolutionOrder || []).map((seat) => ({ seat, cardId: state.players[seat]?.played, resolved: state.players[seat]?.resolved })).filter((x) => x.cardId);
+}
+
+function upgradePreviewCards() {
+  if (state.phase !== "upgrade") return "";
+  const p = state.players[state.activeSeat];
+  if (!p) return "";
+  const canChoose = state.meSeat === state.activeSeat;
+  return upgradeCandidateCards(p).map(({ card, passive }) => cardHtml(card, {
+    compact: true,
+    upgradePassive: passive,
+    button: `<button data-upgrade="${colorKey(card.color)}:${card.id}" ${canChoose ? "" : "disabled"}>${card.color}升级至${card.level}级</button>`
+  })).join("");
 }
 
 function allHeroCards(player) {
@@ -110,6 +141,14 @@ function heroSelect(player) {
 function handDisplayCards(player) {
   const cards = player.hand.map((id) => cardById(player.heroKey, id, player)).filter(Boolean);
   return [...cards, ...allHeroCards(player).filter((card) => card.displayOnly)];
+}
+
+function statusCards(player) {
+  const ids = [];
+  [...(player.hand || []), ...(player.discard || []), player.played].forEach((id) => {
+    if (id && !ids.includes(id)) ids.push(id);
+  });
+  return ids.map((id) => cardById(player.heroKey, id, player)).filter((card) => card && !card.displayOnly).slice(0, 5);
 }
 
 function cardDot(player, card) {
@@ -254,7 +293,7 @@ function renderActions() {
     return;
   }
   if (state.phase === "upgrade" && state.activeSeat === me.seat) {
-    $("actions").innerHTML = upgradeButtons(me);
+    $("actions").innerHTML = `<span class="muted">在上方出牌区选择升级方向。</span>`;
     document.querySelectorAll("[data-upgrade]").forEach((btn) => btn.addEventListener("click", chooseUpgrade));
     return;
   }
@@ -337,16 +376,86 @@ function renderHand() {
   $("heroPanel").innerHTML = `<strong>${hero.name}</strong><span>${teamName(me.team)} · ${me.coins} 金 · 等级 ${me.heroLevel}</span><span>${me.needsSpawn ? "等待队长选出生点" : me.pos ? `位置 ${me.pos.x},${me.pos.y}` : "未在场"}</span>`;
   $("handHint").textContent = state.phase === "planning" ? "暗选 1 张牌。" : "";
   $("hand").innerHTML = handDisplayCards(me).map((c) => {
-    return `
-      <article class="card ${colorClass(c.color)}">
-        <header class="card-head"><strong>${highlightKeywords(c.name)}</strong><span>${c.color} · 先攻${statText(c, "initiative")}</span></header>
-        <div class="stats">${stat("防", c, "defense")}${stat("移", c, "movement")}${stat("攻", c, "attack")}</div>
-        <p>${highlightKeywords(c.text)}</p>
-        <button data-select="${c.id}" ${state.phase !== "planning" || c.displayOnly ? "disabled" : ""}>${c.displayOnly ? "占位" : "选择"}</button>
-      </article>
-    `;
+    const status = cardRoundStatus(me, c);
+    const disabled = state.phase !== "planning" || c.displayOnly || Boolean(status);
+    const label = c.displayOnly ? "占位" : status || "选择";
+    return cardHtml(c, { used: Boolean(status), button: `<button data-select="${c.id}" ${disabled ? "disabled" : ""}>${label}</button>` });
   }).join("");
   document.querySelectorAll("[data-select]").forEach((btn) => btn.addEventListener("click", selectCard));
+}
+
+function cardHtml(card, options = {}) {
+  const cls = ["card", colorClass(card.color)];
+  if (options.compact) cls.push("compact-card");
+  if (options.used) cls.push("used-card");
+  if (options.resolved) cls.push("resolved-card");
+  const owner = options.owner ? `<span class="card-owner">${escapeHtml(options.owner)}</span>` : "";
+  const subtype = cardSubtypeText(card);
+  const passive = options.upgradePassive ? `<footer>获得被动：${escapeHtml(options.upgradePassive)}</footer>` : "";
+  return `
+    <article class="${cls.join(" ")}">
+      <header class="card-head">
+        <strong>${highlightKeywords(card.name)}</strong>
+        <span>先攻${statText(card, "initiative")} · ${cardTypeText(card)}</span>
+      </header>
+      ${owner}
+      <div class="stats">
+        ${stat("防", card, "defense")}
+        ${stat("移", card, "movement")}
+        ${stat("攻", card, "attack")}
+        ${subtype ? `<span>${subtype}</span>` : ""}
+      </div>
+      <p>${highlightKeywords(card.text)}</p>
+      ${passive}
+      ${options.button || ""}
+    </article>
+  `;
+}
+
+function cardRoundStatus(player, card) {
+  if (player.discard?.includes(card.id)) return "已弃置";
+  if (player.roundUsed?.includes(card.id)) return `回合${state.turn}已打出`;
+  if (player.played === card.id) return `回合${state.turn}已打出`;
+  if (player.selectedCardId === card.id) return "已暗选";
+  return "";
+}
+
+function cardTypeText(card) {
+  if (card.primaryCategory) return card.primaryCategory;
+  const map = {
+    attackGeneric: "攻击",
+    attackRanged: "攻击",
+    attackArea: "攻击",
+    attackHero: "攻击",
+    attackAny: "攻击",
+    killMinion: "攻击",
+    skillGeneric: "技能",
+    effectGeneric: "技能",
+    defenseGeneric: "防御",
+    primaryMove: "移动",
+  };
+  return map[card.primary] || "技能";
+}
+
+function cardSubtypeText(card) {
+  const subtype = card.subtype;
+  if (!subtype?.type) return "";
+  const field = subtype.type === "范围" ? "range" : subtype.type === "远程" ? "ranged" : null;
+  const base = subtype.value ?? 0;
+  const bonus = field ? (card.bonusStats?.[field] || 0) : 0;
+  return `${subtype.type}${bonus ? `${base}+${bonus}` : base}`;
+}
+
+function upgradeCandidateCards(player) {
+  return availableUpgradeColors(player).flatMap((color) => {
+    const next = player.skills[color] + 1;
+    const candidates = allHeroCards(player).filter((card) => colorKey(card.color) === color && card.level === next);
+    return candidates.map((card) => {
+      const other = candidates.find((c) => c.id !== card.id);
+      const passive = other?.passiveBonus ? `${other.passiveBonus}+1` : "无";
+      return { card, passive };
+    });
+  });
 }
 
 function renderLog() {
@@ -405,6 +514,15 @@ function legalMainCells(me) {
       ...state.players.filter((p) => p.team !== me.team && p.pos && !p.defeated && !immuneTo(p, "attack") && hexDistance(me.pos, p.pos) <= range).map((p) => key(p.pos)),
     ]);
   }
+  if (["arien-07-潮水", "arien-09-魔法水流", "arien-11-潮汐之力"].includes(c.id)) {
+    const range = cardRange(c);
+    const occupied = occupiedKeys();
+    return new Set(state.map
+      .filter((cell) => !cell.obstacle && !occupied.has(key(cell)) && hexDistance(me.pos, cell) <= range)
+      .filter((cell) => !String(cell.state || "").endsWith("HeroSpawn"))
+      .filter((cell) => c.id === "arien-11-潮汐之力" || !state.map.some((spawn) => String(spawn.state || "").endsWith("HeroSpawn") && !occupied.has(key(spawn)) && hexDistance(cell, spawn) === 1))
+      .map(key));
+  }
   if (["skillGeneric", "defenseGeneric", "effectGeneric"].includes(c.primary)) {
     return new Set([key(me.pos)]);
   }
@@ -424,7 +542,9 @@ function cardHasMovement(card) {
 }
 
 function cardRange(card) {
-  return card?.subtype?.value ?? card?.movement ?? 1;
+  const type = card?.subtype?.type;
+  const bonusKey = type === "范围" ? "range" : type === "远程" ? "ranged" : null;
+  return (card?.subtype?.value ?? card?.movement ?? 1) + (bonusKey ? (card?.bonusStats?.[bonusKey] || 0) : 0);
 }
 
 function occupiedKeys() {

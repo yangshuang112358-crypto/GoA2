@@ -141,14 +141,16 @@ def load_card_data() -> tuple[dict, dict]:
     raw = json.loads(CARD_DATA.read_text(encoding="utf-8"))
     heroes = {}
     cards = {}
+    active_heroes = {"wasp", "shargatha", "brogan", "arien"}
     for hero in raw.get("heroes", []):
         key = hero["hero_id"]
+        implemented = bool(hero.get("implemented") or key in active_heroes)
         heroes[key] = {
             "name": hero["name"],
             "title": hero["name"],
-            "implemented": bool(hero.get("implemented")),
+            "implemented": implemented,
         }
-        cards[key] = formal_cards_to_game_cards(hero) if hero.get("implemented") else test_cards(key)
+        cards[key] = formal_cards_to_game_cards(hero) if implemented else test_cards(key)
     return heroes, cards
 
 
@@ -159,7 +161,7 @@ ROOMS: dict[str, dict] = {}
 
 
 def new_room(code: str) -> dict:
-    hero_keys = ["brogan", "arien", "wasp", "shargatha"]
+    hero_keys = ["brogan", "wasp", "arien", "shargatha"]
     return {
         "code": code,
         "phase": "lobby",
@@ -179,6 +181,7 @@ def new_room(code: str) -> dict:
         "pendingMinionRemoval": None,
         "pendingUpgrades": [],
         "decisionCoin": None,
+        "effects": [],
         "log": [],
         "players": [
             (lambda active_cards: {
@@ -268,6 +271,11 @@ def mark_round_used(player: dict, card_id: str | None) -> None:
         player["roundUsed"].append(card_id)
 
 
+def playable_hand(player: dict) -> list[str]:
+    used = set(player.get("roundUsed", [])) | set(player.get("discard", []))
+    return [card_id for card_id in player.get("hand", []) if card_id not in used]
+
+
 def touch(room: dict, text: str) -> None:
     room["log"].insert(0, f"[R{room['round']}] {text}")
     room["log"] = room["log"][:100]
@@ -324,6 +332,55 @@ def immune_to(piece: dict | None, action: str | None) -> bool:
     return "all" in normalized or "全部" in normalized or action in normalized
 
 
+def effect_in_range(source: dict, target: dict, rng: int) -> bool:
+    return bool(source.get("pos") and target.get("pos") and dist(source["pos"], target["pos"]) <= rng)
+
+
+def action_blocked_by_effect(room: dict, actor: dict, action: str) -> str | None:
+    action = normalized_action(action)
+    for effect in room.get("effects", []):
+        source = room["players"][effect["sourceSeat"]]
+        if source["team"] == actor["team"] or not effect_in_range(source, actor, effect.get("range", 0)):
+            continue
+        if effect["type"] == "noSkill" and action == "skill":
+            return effect["name"]
+        if effect["type"] == "noMove" and action == "movement":
+            return effect["name"]
+    return None
+
+
+def movement_blocked_by_effect(room: dict, actor: dict, target: dict) -> str | None:
+    base = action_blocked_by_effect(room, actor, "movement")
+    if base:
+        return base
+    for effect in room.get("effects", []):
+        if effect["type"] != "staticLock":
+            continue
+        source = room["players"][effect["sourceSeat"]]
+        if source["team"] == actor["team"] or not source.get("pos") or not actor.get("pos"):
+            continue
+        rng = effect.get("range", 0)
+        starts_inside = dist(source["pos"], actor["pos"]) <= rng
+        ends_inside = dist(source["pos"], target) <= rng
+        if starts_inside != ends_inside:
+            return effect["name"]
+    return None
+
+
+def expire_turn_effects(room: dict) -> None:
+    room["effects"] = [effect for effect in room.get("effects", []) if effect.get("duration") != "turn"]
+
+
+def apply_text_effect(room: dict, actor: dict, card: dict) -> str | None:
+    if card["id"] == "arien-06-打断施法":
+        room.setdefault("effects", []).append({"type": "noSkill", "sourceSeat": actor["seat"], "range": card_range(card), "duration": "turn", "name": card["name"]})
+        return f"技能范围 {card_range(card)} 内的敌方英雄本回合不能执行技能。"
+    if card["id"] == "wasp-06-静电封锁":
+        room.setdefault("effects", []).append({"type": "staticLock", "sourceSeat": actor["seat"], "range": card_range(card), "duration": "turn", "name": card["name"]})
+        return f"技能范围 {card_range(card)} 形成静电封锁；移动穿越范围边界会被阻止。"
+    return None
+
+
 def walk_distance(room: dict, start: dict, target: dict, ignore_seat: int | None = None, can_phase: bool = False) -> int | None:
     if start == target:
         return 0
@@ -366,12 +423,16 @@ def effective_card(player: dict, card_id: str) -> dict | None:
         "movement": card_upgrade.get("movement", 0) + bonuses.get("movement", 0),
         "attack": bonuses.get("damage", 0) if c["attack"] is not None else 0,
         "defense": bonuses.get("defense", 0) if c["defense"] is not None else 0,
+        "range": bonuses.get("range", 0),
+        "ranged": bonuses.get("ranged", 0),
     }
     c["baseStats"] = {
         "initiative": base["initiative"],
         "movement": base["movement"],
         "attack": base["attack"],
         "defense": base["defense"],
+        "range": (base.get("subtype") or {}).get("value") if (base.get("subtype") or {}).get("type") == "范围" else None,
+        "ranged": (base.get("subtype") or {}).get("value") if (base.get("subtype") or {}).get("type") == "远程" else None,
     }
     c["bonusStats"] = stat_bonuses
     if c["initiative"] is not None:
@@ -506,7 +567,8 @@ def adjacent(a: dict, b: dict) -> bool:
 def card_range(card: dict) -> int:
     subtype = card.get("subtype")
     if isinstance(subtype, dict) and subtype.get("value") is not None:
-        return int(subtype["value"])
+        bonus_key = {"范围": "range", "远程": "ranged"}.get(subtype.get("type"))
+        return int(subtype["value"]) + int((card.get("bonusStats") or {}).get(bonus_key, 0))
     return 1
 
 
@@ -671,6 +733,7 @@ def finish_active(room: dict) -> None:
 
 
 def end_turn(room: dict) -> None:
+    expire_turn_effects(room)
     for p in room["players"]:
         p["resolved"] = False
         p["selectedCardId"] = None
@@ -1010,6 +1073,9 @@ class Handler(SimpleHTTPRequestHandler):
                 raise ApiError(400, "No played card")
             if not has_movement_action(played):
                 raise ApiError(400, "Card has no movement action")
+            blocked = movement_blocked_by_effect(room, actor, {"x": x, "y": y})
+            if blocked:
+                raise ApiError(400, f"Movement blocked by {blocked}")
             can_phase = bool(played.get("canPhaseThroughWalls"))
             steps = walk_distance(room, actor["pos"], {"x": x, "y": y}, actor["seat"], can_phase)
             if not can_fast_travel(room, actor, target) and (steps is None or steps > (played.get("movement") or 0)):
@@ -1030,16 +1096,39 @@ class Handler(SimpleHTTPRequestHandler):
             x, y = int(body["x"]), int(body["y"])
             if not actor.get("pos"):
                 raise ApiError(400, "Actor not on board")
+            blocked_action = action_blocked_by_effect(room, actor, played.get("primaryCategory") or played.get("actionFamily"))
+            if blocked_action:
+                raise ApiError(400, f"Action blocked by {blocked_action}")
             if played["primary"] not in ("attackAny", "attackGeneric", "attackRanged", "attackArea", "skillGeneric", "defenseGeneric", "primaryMove") and not adjacent(actor["pos"], {"x": x, "y": y}):
                 raise ApiError(400, "Need adjacent target")
+            if played["id"] in ("arien-07-潮水", "arien-09-魔法水流", "arien-11-潮汐之力"):
+                target = cell_at(x, y)
+                if not target or target.get("obstacle") or occupied(room, x, y, actor["seat"]):
+                    raise ApiError(400, "Invalid destination")
+                if not in_card_range(actor, played, {"x": x, "y": y}):
+                    raise ApiError(400, "Need destination in range")
+                if target.get("state", "").endswith("HeroSpawn"):
+                    raise ApiError(400, "Destination cannot be a spawn")
+                if played["id"] != "arien-11-潮汐之力":
+                    for spawn in [c for c in MAP if c.get("state", "").endswith("HeroSpawn")]:
+                        if not occupied(room, spawn["x"], spawn["y"]) and adjacent({"x": x, "y": y}, spawn):
+                            raise ApiError(400, "Destination cannot be adjacent to an empty spawn")
+                actor["pos"] = {"x": x, "y": y}
+                actor["actionTaken"] = True
+                touch(room, f"{actor['name']} 执行 {played['name']}，放置到 {x},{y}。")
+                return public_state(room, token)
             if played["primary"] in ("skillGeneric", "defenseGeneric", "effectGeneric"):
                 actor["actionTaken"] = True
-                touch(room, f"{actor['name']} 执行 {played['name']}：{played['text']}")
+                effect_text = apply_text_effect(room, actor, played)
+                touch(room, f"{actor['name']} 执行 {played['name']}：{effect_text or played['text']}")
                 return public_state(room, token)
             if played["primary"] == "primaryMove":
                 target = cell_at(x, y)
                 if not target or not in_bounds(x, y) or occupied(room, x, y, actor["seat"]):
                     raise ApiError(400, "Invalid destination")
+                blocked = movement_blocked_by_effect(room, actor, {"x": x, "y": y})
+                if blocked:
+                    raise ApiError(400, f"Movement blocked by {blocked}")
                 can_phase = bool(played.get("canPhaseThroughWalls"))
                 steps = walk_distance(room, actor["pos"], {"x": x, "y": y}, actor["seat"], can_phase)
                 if steps is None or steps > card_range(played):
