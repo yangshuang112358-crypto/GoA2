@@ -104,10 +104,13 @@ function publicPlayedCards() {
 
 function currentTrickEntries() {
   if (state.currentTrick?.length) {
+    const order = state.resolutionOrder || [];
     return [...state.currentTrick].sort((a, b) => {
       const pa = state.players[a.seat], pb = state.players[b.seat];
       const ca = pa ? cardById(pa.heroKey, a.cardId, pa) : null;
       const cb = pb ? cardById(pb.heroKey, b.cardId, pb) : null;
+      const ai = order.indexOf(a.seat), bi = order.indexOf(b.seat);
+      if (ai !== -1 || bi !== -1) return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
       return ((cb?.initiative ?? 0) - (ca?.initiative ?? 0)) || a.seat - b.seat;
     });
   }
@@ -116,13 +119,13 @@ function currentTrickEntries() {
 
 function upgradePreviewCards() {
   if (state.phase !== "upgrade") return "";
+  if (state.meSeat !== state.activeSeat) return "";
   const p = state.players[state.activeSeat];
   if (!p) return "";
-  const canChoose = state.meSeat === state.activeSeat;
   return upgradeCandidateCards(p).map(({ card, passive }) => cardHtml(card, {
     compact: true,
     upgradePassive: passive,
-    button: `<button data-upgrade="${colorKey(card.color)}:${card.id}" ${canChoose ? "" : "disabled"}>${card.color}升级至${card.level}级</button>`
+    button: `<button data-upgrade="${colorKey(card.color)}:${card.id}">${card.color}升级至${card.level}级</button>`
   })).join("");
 }
 
@@ -144,11 +147,7 @@ function handDisplayCards(player) {
 }
 
 function statusCards(player) {
-  const ids = [];
-  [...(player.hand || []), ...(player.discard || []), player.played].forEach((id) => {
-    if (id && !ids.includes(id)) ids.push(id);
-  });
-  return ids.map((id) => cardById(player.heroKey, id, player)).filter((card) => card && !card.displayOnly).slice(0, 5);
+  return (player.hand || []).map((id) => cardById(player.heroKey, id, player)).filter((card) => card && !card.displayOnly).slice(0, 5);
 }
 
 function cardDot(player, card) {
@@ -299,7 +298,10 @@ function renderActions() {
   }
   if (state.phase === "defense" && state.activeSeat === me.seat) {
     const damage = state.pendingDefense?.damage ?? 0;
-    const defenseCards = me.hand.map((id) => cardById(me.heroKey, id, me)).filter((c) => c.exclamation || (c.defense || 0) >= damage);
+    const defenseCards = me.hand
+      .filter((id) => !me.discard?.includes(id) && !me.roundUsed?.includes(id))
+      .map((id) => cardById(me.heroKey, id, me))
+      .filter((c) => c.exclamation || (c.defense || 0) >= damage || c.primaryCategory === "防御");
     $("actions").innerHTML = `
       <span class="muted">受到 ${damage} 点伤害，弃置防御牌或死亡</span>
       ${defenseCards.map((c) => `<button data-defend="${c.id}">弃 ${escapeHtml(c.name)} 防${c.defense}</button>`).join("")}
@@ -413,9 +415,9 @@ function cardHtml(card, options = {}) {
 }
 
 function cardRoundStatus(player, card) {
-  if (player.discard?.includes(card.id)) return "已弃置";
   if (player.roundUsed?.includes(card.id)) return `回合${state.turn}已打出`;
   if (player.played === card.id) return `回合${state.turn}已打出`;
+  if (player.discard?.includes(card.id)) return "已弃置";
   if (player.selectedCardId === card.id) return "已暗选";
   return "";
 }
@@ -523,6 +525,20 @@ function legalMainCells(me) {
       .filter((cell) => c.id === "arien-11-潮汐之力" || !state.map.some((spawn) => String(spawn.state || "").endsWith("HeroSpawn") && !occupied.has(key(spawn)) && hexDistance(cell, spawn) === 1))
       .map(key));
   }
+  if (["wasp-09-意念操控", "wasp-11-心灵控制"].includes(c.id)) {
+    const range = cardRange(c);
+    return new Set([
+      ...state.minions.filter((m) => hexDistance(me.pos, m) <= range && !isAligned(me.pos, m)).map(key),
+      ...state.players.filter((p) => p.pos && !p.defeated && p.seat !== me.seat && hexDistance(me.pos, p.pos) <= range && !isAligned(me.pos, p.pos)).map((p) => key(p.pos)),
+    ]);
+  }
+  if (["wasp-13-控物", "wasp-15-引力控制", "wasp-17-意念黑洞"].includes(c.id)) {
+    const range = cardRange(c);
+    return new Set([
+      ...state.minions.filter((m) => hexDistance(me.pos, m) <= range && hexDistance(me.pos, m) > 1).map(key),
+      ...state.players.filter((p) => p.pos && !p.defeated && p.seat !== me.seat && hexDistance(me.pos, p.pos) <= range && hexDistance(me.pos, p.pos) > 1).map((p) => key(p.pos)),
+    ]);
+  }
   if (["skillGeneric", "defenseGeneric", "effectGeneric"].includes(c.primary)) {
     return new Set([key(me.pos)]);
   }
@@ -545,6 +561,10 @@ function cardRange(card) {
   const type = card?.subtype?.type;
   const bonusKey = type === "范围" ? "range" : type === "远程" ? "ranged" : null;
   return (card?.subtype?.value ?? card?.movement ?? 1) + (bonusKey ? (card?.bonusStats?.[bonusKey] || 0) : 0);
+}
+
+function isAligned(a, b) {
+  return a.x === b.x || a.y === b.y || (a.x + a.y) === (b.x + b.y);
 }
 
 function occupiedKeys() {

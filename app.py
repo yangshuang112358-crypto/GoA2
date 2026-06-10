@@ -297,11 +297,57 @@ def dist(a: dict, b: dict) -> int:
     return (abs(dx) + abs(dy) + abs(dz)) // 2
 
 
+def aligned(a: dict, b: dict) -> bool:
+    return a["x"] == b["x"] or a["y"] == b["y"] or (a["x"] + a["y"]) == (b["x"] + b["y"])
+
+
 def occupied(room: dict, x: int, y: int, ignore_seat: int | None = None) -> bool:
     for p in room["players"]:
         if p["seat"] != ignore_seat and p.get("pos") and not p["defeated"] and p["pos"] == {"x": x, "y": y}:
             return True
     return any(m["x"] == x and m["y"] == y for m in room["minions"])
+
+
+def discard_one_from_hand(player: dict) -> str | None:
+    available = playable_hand(player)
+    if not available:
+        return None
+    card_id = available[0]
+    player["discard"].append(card_id)
+    return card_id
+
+
+def piece_position(piece: dict) -> dict:
+    if "pos" in piece and piece.get("pos"):
+        return piece["pos"]
+    return {"x": piece["x"], "y": piece["y"]}
+
+
+def set_piece_position(piece: dict, pos: dict) -> None:
+    if "pos" in piece:
+        piece["pos"] = {"x": pos["x"], "y": pos["y"]}
+    else:
+        piece["x"] = pos["x"]
+        piece["y"] = pos["y"]
+
+
+def push_piece(room: dict, actor: dict, piece: dict, steps: int) -> int:
+    start = actor["pos"]
+    cur = piece_position(piece)
+    direction = {"x": cur["x"] - start["x"], "y": cur["y"] - start["y"]}
+    if (direction["x"], direction["y"]) not in DIRS:
+        return 0
+    moved = 0
+    ignore_seat = piece.get("seat") if "seat" in piece else None
+    for _ in range(steps):
+        nxt = {"x": cur["x"] + direction["x"], "y": cur["y"] + direction["y"]}
+        cell = cell_at(nxt["x"], nxt["y"])
+        if not cell or cell.get("obstacle") or occupied(room, nxt["x"], nxt["y"], ignore_seat):
+            break
+        cur = nxt
+        moved += 1
+    set_piece_position(piece, cur)
+    return moved
 
 
 def has_movement_action(card: dict | None) -> bool:
@@ -378,7 +424,129 @@ def apply_text_effect(room: dict, actor: dict, card: dict) -> str | None:
     if card["id"] == "wasp-06-静电封锁":
         room.setdefault("effects", []).append({"type": "staticLock", "sourceSeat": actor["seat"], "range": card_range(card), "duration": "turn", "name": card["name"]})
         return f"技能范围 {card_range(card)} 形成静电封锁；移动穿越范围边界会被阻止。"
+    if card["id"] in ("wasp-14-动力助推", "wasp-16-动能震爆"):
+        steps = 2 if card["id"] == "wasp-14-动力助推" else 3
+        affected = []
+        for m in room["minions"]:
+            if m["team"] != actor["team"] and adjacent(actor["pos"], m):
+                moved = push_piece(room, actor, m, steps)
+                affected.append(f"{team_name(m['team'])}{minion_name(m['kind'])}{moved}格")
+        for p in room["players"]:
+            if p["team"] != actor["team"] and p.get("pos") and not p["defeated"] and adjacent(actor["pos"], p["pos"]):
+                moved = push_piece(room, actor, p, steps)
+                affected.append(f"{p['name']}{moved}格")
+                if moved < steps:
+                    discarded = discard_one_from_hand(p)
+                    if discarded:
+                        affected.append(f"{p['name']}弃1牌")
+        return f"将相邻敌方单位推动最多 {steps} 格。" + ("；".join(affected) if affected else "没有相邻敌方单位。")
     return None
+
+
+def apply_wasp_attack_before(room: dict, actor: dict, card: dict, target_pos: dict) -> str | None:
+    if card["id"] == "wasp-00-闪耀之刃":
+        room.setdefault("effects", []).append({"type": "noSkill", "sourceSeat": actor["seat"], "range": 1, "duration": "turn", "name": card["name"]})
+        return "此回合：相邻敌方英雄不能执行技能。"
+    if card["id"] in ("wasp-01-电击", "wasp-03-电能波", "wasp-05-电能爆炸"):
+        rng = 1 if card["id"] == "wasp-01-电击" else card_range(card)
+        target_hero = hero_at(room, target_pos["x"], target_pos["y"])
+        candidates = [
+            p for p in room["players"]
+            if p["team"] != actor["team"] and p.get("pos") and not p["defeated"]
+            and p is not target_hero and dist(actor["pos"], p["pos"]) <= rng
+        ]
+        if not candidates:
+            return None
+        victim = candidates[0]
+        discarded = discard_one_from_hand(victim)
+        if discarded:
+            return f"攻击前：{victim['name']}弃置1张牌。"
+        if card["id"] == "wasp-05-电能爆炸":
+            defeat_hero(room, actor, victim)
+            return f"攻击前：{victim['name']}无牌可弃，被击败。"
+    return None
+
+
+def validate_wasp_attack(room: dict, actor: dict, card: dict, target_pos: dict, defender: dict | None, target_minion: dict | None) -> None:
+    if not card["id"].startswith("wasp-0") or card["id"] not in {"wasp-00-闪耀之刃", "wasp-01-电击", "wasp-02-回旋镖", "wasp-03-电能波", "wasp-04-雷霆回旋镖", "wasp-05-电能爆炸"}:
+        return
+    if card["id"] == "wasp-00-闪耀之刃":
+        if not defender or not adjacent(actor["pos"], target_pos):
+            raise ApiError(400, "闪耀之刃必须选择相邻敌方英雄")
+    elif card["id"] in ("wasp-01-电击", "wasp-03-电能波", "wasp-05-电能爆炸"):
+        if not (defender or target_minion) or not adjacent(actor["pos"], target_pos):
+            raise ApiError(400, "这张黄蜂攻击牌必须选择相邻单位")
+    elif card["id"] in ("wasp-02-回旋镖", "wasp-04-雷霆回旋镖"):
+        if not (defender or target_minion) or not in_card_range(actor, card, target_pos) or aligned(actor["pos"], target_pos):
+            raise ApiError(400, "回旋镖必须选择攻击距离内且不在同一直线上的单位")
+
+
+def can_use_defense_card(room: dict, defender: dict, defense_card: dict, damage: int, pending: dict) -> bool:
+    if defense_card.get("exclamation"):
+        return True
+    if (defense_card.get("defense") or 0) >= damage:
+        return True
+    if defense_card.get("primaryCategory") == "防御":
+        attacker = room["players"][pending["attackerSeat"]]
+        if defense_card["id"] in ("wasp-07-抵挡屏障", "wasp-08-偏转屏障", "wasp-10-反射屏障"):
+            return bool(attacker.get("pos") and defender.get("pos") and not adjacent(attacker["pos"], defender["pos"]))
+    return False
+
+
+def apply_defense_card_effect(room: dict, defender: dict, defense_card: dict, pending: dict) -> str:
+    attacker = room["players"][pending["attackerSeat"]]
+    if defense_card["id"] in ("wasp-08-偏转屏障", "wasp-10-反射屏障"):
+        discarded = discard_one_from_hand(attacker)
+        note = f"攻击者{attacker['name']}弃置1张牌。" if discarded else f"攻击者{attacker['name']}无牌可弃。"
+        if defense_card["id"] == "wasp-10-反射屏障":
+            defender.setdefault("immunities", []).append("rangedAttack")
+            note += "本回合获得远程攻击免疫占位。"
+        return note
+    return ""
+
+
+def unit_at(room: dict, x: int, y: int) -> dict | None:
+    return hero_at(room, x, y) or minion_at(room, x, y)
+
+
+def move_piece_to_first(room: dict, piece: dict, targets: list[dict]) -> dict | None:
+    ignore_seat = piece.get("seat") if "seat" in piece else None
+    for target in targets:
+        cell = cell_at(target["x"], target["y"])
+        if cell and not cell.get("obstacle") and not occupied(room, target["x"], target["y"], ignore_seat):
+            set_piece_position(piece, target)
+            return target
+    return None
+
+
+def execute_wasp_placement(room: dict, actor: dict, card: dict, x: int, y: int) -> str | None:
+    if card["id"] not in ("wasp-09-意念操控", "wasp-11-心灵控制"):
+        return None
+    target = unit_at(room, x, y)
+    target_pos = {"x": x, "y": y}
+    if not target or not in_card_range(actor, card, target_pos) or aligned(actor["pos"], target_pos):
+        raise ApiError(400, "需要选择攻击距离内且不在同一直线上的单位")
+    spots = [{"x": actor["pos"]["x"] + dx, "y": actor["pos"]["y"] + dy} for dx, dy in DIRS]
+    moved = move_piece_to_first(room, target, spots)
+    if not moved:
+        raise ApiError(400, "没有可放置的相邻格")
+    return f"将目标放置到 {moved['x']},{moved['y']}。（自动选择合法格；重复效果暂未展开）"
+
+
+def execute_wasp_control_move(room: dict, actor: dict, card: dict, x: int, y: int) -> str | None:
+    if card["id"] not in ("wasp-13-控物", "wasp-15-引力控制", "wasp-17-意念黑洞"):
+        return None
+    target = unit_at(room, x, y)
+    target_pos = {"x": x, "y": y}
+    if not target or not in_card_range(actor, card, target_pos) or adjacent(actor["pos"], target_pos):
+        raise ApiError(400, "需要选择技能范围内且不相邻的单位")
+    d = dist(actor["pos"], target_pos)
+    spots = [{"x": target_pos["x"] + dx, "y": target_pos["y"] + dy} for dx, dy in DIRS]
+    lateral = [spot for spot in spots if dist(actor["pos"], spot) == d]
+    moved = move_piece_to_first(room, target, lateral)
+    if not moved:
+        raise ApiError(400, "没有不靠近也不远离你的合法移动格")
+    return f"将目标移动到 {moved['x']},{moved['y']}。（自动选择等距格；重复效果暂未展开）"
 
 
 def walk_distance(room: dict, start: dict, target: dict, ignore_seat: int | None = None, can_phase: bool = False) -> int | None:
@@ -694,6 +862,7 @@ def advance_resolution(room: dict) -> None:
     tied = [item for item in remaining if item["initiative"] == top_init]
     teams = sorted({item["team"] for item in tied})
     if len(tied) == 1:
+        prioritize_resolution(room, tied[0]["seat"])
         room["activeSeat"] = tied[0]["seat"]
         touch(room, f"轮到座位 {room['activeSeat'] + 1} 结算。")
         return
@@ -705,6 +874,7 @@ def advance_resolution(room: dict) -> None:
         room["decisionCoin"] = next_face
         touch(room, f"同先攻 {top_init}，决策币指定{team_name(preferred)}先结算并翻面。")
         if len(candidates) == 1:
+            prioritize_resolution(room, candidates[0]["seat"])
             room["activeSeat"] = candidates[0]["seat"]
             return
         set_captain_choice(room, preferred, [item["seat"] for item in candidates], f"{team_name(preferred)}同先攻 {top_init}")
@@ -718,6 +888,11 @@ def set_captain_choice(room: dict, team: str, seats: list[int], reason: str) -> 
     room["activeSeat"] = captain
     room["pendingCaptainChoice"] = {"team": team, "seats": seats, "reason": reason}
     touch(room, f"{reason}，等待{team_name(team)}队长选择先结算者。")
+
+
+def prioritize_resolution(room: dict, seat: int) -> None:
+    if seat in room.get("resolutionOrder", []):
+        room["resolutionOrder"] = [seat] + [s for s in room["resolutionOrder"] if s != seat]
 
 
 def finish_active(room: dict) -> None:
@@ -1117,6 +1292,11 @@ class Handler(SimpleHTTPRequestHandler):
                 actor["actionTaken"] = True
                 touch(room, f"{actor['name']} 执行 {played['name']}，放置到 {x},{y}。")
                 return public_state(room, token)
+            wasp_note = execute_wasp_placement(room, actor, played, x, y) or execute_wasp_control_move(room, actor, played, x, y)
+            if wasp_note:
+                actor["actionTaken"] = True
+                touch(room, f"{actor['name']} 执行 {played['name']}：{wasp_note}")
+                return public_state(room, token)
             if played["primary"] in ("skillGeneric", "defenseGeneric", "effectGeneric"):
                 actor["actionTaken"] = True
                 effect_text = apply_text_effect(room, actor, played)
@@ -1157,8 +1337,10 @@ class Handler(SimpleHTTPRequestHandler):
                 defender = hero_at(room, x, y)
                 target_minion = minion_at(room, x, y)
                 target_pos = {"x": x, "y": y}
+                validate_wasp_attack(room, actor, played, target_pos, defender, target_minion)
                 if not in_card_range(actor, played, target_pos):
                     raise ApiError(400, "Need target in range")
+                before_note = apply_wasp_attack_before(room, actor, played, target_pos)
                 if target_minion and target_minion["team"] != actor["team"]:
                     if immune_to(target_minion, "attack"):
                         raise ApiError(400, "Target is immune")
@@ -1169,7 +1351,7 @@ class Handler(SimpleHTTPRequestHandler):
                     gain = 4 if target_minion["kind"] == "heavy" else 2
                     actor["coins"] += gain
                     actor["actionTaken"] = True
-                    touch(room, f"{actor['name']} 使用 {played['name']} 击杀{team_name(target_minion['team'])}{minion_name(target_minion['kind'])}小兵，获得 {gain} 金。")
+                    touch(room, f"{actor['name']} 使用 {played['name']} 击杀{team_name(target_minion['team'])}{minion_name(target_minion['kind'])}小兵，获得 {gain} 金。{before_note or ''}")
                     after_minion_removed(room, removed_team)
                     return public_state(room, token)
                 if not defender or defender["team"] == actor["team"]:
@@ -1181,7 +1363,7 @@ class Handler(SimpleHTTPRequestHandler):
                 room["activeSeat"] = defender["seat"]
                 room["phase"] = "defense"
                 detail = "；".join(notes) if notes else "无修正"
-                touch(room, f"{actor['name']} 使用 {played['name']} 攻击 {defender['name']}：基础{played.get('attack') or 0}，{detail}，最终伤害{damage}。")
+                touch(room, f"{actor['name']} 使用 {played['name']} 攻击 {defender['name']}：基础{played.get('attack') or 0}，{detail}，最终伤害{damage}。{before_note or ''}")
                 return public_state(room, token)
             if played["primary"] in ("attackHero", "attackAny"):
                 defender = hero_at(room, x, y)
@@ -1222,6 +1404,7 @@ class Handler(SimpleHTTPRequestHandler):
             if seat not in choice["seats"]:
                 raise ApiError(400, "Invalid chosen seat")
             room["pendingCaptainChoice"] = None
+            prioritize_resolution(room, seat)
             room["activeSeat"] = seat
             touch(room, f"{actor['name']} 选择座位 {seat + 1} 先结算。")
             return public_state(room, token)
@@ -1237,11 +1420,11 @@ class Handler(SimpleHTTPRequestHandler):
                 if card_id not in actor["hand"]:
                     raise ApiError(400, "Defense card not in hand")
                 defense_card = effective_card(actor, card_id)
-                if not defense_card.get("exclamation") and (defense_card.get("defense") or 0) < damage:
+                if not can_use_defense_card(room, actor, defense_card, damage, pending):
                     raise ApiError(400, "Defense too low")
-                actor["hand"].remove(card_id)
                 actor["discard"].append(card_id)
-                touch(room, f"{actor['name']} 弃置 {defense_card['name']} 防御 {defense_card['defense']}，防住伤害 {damage}。")
+                note = apply_defense_card_effect(room, actor, defense_card, pending)
+                touch(room, f"{actor['name']} 弃置 {defense_card['name']} 防住伤害 {damage}。{note}")
             else:
                 defeat_hero(room, attacker, actor)
             attacker["actionTaken"] = True
