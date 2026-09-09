@@ -1,0 +1,9 @@
+{
+  "name": "Goa2.Infrastructure",
+  "rootNamespace": "Goa2.Infrastructure",
+  "references": ["Goa2.Domain", "Goa2.Rules", "Goa2.Application"],
+  "overrideReferences": true,
+  "precompiledReferences": ["Newtonsoft.Json.dll"],
+  "noEngineReferences": true,
+  "autoReferenced": false
+}

@@ -47,7 +47,7 @@ namespace Goa2.Infrastructure
                     Id = (string)card["id"]!, Name = (string)card["name"]!, HeroId = (string)card["hero_id"]!,
                     Color = (string)card["color_key"]!, Level = (int?)card["level"], Initiative = (int)card["initiative"]!,
                     PrimaryCategory = (string)primary["category"]!, PrimaryFamily = (string)primary["family"]!,
-                    Text = (string)primary["text"]!, PrimaryValue = (int?)primary["value"] ?? 0, Exclamation = (bool)primary["exclamation"]!,
+                    Text = (string)primary["text"]!, PrimaryValue = (int)primary["value"]!, Exclamation = (bool)primary["exclamation"]!,
                     Subtype = subtype?.Type == JTokenType.Object ? (string?)subtype["type"] : null,
                     SubtypeValue = subtype?.Type == JTokenType.Object ? (int?)subtype["value"] : null,
                     SecondaryMovement = (bool)movement["has_action"]! ? (int?)movement["value"] : null,

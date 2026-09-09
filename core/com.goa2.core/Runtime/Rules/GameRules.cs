@@ -30,6 +30,7 @@ namespace Goa2.Rules
                 case CommandKind.SelectCard: SelectCard(state, command); break;
                 case CommandKind.ConfirmCard: ConfirmCard(catalog, state, command); break;
                 case CommandKind.ChooseInitiative: ChooseInitiative(state, command); break;
+                case CommandKind.Move: Move(catalog, state, command); break;
                 case CommandKind.Pass:
                     Require(state.Phase == Phase.Action && state.ActiveSeat == command.ActorSeat, "not_active", "当前不由你行动。");
                     Emit(state, command, "ActionPassed", command.ActorSeat, ActiveCard(state).CardId);
@@ -37,6 +38,18 @@ namespace Goa2.Rules
                     break;
                 default: throw new RuleViolation("unsupported_command", "此操作尚未实装。");
             }
+        }
+        private static void Move(ContentCatalog catalog, GameState state, Command command)
+        {
+            var option = MovementRules.LegalMoves(catalog, state, command.ActorSeat, command.MoveMode).FirstOrDefault(o => o.Destination == command.Destination);
+            Require(option != null, "invalid_move", "目标不在当前合法移动集合中。");
+            var unit = state.Units.Single(u => u.Seat == command.ActorSeat);
+            var origin = unit.Position;
+            unit.Position = command.Destination;
+            Emit(state, command, "UnitMoved", command.ActorSeat, ActiveCard(state).CardId, detail: command.MoveMode.ToString());
+            var moved = state.Events.Last();
+            moved.From = origin; moved.To = command.Destination; moved.Path = option!.Path;
+            FinishAction(catalog, state, command);
         }
         private static void ChooseHero(ContentCatalog catalog, GameState state, Command command)
         {

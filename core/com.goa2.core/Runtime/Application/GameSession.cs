@@ -20,7 +20,7 @@ namespace Goa2.Application
 
         public GameSession(ContentCatalog catalog, IStateCodec codec, GameState initial)
         {
-            this.catalog = catalog; this.codec = codec;
+            this.catalog = ContentSnapshot.Copy(catalog); this.codec = codec;
             state = codec.Read(codec.Write(initial));
             ValidateVersion();
         }
@@ -95,6 +95,8 @@ namespace Goa2.Application
                     if (cells.Count > 0) view.Deployments.Add(player.Seat, cells);
                 }
                 view.CanPass = snapshot.Phase == Phase.Action && snapshot.ActiveSeat == seat;
+                view.SecondaryMoves = MovementRules.LegalMoves(catalog, snapshot, seat.Value, MoveMode.Secondary);
+                view.FastMoves = MovementRules.LegalMoves(catalog, snapshot, seat.Value, MoveMode.Fast);
             }
             return view;
         }

@@ -1,0 +1,7 @@
+{
+  "name": "Goa2.Rules",
+  "rootNamespace": "Goa2.Rules",
+  "references": ["Goa2.Domain"],
+  "noEngineReferences": true,
+  "autoReferenced": false
+}

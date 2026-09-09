@@ -6,4 +6,9 @@
 *.ps1 text eol=lf
 *.jpg -text
 *.png -text
+*.otf -text
+# Unity serializes empty YAML fields with a trailing space.
+*.meta whitespace=-blank-at-eol
+*.asset whitespace=-blank-at-eol
+*.unity whitespace=-blank-at-eol
 sources/** -text -whitespace

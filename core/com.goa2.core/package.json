@@ -1,0 +1,8 @@
+{
+  "name": "com.goa2.core",
+  "version": "0.1.0",
+  "displayName": "Goa2 Rules Core",
+  "description": "Pure C# domain, rules, application and content adapters shared with .NET tests.",
+  "unity": "6000.3",
+  "dependencies": { "com.unity.nuget.newtonsoft-json": "3.2.2" }
+}
