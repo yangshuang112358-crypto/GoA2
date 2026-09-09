@@ -1,0 +1,17 @@
+Command exit: 0
+test_broken_hero_reference_rejected (test_validation.ImportGuardTests.test_broken_hero_reference_rejected) ... ok
+test_duplicate_card_id_rejected (test_validation.ImportGuardTests.test_duplicate_card_id_rejected) ... ok
+test_duplicate_coordinate_rejected (test_validation.ImportGuardTests.test_duplicate_coordinate_rejected) ... ok
+test_duplicate_json_key_rejected (test_validation.ImportGuardTests.test_duplicate_json_key_rejected) ... ok
+test_inflated_card_status_rejected (test_validation.ImportGuardTests.test_inflated_card_status_rejected) ... ok
+test_missing_upgrade_candidate_rejected (test_validation.ImportGuardTests.test_missing_upgrade_candidate_rejected) ... ok
+test_schema_rejects_boolean_as_integer (test_validation.ImportGuardTests.test_schema_rejects_boolean_as_integer) ... ok
+test_source_path_traversal_rejected (test_validation.ImportGuardTests.test_source_path_traversal_rejected) ... ok
+test_valid_baseline_and_literal_legacy_ids (test_validation.ImportGuardTests.test_valid_baseline_and_literal_legacy_ids) ... ok
+test_wrong_spawn_distribution_rejected (test_validation.ImportGuardTests.test_wrong_spawn_distribution_rejected) ... ok
+test_zero_movement_cannot_be_active (test_validation.ImportGuardTests.test_zero_movement_cannot_be_active) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.032s
+
+OK

@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "rules_version": "1.0.0-draft.1",
+  "players": 4,
+  "teams": {
+    "blue": [
+      0,
+      2
+    ],
+    "red": [
+      1,
+      3
+    ]
+  },
+  "initial_captains": {
+    "blue": 0,
+    "red": 1
+  },
+  "starting_crystal_life": 7,
+  "frontline_victory_marks": 3,
+  "turns_per_round": 4,
+  "hand_size": 5,
+  "starting_hero_level": 1,
+  "maximum_hero_level": 8,
+  "movement_cost_per_cell": 1,
+  "combat_regions": [
+    "redNear",
+    "mid",
+    "blueNear"
+  ],
+  "initial_combat_region": "mid",
+  "minion_defeat_gold": {
+    "melee": 2,
+    "ranged": 2,
+    "heavy": 4
+  },
+  "hero_defeat_gold": "victim_level",
+  "hero_defeat_crystal_loss": "victim_level",
+  "assist_gold_by_victim_level": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3
+  ],
+  "upgrade_cost": "current_hero_level",
+  "no_upgrade_compensation_gold": 1,
+  "purple_unlock_hero_level": 8,
+  "passive_bonus_per_icon": 1,
+  "source_rule_ids": [
+    "R-SETUP",
+    "R-VICTORY",
+    "R-ROUND",
+    "R-MOVE",
+    "R-MINIONS",
+    "R-DEFEAT",
+    "R-UPGRADE"
+  ],
+  "initial_minions_per_team": {
+    "melee": 4,
+    "ranged": 1,
+    "heavy": 1
+  },
+  "spawn_policy": "map_defined_per_combat_region"
+}

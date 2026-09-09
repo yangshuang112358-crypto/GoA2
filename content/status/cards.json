@@ -1,0 +1,869 @@
+{
+  "schema_version": "1.0.0",
+  "cards": [
+    {
+      "card_id": "wasp-00-闪耀之刃",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-01-电击",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-02-回旋镖",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-03-电能波",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-04-雷霆回旋镖",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-05-电能爆炸",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-06-静电封锁",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-07-抵挡屏障",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-08-偏转屏障",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-09-意念操控",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-10-反射屏障",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-11-心灵控制",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-12-电闪雷鸣",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-13-控物",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-14-动力助推",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-15-引力控制",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-16-动能震爆",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "wasp-17-意念黑洞",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-00-反击",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-01-劈砍",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-02-快速突刺",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-03-致命横扫",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-04-横枪跃马",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-05-死亡回旋",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-06-海妖之歌",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-07-魅惑",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-08-统治领域",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-09-致命束缚",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-10-独霸一方",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-11-死亡缠绕",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-12-幻化",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-13-石化",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-14-石化之眼",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-15-忠实信徒",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-16-石化凝视",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "shargatha-17-至死不渝",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-00-猛攻",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-01-冲撞",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-02-投掷飞斧",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-03-奋勇冲锋",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-04-投掷长矛",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-05-勇往直前",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-06-铜墙铁壁",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-07-保卫",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-08-战鼓",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-09-持盾",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-10-吟游诗人",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-11-巩固防线",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-12-一人成军",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-13-冲拳",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-14-碾压重拳",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-15-盾牌猛击",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-16-野蛮飞踢",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "brogan-17-防守反击",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-00-华丽刀锋",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-01-汹涌",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-02-激流",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-03-潮起",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-04-惊涛骇浪",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-05-巨浪滔天",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-06-打断施法",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-07-潮水",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-08-奥术换位",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-09-魔法水流",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-10-移形换步",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-11-潮汐之力",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-12-潮汐之主",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-13-挑战者",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-14-滑溜溜",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-15-决斗家",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-16-传奇决斗家",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "arien-17-洪水",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-00-瞬闪打击",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-02-偷袭",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-03-背刺",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-04-影袭",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-05-两面夹攻",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-06-暗影奇袭",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-07-伺机待发",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-08-偷天妙手",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-09-淬毒匕首",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-10-探囊取物",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-11-盗贼大师",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-12-剧毒飞镖",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-13-斗篷与匕首",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-14-近身格挡",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-15-侧步",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-16-暗影步",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-17-近身还击",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "tigerclaw-18-躲闪",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-00-近身射击",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-01-拔枪",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-02-交叉火力",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-03-神枪手",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-04-枪林弹雨",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-05-一枪爆头",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-06-并肩作战",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-07-指挥",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-08-带头冲锋",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-09-战略控制",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-10-武装密谋",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-11-战略优势",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-12-重型枪械",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-13-近身支援",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-14-战斗演练",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-15-火力掩护",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-16-战斗武装",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    },
+    {
+      "card_id": "sabina-17-演练",
+      "status": "data_only",
+      "contract": null,
+      "tests": [],
+      "known_questions": [],
+      "implementation_files": []
+    }
+  ]
+}

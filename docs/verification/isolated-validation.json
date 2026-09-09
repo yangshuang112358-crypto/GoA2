@@ -1,0 +1,8 @@
+{
+  "date": "2026-09-10",
+  "result": "PASS",
+  "method": "Complete package copied outside old project, no sibling legacy dependency.",
+  "canonical_mutation_rejected": "FAIL: formal card changed during migration: wasp-00-闪耀之刃",
+  "source_mutation_rejected": "FAIL: source index mismatch: sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/英雄简介.txt",
+  "after_restore": "PASS"
+}

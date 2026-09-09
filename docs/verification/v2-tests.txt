@@ -1,0 +1,13 @@
+Command exit: 0
+test_all_heroes_use_formal_cards (test_cards.CardHarnessSmokeTests.test_all_heroes_use_formal_cards) ... ok
+test_deflection_barrier_requires_attacker_to_discard (test_cards.CardHarnessSmokeTests.test_deflection_barrier_requires_attacker_to_discard) ... ok
+test_discard_choice_skip_and_empty_hand_semantics (test_cards.CardHarnessSmokeTests.test_discard_choice_skip_and_empty_hand_semantics) ... ok
+test_electric_shock_requires_extra_target_choice (test_cards.CardHarnessSmokeTests.test_electric_shock_requires_extra_target_choice) ... ok
+test_secondary_move_does_not_allow_fast_move (test_cards.CardHarnessSmokeTests.test_secondary_move_does_not_allow_fast_move) ... ok
+test_tested_and_untested_suffixes (test_cards.CardHarnessSmokeTests.test_tested_and_untested_suffixes) ... ok
+test_wasp_control_creates_forced_move_step (test_cards.CardHarnessSmokeTests.test_wasp_control_creates_forced_move_step) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.101s
+
+OK

@@ -1,0 +1,727 @@
+{
+  "formal_source": "sources/legacy/goa2_v4/data/cards.json",
+  "heroes": [
+    {
+      "hero_id": "wasp",
+      "photos": [
+        "sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/微信图片_20260608232721_20_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/微信图片_20260608232744_25_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/微信图片_20260608232751_26_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/微信图片_20260608232755_27_33.jpg"
+      ],
+      "hero_description_ocr": "sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/英雄简介.txt",
+      "card_text_ocr": "sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/卡牌描述.txt",
+      "card_image_mapping": "hero_group_only_not_verified_per_card"
+    },
+    {
+      "hero_id": "shargatha",
+      "photos": [
+        "sources/legacy/goa2_v2/data/cards_picture/异变蛇女·夏尔加萨/微信图片_20260608232716_18_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/异变蛇女·夏尔加萨/微信图片_20260608232800_28_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/异变蛇女·夏尔加萨/微信图片_20260608232806_29_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/异变蛇女·夏尔加萨/微信图片_20260608232810_30_33.jpg"
+      ],
+      "hero_description_ocr": "sources/legacy/goa2_v2/data/cards_picture/异变蛇女·夏尔加萨/英雄简介.txt",
+      "card_text_ocr": "sources/legacy/goa2_v2/data/cards_picture/异变蛇女·夏尔加萨/卡牌描述.txt",
+      "card_image_mapping": "hero_group_only_not_verified_per_card"
+    },
+    {
+      "hero_id": "brogan",
+      "photos": [
+        "sources/legacy/goa2_v2/data/cards_picture/毁灭战士·布罗根/微信图片_20260608232724_21_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/毁灭战士·布罗根/微信图片_20260608232902_31_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/毁灭战士·布罗根/微信图片_20260608232906_32_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/毁灭战士·布罗根/微信图片_20260608232909_33_33.jpg"
+      ],
+      "hero_description_ocr": "sources/legacy/goa2_v2/data/cards_picture/毁灭战士·布罗根/英雄简介.txt",
+      "card_text_ocr": "sources/legacy/goa2_v2/data/cards_picture/毁灭战士·布罗根/卡牌描述.txt",
+      "card_image_mapping": "hero_group_only_not_verified_per_card"
+    },
+    {
+      "hero_id": "arien",
+      "photos": [
+        "sources/legacy/goa2_v2/data/cards_picture/潮汐主宰·艾瑞恩/微信图片_20260608232711_16_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/潮汐主宰·艾瑞恩/微信图片_20260608232912_34_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/潮汐主宰·艾瑞恩/微信图片_20260608232914_35_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/潮汐主宰·艾瑞恩/微信图片_20260608232916_36_33.jpg"
+      ],
+      "hero_description_ocr": "sources/legacy/goa2_v2/data/cards_picture/潮汐主宰·艾瑞恩/英雄简介.txt",
+      "card_text_ocr": "sources/legacy/goa2_v2/data/cards_picture/潮汐主宰·艾瑞恩/卡牌描述.txt",
+      "card_image_mapping": "hero_group_only_not_verified_per_card"
+    },
+    {
+      "hero_id": "tigerclaw",
+      "photos": [
+        "sources/legacy/goa2_v2/data/cards_picture/盗贼·虎爪/微信图片_20260608232714_17_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/盗贼·虎爪/微信图片_20260608232725_22_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/盗贼·虎爪/微信图片_20260608232728_23_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/盗贼·虎爪/微信图片_20260608232731_24_33.jpg"
+      ],
+      "hero_description_ocr": "sources/legacy/goa2_v2/data/cards_picture/盗贼·虎爪/英雄简介.txt",
+      "card_text_ocr": "sources/legacy/goa2_v2/data/cards_picture/盗贼·虎爪/卡牌描述.txt",
+      "card_image_mapping": "hero_group_only_not_verified_per_card"
+    },
+    {
+      "hero_id": "sabina",
+      "photos": [
+        "sources/legacy/goa2_v2/data/cards_picture/神枪手·萨彼娜/微信图片_20260608232719_19_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/神枪手·萨彼娜/微信图片_20260608232919_37_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/神枪手·萨彼娜/微信图片_20260608232922_38_33.jpg",
+        "sources/legacy/goa2_v2/data/cards_picture/神枪手·萨彼娜/微信图片_20260608232924_39_33.jpg"
+      ],
+      "hero_description_ocr": "sources/legacy/goa2_v2/data/cards_picture/神枪手·萨彼娜/英雄简介.txt",
+      "card_text_ocr": "sources/legacy/goa2_v2/data/cards_picture/神枪手·萨彼娜/卡牌描述.txt",
+      "card_image_mapping": "hero_group_only_not_verified_per_card"
+    }
+  ],
+  "cards": [
+    {
+      "card_id": "wasp-00-闪耀之刃",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/0",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-01-电击",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/1",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-02-回旋镖",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/2",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-03-电能波",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/3",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-04-雷霆回旋镖",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/4",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-05-电能爆炸",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/5",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-06-静电封锁",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/6",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-07-抵挡屏障",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/7",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-08-偏转屏障",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/8",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-09-意念操控",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/9",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-10-反射屏障",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/10",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-11-心灵控制",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/11",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-12-电闪雷鸣",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/12",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-13-控物",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/13",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-14-动力助推",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/14",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-15-引力控制",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/15",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-16-动能震爆",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/16",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "wasp-17-意念黑洞",
+      "hero_id": "wasp",
+      "formal_json_pointer": "/heroes/0/cards/17",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-00-反击",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/0",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-01-劈砍",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/1",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-02-快速突刺",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/2",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-03-致命横扫",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/3",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-04-横枪跃马",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/4",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-05-死亡回旋",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/5",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-06-海妖之歌",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/6",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-07-魅惑",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/7",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-08-统治领域",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/8",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-09-致命束缚",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/9",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-10-独霸一方",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/10",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-11-死亡缠绕",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/11",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-12-幻化",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/12",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-13-石化",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/13",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-14-石化之眼",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/14",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-15-忠实信徒",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/15",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-16-石化凝视",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/16",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "shargatha-17-至死不渝",
+      "hero_id": "shargatha",
+      "formal_json_pointer": "/heroes/1/cards/17",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-00-猛攻",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/0",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-01-冲撞",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/1",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-02-投掷飞斧",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/2",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-03-奋勇冲锋",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/3",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-04-投掷长矛",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/4",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-05-勇往直前",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/5",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-06-铜墙铁壁",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/6",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-07-保卫",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/7",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-08-战鼓",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/8",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-09-持盾",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/9",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-10-吟游诗人",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/10",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-11-巩固防线",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/11",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-12-一人成军",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/12",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-13-冲拳",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/13",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-14-碾压重拳",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/14",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-15-盾牌猛击",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/15",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-16-野蛮飞踢",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/16",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "brogan-17-防守反击",
+      "hero_id": "brogan",
+      "formal_json_pointer": "/heroes/2/cards/17",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-00-华丽刀锋",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/0",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-01-汹涌",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/1",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-02-激流",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/2",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-03-潮起",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/3",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-04-惊涛骇浪",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/4",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-05-巨浪滔天",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/5",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-06-打断施法",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/6",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-07-潮水",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/7",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-08-奥术换位",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/8",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-09-魔法水流",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/9",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-10-移形换步",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/10",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-11-潮汐之力",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/11",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-12-潮汐之主",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/12",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-13-挑战者",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/13",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-14-滑溜溜",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/14",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-15-决斗家",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/15",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-16-传奇决斗家",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/16",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "arien-17-洪水",
+      "hero_id": "arien",
+      "formal_json_pointer": "/heroes/3/cards/17",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-00-瞬闪打击",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/0",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-02-偷袭",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/1",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-03-背刺",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/2",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-04-影袭",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/3",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-05-两面夹攻",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/4",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-06-暗影奇袭",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/5",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-07-伺机待发",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/6",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-08-偷天妙手",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/7",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-09-淬毒匕首",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/8",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-10-探囊取物",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/9",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-11-盗贼大师",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/10",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-12-剧毒飞镖",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/11",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-13-斗篷与匕首",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/12",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-14-近身格挡",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/13",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-15-侧步",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/14",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-16-暗影步",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/15",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-17-近身还击",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/16",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "tigerclaw-18-躲闪",
+      "hero_id": "tigerclaw",
+      "formal_json_pointer": "/heroes/4/cards/17",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-00-近身射击",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/0",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-01-拔枪",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/1",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-02-交叉火力",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/2",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-03-神枪手",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/3",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-04-枪林弹雨",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/4",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-05-一枪爆头",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/5",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-06-并肩作战",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/6",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-07-指挥",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/7",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-08-带头冲锋",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/8",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-09-战略控制",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/9",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-10-武装密谋",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/10",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-11-战略优势",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/11",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-12-重型枪械",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/12",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-13-近身支援",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/13",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-14-战斗演练",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/14",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-15-火力掩护",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/15",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-16-战斗武装",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/16",
+      "image_mapping_status": "not_verified_per_card"
+    },
+    {
+      "card_id": "sabina-17-演练",
+      "hero_id": "sabina",
+      "formal_json_pointer": "/heroes/5/cards/17",
+      "image_mapping_status": "not_verified_per_card"
+    }
+  ]
+}

@@ -1,0 +1,954 @@
+{
+  "date": "2026-09-10",
+  "command": "PYTHONPATH=src python -B -m unittest discover -q (cwd goa2_v4)",
+  "result": "135 tests passed",
+  "test_count": 135,
+  "tests": [
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_action_resolution_contract.py",
+      "name": "test_only_active_seat_can_skip_independent_of_debug_control",
+      "line": 22,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_action_resolution_contract.py",
+      "name": "test_skip_advances_initiative_and_fourth_skip_enters_next_turn",
+      "line": 47,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_action_resolution_contract.py",
+      "name": "test_decision_coin_flips_when_cross_team_tie_is_consumed",
+      "line": 64,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_action_resolution_contract.py",
+      "name": "test_team_captain_selects_between_equal_initiative_teammates",
+      "line": 71,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_action_resolution_contract.py",
+      "name": "test_non_active_seat_is_rejected_atomically",
+      "line": 112,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_action_resolution_contract.py",
+      "name": "test_resolution_progress_round_trips_through_json",
+      "line": 131,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_action_resolution_contract.py",
+      "name": "test_server_profiles_primary_and_movement_choices",
+      "line": 151,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_action_resolution_contract.py",
+      "name": "test_primary_movement_profile_excludes_secondary_movement",
+      "line": 185,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_action_resolution_contract.py",
+      "name": "test_data_only_primary_can_complete_and_advance_queue",
+      "line": 201,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_action_resolution_contract.py",
+      "name": "test_movement_primary_cannot_be_completed_without_destination",
+      "line": 264,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_action_resolution_contract.py",
+      "name": "test_implemented_primary_cannot_use_data_only_completion",
+      "line": 308,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_catalog_profile_preserves_primary_category",
+      "line": 71,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_targets_include_adjacent_enemy_units_only",
+      "line": 78,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_primary_is_unavailable_without_an_adjacent_target",
+      "line": 117,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_declaring_target_creates_serializable_pending_attack",
+      "line": 135,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_attacking_a_minion_immediately_defeats_it_and_advances",
+      "line": 174,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_defeating_heavy_advances_before_action_queue_continues",
+      "line": 206,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_attacked_hero_can_discard_a_card_to_defend",
+      "line": 265,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_attack_and_defense_passives_change_resolution_values",
+      "line": 311,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_minions_modify_attack_against_a_hero_by_kind_and_distance",
+      "line": 377,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_declining_defense_defeats_hero_and_reduces_crystal",
+      "line": 451,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_negative_attack_still_requires_a_defense_card",
+      "line": 504,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_invalid_target_is_rejected_atomically",
+      "line": 564,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_heavy_minion_is_protected_while_an_ally_survives",
+      "line": 585,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_basic_attack_cannot_use_data_only_completion",
+      "line": 620,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_any_attack_family_card_can_choose_an_adjacent_enemy",
+      "line": 639,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "name": "test_pending_action_can_be_switched_or_cancelled",
+      "line": 677,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_catalog_contract.py",
+      "name": "test_catalog_has_six_heroes_108_cards_and_254_cells",
+      "line": 9,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_catalog_contract.py",
+      "name": "test_every_card_is_data_only",
+      "line": 24,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_catalog_contract.py",
+      "name": "test_defense_profiles_cover_secondary_primary_and_exclamation",
+      "line": 36,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_debug_commands.py",
+      "name": "test_debug_commands_are_json_serializable",
+      "line": 32,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_debug_commands.py",
+      "name": "test_set_seat_coins_updates_only_target_and_emits_event",
+      "line": 45,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_debug_commands.py",
+      "name": "test_zero_crystal_life_immediately_ends_game_for_opponent",
+      "line": 62,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_debug_commands.py",
+      "name": "test_frontline_threshold_immediately_ends_game_for_scoring_team",
+      "line": 73,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_debug_commands.py",
+      "name": "test_debug_defeat_uses_crystal_and_respawn_state_without_gold",
+      "line": 90,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_debug_commands.py",
+      "name": "test_reset_minions_restores_both_teams_in_current_region",
+      "line": 112,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_debug_commands.py",
+      "name": "test_force_advance_reuses_marks_region_spawn_and_victory_rules",
+      "line": 137,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_debug_commands.py",
+      "name": "test_illegal_debug_commands_fail_atomically",
+      "line": 164,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_debug_skip_contract.py",
+      "name": "test_debug_skip_current_uses_normal_skip_resolution",
+      "line": 21,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_debug_skip_contract.py",
+      "name": "test_debug_skip_all_finishes_every_remaining_card",
+      "line": 31,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_debug_skip_contract.py",
+      "name": "test_debug_skip_all_is_atomic_when_action_is_pending",
+      "line": 40,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_frontline_rules.py",
+      "name": "test_difference_identifies_smaller_team_and_exact_count",
+      "line": 19,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_frontline_rules.py",
+      "name": "test_heavy_is_only_removable_after_other_minions",
+      "line": 28,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_frontline_rules.py",
+      "name": "test_crystal_and_three_mark_victories",
+      "line": 43,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_frontline_rules.py",
+      "name": "test_conflicting_outcomes_are_rejected",
+      "line": 55,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_http_contract.py",
+      "name": "test_health",
+      "line": 37,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_http_contract.py",
+      "name": "test_static_assets_disable_browser_caching",
+      "line": 43,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_http_contract.py",
+      "name": "test_catalog",
+      "line": 50,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_http_contract.py",
+      "name": "test_state",
+      "line": 63,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_json_persistence.py",
+      "name": "test_build_application_remains_in_memory_by_default",
+      "line": 11,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_json_persistence.py",
+      "name": "test_explicit_json_file_restores_room_after_restart",
+      "line": 19,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_json_persistence.py",
+      "name": "test_json_snapshot_keeps_bounded_logs_and_hides_plaintext_tokens",
+      "line": 40,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_json_persistence.py",
+      "name": "test_legacy_snapshot_without_tokens_loads_but_rejects_supplied_claim",
+      "line": 64,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_json_persistence.py",
+      "name": "test_state_projects_public_transaction_log",
+      "line": 86,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_json_persistence.py",
+      "name": "test_corrupt_file_is_quarantined_and_ignored",
+      "line": 99,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_json_persistence.py",
+      "name": "test_failed_atomic_replace_preserves_file_and_memory",
+      "line": 115,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_json_persistence.py",
+      "name": "test_server_cli_defaults_to_goa2_rooms_v4_json",
+      "line": 140,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_movement_contract.py",
+      "name": "test_four_heroes_spawn_on_unique_server_map_cells",
+      "line": 26,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_movement_contract.py",
+      "name": "test_server_reachable_and_move_update_authoritative_position",
+      "line": 32,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_movement_contract.py",
+      "name": "test_fast_move_allows_same_or_adjacent_enemy_free_region",
+      "line": 65,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_movement_contract.py",
+      "name": "test_fast_move_has_no_targets_when_source_region_has_enemy",
+      "line": 105,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_movement_contract.py",
+      "name": "test_debug_teleport_preserves_pending_action_and_movement_budget",
+      "line": 149,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_movement_contract.py",
+      "name": "test_debug_teleport_rejects_occupied_cell_atomically",
+      "line": 188,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_movement_contract.py",
+      "name": "test_debug_teleport_can_target_any_seat_in_multiplayer_debug_mode",
+      "line": 207,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_multiplayer_identity_contract.py",
+      "name": "test_each_claimed_seat_receives_only_its_private_hand",
+      "line": 18,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_multiplayer_identity_contract.py",
+      "name": "test_claimed_room_rejects_missing_forged_and_duplicate_identity",
+      "line": 35,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_multiplayer_identity_contract.py",
+      "name": "test_reconnect_reuses_existing_token",
+      "line": 49,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_multiplayer_identity_contract.py",
+      "name": "test_saved_token_reconnects_after_json_application_restart",
+      "line": 56,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_multiplayer_identity_contract.py",
+      "name": "test_caller_token_cannot_claim_unowned_seat",
+      "line": 75,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_passive_and_respawn_contract.py",
+      "name": "test_passives_modify_initiative_attack_defense_and_movement",
+      "line": 22,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_passive_and_respawn_contract.py",
+      "name": "test_initiative_passive_changes_reveal_order",
+      "line": 37,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_passive_and_respawn_contract.py",
+      "name": "test_movement_passive_increases_pending_budget",
+      "line": 70,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_passive_and_respawn_contract.py",
+      "name": "test_defeated_hero_chooses_spawn_when_its_card_becomes_active",
+      "line": 112,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_contract.py",
+      "name": "test_initial_state_is_card_selection_with_fixed_five_card_hands",
+      "line": 54,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_contract.py",
+      "name": "test_legal_selection_succeeds_and_non_hand_card_fails_atomically",
+      "line": 82,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_contract.py",
+      "name": "test_planning_is_owned_by_seat_identity_not_debug_control",
+      "line": 101,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_contract.py",
+      "name": "test_confirmation_requires_selection_and_locks_the_card",
+      "line": 112,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_contract.py",
+      "name": "test_fourth_confirmation_automatically_reveals_cards",
+      "line": 125,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_contract.py",
+      "name": "test_reveal_atomically_publishes_four_cards_and_orders_initiative",
+      "line": 143,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_contract.py",
+      "name": "test_four_selected_cards_do_not_reveal_without_confirmation",
+      "line": 174,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_contract.py",
+      "name": "test_force_confirm_and_reveal_fail_atomically_outside_legal_window",
+      "line": 186,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_contract.py",
+      "name": "test_pre_reveal_views_hide_selection_from_other_seats",
+      "line": 210,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_contract.py",
+      "name": "test_stale_selection_revision_fails_atomically",
+      "line": 227,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "name": "test_four_planning_endpoints_complete_selection_and_reveal",
+      "line": 60,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "name": "test_stale_http_selection_is_conflict_and_changes_nothing",
+      "line": 113,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "name": "test_skip_action_endpoint_advances_active_seat",
+      "line": 135,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "name": "test_debug_round_end_and_minion_removal_routes",
+      "line": 186,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "name": "test_basic_attack_route_is_registered",
+      "line": 222,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "name": "test_respawn_and_upgrade_routes_return_json_in_desktop_server",
+      "line": 244,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "name": "test_join_token_controls_private_projection_and_actor_seat",
+      "line": 314,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "name": "test_debug_skip_routes_and_room_configuration",
+      "line": 352,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "name": "test_debug_resource_routes_use_domain_commands",
+      "line": 389,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "name": "test_claimed_room_requires_token_for_debug_tools",
+      "line": 407,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "name": "test_any_claimed_seat_can_debug_skip_the_active_card",
+      "line": 429,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "name": "test_each_active_player_token_receives_its_action_options",
+      "line": 458,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_progression_contract.py",
+      "name": "test_round_end_auto_pays_levels_and_waits_for_all_pending_upgrades",
+      "line": 18,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_progression_contract.py",
+      "name": "test_upgrade_choice_replaces_card_and_adds_unchosen_passive",
+      "line": 60,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_progression_contract.py",
+      "name": "test_players_choose_pending_upgrades_independently",
+      "line": 102,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_progression_contract.py",
+      "name": "test_level_eight_unlocks_purple_passive_without_card_choice",
+      "line": 158,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_progression_contract.py",
+      "name": "test_level_eight_auto_unlock_does_not_block_other_upgrade_choices",
+      "line": 204,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_progression_contract.py",
+      "name": "test_paying_all_seven_levels_creates_only_six_card_choices",
+      "line": 240,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_room_contract.py",
+      "name": "test_switch_controlled_seat_increments_revision",
+      "line": 14,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_room_contract.py",
+      "name": "test_reset_restores_initial_shell_and_increments_revision",
+      "line": 33,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_room_contract.py",
+      "name": "test_illegal_revision_fails_atomically",
+      "line": 50,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_room_contract.py",
+      "name": "test_stale_revision_fails_atomically",
+      "line": 61,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_room_setup_contract.py",
+      "name": "test_catalog_supports_hero_id_lookups",
+      "line": 15,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_room_setup_contract.py",
+      "name": "test_room_state_serializes_four_distinct_hero_ids",
+      "line": 35,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_room_setup_contract.py",
+      "name": "test_legacy_room_state_without_hero_ids_uses_default_selection",
+      "line": 53,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_room_setup_contract.py",
+      "name": "test_create_state_defaults_to_first_four_catalog_heroes",
+      "line": 66,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_room_setup_contract.py",
+      "name": "test_create_state_uses_selected_heroes_and_parameters",
+      "line": 79,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_room_setup_contract.py",
+      "name": "test_configure_room_replaces_heroes_hands_and_starting_values",
+      "line": 99,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_room_setup_contract.py",
+      "name": "test_reset_preserves_room_setup",
+      "line": 125,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_room_setup_contract.py",
+      "name": "test_invalid_or_started_configuration_fails_without_mutating_state",
+      "line": 147,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_round_end_infrastructure.py",
+      "name": "test_region_adjacency_is_derived_from_walkable_map",
+      "line": 10,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_round_end_infrastructure.py",
+      "name": "test_minion_frontline_scaffold_round_trips_without_rule_assumptions",
+      "line": 26,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_round_end_infrastructure.py",
+      "name": "test_round_end_entry_is_automatic_and_manual_entry_is_rejected",
+      "line": 44,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_round_end_resolution.py",
+      "name": "test_losing_captain_removes_minion_then_frontline_advances",
+      "line": 48,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_round_end_resolution.py",
+      "name": "test_debug_tools_can_prepare_visible_round_end_imbalance",
+      "line": 78,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_round_end_resolution.py",
+      "name": "test_debug_remove_is_available_during_a_normal_turn",
+      "line": 106,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_round_end_resolution.py",
+      "name": "test_debug_removing_heavy_advances_immediately_during_turn",
+      "line": 127,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_round_end_resolution.py",
+      "name": "test_advancing_from_enemy_near_region_ends_game",
+      "line": 162,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_round_end_resolution.py",
+      "name": "test_third_frontline_mark_ends_game",
+      "line": 188,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_round_end_resolution.py",
+      "name": "test_occupied_spawn_creates_captain_cell_choice",
+      "line": 214,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_round_lifecycle_contract.py",
+      "name": "test_fourth_turn_automatically_resolves_round_end",
+      "line": 10,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_round_lifecycle_contract.py",
+      "name": "test_fourth_turn_automatically_waits_for_frontline_captain_choice",
+      "line": 30,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_state_contract.py",
+      "name": "test_room_configuration_is_serializable_and_parameterized",
+      "line": 10,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_state_contract.py",
+      "name": "test_initial_state_has_four_numbered_seats",
+      "line": 23,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_state_contract.py",
+      "name": "test_state_round_trips_through_json",
+      "line": 35,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_static_home_contract.py",
+      "name": "test_home_contains_v2_three_column_key_regions",
+      "line": 34,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_static_home_contract.py",
+      "name": "test_styles_define_v3_design_tokens",
+      "line": 79,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_static_home_contract.py",
+      "name": "test_card_stats_and_compact_log_layout_follow_ui_contract",
+      "line": 103,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_static_home_contract.py",
+      "name": "test_desktop_public_action_zone_is_height_compressed",
+      "line": 114,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_static_home_contract.py",
+      "name": "test_planning_controls_and_api_routes_are_wired_in_frontend",
+      "line": 141,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_static_home_contract.py",
+      "name": "test_multiplayer_identity_polling_and_conflict_contract",
+      "line": 215,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    },
+    {
+      "file": "sources/legacy/goa2_v4/tests/test_static_home_contract.py",
+      "name": "test_room_setup_and_extended_debug_controls_are_wired",
+      "line": 264,
+      "status": "passed_legacy_v4",
+      "migration_status": "not_ported"
+    }
+  ],
+  "scope": "Historical v4 Python implementation, not Goa2V1 game behavior."
+}

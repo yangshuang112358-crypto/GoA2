@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.ps1 text eol=lf
+*.jpg -text
+*.png -text
+sources/** -text -whitespace

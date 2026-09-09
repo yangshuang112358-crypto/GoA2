@@ -1,0 +1,745 @@
+{
+  "snapshot_date": "2026-09-10",
+  "files": [
+    {
+      "path": "sources/card-provenance.json",
+      "sha256": "d2e91746351b57ddef255869423860320b2cf2a9fc36a281e0bad21f7fd6e0a9",
+      "bytes": 25837
+    },
+    {
+      "path": "sources/git/goa2_v2-working-tree.patch",
+      "sha256": "c47f0ccbc7f1dea379ca87c3fd9e611edf52cb5e751dfce75474568a2642cc09",
+      "bytes": 12124980
+    },
+    {
+      "path": "sources/git/goa2_v4-working-tree.patch",
+      "sha256": "e1d16759763dac22c83c44835fa37924f58412dbec186a3664b71b93c90536a6",
+      "bytes": 30404
+    },
+    {
+      "path": "sources/history/audit.json",
+      "sha256": "66b1b06b327958cee75400b9bcd6700d6b7927f0bb2202567c3b1dc5c2a9abcc",
+      "bytes": 80294
+    },
+    {
+      "path": "sources/history/guide.json",
+      "sha256": "5ba578bb16f2382780a02d7fb7dbca4678aaeb0a277b1a0e933c0b78b4b7b5d3",
+      "bytes": 76911
+    },
+    {
+      "path": "sources/history/rules.json",
+      "sha256": "bf67149464c920074b3d0a589eeb7d57b3f183e9c686af0a7ade63d38d74d98b",
+      "bytes": 111497
+    },
+    {
+      "path": "sources/history/tutor.json",
+      "sha256": "6c75cbd32093d972ea54515abec6698d2cbd2d3eba18cbee8cd38bef54426f07",
+      "bytes": 327
+    },
+    {
+      "path": "sources/index.json",
+      "sha256": "8300b1645a590af708d94860d52dfae4f1dd72e1d84128a894f00e3dd24230a7",
+      "bytes": 51252
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards.json",
+      "sha256": "9eb0473ca78e2f6280cba5e3f7ad8718dbb66773aa62cbee6089efb53b9ceb23",
+      "bytes": 121513
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_draft/cards_ocr_draft.json",
+      "sha256": "d9624e61d0754362cb44b908bd5be94d3faa202b3db7892d3bdd790ea00ec448",
+      "bytes": 106704
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_draft/review_notes.md",
+      "sha256": "aeefe248e4ce7d21eebf85c306c7e3bd64c4709ed2749e97a38fd7025e271a6c",
+      "bytes": 2686
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/OCR审阅说明.md",
+      "sha256": "375f46739658bbb36cfa6746a864b9418188beac7c72d20e21fc7fd7f87fc045",
+      "bytes": 1674
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/卡牌描述.txt",
+      "sha256": "1cae5808bdd4640d5c59adea0c982adbf9f916620f71deded3d6d596625fa47b",
+      "bytes": 3526
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/微信图片_20260608232721_20_33.jpg",
+      "sha256": "9d4ac9bd85dd0736d1f8dc226488bdf5dcd3dd2f05b109432bfdfd0e10751323",
+      "bytes": 7590273
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/微信图片_20260608232744_25_33.jpg",
+      "sha256": "49444334abbcc055e05efdc7fba2913571d877d645a39af631187fb70a9b81f0",
+      "bytes": 9392454
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/微信图片_20260608232751_26_33.jpg",
+      "sha256": "116a6b2618e77fda09caa5ebfce5184e2882e4a8a7e6832ac4dbd1f859d14fb3",
+      "bytes": 5752182
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/微信图片_20260608232755_27_33.jpg",
+      "sha256": "9afa9cedd4de268de6fc590205f5ce9af0490df3b135efc96465ca498a288789",
+      "bytes": 10017150
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/女武神·黄蜂/英雄简介.txt",
+      "sha256": "e652d67e18abb65052646591266d4cf2a6faedffd7410acac2fc1069bd6f3b9a",
+      "bytes": 730
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/异变蛇女·夏尔加萨/卡牌描述.txt",
+      "sha256": "56eb52687ee874e87d380009815eab166ca586cba2c15684914c28f7f19c3a97",
+      "bytes": 3237
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/异变蛇女·夏尔加萨/微信图片_20260608232716_18_33.jpg",
+      "sha256": "a27efb79a89e605e9a7b7fb79e318202bf16c6bdc1a786dd3cd9afd81ca0b8f3",
+      "bytes": 7986391
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/异变蛇女·夏尔加萨/微信图片_20260608232800_28_33.jpg",
+      "sha256": "93580d67ace44ddfb986a978206bfb1c1d0258c16a2b60ad6a6c2325bdd84bec",
+      "bytes": 10036487
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/异变蛇女·夏尔加萨/微信图片_20260608232806_29_33.jpg",
+      "sha256": "5bd4e80c64dd04a4990eb8a3c00ca297f642194aaf33d80b52899e77f812bc04",
+      "bytes": 9431386
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/异变蛇女·夏尔加萨/微信图片_20260608232810_30_33.jpg",
+      "sha256": "518737f81bd16edc30ae982be7539c23391bbb9c7221c19dbc091cb3e3f4f8f7",
+      "bytes": 9263736
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/异变蛇女·夏尔加萨/英雄简介.txt",
+      "sha256": "fa13d175623e2463cd1f4fb04508c2a6c3d372224708905d547bf131de90d913",
+      "bytes": 822
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/毁灭战士·布罗根/卡牌描述.txt",
+      "sha256": "40f1f3ac9c72ab18402a76b1d649a5ff2678c327caedc35a73d55ca2332dd078",
+      "bytes": 3394
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/毁灭战士·布罗根/微信图片_20260608232724_21_33.jpg",
+      "sha256": "3ba18bbf8e9829477029a125ba4506fd547578233c9299fa2616b5ef8cebfe41",
+      "bytes": 7535345
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/毁灭战士·布罗根/微信图片_20260608232902_31_33.jpg",
+      "sha256": "733d801ecee24aee2988da5a16689ec1993ce753879e2191e8841806f179c7ad",
+      "bytes": 9183229
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/毁灭战士·布罗根/微信图片_20260608232906_32_33.jpg",
+      "sha256": "a650378e4aa65d7a5a2b2013b0bc26257223523c1810f6b37196c7a8c734c62f",
+      "bytes": 9618751
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/毁灭战士·布罗根/微信图片_20260608232909_33_33.jpg",
+      "sha256": "df82988d523a6fbf759bd942aaf3b9dc7cc4e2ec6c08964750e173651961457a",
+      "bytes": 9240987
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/毁灭战士·布罗根/英雄简介.txt",
+      "sha256": "95364667f17695fdd8198d3b6e46385ec6db3d566949ac2a7b878bed80ac4c29",
+      "bytes": 815
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/潮汐主宰·艾瑞恩/卡牌描述.txt",
+      "sha256": "5b0045ce8efa2c1f7c421e4a940847a344585cd7922d6ca872de6a9b24fa19ba",
+      "bytes": 2966
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/潮汐主宰·艾瑞恩/微信图片_20260608232711_16_33.jpg",
+      "sha256": "3deb7dd13866922ea508bb60ac80a96684673416292d38a2b95f6379c9d133e4",
+      "bytes": 7886658
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/潮汐主宰·艾瑞恩/微信图片_20260608232912_34_33.jpg",
+      "sha256": "544e515e1a57fa09601a6322e1d7daf59dfd468abcdb1941b243e4c6e5fee31d",
+      "bytes": 5598518
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/潮汐主宰·艾瑞恩/微信图片_20260608232914_35_33.jpg",
+      "sha256": "553e13d152989e0a1d5b9803e6ea543b55d37e5f7786f2f638e68695050c7fc9",
+      "bytes": 8997993
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/潮汐主宰·艾瑞恩/微信图片_20260608232916_36_33.jpg",
+      "sha256": "c95ba14921f987d26eb399200228772aeff5e11de3652e386633b49fd2770375",
+      "bytes": 5447313
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/潮汐主宰·艾瑞恩/英雄简介.txt",
+      "sha256": "3025270d447632fd29238d1b3fbf3218df0b52bce591e8947905d3e0fe0f3f13",
+      "bytes": 867
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/盗贼·虎爪/卡牌描述.txt",
+      "sha256": "d0e078c77cbca851b6a60d74a07e0bf0efc615730feba876e4331257ced1f688",
+      "bytes": 4051
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/盗贼·虎爪/微信图片_20260608232714_17_33.jpg",
+      "sha256": "2807e3f92c382442881da40013104c8d7a66df2694d92b79fe545a97052cbd93",
+      "bytes": 7447271
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/盗贼·虎爪/微信图片_20260608232725_22_33.jpg",
+      "sha256": "1a2e48ab29bd2e70614ac14911a26730ce2b02211d2bcb69fe4129c041a68e15",
+      "bytes": 9422673
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/盗贼·虎爪/微信图片_20260608232728_23_33.jpg",
+      "sha256": "768a5f6687e1f5b6f9c96107d0c6abd585b3c98431a57225dc2f3d68e9281168",
+      "bytes": 9281401
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/盗贼·虎爪/微信图片_20260608232731_24_33.jpg",
+      "sha256": "f94d0b1db3d2fe0ebcb7a61c8c4561658eeaeb1eb8fd7a85c4436a00cbfccc4c",
+      "bytes": 9513991
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/盗贼·虎爪/英雄简介.txt",
+      "sha256": "d6d3a5c6a57797bfa11367b687cb6467eeb61a67a5537118a41c450455f377db",
+      "bytes": 159
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/神枪手·萨彼娜/卡牌描述.txt",
+      "sha256": "a73a19a7750f45f4bc0d05454e897bf1ebc8b58416ddd36ebbb8582f02100f67",
+      "bytes": 3641
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/神枪手·萨彼娜/微信图片_20260608232719_19_33.jpg",
+      "sha256": "4c69e322078db2a637fa7c300217275437a1dfc7146bffe0e348ddcc5bfb855a",
+      "bytes": 7477972
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/神枪手·萨彼娜/微信图片_20260608232919_37_33.jpg",
+      "sha256": "89ec86cae4c35bf4b26dde7ad129b2cf78be5b612d0aac427a116b0c7c5ed012",
+      "bytes": 5143122
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/神枪手·萨彼娜/微信图片_20260608232922_38_33.jpg",
+      "sha256": "bee9a69d2ec4c910fc231b2047ef0a7ee3f4158fceeb07848dfe25f8b19fd4d7",
+      "bytes": 8302211
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/神枪手·萨彼娜/微信图片_20260608232924_39_33.jpg",
+      "sha256": "d44ccd6306100b2c80b6c9ab88a27a7ff922b3fdbb44a5dfdf289e5265d6028e",
+      "bytes": 8835295
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/cards_picture/神枪手·萨彼娜/英雄简介.txt",
+      "sha256": "d1059091b2dc61b5cbafdce6c50f6a7e74b6727394dd7aea8327401070605259",
+      "bytes": 848
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/map.json",
+      "sha256": "461c744ceb1c95d8f3cf5da052e652f42ce262c80b9ee75c4d127942d92a1ab0",
+      "bytes": 35947
+    },
+    {
+      "path": "sources/legacy/goa2_v2/data/map.txt",
+      "sha256": "bbbb02ae6b4930084473dc5a2d2b9d5b049171ca9ba15850cafb80707068135f",
+      "bytes": 38234
+    },
+    {
+      "path": "sources/legacy/goa2_v2/engine_test/README.md",
+      "sha256": "f0cf32ea7545ba23ac6f846a3e72f6f9e4bb382af2fe0b4e1bba8bf9ceac89fb",
+      "bytes": 874
+    },
+    {
+      "path": "sources/legacy/goa2_v2/README.md",
+      "sha256": "e1042766faf9ddc8f9c34c00b5cd34f110337af3a78f98b2211aad0a7748f56c",
+      "bytes": 3791
+    },
+    {
+      "path": "sources/legacy/goa2_v3/data/cards.json",
+      "sha256": "9eb0473ca78e2f6280cba5e3f7ad8718dbb66773aa62cbee6089efb53b9ceb23",
+      "bytes": 121513
+    },
+    {
+      "path": "sources/legacy/goa2_v3/data/map.json",
+      "sha256": "461c744ceb1c95d8f3cf5da052e652f42ce262c80b9ee75c4d127942d92a1ab0",
+      "bytes": 35947
+    },
+    {
+      "path": "sources/legacy/goa2_v3/docs/GOA2_EFFECT_SCHEMA_DRAFT.md",
+      "sha256": "062adf54bd8866c11f60d0510953bbbe615956663355f4e7d0b56017eec8ece4",
+      "bytes": 6765
+    },
+    {
+      "path": "sources/legacy/goa2_v3/docs/GOA2_IMPLEMENTATION_AUDIT.md",
+      "sha256": "e08758cc7607013760a9a2bf39d0960d2829f89b2f2f9b667fb959126b95ff1d",
+      "bytes": 9553
+    },
+    {
+      "path": "sources/legacy/goa2_v3/docs/GOA2_RULEBOOK.md",
+      "sha256": "501c6e34832d03d5bb04d9cb5fc07586afe9130eebaf9115bd142852b6f5979f",
+      "bytes": 17712
+    },
+    {
+      "path": "sources/legacy/goa2_v3/README.md",
+      "sha256": "0066bac0aec91030457775517f2518885e3d31cb767377498ca5775b3f4b785d",
+      "bytes": 3669
+    },
+    {
+      "path": "sources/legacy/goa2_v3/skills/goa2-card-implementation/agents/openai.yaml",
+      "sha256": "05acd90dc9704a977fce2cc38719e07c755947362147d3893d394ba8c51fedc3",
+      "bytes": 291
+    },
+    {
+      "path": "sources/legacy/goa2_v3/skills/goa2-card-implementation/references/review-checklist.md",
+      "sha256": "f656ef60a0187717496c052db51e3cc2ba272e9a845533d7eaad83c7ecb6e6ac",
+      "bytes": 2699
+    },
+    {
+      "path": "sources/legacy/goa2_v3/skills/goa2-card-implementation/references/schema-and-questions.md",
+      "sha256": "c9d02ed77e620f56989327e4f3300d58c5fb5ba875c9d05792c40c2b806438e7",
+      "bytes": 3745
+    },
+    {
+      "path": "sources/legacy/goa2_v3/skills/goa2-card-implementation/references/test-matrix.md",
+      "sha256": "8b890260661d21db6bd98752d3a6f1acb730980bc8693a16972b6980c7c6813d",
+      "bytes": 5841
+    },
+    {
+      "path": "sources/legacy/goa2_v3/skills/goa2-card-implementation/SKILL.md",
+      "sha256": "f7f683036b52b18c311a813095458718f8f6e73e7ec4f371b8cc5af4bb451a0c",
+      "bytes": 7460
+    },
+    {
+      "path": "sources/legacy/goa2_v4/data/cards.json",
+      "sha256": "1ea20d1ca64b18115d98ab7e54c0ebc4c7628ce282ba21ad11b074d313be2e03",
+      "bytes": 129371
+    },
+    {
+      "path": "sources/legacy/goa2_v4/data/map.json",
+      "sha256": "461c744ceb1c95d8f3cf5da052e652f42ce262c80b9ee75c4d127942d92a1ab0",
+      "bytes": 35947
+    },
+    {
+      "path": "sources/legacy/goa2_v4/docs/AGENT_CONTRACTS.md",
+      "sha256": "f526aa798f1aa2dded2289156e3bffa0e6674fc5792a11fab9d45fc953a72779",
+      "bytes": 1114
+    },
+    {
+      "path": "sources/legacy/goa2_v4/docs/ARCHITECTURE.md",
+      "sha256": "72316b94e03b928fa039ebd8b45af013f876032847fbbace96e8f2051fb46a9f",
+      "bytes": 1614
+    },
+    {
+      "path": "sources/legacy/goa2_v4/docs/GOA2_EFFECT_SCHEMA_DRAFT.md",
+      "sha256": "062adf54bd8866c11f60d0510953bbbe615956663355f4e7d0b56017eec8ece4",
+      "bytes": 6765
+    },
+    {
+      "path": "sources/legacy/goa2_v4/docs/GOA2_RULEBOOK.md",
+      "sha256": "04cfb71e7f4bfb620fa4d261876723fad96e3775f140cea484866565e899feca",
+      "bytes": 21269
+    },
+    {
+      "path": "sources/legacy/goa2_v4/docs/M1_PLANNING_CONTRACT.md",
+      "sha256": "7a60f4a903780a1f201a8c48482e7da30802b5f926ca070c822caedca9b01f3f",
+      "bytes": 1740
+    },
+    {
+      "path": "sources/legacy/goa2_v4/docs/MIGRATION_INVENTORY.md",
+      "sha256": "9dd598520460665b94d6a88468d46ee73de3b48a9239a1ad51c3ab3ff8794b0c",
+      "bytes": 1113
+    },
+    {
+      "path": "sources/legacy/goa2_v4/docs/ROADMAP.md",
+      "sha256": "c1c47cfb335b660408d24dd3ea3209139d9803d210187142d13bce6953f2d305",
+      "bytes": 2365
+    },
+    {
+      "path": "sources/legacy/goa2_v4/docs/UI_CONTRACT.md",
+      "sha256": "1e339ede856d4ef80a928534445621c84646a11435feb942f3b0f5fe1e477c2a",
+      "bytes": 784
+    },
+    {
+      "path": "sources/legacy/goa2_v4/docs/UI_REGIONS.md",
+      "sha256": "0076a367141484d0d752eed0a246b4433d3b98104f5842da8fa4d7eccac3eef2",
+      "bytes": 729
+    },
+    {
+      "path": "sources/legacy/goa2_v4/docs/V2_PARITY_PLAN.md",
+      "sha256": "532795224a485eb68285475542fe1fbbc5e1d039485473df0d8c72eebab97abb",
+      "bytes": 3413
+    },
+    {
+      "path": "sources/legacy/goa2_v4/pyproject.toml",
+      "sha256": "c7d8469112a4ea1befb5c623d481dc9a3242271a27db3f0d4cd42c765af5b38c",
+      "bytes": 324
+    },
+    {
+      "path": "sources/legacy/goa2_v4/README.md",
+      "sha256": "a0db98f66fd71a9905eee5916b5ba1517d6d9991ee5424385ed8a0c1a7e9926a",
+      "bytes": 3309
+    },
+    {
+      "path": "sources/legacy/goa2_v4/server.py",
+      "sha256": "97cc58060044c009a511191cb44a5533a2247a3460fc18b45ca2bcd188e1ab10",
+      "bytes": 274
+    },
+    {
+      "path": "sources/legacy/goa2_v4/skills/goa2-card-implementation/agents/openai.yaml",
+      "sha256": "05acd90dc9704a977fce2cc38719e07c755947362147d3893d394ba8c51fedc3",
+      "bytes": 291
+    },
+    {
+      "path": "sources/legacy/goa2_v4/skills/goa2-card-implementation/references/review-checklist.md",
+      "sha256": "f656ef60a0187717496c052db51e3cc2ba272e9a845533d7eaad83c7ecb6e6ac",
+      "bytes": 2699
+    },
+    {
+      "path": "sources/legacy/goa2_v4/skills/goa2-card-implementation/references/schema-and-questions.md",
+      "sha256": "c9d02ed77e620f56989327e4f3300d58c5fb5ba875c9d05792c40c2b806438e7",
+      "bytes": 3745
+    },
+    {
+      "path": "sources/legacy/goa2_v4/skills/goa2-card-implementation/references/test-matrix.md",
+      "sha256": "8b890260661d21db6bd98752d3a6f1acb730980bc8693a16972b6980c7c6813d",
+      "bytes": 5841
+    },
+    {
+      "path": "sources/legacy/goa2_v4/skills/goa2-card-implementation/SKILL.md",
+      "sha256": "f6df497ed178a34d09df9696dbbb30e250cdabeea81d03f00a9c664c956a3a3f",
+      "bytes": 8117
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/__init__.py",
+      "sha256": "f3b1706ef692190344feb2c1df026d4a6bd86789193945155c34c9ebe9fea4ae",
+      "bytes": 42
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/application/__init__.py",
+      "sha256": "70b67a1126445956133732a4bb1e3936867502dc7d46dceea8077d6b0f964842",
+      "bytes": 202
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/application/catalog.py",
+      "sha256": "02784da86d2dbf5954cb8fff6e01fc82f9eb4d96d8ea7148c2e54ff54856771c",
+      "bytes": 7002
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/application/domain_engine.py",
+      "sha256": "eeeddc3924a7c8de4345fb4c7fcee7bca8ecc0cec577a227f507108de2cff2c1",
+      "bytes": 38129
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/application/ports.py",
+      "sha256": "ac80a42bada3b2f13c461e008e3c9183576b9bf93f42ba14c6679c8032dd1dde",
+      "bytes": 3639
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/application/room.py",
+      "sha256": "ddd96fa3e2678f3c4a04b7550c5b81948bf9107953736c3a8962d55ac215ba24",
+      "bytes": 5463
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/application/service.py",
+      "sha256": "bb9a6ff9af39cbc0b114abd96fa3f495c1216d207d69fbdd9bc6c181937eef7b",
+      "bytes": 28679
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/backend/__init__.py",
+      "sha256": "91e520d38b9e5781fe6deeebb71ccd8fcfb30074152a434e41d27fdc868b8573",
+      "bytes": 193
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/backend/__main__.py",
+      "sha256": "18548cb92a384f3142c1e62779b3eb2d28b13c985dc671b867c81d705fd9395b",
+      "bytes": 1207
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/backend/bootstrap.py",
+      "sha256": "b22a72b99d73ba3f8bc68b8dc9cc363ab68628015465949eebc8c46392a770dc",
+      "bytes": 1143
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/backend/http.py",
+      "sha256": "d800571ec3b05e00eb8871b4bc07be5ad54f9d023e5cfb34bc2781ed5e96692a",
+      "bytes": 29167
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/backend/json_store.py",
+      "sha256": "c9c6973fa6ad57dfbe793573837c5c7d2b99832210c354da6fd09eae90d5a62a",
+      "bytes": 3807
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/backend/memory_store.py",
+      "sha256": "5dae51e769efd5ddc9a16ef6b10017da1cc421c51f121a4fa96ce0b0e32dfa70",
+      "bytes": 920
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/cards/__init__.py",
+      "sha256": "ebe73d27f96e5cd3d657f57ae2e4788940612d55f72e62b23d211ffcc67d4f55",
+      "bytes": 1439
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/cards/__main__.py",
+      "sha256": "b1242b7c04c2f3d2a92baa3e0ab805f9995bbaab77035ab71845a137526dc225",
+      "bytes": 334
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/cards/catalog.py",
+      "sha256": "f90973e7b09a8bdeaaa64b9a12893c082889919eae836d3b6ea897d425226dd3",
+      "bytes": 1840
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/cards/dto.py",
+      "sha256": "d0b77a0c039479ab97fecd04a1ebb6657bb27707eb2654550b266f4bc25b052b",
+      "bytes": 2561
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/cards/validation.py",
+      "sha256": "2995f1289cc8399fbc0d0dd15e121c7e1fb25c78f9ee1876530eac3cb64f970b",
+      "bytes": 13073
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/domain/__init__.py",
+      "sha256": "2ea4b2e954e6d73c282915989b03474777443abd466ae4c9ec213a11c511f4e7",
+      "bytes": 3600
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/domain/messages.py",
+      "sha256": "67a101d24f29aa3e45ab1913f70447d4dd5ddad0fdb4935176dae8d7b1ae47e4",
+      "bytes": 38975
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/domain/model.py",
+      "sha256": "323b477a0e941df8561b412593cbb5d936e0efe2dc20e251277f8680f0e3d804",
+      "bytes": 34941
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/engine/__init__.py",
+      "sha256": "5da4ff6534f9f3e7797f7c82783c2a83ec6c1940165437662bba76608b617af5",
+      "bytes": 844
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/engine/frontline.py",
+      "sha256": "a0248788d438187ca37e3a9b73f826a9b9dc936bb780a2927263e31373091527",
+      "bytes": 2521
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/engine/modifiers.py",
+      "sha256": "e44ae6917a2a33503e18dac8e26b1467b32a2b088d2b4b523f2dce127764b0cd",
+      "bytes": 833
+    },
+    {
+      "path": "sources/legacy/goa2_v4/src/goa2/engine/reducer.py",
+      "sha256": "64ad9cb863a971d62348783bed3911dd77fb95340101ce2d31a2fc69d2372409",
+      "bytes": 64684
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/__init__.py",
+      "sha256": "082e6005280d90d4840299f6277f36e0975f7de5b153efe4ded30e4c3ec49a17",
+      "bytes": 191
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/contract_support.py",
+      "sha256": "f20639045108db939373806887049c6f720b5957f1144f3618b31ba87a27aca5",
+      "bytes": 2964
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_action_resolution_contract.py",
+      "sha256": "0c51bece1d7214da44d6cc350bb3baa09ba6a06f09f37452100f3d311020f4e1",
+      "bytes": 12770
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_basic_attack_contract.py",
+      "sha256": "c60cbd8313c36b91b1d0f5f8adb89608b63d022ea9372e11b18cc1e1650dc522",
+      "bytes": 25104
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_catalog_contract.py",
+      "sha256": "ac516e4a01fa60976f52c9cd79ee626d0a7ba91a7d78b5ed472ef33348d9744a",
+      "bytes": 2417
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_debug_commands.py",
+      "sha256": "97a8396de6131790ac995d4d31044ac74743108e09339d1fdf92b1503598f027",
+      "bytes": 6764
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_debug_skip_contract.py",
+      "sha256": "3ede8b20bb4a74ec22e13884ae5a769dc409671e425a818285e882edcd2f9390",
+      "bytes": 2012
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_frontline_rules.py",
+      "sha256": "ebabd34c6dda3f5c5909f79a75743178c6b25538e6ea74f5ce92581ba63691fb",
+      "bytes": 2128
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_http_contract.py",
+      "sha256": "4d1ee13249115195546ca1b6f6cef872cc1ae128083897ec645ba4e29181a29f",
+      "bytes": 2761
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_json_persistence.py",
+      "sha256": "a8f6f9fe4ba4a730e5fb8cbf628cfa7ca447c1c637e6dc1bfaa6e873d4a7d521",
+      "bytes": 5982
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_movement_contract.py",
+      "sha256": "de5827699307aaa2d14278baa1897835a6b2497c39a8c509a1e2857c1d47e1b5",
+      "bytes": 8649
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_multiplayer_identity_contract.py",
+      "sha256": "9379e48dcca7d56bdca4dd93040f341e00cbbe488a28a65ed83cd65ff7903af0",
+      "bytes": 3255
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_passive_and_respawn_contract.py",
+      "sha256": "3987d9b6587b3ca9a0f84619b19f71c60d2bc30b1b9370449d6a0c39a7024efd",
+      "bytes": 7430
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_planning_contract.py",
+      "sha256": "4732e40489dcbc57920882911bfa4de5a42d4cbef7d2a9dbf078b5e28cc2b231",
+      "bytes": 9717
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_planning_http_contract.py",
+      "sha256": "2decc47bb7a5049922b6df9ec8d10ece67ce1dc0fd3a441f51d800405a87d86f",
+      "bytes": 20300
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_progression_contract.py",
+      "sha256": "90fa639d97fdae9aa93a7b9d6c2af2b1bea37ea2b57abf07aecf42a8334417a0",
+      "bytes": 9547
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_room_contract.py",
+      "sha256": "4f9d022ba4a9de4b0b430534a9fa900abf00651a774fa4fed682b0aa31cb3324",
+      "bytes": 2735
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_room_setup_contract.py",
+      "sha256": "0a643ac2fa2d035ca642bdb77ceacfeddea5e61e224dee456727db5cbe1ab251",
+      "bytes": 7228
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_round_end_infrastructure.py",
+      "sha256": "34363be4f14d447cd4115ac01b90761cf3e255ddf183e944efdbacd1eca9d4ed",
+      "bytes": 2558
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_round_end_resolution.py",
+      "sha256": "375ad7d758b90f6ee9275ea1500f887ddfe29ebf3f1f416ae8283fc34a3e83e0",
+      "bytes": 10090
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_round_lifecycle_contract.py",
+      "sha256": "07d5fb2091dab0a6405fe3685aed159812db0c447c372f363166cfe484d03b81",
+      "bytes": 2651
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_state_contract.py",
+      "sha256": "b47d5c458f5c35a5c4359933fa91dfc9ae481e234bdfd7832a676bea82efcbd5",
+      "bytes": 1820
+    },
+    {
+      "path": "sources/legacy/goa2_v4/tests/test_static_home_contract.py",
+      "sha256": "645ade6426b8d2d5ec91910e5b02087536d98c5a372824b0bcc34cde2db2800a",
+      "bytes": 11167
+    },
+    {
+      "path": "sources/legacy/goa2_v4/web/app.js",
+      "sha256": "362f21436fdbe32ba54586a5c9c07f781d78e3b31570500c70ab523f1813dcfd",
+      "bytes": 63505
+    },
+    {
+      "path": "sources/legacy/goa2_v4/web/index.html",
+      "sha256": "475b0c411b059fb24f4ed0dba1962b445dd9a1626fd9b95c37af223b283ce4ba",
+      "bytes": 8685
+    },
+    {
+      "path": "sources/legacy/goa2_v4/web/style.css",
+      "sha256": "1ffc058d4e65131ba04bd2d5847d4a2d7d21809a8fd3096698769e3e3ecfa08e",
+      "bytes": 25856
+    },
+    {
+      "path": "sources/legacy/goa2_v4/启动GoA2.bat",
+      "sha256": "073ab924e595ffa68a4254d4a4b42b4ea2b93ed9c27ecce730ca2f763010f99c",
+      "bytes": 261
+    },
+    {
+      "path": "sources/legacy/v5/v5构建指示/00_使用顺序与新对话首条指令.md",
+      "sha256": "4d393ef95e1c91cd0db084ee65d549d97d3490b92261dc02b701a52afadbe602",
+      "bytes": 4168
+    },
+    {
+      "path": "sources/legacy/v5/v5构建指示/01_v4成果与v5继承清单.md",
+      "sha256": "36882d3459a4518c74f291983fa39bf28785b5ace274c2dec32c06a40185699c",
+      "bytes": 5513
+    },
+    {
+      "path": "sources/legacy/v5/v5构建指示/02_GoA2_v5权威游戏规则.md",
+      "sha256": "634d269b3443cf5dbad4780339de8ca7df0c66d73a0ecbdfc9ccdc7f4502a2b1",
+      "bytes": 8748
+    },
+    {
+      "path": "sources/legacy/v5/v5构建指示/03_Unity_v5架构蓝图.md",
+      "sha256": "790712798283310920705b9c0f7639fa6168bda346884418a33d5f55f84fccbb",
+      "bytes": 6299
+    },
+    {
+      "path": "sources/legacy/v5/v5构建指示/04_成熟研发测试与Git流程.md",
+      "sha256": "698f7ae342c3b21fbeb826bf9688f5f7e0fff5f357af95a307a202e549589705",
+      "bytes": 5566
+    },
+    {
+      "path": "sources/legacy/v5/v5构建指示/05_v5里程碑与验收门槛.md",
+      "sha256": "1e61bf47296b4d88cbbf3cf5e48d1d4d8b3276855262d239a6361a456cc0969d",
+      "bytes": 4985
+    },
+    {
+      "path": "sources/legacy/v5/v5构建指示/06_主要负责人Agent_Prompt.md",
+      "sha256": "bfdf7ac22fdccecc33790eed7d8835afca6cf3455957db489352a28412db3b8b",
+      "bytes": 3874
+    },
+    {
+      "path": "sources/legacy/v5/v5构建指示/07_研发Agent_Prompts.md",
+      "sha256": "790d9eb48a56b2a8a09dc5109bba23f00915763e76ac0783a3ad4bd676d72218",
+      "bytes": 6313
+    },
+    {
+      "path": "sources/legacy/v5/v5构建指示/08_测试Agent_Prompt与测试矩阵.md",
+      "sha256": "b7b03e993288294abd84ebfe6706d3d55c66109f555085e5893a89a00994592d",
+      "bytes": 4380
+    },
+    {
+      "path": "sources/legacy/v5/v5构建指示/09_卡牌效果系统与逐卡实施手册.md",
+      "sha256": "0ca41eabea7a961fbb6762b50722bcbcd3e732a0ecbeb46e95ac0ee54f23f481",
+      "bytes": 4972
+    },
+    {
+      "path": "sources/legacy/v5/v5构建指示/10_待确认规则与风险登记.md",
+      "sha256": "7bb686497ce599db4b387546cf815201d4d9d5b0e7b670ea92592f9592722b5e",
+      "bytes": 3913
+    },
+    {
+      "path": "sources/README.md",
+      "sha256": "c35df711acaf4dd9514c33ad05391be79054a44305f105eef046ad62eedaa11a",
+      "bytes": 1062
+    },
+    {
+      "path": "sources/recovered/tigerclaw/微信图片_20260608223456_15_33.jpg",
+      "sha256": "1a2e48ab29bd2e70614ac14911a26730ce2b02211d2bcb69fe4129c041a68e15",
+      "bytes": 9422673
+    }
+  ]
+}

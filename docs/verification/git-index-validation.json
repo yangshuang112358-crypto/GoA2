@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-10",
+  "result": "PASS",
+  "method": "Exported staged Git index to a clean directory; verified canonical LF hashes and preserved raw source bytes.",
+  "content": {
+    "result": "PASS",
+    "heroes": 6,
+    "cards": 108,
+    "map_cells": 254,
+    "obstacles": 44,
+    "card_review_drafts": 108,
+    "source_files": 148,
+    "rules": 20,
+    "legacy_tests_passed": 135,
+    "scope": "Restart data/documentation/tools only; no Goa2V1 game implementation tested."
+  },
+  "tool_tests": 11
+}

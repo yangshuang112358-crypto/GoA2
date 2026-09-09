@@ -1,0 +1,1636 @@
+{
+  "v2_v3_equal": true,
+  "v2_v4_changes": [
+    {
+      "path": "/heroes/0/cards/0/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/0/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/0/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/1/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/1/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/1/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/2/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/2/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/2/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/3/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/3/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/3/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/4/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/4/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/4/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/5/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/5/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/5/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/6/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/6/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/6/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/7/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/7/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/7/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/8/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/8/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/8/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/9/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/9/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/9/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/10/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/10/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/10/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/11/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/11/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/11/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/12/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/12/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/12/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/13/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/13/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/13/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/14/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/14/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/14/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/15/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/15/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/15/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/16/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/16/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/16/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/cards/17/implementation",
+      "old": "generic",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/17/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/0/cards/17/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/0/implemented",
+      "old": true,
+      "new": false
+    },
+    {
+      "path": "/heroes/1/cards/0/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/0/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/0/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/1/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/1/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/1/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/2/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/2/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/2/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/3/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/3/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/3/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/4/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/4/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/4/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/5/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/5/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/5/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/6/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/6/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/6/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/7/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/7/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/7/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/8/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/8/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/8/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/9/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/9/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/9/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/10/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/10/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/10/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/11/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/11/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/11/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/12/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/12/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/12/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/13/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/13/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/13/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/14/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/14/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/14/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/15/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/15/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/15/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/16/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/16/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/16/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/1/cards/17/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/17/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/1/cards/17/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/0/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/0/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/0/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/1/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/1/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/1/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/2/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/2/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/2/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/3/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/3/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/3/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/4/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/4/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/4/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/5/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/5/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/5/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/6/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/6/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/6/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/7/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/7/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/7/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/8/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/8/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/8/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/9/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/9/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/9/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/10/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/10/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/10/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/11/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/11/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/11/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/12/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/12/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/12/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/13/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/13/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/13/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/14/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/14/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/14/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/15/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/15/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/15/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/16/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/16/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/16/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/2/cards/17/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/17/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/2/cards/17/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/0/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/0/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/0/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/1/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/1/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/1/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/2/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/2/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/2/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/3/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/3/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/3/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/4/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/4/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/4/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/5/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/5/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/5/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/6/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/6/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/6/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/7/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/7/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/7/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/8/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/8/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/8/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/9/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/9/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/9/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/10/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/10/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/10/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/11/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/11/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/11/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/12/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/12/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/12/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/13/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/13/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/13/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/14/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/14/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/14/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/15/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/15/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/15/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/16/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/16/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/16/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/3/cards/17/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/17/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/3/cards/17/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/0/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/0/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/0/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/1/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/1/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/1/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/2/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/2/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/2/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/3/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/3/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/3/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/4/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/4/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/4/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/5/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/5/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/5/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/6/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/6/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/6/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/7/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/7/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/7/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/8/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/8/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/8/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/9/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/9/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/9/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/10/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/10/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/10/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/11/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/11/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/11/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/12/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/12/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/12/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/13/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/13/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/13/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/14/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/14/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/14/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/15/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/15/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/15/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/16/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/16/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/16/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/4/cards/17/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/17/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/4/cards/17/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/0/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/0/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/0/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/1/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/1/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/1/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/2/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/2/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/2/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/3/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/3/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/3/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/4/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/4/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/4/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/5/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/5/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/5/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/6/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/6/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/6/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/7/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/7/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/7/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/8/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/8/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/8/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/9/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/9/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/9/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/10/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/10/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/10/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/11/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/11/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/11/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/12/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/12/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/12/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/13/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/13/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/13/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/14/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/14/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/14/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/15/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/15/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/15/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/16/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/16/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/16/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    },
+    {
+      "path": "/heroes/5/cards/17/implementation",
+      "old": "default_test",
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/17/implementation_status",
+      "old": null,
+      "new": "data_only"
+    },
+    {
+      "path": "/heroes/5/cards/17/implementation_status_label",
+      "old": null,
+      "new": "未实装未测试"
+    }
+  ],
+  "changed_field_counts": {
+    "implementation": 108,
+    "implementation_status": 108,
+    "implementation_status_label": 108,
+    "implemented": 1
+  }
+}

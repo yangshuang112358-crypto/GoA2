@@ -1,0 +1,34 @@
+{
+  "heroes": 6,
+  "cards": 108,
+  "map_cells": 254,
+  "obstacles": 44,
+  "regions": {
+    "redFountain": 19,
+    "redNear": 41,
+    "terrain": 44,
+    "bottomGrass": 15,
+    "topGrass": 15,
+    "mid": 60,
+    "blueNear": 41,
+    "blueFountain": 19
+  },
+  "states": {
+    "empty": 170,
+    "redMeleeSpawn": 11,
+    "redHeroSpawn": 3,
+    "redRangedSpawn": 3,
+    "redHeavySpawn": 3,
+    "blueMeleeSpawn": 11,
+    "blueHeavySpawn": 3,
+    "terrain": 44,
+    "blueRangedSpawn": 3,
+    "blueHeroSpawn": 3
+  },
+  "photo_files": 24,
+  "recovered_reference_files": 1,
+  "ocr_text_files": 12,
+  "source_files": 139,
+  "v2_v4_diff_fields": 325,
+  "test_count": 135
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "GoA2 Card Implementation"
+  short_description: "Analyze and thoroughly test GoA2 card effects"
+  default_prompt: "Use $goa2-card-implementation to analyze one GoA2 card, resolve ambiguities, draft its effect schema, and produce comprehensive behavior tests."

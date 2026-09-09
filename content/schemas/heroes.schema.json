@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "heroes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "hero_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "legacy_default_team": {
+            "enum": [
+              "blue",
+              "red",
+              "reserve"
+            ]
+          }
+        },
+        "required": [
+          "hero_id",
+          "name",
+          "legacy_default_team"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 6,
+      "maxItems": 6
+    }
+  },
+  "required": [
+    "schema_version",
+    "heroes"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Goa2V1 heroes"
+}

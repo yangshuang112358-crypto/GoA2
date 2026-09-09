@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "heroes": [
+    {
+      "hero_id": "wasp",
+      "name": "女武神·黄蜂",
+      "legacy_default_team": "red"
+    },
+    {
+      "hero_id": "shargatha",
+      "name": "异变蛇女·夏尔加萨",
+      "legacy_default_team": "red"
+    },
+    {
+      "hero_id": "brogan",
+      "name": "毁灭战士·布罗根",
+      "legacy_default_team": "blue"
+    },
+    {
+      "hero_id": "arien",
+      "name": "潮汐主宰·艾瑞恩",
+      "legacy_default_team": "blue"
+    },
+    {
+      "hero_id": "tigerclaw",
+      "name": "盗贼·虎爪",
+      "legacy_default_team": "reserve"
+    },
+    {
+      "hero_id": "sabina",
+      "name": "神枪手·萨彼娜",
+      "legacy_default_team": "reserve"
+    }
+  ]
+}

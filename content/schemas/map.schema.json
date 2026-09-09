@@ -1,0 +1,88 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "map_id": {
+      "const": "classic-254"
+    },
+    "coordinate_system": {
+      "const": "axial"
+    },
+    "cells": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "integer"
+          },
+          "y": {
+            "type": "integer"
+          },
+          "state": {
+            "enum": [
+              "empty",
+              "terrain",
+              "redHeroSpawn",
+              "redMeleeSpawn",
+              "redRangedSpawn",
+              "redHeavySpawn",
+              "blueHeroSpawn",
+              "blueMeleeSpawn",
+              "blueRangedSpawn",
+              "blueHeavySpawn"
+            ]
+          },
+          "obstacle": {
+            "type": "boolean"
+          },
+          "lane": {
+            "type": "boolean"
+          },
+          "base": {
+            "enum": [
+              null,
+              "red",
+              "blue"
+            ]
+          },
+          "region": {
+            "enum": [
+              "redFountain",
+              "redNear",
+              "mid",
+              "blueNear",
+              "blueFountain",
+              "topGrass",
+              "bottomGrass",
+              "terrain"
+            ]
+          }
+        },
+        "required": [
+          "x",
+          "y",
+          "state",
+          "obstacle",
+          "lane",
+          "base",
+          "region"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 254,
+      "maxItems": 254
+    }
+  },
+  "required": [
+    "schema_version",
+    "map_id",
+    "coordinate_system",
+    "cells"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Goa2V1 map"
+}

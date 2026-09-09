@@ -1,0 +1,62 @@
+{
+  "date": "2026-09-10",
+  "repositories": [
+    {
+      "version": "goa2_v2",
+      "head": "bd448d415cbf5f2f2ed6c25e3199f8bba170a15a",
+      "status": " D data/cards_picture/盗贼·虎爪/微信图片_20260608223456_15_33.jpg\n",
+      "history": [
+        "bd448d415cbf5f2f2ed6c25e3199f8bba170a15a|2026-06-10T23:46:31+08:00|feat: add initial card behaviors and test harness",
+        "dc625c509b39ca3cc139bcb884260e70463b9733|2026-06-10T09:56:57+08:00|Initial GoA2 v2",
+        "0f6540cd551719fae2a26946b8e43bf1599c31a2|2026-06-10T00:17:26+08:00|Implement card display and cache cleanup",
+        "949be4b1f9d6db7bbe7ab0e7d1b474d9dd5a02f6|2026-06-09T23:54:45+08:00|Initial GoA2 v2",
+        "b32584e6c1247552c53fb4d601359f1e3dc909ab|2026-06-08T20:53:14+08:00|Initial GoA2 v2 prototype"
+      ]
+    },
+    {
+      "version": "goa2_v3",
+      "head": "48f583a73a6ec01b32b41a973a40ce3686e782b1",
+      "status": "",
+      "history": [
+        "48f583a73a6ec01b32b41a973a40ce3686e782b1|2026-06-13T13:48:52+08:00|feat: add authoritative defense resolution",
+        "77d31d8e804d846b8ac93cca3806d73c32a81af7|2026-06-13T10:27:55+08:00|feat: add authoritative basic attack flow",
+        "77c8f68bcb457e259093ed314ce62acb8f50c921|2026-06-13T10:12:51+08:00|feat: add GoA2 card implementation skill",
+        "417d350330db3c5a579a6cf5752d049cb59c4447|2026-06-13T10:01:18+08:00|docs: confirm core rules and draft effect schema",
+        "d3d125811ff76320a3ddc95b0c012de07cb1da04|2026-06-13T08:54:53+08:00|docs: establish GoA2 rules and implementation baseline",
+        "d329a22b54bfbc35e2c677d44d694cbe2b2655d1|2026-06-13T08:41:28+08:00|feat: add authoritative map movement",
+        "0ede53f574c8d838ec1cfe17e92676cea4bd4cee|2026-06-13T00:55:28+08:00|feat: add four-seat hotseat debug sandbox",
+        "42b82f9c7f91c1c2e41fd69d5ae12a766af9d6c9|2026-06-12T23:59:07+08:00|feat: add card selection and reveal flow",
+        "2b300647a3fac904ee19dbc6733ae4265b2c52ab|2026-06-12T21:11:53+08:00|feat: bootstrap v3 card and map sandbox"
+      ]
+    },
+    {
+      "version": "goa2_v4",
+      "head": "f6ab5d2e8d292846f2839d0d0f2a28762e6e9635",
+      "status": " M .gitignore\n M README.md\n M src/goa2/application/domain_engine.py\n M src/goa2/backend/__main__.py\n M src/goa2/backend/http.py\n M src/goa2/domain/model.py\n M src/goa2/engine/reducer.py\n M tests/test_http_contract.py\n M tests/test_json_persistence.py\n M tests/test_planning_http_contract.py\n M tests/test_progression_contract.py\n M tests/test_static_home_contract.py\n M web/app.js\n M web/index.html\n?? 启动GoA2.bat\n",
+      "history": [
+        "f6ab5d2e8d292846f2839d0d0f2a28762e6e9635|2026-06-16T00:00:48+08:00|Fix setup editing and compact debug panel",
+        "1e877b78deb44aab637881aa2d4c67ff1ff7d1e6|2026-06-14T23:52:54+08:00|Complete v4 multiplayer and debug foundation",
+        "5be2ee9b67ac44fb5b32218a929dc329108a9da4|2026-06-14T18:54:26+08:00|Fix upgrade respawn UI and attack modifiers",
+        "6b33ccd83507e3ee896c50531497c0b0bd872ac0|2026-06-14T14:25:22+08:00|Implement respawn passive modifiers and heavy protection",
+        "e587a667e31c54d2ad29e8a1c098963428ac6bf2|2026-06-14T13:35:09+08:00|Add frontline defense and progression rules",
+        "8bec51de7b7da84f0c0449835b824b938f852410|2026-06-14T12:32:06+08:00|Implement automatic round end and initiative choices",
+        "5922fb48e7ff7e5f038bc760cc5a7d7b5b8cca66|2026-06-14T11:27:45+08:00|feat: restore four-turn planning and defense flow",
+        "90d16289779735245c0067c835508739006e2373|2026-06-14T10:45:16+08:00|feat: restore authoritative game HUD interactions",
+        "93670a33af77b36912f7d551a0b7e325fa080853|2026-06-14T07:21:04+08:00|feat: add basic attack target selection",
+        "28c67cd9991578a7972b73981a9d254cf1f796b0|2026-06-14T07:06:28+08:00|feat: complete fast movement and frontline resolution",
+        "3d20c3900c39fe5e089ebedce43ad12429c4e437|2026-06-13T23:07:22+08:00|feat: add data-only action completion and debug teleport",
+        "a53a1684d978153a5ff03315ebf78bdc68ceb463|2026-06-13T22:55:59+08:00|feat: add frontline rule queries",
+        "5e9c8358608000d550efce578207ff61b3e397f7|2026-06-13T22:54:54+08:00|feat: add round-end rule scaffolding",
+        "0a0b9c0d5d6140640204e73b537b47d2f3713ad2|2026-06-13T22:50:20+08:00|feat: add five-turn round lifecycle",
+        "04825eaf311035a40f402cf125f0e0783ff8f59c|2026-06-13T22:48:34+08:00|feat: add authoritative hero movement",
+        "f976a740b7e29e937e5f8c030d2082dcd58e9012|2026-06-13T22:45:43+08:00|feat: add server action choices",
+        "27cefb568602e0a3d3580579c2a56f85a6ef5f56|2026-06-13T22:36:54+08:00|feat: add action resolution queue",
+        "1c93c6c82cad313cf7dd12a047092bc5cf79b838|2026-06-13T22:27:47+08:00|feat: refine card stats and game layout",
+        "326bb413be55bf8747f90bc0d0c8e1081830ef38|2026-06-13T21:31:29+08:00|feat: add private planning and initiative reveal",
+        "6dd1932af2fcf9719a265a659e706764a25d0866|2026-06-13T20:24:47+08:00|feat: initialize GoA2 v4 architecture"
+      ]
+    }
+  ],
+  "outer_repository": "Contains .git directory but git rev-parse failed; new repository is independent.",
+  "v5": "Documentation only; no Unity project."
+}

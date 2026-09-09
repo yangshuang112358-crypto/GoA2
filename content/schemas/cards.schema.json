@@ -1,0 +1,221 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "hero_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "color_key": {
+            "enum": [
+              "gold",
+              "silver",
+              "red",
+              "green",
+              "blue",
+              "purple"
+            ]
+          },
+          "level": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 4
+          },
+          "initiative": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "secondary_actions": {
+            "type": "object",
+            "properties": {
+              "movement": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "移动"
+                  },
+                  "has_action": {
+                    "type": "boolean"
+                  },
+                  "value": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "type",
+                  "has_action",
+                  "value"
+                ],
+                "additionalProperties": false
+              },
+              "defense": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "防御"
+                  },
+                  "has_action": {
+                    "type": "boolean"
+                  },
+                  "value": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "type",
+                  "has_action",
+                  "value"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "movement",
+              "defense"
+            ],
+            "additionalProperties": false
+          },
+          "primary_action": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "enum": [
+                  "基础攻击",
+                  "攻击",
+                  "基础技能",
+                  "技能",
+                  "移动",
+                  "防御",
+                  "终极技能"
+                ]
+              },
+              "family": {
+                "enum": [
+                  "attack",
+                  "skill",
+                  "movement",
+                  "defense",
+                  "ultimate"
+                ]
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "exclamation": {
+                "type": "boolean"
+              },
+              "subtype": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "范围",
+                          "远程"
+                        ]
+                      },
+                      "value": {
+                        "type": "integer",
+                        "minimum": 1
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            },
+            "required": [
+              "category",
+              "family",
+              "text",
+              "value",
+              "exclamation",
+              "subtype"
+            ],
+            "additionalProperties": false
+          },
+          "passive_bonus": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "enum": [
+                  null,
+                  "攻击",
+                  "防御",
+                  "移动",
+                  "先攻",
+                  "范围",
+                  "远程"
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "hero_id",
+          "color_key",
+          "level",
+          "initiative",
+          "secondary_actions",
+          "primary_action",
+          "passive_bonus"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 108,
+      "maxItems": 108
+    }
+  },
+  "required": [
+    "schema_version",
+    "cards"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Goa2V1 cards"
+}

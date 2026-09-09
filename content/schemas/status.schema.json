@@ -1,0 +1,74 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "card_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "data_only",
+              "specified",
+              "implemented",
+              "behavior_tested",
+              "integration_tested"
+            ]
+          },
+          "contract": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tests": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "known_questions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "implementation_files": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "card_id",
+          "status",
+          "contract",
+          "tests",
+          "known_questions",
+          "implementation_files"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 108,
+      "maxItems": 108
+    }
+  },
+  "required": [
+    "schema_version",
+    "cards"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Goa2V1 status"
+}

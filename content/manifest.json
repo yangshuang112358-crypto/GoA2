@@ -1,0 +1,31 @@
+{
+  "content_version": "1.0.0",
+  "schema_version": "1.0.0",
+  "rules_version": "1.0.0-draft.1",
+  "expected": {
+    "heroes": 6,
+    "cards": 108,
+    "cards_per_hero": 18,
+    "cells": 254,
+    "obstacles": 44,
+    "regions": 8
+  },
+  "files": [
+    {
+      "path": "content/canonical/cards.json",
+      "sha256": "9fd571abe38f4711fa1a891f3696b9253057a2c21360fd4a62a1302351386192"
+    },
+    {
+      "path": "content/canonical/heroes.json",
+      "sha256": "f3f7c0c318b17738541dd8b6269f74865f0d66452acb5bcb2e5ae6627c783b6b"
+    },
+    {
+      "path": "content/canonical/map.json",
+      "sha256": "8c4e20deee6540fdd6a675cb17523d1933cad5746938418ce8b02ff3f03dc77e"
+    },
+    {
+      "path": "content/canonical/ruleset.json",
+      "sha256": "9d568d0ba085ac7378a3397ade4db784f6e5026d34fbef311f5b511bfe17f390"
+    }
+  ]
+}

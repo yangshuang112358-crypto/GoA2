@@ -1,0 +1,1661 @@
+{
+  "notice": "Keyword hints only; not effect semantics or completion evidence.",
+  "cards": [
+    {
+      "card_id": "wasp-00-闪耀之刃",
+      "hero_id": "wasp",
+      "family": "attack",
+      "keyword_hints": [
+        "continuous",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-00-闪耀之刃.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "wasp-01-电击",
+      "hero_id": "wasp",
+      "family": "attack",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-01-电击.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "wasp-02-回旋镖",
+      "hero_id": "wasp",
+      "family": "attack",
+      "keyword_hints": [],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-02-回旋镖.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "wasp-03-电能波",
+      "hero_id": "wasp",
+      "family": "attack",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-03-电能波.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "wasp-04-雷霆回旋镖",
+      "hero_id": "wasp",
+      "family": "attack",
+      "keyword_hints": [
+        "repeat",
+        "conditional",
+        "choice_wording"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-04-雷霆回旋镖.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "wasp-05-电能爆炸",
+      "hero_id": "wasp",
+      "family": "attack",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-05-电能爆炸.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "wasp-06-静电封锁",
+      "hero_id": "wasp",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-06-静电封锁.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "wasp-07-抵挡屏障",
+      "hero_id": "wasp",
+      "family": "defense",
+      "keyword_hints": [
+        "conditional"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-07-抵挡屏障.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "wasp-08-偏转屏障",
+      "hero_id": "wasp",
+      "family": "defense",
+      "keyword_hints": [
+        "discard",
+        "conditional"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-08-偏转屏障.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "wasp-09-意念操控",
+      "hero_id": "wasp",
+      "family": "skill",
+      "keyword_hints": [
+        "place",
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-09-意念操控.md",
+      "question_candidates": [
+        "U-011",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "wasp-10-反射屏障",
+      "hero_id": "wasp",
+      "family": "defense",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "immunity",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-10-反射屏障.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "wasp-11-心灵控制",
+      "hero_id": "wasp",
+      "family": "skill",
+      "keyword_hints": [
+        "place",
+        "repeat",
+        "choice_wording",
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-11-心灵控制.md",
+      "question_candidates": [
+        "U-011",
+        "U-007",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "wasp-12-电闪雷鸣",
+      "hero_id": "wasp",
+      "family": "ultimate",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-12-电闪雷鸣.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "wasp-13-控物",
+      "hero_id": "wasp",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "choice_wording",
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-13-控物.md",
+      "question_candidates": [
+        "U-011",
+        "U-007",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "wasp-14-动力助推",
+      "hero_id": "wasp",
+      "family": "skill",
+      "keyword_hints": [
+        "push",
+        "discard",
+        "conditional",
+        "choice_wording"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-14-动力助推.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "wasp-15-引力控制",
+      "hero_id": "wasp",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "repeat",
+        "choice_wording",
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-15-引力控制.md",
+      "question_candidates": [
+        "U-011",
+        "U-007",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "wasp-16-动能震爆",
+      "hero_id": "wasp",
+      "family": "skill",
+      "keyword_hints": [
+        "push",
+        "discard",
+        "conditional"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-16-动能震爆.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "wasp-17-意念黑洞",
+      "hero_id": "wasp",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "repeat",
+        "choice_wording",
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/wasp-17-意念黑洞.md",
+      "question_candidates": [
+        "U-011",
+        "U-007",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "shargatha-00-反击",
+      "hero_id": "shargatha",
+      "family": "attack",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "continuous",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-00-反击.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-01-劈砍",
+      "hero_id": "shargatha",
+      "family": "attack",
+      "keyword_hints": [],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-01-劈砍.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-02-快速突刺",
+      "hero_id": "shargatha",
+      "family": "attack",
+      "keyword_hints": [],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-02-快速突刺.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-03-致命横扫",
+      "hero_id": "shargatha",
+      "family": "attack",
+      "keyword_hints": [],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-03-致命横扫.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-04-横枪跃马",
+      "hero_id": "shargatha",
+      "family": "attack",
+      "keyword_hints": [
+        "repeat",
+        "conditional",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-04-横枪跃马.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "shargatha-05-死亡回旋",
+      "hero_id": "shargatha",
+      "family": "attack",
+      "keyword_hints": [],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-05-死亡回旋.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-06-海妖之歌",
+      "hero_id": "shargatha",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "repeat",
+        "choice_wording",
+        "immunity"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-06-海妖之歌.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "shargatha-07-魅惑",
+      "hero_id": "shargatha",
+      "family": "movement",
+      "keyword_hints": [
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-07-魅惑.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-08-统治领域",
+      "hero_id": "shargatha",
+      "family": "movement",
+      "keyword_hints": [
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-08-统治领域.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-09-致命束缚",
+      "hero_id": "shargatha",
+      "family": "movement",
+      "keyword_hints": [
+        "move",
+        "continuous",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-09-致命束缚.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-10-独霸一方",
+      "hero_id": "shargatha",
+      "family": "movement",
+      "keyword_hints": [
+        "immunity",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-10-独霸一方.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-11-死亡缠绕",
+      "hero_id": "shargatha",
+      "family": "movement",
+      "keyword_hints": [
+        "move",
+        "continuous",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-11-死亡缠绕.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-12-幻化",
+      "hero_id": "shargatha",
+      "family": "ultimate",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-12-幻化.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "shargatha-13-石化",
+      "hero_id": "shargatha",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "immunity",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-13-石化.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-14-石化之眼",
+      "hero_id": "shargatha",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "immunity",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-14-石化之眼.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-15-忠实信徒",
+      "hero_id": "shargatha",
+      "family": "skill",
+      "keyword_hints": [
+        "discard",
+        "retrieve",
+        "conditional",
+        "choice_wording"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-15-忠实信徒.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "shargatha-16-石化凝视",
+      "hero_id": "shargatha",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "immunity",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-16-石化凝视.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "shargatha-17-至死不渝",
+      "hero_id": "shargatha",
+      "family": "skill",
+      "keyword_hints": [
+        "discard",
+        "retrieve",
+        "conditional",
+        "choice_wording",
+        "immunity",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/shargatha-17-至死不渝.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "brogan-00-猛攻",
+      "hero_id": "brogan",
+      "family": "attack",
+      "keyword_hints": [
+        "move",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-00-猛攻.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "brogan-01-冲撞",
+      "hero_id": "brogan",
+      "family": "attack",
+      "keyword_hints": [
+        "move",
+        "conditional",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-01-冲撞.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "brogan-02-投掷飞斧",
+      "hero_id": "brogan",
+      "family": "attack",
+      "keyword_hints": [
+        "discard",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-02-投掷飞斧.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "brogan-03-奋勇冲锋",
+      "hero_id": "brogan",
+      "family": "attack",
+      "keyword_hints": [
+        "move",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-03-奋勇冲锋.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "brogan-04-投掷长矛",
+      "hero_id": "brogan",
+      "family": "attack",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-04-投掷长矛.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "brogan-05-勇往直前",
+      "hero_id": "brogan",
+      "family": "attack",
+      "keyword_hints": [
+        "move",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-05-勇往直前.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "brogan-06-铜墙铁壁",
+      "hero_id": "brogan",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "push",
+        "swap",
+        "retrieve",
+        "conditional",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-06-铜墙铁壁.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "brogan-07-保卫",
+      "hero_id": "brogan",
+      "family": "skill",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "choice_wording",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-07-保卫.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "brogan-08-战鼓",
+      "hero_id": "brogan",
+      "family": "skill",
+      "keyword_hints": [
+        "discard",
+        "retrieve",
+        "conditional",
+        "choice_wording"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-08-战鼓.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "brogan-09-持盾",
+      "hero_id": "brogan",
+      "family": "skill",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "choice_wording",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-09-持盾.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "brogan-10-吟游诗人",
+      "hero_id": "brogan",
+      "family": "skill",
+      "keyword_hints": [
+        "discard",
+        "retrieve",
+        "conditional",
+        "choice_wording"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-10-吟游诗人.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "brogan-11-巩固防线",
+      "hero_id": "brogan",
+      "family": "skill",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "choice_wording",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-11-巩固防线.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "brogan-12-一人成军",
+      "hero_id": "brogan",
+      "family": "ultimate",
+      "keyword_hints": [
+        "conditional"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-12-一人成军.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "brogan-13-冲拳",
+      "hero_id": "brogan",
+      "family": "skill",
+      "keyword_hints": [
+        "push",
+        "choice_wording",
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-13-冲拳.md",
+      "question_candidates": [
+        "U-011",
+        "U-007",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "brogan-14-碾压重拳",
+      "hero_id": "brogan",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "push",
+        "choice_wording",
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-14-碾压重拳.md",
+      "question_candidates": [
+        "U-011",
+        "U-007",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "brogan-15-盾牌猛击",
+      "hero_id": "brogan",
+      "family": "skill",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-15-盾牌猛击.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "brogan-16-野蛮飞踢",
+      "hero_id": "brogan",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "push",
+        "choice_wording",
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-16-野蛮飞踢.md",
+      "question_candidates": [
+        "U-011",
+        "U-007",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "brogan-17-防守反击",
+      "hero_id": "brogan",
+      "family": "skill",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/brogan-17-防守反击.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "arien-00-华丽刀锋",
+      "hero_id": "arien",
+      "family": "attack",
+      "keyword_hints": [
+        "move",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-00-华丽刀锋.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "arien-01-汹涌",
+      "hero_id": "arien",
+      "family": "attack",
+      "keyword_hints": [
+        "push",
+        "choice_wording",
+        "trigger",
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-01-汹涌.md",
+      "question_candidates": [
+        "U-011",
+        "U-007",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "arien-02-激流",
+      "hero_id": "arien",
+      "family": "attack",
+      "keyword_hints": [
+        "discard",
+        "conditional",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-02-激流.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "arien-03-潮起",
+      "hero_id": "arien",
+      "family": "attack",
+      "keyword_hints": [
+        "push",
+        "choice_wording",
+        "trigger",
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-03-潮起.md",
+      "question_candidates": [
+        "U-011",
+        "U-007",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "arien-04-惊涛骇浪",
+      "hero_id": "arien",
+      "family": "attack",
+      "keyword_hints": [
+        "discard",
+        "repeat",
+        "conditional",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-04-惊涛骇浪.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "arien-05-巨浪滔天",
+      "hero_id": "arien",
+      "family": "attack",
+      "keyword_hints": [
+        "move",
+        "push",
+        "choice_wording",
+        "trigger",
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-05-巨浪滔天.md",
+      "question_candidates": [
+        "U-011",
+        "U-007",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "arien-06-打断施法",
+      "hero_id": "arien",
+      "family": "skill",
+      "keyword_hints": [
+        "continuous",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-06-打断施法.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "arien-07-潮水",
+      "hero_id": "arien",
+      "family": "skill",
+      "keyword_hints": [
+        "place"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-07-潮水.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "arien-08-奥术换位",
+      "hero_id": "arien",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "swap"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-08-奥术换位.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "arien-09-魔法水流",
+      "hero_id": "arien",
+      "family": "skill",
+      "keyword_hints": [
+        "place"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-09-魔法水流.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "arien-10-移形换步",
+      "hero_id": "arien",
+      "family": "skill",
+      "keyword_hints": [
+        "swap",
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-10-移形换步.md",
+      "question_candidates": [
+        "U-011",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "arien-11-潮汐之力",
+      "hero_id": "arien",
+      "family": "skill",
+      "keyword_hints": [
+        "place"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-11-潮汐之力.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "arien-12-潮汐之主",
+      "hero_id": "arien",
+      "family": "ultimate",
+      "keyword_hints": [
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-12-潮汐之主.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "arien-13-挑战者",
+      "hero_id": "arien",
+      "family": "defense",
+      "keyword_hints": [],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-13-挑战者.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "arien-14-滑溜溜",
+      "hero_id": "arien",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "choice_wording",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-14-滑溜溜.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "arien-15-决斗家",
+      "hero_id": "arien",
+      "family": "defense",
+      "keyword_hints": [
+        "immunity",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-15-决斗家.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "arien-16-传奇决斗家",
+      "hero_id": "arien",
+      "family": "defense",
+      "keyword_hints": [
+        "immunity",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-16-传奇决斗家.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "arien-17-洪水",
+      "hero_id": "arien",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "choice_wording",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/arien-17-洪水.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-00-瞬闪打击",
+      "hero_id": "tigerclaw",
+      "family": "attack",
+      "keyword_hints": [
+        "move",
+        "conditional",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-00-瞬闪打击.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-02-偷袭",
+      "hero_id": "tigerclaw",
+      "family": "attack",
+      "keyword_hints": [
+        "move",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-02-偷袭.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-03-背刺",
+      "hero_id": "tigerclaw",
+      "family": "attack",
+      "keyword_hints": [
+        "conditional"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-03-背刺.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-04-影袭",
+      "hero_id": "tigerclaw",
+      "family": "attack",
+      "keyword_hints": [
+        "move",
+        "conditional",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-04-影袭.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-05-两面夹攻",
+      "hero_id": "tigerclaw",
+      "family": "attack",
+      "keyword_hints": [
+        "conditional",
+        "choice_wording"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-05-两面夹攻.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-06-暗影奇袭",
+      "hero_id": "tigerclaw",
+      "family": "attack",
+      "keyword_hints": [
+        "move",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-06-暗影奇袭.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-07-伺机待发",
+      "hero_id": "tigerclaw",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "place",
+        "conditional",
+        "choice_wording",
+        "immunity",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-07-伺机待发.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-08-偷天妙手",
+      "hero_id": "tigerclaw",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "gold",
+        "conditional",
+        "choice_wording"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-08-偷天妙手.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-09-淬毒匕首",
+      "hero_id": "tigerclaw",
+      "family": "skill",
+      "keyword_hints": [
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-09-淬毒匕首.md",
+      "question_candidates": [
+        "U-011",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-10-探囊取物",
+      "hero_id": "tigerclaw",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "gold",
+        "conditional",
+        "choice_wording"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-10-探囊取物.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-11-盗贼大师",
+      "hero_id": "tigerclaw",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "gold",
+        "conditional",
+        "choice_wording"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-11-盗贼大师.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-12-剧毒飞镖",
+      "hero_id": "tigerclaw",
+      "family": "skill",
+      "keyword_hints": [
+        "marker"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-12-剧毒飞镖.md",
+      "question_candidates": [
+        "U-011",
+        "U-004"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-13-斗篷与匕首",
+      "hero_id": "tigerclaw",
+      "family": "ultimate",
+      "keyword_hints": [
+        "move",
+        "repeat",
+        "conditional",
+        "choice_wording",
+        "immunity",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-13-斗篷与匕首.md",
+      "question_candidates": [
+        "U-011",
+        "U-007",
+        "U-008"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-14-近身格挡",
+      "hero_id": "tigerclaw",
+      "family": "defense",
+      "keyword_hints": [
+        "discard",
+        "conditional"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-14-近身格挡.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-15-侧步",
+      "hero_id": "tigerclaw",
+      "family": "defense",
+      "keyword_hints": [
+        "move",
+        "choice_wording"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-15-侧步.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-16-暗影步",
+      "hero_id": "tigerclaw",
+      "family": "defense",
+      "keyword_hints": [
+        "move",
+        "swap",
+        "choice_wording"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-16-暗影步.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-17-近身还击",
+      "hero_id": "tigerclaw",
+      "family": "defense",
+      "keyword_hints": [
+        "discard",
+        "conditional"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-17-近身还击.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "tigerclaw-18-躲闪",
+      "hero_id": "tigerclaw",
+      "family": "defense",
+      "keyword_hints": [],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/tigerclaw-18-躲闪.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "sabina-00-近身射击",
+      "hero_id": "sabina",
+      "family": "attack",
+      "keyword_hints": [
+        "push",
+        "conditional",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-00-近身射击.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "sabina-01-拔枪",
+      "hero_id": "sabina",
+      "family": "attack",
+      "keyword_hints": [],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-01-拔枪.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "sabina-02-交叉火力",
+      "hero_id": "sabina",
+      "family": "attack",
+      "keyword_hints": [
+        "gold",
+        "conditional",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-02-交叉火力.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "sabina-03-神枪手",
+      "hero_id": "sabina",
+      "family": "attack",
+      "keyword_hints": [
+        "conditional",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-03-神枪手.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "sabina-04-枪林弹雨",
+      "hero_id": "sabina",
+      "family": "attack",
+      "keyword_hints": [
+        "conditional",
+        "choice_wording",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-04-枪林弹雨.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "sabina-05-一枪爆头",
+      "hero_id": "sabina",
+      "family": "attack",
+      "keyword_hints": [
+        "conditional",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-05-一枪爆头.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "sabina-06-并肩作战",
+      "hero_id": "sabina",
+      "family": "skill",
+      "keyword_hints": [
+        "swap",
+        "conditional",
+        "choice_wording",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-06-并肩作战.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "sabina-07-指挥",
+      "hero_id": "sabina",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "choice_wording",
+        "immunity"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-07-指挥.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "sabina-08-带头冲锋",
+      "hero_id": "sabina",
+      "family": "defense",
+      "keyword_hints": [
+        "conditional"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-08-带头冲锋.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "sabina-09-战略控制",
+      "hero_id": "sabina",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "choice_wording",
+        "immunity"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-09-战略控制.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "sabina-10-武装密谋",
+      "hero_id": "sabina",
+      "family": "defense",
+      "keyword_hints": [
+        "conditional",
+        "immunity",
+        "continuous"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-10-武装密谋.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "sabina-11-战略优势",
+      "hero_id": "sabina",
+      "family": "skill",
+      "keyword_hints": [
+        "move",
+        "repeat",
+        "choice_wording",
+        "immunity"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-11-战略优势.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "sabina-12-重型枪械",
+      "hero_id": "sabina",
+      "family": "ultimate",
+      "keyword_hints": [
+        "push",
+        "discard",
+        "conditional"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-12-重型枪械.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "sabina-13-近身支援",
+      "hero_id": "sabina",
+      "family": "skill",
+      "keyword_hints": [
+        "discard",
+        "conditional"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-13-近身支援.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "sabina-14-战斗演练",
+      "hero_id": "sabina",
+      "family": "movement",
+      "keyword_hints": [
+        "immunity",
+        "continuous",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-14-战斗演练.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "sabina-15-火力掩护",
+      "hero_id": "sabina",
+      "family": "skill",
+      "keyword_hints": [
+        "discard",
+        "conditional"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-15-火力掩护.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    },
+    {
+      "card_id": "sabina-16-战斗武装",
+      "hero_id": "sabina",
+      "family": "movement",
+      "keyword_hints": [
+        "choice_wording",
+        "immunity",
+        "continuous",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-16-战斗武装.md",
+      "question_candidates": [
+        "U-011",
+        "U-007"
+      ]
+    },
+    {
+      "card_id": "sabina-17-演练",
+      "hero_id": "sabina",
+      "family": "movement",
+      "keyword_hints": [
+        "immunity",
+        "continuous",
+        "trigger"
+      ],
+      "analysis_status": "not_specified",
+      "draft": "docs/cards/drafts/sabina-17-演练.md",
+      "question_candidates": [
+        "U-011"
+      ]
+    }
+  ]
+}

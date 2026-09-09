@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-10",
+  "legacy_file_hashes_checked": 175,
+  "changed_legacy_files": [],
+  "git_states": [
+    {
+      "version": "goa2_v2",
+      "working_tree_unchanged": true
+    },
+    {
+      "version": "goa2_v3",
+      "working_tree_unchanged": true
+    },
+    {
+      "version": "goa2_v4",
+      "working_tree_unchanged": true
+    }
+  ],
+  "legacy_test_results": {
+    "v2": 7,
+    "v3": 73,
+    "v4": 135
+  },
+  "new_validation_tests": 11
+}
