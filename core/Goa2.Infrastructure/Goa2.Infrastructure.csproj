@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>netstandard2.1</TargetFramework></PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../com.goa2.core/Runtime/Infrastructure/**/*.cs" />
+    <ProjectReference Include="../Goa2.Application/Goa2.Application.csproj" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
+</Project>

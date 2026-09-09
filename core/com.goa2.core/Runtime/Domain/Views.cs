@@ -1,0 +1,56 @@
+#nullable enable
+using System.Collections.Generic;
+
+namespace Goa2.Domain
+{
+    public sealed class PlayerView
+    {
+        public int Seat;
+        public Team Team;
+        public string Name = "";
+        public string? HeroId;
+        public int Level;
+        public int Gold;
+        public bool Confirmed;
+        public int HandCount;
+        public List<CardInstance> Revealed = new List<CardInstance>();
+    }
+    public sealed class MoveOption
+    {
+        public Hex Destination;
+        public List<Hex> Path = new List<Hex>();
+    }
+    public sealed class GameView
+    {
+        public string MatchId = "";
+        public long Revision;
+        public Phase Phase;
+        public int Round;
+        public int Turn;
+        public Team DecisionCoin;
+        public int? ActiveSeat;
+        public int BlueCaptain;
+        public int RedCaptain;
+        public int BlueCrystal;
+        public int RedCrystal;
+        public string CombatRegion = "";
+        public List<PlayerView> Players = new List<PlayerView>();
+        public List<UnitState> Units = new List<UnitState>();
+        public PendingChoice? Pending;
+        public List<CardInstance> OwnCards = new List<CardInstance>();
+        public List<string> AvailableHeroes = new List<string>();
+        public Dictionary<int, List<Hex>> Deployments = new Dictionary<int, List<Hex>>();
+        public List<MoveOption> SecondaryMoves = new List<MoveOption>();
+        public List<MoveOption> FastMoves = new List<MoveOption>();
+        public bool CanPass;
+        public List<GameEvent> Events = new List<GameEvent>();
+    }
+    public sealed class CommandResult
+    {
+        public bool Accepted;
+        public bool Duplicate;
+        public string Code = "";
+        public string Message = "";
+        public GameView View = new GameView();
+    }
+}

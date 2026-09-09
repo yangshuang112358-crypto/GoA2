@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "dependencies": {
+    ".NETStandard,Version=v2.1": {
+      "goa2.domain": {
+        "type": "Project"
+      },
+      "goa2.rules": {
+        "type": "Project",
+        "dependencies": {
+          "Goa2.Domain": "[1.0.0, )"
+        }
+      }
+    }
+  }
+}

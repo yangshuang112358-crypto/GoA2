@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>netstandard2.1</TargetFramework></PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../com.goa2.core/Runtime/Application/**/*.cs" />
+    <ProjectReference Include="../Goa2.Rules/Goa2.Rules.csproj" />
+  </ItemGroup>
+</Project>
