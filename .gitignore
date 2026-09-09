@@ -2,6 +2,8 @@ __pycache__/
 **/bin/
 **/obj/
 TestResults/
+unity/Assets/StreamingAssets/Goa2/
+unity/Assets/StreamingAssets/Goa2.meta
 *.user
 *.suo
 *.py[cod]

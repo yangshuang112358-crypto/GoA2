@@ -1,0 +1,5 @@
+{
+  "name": "Goa2.Presentation",
+  "rootNamespace": "Goa2.Presentation",
+  "references": ["Goa2.Domain", "Goa2.Application", "Goa2.Infrastructure"]
+}

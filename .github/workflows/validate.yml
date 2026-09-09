@@ -1,4 +1,4 @@
-name: Validate restart package
+name: Validate content and core
 on: [push, pull_request]
 permissions:
   contents: read
@@ -16,3 +16,11 @@ jobs:
         run: python -B -m unittest discover -s tests -v
       - name: Check tracked whitespace
         run: git diff --check
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Build and test shared CSharp core
+        run: ./tools/test-core.ps1
+        shell: pwsh
+      - name: Stage verified Unity content
+        run: python -B tools/prepare_unity.py

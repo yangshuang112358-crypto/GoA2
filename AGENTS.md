@@ -1,6 +1,6 @@
 # Goa2V1 开发约定
 
-项目当前阶段、入口与校验命令见README；下一任务见docs/planning/下一步_ENV-01.md。
+项目当前阶段、入口与校验命令见README；BATCH-01已完成，后续任务见docs/planning/下一批开发计划.md。
 先检查Git状态及当前任务范围。用户最新明确指令优先，不覆盖用户已有修改。
 
 1. 阅读docs/rules/规则手册.md、裁定记录.md、相关卡原文及待确认规则。

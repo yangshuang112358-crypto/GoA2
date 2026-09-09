@@ -1,0 +1,6 @@
+{
+  "name": "Goa2.Editor",
+  "rootNamespace": "Goa2.Editor",
+  "references": ["Goa2.Domain", "Goa2.Application", "Goa2.Infrastructure"],
+  "includePlatforms": ["Editor"]
+}

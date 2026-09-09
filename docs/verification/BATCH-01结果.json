@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-09-10",
+  "result": "PASS",
+  "scope": "BATCH-01 local four-seat foundation slice; complete game not implemented",
+  "unity": "6000.3.23f1",
+  "unity_revision": "09d2ecc7fb28",
+  "dotnet_sdk": "10.0.401",
+  "core_target": "netstandard2.1",
+  "content_sha256": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+  "content_validation": {
+    "result": "PASS",
+    "heroes": 6,
+    "cards": 108,
+    "map_cells": 254,
+    "obstacles": 44,
+    "card_review_drafts": 108,
+    "source_files": 148,
+    "rules": 20,
+    "legacy_tests_passed": 135,
+    "scope": "Restart data/documentation/tools only; no Goa2V1 game implementation tested."
+  },
+  "core_tests": {
+    "failed": 0,
+    "passed": 31,
+    "total": 31
+  },
+  "validator_tests": {
+    "passed": 11,
+    "failed": 0
+  },
+  "unity_integration": {
+    "result": "PASS",
+    "unity": "6000.3.23f1",
+    "heroes": 6,
+    "cards": 108,
+    "cells": 254,
+    "initial_minions": 12,
+    "state_roundtrip": true
+  },
+  "player_build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "bytes": 107418665
+  },
+  "gui": {
+    "round": 1,
+    "phase": "RoundEnd",
+    "resolutions": [
+      "1600x1000",
+      "1280x800"
+    ],
+    "cancel_preserves_revision": true,
+    "accepted_commands": 59,
+    "revision": 59,
+    "resolved_cards": 16,
+    "pending_restore_byte_identical": true,
+    "six_hero_gallery_tabs": true,
+    "turn": 4,
+    "remaining_cards": 4
+  },
+  "player_files": {
+    "Goa2V1.exe": "82efd5a8c297a5046f6bb72c240dab8972e64003851935eba0a46ad121ce0305",
+    "Goa2V1_Data/StreamingAssets/ThirdParty/UnityNewtonsoft-LICENSE.txt": "a5177bfecfea04d225e4a26a631db86721a03b4080350867847e71dc26b44f85",
+    "Goa2V1_Data/StreamingAssets/ThirdParty/NotoSansCJK-LICENSE.txt": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+    "Goa2V1_Data/Managed/Goa2.Presentation.dll": "bc56a96daaab701998571c85f769d88abb561358dd10f04e103c9704699291d4",
+    "Goa2V1_Data/StreamingAssets/ThirdParty/NewtonsoftJson-NOTICES.txt": "f07d2ea4af53fd1c9800b345bb4fbfa3ab0181d8c87625d6c265cd65142df097",
+    "Goa2V1_Data/Managed/Goa2.Rules.dll": "57bd3e1ebe651c83f613e149633388a3bf4ac67c30952b018c8fc0034ae70f47"
+  },
+  "card_effect_status": "108 data_only",
+  "remote_ci_executed": false,
+  "clean_index_content_validation": "PASS",
+  "existing_scene_preserved_during_build": true
+}
