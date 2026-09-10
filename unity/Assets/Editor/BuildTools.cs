@@ -78,6 +78,7 @@ namespace Goa2.Editor
         {
             Prepare();
             Validate();
+            var inputs=BuildInventory.CaptureSources(Root);
             string target = Path.Combine(Root, "artifacts", "player", "Goa2V1.exe");
             Directory.CreateDirectory(Path.GetDirectoryName(target)!);
             var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
@@ -90,6 +91,7 @@ namespace Goa2.Editor
             File.WriteAllText(Path.Combine(Root, "artifacts", "unity", "build-report.json"),
                 "{\"result\":\"" + summary.result + "\",\"errors\":" + summary.totalErrors + ",\"warnings\":" + summary.totalWarnings + ",\"bytes\":" + summary.totalSize + "}\n");
             if (summary.result != BuildResult.Succeeded) throw new Exception("Player build failed: " + summary.result);
+            BuildInventory.Write(Root,Path.GetDirectoryName(target)!,inputs);
             Debug.Log("GOA2_BUILD_PASS " + target);
         }
     }
