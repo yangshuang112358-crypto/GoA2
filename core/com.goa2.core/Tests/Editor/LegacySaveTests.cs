@@ -9,6 +9,22 @@ namespace Goa2.Tests
     public sealed class LegacySaveTests
     {
         [Test]
+        public void EngineFourCounterKeepsItsPrivateSourceAndFinishesTheOriginalAttackOnce()
+        {
+            var catalog=ContentLoader.LoadDirectory(ContentTests.Root());
+            string json=File.ReadAllText(Path.Combine(ContentTests.Root(),"tests","fixtures","engine4-barrier-pending.json"));
+            Assert.That(json, Does.Not.Contain("CardTextBonus"));
+            var game=LocalGameFactory.Restore(catalog,json);
+            Assert.That(game.View(null).EngineVersion, Is.EqualTo(4)); Assert.That(game.View(null).Pending!.Kind, Is.EqualTo("forced_discard"));
+            Assert.That(game.View(0).Pending!.Source, Is.Empty); Assert.That(game.View(1).Pending!.Source, Is.EqualTo("wasp-10-反射屏障"));
+            Assert.That(game.View(0).Attack!.CardTextBonus, Is.Zero);
+            Assert.That(game.View(null).SupportedPrimaryCards, Does.Not.Contain("sabina-03-神枪手"));
+            TurnFlowTests.Apply(game,0,CommandKind.ForcedDiscard,"sabina-00-近身射击");
+            Assert.That(game.View(null).Effects.Count, Is.EqualTo(1)); Assert.That(game.View(null).Events.Count(e => e.Kind=="AttackResolved"), Is.EqualTo(1));
+            Assert.That(game.View(null).Effects.Single().SourceCardId, Is.Empty); Assert.That(game.View(1).Effects.Single().SourceCardId, Is.EqualTo("wasp-10-反射屏障"));
+            Assert.That(LocalGameFactory.Restore(catalog,game.ExportSave()).ExportSave(), Is.EqualTo(game.ExportSave()));
+        }
+        [Test]
         public void EngineTwoPurpleOwnerKeepsItsHistoricalSkillWithoutNewAfterTriggers()
         {
             var catalog=ContentLoader.LoadDirectory(ContentTests.Root());

@@ -202,6 +202,10 @@ namespace Goa2.Infrastructure.Scenarios
             if (expect.PendingKind != null) Equal(result, "PendingKind", expect.PendingKind, state.Pending?.Kind ?? "none");
             if (expect.PendingChooser != null) Equal(result, "PendingChooser", Seat(expect.PendingChooser, view), state.Pending?.ChooserSeat ?? -1);
             if (expect.Revealed.HasValue) Equal(result, "Revealed", expect.Revealed.Value, state.Events.Count(e => e.Kind == "CardRevealed"));
+            if (expect.AttackBase.HasValue) Equal(result,"AttackBase",expect.AttackBase,state.Execution?.Attack?.BaseAttack);
+            if (expect.AttackBonus.HasValue) Equal(result,"AttackBonus",expect.AttackBonus,state.Execution?.Attack?.AttackBonus);
+            if (expect.CardTextBonus.HasValue) Equal(result,"CardTextBonus",expect.CardTextBonus,state.Execution?.Attack?.CardTextBonus);
+            if (expect.AttackFinal.HasValue) Equal(result,"AttackFinal",expect.AttackFinal,state.Execution?.Attack?.FinalAttack);
             if (expect.CombatRegion != null) Equal(result, "CombatRegion", expect.CombatRegion, state.CombatRegion);
             if (expect.Winner != null) Equal(result, "Winner", expect.Winner, state.Winner?.ToString() ?? "none");
             if (expect.BlueMarks.HasValue) Equal(result, "BlueMarks", expect.BlueMarks.Value, state.BlueMarks);

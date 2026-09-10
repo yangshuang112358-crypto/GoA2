@@ -26,11 +26,13 @@ namespace Goa2.Rules.Cards
         public readonly EffectDuration Duration;
         public readonly EffectAreaKind AreaKind;
         public readonly bool AdjacentAttack, OnlyHeroes;
+        public readonly int TargetRevealedAttackBonus;
         public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
-            EffectAreaKind areaKind=EffectAreaKind.SkillRange, params InstructionKind[] instructions)
+            EffectAreaKind areaKind=EffectAreaKind.SkillRange, int targetAttackBonus=0, params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
             AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=EffectDuration.ThisTurn;
+            TargetRevealedAttackBonus=targetAttackBonus;
             Instructions = System.Array.AsReadOnly(instructions.Length>0 ? instructions : new[] { InstructionKind.ChooseAttackTarget, InstructionKind.Attack, InstructionKind.End });
         }
         public PrimaryProgram(string id, EffectKind effect, EffectDuration duration)
@@ -46,10 +48,12 @@ namespace Goa2.Rules.Cards
             adjacent:true,onlyHeroes:true,effect:EffectKind.SkillSuppression,areaKind:EffectAreaKind.Adjacent,
             instructions:new[] {InstructionKind.ChooseAttackTarget,InstructionKind.Attack,InstructionKind.CancelAdjacentSkillEffects,InstructionKind.ApplyEffect,InstructionKind.End});
         // Binding IDs is confined to this registry. Shared execution never branches on a card ID.
-        private static readonly Dictionary<string,string> AttackTexts = new Dictionary<string,string>
+        private static readonly Dictionary<string,(string text,int minimumEngine,PrimaryProgram program)> Attacks = new Dictionary<string,(string,int,PrimaryProgram)>
         {
-            ["sabina-01-拔枪"] = "选择攻击距离内且不与你相邻的一个单位为目标。",
-            ["shargatha-02-快速突刺"] = "选择攻击距离内且与你不相邻的一个单位为目标。"
+            ["sabina-01-拔枪"] = ("选择攻击距离内且不与你相邻的一个单位为目标。",0,NonAdjacentRanged),
+            ["shargatha-02-快速突刺"] = ("选择攻击距离内且与你不相邻的一个单位为目标。",0,NonAdjacentRanged),
+            ["sabina-03-神枪手"] = ("选择攻击距离内且不与你相邻的一个单位为目标。如果目标英雄在此回合使用了攻击卡牌，则+2攻击。（已揭示卡视为使用，而非已结算）",5,new PrimaryProgram("non_adjacent_ranged_vs_revealed_attack",2,targetAttackBonus:2)),
+            ["sabina-05-一枪爆头"] = ("选择攻击距离内的一个单位为目标。如果目标英雄在此回合使用了攻击卡牌，则+2攻击。",5,new PrimaryProgram("ranged_vs_revealed_attack",1,targetAttackBonus:2))
         };
         private static readonly Dictionary<string,(string text, int minimumEngine, DefenseProgram program)> Defenses = new Dictionary<string,(string, int, DefenseProgram)>
         {
@@ -66,7 +70,7 @@ namespace Goa2.Rules.Cards
         };
         public static PrimaryProgram? Primary(CardDefinition card, int engineVersion)
         {
-            if (card.PrimaryFamily == "attack" && card.Subtype == "远程" && AttackTexts.TryGetValue(card.Id,out var expected) && card.Text == expected) return NonAdjacentRanged;
+            if (card.PrimaryFamily == "attack" && card.Subtype == "远程" && Attacks.TryGetValue(card.Id,out var attack) && card.Text == attack.text && engineVersion>=attack.minimumEngine) return attack.program;
             if (engineVersion >= 2 && card.PrimaryFamily == "skill" && card.Subtype == "范围" && Skills.TryGetValue(card.Id,out var skill) && card.Text == skill.text) return skill.program;
             if (engineVersion >= 3 && card.Id=="wasp-00-闪耀之刃" && card.PrimaryCategory=="基础攻击" && string.IsNullOrEmpty(card.Subtype) &&
                 card.Text=="选择与你相邻的一个英雄为目标。攻击后：取消与你相邻的敌方英雄技能卡上的激活效果。此回合：与你相邻的敌方英雄无法执行技能行动。") return ShiningBlade;

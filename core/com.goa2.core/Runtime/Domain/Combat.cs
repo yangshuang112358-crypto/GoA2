@@ -11,6 +11,7 @@ namespace Goa2.Domain
         public int AttackerSeat, DefenderSeat;
         public bool Ranged, Unblockable;
         public int BaseAttack, AttackBonus, EnemySupport, FriendlyGuard, FinalAttack;
+        public int CardTextBonus;
         public List<string> EnemySupportSources = new List<string>();
         public List<string> FriendlyGuardSources = new List<string>();
     }

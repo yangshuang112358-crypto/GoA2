@@ -16,6 +16,7 @@ namespace Goa2.Rules
             {
                 SourceCardId = card.Id, TargetUnitId = targetUnitId, AttackerSeat = attackerSeat, DefenderSeat = target!.Seat!.Value,
                 BaseAttack = card.PrimaryValue, AttackBonus = state.Players[attackerSeat].AttackBonus + extraAttack,
+                CardTextBonus = extraAttack,
                 Ranged = card.Subtype == "远程", Unblockable = unblockable,
                 EnemySupportSources = state.Units.Where(u => u.Team != target.Team &&
                     (((u.Kind == "melee" || u.Kind == "heavy") && u.Position.Distance(target.Position) == 1) ||

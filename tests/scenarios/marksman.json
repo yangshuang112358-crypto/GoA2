@@ -1,0 +1,18 @@
+{
+  "SchemaVersion":1,"Id":"marksman","Name":"神枪手：已揭示未行动的攻击牌使攻击从4变为6",
+  "Steps":[
+    {"Command":"DebugPrepare","Value":"sabina,wasp,brogan,arien"},
+    {"Command":"DebugEquipCard","Value":"sabina-03-神枪手","Target":"p1"},
+    {"Command":"DebugTeleport","Value":"hero:0","Destination":{"X":7,"Y":-10}},
+    {"Command":"DebugTeleport","Value":"hero:1","Destination":{"X":8,"Y":-9}},
+    {"Actor":"p1","Command":"SelectCard","Value":"sabina-03-神枪手"},
+    {"Actor":"p2","Command":"SelectCard","Value":"wasp-01-电击"},
+    {"Actor":"p3","Command":"SelectCard","Value":"brogan-06-铜墙铁壁"},
+    {"Actor":"p4","Command":"SelectCard","Value":"arien-07-潮水","Expect":{"Phase":"Action","Active":"p1"}},
+    {"Command":"BeginPrimary"},
+    {"Command":"ChooseAttackTarget","Value":"hero:1","Expect":{"PendingKind":"defense","PendingChooser":"p2","AttackBase":4,"AttackBonus":2,"CardTextBonus":2,"AttackFinal":6}},
+    {"Actor":"p2","Command":"Defend","Value":"wasp-13-控物","Expect":{"PendingKind":"hero_respawn","PendingChooser":"p2","RedCrystal":6,"Gold":{"p1":1,"p3":1},"EventOrder":["DefenseResolved","HeroDefeated","AttackResolved","CardResolved"]}},
+    {"Actor":"p2","Command":"RespawnHero","Destination":{"X":7,"Y":-9},"Expect":{"Active":"p2"}},
+    {"Command":"DebugAdvance","Value":"turn","Expect":{"Phase":"Planning","Turn":2,"HandCounts":{"p1":4,"p2":3}}}
+  ]
+}

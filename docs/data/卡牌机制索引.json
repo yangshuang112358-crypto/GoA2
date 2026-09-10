@@ -1437,7 +1437,7 @@
         "conditional",
         "continuous"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/sabina-03-神枪手.md",
       "question_candidates": [
         "U-011"
@@ -1467,7 +1467,7 @@
         "conditional",
         "continuous"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/sabina-05-一枪爆头.md",
       "question_candidates": [
         "U-011"

@@ -10,7 +10,8 @@ namespace Goa2.Presentation
         private string defenseCardId = "";
         private string discardCardId = "";
         private bool declineDefensePending;
-        private static string AttackFormula(AttackBreakdown attack) => "攻击 " + attack.BaseAttack + " + 加成 " + attack.AttackBonus + " + 敌兵 " + attack.EnemySupport + " − 友兵 " + attack.FriendlyGuard + " = " + attack.FinalAttack;
+        private static string AttackFormula(AttackBreakdown attack) => "攻击 " + attack.BaseAttack + " + 加成 " + (attack.AttackBonus-attack.CardTextBonus) +
+            (attack.CardTextBonus==0 ? "" : " + 牌文 " + attack.CardTextBonus) + " + 敌兵 " + attack.EnemySupport + " − 友兵 " + attack.FriendlyGuard + " = " + attack.FinalAttack;
         private bool RenderCombatChoice(VisualElement parent, GameView view)
         {
             var choice = view.Pending;

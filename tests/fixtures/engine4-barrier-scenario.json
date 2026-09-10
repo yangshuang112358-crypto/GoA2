@@ -1,0 +1,108 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine4-barrier-pending",
+  "Name": "真实引擎4防御后待弃牌兼容夹具",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "sabina,wasp,shargatha,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "wasp-10-反射屏障",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "shargatha-02-快速突刺",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 8,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 4,
+        "Y": -8
+      }
+    },
+    {
+      "Actor": "p1",
+      "Command": "SelectCard",
+      "Value": "sabina-01-拔枪"
+    },
+    {
+      "Actor": "p2",
+      "Command": "SelectCard",
+      "Value": "wasp-01-电击"
+    },
+    {
+      "Actor": "p3",
+      "Command": "SelectCard",
+      "Value": "shargatha-02-快速突刺"
+    },
+    {
+      "Actor": "p4",
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "PendingKind": "initiative",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseInitiative",
+      "Target": "p1",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2"
+      }
+    },
+    {
+      "Actor": "p2",
+      "Command": "Defend",
+      "Value": "wasp-10-反射屏障",
+      "Expect": {
+        "PendingKind": "forced_discard",
+        "PendingChooser": "p1",
+        "EffectCounts": {
+          "wasp-10-反射屏障": 0
+        }
+      }
+    }
+  ]
+}

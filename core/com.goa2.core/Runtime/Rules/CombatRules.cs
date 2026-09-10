@@ -10,6 +10,13 @@ namespace Goa2.Rules
     {
         public static bool HasPrimaryProgram(CardDefinition card, int engineVersion = GameState.CurrentEngineVersion) => CardPrograms.Primary(card,engineVersion) != null;
         public static bool HasDefenseProgram(CardDefinition card, int engineVersion = GameState.CurrentEngineVersion) => CardPrograms.Defense(card,engineVersion) != null;
+        public static int CardTextAttackBonus(ContentCatalog catalog,GameState state,CardDefinition card,UnitState target)
+        {
+            var program=CardPrograms.Primary(card,state.EngineVersion);
+            if (program==null || program.TargetRevealedAttackBonus==0 || target.Kind!="hero" || !target.Seat.HasValue) return 0;
+            bool usedAttack=state.Players[target.Seat.Value].Cards.Any(c => c.PlayedRound==state.Round && c.PlayedTurn==state.Turn && catalog.Card(c.CardId).PrimaryFamily=="attack");
+            return usedAttack ? program.TargetRevealedAttackBonus : 0;
+        }
         public static List<string> AttackTargets(ContentCatalog catalog, GameState state, int seat)
         {
             var result = new List<string>();

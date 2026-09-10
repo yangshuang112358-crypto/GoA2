@@ -1,0 +1,9 @@
+# 引擎4真实反制存档
+
+engine4-barrier-pending.json来自6b800d9对应的Windows Player，在改变引擎5代码前于2026-09-10 07:34 UTC运行engine4-barrier-scenario.json生成。15条实际接受命令，反射屏障防御成功，等待席位1的萨彼娜自己弃牌；防御来源为席位2的黄蜂。本文件不能用新版重建来伪称旧版本证据。
+
+保存文件SHA256：4ca6719975a741c17d504c132e85e14c497f90e8af0604cb0b8d95e4a42ab7dc。
+场景输入SHA256：1f05c165567fccd2f1f34eee2ebbd0efeb9c061fd0df8c27eaa48acc3dccf581。
+当时Goa2.Rules.dll SHA256：24bac8094488e4b8f4831efa14418b69b33fc92f91c785b1c5e9f29555f4627d。
+
+用于验证新增攻击明细字段默认、完整防御后游标/原选择者/隐私边界，以及恢复后不会重复攻击、可完成弃牌再建立免疫。Version保持4，不能把新攻击程序追加入历史能力。

@@ -10,6 +10,13 @@ namespace Goa2.Tests
     public sealed class ScenarioTests
     {
         [Test]
+        public void AttackAssertionsCannotTreatAMissingAttackAsZero()
+        {
+            var step=Step("DebugPrepare"); step.Expect.AttackBase=0; step.Expect.AttackBonus=0; step.Expect.CardTextBonus=0; step.Expect.AttackFinal=0;
+            var runner=Run(Definition(step));
+            Assert.That(runner.Report.Passed, Is.False); Assert.That(runner.Report.Steps.Single().Errors.Count, Is.EqualTo(4));
+        }
+        [Test]
         public void AuraAssertionsRejectWrongSourcesAndRestrictions()
         {
             var step=Step("DebugPrepare");
@@ -56,6 +63,8 @@ namespace Goa2.Tests
         [TestCase("shining-blade.json")]
         [TestCase("deflection-barrier.json")]
         [TestCase("reflection-barrier.json")]
+        [TestCase("marksman.json")]
+        [TestCase("headshot.json")]
         public void PublishedScenarioPassesAgainstTheFormalCatalog(string file)
         {
             string root = ContentTests.Root();
