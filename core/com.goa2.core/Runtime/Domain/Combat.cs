@@ -37,6 +37,8 @@ namespace Goa2.Domain
         public bool AwaitingAttackCompletion;
         public string AttackOutcome = "";
         public DefenseResponse? DefenseResponse;
+        public bool PreAttackDiscarded, AttackRangeLocked;
+        public int AttackRangeBonus;
     }
     [Serializable]
     public sealed class DefenseResponse

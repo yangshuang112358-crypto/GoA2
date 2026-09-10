@@ -144,6 +144,7 @@ namespace Goa2.Presentation
                     case "attack_target": return "选择攻击目标";
                     case "defense": return "选择防御";
                     case "forced_discard": return "选择弃牌";
+                    case "optional_discard": return "攻击前弃牌";
                     case "hero_respawn": return "英雄复活";
                     case "round_minion_removal": return "轮末小兵战斗";
                     case "minion_spawn": return "安排小兵出生";
@@ -435,6 +436,10 @@ namespace Goa2.Presentation
                 case "MatchWon": return (entry.Detail.StartsWith("Blue:") ? "蓝队" : "红队") + "获胜";
                 case "PrimaryActionStarted": return actor + "开始主要行动";
                 case "AttackTargetChoiceRequired": return actor + "选择攻击目标";
+                case "OptionalDiscardRequired": return actor + "选择攻击前是否弃牌";
+                case "OptionalDiscardSkipped": return actor + (entry.Detail=="empty_hand" ? "没有手牌，继续攻击" : "选择不弃牌，继续攻击");
+                case "OptionalDiscardCompleted": return actor + "完成攻击前弃牌";
+                case "AttackRangeDetermined": return actor + "本次攻击距离为 " + entry.Detail;
                 case "AttackTargetChosen": return actor + "确认攻击目标";
                 case "AttackDeclared": return actor + "发起攻击";
                 case "AttackCalculated": return entry.AttackValues == null ? "计算攻击" : AttackFormula(entry.AttackValues);
@@ -527,7 +532,7 @@ namespace Goa2.Presentation
                 var tab = Button(HeroName(id) + " · 18", () => { galleryHero = id; Render(); }, "quiet-button");
                 if (galleryHero == id) tab.AddToClassList("chosen"); tabs.Add(tab);
             }
-            overlay.Add(Text("以下为正式牌面数据；全部主要效果仍待逐卡实施与测试。", "gallery-note"));
+            overlay.Add(Text("以下为正式牌面数据；每张牌标明当前可执行的主要行动或防御响应。", "gallery-note"));
             var scroll = new ScrollView(); scroll.AddToClassList("gallery-scroll"); overlay.Add(scroll);
             scroll.contentContainer.AddToClassList("gallery-grid");
             foreach (var card in catalog.Cards.Where(c => c.HeroId == galleryHero))

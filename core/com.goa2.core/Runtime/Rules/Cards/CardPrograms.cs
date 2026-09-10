@@ -4,8 +4,9 @@ using Goa2.Domain;
 
 namespace Goa2.Rules.Cards
 {
-    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects }
+    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange }
     internal enum AttackBonusKind { None, TargetUsedAttack, AdjacentEnemies, OtherFriendlySupport }
+    internal enum AttackRangeBonusKind { None, DiscardedBeforeAttack, OwnDiscardPile }
     internal enum DefenseFollowup { None, DiscardAttacker, DiscardAttackerThenImmunity, DiscardAttackerOrDefeat }
     internal enum DefenseAttackKind { Any, Ranged, NonRanged }
     internal sealed class DefenseProgram
@@ -33,12 +34,16 @@ namespace Goa2.Rules.Cards
         public readonly bool AdjacentAttack, OnlyHeroes;
         public readonly AttackBonusKind AttackBonusKind;
         public readonly int AttackBonusValue;
+        public readonly AttackRangeBonusKind RangeBonusKind;
+        public readonly int RangeBonusValue;
         public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
-            EffectAreaKind areaKind=EffectAreaKind.SkillRange, AttackBonusKind bonus=AttackBonusKind.None, int bonusValue=0, params InstructionKind[] instructions)
+            EffectAreaKind areaKind=EffectAreaKind.SkillRange, AttackBonusKind bonus=AttackBonusKind.None, int bonusValue=0,
+            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
             AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=EffectDuration.ThisTurn;
             AttackBonusKind=bonus; AttackBonusValue=bonusValue;
+            RangeBonusKind=rangeBonus; RangeBonusValue=rangeBonusValue;
             Instructions = System.Array.AsReadOnly(instructions.Length>0 ? instructions : new[] { InstructionKind.ChooseAttackTarget, InstructionKind.Attack, InstructionKind.End });
         }
         public PrimaryProgram(string id, EffectKind effect, EffectDuration duration)
@@ -49,6 +54,8 @@ namespace Goa2.Rules.Cards
     }
     internal static class CardPrograms
     {
+        private static PrimaryProgram OptionalDiscardAttack(string id,AttackRangeBonusKind bonus) => new PrimaryProgram(id,1,
+            rangeBonus:bonus,rangeBonusValue:2,instructions:new[] {InstructionKind.ChooseOptionalDiscard,InstructionKind.DetermineAttackRange,InstructionKind.ChooseAttackTarget,InstructionKind.Attack,InstructionKind.End});
         private static readonly PrimaryProgram NonAdjacentRanged = new PrimaryProgram("non_adjacent_ranged_attack", 2);
         private static readonly PrimaryProgram ShiningBlade = new PrimaryProgram("adjacent_hero_attack_cancel_skills",1,
             adjacent:true,onlyHeroes:true,effect:EffectKind.SkillSuppression,areaKind:EffectAreaKind.Adjacent,
@@ -56,6 +63,8 @@ namespace Goa2.Rules.Cards
         // Binding IDs is confined to this registry. Shared execution never branches on a card ID.
         private static readonly Dictionary<string,(string text,int minimumEngine,PrimaryProgram program)> Attacks = new Dictionary<string,(string,int,PrimaryProgram)>
         {
+            ["brogan-02-投掷飞斧"] = ("攻击前：你可以丢弃一张卡牌。若如此做，则+2攻击距离。选择攻击距离内的一个单位为目标。",8,OptionalDiscardAttack("ranged_after_optional_own_discard",AttackRangeBonusKind.DiscardedBeforeAttack)),
+            ["brogan-04-投掷长矛"] = ("攻击前：你可以丢弃一张卡牌。如果你的弃牌堆中有卡牌，则+2攻击距离。选择攻击距离内的一个单位为目标。",8,OptionalDiscardAttack("ranged_with_own_discard_pile",AttackRangeBonusKind.OwnDiscardPile)),
             ["sabina-01-拔枪"] = ("选择攻击距离内且不与你相邻的一个单位为目标。",0,NonAdjacentRanged),
             ["shargatha-02-快速突刺"] = ("选择攻击距离内且与你不相邻的一个单位为目标。",0,NonAdjacentRanged),
             ["sabina-03-神枪手"] = ("选择攻击距离内且不与你相邻的一个单位为目标。如果目标英雄在此回合使用了攻击卡牌，则+2攻击。（已揭示卡视为使用，而非已结算）",5,new PrimaryProgram("non_adjacent_ranged_vs_revealed_attack",2,bonus:AttackBonusKind.TargetUsedAttack,bonusValue:2)),

@@ -86,6 +86,7 @@ namespace Goa2.Application
                 EngineVersion = snapshot.EngineVersion,
                 CanUpgradeEngine = seat.HasValue && GameRules.CanUpgradeEngine(snapshot),
                 Attack = snapshot.Execution?.Attack,
+                AttackRange = CombatRules.CurrentAttackRange(catalog,snapshot),
                 RoundEndStage = snapshot.RoundEnd?.Stage ?? "",
                 RemainingMinionRemovals = snapshot.RoundEnd?.RemainingRemovals ?? 0,
                 UpgradingSeats = snapshot.RoundEnd?.Upgrades.Where(p => p.PendingLevels.Count > 0).Select(p => p.Seat).ToList() ?? new System.Collections.Generic.List<int>(),
@@ -139,6 +140,7 @@ namespace Goa2.Application
                 view.DefenseOptions = CombatRules.DefenseOptions(catalog, snapshot, seat.Value);
                 view.DefenseRestrictions = CombatRules.DefenseRestrictions(catalog,snapshot,seat.Value);
                 view.ForcedDiscardCards = GameRules.LegalForcedDiscards(snapshot,seat.Value);
+                view.OptionalDiscardCards = GameRules.LegalOptionalDiscards(catalog,snapshot,seat.Value);
                 view.UnimplementedDefenseCards = CombatRules.UnimplementedDefenses(catalog, snapshot, seat.Value);
                 view.RespawnCells = GameRules.LegalRespawns(catalog, snapshot, seat.Value);
                 view.CanResolveRoundEnd = GameRules.CanResolveRoundEnd(snapshot);

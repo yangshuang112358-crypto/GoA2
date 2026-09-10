@@ -35,6 +35,16 @@ namespace Goa2.Rules
                 Require(execution.Cursor >= 0 && execution.Cursor < program.Instructions.Count, "invalid_program_cursor", "卡牌步骤无效。");
                 switch (program.Instructions[execution.Cursor])
                 {
+                    case InstructionKind.ChooseOptionalDiscard:
+                        if (BeginOptionalDiscard(state,command,execution)) return;
+                        execution.Cursor++;
+                        break;
+                    case InstructionKind.DetermineAttackRange:
+                        execution.AttackRangeBonus=CombatRules.ConditionalRangeBonus(state.Players[execution.ControllerSeat],program,execution.PreAttackDiscarded);
+                        execution.AttackRangeLocked=true;
+                        Emit(state,command,"AttackRangeDetermined",execution.ControllerSeat,execution.CardId,detail:CombatRules.CurrentAttackRange(catalog,state).ToString());
+                        execution.Cursor++;
+                        break;
                     case InstructionKind.ChooseAttackTarget:
                         var source = state.Units.SingleOrDefault(u => u.Seat == execution.ControllerSeat);
                         var targets = source == null ? new System.Collections.Generic.List<string>() : CombatRules.Targets(catalog, state, source, card, program);

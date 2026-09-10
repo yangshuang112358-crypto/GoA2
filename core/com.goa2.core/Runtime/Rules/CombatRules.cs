@@ -35,6 +35,29 @@ namespace Goa2.Rules
             return result;
         }
         private static bool IsCombatUnit(UnitState unit) => unit.Kind=="hero" || unit.Kind=="melee" || unit.Kind=="ranged" || unit.Kind=="heavy";
+        internal static int ConditionalRangeBonus(PlayerState player,PrimaryProgram program,bool discarded)
+        {
+            bool enabled=program.RangeBonusKind==AttackRangeBonusKind.DiscardedBeforeAttack && discarded ||
+                program.RangeBonusKind==AttackRangeBonusKind.OwnDiscardPile && player.Cards.Any(c=>c.Zone==CardZone.Discarded);
+            return enabled ? program.RangeBonusValue : 0;
+        }
+        private static int AttackDistance(GameState state,CardDefinition card,PrimaryProgram program,int seat)
+        {
+            if(program.AdjacentAttack) return 1;
+            var execution=state.Execution;
+            int bonus=execution!=null && execution.ControllerSeat==seat && execution.CardId==card.Id && execution.AttackRangeLocked
+                ? execution.AttackRangeBonus : ConditionalRangeBonus(state.Players[seat],program,false);
+            return (card.SubtypeValue??0)+state.Players[seat].RangedBonus+bonus;
+        }
+        public static int? CurrentAttackRange(ContentCatalog catalog,GameState state)
+        {
+            if(!state.ActiveSeat.HasValue) return null;
+            int seat=state.ActiveSeat.Value;
+            var instance=state.Players[seat].Cards.SingleOrDefault(c=>c.Zone==CardZone.PlayedUnresolved);
+            if(instance==null || !state.Units.Any(u=>u.Seat==seat)) return null;
+            var card=catalog.Card(instance.CardId); var program=CardPrograms.Primary(card,state.EngineVersion);
+            return program!=null && program.Instructions.Contains(InstructionKind.Attack) ? AttackDistance(state,card,program,seat) : (int?)null;
+        }
         public static List<string> AttackTargets(ContentCatalog catalog, GameState state, int seat)
         {
             var result = new List<string>();
@@ -50,7 +73,7 @@ namespace Goa2.Rules
         }
         internal static List<string> Targets(ContentCatalog catalog, GameState state, UnitState source, CardDefinition card, PrimaryProgram program)
         {
-            int distance = program.AdjacentAttack ? 1 : (card.SubtypeValue ?? 0) + state.Players[source.Seat!.Value].RangedBonus;
+            int distance = AttackDistance(state,card,program,source.Seat!.Value);
             var removable = new HashSet<string>(GameRules.LegalMinionRemovals(state));
             return state.Units.Where(u => u.Team != source.Team && u.Position.Distance(source.Position) >= program.MinimumDistance &&
                     u.Position.Distance(source.Position) <= distance && (u.Kind == "hero" || !program.OnlyHeroes && removable.Contains(u.Id)) &&

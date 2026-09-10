@@ -39,6 +39,7 @@ namespace Goa2.Rules
                 case CommandKind.Defend: Defend(catalog, state, command); break;
                 case CommandKind.DeclineDefense: DeclineDefense(catalog, state, command); break;
                 case CommandKind.ForcedDiscard: ForcedDiscard(catalog, state, command); break;
+                case CommandKind.ChooseOptionalDiscard: ChooseOptionalDiscard(catalog,state,command); break;
                 case CommandKind.RespawnHero: RespawnHero(catalog, state, command); break;
                 case CommandKind.ResolveRoundEnd: ResolveRoundEnd(catalog, state, command); break;
                 case CommandKind.ChooseRoundMinionRemoval: ChooseRoundMinionRemoval(catalog, state, command); break;

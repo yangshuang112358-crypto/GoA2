@@ -1,0 +1,27 @@
+{
+  "SchemaVersion": 1,
+  "Id": "throwing-axe-reflection",
+  "Name": "投掷飞斧：先可选弃牌扩距，再接受反射屏障的独立强制弃牌",
+  "Steps": [
+    {"Command":"DebugPrepare","Value":"brogan,wasp,shargatha,arien"},
+    {"Command":"DebugEquipCard","Target":"p1","Value":"brogan-02-投掷飞斧"},
+    {"Command":"DebugEquipCard","Target":"p2","Value":"wasp-10-反射屏障"},
+    {"Command":"DebugTeleport","Value":"hero:0","Destination":{"X":6,"Y":-8}},
+    {"Command":"DebugTeleport","Value":"hero:1","Destination":{"X":6,"Y":-5}},
+    {"Command":"SelectCard","Value":"brogan-02-投掷飞斧"},
+    {"Command":"SelectCard","Actor":"p2","Value":"wasp-01-电击"},
+    {"Command":"SelectCard","Actor":"p3","Value":"shargatha-06-海妖之歌"},
+    {"Command":"SelectCard","Actor":"p4","Value":"arien-07-潮水","Expect":{"Active":"p2","Phase":"Action"}},
+    {"Command":"Pass","Actor":"p2","Expect":{"Active":"p1"}},
+    {"Command":"BeginPrimary","Expect":{"PendingKind":"optional_discard","PendingChooser":"p1","HandCounts":{"p1":4},"EventCounts":{"AttackDeclared":0}}},
+    {"Command":"ChooseOptionalDiscard","Actor":"p2","Value":"skip","Expect":{"Code":"invalid_optional_discard"}},
+    {"Command":"ChooseOptionalDiscard","Value":"brogan-02-投掷飞斧","Expect":{"Code":"invalid_optional_discard"}},
+    {"Command":"ChooseOptionalDiscard","Value":"brogan-00-猛攻","Expect":{"PendingKind":"attack_target","HandCounts":{"p1":3},"DiscardCounts":{"p1":1},"EventOrder":["OptionalDiscardCompleted","AttackRangeDetermined","AttackTargetChoiceRequired"]}},
+    {"ReplayStep":14,"Expect":{"Code":"duplicate","DiscardCounts":{"p1":1},"EventCounts":{"OptionalDiscardCompleted":0}}},
+    {"Command":"ChooseAttackTarget","Value":"hero:1","Expect":{"PendingKind":"defense","PendingChooser":"p2","AttackBase":3,"AttackBonus":0,"AttackFinal":3}},
+    {"Command":"Defend","Actor":"p2","Value":"wasp-10-反射屏障","Expect":{"PendingKind":"forced_discard","PendingChooser":"p1","HandCounts":{"p1":3},"DiscardCounts":{"p2":1},"EventCounts":{"AttackResolved":1}}},
+    {"Command":"ForcedDiscard","Value":"brogan-00-猛攻","Expect":{"Code":"invalid_forced_discard"}},
+    {"Command":"ForcedDiscard","Value":"brogan-06-铜墙铁壁","Expect":{"Phase":"Action","Active":"p4","DiscardCounts":{"p1":2},"EffectCounts":{"wasp-10-反射屏障":1},"EventCounts":{"OptionalDiscardCompleted":0,"ForcedDiscardCompleted":1,"AttackRangeDetermined":0}}},
+    {"Command":"DebugAdvance","Value":"turn","Expect":{"Phase":"Planning","Round":1,"Turn":2,"EffectCounts":{"wasp-10-反射屏障":0},"BlueCrystal":7,"RedCrystal":7}}
+  ]
+}

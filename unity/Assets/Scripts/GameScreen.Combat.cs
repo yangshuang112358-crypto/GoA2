@@ -41,6 +41,26 @@ namespace Goa2.Presentation
         {
             var choice = view.Pending;
             if (choice == null) return false;
+            if (choice.Kind == "optional_discard")
+            {
+                parent.Add(Text(PlayerName(choice.ChooserSeat) + "选择是否在攻击前弃置一张手牌。", "section-title"));
+                RenderCardDetail(parent,catalog.Card(choice.Source));
+                if (choice.ChooserSeat != seat) { parent.Add(Text("切换至对应角色选择。", "body")); return true; }
+                parent.Add(Text("弃牌后再选择攻击目标。也可直接继续攻击。", "body"));
+                foreach (string id in view.OptionalDiscardCards)
+                {
+                    string selected=id;
+                    var button=Button(catalog.Card(id).Name,() => { discardCardId=selected; Render(); },"choice-button","optional-discard-"+catalog.Card(id).Color);
+                    if (discardCardId==id) button.AddToClassList("chosen"); parent.Add(button);
+                }
+                if (view.OptionalDiscardCards.Contains(discardCardId))
+                {
+                    RenderCardDetail(parent,catalog.Card(discardCardId));
+                    Confirm(parent,"确认弃置 "+catalog.Card(discardCardId).Name,() => Submit(CommandKind.ChooseOptionalDiscard,discardCardId));
+                }
+                parent.Add(Button("不弃牌，继续攻击",() => Submit(CommandKind.ChooseOptionalDiscard,"skip"),"quiet-button","optional-discard-skip"));
+                return true;
+            }
             if (choice.Kind == "forced_discard")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat) + "选择一张手牌弃置。", "section-title"));
@@ -73,6 +93,10 @@ namespace Goa2.Presentation
             if (choice.Kind == "attack_target")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat) + "选择攻击目标。", "body"));
+                if (view.AttackRange.HasValue)
+                {
+                    var range=Text("本次攻击距离 " + view.AttackRange.Value,"body"); range.name="attack-range"; parent.Add(range);
+                }
                 RenderCardDetail(parent, catalog.Card(choice.Source));
                 if (choice.ChooserSeat != seat) return true;
                 var target = chosenCell.HasValue ? view.Units.SingleOrDefault(u => u.Position == chosenCell.Value && view.AttackTargets.Contains(u.Id)) : null;

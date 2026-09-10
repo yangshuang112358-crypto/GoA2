@@ -1,0 +1,20 @@
+{
+  "SchemaVersion": 1,
+  "Id": "throwing-axe-skip",
+  "Name": "投掷飞斧：已有弃牌但本次不弃，没有邻接目标就结束而不攻击",
+  "Steps": [
+    {"Command":"DebugPrepare","Value":"brogan,wasp,shargatha,arien"},
+    {"Command":"DebugEquipCard","Target":"p1","Value":"brogan-02-投掷飞斧"},
+    {"Command":"DebugTeleport","Value":"hero:0","Destination":{"X":6,"Y":-8}},
+    {"Command":"DebugTeleport","Value":"hero:1","Destination":{"X":6,"Y":-5}},
+    {"Command":"DebugDiscard","Target":"p1","Value":"brogan-00-猛攻"},
+    {"Command":"SelectCard","Value":"brogan-02-投掷飞斧"},
+    {"Command":"SelectCard","Actor":"p2","Value":"wasp-01-电击"},
+    {"Command":"SelectCard","Actor":"p3","Value":"shargatha-06-海妖之歌"},
+    {"Command":"SelectCard","Actor":"p4","Value":"arien-07-潮水"},
+    {"Command":"Pass","Actor":"p2","Expect":{"Phase":"Action","Active":"p1"}},
+    {"Command":"BeginPrimary","Expect":{"PendingKind":"optional_discard","HandCounts":{"p1":3}}},
+    {"Command":"ChooseOptionalDiscard","Value":"skip","Expect":{"Phase":"Action","Active":"p4","HandCounts":{"p1":3},"DiscardCounts":{"p1":1},"EventCounts":{"AttackDeclared":0,"OptionalDiscardCompleted":0,"OptionalDiscardSkipped":1,"CardEffectStopped":1}}},
+    {"Command":"DebugAdvance","Value":"turn","Expect":{"Phase":"Planning","Turn":2,"Gold":{"p1":0}}}
+  ]
+}

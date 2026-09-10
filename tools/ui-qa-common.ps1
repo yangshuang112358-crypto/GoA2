@@ -44,8 +44,14 @@ function Open-Setup([string]$Scenario,[int]$Steps) {
     Open-Save (Join-Path $goaRun.FullName 'report.json.save.json') 'Action' $Steps
 }
 function Select-Cell([int]$X,[int]$Y) {
-    $goaCell=(Read-Ui).Cells | Where-Object { $_.X -eq $X -and $_.Y -eq $Y }
+    $goaUi=Read-Ui
+    $goaCell=$goaUi.Cells | Where-Object { $_.X -eq $X -and $_.Y -eq $Y }
     if (-not $goaCell -or -not $goaCell.Legal) { throw "Expected a legal target at $X,$Y" }
+    $goaBounds=$goaUi.BoardBounds
+    if ($goaCell.Center.x -lt ($goaBounds.x+2) -or $goaCell.Center.x -gt ($goaBounds.x+$goaBounds.width-2) -or
+        $goaCell.Center.y -lt ($goaBounds.y+2) -or $goaCell.Center.y -gt ($goaBounds.y+$goaBounds.height-2)) {
+        throw "Legal target $X,$Y is outside the visible map. Pan, zoom or collapse a panel before clicking."
+    }
     & "$PSScriptRoot/qa-player.ps1" -Action Click -X ([int]$goaCell.Center.x) -Y ([int]$goaCell.Center.y) | Out-Null
 }
 function Pass-Seat([int]$Key) {

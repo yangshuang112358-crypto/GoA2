@@ -1,0 +1,21 @@
+{
+  "SchemaVersion": 1,
+  "Id": "throwing-spear-existing-discard",
+  "Name": "投掷长矛：已有弃牌后明确不再弃牌，仍可攻击距离3的敌人",
+  "Steps": [
+    {"Command":"DebugPrepare","Value":"brogan,wasp,shargatha,arien"},
+    {"Command":"DebugEquipCard","Target":"p1","Value":"brogan-04-投掷长矛"},
+    {"Command":"DebugTeleport","Value":"hero:0","Destination":{"X":6,"Y":-8}},
+    {"Command":"DebugTeleport","Value":"hero:1","Destination":{"X":6,"Y":-5}},
+    {"Command":"DebugDiscard","Target":"p1","Value":"brogan-00-猛攻"},
+    {"Command":"SelectCard","Value":"brogan-04-投掷长矛"},
+    {"Command":"SelectCard","Actor":"p2","Value":"wasp-01-电击"},
+    {"Command":"SelectCard","Actor":"p3","Value":"shargatha-06-海妖之歌"},
+    {"Command":"SelectCard","Actor":"p4","Value":"arien-07-潮水","Expect":{"Phase":"Action","Active":"p1"}},
+    {"Command":"BeginPrimary","Expect":{"PendingKind":"optional_discard","HandCounts":{"p1":3}}},
+    {"Command":"ChooseOptionalDiscard","Value":"skip","Expect":{"PendingKind":"attack_target","HandCounts":{"p1":3},"DiscardCounts":{"p1":1},"EventCounts":{"OptionalDiscardCompleted":0,"OptionalDiscardSkipped":1}}},
+    {"Command":"ChooseAttackTarget","Value":"hero:1","Expect":{"PendingKind":"defense","AttackBase":4,"AttackBonus":0,"AttackFinal":4}},
+    {"Command":"Defend","Actor":"p2","Value":"wasp-07-抵挡屏障","Expect":{"Phase":"Action","Active":"p2","DiscardCounts":{"p1":1,"p2":1},"EventCounts":{"AttackResolved":1,"ForcedDiscardRequired":0}}},
+    {"Command":"DebugAdvance","Value":"turn","Expect":{"Phase":"Planning","Turn":2,"BlueCrystal":7,"RedCrystal":7}}
+  ]
+}

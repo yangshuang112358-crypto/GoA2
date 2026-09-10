@@ -76,6 +76,9 @@ namespace Goa2.Tests
         [TestCase("riposte-ranged.json")]
         [TestCase("lead-charge.json")]
         [TestCase("lead-charge-unavailable.json")]
+        [TestCase("throwing-axe-reflection.json")]
+        [TestCase("throwing-spear-existing-discard.json")]
+        [TestCase("throwing-axe-skip.json")]
         public void PublishedScenarioPassesAgainstTheFormalCatalog(string file)
         {
             string root = ContentTests.Root();
