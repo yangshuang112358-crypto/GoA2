@@ -8,6 +8,13 @@ using UnityEngine.UIElements;
 
 namespace Goa2.Presentation
 {
+    public sealed class BoardViewport
+    {
+        public float Zoom = 1;
+        public Vector2 Focus;
+        public bool Initialized;
+        public bool InitialScaleApplied;
+    }
     public sealed class HexBoard : VisualElement
     {
         private readonly ContentCatalog catalog;
@@ -19,24 +26,51 @@ namespace Goa2.Presentation
         private readonly List<(Label label, UnitState unit)> labels = new List<(Label, UnitState)>();
         private float radius;
         private Vector2 origin;
+        private readonly BoardViewport viewport;
+        private bool dragging;
+        private int dragPointer;
+        private Vector2 lastPointer;
+        public Action? ViewportChanged;
 
-        public HexBoard(ContentCatalog catalog, GameView view, IEnumerable<Hex> legal, Hex? selected, Action<Hex> choose, Action<CellDefinition> hover)
+        public HexBoard(ContentCatalog catalog, GameView view, IEnumerable<Hex> legal, Hex? selected, Action<Hex> choose, Action<CellDefinition> hover, BoardViewport viewport)
         {
             this.catalog = catalog; this.view = view; this.legal = new HashSet<Hex>(legal);
             this.selected = selected; this.choose = choose; this.hover = hover;
+            this.viewport = viewport;
             name = "hex-board"; AddToClassList("hex-board");
             generateVisualContent += Draw;
             RegisterCallback<GeometryChangedEvent>(_ => LayoutBoard());
             RegisterCallback<PointerMoveEvent>(e =>
             {
+                if (dragging && e.pointerId == dragPointer)
+                {
+                    Vector2 pointer = e.localPosition;
+                    viewport.Focus -= (pointer - lastPointer) / radius;
+                    lastPointer = pointer; LayoutBoard(); e.StopPropagation(); return;
+                }
                 var cell = Hit(e.localPosition);
                 if (cell != null) hover(cell);
             });
             RegisterCallback<PointerDownEvent>(e =>
             {
+                if (e.button == 1 || e.button == 2)
+                {
+                    dragging = true; dragPointer = e.pointerId; lastPointer = e.localPosition;
+                    this.CapturePointer(e.pointerId); e.StopPropagation(); return;
+                }
                 if (e.button != 0) return;
                 var cell = Hit(e.localPosition);
                 if (cell != null) choose(cell.Position);
+            });
+            RegisterCallback<PointerUpEvent>(e =>
+            {
+                if (!dragging || e.pointerId != dragPointer) return;
+                dragging = false; this.ReleasePointer(e.pointerId); e.StopPropagation();
+            });
+            RegisterCallback<PointerCaptureOutEvent>(_ => dragging = false);
+            RegisterCallback<WheelEvent>(e =>
+            {
+                ZoomAround(e.localMousePosition, Mathf.Pow(1.12f, -e.delta.y / 3f)); e.StopPropagation();
             });
             foreach (var unit in view.Units)
             {
@@ -47,21 +81,42 @@ namespace Goa2.Presentation
         }
         private static Vector2 World(Hex at) => new Vector2(Mathf.Sqrt(3) * (at.X + at.Y * .5f), at.Y * 1.5f);
         private Vector2 Center(Hex at) => origin + World(at) * radius;
+        public Vector2 PanelCenter(Hex at) => this.LocalToWorld(Center(at));
+        public void ResetView() { viewport.Initialized = false; viewport.Zoom = 1; LayoutBoard(); }
+        public void ZoomAtCenter(float factor) => ZoomAround(contentRect.center, factor);
+        private void ZoomAround(Vector2 pointer, float factor)
+        {
+            if (radius <= 1) return;
+            var anchor = (pointer - origin) / radius;
+            viewport.Zoom = Mathf.Clamp(viewport.Zoom * factor, .25f, 40f);
+            LayoutBoard();
+            viewport.Focus = anchor - (pointer - contentRect.center) / radius;
+            LayoutBoard();
+        }
         private void LayoutBoard()
         {
+            if (contentRect.width <= 0 || contentRect.height <= 0) return;
             var points = catalog.Cells.Select(c => World(c.Position)).ToList();
             float minX = points.Min(p => p.x) - 1, maxX = points.Max(p => p.x) + 1;
             float minY = points.Min(p => p.y) - 1, maxY = points.Max(p => p.y) + 1;
-            radius = Mathf.Max(1, Mathf.Min((contentRect.width - 36) / (maxX - minX), (contentRect.height - 36) / (maxY - minY)));
-            origin = new Vector2(contentRect.width * .5f - (minX + maxX) * .5f * radius, contentRect.height * .5f - (minY + maxY) * .5f * radius);
+            if (!viewport.Initialized) { viewport.Focus = new Vector2((minX + maxX) * .5f, (minY + maxY) * .5f); viewport.Initialized = true; }
+            float fittedRadius = Mathf.Max(1, Mathf.Min((contentRect.width - 36) / (maxX - minX), (contentRect.height - 36) / (maxY - minY)));
+            if (!viewport.InitialScaleApplied)
+            {
+                viewport.Zoom = Mathf.Max(1, 14 / fittedRadius);
+                viewport.InitialScaleApplied = true;
+            }
+            radius = fittedRadius * viewport.Zoom;
+            origin = contentRect.center - viewport.Focus * radius;
             foreach (var pair in labels)
             {
                 var center = Center(pair.unit.Position);
                 pair.label.style.left = center.x - radius; pair.label.style.top = center.y - radius * .62f;
                 pair.label.style.width = radius * 2; pair.label.style.height = radius * 1.24f;
-                pair.label.style.fontSize = Mathf.Clamp(radius * .72f, 8, 16);
+                pair.label.style.fontSize = Mathf.Clamp(radius * .78f, 10, 26);
             }
             MarkDirtyRepaint();
+            ViewportChanged?.Invoke();
         }
         private CellDefinition? Hit(Vector2 pointer)
         {

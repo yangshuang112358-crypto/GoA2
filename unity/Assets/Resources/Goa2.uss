@@ -75,3 +75,77 @@
 .unity-scroller__low-button, .unity-scroller__high-button { display: none; }
 .unity-base-slider__tracker { background-color: #10222d; border-width: 0; }
 .unity-base-slider__dragger { background-color: #4a6b73; border-width: 0; border-radius: 4px; }
+/* BATCH-02: larger four-sided workspace with persistent map viewport. */
+.shell { padding-left: 14px; padding-right: 14px; }
+.header { height: 80px; min-height: 80px; }
+.brand { width: 180px; }
+.brand-title { font-size: 28px; }
+.phase-title { font-size: 23px; }
+.eyebrow { font-size: 14px; letter-spacing: 0; }
+.body { font-size: 17px; }
+.muted { font-size: 15px; }
+.tiny { font-size: 14px; }
+.section-title { font-size: 18px; }
+.panel-title { font-size: 26px; }
+.card-rules { font-size: 15px; }
+.card-name { font-size: 20px; }
+.card-zone { font-size: 14px; }
+.workspace { flex-direction: row; flex-grow: 1; min-height: 450px; padding-top: 12px; padding-bottom: 10px; }
+.left-panel { width: 252px; min-width: 252px; margin-right: 12px; background-color: #14232d; border-width: 1px; border-color: #334b55; border-radius: 6px; }
+.right-panel { width: 342px; min-width: 342px; margin-left: 12px; background-color: #192b35; border-width: 1px; border-color: #334b55; border-radius: 6px; }
+.center-column { flex-grow: 1; flex-shrink: 1; min-width: 480px; }
+.panel-heading { min-height: 42px; height: 42px; flex-direction: row; align-items: center; padding-left: 10px; padding-right: 6px; border-bottom-width: 1px; border-bottom-color: #304953; }
+.panel-heading .section-title { flex-grow: 1; margin-bottom: 0; }
+.roster-scroll { flex-grow: 1; padding: 8px; }
+.seat-card { width: auto; height: 136px; min-height: 136px; margin-bottom: 8px; margin-left: 0; margin-right: 0; padding: 0; }
+.seat-name { font-size: 21px; }
+.seat-card Label, .hand-card Label { -unity-text-align: middle-left; }
+.round-dots { position: absolute; top: 99px; left: 14px; right: 10px; height: 27px; flex-direction: row; align-items: center; }
+.round-dot { width: 24px; height: 24px; margin-right: 17px; border-width: 2px; border-color: #7b939c; border-radius: 20px; background-color: #14232d; }
+.filled-dot { border-color: #c5d1d0; }
+.discard-dots { position: absolute; top: 137px; left: 14px; right: 7px; flex-direction: row; align-items: center; flex-wrap: wrap; }
+.discard-dots .tiny { margin-right: 12px; margin-bottom: 0; }
+.discard-dot { width: 19px; height: 19px; border-radius: 20px; margin-right: 8px; }
+.team-info { padding: 8px; }
+.revealed-panel { height: 232px; min-height: 232px; margin-bottom: 10px; background-color: #172832; border-radius: 6px; border-width: 1px; border-color: #344e58; }
+.revealed-row { flex-direction: row; flex-grow: 1; flex-basis: 0; min-height: 0; padding: 6px; }
+.revealed-card { flex-grow: 1; flex-basis: 0; min-width: 0; padding: 7px; margin-right: 5px; background-color: #20343f; border-top-width: 3px; border-top-color: #4c626d; border-radius: 4px; }
+.revealed-card .eyebrow { font-size: 13px; margin-bottom: 1px; }
+.revealed-card .tiny { font-size: 13px; margin-bottom: 0; }
+.public-card-name { font-size: 18px; color: #f1dfbc; -unity-font-style: bold; white-space: normal; }
+.public-card-text { flex-grow: 1; flex-shrink: 1; flex-basis: 0; min-height: 30px; margin-top: 3px; margin-bottom: 3px; }
+.public-card-text .card-rules { font-size: 14px; }
+.active-public-card { background-color: #36484a; border-left-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-color: #dbc18b; border-right-color: #dbc18b; border-bottom-color: #dbc18b; }
+.field { min-width: 0; min-height: 130px; margin-right: 0; flex-grow: 1; }
+.field-header { height: 41px; min-height: 41px; padding-left: 10px; padding-right: 6px; }
+.hex-board { min-height: 100px; overflow: hidden; }
+.map-controls { flex-direction: row; }
+.board-footer { min-height: 30px; padding-top: 4px; padding-bottom: 3px; margin-bottom: 0; }
+.hand { height: 226px; min-height: 226px; padding-top: 0; padding-bottom: 6px; margin-top: 10px; border-width: 1px; border-color: #344e58; border-radius: 6px; }
+.hand-row { padding-top: 6px; padding-left: 5px; padding-right: 5px; }
+.hand-card { margin-right: 6px; padding: 0; min-width: 0; }
+.hand-card .card-name { font-size: 19px; }
+.hand-card .tiny { font-size: 14px; }
+.hand-card .card-zone { font-size: 13px; }
+.empty-hand { flex-grow: 1; -unity-text-align: middle-center; font-size: 17px; color: #91aaa9; }
+.sidebar { flex-grow: 1; width: auto; min-width: 0; padding: 12px; border-width: 0; background-color: #192b35; }
+.button, .choice-button, .quiet-button, .primary-button { min-height: 37px; font-size: 16px; }
+.primary-button { min-height: 42px; }
+.compact-button, .edge-button, .mode-button, .tab-button, .active-tab { color: #dce9e7; background-color: #243c47; border-width: 1px; border-color: #506b73; border-radius: 4px; font-size: 15px; min-height: 32px; margin: 2px; padding-left: 9px; padding-right: 9px; }
+.edge-button { min-width: 34px; }
+.mode-button { color: #cfe4b0; margin-right: 8px; }
+.tab-button, .active-tab { flex-grow: 1; font-size: 17px; }
+.active-tab { border-color: #dec18a; color: #f0d9ac; }
+.collapsed-side { width: 43px; min-width: 43px; background-color: #172832; margin-right: 8px; margin-left: 5px; border-radius: 5px; padding-top: 5px; }
+.collapsed-side .edge-button { padding-left: 0; padding-right: 0; margin: 4px; min-width: 30px; }
+.collapsed-row { height: 43px; min-height: 43px; margin-top: 3px; margin-bottom: 5px; background-color: #172832; border-radius: 4px; }
+.debug-button-row { flex-direction: row; flex-wrap: wrap; margin-bottom: 7px; }
+.debug-button-row Button { flex-grow: 1; margin-right: 4px; }
+.debug-input { min-height: 36px; font-size: 16px; margin-bottom: 8px; color: #dce9e7; }
+.debug-input .unity-base-field__label { min-width: 65px; width: 65px; color: #bdd0ce; }
+.debug-input .unity-base-field__input { background-color: #0c1d28; color: #eef1e7; border-width: 1px; border-color: #4f727e; font-size: 16px; padding: 5px; }
+.debug-toggle { min-height: 34px; color: #dce9e7; margin-bottom: 9px; font-size: 16px; }
+.footer { min-height: 29px; }
+.gallery-card { width: 290px; }
+.gallery-note, .status-badge { font-size: 14px; }
+.detail-text { max-height: 175px; }

@@ -13,14 +13,13 @@ using UnityApplication = UnityEngine.Application;
 
 namespace Goa2.Presentation
 {
-    public sealed class GameScreen : MonoBehaviour
+    public sealed partial class GameScreen : MonoBehaviour
     {
         private ContentCatalog catalog = null!;
         private GameSession session = null!;
         private VisualElement root = null!;
         private Font font = null!;
         private int seat;
-        private bool curtain;
         private string? chosenHero;
         private int deploymentSeat = -1;
         private Hex? chosenCell;
@@ -33,12 +32,16 @@ namespace Goa2.Presentation
         private bool galleryOpen;
         private bool publicCardsOpen;
         private string? screenshotPath;
+        private string? customSavePath;
         private int screenshotRevision;
+        private IVisualElementScheduledItem? captureJob;
         private Label cellInfo = null!;
         private static bool created;
+        private GameView renderedView = new GameView();
+        private readonly Dictionary<string, Vector2> scrollPositions = new Dictionary<string, Vector2>();
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetForPlayMode() { created = false; }
-        private string SavePath => Path.Combine(UnityApplication.persistentDataPath, "saves", "hotseat-v1.json");
+        private string SavePath => customSavePath ?? Path.Combine(UnityApplication.persistentDataPath, "saves", "hotseat-v1.json");
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Boot()
@@ -70,8 +73,16 @@ namespace Goa2.Presentation
                 var arguments = Environment.GetCommandLineArgs();
                 int captureIndex = Array.IndexOf(arguments, "-goaScreenshot");
                 if (captureIndex >= 0 && captureIndex + 1 < arguments.Length) screenshotPath = arguments[captureIndex + 1];
+                int saveIndex = Array.IndexOf(arguments, "-goaSavePath");
+                if (saveIndex >= 0 && saveIndex + 1 < arguments.Length) customSavePath = Path.GetFullPath(arguments[saveIndex + 1]);
                 catalog = ContentLoader.LoadDirectory(Path.Combine(UnityApplication.streamingAssetsPath, "Goa2"));
-                NewMatch();
+                int loadIndex = Array.IndexOf(arguments, "-goaLoad");
+                if (loadIndex >= 0 && loadIndex + 1 < arguments.Length)
+                {
+                    session = LocalGameFactory.Restore(catalog, File.ReadAllText(arguments[loadIndex + 1]));
+                    notice = "已恢复指定存档。"; Render();
+                }
+                else NewMatch();
             }
             catch (Exception error)
             {
@@ -81,8 +92,8 @@ namespace Goa2.Presentation
         }
         private void NewMatch()
         {
-            session = LocalGameFactory.Create(catalog, Guid.NewGuid().ToString("N"), new[] { "玩家 1", "玩家 2", "玩家 3", "玩家 4" }, UnityEngine.Random.Range(0, int.MaxValue));
-            seat = 0; curtain = false; newMatchPending = false; notice = "选择英雄，开始四人热座基础流程。";
+            session = LocalGameFactory.Create(catalog, Guid.NewGuid().ToString("N"), new[] { "玩家 1", "玩家 2", "玩家 3", "玩家 4" }, UnityEngine.Random.Range(0, int.MaxValue), true);
+            seat = 0; newMatchPending = false; notice = "测试对局已建立。可手工选英雄，或打开调试工具自动准备。";
             ClearPending(); Render();
         }
         private void ClearPending()
@@ -108,12 +119,12 @@ namespace Goa2.Presentation
         {
             var label = new Label(value); label.AddToClassList(css); return label;
         }
-        private static Button Button(string text, Action action, string css = "button")
+        private static Button Button(string text, Action action, string css = "button", string name = "")
         {
-            var button = new Button(action) { text = text }; button.AddToClassList(css); return button;
+            var button = new Button(action) { text = text, name = name }; button.AddToClassList(css); return button;
         }
         private string HeroName(string? id) => catalog.Heroes.FirstOrDefault(h => h.Id == id)?.Name.Split('·').Last() ?? "未选英雄";
-        private string PlayerName(int number) => "席位 " + (number + 1) + " · " + HeroName(session.View(null).Players[number].HeroId);
+        private string PlayerName(int number) => "席位 " + (number + 1) + " · " + HeroName(renderedView.Players[number].HeroId);
         private static string PhaseName(Phase phase)
         {
             switch (phase)
@@ -128,70 +139,25 @@ namespace Goa2.Presentation
         }
         private void Render()
         {
+            root.Query<ScrollView>().ForEach(scroll => { if (scroll.name.StartsWith("goa-scroll-")) scrollPositions[scroll.name] = scroll.scrollOffset; });
             root.Clear();
-            var shell = Box("shell"); root.Add(shell);
-            var view = session.View(curtain ? (int?)null : seat);
-            var header = Box("header"); shell.Add(header);
-            var brand = Box("brand");
-            brand.Add(Text("GOA II", "brand-title")); brand.Add(Text("GOA2V1  /  基础流程", "eyebrow")); header.Add(brand);
-            var phase = Box("phase-banner");
-            phase.Add(Text("第 " + view.Round + " 轮  ·  回合 " + view.Turn + " / 4", "muted"));
-            phase.Add(Text(PhaseName(view.Phase), "phase-title")); header.Add(phase);
-            var controls = Box("header-controls"); header.Add(controls);
-            controls.Add(Button("已揭示牌", () => { publicCardsOpen = true; Render(); }, "quiet-button"));
-            controls.Add(Button("卡牌图鉴 · 108", () => { galleryOpen = true; galleryHero = catalog.Heroes[0].Id; Render(); }, "quiet-button"));
-            controls.Add(Button("保存", Save, "quiet-button"));
-            controls.Add(Button("读取", Load, "quiet-button"));
-            controls.Add(Button("新对局", () => { newMatchPending = true; Render(); }, "quiet-button"));
-            var main = Box("main"); shell.Add(main);
-            var roster = new ScrollView(ScrollViewMode.Vertical); roster.AddToClassList("roster"); main.Add(roster);
-            roster.Add(Text("四人热座", "eyebrow"));
-            roster.Add(Text("切换席位后，点击显示手牌。", "tiny"));
-            foreach (var player in view.Players)
-            {
-                int targetSeat = player.Seat;
-                var card = Button("", () => { seat = targetSeat; curtain = true; ClearPending(); Render(); }, "seat-card");
-                if (seat == targetSeat) card.AddToClassList("selected-seat");
-                card.AddToClassList(player.Team == Team.Blue ? "blue-seat" : "red-seat");
-                string captain = targetSeat == view.BlueCaptain || targetSeat == view.RedCaptain ? " · 队长" : "";
-                SeatLabel(card, (player.Team == Team.Blue ? "蓝队" : "红队") + "  /  " + (targetSeat + 1) + captain, "eyebrow", 8, 16);
-                SeatLabel(card, HeroName(player.HeroId), "seat-name", 29, 24);
-                SeatLabel(card, player.Name + "    Lv." + player.Level + "    " + player.Gold + " 金", "tiny", 58, 16);
-                SeatLabel(card, view.ActiveSeat == targetSeat ? "正在行动" : player.Confirmed && view.Phase == Phase.Planning ? "已确认" : "手牌 " + player.HandCount, "seat-state", 79, 16);
-                roster.Add(card);
-            }
-            var teamInfo = Box("team-info");
-            teamInfo.Add(Text("水晶", "eyebrow"));
-            teamInfo.Add(Text("蓝队 " + view.BlueCrystal + "     红队 " + view.RedCrystal, "body"));
-            teamInfo.Add(Text("决策币  ·  " + (view.DecisionCoin == Team.Blue ? "蓝" : "红"), "muted"));
-            teamInfo.Add(Text("当前战区  ·  " + RegionName(view.CombatRegion), "muted")); roster.Add(teamInfo);
-            var field = Box("field"); main.Add(field);
-            var fieldHeader = Box("field-header");
-            fieldHeader.Add(Text("亚特兰蒂斯战场", "section-title"));
-            fieldHeader.Add(Text("正式地图 · 254 格", "muted")); field.Add(fieldHeader);
-            var targets = LegalCells(view);
-            var board = new HexBoard(catalog, view, targets, chosenCell, cell =>
-            {
-                if (!targets.Contains(cell)) { notice = "此格不可用于当前操作。"; return; }
-                chosenCell = cell; Render();
-            }, cell =>
-            {
-                if (cellInfo != null) cellInfo.text = RegionName(cell.Region) + "  ·  (" + cell.Position + ")" + (cell.Obstacle ? "  障碍" : "") + (targets.Contains(cell.Position) ? "  可选目标" : "");
-            });
-            field.Add(board);
-            var legend = Box("board-footer");
-            cellInfo = Text(targets.Count > 0 ? targets.Count + " 个合法目标 · 点击地图后确认" : "将鼠标移到地图上查看格子", "tiny");
-            legend.Add(cellInfo); legend.Add(Text("○ 出生点     1—4 英雄     兵 / 弓 / 重 小兵", "tiny")); field.Add(legend);
-            var sidebar = new ScrollView(ScrollViewMode.Vertical); sidebar.AddToClassList("sidebar"); main.Add(sidebar);
-            RenderSidebar(sidebar, view);
-            RenderHand(shell, view);
-            var footer = Box("footer");
-            footer.Add(Text(notice, "tiny"));
-            footer.Add(Text("主要牌文效果待实施 · 本切片止于轮末", "tiny")); shell.Add(footer);
+            renderedView = session.View(seat);
+            BuildLayout(renderedView);
             if (galleryOpen) RenderGallery();
-            if (publicCardsOpen) RenderPublicCards(view);
+            if (publicCardsOpen) RenderPublicCards(renderedView);
             if (newMatchPending) RenderNewMatchDialog();
-            if (screenshotPath != null) StartCoroutine(CaptureFrame(++screenshotRevision));
+            root.Query<ScrollView>().ForEach(scroll =>
+            {
+                if (scrollPositions.TryGetValue(scroll.name, out var offset)) scroll.schedule.Execute(() => scroll.scrollOffset = offset);
+                scroll.verticalScroller.valueChanged += _ => RequestCapture();
+            });
+            RequestCapture();
+        }
+        private void RequestCapture()
+        {
+            if (screenshotPath == null) return;
+            captureJob?.Pause();
+            captureJob = root.schedule.Execute(() => StartCoroutine(CaptureFrame(++screenshotRevision))).StartingIn(100);
         }
         private static void SeatLabel(VisualElement parent, string caption, string css, float top, float height)
         {
@@ -207,16 +173,48 @@ namespace Goa2.Presentation
             yield return new WaitForEndOfFrame();
             if (revision != screenshotRevision || screenshotPath == null) yield break;
             Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(screenshotPath))!);
-            var layout = new QaLayout();
-            root.Query<Button>().ForEach(button => layout.Buttons.Add(new QaButton { Text = button.text, Bounds = button.worldBound, Enabled = button.enabledInHierarchy }));
-            File.WriteAllText(Path.ChangeExtension(screenshotPath, ".ui.json"), JsonUtility.ToJson(layout));
+            var layout = new QaLayout { Width = Screen.width, Height = Screen.height, Seat = seat, Revision = renderedView.Revision,
+                Zoom = viewport.Zoom, Focus = viewport.Focus, Phase = renderedView.Phase.ToString(), Round = renderedView.Round, Turn = renderedView.Turn,
+                LeftExpanded = leftExpanded, RightExpanded = rightExpanded, TopExpanded = topExpanded, BottomExpanded = bottomExpanded,
+                SelectedCell = chosenCell.HasValue ? chosenCell.Value.ToString() : "", BoardBounds = board?.worldBound ?? default,
+                ActiveSeat = renderedView.ActiveSeat ?? -1, RevealedHeading = root.Q<Label>("revealed-heading")?.text ?? "",
+                FilledPlayDots = root.Query<VisualElement>(className: "filled-dot").ToList().Count,
+                DiscardDotCount = root.Query<VisualElement>(className: "discard-dot").ToList().Count };
+            root.Query<Button>().ForEach(button => layout.Buttons.Add(new QaButton { Name = button.name, Text = button.text, Bounds = button.worldBound, Enabled = button.enabledInHierarchy, Visible = VisibleCenter(button) }));
+            root.Query<IntegerField>().ForEach(field => layout.Fields.Add(new QaField { Name = field.name, Bounds = field.worldBound, Value = field.value }));
+            if (board != null)
+            {
+                var legal = new HashSet<Hex>(LegalCells(renderedView));
+                foreach (var cell in catalog.Cells) layout.Cells.Add(new QaCell { X = cell.Position.X, Y = cell.Position.Y, Center = board.PanelCenter(cell.Position), Legal = legal.Contains(cell.Position) });
+            }
+            string layoutPath = Path.ChangeExtension(screenshotPath, ".ui.json");
+            File.WriteAllText(layoutPath + ".tmp", JsonUtility.ToJson(layout));
+            if (File.Exists(layoutPath)) File.Replace(layoutPath + ".tmp", layoutPath, null);
+            else File.Move(layoutPath + ".tmp", layoutPath);
             ScreenCapture.CaptureScreenshot(screenshotPath);
         }
-        [Serializable] private sealed class QaLayout { public List<QaButton> Buttons = new List<QaButton>(); }
-        [Serializable] private sealed class QaButton { public string Text = ""; public Rect Bounds; public bool Enabled; }
+        private static bool VisibleCenter(VisualElement element)
+        {
+            if (element.resolvedStyle.visibility != Visibility.Visible || element.resolvedStyle.display == DisplayStyle.None) return false;
+            Vector2 center = element.worldBound.center;
+            for (var ancestor = element.parent; ancestor != null; ancestor = ancestor.parent)
+                if (ancestor is ScrollView scroll && !scroll.contentViewport.worldBound.Contains(center)) return false;
+            return center.x >= 0 && center.y >= 0 && center.x < Screen.width && center.y < Screen.height;
+        }
+        [Serializable] private sealed class QaLayout
+        {
+            public int Width, Height, Seat, Round, Turn, ActiveSeat, FilledPlayDots, DiscardDotCount; public long Revision; public float Zoom; public Vector2 Focus; public Rect BoardBounds;
+            public string Phase = "", SelectedCell = "", RevealedHeading = "";
+            public bool LeftExpanded, RightExpanded, TopExpanded, BottomExpanded;
+            public List<QaButton> Buttons = new List<QaButton>(); public List<QaCell> Cells = new List<QaCell>();
+            public List<QaField> Fields = new List<QaField>();
+        }
+        [Serializable] private sealed class QaButton { public string Name = "", Text = ""; public Rect Bounds; public bool Enabled, Visible; }
+        [Serializable] private sealed class QaCell { public int X, Y; public Vector2 Center; public bool Legal; }
+        [Serializable] private sealed class QaField { public string Name = ""; public Rect Bounds; public int Value; }
         private List<Hex> LegalCells(GameView view)
         {
-            if (curtain) return new List<Hex>();
+            if (debugTeleport && view.DebugTeleports.TryGetValue(debugUnitId, out var teleportTargets)) return teleportTargets;
             if (view.Phase == Phase.Deployment && view.Deployments.Count > 0)
             {
                 if (!view.Deployments.ContainsKey(deploymentSeat)) deploymentSeat = view.Deployments.Keys.First();
@@ -239,13 +237,7 @@ namespace Goa2.Presentation
         private void RenderSidebar(VisualElement sidebar, GameView view)
         {
             sidebar.Add(Text("当前席位 " + (seat + 1), "eyebrow"));
-            sidebar.Add(Text(curtain ? "交接屏幕" : PhaseName(view.Phase), "panel-title"));
-            if (curtain)
-            {
-                sidebar.Add(Text("请将屏幕交给" + PlayerName(seat) + "。", "body"));
-                sidebar.Add(Button("显示我的手牌与操作", () => { curtain = false; Render(); }, "primary-button"));
-                RenderRecentEvents(sidebar, view); return;
-            }
+            sidebar.Add(Text(PhaseName(view.Phase), "panel-title"));
             switch (view.Phase)
             {
                 case Phase.HeroSelection:
@@ -283,12 +275,12 @@ namespace Goa2.Presentation
                     if (view.Players[seat].Confirmed) sidebar.Add(Text("你已确认。等待其他有手牌的玩家确认后，自动翻牌。", "body"));
                     else
                     {
-                        sidebar.Add(Text("从下方手牌选一张。确认前可点击其他手牌改选。", "body"));
+                        sidebar.Add(Text(view.QuickSelection ? "从下方选一张牌；四人选完立即揭示，之前可改选。" : "从下方手牌选一张。确认前可点击其他手牌改选。", "body"));
                         var selected = view.OwnCards.FirstOrDefault(c => c.Zone == CardZone.Selected);
                         if (selected != null)
                         {
                             RenderCardDetail(sidebar, catalog.Card(selected.CardId));
-                            sidebar.Add(Button("确认出牌", () => Submit(CommandKind.ConfirmCard), "primary-button"));
+                            if (!view.QuickSelection) sidebar.Add(Button("确认出牌", () => Submit(CommandKind.ConfirmCard), "primary-button"));
                         }
                     }
                     break;
@@ -313,9 +305,9 @@ namespace Goa2.Presentation
                     RenderCardDetail(sidebar, catalog.Card(played.CardId));
                     if (view.ActiveSeat == seat)
                     {
-                        var normal = Button("次要移动" + (moveMode == MoveMode.Secondary ? "  ✓" : ""), () => { moveMode = MoveMode.Secondary; chosenCell = null; passPending = false; Render(); }, "choice-button");
+                        var normal = Button("次要移动" + (moveMode == MoveMode.Secondary ? "  ✓" : ""), () => { debugTeleport = false; moveMode = MoveMode.Secondary; chosenCell = null; passPending = false; Render(); }, "choice-button");
                         normal.SetEnabled(view.SecondaryMoves.Count > 0); sidebar.Add(normal);
-                        var fast = Button("快速移动" + (moveMode == MoveMode.Fast ? "  ✓" : ""), () => { moveMode = MoveMode.Fast; chosenCell = null; passPending = false; Render(); }, "choice-button");
+                        var fast = Button("快速移动" + (moveMode == MoveMode.Fast ? "  ✓" : ""), () => { debugTeleport = false; moveMode = MoveMode.Fast; chosenCell = null; passPending = false; Render(); }, "choice-button");
                         fast.SetEnabled(view.FastMoves.Count > 0); sidebar.Add(fast);
                         if (chosenCell.HasValue && moveMode.HasValue)
                             Confirm(sidebar, "确认移动至 " + chosenCell.Value, () => Submit(CommandKind.Move, destination: chosenCell!.Value, mode: moveMode!.Value));
@@ -377,33 +369,6 @@ namespace Goa2.Presentation
                 default: return actor + (entry.Kind == "DeploymentStarted" ? "开始安排出生" : entry.Kind == "EmptyHandSkipped" ? "无手牌，自动跳过" : "先攻选择已确认");
             }
         }
-        private void RenderHand(VisualElement shell, GameView view)
-        {
-            var hand = Box("hand"); shell.Add(hand);
-            var title = Box("hand-title"); title.Add(Text("我的卡牌", "section-title"));
-            title.Add(Text(curtain ? "内容已隐藏" : PlayerName(seat) + "  ·  已出牌保留真实回合记录", "tiny")); hand.Add(title);
-            if (curtain) { hand.Add(Text("点击右侧“显示我的手牌与操作”后继续。", "curtain-text")); return; }
-            if (view.OwnCards.Count == 0) { hand.Add(Text("选定英雄后，将获得金、银、红、绿、蓝五张起始牌。", "curtain-text")); return; }
-            var row = Box("hand-row"); hand.Add(row);
-            foreach (var instance in view.OwnCards)
-            {
-                var card = catalog.Card(instance.CardId);
-                var tile = Button("", () =>
-                {
-                    if (view.Phase == Phase.Planning && !view.Players[seat].Confirmed && (instance.Zone == CardZone.InHand || instance.Zone == CardZone.Selected))
-                        Submit(CommandKind.SelectCard, card.Id);
-                    else { galleryHero = card.HeroId; galleryOpen = true; Render(); }
-                }, "hand-card");
-                tile.AddToClassList("color-" + card.Color);
-                if (instance == view.OwnCards.Last()) tile.AddToClassList("last-card");
-                if (instance.Zone == CardZone.Selected) tile.AddToClassList("chosen");
-                if (instance.Zone == CardZone.PlayedResolved || instance.Zone == CardZone.Discarded) tile.AddToClassList("spent");
-                SeatLabel(tile, card.Name, "card-name", 8, 25);
-                SeatLabel(tile, card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()), "body", 39, 23);
-                SeatLabel(tile, "先攻 " + card.Initiative + "     移 " + Number(card.SecondaryMovement) + " / 防 " + Number(card.SecondaryDefense), "tiny", 68, 18);
-                SeatLabel(tile, instance.Zone == CardZone.Selected && view.Players[seat].Confirmed ? "已确认 · 等待翻牌" : ZoneName(instance), "card-zone", 91, 16); row.Add(tile);
-            }
-        }
         private static string Number(int? value) => value?.ToString() ?? "—";
         private static string SubtypeText(CardDefinition card) => card.Subtype == null ? "" : "  ·  " + card.Subtype + " " + card.SubtypeValue;
         private static string ZoneName(CardInstance card)
@@ -454,19 +419,19 @@ namespace Goa2.Presentation
             var scroll = new ScrollView(); scroll.AddToClassList("gallery-scroll"); overlay.Add(scroll);
             scroll.contentContainer.AddToClassList("gallery-grid");
             foreach (var player in view.Players)
-            foreach (var instance in player.Revealed)
+            foreach (var play in player.Plays.OrderByDescending(p => p.Round).ThenByDescending(p => p.Turn))
             {
-                var card = catalog.Card(instance.CardId);
+                var card = catalog.Card(play.CardId);
                 var tile = Box("gallery-card"); tile.AddToClassList("color-" + card.Color);
                 tile.Add(Text("席位 " + (player.Seat + 1) + " · " + HeroName(player.HeroId), "eyebrow"));
                 tile.Add(Text(card.Name + " · 先攻 " + card.Initiative, "card-name"));
-                tile.Add(Text("第 " + instance.PlayedRound + " 轮 · " + ZoneName(instance), "muted"));
+                tile.Add(Text("第 " + play.Round + " 轮 · 第 " + play.Turn + " 回合", "muted"));
                 tile.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "body"));
                 tile.Add(Text(card.Text, "card-rules"));
                 tile.Add(Text("次要移动 " + Number(card.SecondaryMovement) + " · 次要防御 " + Number(card.SecondaryDefense), "tiny"));
                 tile.Add(Text("底部被动 " + (card.Passive ?? "无"), "tiny")); scroll.Add(tile);
             }
-            if (view.Players.All(player => player.Revealed.Count == 0)) scroll.Add(Text("本对局尚未揭示卡牌。", "body"));
+            if (view.Players.All(player => player.Plays.Count == 0)) scroll.Add(Text("本对局尚未揭示卡牌。", "body"));
         }
         private void RenderNewMatchDialog()
         {
@@ -496,7 +461,7 @@ namespace Goa2.Presentation
             try
             {
                 var restored = LocalGameFactory.Restore(catalog, File.ReadAllText(SavePath, System.Text.Encoding.UTF8));
-                session = restored; curtain = true; ClearPending(); notice = "已恢复对局。请确认当前操作者后显示手牌。";
+                session = restored; ClearPending(); notice = "已恢复对局。使用1/2/3/4切换角色。";
             }
             catch (Exception error) { notice = "无法读取存档：" + error.Message; Debug.LogWarning(error.Message); }
             Render();

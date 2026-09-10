@@ -1,8 +1,8 @@
 # Goa2V1
 
-GoA2 电子版重启工程。步骤1—6资料基线和[BATCH-01](docs/planning/BATCH-01.md)已完成：Unity已安装，Windows程序可运行，四人热座基础流程通过实际操作验收。纯C#核心31项测试通过；正式数据为6英雄、108牌、254格。主要牌效、完整轮末/升级与联网仍未实现。
+GoA2 电子版重启工程。[BATCH-02](docs/planning/BATCH-02.md)正在持续开发：Unity与Windows程序已可运行，测试模式、四边折叠界面和地图缩放已接入。纯C#核心37项测试通过，两个分辨率各19项真实鼠标/键盘检查通过；正式数据为6英雄、108牌、254格。主要牌效、完整轮末/升级与联网仍未实现。
 
-立即体验：运行 artifacts/player/Goa2V1.exe。操作与开发入口见[启动与操作指南](docs/development/启动与操作指南.md)，验证范围见[本批验收](docs/verification/BATCH-01进展.md)。
+立即体验：运行 artifacts/player/Goa2V1.exe。操作与开发入口见[启动与操作指南](docs/development/启动与操作指南.md)，验证范围见[本批记录](docs/verification/BATCH-02工作记录.md)。
 
 ## 阅读入口
 
@@ -11,7 +11,7 @@ GoA2 电子版重启工程。步骤1—6资料基线和[BATCH-01](docs/planning/
 3. [裁定记录](docs/rules/裁定记录.md)、[待确认规则](docs/rules/待确认规则.md)、[临时简化](docs/rules/临时简化登记.md)。
 4. [数据字典](docs/data/数据字典.md)、[地图与部件](docs/data/地图与部件.md)、[卡牌机制索引](docs/data/卡牌机制索引.json)。
 5. [架构](docs/architecture/架构说明.md)、[开发流程](docs/development/开发流程.md)、[测试矩阵](tests/测试矩阵.md)。
-6. [里程碑](docs/planning/里程碑与任务.md)、[本批范围](docs/planning/BATCH-01.md)、[验收报告](docs/verification/BATCH-01进展.md)与[下一批计划](docs/planning/下一批开发计划.md)。
+6. [里程碑](docs/planning/里程碑与任务.md)、[本批范围](docs/planning/BATCH-02.md)、[当前工作记录](docs/verification/BATCH-02工作记录.md)与[上一批验收](docs/verification/BATCH-01进展.md)。
 
 ## 内容清单
 
@@ -68,8 +68,8 @@ test-core.ps1支持-DotnetExe；build-unity.ps1支持-UnityExe指定本机编辑
 在Hub中添加unity文件夹；首次打开后使用菜单Goa2/Prepare project建立场景并同步内容，再进入Play。
 构建成功后运行artifacts/player/Goa2V1.exe；构建与存档不提交Git。
 
-当前可操作范围：四席各选英雄 → 队长在地图安排出生 → 暗选/改选/确认 → 自动翻牌 → 动态先攻 → 次要移动、快速移动或放弃 → 四回合后的轮末边界。
-地图点击只产生预选，确认后才提交规则命令；取消不改变权威状态。切换席位自动遮挡手牌，点击显示后继续。主要行动文字和轮末结算未实施时会明确显示，不能当作完整对局。
+当前可操作范围：四席各选英雄 → 队长在地图安排出生 → 暗选/改选 → 自动翻牌 → 动态先攻 → 次要移动、快速移动或放弃 → 四回合后的轮末边界。默认测试模式四人选完立即揭示；调试面板可关闭此模式，改为四人逐一确认。
+按1/2/3/4或点击左侧立即切换角色。地图支持滚轮缩放、中/右键拖动、Home全图；四周区域可折叠。地图点击只产生预选，确认后才提交规则命令。主要行动文字和轮末结算未实施时会明确显示，不能当作完整对局。
 
 卡牌原文与地图无损迁移，重复显示/实现字段已分离。旧工作树和房间存档保持原状；没有配置远程仓库或上传。
 本手册以用户项目裁定为依据，原英文规则PDF当前缺失。局部卡牌语义、标志物、极端出生占用与部分联动有明确待确认条目。
