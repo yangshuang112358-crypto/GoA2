@@ -10,9 +10,9 @@ namespace Goa2.Tests
 {
     public sealed class CombatFlowTests
     {
-        internal static GameSession Duel(ContentCatalog catalog, string attacker="sabina", string attackCard="sabina-01-拔枪", string defender="wasp", string? equipment=null)
+        internal static GameSession Duel(ContentCatalog catalog, string attacker="sabina", string attackCard="sabina-01-拔枪", string defender="wasp", string? equipment=null, int engineVersion=GameState.CurrentEngineVersion)
         {
-            var game = LocalGameFactory.Create(catalog,"combat",new[] { "A","B","C","D" },42,true);
+            var game = LocalGameFactory.Create(catalog,"combat",new[] { "A","B","C","D" },42,true,engineVersion);
             Apply(game,0,CommandKind.DebugPrepare,attacker+","+defender+",brogan,"+(defender == "arien" ? "wasp" : "arien"));
             if (!game.View(0).OwnCards.Any(c => c.CardId == attackCard)) Apply(game,0,CommandKind.DebugEquipCard,attackCard,target:0);
             if (equipment != null) Apply(game,0,CommandKind.DebugEquipCard,equipment,target:1);
@@ -140,7 +140,7 @@ namespace Goa2.Tests
         [Test]
         public void UnimplementedPrimaryResponseWaitsRatherThanPretendingTheHandIsEmpty()
         {
-            var catalog = BattlefieldTests.Catalog(); var game = Duel(catalog,equipment:"wasp-08-偏转屏障");
+            var catalog = BattlefieldTests.Catalog(); var game = Duel(catalog,equipment:"wasp-08-偏转屏障",engineVersion:3);
             foreach (var card in game.View(1).OwnCards.Where(c => c.Zone == CardZone.InHand && c.CardId != "wasp-08-偏转屏障").ToList()) Apply(game,0,CommandKind.DebugDiscard,card.CardId,target:1);
             Attack(game);
             Assert.That(game.View(null).Pending!.Kind, Is.EqualTo("defense"));

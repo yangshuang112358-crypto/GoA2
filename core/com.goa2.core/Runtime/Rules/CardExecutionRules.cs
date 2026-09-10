@@ -120,6 +120,16 @@ namespace Goa2.Rules
             Emit(state, command, "DiscardColorShown", command.ActorSeat, detail: catalog.Card(instance.CardId).Color);
             Emit(state, command, "DefenseCalculated", command.ActorSeat, instance.CardId, command.ActorSeat,
                 option!.Block ? "block" : option.Assessment.FinalDefense + ":" + option.Assessment.AttackCompared);
+            var response=CardPrograms.Defense(catalog.Card(instance.CardId),state.EngineVersion);
+            if (option.Primary && option.Assessment.Successful && response != null && response.Followup != DefenseFollowup.None)
+            {
+                var attack=state.Execution!.Attack!;
+                state.Execution.DefenseResponse=new DefenseResponse
+                {
+                    SourceCardId=instance.CardId, SourceUnitId=attack.TargetUnitId, ControllerSeat=command.ActorSeat,
+                    AttackerSeat=attack.AttackerSeat, AttackerUnitId="hero:"+attack.AttackerSeat, ProgramId=response.Id, ProgramVersion=response.Version
+                };
+            }
             ResolveDefense(catalog, state, command, option.Assessment.Successful);
         }
         private static void DeclineDefense(ContentCatalog catalog, GameState state, Command command)
@@ -145,6 +155,7 @@ namespace Goa2.Rules
         }
         private static void EndCardExecution(ContentCatalog catalog, GameState state, Command command)
         {
+            if (state.Execution!.DefenseResponse != null && !ContinueDefenseResponse(catalog,state,command)) return;
             state.ActiveSeat = state.Execution!.ControllerSeat; state.Execution = null; state.Pending = null; state.Phase = Phase.Action;
             FinishAction(catalog, state, command);
         }

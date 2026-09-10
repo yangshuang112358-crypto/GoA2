@@ -1,0 +1,27 @@
+{
+  "SchemaVersion":1,"Id":"reflection-barrier","Name":"反射屏障：反制后拒绝另一名非相邻远程攻击者",
+  "Steps":[
+    {"Command":"DebugPrepare","Value":"sabina,wasp,shargatha,arien"},
+    {"Command":"DebugEquipCard","Value":"wasp-10-反射屏障","Target":"p2"},
+    {"Command":"DebugEquipCard","Value":"shargatha-02-快速突刺","Target":"p3"},
+    {"Command":"DebugTeleport","Value":"hero:0","Destination":{"X":7,"Y":-10}},
+    {"Command":"DebugTeleport","Value":"hero:1","Destination":{"X":8,"Y":-9}},
+    {"Command":"DebugTeleport","Value":"hero:2","Destination":{"X":6,"Y":-9}},
+    {"Command":"DebugTeleport","Value":"hero:3","Destination":{"X":4,"Y":-8}},
+    {"Actor":"p1","Command":"SelectCard","Value":"sabina-01-拔枪"},
+    {"Actor":"p2","Command":"SelectCard","Value":"wasp-01-电击"},
+    {"Actor":"p3","Command":"SelectCard","Value":"shargatha-02-快速突刺"},
+    {"Actor":"p4","Command":"SelectCard","Value":"arien-07-潮水","Expect":{"PendingKind":"initiative","PendingChooser":"p1"}},
+    {"Command":"ChooseInitiative","Target":"p1","Expect":{"Phase":"Action","Active":"p1"}},
+    {"Command":"BeginPrimary"},
+    {"Command":"ChooseAttackTarget","Value":"hero:1","Expect":{"PendingKind":"defense","PendingChooser":"p2"}},
+    {"Actor":"p2","Command":"Defend","Value":"wasp-10-反射屏障","Expect":{"PendingKind":"forced_discard","PendingChooser":"p1","EffectCounts":{"wasp-10-反射屏障":0}}},
+    {"Command":"ForcedDiscard","Value":"sabina-00-近身射击","Expect":{"Phase":"Action","Active":"p2","EffectCounts":{"wasp-10-反射屏障":1},"EventOrder":["ForcedDiscardCompleted","EffectCreated","EffectActivated","ProtectionActivated","DefenseResponseCompleted","CardResolved"]}},
+    {"Actor":"p2","Command":"Pass","Expect":{"Active":"p3"}},
+    {"Actor":"p3","Command":"BeginPrimary","Expect":{"PendingKind":"attack_target","PendingChooser":"p3"}},
+    {"Actor":"p3","Command":"ChooseAttackTarget","Value":"hero:1","Expect":{"Code":"invalid_attack_target"}},
+    {"Actor":"p3","Command":"ChooseAttackTarget","Value":"hero:3","Expect":{"PendingKind":"defense","PendingChooser":"p4"}},
+    {"Actor":"p4","Command":"Defend","Value":"arien-13-挑战者","Expect":{"Active":"p4","RedCrystal":7}},
+    {"Actor":"p4","Command":"Pass","Expect":{"Phase":"Planning","Turn":2,"EffectCounts":{"wasp-10-反射屏障":0},"DiscardCounts":{"p1":1,"p2":1,"p4":1},"EventCounts":{"EffectExpired":1,"ProtectionExpired":1}}}
+  ]
+}

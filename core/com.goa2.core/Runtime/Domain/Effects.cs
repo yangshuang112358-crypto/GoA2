@@ -4,8 +4,8 @@ using System;
 namespace Goa2.Domain
 {
     public enum EffectDuration { ThisTurn, NextTurn, ThisRound }
-    public enum EffectKind { MovementBoundary, SkillSuppression }
-    public enum EffectAreaKind { SkillRange, Adjacent }
+    public enum EffectKind { MovementBoundary, SkillSuppression, NonAdjacentRangedImmunity }
+    public enum EffectAreaKind { SkillRange, Adjacent, None }
     [Serializable]
     public sealed class EffectWindow
     {
@@ -15,6 +15,8 @@ namespace Goa2.Domain
     public sealed class ActiveEffect
     {
         public string Id = "", SourceCardId = "", SourceUnitId = "";
+        public string ProtectedUnitId = "";
+        public int? SourcePrivateTo;
         public int ControllerSeat, CreatedRound, CreatedTurn, CreationOrder;
         public int ProgramVersion = 1;
         public EffectKind Kind;

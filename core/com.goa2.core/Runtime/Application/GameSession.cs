@@ -137,6 +137,7 @@ namespace Goa2.Application
                 view.CanBeginPrimary = view.CanPass && view.PrimarySupported && view.PrimaryRestriction == "" && snapshot.Units.Any(u => u.Seat == seat);
                 view.AttackTargets = CombatRules.AttackTargets(catalog, snapshot, seat.Value);
                 view.DefenseOptions = CombatRules.DefenseOptions(catalog, snapshot, seat.Value);
+                view.ForcedDiscardCards = GameRules.LegalForcedDiscards(snapshot,seat.Value);
                 view.UnimplementedDefenseCards = CombatRules.UnimplementedDefenses(catalog, snapshot, seat.Value);
                 view.RespawnCells = GameRules.LegalRespawns(catalog, snapshot, seat.Value);
                 view.CanResolveRoundEnd = GameRules.CanResolveRoundEnd(snapshot);
@@ -151,6 +152,10 @@ namespace Goa2.Application
                 if (snapshot.Sandbox)
                     foreach (var unit in snapshot.Units) view.DebugTeleports.Add(unit.Id, GameRules.LegalDebugTeleports(catalog, snapshot, unit.Id));
             }
+            // Mask private origins only after every legal query has used the complete snapshot.
+            if (view.Pending?.SourcePrivateTo != null && view.Pending.SourcePrivateTo != seat) view.Pending.Source="";
+            foreach (var effect in view.Effects)
+                if (effect.SourcePrivateTo.HasValue && effect.SourcePrivateTo != seat) effect.SourceCardId="";
             return view;
         }
         private static string Fingerprint(string value)

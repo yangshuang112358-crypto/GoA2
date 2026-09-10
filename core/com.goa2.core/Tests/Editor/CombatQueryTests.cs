@@ -89,6 +89,7 @@ namespace Goa2.Tests
         public void UnknownPrimaryDefenseStaysExplicitAndSecondaryDefenseDoesNotBorrowItsMainText()
         {
             var catalog = BattlefieldTests.Catalog(); var state = Arena(catalog); Response(state);
+            state.EngineVersion=3;
             state.Players[1].Cards.Single(c => c.CardId == "wasp-07-抵挡屏障").CardId = "wasp-08-偏转屏障";
             Assert.That(CombatRules.UnimplementedDefenses(catalog,state,1), Is.EqualTo(new[] { "wasp-08-偏转屏障" }));
             Assert.That(CombatRules.UnimplementedDefenses(catalog,state,0), Is.Empty);

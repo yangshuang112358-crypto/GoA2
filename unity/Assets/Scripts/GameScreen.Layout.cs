@@ -193,13 +193,14 @@ namespace Goa2.Presentation
                 {
                     if (view.Pending?.Kind == "defense" && view.Pending.ChooserSeat == seat && view.DefenseOptions.Any(o => o.CardId == card.Id))
                     { defenseCardId = card.Id; declineDefensePending = false; showDebug = false; Render(); }
+                    else if (view.ForcedDiscardCards.Contains(card.Id)) { discardCardId=card.Id; showDebug=false; Render(); }
                     else if (view.Phase == Phase.Planning && !view.Players[seat].Confirmed && (instance.Zone == CardZone.InHand || instance.Zone == CardZone.Selected)) Submit(CommandKind.SelectCard, card.Id);
                     else { galleryHero = card.HeroId; galleryOpen = true; Render(); }
                 }, "hand-card");
                 tile.name = "hand-" + card.Color;
                 tile.AddToClassList("color-" + card.Color);
                 if (instance == view.OwnCards.Last()) tile.AddToClassList("last-card");
-                if (instance.Zone == CardZone.Selected || defenseCardId == card.Id) tile.AddToClassList("chosen");
+                if (instance.Zone == CardZone.Selected || defenseCardId == card.Id || discardCardId == card.Id) tile.AddToClassList("chosen");
                 if (instance.Zone == CardZone.PlayedResolved || instance.Zone == CardZone.Discarded) tile.AddToClassList("spent");
                 SeatLabel(tile, card.Name, "card-name", 6, 45);
                 SeatLabel(tile, card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()), "body", 53, 25);

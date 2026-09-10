@@ -128,7 +128,7 @@
         "discard",
         "conditional"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/wasp-08-偏转屏障.md",
       "question_candidates": [
         "U-011"
@@ -159,7 +159,7 @@
         "immunity",
         "continuous"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/wasp-10-反射屏障.md",
       "question_candidates": [
         "U-011"

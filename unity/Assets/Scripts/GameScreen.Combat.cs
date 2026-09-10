@@ -8,12 +8,33 @@ namespace Goa2.Presentation
     public sealed partial class GameScreen
     {
         private string defenseCardId = "";
+        private string discardCardId = "";
         private bool declineDefensePending;
         private static string AttackFormula(AttackBreakdown attack) => "攻击 " + attack.BaseAttack + " + 加成 " + attack.AttackBonus + " + 敌兵 " + attack.EnemySupport + " − 友兵 " + attack.FriendlyGuard + " = " + attack.FinalAttack;
         private bool RenderCombatChoice(VisualElement parent, GameView view)
         {
             var choice = view.Pending;
             if (choice == null) return false;
+            if (choice.Kind == "forced_discard")
+            {
+                parent.Add(Text(PlayerName(choice.ChooserSeat) + "选择一张手牌弃置。", "section-title"));
+                parent.Add(Text("本次攻击已结算，完成反制后继续下一次行动。", "body"));
+                if (choice.Source!="") RenderCardDetail(parent,catalog.Card(choice.Source));
+                if (choice.ChooserSeat != seat) { parent.Add(Text("切换至对应角色选择弃牌。", "body")); return true; }
+                parent.Add(Text("点击下方手牌或以下选项，再确认弃置。此选择不能跳过。", "body"));
+                foreach (string id in view.ForcedDiscardCards)
+                {
+                    string selected=id;
+                    var button=Button(catalog.Card(id).Name,() => { discardCardId=selected; Render(); },"choice-button","forced-discard-"+catalog.Card(id).Color);
+                    if (discardCardId==id) button.AddToClassList("chosen"); parent.Add(button);
+                }
+                if (view.ForcedDiscardCards.Contains(discardCardId))
+                {
+                    RenderCardDetail(parent,catalog.Card(discardCardId));
+                    Confirm(parent,"确认弃置 "+catalog.Card(discardCardId).Name,() => Submit(CommandKind.ForcedDiscard,discardCardId));
+                }
+                return true;
+            }
             if (choice.Kind == "hero_respawn")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat) + "先复活，再执行已出牌。", "body"));
@@ -52,7 +73,10 @@ namespace Goa2.Presentation
             }
             foreach (string id in view.UnimplementedDefenseCards) parent.Add(Text(catalog.Card(id).Name + "：响应文字待实装，已保留等待。", "tiny"));
             if (defenseCardId != "" && view.DefenseOptions.Any(o => o.CardId == defenseCardId))
+            {
+                RenderCardDetail(parent,catalog.Card(defenseCardId));
                 Confirm(parent, "确认使用 " + catalog.Card(defenseCardId).Name + " 防御", () => Submit(CommandKind.Defend, defenseCardId));
+            }
             else if (declineDefensePending) Confirm(parent, "确认不防御并被击败", () => Submit(CommandKind.DeclineDefense));
             else parent.Add(Button("不防御", () => { defenseCardId = ""; declineDefensePending = true; Render(); }, "quiet-button", "decline-defense"));
             return true;

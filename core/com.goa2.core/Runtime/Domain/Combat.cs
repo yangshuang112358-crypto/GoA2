@@ -27,6 +27,13 @@ namespace Goa2.Domain
         public AttackBreakdown? Attack;
         public bool AwaitingAttackCompletion;
         public string AttackOutcome = "";
+        public DefenseResponse? DefenseResponse;
+    }
+    [Serializable]
+    public sealed class DefenseResponse
+    {
+        public string SourceCardId = "", SourceUnitId = "", AttackerUnitId = "", ProgramId = "";
+        public int ControllerSeat, AttackerSeat, ProgramVersion, Cursor;
     }
     public sealed class DefenseOption
     {

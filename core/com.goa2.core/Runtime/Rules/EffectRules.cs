@@ -14,7 +14,7 @@ namespace Goa2.Rules
         public static List<Hex> Area(ContentCatalog catalog, GameState state, ActiveEffect effect)
         {
             var source=Source(state,effect);
-            if (source == null || !EffectTimeline.Active(effect.Window,state.Round,state.Turn)) return new List<Hex>();
+            if (source == null || effect.AreaKind==EffectAreaKind.None || !EffectTimeline.Active(effect.Window,state.Round,state.Turn)) return new List<Hex>();
             int radius=Radius(catalog,state,effect);
             return catalog.Cells.Where(c => c.Position.Distance(source.Position)<=radius).Select(c => c.Position).ToList();
         }
@@ -38,6 +38,11 @@ namespace Goa2.Rules
                     return effect.SourceCardId;
             }
             return "";
+        }
+        public static bool CanBeAttacked(GameState state, UnitState source, UnitState target, bool ranged)
+        {
+            if (source.Kind!="hero" || !ranged || source.Position.Distance(target.Position)<=1) return true;
+            return !Current(state,EffectKind.NonAdjacentRangedImmunity).Any(e => e.ProtectedUnitId==target.Id);
         }
         public static bool CanMoveAcross(ContentCatalog catalog, GameState state, UnitState unit, Hex from, Hex to)
         {

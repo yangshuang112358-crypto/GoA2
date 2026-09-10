@@ -54,6 +54,8 @@ namespace Goa2.Tests
         [TestCase("static-field.json")]
         [TestCase("skill-suppression.json")]
         [TestCase("shining-blade.json")]
+        [TestCase("deflection-barrier.json")]
+        [TestCase("reflection-barrier.json")]
         public void PublishedScenarioPassesAgainstTheFormalCatalog(string file)
         {
             string root = ContentTests.Root();

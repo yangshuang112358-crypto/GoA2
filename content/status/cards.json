@@ -98,11 +98,21 @@
     },
     {
       "card_id": "wasp-08-偏转屏障",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-08-偏转屏障.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/BarrierResponseTests.cs",
+        "tests/scenarios/deflection-barrier.json",
+        "tools/test-barriers-ui.ps1"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs"
+      ]
     },
     {
       "card_id": "wasp-09-意念操控",
@@ -114,11 +124,21 @@
     },
     {
       "card_id": "wasp-10-反射屏障",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-10-反射屏障.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/BarrierResponseTests.cs",
+        "tests/scenarios/reflection-barrier.json",
+        "tools/test-barriers-ui.ps1"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs"
+      ]
     },
     {
       "card_id": "wasp-11-心灵控制",

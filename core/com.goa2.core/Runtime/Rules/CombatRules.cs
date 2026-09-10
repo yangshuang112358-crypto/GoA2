@@ -28,7 +28,8 @@ namespace Goa2.Rules
             int distance = program.AdjacentAttack ? 1 : (card.SubtypeValue ?? 0) + state.Players[source.Seat!.Value].RangedBonus;
             var removable = new HashSet<string>(GameRules.LegalMinionRemovals(state));
             return state.Units.Where(u => u.Team != source.Team && u.Position.Distance(source.Position) >= program.MinimumDistance &&
-                    u.Position.Distance(source.Position) <= distance && (u.Kind == "hero" || !program.OnlyHeroes && removable.Contains(u.Id)))
+                    u.Position.Distance(source.Position) <= distance && (u.Kind == "hero" || !program.OnlyHeroes && removable.Contains(u.Id)) &&
+                    EffectRules.CanBeAttacked(state,source,u,card.Subtype=="远程"))
                 .Select(u => u.Id).OrderBy(id => id, System.StringComparer.Ordinal).ToList();
         }
         public static List<DefenseOption> DefenseOptions(ContentCatalog catalog, GameState state, int seat)
@@ -43,12 +44,11 @@ namespace Goa2.Rules
                 var card = catalog.Card(instance.CardId); var primary = CardPrograms.Defense(card,state.EngineVersion);
                 if (card.PrimaryFamily == "defense")
                 {
-                    if (!primary.HasValue) continue;
-                    bool block = primary != DefenseProgramKind.NumericIgnoreMinions;
-                    if (block && (!attack.Ranged || attack.Unblockable ||
-                        primary == DefenseProgramKind.BlockNonAdjacentRanged && attacker.Position.Distance(defender.Position) <= 1)) continue;
-                    result.Add(new DefenseOption { CardId = card.Id, Primary = true, Block = block, IgnoresMinions = !block,
-                        Assessment = CombatMath.Defense(attack, card.PrimaryValue, state.Players[seat].DefenseBonus, !block, block) });
+                    if (primary == null) continue;
+                    if (primary.Block && attack.Unblockable || primary.RequiresRanged && !attack.Ranged ||
+                        attacker.Position.Distance(defender.Position) < primary.MinimumDistance) continue;
+                    result.Add(new DefenseOption { CardId = card.Id, Primary = true, Block = primary.Block, IgnoresMinions = primary.IgnoresMinions,
+                        Assessment = CombatMath.Defense(attack, card.PrimaryValue, state.Players[seat].DefenseBonus, primary.IgnoresMinions, primary.Block) });
                 }
                 else if (card.SecondaryDefense.HasValue)
                     result.Add(new DefenseOption { CardId = card.Id, Assessment = CombatMath.Defense(attack, card.SecondaryDefense.Value, state.Players[seat].DefenseBonus) });

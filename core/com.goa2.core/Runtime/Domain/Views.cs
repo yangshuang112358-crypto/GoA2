@@ -68,6 +68,7 @@ namespace Goa2.Domain
         public List<string> SupportedDefenseCards = new List<string>();
         public List<string> AttackTargets = new List<string>();
         public List<DefenseOption> DefenseOptions = new List<DefenseOption>();
+        public List<string> ForcedDiscardCards = new List<string>();
         public List<string> UnimplementedDefenseCards = new List<string>();
         public AttackBreakdown? Attack;
         public List<Hex> RespawnCells = new List<Hex>();

@@ -32,7 +32,8 @@ namespace Goa2.Rules
             foreach (var effect in state.Effects.Where(e => EffectTimeline.EndsAtBoundary(e.Window,state.Round,state.Turn)).OrderBy(e => e.CreationOrder).ToList())
             {
                 state.Effects.Remove(effect);
-                Emit(state,command,"EffectExpired",effect.ControllerSeat,effect.SourceCardId,detail:effect.Id);
+                Emit(state,command,"EffectExpired",effect.ControllerSeat,effect.SourceCardId,effect.SourcePrivateTo,detail:effect.Id);
+                if (effect.SourcePrivateTo.HasValue) Emit(state,command,"ProtectionExpired",effect.ControllerSeat,detail:effect.Kind+":"+effect.Id);
             }
         }
         private static void CancelAdjacentSkillEffects(ContentCatalog catalog,GameState state,Command command,CardExecution execution)
@@ -47,7 +48,7 @@ namespace Goa2.Rules
         {
             foreach (var effect in state.Effects.Where(e => e.Window.StartRound == state.Round && e.Window.StartTurn == state.Turn &&
                 (e.CreatedRound < state.Round || e.CreatedTurn < state.Turn)).OrderBy(e => e.CreationOrder))
-                Emit(state,command,"EffectActivated",effect.ControllerSeat,effect.SourceCardId,detail:effect.Id);
+                Emit(state,command,"EffectActivated",effect.ControllerSeat,effect.SourceCardId,effect.SourcePrivateTo,detail:effect.Id);
         }
     }
 }

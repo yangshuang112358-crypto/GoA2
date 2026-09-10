@@ -5,7 +5,18 @@ using Goa2.Domain;
 namespace Goa2.Rules.Cards
 {
     internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects }
-    internal enum DefenseProgramKind { BlockNonAdjacentRanged, BlockRanged, NumericIgnoreMinions }
+    internal enum DefenseFollowup { None, DiscardAttacker, DiscardAttackerThenImmunity }
+    internal sealed class DefenseProgram
+    {
+        public readonly string Id;
+        public readonly int Version = 1, MinimumDistance;
+        public readonly bool Block, RequiresRanged, IgnoresMinions;
+        public readonly DefenseFollowup Followup;
+        public DefenseProgram(string id, bool block, int minimumDistance=1, DefenseFollowup followup=DefenseFollowup.None)
+        {
+            Id=id; Block=block; RequiresRanged=block; IgnoresMinions=!block; MinimumDistance=minimumDistance; Followup=followup;
+        }
+    }
     internal sealed class PrimaryProgram
     {
         public readonly string Id;
@@ -40,11 +51,13 @@ namespace Goa2.Rules.Cards
             ["sabina-01-拔枪"] = "选择攻击距离内且不与你相邻的一个单位为目标。",
             ["shargatha-02-快速突刺"] = "选择攻击距离内且与你不相邻的一个单位为目标。"
         };
-        private static readonly Dictionary<string,(string text, DefenseProgramKind kind)> Defenses = new Dictionary<string,(string, DefenseProgramKind)>
+        private static readonly Dictionary<string,(string text, int minimumEngine, DefenseProgram program)> Defenses = new Dictionary<string,(string, int, DefenseProgram)>
         {
-            ["wasp-07-抵挡屏障"] = ("如果攻击者不与你相邻，抵挡一次远程攻击。", DefenseProgramKind.BlockNonAdjacentRanged),
-            ["tigerclaw-18-躲闪"] = ("抵挡一次远程攻击", DefenseProgramKind.BlockRanged),
-            ["arien-13-挑战者"] = ("无视所有的小兵防御修正。", DefenseProgramKind.NumericIgnoreMinions)
+            ["wasp-07-抵挡屏障"] = ("如果攻击者不与你相邻，抵挡一次远程攻击。", 0, new DefenseProgram("block_non_adjacent_ranged",true,2)),
+            ["tigerclaw-18-躲闪"] = ("抵挡一次远程攻击", 0, new DefenseProgram("block_ranged",true)),
+            ["arien-13-挑战者"] = ("无视所有的小兵防御修正。", 0, new DefenseProgram("numeric_ignore_minions",false)),
+            ["wasp-08-偏转屏障"] = ("如果攻击者不与你相邻，抵挡一次远程攻击。若如此做，攻击者丢弃一张卡牌（如果可行）。", 4, new DefenseProgram("block_ranged_discard_attacker",true,2,DefenseFollowup.DiscardAttacker)),
+            ["wasp-10-反射屏障"] = ("如果攻击者不与你相邻，抵挡一次远程攻击。若如此做，攻击者丢弃一张卡牌（如果可行），此回合：你免疫不与你相邻的英雄的远程攻击。", 4, new DefenseProgram("block_ranged_discard_attacker_then_immunity",true,2,DefenseFollowup.DiscardAttackerThenImmunity))
         };
         private static readonly Dictionary<string,(string text, PrimaryProgram program)> Skills = new Dictionary<string,(string, PrimaryProgram)>
         {
@@ -59,7 +72,7 @@ namespace Goa2.Rules.Cards
                 card.Text=="选择与你相邻的一个英雄为目标。攻击后：取消与你相邻的敌方英雄技能卡上的激活效果。此回合：与你相邻的敌方英雄无法执行技能行动。") return ShiningBlade;
             return null;
         }
-        public static DefenseProgramKind? Defense(CardDefinition card, int engineVersion) => card.PrimaryFamily == "defense" &&
-            Defenses.TryGetValue(card.Id, out var binding) && card.Text == binding.text ? binding.kind : (DefenseProgramKind?)null;
+        public static DefenseProgram? Defense(CardDefinition card, int engineVersion) => card.PrimaryFamily == "defense" &&
+            Defenses.TryGetValue(card.Id, out var binding) && card.Text == binding.text && engineVersion >= binding.minimumEngine ? binding.program : null;
     }
 }
