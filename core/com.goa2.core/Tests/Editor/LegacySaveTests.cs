@@ -9,6 +9,24 @@ namespace Goa2.Tests
     public sealed class LegacySaveTests
     {
         [Test]
+        public void EngineSevenRiposteKeepsItsOriginalForcedDiscardWithoutNewAttackCosts()
+        {
+            var catalog=ContentLoader.LoadDirectory(ContentTests.Root());
+            string json=File.ReadAllText(Path.Combine(ContentTests.Root(),"tests","fixtures","engine7-riposte-pending.json"));
+            Assert.That(json,Does.Not.Contain("PreAttackDiscarded").And.Not.Contain("AttackRangeBonus"));
+            var game=LocalGameFactory.Restore(catalog,json); Assert.That(game.View(null).EngineVersion,Is.EqualTo(7));
+            Assert.That(game.ExportSave(),Is.EqualTo(new JsonStateCodec().Write(new JsonStateCodec().Read(json))));
+            Assert.That(game.View(0).Pending!.Kind,Is.EqualTo("forced_discard")); Assert.That(game.View(0).Pending!.Source,Is.Empty);
+            Assert.That(game.View(1).Pending!.Source,Is.EqualTo(ConditionalDefenseTests.Riposte));
+            Assert.That(game.View(null).SupportedPrimaryCards,Does.Not.Contain("brogan-02-投掷飞斧"));
+            var discard=SessionTests.Cmd(game,0,CommandKind.ForcedDiscard,"wasp-01-电击");
+            Assert.That(game.Execute(0,discard).Accepted,Is.True); string after=game.ExportSave();
+            Assert.That(game.Execute(0,discard).Duplicate,Is.True); Assert.That(game.ExportSave(),Is.EqualTo(after));
+            Assert.That(game.View(null).Events.Count(e=>e.Kind=="AttackResolved"),Is.EqualTo(1));
+            Assert.That(game.View(null).Events.Count(e=>e.Kind=="ForcedDiscardCompleted"),Is.EqualTo(1));
+            Assert.That(LocalGameFactory.Restore(catalog,after).ExportSave(),Is.EqualTo(after));
+        }
+        [Test]
         public void EngineSixWithOnlyAnUnimplementedDefenseStillWaitsWithoutSilentlyRunningANewCounter()
         {
             var catalog=ContentLoader.LoadDirectory(ContentTests.Root());

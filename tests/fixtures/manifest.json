@@ -45,6 +45,15 @@
       "input": "tests/fixtures/engine6-unsupported-defense-scenario.json",
       "input_sha256": "99c299d0ebba28bccace9a70a16b25bdbf3f371bab47a32d81f6212597af8a2b",
       "provenance": "tests/fixtures/engine6-unsupported-defense.md"
+    },
+    {
+      "engine_version": 7,
+      "accepted_commands": 11,
+      "save": "tests/fixtures/engine7-riposte-pending.json",
+      "save_sha256": "d2880cfa085b6115725cc309c9c204b74546822b75aec637d29970c7c2ed1c81",
+      "input": "tests/fixtures/engine7-riposte-scenario.json",
+      "input_sha256": "53c1af0b8aff8c3e426794c41912b349b4f6ae025509e134fa40f27686944802",
+      "provenance": "tests/fixtures/engine7-riposte-pending.md"
     }
   ]
 }
