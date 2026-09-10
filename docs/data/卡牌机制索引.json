@@ -583,7 +583,7 @@
         "choice_wording",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/brogan-02-投掷飞斧.md",
       "question_candidates": [
         "U-011",
@@ -614,7 +614,7 @@
         "choice_wording",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/brogan-04-投掷长矛.md",
       "question_candidates": [
         "U-011",
