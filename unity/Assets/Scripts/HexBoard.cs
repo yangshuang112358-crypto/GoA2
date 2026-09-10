@@ -121,10 +121,10 @@ namespace Goa2.Presentation
             foreach (var pair in labels)
             {
                 var center = Center(pair.unit.Position);
-                pair.label.style.display=radius >= (pair.unit.Seat.HasValue ? 5 : 9) ? DisplayStyle.Flex : DisplayStyle.None;
-                pair.label.style.left = center.x - radius; pair.label.style.top = center.y - radius * .62f;
-                pair.label.style.width = radius * 2; pair.label.style.height = radius * 1.24f;
-                pair.label.style.fontSize = Mathf.Clamp(radius * .78f, 8, 26);
+                pair.label.style.display=radius >= (pair.unit.Seat.HasValue ? 10 : 18) ? DisplayStyle.Flex : DisplayStyle.None;
+                pair.label.style.left = center.x - radius; pair.label.style.top = center.y - Mathf.Max(32,radius * 1.24f)/2;
+                pair.label.style.width = radius * 2; pair.label.style.height = Mathf.Max(32,radius * 1.24f);
+                pair.label.style.fontSize = Mathf.Clamp(radius * .78f, 26, 52);
             }
             MarkDirtyRepaint();
             ViewportChanged?.Invoke();

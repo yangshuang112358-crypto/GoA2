@@ -12,25 +12,30 @@ namespace Goa2.Presentation
         private void PrepareUpgradeSelection(GameView view)
         {
             if (!view.UpgradeOptions.Any(o => o.Color == upgradeColor)) upgradeColor = view.UpgradeOptions.FirstOrDefault()?.Color ?? "";
-            if (!view.UpgradeOptions.Any(o => o.CardId == upgradeCardId && o.Color == upgradeColor)) upgradeCardId = "";
+            if (!view.UpgradeOptions.Any(o => o.CardId == upgradeCardId)) upgradeCardId = "";
         }
         private void BuildUpgradeCards(VisualElement parent, GameView view)
         {
-            var row = Box("hand-row"); parent.Add(row);
-            var options = view.UpgradeOptions.Where(o => o.Color == upgradeColor).ToList();
-            foreach (var option in options)
+            var scroll=new ScrollView {name="goa-scroll-upgrades"};scroll.style.flexGrow=1;parent.Add(scroll);
+            bool purple=view.UpgradeOptions[0].Color=="purple";
+            foreach(string color in purple ? new[]{"purple"} : new[]{"red","green","blue"})
             {
-                string id = option.CardId; var card = catalog.Card(id);
-                var tile = Button("", () => { upgradeCardId = id; showDebug = false; Render(); }, "hand-card", "upgrade-card-" + id);
-                tile.AddToClassList("color-" + card.Color);
-                if (option == options.Last()) tile.AddToClassList("last-card");
-                if (upgradeCardId == id) tile.AddToClassList("chosen");
-                SeatLabel(tile, card.Name + " · " + option.CardLevel + "级", "card-name", 6, 36);
-                SeatLabel(tile, card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "body", 43, 27);
-                SeatLabel(tile, "先 " + card.Initiative + " · 移 " + Number(card.SecondaryMovement) + " / 防 " + Number(card.SecondaryDefense), "tiny", 77, 25);
-                SeatLabel(tile, "选此牌：永久" + option.Bonus + " +1", "card-zone", 107, 25);
-                SeatLabel(tile, "来自未选的“" + catalog.Card(option.RejectedCardId).Name + "”", "tiny", 132, 32);
-                row.Add(tile);
+                var row=Box("upgrade-row");row.name="upgrade-row-"+color;scroll.Add(row);
+                int level=view.UpgradeOptions[0].CardLevel;
+                foreach(var card in catalog.Cards.Where(c=>c.HeroId==view.Players[seat].HeroId && c.Color==color && c.Level==level).OrderBy(c=>c.Id,System.StringComparer.Ordinal))
+                {
+                    string id=card.Id;var option=view.UpgradeOptions.SingleOrDefault(o=>o.CardId==id);
+                    var tile=Button("",()=>{upgradeCardId=id;upgradeColor=card.Color;showDebug=false;Render();},"upgrade-card","upgrade-card-"+id);
+                    tile.AddToClassList("color-"+color);tile.SetEnabled(option!=null);
+                    tile.style.borderTopColor=CardColor(color);
+                    if(upgradeCardId==id) tile.AddToClassList("chosen");
+                    tile.Add(Text(card.Name+" · "+level+"级","card-name"));
+                    tile.Add(Text(card.PrimaryCategory+" "+(card.Exclamation ? "!" : card.PrimaryValue.ToString())+SubtypeText(card),"body"));
+                    tile.Add(Text("先 "+card.Initiative+" · 移 "+Number(card.SecondaryMovement)+" / 防 "+Number(card.SecondaryDefense),"tiny"));
+                    tile.Add(Text(option==null ? "此色本阶段已升级" : purple ? "8级唯一紫卡 · 仍须确认" : "永久"+option.Bonus+" +1（未选卡）","card-zone"));
+                    tile.tooltip=card.Text+(option==null || purple ? "" : "\n被动来自："+catalog.Card(option.RejectedCardId).Name);
+                    row.Add(tile);
+                }
             }
         }
         private void RenderRoundEnd(VisualElement parent, GameView view)
@@ -61,11 +66,11 @@ namespace Goa2.Presentation
                 if (color == upgradeColor) button.AddToClassList("chosen"); colors.Add(button);
             }
             var option = view.UpgradeOptions.First(o => o.Color == upgradeColor);
-            parent.Add(Text("第 " + option.HeroLevel + " 级升级：替换“" + catalog.Card(option.PreviousCardId).Name + "”。从下方两张候选中选一张。", "body"));
+            parent.Add(Text(option.Color=="purple" ? "英雄8级：选择紫卡后确认领取。" : "第 "+option.HeroLevel+" 级：从三色候选中选择一张可用卡。灰色候选不可重复升级。", "body"));
             var chosen = view.UpgradeOptions.SingleOrDefault(o => o.CardId == upgradeCardId);
             if (chosen == null) return;
             RenderCardDetail(parent, catalog.Card(chosen.CardId));
-            parent.Add(Text("获得永久" + chosen.Bonus + " +1，来自未选候选“" + catalog.Card(chosen.RejectedCardId).Name + "”。", "body"));
+            if(chosen.Color!="purple") parent.Add(Text("获得永久" + chosen.Bonus + " +1，来自未选候选“" + catalog.Card(chosen.RejectedCardId).Name + "”。", "body"));
             Confirm(parent, "确认升级为 " + catalog.Card(chosen.CardId).Name, () => Submit(CommandKind.ChooseUpgrade, chosen.CardId));
         }
         private bool RenderRoundMinionChoice(VisualElement parent, GameView view)

@@ -21,20 +21,8 @@ function Assert-Ui([bool]$Condition, [string]$Description) {
     Write-Output "PASS $Description"
 }
 function Click-Ui([string]$Caption, [string]$Element) {
-    for ($goaAttempt=0; $goaAttempt -lt 24; $goaAttempt++) {
-        $goaUi = Read-Ui
-        $goaButtons = @($goaUi.Buttons | Where-Object { $_.Enabled -and $(if ($Element) { $_.Name -eq $Element } else { $_.Text -match $Caption }) })
-        if ($goaButtons.Count -ne 1) { throw "Expected one enabled UI target: $Caption / $Element, got $($goaButtons.Count)" }
-        $goaButton = $goaButtons[0]
-        if ($goaButton.Visible) {
-            & "$PSScriptRoot/qa-player.ps1" -Action Click -X ([int]($goaButton.Bounds.x+$goaButton.Bounds.width/2)) -Y ([int]($goaButton.Bounds.y+$goaButton.Bounds.height/2)) | Out-Null
-            return
-        }
-        # Hidden targets in this scenario live in the right scroll panel.
-        $goaDelta = if ($goaButton.Bounds.y -lt 150) { 360 } else { -360 }
-        & "$PSScriptRoot/qa-player.ps1" -Action Scroll -X ($Width-75) -Y ($Height-150) -WheelDelta $goaDelta | Out-Null
-    }
-    throw "Could not scroll UI target into view: $Caption / $Element"
+    if($Element) { & "$PSScriptRoot/qa-player.ps1" -Action Click -Element $Element -AutoScroll | Out-Null }
+    else { & "$PSScriptRoot/qa-player.ps1" -Action Click -Caption $Caption -AutoScroll | Out-Null }
 }
 function Press-Ui([string]$Key) { & "$PSScriptRoot/qa-player.ps1" -Action Key -Key $Key | Out-Null }
 function Read-TestSave {
@@ -79,8 +67,7 @@ try {
     $goaPanned = Read-Ui
     Press-Ui '3'; $goaUi = Read-Ui
     Assert-Ui ([Math]::Abs($goaPanned.Focus.x-$goaZoomed.Focus.x) -gt 1 -and $goaUi.Zoom -eq $goaPanned.Zoom -and $goaUi.Focus.x -eq $goaPanned.Focus.x -and $goaUi.Focus.y -eq $goaPanned.Focus.y) 'Panning and seat changes preserve the map viewport'
-    $goaField = $goaUi.Fields | Where-Object Name -eq 'debug-gold-delta'
-    & "$PSScriptRoot/qa-player.ps1" -Action Click -X ([int]($goaField.Bounds.x+$goaField.Bounds.width-70)) -Y ([int]($goaField.Bounds.y+$goaField.Bounds.height/2)) | Out-Null
+    Click-Ui -Element 'debug-gold-delta'
     Press-Ui '1'; Click-Ui '^应用金币变化$'; $goaSave = Read-TestSave
     Assert-Ui ((Read-Ui).Seat -eq 2 -and $goaSave.Players[2].Gold -gt 0 -and $goaSave.Players[0].Gold -eq 0) 'Numeric input does not trigger a seat shortcut'
     Click-Ui '^在地图选择落点$'

@@ -60,7 +60,7 @@ try {
     $goaState = Save-State
     Check ($goaState.Phase -eq 5 -and $goaState.RoundEnd.Stage -eq 'upgrades' -and $goaState.Players[0].Level -eq 4 -and $goaState.Players[0].Gold -eq 0 -and $goaState.Units.Count -eq 15) 'Final birth resumes upgrading exactly once and preserves all eleven new minions'
     & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 1 | Out-Null
-    Check (@((Read-Ui).Buttons | Where-Object { $_.Name -like 'upgrade-card-*' -and $_.Visible }).Count -eq 2) 'Correct player receives their private upgrade candidates after birth'
+    Check (@((Read-Ui).Buttons | Where-Object { $_.Name -like 'upgrade-card-*' }).Count -eq 6) 'Correct player receives all six private upgrade candidates after birth'
     Click -Element 'upgrade-card-wasp-03-电能波'; Click '^确认升级为 电能波$'
     Click -Element 'upgrade-card-wasp-08-偏转屏障'; Click '^确认升级为 偏转屏障$'
     Click -Element 'upgrade-card-wasp-15-引力控制'; Click '^确认升级为 引力控制$'

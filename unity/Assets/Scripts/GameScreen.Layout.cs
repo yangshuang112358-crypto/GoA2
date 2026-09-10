@@ -15,7 +15,9 @@ namespace Goa2.Presentation
         private HexBoard? board;
         private void Update()
         {
-            if (session == null || startupFailed || galleryOpen || publicCardsOpen || newMatchPending || debugPresetsOpen || IsEditingText()) return;
+            if (session == null || startupFailed || galleryOpen || publicCardsOpen || historyOpen || newMatchPending || debugPresetsOpen || IsEditingText()) return;
+            if (Input.GetKeyDown(KeyCode.Space) && !ScenarioRunning && confirmButton!=null && confirmButton.enabledInHierarchy)
+            { var action=confirmAction;confirmAction=null;action?.Invoke();return; }
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) SwitchSeat(0);
             if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)) SwitchSeat(1);
             if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)) SwitchSeat(2);
@@ -55,9 +57,11 @@ namespace Goa2.Presentation
         }
         private void BuildLayout(GameView view)
         {
-            var shell = Box("shell"); root.Add(shell);
+            var screenScroll=new ScrollView(ScrollViewMode.VerticalAndHorizontal) {name="goa-scroll-screen"};screenScroll.style.flexGrow=1;root.Add(screenScroll);
+            var shell = Box("shell"); shell.style.width=Mathf.Max(1280,Screen.width-18);shell.style.minWidth=Mathf.Max(1280,Screen.width-18);
+            shell.style.height=Mathf.Max(1000,Screen.height-18);shell.style.minHeight=Mathf.Max(1000,Screen.height-18);shell.style.flexShrink=0;screenScroll.Add(shell);
             var header = Box("header"); shell.Add(header);
-            var brand = Box("brand"); brand.Add(Text("GOA II", "brand-title")); brand.Add(Text("GOA2V1 · 开发版本", "eyebrow")); header.Add(brand);
+            var brand = Box("brand"); brand.Add(Text("GOA II", "brand-title")); brand.Add(Text("GOA2V1", "eyebrow")); header.Add(brand);
             var phase = Box("phase-banner");
             phase.Add(Text("第 " + view.Round + " 轮 · 回合 " + view.Turn + "/4", "muted"));
             var stageTitle=Text(PhaseName(view), "phase-title"); stageTitle.name="match-stage"; phase.Add(stageTitle); header.Add(phase);
@@ -71,8 +75,7 @@ namespace Goa2.Presentation
             var workspace = Box("workspace"); shell.Add(workspace);
             BuildRoster(workspace, view);
             var center = Box("center-column"); workspace.Add(center);
-            BuildRevealedStrip(center, view);
-            BuildBoard(center, view);
+            if(view.UpgradeOptions.Count==0) { BuildRevealedStrip(center, view); BuildBoard(center, view); }
             BuildHand(center, view);
             BuildRightPanel(workspace, view);
             var footer = Box("footer"); footer.Add(Text(notice, "tiny"));
@@ -95,22 +98,22 @@ namespace Goa2.Presentation
                 int target = player.Seat;
                 var card = Button("", () => SwitchSeat(target), "seat-card");
                 card.name = "seat-" + (target + 1);
-                int bonusHeight=((player.PermanentBonuses.Count+2)/3)*22;
-                card.style.height = (player.DiscardColors.Count > 0 ? 174 : 136)+bonusHeight;
-                card.style.minHeight = (player.DiscardColors.Count > 0 ? 174 : 136)+bonusHeight;
+                int bonusHeight=((player.PermanentBonuses.Count+1)/2)*34;
+                card.style.height = (player.DiscardColors.Count > 0 ? 254 : 214)+bonusHeight;
+                card.style.minHeight = (player.DiscardColors.Count > 0 ? 254 : 214)+bonusHeight;
                 card.AddToClassList(player.Team == Team.Blue ? "blue-seat" : "red-seat");
                 if (seat == target) card.AddToClassList("selected-seat");
                 string captain = target == view.BlueCaptain || target == view.RedCaptain ? " · 队长" : "";
-                SeatLabel(card, (player.Team == Team.Blue ? "蓝队" : "红队") + " / " + (target + 1) + captain, "eyebrow", 5, 22);
-                SeatLabel(card, HeroName(player.HeroId) + (player.AwaitingRespawn ? " · 待复活" : view.UpgradingSeats.Contains(target) ? " · 待升级" : view.ActiveSeat == target ? " · 行动" : ""), "seat-name", 29, 30);
-                SeatLabel(card, "Lv." + player.Level + "   " + player.Gold + " 金   手牌 " + player.HandCount, "tiny", 63, 24);
+                SeatLabel(card, (player.Team == Team.Blue ? "蓝队" : "红队") + " / " + (target + 1) + captain, "eyebrow", 5, 34);
+                SeatLabel(card, HeroName(player.HeroId) + (player.AwaitingRespawn ? " · 待复活" : view.UpgradingSeats.Contains(target) ? " · 待升级" : view.ActiveSeat == target ? " · 行动" : ""), "seat-name", 43, 70);
+                SeatLabel(card, "Lv." + player.Level + "  " + player.Gold + " 金 · 手牌 " + player.HandCount, "tiny", 117, 34);
                 if (bonusHeight>0)
                 {
                     var bonuses=player.PermanentBonuses.Select(p => p.Key + "+" + p.Value).ToList();
-                    for(int line=0;line*3<bonuses.Count;line++) SeatLabel(card,string.Join(" · ",bonuses.Skip(line*3).Take(3)),"bonus-line",90+line*22,22);
+                    for(int line=0;line*2<bonuses.Count;line++) SeatLabel(card,string.Join(" · ",bonuses.Skip(line*2).Take(2)),"bonus-line",155+line*34,34);
                 }
                 var rounds = Box("round-dots"); card.Add(rounds);
-                rounds.style.top=99+bonusHeight;
+                rounds.style.top=164+bonusHeight;
                 for (int turn = 1; turn <= 4; turn++)
                 {
                     int cycle = turn;
@@ -120,10 +123,11 @@ namespace Goa2.Presentation
                     if (play != null) { dot.style.backgroundColor = CardColor(play.Color); dot.AddToClassList("filled-dot"); }
                     rounds.Add(dot);
                 }
+                AddPurpleDot(rounds,player);
                 if (player.DiscardColors.Count > 0)
                 {
                     var discards = Box("discard-dots"); card.Add(discards); discards.Add(Text("弃", "tiny"));
-                    discards.style.top=137+bonusHeight;
+                    discards.style.top=211+bonusHeight;
                     foreach (string color in player.DiscardColors)
                     {
                         var dot = Box("discard-dot"); dot.style.backgroundColor = CardColor(color); dot.tooltip = "弃牌 · " + ColorName(color); discards.Add(dot);
@@ -149,20 +153,23 @@ namespace Goa2.Presentation
             if (topExpanded) heading.Add(Button("全部记录", () => { publicCardsOpen = true; Render(); }, "compact-button"));
             heading.Add(Button(topExpanded ? "▲" : "▼ 展开出牌区", () => { topExpanded = !topExpanded; Render(); }, "edge-button", "toggle-top"));
             if (!topExpanded) return;
-            var row = Box("revealed-row"); panel.Add(row);
-            foreach (var player in view.Players)
+            var row = new ScrollView(ScrollViewMode.VerticalAndHorizontal) {name="goa-scroll-revealed"};row.AddToClassList("revealed-row");row.contentContainer.style.flexDirection=FlexDirection.Row;panel.Add(row);
+            foreach (var player in view.Players.OrderByDescending(p=> {var play=latest==null ? null : p.Plays.LastOrDefault(x=>x.Round==latest.Round && x.Turn==latest.Turn);return play==null ? int.MinValue : catalog.Card(play.CardId).Initiative+Bonus(p,"先攻");}))
             {
                 var play = latest == null ? null : player.Plays.LastOrDefault(p => p.Round == latest.Round && p.Turn == latest.Turn);
                 var tile = Box("revealed-card"); row.Add(tile);
+                tile.name="revealed-seat-"+(player.Seat+1);
+                var teamStrip=Box("team-stripe");teamStrip.name="revealed-team-"+(player.Seat+1);teamStrip.style.backgroundColor=player.Team==Team.Blue ? new Color(.15f,.45f,.95f) : new Color(.9f,.2f,.25f);tile.Add(teamStrip);
+                var colorStrip=Box("card-color-stripe");colorStrip.name="revealed-color-"+(player.Seat+1);tile.Add(colorStrip);
                 tile.Add(Text((player.Seat + 1) + " · " + HeroName(player.HeroId), "eyebrow"));
                 if (play == null) { tile.Add(Text(latest == null ? "尚未揭示" : "本回合未出牌", "muted")); continue; }
                 var card = catalog.Card(play.CardId); tile.style.borderTopColor = CardColor(card.Color);
+                colorStrip.style.backgroundColor=CardColor(card.Color);
                 if (view.ActiveSeat == player.Seat) tile.AddToClassList("active-public-card");
-                tile.Add(Text(card.Name + "  " + card.Initiative, "public-card-name"));
-                tile.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "tiny"));
+                tile.Add(Text(card.Name, "public-card-name"));
+                CardNumbers(tile,card,player,true,"revealed-"+player.Seat);
                 var text = new ScrollView { name = "goa-scroll-public-" + player.Seat + "-" + play.Round + "-" + play.Turn };
                 text.AddToClassList("public-card-text"); text.Add(Text(card.Text, "card-rules")); tile.Add(text);
-                tile.Add(Text("移 " + Number(card.SecondaryMovement) + " · 防 " + Number(card.SecondaryDefense), "tiny"));
             }
         }
         private void BuildBoard(VisualElement parent, GameView view)
@@ -192,13 +199,14 @@ namespace Goa2.Presentation
         {
             PrepareUpgradeSelection(view);
             var panel = Box(bottomExpanded ? "hand" : "collapsed-row"); parent.Add(panel);
+            if(view.UpgradeOptions.Count>0) panel.AddToClassList("upgrade-panel");
             var heading = Box("panel-heading"); panel.Add(heading);
-            heading.Add(Text((view.UpgradeOptions.Count > 0 ? "升级候选 · " + ColorName(upgradeColor) + "色 · " : "手牌 · ") + PlayerName(seat), "section-title"));
+            heading.Add(Text((view.UpgradeOptions.Count > 0 ? "升级候选 · " : "手牌 · ") + PlayerName(seat), "section-title"));
             heading.Add(Button(bottomExpanded ? "▼" : "▲ 展开手牌", () => { bottomExpanded = !bottomExpanded; Render(); }, "edge-button", "toggle-bottom"));
             if (!bottomExpanded) return;
             if (view.UpgradeOptions.Count > 0) { BuildUpgradeCards(panel, view); return; }
             if (view.OwnCards.Count == 0) { panel.Add(Text("选择英雄后获得五张起始牌", "empty-hand")); return; }
-            var row = Box("hand-row"); panel.Add(row);
+            var row = new ScrollView(ScrollViewMode.VerticalAndHorizontal) {name="goa-scroll-hand"};row.AddToClassList("hand-row");row.contentContainer.style.flexDirection=FlexDirection.Row;panel.Add(row);
             foreach (var instance in view.OwnCards)
             {
                 var card = catalog.Card(instance.CardId);
@@ -215,22 +223,13 @@ namespace Goa2.Presentation
                 if (instance == view.OwnCards.Last()) tile.AddToClassList("last-card");
                 if (instance.Zone == CardZone.Selected || defenseCardId == card.Id || discardCardId == card.Id) tile.AddToClassList("chosen");
                 if (instance.Zone == CardZone.PlayedResolved || instance.Zone == CardZone.Discarded) tile.AddToClassList("spent");
-                SeatLabel(tile, card.Name, "card-name", 4, 50);
+                tile.Add(Text(card.Name,"card-name"));
                 string actionValue=card.Exclamation ? "!" : card.PrimaryValue.ToString();
-                var primary=SeatLabel(tile,card.PrimaryCategory+" "+actionValue,"body",60,25);
-                primary.style.whiteSpace=WhiteSpace.NoWrap;
-                tile.RegisterCallback<GeometryChangedEvent>(e =>
-                {
-                    bool narrow=e.newRect.width<106;
-                    primary.style.fontSize=narrow ? 14 : 17;
-                    primary.text=card.PrimaryCategory+(narrow ? "" : " ")+actionValue;
-                });
-                var stats=SeatLabel(tile, "先 " + card.Initiative + "\n移" + Number(card.SecondaryMovement) + " · 防" + Number(card.SecondaryDefense), "tiny", 90, 40);
-                stats.style.whiteSpace=WhiteSpace.NoWrap;
+                CardNumbers(tile,card,view.Players[seat],instance.Zone==CardZone.Selected || defenseCardId==card.Id,"hand-"+card.Color);
                 tile.tooltip=card.Name+"\n"+card.PrimaryCategory+" "+actionValue+SubtypeText(card)+"\n"+card.Text;
                 string status = instance.Zone == CardZone.Selected ? (view.QuickSelection ? "已选 · 等待其他人" : view.Players[seat].Confirmed ? "已确认" : "已选 · 待确认") : ZoneName(instance);
                 if(view.DefenseRestrictions.TryGetValue(card.Id,out string restriction)) { status="本次不能防御"; tile.tooltip+="\n"+DefenseRestrictionText(restriction); }
-                SeatLabel(tile, status, "card-zone", 140, 32).style.whiteSpace=WhiteSpace.Normal; row.Add(tile);
+                tile.Add(Text(status,"card-zone")); row.Add(tile);
             }
         }
         private void BuildRightPanel(VisualElement parent, GameView view)

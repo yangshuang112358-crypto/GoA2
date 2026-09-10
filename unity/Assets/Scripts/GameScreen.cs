@@ -115,6 +115,7 @@ namespace Goa2.Presentation
             chosenHero = null; chosenCell = null; moveMode = null; initiativeSeat = null; passPending = false; deploymentSeat = -1;
             defenseCardId = ""; discardCardId = ""; declineDefensePending = false;
             upgradeCardId = ""; upgradeColor = "";
+            debugAttack = false;
         }
         private void Submit(CommandKind kind, string value = "", int target = -1, Hex destination = default, MoveMode mode = MoveMode.Secondary)
         {
@@ -172,19 +173,27 @@ namespace Goa2.Presentation
         }
         private void Render()
         {
+            if(!spaceGuardInstalled)
+            {
+                root.RegisterCallback<KeyDownEvent>(e=> {if(e.keyCode==KeyCode.Space && !IsEditingText()) { e.StopImmediatePropagation();e.PreventDefault(); }},TrickleDown.TrickleDown);
+                spaceGuardInstalled=true;
+            }
             root.Query<ScrollView>().ForEach(scroll => { if (scroll.name.StartsWith("goa-scroll-")) scrollPositions[scroll.name] = scroll.scrollOffset; });
             root.Clear();
+            confirmAction=null; confirmButton=null;
             renderedView = session.View(seat);
             if (!renderedView.EffectAreas.ContainsKey(effectAreaId)) effectAreaId="";
             BuildLayout(renderedView);
             if (galleryOpen) RenderGallery();
             if (publicCardsOpen) RenderPublicCards(renderedView);
+            if (historyOpen) RenderHistory(renderedView);
             if (newMatchPending) RenderNewMatchDialog();
             if (debugPresetsOpen) RenderDebugPositions();
             root.Query<ScrollView>().ForEach(scroll =>
             {
                 if (scrollPositions.TryGetValue(scroll.name, out var offset)) scroll.schedule.Execute(() => scroll.scrollOffset = offset);
                 scroll.verticalScroller.valueChanged += _ => RequestCapture();
+                scroll.horizontalScroller.valueChanged += _ => RequestCapture();
             });
             RequestCapture();
         }
@@ -219,10 +228,18 @@ namespace Goa2.Presentation
                 ActiveEffectCount=renderedView.Effects.Count, EffectAreaId=effectAreaId, EffectAreaCells=SelectedEffectArea(renderedView).Count,
                 PrimaryRestriction=renderedView.PrimaryRestriction,
                 AttackSourceSummary=root.Q<Label>("attack-card-text-sources")?.text ?? "" };
-            root.Query<Button>().ForEach(button => layout.Buttons.Add(new QaButton { Name = button.name, Text = button.text, Bounds = button.worldBound, Enabled = button.enabledInHierarchy, Visible = VisibleCenter(button) }));
-            root.Query<Label>().ForEach(label => { if(!string.IsNullOrEmpty(label.name)) layout.Labels.Add(new QaLabel {Name=label.name,Text=label.text,Bounds=label.worldBound,Visible=VisibleCenter(label)}); });
-            root.Query<IntegerField>().ForEach(field => layout.Fields.Add(new QaField { Name = field.name, Bounds = field.worldBound, Value = field.value }));
-            root.Query<TextField>().ForEach(field => { if(!string.IsNullOrEmpty(field.name)) layout.TextFields.Add(new QaTextField {Name=field.name,Bounds=field.worldBound,Value=field.value}); });
+            root.Query<Button>().ForEach(button => layout.Buttons.Add(new QaButton { Name = button.name, Text = button.text, Bounds = button.worldBound, Enabled = button.enabledInHierarchy, Visible = VisibleCenter(button), Viewports=ScrollViewports(button) }));
+            root.Query<Label>().ForEach(label => { if(!string.IsNullOrEmpty(label.name)) layout.Labels.Add(new QaLabel {Name=label.name,Text=label.text,Bounds=label.worldBound,Visible=VisibleCenter(label),FontSize=label.resolvedStyle.fontSize,Color=label.resolvedStyle.color}); });
+            layout.MinimumFontSize=root.Query<TextElement>().ToList().Where(e=>!string.IsNullOrEmpty(e.text) && VisibleCenter(e)).Select(e=>e.resolvedStyle.fontSize).DefaultIfEmpty(26).Min();
+            root.Query<VisualElement>().ForEach(e=> {if(e.name.StartsWith("purple-") || e.name.StartsWith("revealed-") || e.name.StartsWith("gallery-row-") || e.name.StartsWith("upgrade-row-") || e.name.StartsWith("hand-")) layout.Elements.Add(new QaElement {Name=e.name,Bounds=e.worldBound,Visible=VisibleCenter(e),Background=e.resolvedStyle.backgroundColor,BorderTop=e.resolvedStyle.borderTopWidth});});
+            root.Query<ScrollView>().ForEach(scroll=>
+            {
+                var slider=scroll.horizontalScroller.Q<Slider>();var thumb=slider?.Q(className:"unity-base-slider__dragger");
+                if(slider!=null && thumb!=null && scroll.horizontalScroller.highValue>0)
+                    layout.Scrolls.Add(new QaScroll {Name=scroll.name,Viewport=scroll.contentViewport.worldBound,Track=slider.worldBound,Thumb=thumb.worldBound,Value=scroll.horizontalScroller.value,Maximum=scroll.horizontalScroller.highValue});
+            });
+            root.Query<IntegerField>().ForEach(field => layout.Fields.Add(new QaField { Name = field.name, Bounds = field.worldBound, Value = field.value, Enabled=field.enabledInHierarchy,Visible=VisibleCenter(field),Viewports=ScrollViewports(field) }));
+            root.Query<TextField>().ForEach(field => { if(!string.IsNullOrEmpty(field.name)) layout.TextFields.Add(new QaTextField {Name=field.name,Bounds=field.worldBound,Value=field.value,Enabled=field.enabledInHierarchy,Visible=VisibleCenter(field),Viewports=ScrollViewports(field)}); });
             if (board != null)
             {
                 var legal = new HashSet<Hex>(LegalCells(renderedView));
@@ -239,7 +256,10 @@ namespace Goa2.Presentation
             if (element.resolvedStyle.visibility != Visibility.Visible || element.resolvedStyle.display == DisplayStyle.None) return false;
             Vector2 center = element.worldBound.center;
             for (var ancestor = element.parent; ancestor != null; ancestor = ancestor.parent)
+            {
+                if(ancestor.resolvedStyle.display==DisplayStyle.None) return false;
                 if (ancestor is ScrollView scroll && !scroll.contentViewport.worldBound.Contains(center)) return false;
+            }
             if (center.x < 0 || center.y < 0 || center.x >= Screen.width || center.y >= Screen.height) return false;
             if (element is Button)
             {
@@ -251,24 +271,37 @@ namespace Goa2.Presentation
             }
             return true;
         }
+        private static List<Rect> ScrollViewports(VisualElement element)
+        {
+            var result=new List<Rect>();
+            for(var ancestor=element.parent;ancestor!=null;ancestor=ancestor.parent)
+                if(ancestor is ScrollView scroll) result.Add(scroll.contentViewport.worldBound);
+            result.Reverse();return result;
+        }
         [Serializable] private sealed class QaLayout
         {
             public int Width, Height, Seat, Round, Turn, ActiveSeat, FilledPlayDots, DiscardDotCount; public long Revision; public float Zoom, HexRadius; public Vector2 Focus; public Rect BoardBounds;
             public string Phase = "", SelectedCell = "", RevealedHeading = "", EffectAreaId="", PrimaryRestriction="", AttackSourceSummary="";
             public int ActiveEffectCount, EffectAreaCells;
+            public float MinimumFontSize;
+            public List<QaElement> Elements=new List<QaElement>();
+            public List<QaScroll> Scrolls=new List<QaScroll>();
             public bool LeftExpanded, RightExpanded, TopExpanded, BottomExpanded;
             public List<QaButton> Buttons = new List<QaButton>(); public List<QaCell> Cells = new List<QaCell>();
             public List<QaField> Fields = new List<QaField>();
             public List<QaTextField> TextFields = new List<QaTextField>();
             public List<QaLabel> Labels = new List<QaLabel>();
         }
-        [Serializable] private sealed class QaButton { public string Name = "", Text = ""; public Rect Bounds; public bool Enabled, Visible; }
+        [Serializable] private sealed class QaButton { public string Name = "", Text = ""; public Rect Bounds; public bool Enabled, Visible;public List<Rect> Viewports=new List<Rect>(); }
         [Serializable] private sealed class QaCell { public int X, Y; public Vector2 Center; public bool Legal; }
-        [Serializable] private sealed class QaField { public string Name = ""; public Rect Bounds; public int Value; }
-        [Serializable] private sealed class QaTextField { public string Name="",Value=""; public Rect Bounds; }
-        [Serializable] private sealed class QaLabel { public string Name="", Text=""; public Rect Bounds; public bool Visible; }
+        [Serializable] private sealed class QaField { public string Name = ""; public Rect Bounds; public int Value; public bool Enabled,Visible;public List<Rect> Viewports=new List<Rect>(); }
+        [Serializable] private sealed class QaTextField { public string Name="",Value=""; public Rect Bounds;public bool Enabled,Visible;public List<Rect> Viewports=new List<Rect>(); }
+        [Serializable] private sealed class QaLabel { public string Name="", Text=""; public Rect Bounds; public bool Visible; public float FontSize; public Color Color; }
+        [Serializable] private sealed class QaElement {public string Name="";public Rect Bounds; public bool Visible; public Color Background;public float BorderTop;}
+        [Serializable] private sealed class QaScroll {public string Name="";public Rect Viewport,Track,Thumb;public float Value,Maximum;}
         private List<Hex> LegalCells(GameView view)
         {
+            if (debugAttack) return view.Units.Where(u=>view.DebugAttackTargets.Contains(u.Id)).Select(u=>u.Position).ToList();
             if (debugTeleport && view.DebugTeleports.TryGetValue(debugUnitId, out var teleportTargets)) return teleportTargets;
             if (view.Pending?.Kind == "attack_target" && view.Pending.ChooserSeat == seat)
                 return view.Units.Where(u => view.AttackTargets.Contains(u.Id)).Select(u => u.Position).ToList();
@@ -349,7 +382,7 @@ namespace Goa2.Presentation
                         if (selected != null)
                         {
                             RenderCardDetail(sidebar, catalog.Card(selected.CardId));
-                            if (!view.QuickSelection) sidebar.Add(Button("确认出牌", () => Submit(CommandKind.ConfirmCard), "primary-button"));
+                            if (!view.QuickSelection) Confirm(sidebar,"确认出牌", () => Submit(CommandKind.ConfirmCard));
                         }
                     }
                     break;
@@ -406,7 +439,9 @@ namespace Goa2.Presentation
         private void Confirm(VisualElement parent, string caption, Action action)
         {
             var box = Box("confirm-box"); parent.Add(box);
-            box.Add(Button(caption, action, "primary-button"));
+            confirmAction=action;
+            confirmButton=Button(caption,action,"primary-button","confirm-current");
+            box.Add(confirmButton);
             box.Add(Button("取消", () => { ClearPending(); Render(); }, "quiet-button"));
         }
         private void RenderCardDetail(VisualElement parent, CardDefinition card)
@@ -421,8 +456,10 @@ namespace Goa2.Presentation
         }
         private void RenderRecentEvents(VisualElement parent, GameView view)
         {
-            var box = Box("event-box"); box.Add(Text("最近记录", "eyebrow"));
-            foreach (var entry in view.Events.TakeLast(4))
+            var box = Box("event-box");
+            var heading=Box("panel-heading");box.Add(heading);heading.Add(Text("最近记录","eyebrow"));
+            heading.Add(Button("展开",()=>{historyOpen=true;historyRound=view.Round;Render();},"compact-button","history-open"));
+            foreach (var entry in view.Events.TakeLast(12))
                 box.Add(Text(EventText(entry), "tiny"));
             parent.Add(box);
         }
@@ -431,6 +468,8 @@ namespace Goa2.Presentation
             string actor = entry.Seat.HasValue ? "席位 " + (entry.Seat.Value + 1) : "";
             switch (entry.Kind)
             {
+                case "DebugAttackStarted": return actor+"开始调试基础攻击 · "+entry.Detail;
+                case "DebugAttackCompleted": return actor+"完成调试攻击";
                 case "HeroChosen": return actor + "选择 " + HeroName(entry.Detail);
                 case "HeroDeployed": return actor + "已出生";
                 case "CardSelected": return actor + "更新了暗选";
@@ -563,7 +602,14 @@ namespace Goa2.Presentation
             Button supportedButton=null!;
             var count=Text("","muted");count.name="gallery-count";overlay.Add(count);
             var scroll = new ScrollView(); scroll.AddToClassList("gallery-scroll"); overlay.Add(scroll);
-            scroll.contentContainer.AddToClassList("gallery-grid");
+            var colorRows=new Dictionary<string,ScrollView>();
+            foreach(string color in new[]{"gold","silver","red","green","blue","purple"})
+            {
+                scroll.Add(Text(ColorName(color)+"色","section-title"));
+                var colorRow=new ScrollView(ScrollViewMode.Horizontal) {name="gallery-row-"+color};
+                colorRow.AddToClassList("gallery-color-row");colorRow.contentContainer.style.flexDirection=FlexDirection.Row;
+                scroll.Add(colorRow);colorRows[color]=colorRow;
+            }
             var tiles=new List<(CardDefinition card,VisualElement tile)>();
             var empty=Text("没有匹配卡牌。请修改关键词或筛选条件。","body");empty.name="gallery-empty";overlay.Add(empty);
             void FilterCards()
@@ -587,6 +633,7 @@ namespace Goa2.Presentation
             foreach (var card in catalog.Cards.Where(c => galleryHero=="" || c.HeroId == galleryHero))
             {
                 var tile = Box("gallery-card"); tile.AddToClassList("color-" + card.Color);
+                tile.style.borderTopColor=CardColor(card.Color);
                 var name=Text(card.Name,"card-name");name.name="gallery-card-name-"+card.Id;tile.Add(name);
                 tile.Add(Text((card.Color=="purple" ? "紫卡 · 英雄8级获得" : card.Level.HasValue ? "卡牌等级 " + card.Level : "基础牌") + "    先攻 " + card.Initiative, "muted"));
                 if(galleryHero=="") tile.Add(Text(HeroName(card.HeroId),"tiny"));
@@ -594,7 +641,7 @@ namespace Goa2.Presentation
                 tile.Add(Text(card.Text, "card-rules"));
                 tile.Add(Text("次要移动 " + Number(card.SecondaryMovement) + "    次要防御 " + Number(card.SecondaryDefense), "tiny"));
                 tile.Add(Text("底部被动 " + (card.Passive ?? "无"), "tiny"));
-                tile.Add(Text(renderedView.SupportedPrimaryCards.Contains(card.Id) ? "主要行动 · 已开放" : renderedView.SupportedDefenseCards.Contains(card.Id) ? "防御响应 · 已开放" : "牌文效果 · 待实施", "status-badge")); scroll.Add(tile);
+                tile.Add(Text(renderedView.SupportedPrimaryCards.Contains(card.Id) ? "主要行动 · 已开放" : renderedView.SupportedDefenseCards.Contains(card.Id) ? "防御响应 · 已开放" : "牌文效果 · 待实施", "status-badge")); colorRows[card.Color].Add(tile);
                 tiles.Add((card,tile));
             }
             FilterCards();

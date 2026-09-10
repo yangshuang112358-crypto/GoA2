@@ -8,6 +8,8 @@ namespace Goa2.Presentation
     public sealed partial class GameScreen
     {
         private bool debugTeleport;
+        private bool debugAttack;
+        private int debugAttackValue=5;
         private string debugUnitId = "";
         private int debugGold = 10;
         private string debugCardId = "";
@@ -24,6 +26,17 @@ namespace Goa2.Presentation
             if (view.Phase == Phase.Finished) { RenderVictory(parent, view); return; }
             if (!view.Sandbox) { parent.Add(Text("这是普通确认对局。创建新的测试对局后可使用调试工具。", "body")); return; }
             parent.Add(Text(PlayerName(seat), "section-title"));
+            var attackValue=new IntegerField("基础攻击") {value=debugAttackValue,name="debug-attack-value"};attackValue.AddToClassList("debug-input");
+            attackValue.RegisterValueChangedCallback(e=>debugAttackValue=e.newValue);parent.Add(attackValue);
+            var attack=Button(debugAttack ? "取消攻击选点" : "攻击 · 地图选单位",()=>{bool next=!debugAttack;ClearPending();debugTeleport=false;debugAttack=next;Render();},"primary-button","debug-attack");
+            attack.SetEnabled(debugAttack || view.DebugAttackTargets.Count>0);parent.Add(attack);
+            parent.Add(Text("暗选阶段使用基础非远程攻击，选任意合法敌方单位；忽略距离，保留加成、小兵保护、防御及击败奖励，不消耗出牌。","tiny"));
+            if(debugAttack && chosenCell.HasValue)
+            {
+                var victim=view.Units.SingleOrDefault(u=>u.Position==chosenCell.Value && view.DebugAttackTargets.Contains(u.Id));
+                if(victim!=null) Confirm(parent,"确认攻击 "+(victim.Seat.HasValue ? PlayerName(victim.Seat.Value) : MinionName(victim)),()=>
+                { showDebug=false;Submit(CommandKind.DebugAttack,victim.Id+"|"+debugAttackValue); });
+            }
             var quick = new Toggle("四人选完立即揭示") { value = view.QuickSelection };
             quick.AddToClassList("debug-toggle");
             quick.RegisterValueChangedCallback(e => Submit(CommandKind.SetQuickSelection, e.newValue ? "on" : "off")); parent.Add(quick);

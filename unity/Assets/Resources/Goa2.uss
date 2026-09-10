@@ -161,3 +161,65 @@
 .detail-text { max-height: 175px; }
 .scenario-bar { height: 44px; min-height: 44px; flex-direction: row; align-items: center; background-color: #213b43; padding-left: 10px; padding-right: 8px; margin-top: 5px; border-radius: 5px; }
 .scenario-info { flex-grow: 1; font-size: 16px; color: #e5d5a9; }
+
+/* BATCH-03: 26px minimum, flowing cards and accessible overflow. */
+Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
+.body, .tiny, .muted, .eyebrow, .card-rules, .card-zone, .bonus-line, .restriction-text,
+.gallery-note, .status-badge, .empty-hand, .scenario-info,
+.revealed-card .tiny, .revealed-card .eyebrow, .public-card-text .card-rules,
+.hand-card .tiny, .hand-card .card-zone,
+.button, .choice-button, .quiet-button, .primary-button, .compact-button, .edge-button, .mode-button, .tab-button, .active-tab,
+.debug-input, .debug-input .unity-base-field__input, .debug-toggle, .gallery-search, .gallery-search .unity-base-field__input {
+    font-size: 26px;
+}
+.brand-title, .panel-title { font-size: 34px; }
+.phase-title, .section-title, .seat-name, .card-name, .hand-card .card-name, .public-card-name { font-size: 28px; }
+.header { height: 112px; min-height: 112px; }
+.header-controls { flex-wrap: wrap; justify-content: flex-end; }
+.brand { min-width: 180px; }
+.phase-banner { min-width: 240px; }
+.left-panel { width: 300px; min-width: 300px; }
+.right-panel { width: 380px; min-width: 380px; }
+.panel-heading { height: 54px; min-height: 54px; }
+.button, .choice-button, .quiet-button, .primary-button, .compact-button, .edge-button, .mode-button, .tab-button, .active-tab { min-height: 44px; white-space: normal; }
+.debug-input, .debug-toggle { min-height: 44px; }
+.debug-input .unity-base-field__label { width: 116px; min-width: 116px; }
+.round-dots { height: 38px; }
+.round-dot { width: 30px; height: 30px; min-width: 30px; margin-right: 14px; }
+.purple-dot { width: 38px; height: 38px; min-width: 38px; border-radius: 24px; border-width: 2px; border-color: #dfc5ff; background-color: #b17ce3; }
+.discard-dot { width: 26px; height: 26px; }
+.revealed-panel { height: 246px; min-height: 246px; }
+.revealed-row { padding: 0; flex-direction: column; }
+.revealed-card { width: 230px; min-width: 230px; height: 290px; min-height: 290px; flex-grow: 0; flex-shrink: 0; flex-basis: auto; border-top-width: 0; padding-top: 0; }
+.team-stripe { height: 6px; min-height: 6px; margin-left: -7px; margin-right: -7px; }
+.card-color-stripe { height: 9px; min-height: 9px; margin-left: -7px; margin-right: -7px; }
+.revealed-card .public-card-name { min-height: 34px; }
+.field-header { height: auto; min-height: 54px; flex-wrap: wrap; }
+.board-footer { min-height: 38px; }
+.hand { height: 276px; min-height: 276px; }
+.hand-row { flex-grow: 1; flex-direction: column; }
+.hand-card { width: 230px; min-width: 230px; min-height: 232px; flex-grow: 0; flex-shrink: 0; flex-basis: auto; padding: 8px; border-top-width: 9px; }
+.hand-card .card-name { min-height: 36px; white-space: normal; }
+.stat-line { flex-direction: row; align-items: center; min-height: 32px; flex-grow: 0; }
+.stat-line > .tiny { flex-grow: 1; margin-bottom: 0; }
+.stat-line > .stat-line { flex-grow: 1; margin-right: 8px; }
+.passive-plus { color: #6fee91; font-size: 26px; -unity-font-style: bold; margin-left: 8px; }
+.footer { min-height: 60px; flex-wrap: wrap; }
+.collapsed-row { height: 56px; min-height: 56px; }
+.collapsed-side { width: 54px; min-width: 54px; }
+.upgrade-panel { flex-grow: 1; height: auto; min-height: 760px; }
+.upgrade-row { flex-direction: row; min-height: 224px; margin-bottom: 10px; }
+.upgrade-card { flex-grow: 1; flex-basis: 0; min-width: 0; padding: 8px; margin: 5px; border-top-width: 9px; background-color: #20343f; color: #e4eae5; white-space: normal; }
+.upgrade-card Label { margin: 0; padding: 0; }
+.upgrade-card .card-name { min-height: 0; }
+.upgrade-card:disabled { opacity: 0.45; }
+.gallery-card { width: 410px; min-width: 410px; flex-shrink: 0; }
+.gallery-color-row { flex-shrink: 0; margin-bottom: 18px; }
+.gallery-tabs { flex-wrap: wrap; }
+.gallery-tabs Button { min-width: 160px; }
+.gallery-search { height: 52px; min-height: 52px; }
+.gallery-search .unity-base-field__label { width: 80px; min-width: 80px; }
+.dialog { width: 620px; }
+.purple-preview { position: absolute; width: 500px; padding: 16px; background-color: #211b35; border-width: 2px; border-color: #b17ce3; }
+.section-title { color: #d7e5e4; }
+.event-box .panel-heading .eyebrow { flex-grow: 1; }

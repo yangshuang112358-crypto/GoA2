@@ -38,7 +38,7 @@ try {
     Click -Element 'resolve-round-end'
     $goaState = Save-State
     Check ($goaState.RoundEnd.Stage -eq 'upgrades' -and $goaState.Players[0].Level -eq 4 -and $goaState.Players[1].Level -eq 2 -and $goaState.Players[0].Gold -eq 0) 'Settlement recalls cards and spends six gold for three levels'
-    Check (@((Read-Ui).Buttons | Where-Object { $_.Name -like 'upgrade-card-*' -and $_.Visible }).Count -eq 2) 'Selected color presents two large candidate cards'
+    Check (@((Read-Ui).Buttons | Where-Object { $_.Name -like 'upgrade-card-*' }).Count -eq 6) 'All three colors present six candidate cards together'
     & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 3 | Out-Null
     Check (@((Read-Ui).Buttons | Where-Object { $_.Name -like 'upgrade-card-*' }).Count -eq 0) 'A seat without an upgrade sees no other player candidates'
     & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 1 | Out-Null
