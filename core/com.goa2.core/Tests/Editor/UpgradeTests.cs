@@ -10,6 +10,39 @@ namespace Goa2.Tests
     public sealed class UpgradeTests
     {
         [Test]
+        public void EngineEightStillGrantsPurpleAutomaticallyAndReplaysItsOriginalCommands()
+        {
+            var catalog=BattlefieldTests.Catalog();var game=BattlefieldTests.Ready(catalog,8);
+            Apply(game,0,CommandKind.DebugSetGold,"28",target:0);Apply(game,0,CommandKind.DebugAdvance,"round");Apply(game,0,CommandKind.ResolveRoundEnd);
+            for(int i=0;i<6;i++) Apply(game,0,CommandKind.ChooseUpgrade,game.View(0).UpgradeOptions.First().CardId);
+            Assert.That(game.View(0).Round,Is.EqualTo(2));Assert.That(game.View(0).Players[0].PurpleCardId,Is.Not.Null);
+            Assert.That(game.View(0).UpgradeOptions,Is.Empty);
+            Assert.That(LocalGameFactory.Restore(catalog,game.ExportSave()).ExportSave(),Is.EqualTo(game.ExportSave()));
+        }
+        [Test]
+        public void PurpleRequiresOwnExplicitChoiceAndSurvivesRestoreWithoutExtraPassive()
+        {
+            var catalog=BattlefieldTests.Catalog(); var game=BattlefieldTests.Ready(catalog);
+            Apply(game,0,CommandKind.DebugSetGold,"28",target:0);
+            Apply(game,0,CommandKind.DebugAdvance,"round"); Apply(game,0,CommandKind.ResolveRoundEnd);
+            for(int i=0;i<6;i++) Apply(game,0,CommandKind.ChooseUpgrade,game.View(0).UpgradeOptions.First().CardId);
+            Assert.That(game.View(0).Players[0].PurpleCardId, Is.Null);
+            Assert.That(game.View(0).Round, Is.EqualTo(1));
+            var purple=game.View(0).UpgradeOptions.Single(); Assert.That(purple.Color, Is.EqualTo("purple"));
+            string before=game.ExportSave();
+            Assert.That(game.Execute(1,Cmd(game,1,CommandKind.ChooseUpgrade,purple.CardId)).Accepted, Is.False);
+            Assert.That(game.ExportSave(), Is.EqualTo(before));
+            game=LocalGameFactory.Restore(catalog,before);
+            var command=Cmd(game,0,CommandKind.ChooseUpgrade,purple.CardId);
+            Assert.That(game.Execute(0,command).Accepted, Is.True);
+            Assert.That(game.Execute(0,command).Duplicate, Is.True);
+            Assert.That(game.View(0).Round, Is.EqualTo(2));
+            Assert.That(game.View(0).Players[0].PurpleCardId, Is.EqualTo(purple.CardId));
+            Assert.That(game.View(0).OwnCards.Count, Is.EqualTo(5));
+            Assert.That(game.View(0).OwnUpgradeHistory.Count, Is.EqualTo(6));
+            Assert.That(LocalGameFactory.Restore(catalog,game.ExportSave()).ExportSave(), Is.EqualTo(game.ExportSave()));
+        }
+        [Test]
         public void PublicPermanentNumbersDoNotExposePrivateUpgradeChoicesOrMutateAuthority()
         {
             var catalog=BattlefieldTests.Catalog(); var game=BattlefieldTests.Ready(catalog);
@@ -47,6 +80,7 @@ namespace Goa2.Tests
             Assert.That(player.UpgradeHistory.All(h => h.Round==1 && h.Amount==1), Is.True);
             Assert.That(game.View(null).Events.Any(e => e.Kind=="CardUpgraded" || e.Kind=="UpgradeBonusGranted"), Is.False);
             Assert.That(game.View(0).Events.Count(e => e.Kind=="UpgradeBonusGranted"), Is.EqualTo(6));
+            Apply(game,0,CommandKind.ChooseUpgrade,game.View(0).UpgradeOptions.Single().CardId);
             Assert.That(game.View(null).Events.Count(e => e.Kind=="PurpleCardGranted"), Is.EqualTo(1));
             Assert.That(LocalGameFactory.Restore(catalog,game.ExportSave()).ExportSave(), Is.EqualTo(game.ExportSave()));
         }

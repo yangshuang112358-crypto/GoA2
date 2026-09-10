@@ -57,6 +57,7 @@ namespace Goa2.Tests
         [TestCase("spawn-order.json")]
         [TestCase("combat-defense.json")]
         [TestCase("round-upgrades.json")]
+        [TestCase("debug-attack.json")]
         [TestCase("round-frontline.json")]
         [TestCase("static-field.json")]
         [TestCase("skill-suppression.json")]

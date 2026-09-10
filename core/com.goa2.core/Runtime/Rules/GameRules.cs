@@ -67,6 +67,7 @@ namespace Goa2.Rules
                 case CommandKind.DebugDefeatMinion:
                 case CommandKind.DebugSetCrystal:
                 case CommandKind.DebugDefeatHero:
+                case CommandKind.DebugAttack:
                     ApplyDebug(catalog, state, command); break;
                 default: throw new RuleViolation("unsupported_command", "此操作尚未实装。");
             }

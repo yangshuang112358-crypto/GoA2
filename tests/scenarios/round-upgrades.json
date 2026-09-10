@@ -24,7 +24,8 @@
     { "Command": "ResolveRoundEnd", "Expect": { "UpgradingPlayers": 1, "Levels": { "p1": 8 }, "Gold": { "p1": 0 }, "PurpleCards": { "p1": "none" } } },
     { "Command": "ChooseUpgrade", "Value": "wasp-05-电能爆炸", "Expect": { "UpgradeCounts": { "p1": 4 } } },
     { "Command": "ChooseUpgrade", "Value": "wasp-10-反射屏障", "Expect": { "UpgradeCounts": { "p1": 5 } } },
-    { "Command": "ChooseUpgrade", "Value": "wasp-17-意念黑洞", "Expect": { "Phase": "Planning", "Round": 4, "UpgradeCounts": { "p1": 6 }, "PurpleCards": { "p1": "wasp-12-电闪雷鸣" }, "HandCounts": { "p1": 5 }, "Gold": { "p1": 0, "p2": 2, "p3": 1, "p4": 1 }, "EventCounts": { "PurpleCardGranted": 1 } } },
+    { "Command": "ChooseUpgrade", "Value": "wasp-17-意念黑洞", "Expect": { "Phase": "RoundEnd", "Round": 3, "PurpleCards": { "p1": "none" }, "UpgradeCounts": { "p1": 6 } } },
+    { "Command": "ChooseUpgrade", "Value": "wasp-12-电闪雷鸣", "Expect": { "Phase": "Planning", "Round": 4, "UpgradeCounts": { "p1": 6 }, "PurpleCards": { "p1": "wasp-12-电闪雷鸣" }, "HandCounts": { "p1": 5 }, "Gold": { "p1": 0, "p2": 2, "p3": 1, "p4": 1 }, "EventCounts": { "PurpleCardGranted": 1 } } },
     { "Command": "DebugAdvance", "Value": "round", "Expect": { "Phase": "RoundEnd", "Round": 4, "Revealed": 64 } },
     { "Command": "ResolveRoundEnd", "Expect": { "UpgradingPlayers": 1, "Levels": { "p1": 8, "p2": 3, "p3": 2, "p4": 2 } } },
     { "Actor": "p2", "Command": "ChooseUpgrade", "Value": "shargatha-08-统治领域", "Expect": { "Phase": "Planning", "Round": 5, "Turn": 1, "UpgradingPlayers": 0, "Gold": { "p1": 1, "p2": 0, "p3": 2, "p4": 2 }, "UpgradeCounts": { "p1": 6, "p2": 2, "p3": 1, "p4": 1 }, "PurpleCards": { "p1": "wasp-12-电闪雷鸣" }, "HandCounts": { "p1": 5, "p2": 5, "p3": 5, "p4": 5 }, "EventCounts": { "PurpleCardGranted": 0, "RoundCompensationGranted": 3 } } }

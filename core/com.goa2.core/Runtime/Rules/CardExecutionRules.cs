@@ -22,6 +22,7 @@ namespace Goa2.Rules
         private static void ContinueCard(ContentCatalog catalog, GameState state, Command command)
         {
             if (state.Execution == null || state.Phase == Phase.Finished) return;
+            if (state.Execution.ProgramId == "debug-attack-v1") { EndCardExecution(catalog,state,command); return; }
             var execution = state.Execution; var card = catalog.Card(execution.CardId);
             var program = CardPrograms.Primary(card,state.EngineVersion) ?? throw new RuleViolation("incompatible_program", "卡牌程序版本不兼容。");
             Require(program.Id == execution.ProgramId && program.Version == execution.ProgramVersion, "incompatible_program", "卡牌程序版本不兼容。");
@@ -168,6 +169,12 @@ namespace Goa2.Rules
         private static void EndCardExecution(ContentCatalog catalog, GameState state, Command command)
         {
             if (state.Execution!.DefenseResponse != null && !ContinueDefenseResponse(catalog,state,command)) return;
+            if (state.Execution.ProgramId == "debug-attack-v1")
+            {
+                Emit(state,command,"DebugAttackCompleted",state.Execution.ControllerSeat,detail:state.Execution.AttackOutcome);
+                state.Execution=null; state.Pending=null; state.ActiveSeat=null; state.Phase=Phase.Planning;
+                return;
+            }
             state.ActiveSeat = state.Execution!.ControllerSeat; state.Execution = null; state.Pending = null; state.Phase = Phase.Action;
             FinishAction(catalog, state, command);
         }

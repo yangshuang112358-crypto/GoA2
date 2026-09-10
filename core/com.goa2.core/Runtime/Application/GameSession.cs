@@ -167,6 +167,7 @@ namespace Goa2.Application
                 view.CanResolveRoundEnd = GameRules.CanResolveRoundEnd(snapshot);
                 view.RoundMinionRemovals = GameRules.LegalRoundMinionRemovals(snapshot, seat.Value);
                 view.UpgradeOptions = GameRules.LegalUpgrades(catalog, snapshot, seat.Value);
+                view.DebugAttackTargets = GameRules.LegalDebugAttacks(snapshot, seat.Value);
                 view.OwnUpgradeHistory = snapshot.Players[seat.Value].UpgradeHistory;
                 if (snapshot.Pending?.Kind == "minion_spawn" && snapshot.Pending.ChooserSeat == seat && snapshot.Frontline != null)
                     foreach (var spawn in snapshot.Frontline.Remaining.Where(s => snapshot.Pending.CandidateUnits.Count > 0 ? snapshot.Pending.CandidateUnits.Contains(s.Unit.Id) : s.Unit.Id == snapshot.Pending.UnitId))

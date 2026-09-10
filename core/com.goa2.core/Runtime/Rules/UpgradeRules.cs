@@ -12,8 +12,14 @@ namespace Goa2.Rules
             var options = new List<UpgradeOption>();
             if (seat < 0 || seat >= state.Players.Count || state.Phase != Phase.RoundEnd || state.RoundEnd?.Stage != "upgrades") return options;
             var progress = state.RoundEnd.Upgrades.SingleOrDefault(p => p.Seat == seat);
-            if (progress == null || progress.PendingLevels.Count == 0 || progress.PendingLevels[0] == 8) return options;
+            if (progress == null || progress.PendingLevels.Count == 0) return options;
             var player = state.Players[seat];
+            if (progress.PendingLevels[0] == 8)
+            {
+                if (state.EngineVersion >= 9)
+                    options.Add(new UpgradeOption { CardId = catalog.Cards.Single(c => c.HeroId == player.HeroId && c.Color == "purple").Id, Color = "purple", CardLevel = 4, HeroLevel = 8 });
+                return options;
+            }
             string[] colors = { "red", "green", "blue" };
             var levels = colors.ToDictionary(color => color, color => player.UpgradeHistory.Where(h => h.Color == color).Select(h => h.CardLevel).DefaultIfEmpty(1).Max());
             int eligible = levels.Values.Any(l => l == 1) ? 1 : 2;
@@ -57,7 +63,7 @@ namespace Goa2.Rules
         }
         private static void ContinuePlayerUpgrade(ContentCatalog catalog, GameState state, Command command, PlayerUpgradeProgress progress)
         {
-            if (progress.PendingLevels.Count > 0 && progress.PendingLevels[0] == 8)
+            if (state.EngineVersion < 9 && progress.PendingLevels.Count > 0 && progress.PendingLevels[0] == 8)
             {
                 var player = state.Players[progress.Seat];
                 var purple = catalog.Cards.Single(c => c.HeroId == player.HeroId && c.Color == "purple" && c.Level == 4);
@@ -71,6 +77,13 @@ namespace Goa2.Rules
             var option = LegalUpgrades(catalog, state, command.ActorSeat).SingleOrDefault(o => o.CardId == command.Value);
             Require(option != null, "invalid_upgrade", "请选择本人的当前合法升级候选。");
             var player = state.Players[command.ActorSeat];
+            if (option!.Color == "purple")
+            {
+                player.PurpleCardId = option.CardId;
+                Emit(state, command, "PurpleCardGranted", player.Seat, option.CardId);
+            }
+            else
+            {
             var card = player.Cards.Single(c => c.CardId == option!.PreviousCardId);
             card.CardId = option!.CardId; card.Zone = CardZone.InHand; card.PlayedRound = null; card.PlayedTurn = null;
             ApplyPermanentBonus(player, option.Bonus);
@@ -81,6 +94,7 @@ namespace Goa2.Rules
             });
             Emit(state, command, "CardUpgraded", player.Seat, option.CardId, player.Seat, option.PreviousCardId);
             Emit(state, command, "UpgradeBonusGranted", player.Seat, option.RejectedCardId, player.Seat, option.Bonus + ":1");
+            }
             var progress = state.RoundEnd!.Upgrades.Single(p => p.Seat == player.Seat);
             progress.PendingLevels.RemoveAt(0);
             ContinuePlayerUpgrade(catalog, state, command, progress);

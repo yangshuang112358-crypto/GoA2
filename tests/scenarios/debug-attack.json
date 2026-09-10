@@ -1,0 +1,12 @@
+{
+  "SchemaVersion": 1,
+  "Id": "debug-attack",
+  "Name": "调试基础攻击、本人防御与击败恢复",
+  "Steps": [
+    {"Command":"DebugPrepare","Value":"wasp,shargatha,brogan,arien","Expect":{"Phase":"Planning"}},
+    {"Command":"DebugAttack","Value":"hero:2|5","Expect":{"Code":"invalid_debug_attack"}},
+    {"Command":"DebugAttack","Value":"hero:1|5","Expect":{"Phase":"EffectChoice","PendingKind":"defense","PendingChooser":"p2","AttackBase":5}},
+    {"Actor":"p3","Command":"DeclineDefense","Expect":{"Code":"invalid_defender"}},
+    {"Actor":"p2","Command":"DeclineDefense","Expect":{"Phase":"Planning","Round":1,"Turn":1,"EventCounts":{"HeroDefeated":1,"DebugAttackCompleted":1}}}
+  ]
+}

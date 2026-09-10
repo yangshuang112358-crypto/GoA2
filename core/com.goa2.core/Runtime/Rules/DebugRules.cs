@@ -20,6 +20,8 @@ namespace Goa2.Rules
                 "pending_round_end", "请先完成轮末选择；推进出生期间仍可传送释放占位。");
             switch (command.Kind)
             {
+                case CommandKind.DebugAttack:
+                    DebugAttack(catalog,state,command); break;
                 case CommandKind.SetQuickSelection:
                     Require(command.Value == "on" || command.Value == "off", "invalid_mode", "模式应为on或off。");
                     state.QuickSelection = command.Value == "on";
@@ -89,6 +91,42 @@ namespace Goa2.Rules
         {
             Require(seat >= 0 && seat < 4, "invalid_target_seat", "调试目标席位不存在。");
             return state.Players[seat];
+        }
+        public static List<string> LegalDebugAttacks(GameState state,int seat)
+        {
+            if(state.EngineVersion<9 || !state.Sandbox || state.Phase!=Phase.Planning || state.Pending!=null || state.Execution!=null || state.RoundEnd!=null ||
+                seat<0 || seat>=state.Players.Count || !state.Units.Any(u=>u.Seat==seat)) return new List<string>();
+            var removable=LegalMinionRemovals(state);
+            var source=state.Units.Single(u=>u.Seat==seat);
+            return state.Units.Where(u=>u.Team!=source.Team && (u.Kind=="hero" || removable.Contains(u.Id)) && EffectRules.CanBeAttacked(state,source,u,false)).Select(u=>u.Id).ToList();
+        }
+        private static void DebugAttack(ContentCatalog catalog,GameState state,Command command)
+        {
+            var parts=command.Value.Split('|');
+            Require(parts.Length==2 && int.TryParse(parts[1],NumberStyles.None,CultureInfo.InvariantCulture,out _),"invalid_attack_value","格式应为单位ID|基础攻击值。");
+            int power=int.Parse(parts[1],CultureInfo.InvariantCulture);
+            Require(LegalDebugAttacks(state,command.ActorSeat).Contains(parts[0]),"invalid_debug_attack","请在暗选阶段选择可攻击的敌方单位；重型保护仍生效。");
+            Require(power>=0 && power<=99,"invalid_attack_value","基础攻击须为0至99。");
+            var target=state.Units.Single(u=>u.Id==parts[0]);
+            Emit(state,command,"DebugAttackStarted",command.ActorSeat,detail:command.Value);
+            if(target.Kind!="hero")
+            {
+                RemoveMinion(catalog,state,command,target.Id,"debug",command.ActorSeat);
+                return;
+            }
+            // The formal card is only a stable source identity. No card text or
+            // range is executed by this sandbox basic, non-ranged attack.
+            var sourceCard=catalog.Cards.First(c=>c.HeroId==state.Players[command.ActorSeat].HeroId && c.PrimaryFamily=="attack");
+            var basic=new CardDefinition { Id=sourceCard.Id, PrimaryValue=power };
+            state.Execution=new CardExecution { CardId=sourceCard.Id, ProgramId="debug-attack-v1", ProgramVersion=1, ControllerSeat=command.ActorSeat,
+                TargetUnitId=target.Id, Attack=CombatMath.Attack(state,basic,command.ActorSeat,target.Id) };
+            Emit(state,command,"AttackCalculated",command.ActorSeat,sourceCard.Id);
+            state.Events.Last().AttackValues=state.Execution.Attack;
+            state.Phase=Phase.EffectChoice;
+            state.Pending=new PendingChoice { Id="defense:"+(state.Events.Count+1), Kind="defense", ChooserSeat=target.Seat!.Value, Source=sourceCard.Id, UnitId=target.Id, ResumeAt="resolve_attack", Optional=true };
+            if(CombatRules.DefenseOptions(catalog,state,target.Seat.Value).Count==0 && CombatRules.UnimplementedDefenses(catalog,state,target.Seat.Value).Count==0)
+                ResolveDefense(catalog,state,command,false);
+            else Emit(state,command,"DefenseChoiceRequired",target.Seat.Value,sourceCard.Id);
         }
         public static List<Hex> LegalDebugTeleports(ContentCatalog catalog, GameState state, string unitId)
         {
