@@ -13,6 +13,7 @@ namespace Goa2.Domain
         public int Gold;
         public bool Confirmed;
         public bool AwaitingRespawn;
+        public string? PurpleCardId;
         public int HandCount;
         public List<CardInstance> Revealed = new List<CardInstance>();
         public List<PublicPlay> Plays = new List<PublicPlay>();
@@ -65,6 +66,13 @@ namespace Goa2.Domain
         public List<string> UnimplementedDefenseCards = new List<string>();
         public AttackBreakdown? Attack;
         public List<Hex> RespawnCells = new List<Hex>();
+        public bool CanResolveRoundEnd;
+        public string RoundEndStage = "";
+        public int RemainingMinionRemovals;
+        public List<string> RoundMinionRemovals = new List<string>();
+        public List<int> UpgradingSeats = new List<int>();
+        public List<UpgradeOption> UpgradeOptions = new List<UpgradeOption>();
+        public List<UpgradeRecord> OwnUpgradeHistory = new List<UpgradeRecord>();
         public List<PlayerView> Players = new List<PlayerView>();
         public List<UnitState> Units = new List<UnitState>();
         public PendingChoice? Pending;

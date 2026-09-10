@@ -88,7 +88,7 @@ namespace Goa2.Presentation
                 if (seat == target) card.AddToClassList("selected-seat");
                 string captain = target == view.BlueCaptain || target == view.RedCaptain ? " · 队长" : "";
                 SeatLabel(card, (player.Team == Team.Blue ? "蓝队" : "红队") + " / " + (target + 1) + captain, "eyebrow", 5, 22);
-                SeatLabel(card, HeroName(player.HeroId) + (player.AwaitingRespawn ? " · 待复活" : view.ActiveSeat == target ? " · 行动" : ""), "seat-name", 29, 30);
+                SeatLabel(card, HeroName(player.HeroId) + (player.AwaitingRespawn ? " · 待复活" : view.UpgradingSeats.Contains(target) ? " · 待升级" : view.ActiveSeat == target ? " · 行动" : ""), "seat-name", 29, 30);
                 SeatLabel(card, "Lv." + player.Level + "   " + player.Gold + " 金   手牌 " + player.HandCount, "tiny", 63, 24);
                 var rounds = Box("round-dots"); card.Add(rounds);
                 for (int turn = 1; turn <= 4; turn++)
@@ -166,11 +166,13 @@ namespace Goa2.Presentation
         }
         private void BuildHand(VisualElement parent, GameView view)
         {
+            PrepareUpgradeSelection(view);
             var panel = Box(bottomExpanded ? "hand" : "collapsed-row"); parent.Add(panel);
             var heading = Box("panel-heading"); panel.Add(heading);
-            heading.Add(Text("手牌 · " + PlayerName(seat), "section-title"));
+            heading.Add(Text((view.UpgradeOptions.Count > 0 ? "升级候选 · " + ColorName(upgradeColor) + "色 · " : "手牌 · ") + PlayerName(seat), "section-title"));
             heading.Add(Button(bottomExpanded ? "▼" : "▲ 展开手牌", () => { bottomExpanded = !bottomExpanded; Render(); }, "edge-button", "toggle-bottom"));
             if (!bottomExpanded) return;
+            if (view.UpgradeOptions.Count > 0) { BuildUpgradeCards(panel, view); return; }
             if (view.OwnCards.Count == 0) { panel.Add(Text("选择英雄后获得五张起始牌", "empty-hand")); return; }
             var row = Box("hand-row"); panel.Add(row);
             foreach (var instance in view.OwnCards)

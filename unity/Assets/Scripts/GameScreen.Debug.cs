@@ -46,7 +46,8 @@ namespace Goa2.Presentation
                 var names = units.Select(u => u.Seat.HasValue ? PlayerName(u.Seat.Value) : (u.Team == Team.Blue ? "蓝" : "红") + (u.Kind == "heavy" ? "重型" : u.Kind == "ranged" ? "远程" : "近战") + " · " + u.Position).ToList();
                 var picker = new DropdownField("单位", names, units.FindIndex(u => u.Id == debugUnitId)); picker.AddToClassList("debug-input");
                 picker.RegisterValueChangedCallback(_ => { debugUnitId = units[picker.index].Id; chosenCell = null; Render(); }); parent.Add(picker);
-                parent.Add(Button(debugTeleport ? "结束传送选点" : "在地图选择落点", () => { ClearPending(); debugTeleport = !debugTeleport; Render(); }, "choice-button"));
+                var teleport = Button(debugTeleport ? "结束传送选点" : "在地图选择落点", () => { ClearPending(); debugTeleport = !debugTeleport; Render(); }, "choice-button");
+                teleport.SetEnabled(debugTeleport || view.DebugTeleports.TryGetValue(debugUnitId, out var teleportCells) && teleportCells.Count > 0); parent.Add(teleport);
                 if (debugTeleport && chosenCell.HasValue) Confirm(parent, "确认调试传送 " + chosenCell.Value, () => Submit(CommandKind.DebugTeleport, debugUnitId, destination: chosenCell!.Value));
                 var selectedUnit = units.First(u => u.Id == debugUnitId);
                 if (selectedUnit.Kind != "hero")
@@ -54,14 +55,14 @@ namespace Goa2.Presentation
                     parent.Add(Text(view.RemovableMinions.Contains(selectedUnit.Id) ? "此小兵可被正常移除。" : "重型受保护；下列调试操作会绕过保护。", "tiny"));
                     var removal = Box("debug-button-row"); parent.Add(removal);
                     var remove = Button("移除小兵 · 无金币", () => Submit(CommandKind.DebugRemoveMinion, debugUnitId), "choice-button", "debug-remove-minion");
-                    remove.SetEnabled(view.Phase != Phase.EffectChoice && view.Phase != Phase.Deployment); removal.Add(remove);
+                    remove.SetEnabled(view.RoundEndStage == "" && view.Phase != Phase.EffectChoice && view.Phase != Phase.Deployment); removal.Add(remove);
                     var defeat = Button("击败小兵 · 计金币", () => Submit(CommandKind.DebugDefeatMinion, debugUnitId, seat), "choice-button", "debug-defeat-minion");
-                    defeat.SetEnabled(view.Phase != Phase.EffectChoice && view.Phase != Phase.Deployment && selectedUnit.Team != view.Players[seat].Team); removal.Add(defeat);
+                    defeat.SetEnabled(view.RoundEndStage == "" && view.Phase != Phase.EffectChoice && view.Phase != Phase.Deployment && selectedUnit.Team != view.Players[seat].Team); removal.Add(defeat);
                 }
                 else
                 {
                     var defeatHero = Button("击败该英雄 · 计奖励", () => Submit(CommandKind.DebugDefeatHero, debugUnitId, seat), "choice-button", "debug-defeat-hero");
-                    defeatHero.SetEnabled(view.Phase != Phase.EffectChoice && view.Phase != Phase.Deployment && selectedUnit.Team != view.Players[seat].Team); parent.Add(defeatHero);
+                    defeatHero.SetEnabled(view.RoundEndStage == "" && view.Phase != Phase.EffectChoice && view.Phase != Phase.Deployment && selectedUnit.Team != view.Players[seat].Team); parent.Add(defeatHero);
                 }
             }
             parent.Add(Text("战线与水晶", "section-title"));
@@ -69,7 +70,7 @@ namespace Goa2.Presentation
             {
                 string id = heavy.Id;
                 var push = Button("移除" + (heavy.Team == Team.Blue ? "蓝" : "红") + "重型并推进", () => Submit(CommandKind.DebugRemoveMinion, id), "choice-button", heavy.Team == Team.Blue ? "debug-remove-blue-heavy" : "debug-remove-red-heavy");
-                push.SetEnabled(view.Phase != Phase.EffectChoice && view.Phase != Phase.Deployment); parent.Add(push);
+                push.SetEnabled(view.RoundEndStage == "" && view.Phase != Phase.EffectChoice && view.Phase != Phase.Deployment); parent.Add(push);
             }
             var crystal = new IntegerField("水晶生命") { value = debugCrystal, name = "debug-crystal" }; crystal.AddToClassList("debug-input");
             crystal.RegisterValueChangedCallback(e => debugCrystal = e.newValue); parent.Add(crystal);
@@ -86,8 +87,8 @@ namespace Goa2.Presentation
                 picker.RegisterValueChangedCallback(_ => { debugCardId = cards[picker.index].CardId; Render(); }); parent.Add(picker);
                 var controls = Box("debug-button-row"); parent.Add(controls);
                 var selected = cards.First(c => c.CardId == debugCardId);
-                var discard = Button("弃置所选牌", () => Submit(CommandKind.DebugDiscard, debugCardId, seat), "choice-button"); discard.SetEnabled(view.Phase != Phase.EffectChoice && selected.Zone != CardZone.Discarded); controls.Add(discard);
-                var recover = Button("取回所选弃牌", () => Submit(CommandKind.DebugRecover, debugCardId, seat), "choice-button"); recover.SetEnabled(view.Phase != Phase.EffectChoice && selected.Zone == CardZone.Discarded); controls.Add(recover);
+                var discard = Button("弃置所选牌", () => Submit(CommandKind.DebugDiscard, debugCardId, seat), "choice-button"); discard.SetEnabled(view.RoundEndStage == "" && view.Phase != Phase.EffectChoice && selected.Zone != CardZone.Discarded); controls.Add(discard);
+                var recover = Button("取回所选弃牌", () => Submit(CommandKind.DebugRecover, debugCardId, seat), "choice-button"); recover.SetEnabled(view.RoundEndStage == "" && view.Phase != Phase.EffectChoice && selected.Zone == CardZone.Discarded); controls.Add(recover);
             }
             var equipment = catalog.Cards.Where(c => c.HeroId == view.Players[seat].HeroId && c.Color != "purple").ToList();
             if (equipment.Count > 0)

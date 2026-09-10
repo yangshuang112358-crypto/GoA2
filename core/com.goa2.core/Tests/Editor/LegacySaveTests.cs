@@ -9,6 +9,18 @@ namespace Goa2.Tests
     public sealed class LegacySaveTests
     {
         [Test]
+        public void FormalLegacyRoundEndCanContinueThroughANewJournaledSettlementCommand()
+        {
+            var catalog=ContentLoader.LoadDirectory(ContentTests.Root());
+            var game=LocalGameFactory.Restore(catalog,File.ReadAllText(Path.Combine(ContentTests.Root(),"tests","fixtures","legacy-v1-roundend.json")));
+            Assert.That(game.View(null).Sandbox, Is.False);
+            TurnFlowTests.Apply(game,0,CommandKind.ResolveRoundEnd);
+            Assert.That(game.View(null).Round, Is.EqualTo(2)); Assert.That(game.View(null).Phase, Is.EqualTo(Phase.Planning));
+            Assert.That(game.View(null).Players.All(p => p.HandCount==5 && p.Gold==1), Is.True);
+            Assert.That(new JsonStateCodec().Read(game.ExportSave()).AcceptedCommands.Count, Is.EqualTo(60));
+            Assert.That(LocalGameFactory.Restore(catalog,game.ExportSave()).ExportSave(), Is.EqualTo(game.ExportSave()));
+        }
+        [Test]
         public void BatchOneRoundEndJournalStillRestoresWithNewFieldsDefaulted()
         {
             string root = ContentTests.Root();

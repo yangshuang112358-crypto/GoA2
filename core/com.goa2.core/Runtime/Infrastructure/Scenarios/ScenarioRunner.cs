@@ -107,6 +107,12 @@ namespace Goa2.Infrastructure.Scenarios
                 if (expect.Winner != null) Guard(expect.Winner == "none" || expect.Winner == "Blue" || expect.Winner == "Red", "Expect.Winner须为Blue、Red或none。");
                 if (expect.PendingChooser != null) ValidateSeat(expect.PendingChooser, true);
                 ValidateCounts(expect.Gold); ValidateCounts(expect.HandCounts); ValidateCounts(expect.DiscardCounts);
+                ValidateCounts(expect.Levels); ValidateCounts(expect.UpgradeCounts);
+                Guard(expect.Levels.All(p => p.Value >= 1 && p.Value <= 8) && expect.UpgradeCounts.All(p => p.Value <= 6), "升级期望超出等级1—8或选择0—6的范围。");
+                Guard(expect.PurpleCards != null && expect.PurpleCards.All(p => Regex.IsMatch(p.Key,"\\Ap[1-4]\\z") && !string.IsNullOrWhiteSpace(p.Value)), "紫卡期望须使用p1至p4及卡牌ID或none。");
+                if (expect.RoundEndStage != null) Guard(expect.RoundEndStage == "none" || expect.RoundEndStage == "minion_battle" || expect.RoundEndStage == "upgrades", "轮末阶段期望无效。");
+                if (expect.UpgradingPlayers.HasValue) Guard(expect.UpgradingPlayers >= 0 && expect.UpgradingPlayers <= 4, "待升级人数须为0—4。");
+                if (expect.RemainingMinionRemovals.HasValue) Guard(expect.RemainingMinionRemovals >= 0, "待移除小兵数不能为负。");
                 Guard(expect.Positions != null && expect.EventCounts != null && expect.EventOrder != null, "期望集合不能为null。");
                 Guard(expect.EventCounts!.All(p => !string.IsNullOrWhiteSpace(p.Key) && p.Value >= 0) && expect.EventOrder!.All(e => !string.IsNullOrWhiteSpace(e)), "期望事件无效。");
             }
@@ -205,6 +211,12 @@ namespace Goa2.Infrastructure.Scenarios
             foreach (var pair in expect.Gold) Equal(result, "Gold."+pair.Key, pair.Value, view.Players[Seat(pair.Key,view)].Gold);
             foreach (var pair in expect.HandCounts) Equal(result, "HandCounts."+pair.Key, pair.Value, view.Players[Seat(pair.Key,view)].HandCount);
             foreach (var pair in expect.DiscardCounts) Equal(result, "DiscardCounts."+pair.Key, pair.Value, view.Players[Seat(pair.Key,view)].DiscardColors.Count);
+            foreach (var pair in expect.Levels) Equal(result, "Levels."+pair.Key, pair.Value, state.Players[Seat(pair.Key,view)].Level);
+            foreach (var pair in expect.UpgradeCounts) Equal(result, "UpgradeCounts."+pair.Key, pair.Value, state.Players[Seat(pair.Key,view)].UpgradeHistory.Count);
+            foreach (var pair in expect.PurpleCards) Equal(result, "PurpleCards."+pair.Key, pair.Value, state.Players[Seat(pair.Key,view)].PurpleCardId ?? "none");
+            if (expect.RoundEndStage != null) Equal(result,"RoundEndStage",expect.RoundEndStage,state.RoundEnd?.Stage ?? "none");
+            if (expect.UpgradingPlayers.HasValue) Equal(result,"UpgradingPlayers",expect.UpgradingPlayers.Value,view.UpgradingSeats.Count);
+            if (expect.RemainingMinionRemovals.HasValue) Equal(result,"RemainingMinionRemovals",expect.RemainingMinionRemovals.Value,state.RoundEnd?.RemainingRemovals ?? 0);
             foreach (var pair in expect.Positions)
             {
                 var unit = state.Units.FirstOrDefault(u => u.Id == pair.Key);

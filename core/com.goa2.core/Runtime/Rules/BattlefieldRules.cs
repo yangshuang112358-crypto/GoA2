@@ -36,7 +36,7 @@ namespace Goa2.Rules
                 .OrderBy(h => h.X).ThenBy(h => h.Y).ToList();
         }
         private static void RemoveMinion(ContentCatalog catalog, GameState state, Command command, string unitId,
-            string source, int? rewardSeat = null, bool bypassProtection = false, bool finishActionOnResume = false, bool resumeCardExecution = false)
+            string source, int? rewardSeat = null, bool bypassProtection = false, bool finishActionOnResume = false, bool resumeCardExecution = false, bool resumeRoundEnd = false)
         {
             Require(state.Frontline == null, "pending_choice", "请先完成当前推进出生。");
             Require(LegalMinionRemovals(state, bypassProtection).Contains(unitId), "invalid_minion", "小兵不存在或重型仍受友军保护。");
@@ -52,16 +52,16 @@ namespace Goa2.Rules
                 state.Players[rewardSeat.Value].Gold += gold;
                 Emit(state, command, "GoldAwarded", rewardSeat, detail: gold.ToString(CultureInfo.InvariantCulture));
             }
-            if (unit.Kind == "heavy") AdvanceFrontline(catalog, state, command, unit.Team, source, finishActionOnResume, resumeCardExecution);
+            if (unit.Kind == "heavy") AdvanceFrontline(catalog, state, command, unit.Team, source, finishActionOnResume, resumeCardExecution, resumeRoundEnd);
             else if (finishActionOnResume) FinishAction(catalog, state, command);
         }
-        private static void AdvanceFrontline(ContentCatalog catalog, GameState state, Command command, Team defeated, string source, bool finishActionOnResume, bool resumeCardExecution)
+        private static void AdvanceFrontline(ContentCatalog catalog, GameState state, Command command, Team defeated, string source, bool finishActionOnResume, bool resumeCardExecution, bool resumeRoundEnd)
         {
             Require(state.Frontline == null, "nested_frontline", "当前推进尚未完成。");
             var resume = new FrontlineTransition
             {
                 ResumePhase = state.Phase, ResumeActiveSeat = state.ActiveSeat, ResumePending = state.Pending,
-                Source = source, FinishActionOnResume = finishActionOnResume, ResumeCardExecution = resumeCardExecution
+                Source = source, FinishActionOnResume = finishActionOnResume, ResumeCardExecution = resumeCardExecution, ResumeRoundEnd = resumeRoundEnd
             };
             var winner = OtherTeam(defeated);
             string[] regions = { "blueFountain", "blueNear", "mid", "redNear", "redFountain" };
@@ -112,6 +112,7 @@ namespace Goa2.Rules
                 Emit(state, command, "FrontlineCompleted", detail: state.CombatRegion);
                 if (progress.FinishActionOnResume) FinishAction(catalog, state, command);
                 else if (progress.ResumeCardExecution) ContinueCard(catalog, state, command);
+                else if (progress.ResumeRoundEnd) ContinueRoundMinionBattle(catalog, state, command);
                 return;
             }
             var next = progress.Remaining[0];
@@ -144,7 +145,7 @@ namespace Goa2.Rules
         private static void DeclareVictory(GameState state, Command command, Team winner, string reason)
         {
             state.Winner = winner; state.VictoryReason = reason; state.Phase = Phase.Finished;
-            state.ActiveSeat = null; state.Pending = null; state.Frontline = null; state.Execution = null;
+            state.ActiveSeat = null; state.Pending = null; state.Frontline = null; state.Execution = null; state.RoundEnd = null;
             Emit(state, command, "MatchWon", detail: winner + ":" + reason);
         }
     }

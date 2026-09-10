@@ -36,6 +36,11 @@ namespace Goa2.Infrastructure.Scenarios
         public Dictionary<string, int> Gold = new Dictionary<string, int>();
         public Dictionary<string, int> HandCounts = new Dictionary<string, int>();
         public Dictionary<string, int> DiscardCounts = new Dictionary<string, int>();
+        public Dictionary<string, int> Levels = new Dictionary<string, int>();
+        public Dictionary<string, int> UpgradeCounts = new Dictionary<string, int>();
+        public Dictionary<string, string> PurpleCards = new Dictionary<string, string>();
+        public string? RoundEndStage;
+        public int? RemainingMinionRemovals, UpgradingPlayers;
         public Dictionary<string, Hex> Positions = new Dictionary<string, Hex>();
         public Dictionary<string, int> EventCounts = new Dictionary<string, int>();
         public List<string> EventOrder = new List<string>();

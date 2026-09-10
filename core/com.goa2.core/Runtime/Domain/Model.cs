@@ -15,7 +15,8 @@ namespace Goa2.Domain
         DebugPrepare, DebugSelectAll, DebugEquipCard, DebugSetCoin,
         DebugConfirmAll, DebugAdvance, DebugSetGold,
         DebugRemoveMinion, DebugDefeatMinion, DebugSetCrystal, ChooseMinionSpawn,
-        BeginPrimary, ChooseAttackTarget, Defend, DeclineDefense, RespawnHero, DebugDefeatHero
+        BeginPrimary, ChooseAttackTarget, Defend, DeclineDefense, RespawnHero, DebugDefeatHero,
+        ResolveRoundEnd, ChooseRoundMinionRemoval, ChooseUpgrade
     }
     public enum MoveMode { Secondary, Fast }
 
@@ -122,6 +123,8 @@ namespace Goa2.Domain
         public int RangedBonus;
         public bool Confirmed;
         public bool AwaitingRespawn;
+        public string? PurpleCardId;
+        public List<UpgradeRecord> UpgradeHistory = new List<UpgradeRecord>();
         public List<CardInstance> Cards = new List<CardInstance>();
     }
     [Serializable]
@@ -162,6 +165,7 @@ namespace Goa2.Domain
         public string Source = "";
         public bool FinishActionOnResume;
         public bool ResumeCardExecution;
+        public bool ResumeRoundEnd;
         public List<MinionSpawn> Remaining = new List<MinionSpawn>();
     }
     [Serializable]
@@ -235,6 +239,7 @@ namespace Goa2.Domain
         public string VictoryReason = "";
         public FrontlineTransition? Frontline;
         public CardExecution? Execution;
+        public RoundEndProgress? RoundEnd;
         public List<PlayerState> Players = new List<PlayerState>();
         public List<UnitState> Units = new List<UnitState>();
         public PendingChoice? Pending;

@@ -14,6 +14,10 @@ namespace Goa2.Rules
         private static void ApplyDebug(ContentCatalog catalog, GameState state, Command command)
         {
             Require(state.Sandbox, "debug_disabled", "普通对局不能使用调试命令。");
+            bool structural = command.Kind == CommandKind.DebugTeleport || command.Kind == CommandKind.DebugRemoveMinion || command.Kind == CommandKind.DebugDefeatMinion ||
+                command.Kind == CommandKind.DebugDefeatHero || command.Kind == CommandKind.DebugDiscard || command.Kind == CommandKind.DebugRecover || command.Kind == CommandKind.DebugEquipCard;
+            Require(state.RoundEnd == null || !structural || command.Kind == CommandKind.DebugTeleport && state.Frontline != null,
+                "pending_round_end", "请先完成轮末选择；推进出生期间仍可传送释放占位。");
             switch (command.Kind)
             {
                 case CommandKind.SetQuickSelection:
@@ -88,7 +92,7 @@ namespace Goa2.Rules
         }
         public static List<Hex> LegalDebugTeleports(ContentCatalog catalog, GameState state, string unitId)
         {
-            if (!state.Sandbox || state.Phase == Phase.Finished || state.Execution != null && state.Frontline == null || !state.Units.Any(u => u.Id == unitId)) return new List<Hex>();
+            if (!state.Sandbox || state.Phase == Phase.Finished || (state.Execution != null || state.RoundEnd != null) && state.Frontline == null || !state.Units.Any(u => u.Id == unitId)) return new List<Hex>();
             var occupied = new HashSet<Hex>(state.Units.Select(u => u.Position));
             return catalog.Cells.Where(c => !c.Obstacle && !occupied.Contains(c.Position)).OrderBy(c => c.Position.X).ThenBy(c => c.Position.Y).Select(c => c.Position).ToList();
         }

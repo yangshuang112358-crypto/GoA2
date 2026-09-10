@@ -174,13 +174,15 @@
       "contract": "docs/cards/shargatha-02-快速突刺.md",
       "tests": [
         "core/com.goa2.core/Tests/Editor/CombatQueryTests.cs",
-        "core/com.goa2.core/Tests/Editor/CombatFlowTests.cs"
+        "core/com.goa2.core/Tests/Editor/CombatFlowTests.cs",
+        "core/com.goa2.core/Tests/Editor/UpgradeTests.cs"
       ],
       "known_questions": [],
       "implementation_files": [
         "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
         "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
-        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs"
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs"
       ]
     },
     {

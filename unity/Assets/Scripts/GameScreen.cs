@@ -106,6 +106,7 @@ namespace Goa2.Presentation
         {
             chosenHero = null; chosenCell = null; moveMode = null; initiativeSeat = null; passPending = false; deploymentSeat = -1;
             defenseCardId = ""; declineDefensePending = false;
+            upgradeCardId = ""; upgradeColor = "";
         }
         private void Submit(CommandKind kind, string value = "", int target = -1, Hex destination = default, MoveMode mode = MoveMode.Secondary)
         {
@@ -228,6 +229,7 @@ namespace Goa2.Presentation
             if (view.Pending?.Kind == "attack_target" && view.Pending.ChooserSeat == seat)
                 return view.Units.Where(u => view.AttackTargets.Contains(u.Id)).Select(u => u.Position).ToList();
             if (view.Pending?.Kind == "hero_respawn") return view.RespawnCells;
+            if (view.Pending?.Kind == "round_minion_removal") return view.Units.Where(u => view.RoundMinionRemovals.Contains(u.Id)).Select(u => u.Position).ToList();
             if (view.Pending?.Kind == "minion_spawn" && view.Pending.ChooserSeat == seat)
             {
                 PrepareSpawnSelection(view);
@@ -338,17 +340,16 @@ namespace Goa2.Presentation
                     }
                     break;
                 case Phase.RoundEnd:
-                    sidebar.Add(Text("已完成本轮四个回合。", "section-title"));
-                    sidebar.Add(Text("轮末回收、兵线结算与升级将在后续切片接入。当前状态可保存，尚不能开始下一轮。", "body"));
-                    sidebar.Add(Button("保存本轮进度", Save, "primary-button"));
+                    RenderRoundEnd(sidebar, view);
                     break;
                 case Phase.EffectChoice:
-                    if (!RenderCombatChoice(sidebar, view)) RenderBattlefieldChoice(sidebar, view);
+                    if (!RenderRoundMinionChoice(sidebar, view) && !RenderCombatChoice(sidebar, view)) RenderBattlefieldChoice(sidebar, view);
                     break;
                 case Phase.Finished:
                     RenderVictory(sidebar, view);
                     break;
             }
+            RenderPermanentStats(sidebar, view);
             RenderRecentEvents(sidebar, view);
         }
         private void Confirm(VisualElement parent, string caption, Action action)
@@ -421,6 +422,23 @@ namespace Goa2.Presentation
                 case "CrystalDamaged": return actor + "所在队伍水晶减少 " + entry.Detail;
                 case "HeroRespawnChoiceRequired": return actor + "需要选择复活位置";
                 case "HeroRespawned": return actor + "已复活，继续本张牌";
+                case "RoundEndStarted": return "开始结算轮末";
+                case "CardsRecalled": return actor + "回收 " + entry.Detail + " 张牌";
+                case "MinionBattleCounted":
+                    var minionCounts = entry.Detail.Split(':');
+                    return "轮末蓝兵 " + minionCounts[0] + " · 红兵 " + minionCounts[1] + " · 需移除 " + minionCounts[2];
+                case "RoundMinionChoiceRequired": return actor + "还须选择移除 " + entry.Detail + " 名小兵";
+                case "MinionBattleCompleted": return "轮末小兵战斗完成";
+                case "HeroLeveled":
+                    var levelChange = entry.Detail.Split(':');
+                    return actor + "升至 Lv." + levelChange[1] + "，支付 " + levelChange[2] + " 金";
+                case "UpgradesStarted": return "已结算升级费用，等待各自选择";
+                case "UpgradeChoiceRequired": return actor + "选择第 " + entry.Detail + " 级升级";
+                case "CardUpgraded": return actor + "获得“" + catalog.Card(entry.CardId!).Name + "”";
+                case "UpgradeBonusGranted": return actor + "获得永久加成 " + entry.Detail;
+                case "PurpleCardGranted": return actor + "获得紫卡“" + catalog.Card(entry.CardId!).Name + "”";
+                case "RoundCompensationGranted": return actor + "本轮未升级，获得补偿 1 金";
+                case "RoundEnded": return "第 " + entry.Detail + " 轮结算完成";
                 case "ActionPassed": return actor + "放弃此牌行动";
                 case "DeploymentStarted": return "开始安排出生";
                 case "EmptyHandSkipped": return actor + "无手牌，自动跳过";

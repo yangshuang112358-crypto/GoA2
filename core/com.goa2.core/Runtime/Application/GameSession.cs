@@ -85,6 +85,9 @@ namespace Goa2.Application
                 PendingSpawns = snapshot.Frontline?.Remaining.Select(s => s.Unit).ToList() ?? new System.Collections.Generic.List<UnitState>(),
                 EngineVersion = snapshot.EngineVersion,
                 Attack = snapshot.Execution?.Attack,
+                RoundEndStage = snapshot.RoundEnd?.Stage ?? "",
+                RemainingMinionRemovals = snapshot.RoundEnd?.RemainingRemovals ?? 0,
+                UpgradingSeats = snapshot.RoundEnd?.Upgrades.Where(p => p.PendingLevels.Count > 0).Select(p => p.Seat).ToList() ?? new System.Collections.Generic.List<int>(),
                 SupportedPrimaryCards = catalog.Cards.Where(CombatRules.HasPrimaryProgram).Select(c => c.Id).ToList(),
                 SupportedDefenseCards = catalog.Cards.Where(CombatRules.HasDefenseProgram).Select(c => c.Id).ToList(),
                 Units = snapshot.Units, Pending = snapshot.Pending,
@@ -92,6 +95,7 @@ namespace Goa2.Application
                 {
                     Seat = p.Seat, Team = p.Team, Name = p.Name, HeroId = p.HeroId, Level = p.Level, Gold = p.Gold, Confirmed = p.Confirmed,
                     AwaitingRespawn = p.AwaitingRespawn,
+                    PurpleCardId = p.PurpleCardId,
                     HandCount = p.Cards.Count(c => c.Zone == CardZone.InHand || c.Zone == CardZone.Selected),
                     Revealed = p.Cards.Where(c => c.Zone == CardZone.PlayedUnresolved || c.Zone == CardZone.PlayedResolved).ToList(),
                     DiscardColors = p.Cards.Where(c => c.Zone == CardZone.Discarded).Select(c => catalog.Card(c.CardId).Color).ToList()
@@ -126,6 +130,10 @@ namespace Goa2.Application
                 view.DefenseOptions = CombatRules.DefenseOptions(catalog, snapshot, seat.Value);
                 view.UnimplementedDefenseCards = CombatRules.UnimplementedDefenses(catalog, snapshot, seat.Value);
                 view.RespawnCells = GameRules.LegalRespawns(catalog, snapshot, seat.Value);
+                view.CanResolveRoundEnd = GameRules.CanResolveRoundEnd(snapshot);
+                view.RoundMinionRemovals = GameRules.LegalRoundMinionRemovals(snapshot, seat.Value);
+                view.UpgradeOptions = GameRules.LegalUpgrades(catalog, snapshot, seat.Value);
+                view.OwnUpgradeHistory = snapshot.Players[seat.Value].UpgradeHistory;
                 if (snapshot.Pending?.Kind == "minion_spawn" && snapshot.Pending.ChooserSeat == seat && snapshot.Frontline != null)
                     foreach (var spawn in snapshot.Frontline.Remaining.Where(s => snapshot.Pending.CandidateUnits.Count > 0 ? snapshot.Pending.CandidateUnits.Contains(s.Unit.Id) : s.Unit.Id == snapshot.Pending.UnitId))
                         view.SpawnChoices.Add(spawn.Unit.Id, GameRules.LegalMinionSpawns(catalog, snapshot, seat.Value, spawn.Unit.Id));

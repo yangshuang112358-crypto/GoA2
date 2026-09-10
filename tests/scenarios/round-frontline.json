@@ -1,0 +1,24 @@
+{
+  "SchemaVersion": 1,
+  "Id": "round-frontline",
+  "Name": "轮末连续移除、重型推进、占位出生后恢复升级",
+  "Steps": [
+    { "Command": "DebugPrepare", "Value": "wasp,shargatha,brogan,arien", "Expect": { "Phase": "Planning" } },
+    { "Command": "DebugRemoveMinion", "Value": "minion:-1,-3", "Expect": { "RedMinions": 5 } },
+    { "Command": "DebugRemoveMinion", "Value": "minion:4,-1", "Expect": { "RedMinions": 4 } },
+    { "Command": "DebugRemoveMinion", "Value": "minion:1,-1", "Expect": { "RedMinions": 3 } },
+    { "Command": "DebugTeleport", "Value": "hero:2", "Destination": { "X": 2, "Y": -7 } },
+    { "Command": "DebugSetGold", "Value": "6", "Target": "p1" },
+    { "Command": "DebugAdvance", "Value": "round", "Expect": { "Phase": "RoundEnd", "Round": 1, "Revealed": 16 } },
+    { "Command": "ResolveRoundEnd", "Expect": { "Phase": "EffectChoice", "PendingKind": "round_minion_removal", "PendingChooser": "p2", "RemainingMinionRemovals": 3, "RoundEndStage": "minion_battle", "BlueMinions": 6, "RedMinions": 3, "Gold": { "p1": 6 } } },
+    { "Command": "ChooseRoundMinionRemoval", "Value": "minion:3,0", "Expect": { "Code": "invalid_round_minion", "RemainingMinionRemovals": 3 } },
+    { "Actor": "p2", "Command": "ChooseRoundMinionRemoval", "Value": "minion:-3,0", "Expect": { "Code": "invalid_round_minion", "RemainingMinionRemovals": 3 } },
+    { "Actor": "p2", "Command": "ChooseRoundMinionRemoval", "Value": "minion:3,0", "Expect": { "RedMinions": 2, "RemainingMinionRemovals": 2, "EventCounts": { "GoldAwarded": 0, "MinionRemoved": 1 } } },
+    { "Actor": "p2", "Command": "ChooseRoundMinionRemoval", "Value": "minion:-1,1", "Expect": { "RedMinions": 1, "RemainingMinionRemovals": 1 } },
+    { "Actor": "p2", "Command": "ChooseRoundMinionRemoval", "Value": "minion:-3,0", "Expect": { "Phase": "EffectChoice", "PendingKind": "minion_spawn", "PendingChooser": "p2", "CombatRegion": "redNear", "BlueMarks": 1, "RemainingMinionRemovals": 0, "Gold": { "p1": 6 }, "EventOrder": ["MinionRemoved", "MinionsCleared", "FrontlineAdvanced", "FrontlineMarkGained", "MinionSpawnChoiceRequired"] } },
+    { "Actor": "p2", "Command": "ChooseMinionSpawn", "Destination": { "X": 1, "Y": -7 }, "Expect": { "Phase": "RoundEnd", "RoundEndStage": "upgrades", "UpgradingPlayers": 1, "BlueMinions": 5, "RedMinions": 6, "Gold": { "p1": 0 }, "Levels": { "p1": 4 }, "EventOrder": ["MinionSpawned", "FrontlineCompleted", "MinionBattleCompleted", "HeroLeveled", "UpgradesStarted"] } },
+    { "Command": "ChooseUpgrade", "Value": "wasp-03-电能波" },
+    { "Command": "ChooseUpgrade", "Value": "wasp-08-偏转屏障" },
+    { "Command": "ChooseUpgrade", "Value": "wasp-15-引力控制", "Expect": { "Phase": "Planning", "Round": 2, "Turn": 1, "Gold": { "p1": 0, "p2": 1, "p3": 1, "p4": 1 }, "BlueMinions": 5, "RedMinions": 6, "BlueMarks": 1, "RoundEndStage": "none" } }
+  ]
+}

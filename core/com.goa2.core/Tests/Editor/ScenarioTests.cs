@@ -9,12 +9,38 @@ namespace Goa2.Tests
 {
     public sealed class ScenarioTests
     {
+        [Test]
+        public void UpgradeAssertionsCheckTheActualStateInsteadOfOnlyAcceptingTheCommand()
+        {
+            var definition = new Goa2.Infrastructure.Scenarios.ScenarioDefinition
+            {
+                SchemaVersion=1,Id="wrong-upgrade",Name="Incorrect upgrade expectations",
+                Steps = new System.Collections.Generic.List<Goa2.Infrastructure.Scenarios.ScenarioStep>
+                {
+                    new Goa2.Infrastructure.Scenarios.ScenarioStep { Command="DebugPrepare",Value="wasp,shargatha,brogan,arien",
+                        Expect = new Goa2.Infrastructure.Scenarios.ScenarioExpectation
+                        {
+                            Levels = new System.Collections.Generic.Dictionary<string,int> { ["p1"]=8 },
+                            UpgradeCounts = new System.Collections.Generic.Dictionary<string,int> { ["p1"]=6 },
+                            PurpleCards = new System.Collections.Generic.Dictionary<string,string> { ["p1"]="wasp-12-电闪雷鸣" },
+                            RoundEndStage="upgrades",UpgradingPlayers=4,RemainingMinionRemovals=1
+                        }
+                    }
+                }
+            };
+            var runner=new Goa2.Infrastructure.Scenarios.ScenarioRunner(BattlefieldTests.Catalog(),definition);
+            var result=runner.Next();
+            Assert.That(result.Accepted, Is.True); Assert.That(result.Passed, Is.False);
+            Assert.That(result.Errors.Count, Is.EqualTo(6));
+        }
         [TestCase("sandbox-smoke.json")]
         [TestCase("permissions.json")]
         [TestCase("formal-turn.json")]
         [TestCase("frontline.json")]
         [TestCase("spawn-order.json")]
         [TestCase("combat-defense.json")]
+        [TestCase("round-upgrades.json")]
+        [TestCase("round-frontline.json")]
         public void PublishedScenarioPassesAgainstTheFormalCatalog(string file)
         {
             string root = ContentTests.Root();
