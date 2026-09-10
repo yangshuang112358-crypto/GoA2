@@ -141,6 +141,8 @@ namespace Goa2.Presentation
                 case Phase.Planning: return "暗选卡牌";
                 case Phase.InitiativeChoice: return "先攻决策";
                 case Phase.Action: return "执行行动";
+                case Phase.EffectChoice: return "处理待选择";
+                case Phase.Finished: return "对局结束";
                 default: return "到达轮末";
             }
         }
@@ -222,6 +224,7 @@ namespace Goa2.Presentation
         private List<Hex> LegalCells(GameView view)
         {
             if (debugTeleport && view.DebugTeleports.TryGetValue(debugUnitId, out var teleportTargets)) return teleportTargets;
+            if (view.Pending?.Kind == "minion_spawn" && view.Pending.ChooserSeat == seat) return view.Pending.CandidateCells;
             if (view.Phase == Phase.Deployment && view.Deployments.Count > 0)
             {
                 if (!view.Deployments.ContainsKey(deploymentSeat)) deploymentSeat = view.Deployments.Keys.First();
@@ -328,6 +331,12 @@ namespace Goa2.Presentation
                     sidebar.Add(Text("轮末回收、兵线结算与升级将在后续切片接入。当前状态可保存，尚不能开始下一轮。", "body"));
                     sidebar.Add(Button("保存本轮进度", Save, "primary-button"));
                     break;
+                case Phase.EffectChoice:
+                    RenderBattlefieldChoice(sidebar, view);
+                    break;
+                case Phase.Finished:
+                    RenderVictory(sidebar, view);
+                    break;
             }
             RenderRecentEvents(sidebar, view);
         }
@@ -372,6 +381,18 @@ namespace Goa2.Presentation
                 case "DecisionCoinFlipped": return "跨队同先攻，决策币已翻面";
                 case "InitiativeChoiceRequired": return actor + "需要选择先行动者";
                 case "RoundEndReached": return "到达轮末";
+                case "MinionRemoved": return "小兵已移除 · " + entry.From;
+                case "MinionDefeated": return actor + "击败小兵 · " + entry.From;
+                case "GoldAwarded": return actor + "获得 " + entry.Detail + " 金";
+                case "MinionsCleared": return "清除旧战区小兵 " + entry.Detail + " 名";
+                case "FrontlineAdvanced": return "战线推进至" + RegionName(entry.Detail);
+                case "FrontlineMarkGained": return (entry.Detail == "Blue" ? "蓝队" : "红队") + "累计推进 +1";
+                case "MinionSpawned": return "小兵出生于 " + entry.To;
+                case "MinionSpawnChoiceRequired": return actor + "需要选择小兵出生位置";
+                case "SpawnOrderRulingRequired": return "出生位置发生冲突，等待顺序裁定";
+                case "FrontlineCompleted": return "推进出生完成，继续原流程";
+                case "DebugCrystalSet": return "调试水晶生命已更新";
+                case "MatchWon": return (entry.Detail.StartsWith("Blue:") ? "蓝队" : "红队") + "获胜";
                 case "ActionPassed": return actor + "放弃此牌行动";
                 case "DeploymentStarted": return "开始安排出生";
                 case "EmptyHandSkipped": return actor + "无手牌，自动跳过";

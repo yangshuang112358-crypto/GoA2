@@ -41,9 +41,12 @@ $goaPoint = [Goa2PlayerWindow+POINT]::new()
 if ($Action -eq "Key") {
     if ([Goa2PlayerWindow]::GetForegroundWindow() -ne $goaHandle) { throw "Player is not foreground; no input sent." }
     $goaKeyCodes = @{ '1'=0x31; '2'=0x32; '3'=0x33; '4'=0x34; Home=0x24; Escape=0x1B; Tab=0x09; Enter=0x0D }
-    [Goa2PlayerWindow]::keybd_event($goaKeyCodes[$Key],0,0,[UIntPtr]::Zero)
+    # Home is an extended navigation key; without its scan code/flag Unity may see Keypad7.
+    $goaExtended = if ($Key -eq 'Home') { 1 } else { 0 }
+    $goaScan = if ($Key -eq 'Home') { 0x47 } else { 0 }
+    [Goa2PlayerWindow]::keybd_event($goaKeyCodes[$Key],$goaScan,$goaExtended,[UIntPtr]::Zero)
     [System.Threading.Thread]::Sleep(100)
-    [Goa2PlayerWindow]::keybd_event($goaKeyCodes[$Key],0,2,[UIntPtr]::Zero)
+    [Goa2PlayerWindow]::keybd_event($goaKeyCodes[$Key],$goaScan,($goaExtended -bor 2),[UIntPtr]::Zero)
     [System.Threading.Thread]::Sleep(350)
     Write-Output "Key $Key sent to player"
 } elseif ($Action -ne "Capture") {

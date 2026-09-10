@@ -104,6 +104,7 @@ namespace Goa2.Infrastructure.Scenarios
                 Guard(!string.IsNullOrWhiteSpace(expect.Code), "Expect.Code不能为空。");
                 if (expect.Phase != null) Guard(Enum.TryParse<Phase>(expect.Phase, out var phase) && Enum.IsDefined(typeof(Phase), phase) && phase.ToString() == expect.Phase, "Expect.Phase不存在。");
                 if (expect.Active != null) ValidateSeat(expect.Active, true);
+                if (expect.Winner != null) Guard(expect.Winner == "none" || expect.Winner == "Blue" || expect.Winner == "Red", "Expect.Winner须为Blue、Red或none。");
                 if (expect.PendingChooser != null) ValidateSeat(expect.PendingChooser, true);
                 ValidateCounts(expect.Gold); ValidateCounts(expect.HandCounts); ValidateCounts(expect.DiscardCounts);
                 Guard(expect.Positions != null && expect.EventCounts != null && expect.EventOrder != null, "期望集合不能为null。");
@@ -193,6 +194,14 @@ namespace Goa2.Infrastructure.Scenarios
             if (expect.PendingKind != null) Equal(result, "PendingKind", expect.PendingKind, state.Pending?.Kind ?? "none");
             if (expect.PendingChooser != null) Equal(result, "PendingChooser", Seat(expect.PendingChooser, view), state.Pending?.ChooserSeat ?? -1);
             if (expect.Revealed.HasValue) Equal(result, "Revealed", expect.Revealed.Value, state.Events.Count(e => e.Kind == "CardRevealed"));
+            if (expect.CombatRegion != null) Equal(result, "CombatRegion", expect.CombatRegion, state.CombatRegion);
+            if (expect.Winner != null) Equal(result, "Winner", expect.Winner, state.Winner?.ToString() ?? "none");
+            if (expect.BlueMarks.HasValue) Equal(result, "BlueMarks", expect.BlueMarks.Value, state.BlueMarks);
+            if (expect.RedMarks.HasValue) Equal(result, "RedMarks", expect.RedMarks.Value, state.RedMarks);
+            if (expect.BlueMinions.HasValue) Equal(result, "BlueMinions", expect.BlueMinions.Value, state.Units.Count(u => u.Kind != "hero" && u.Team == Team.Blue));
+            if (expect.RedMinions.HasValue) Equal(result, "RedMinions", expect.RedMinions.Value, state.Units.Count(u => u.Kind != "hero" && u.Team == Team.Red));
+            if (expect.BlueCrystal.HasValue) Equal(result, "BlueCrystal", expect.BlueCrystal.Value, state.BlueCrystal);
+            if (expect.RedCrystal.HasValue) Equal(result, "RedCrystal", expect.RedCrystal.Value, state.RedCrystal);
             foreach (var pair in expect.Gold) Equal(result, "Gold."+pair.Key, pair.Value, view.Players[Seat(pair.Key,view)].Gold);
             foreach (var pair in expect.HandCounts) Equal(result, "HandCounts."+pair.Key, pair.Value, view.Players[Seat(pair.Key,view)].HandCount);
             foreach (var pair in expect.DiscardCounts) Equal(result, "DiscardCounts."+pair.Key, pair.Value, view.Players[Seat(pair.Key,view)].DiscardColors.Count);

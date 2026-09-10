@@ -41,6 +41,21 @@ namespace Goa2.Rules
                     var origin = unit.Position; unit.Position = command.Destination;
                     Emit(state, command, "DebugTeleported", unit.Seat, detail: unit.Id);
                     state.Events.Last().From = origin; state.Events.Last().To = unit.Position;
+                    if (state.Frontline != null) ContinueFrontline(catalog, state, command);
+                    break;
+                case CommandKind.DebugRemoveMinion:
+                case CommandKind.DebugDefeatMinion:
+                    Require(state.Phase != Phase.HeroSelection && state.Phase != Phase.Deployment, "wrong_phase", "请先完成初始准备。");
+                    RemoveMinion(catalog, state, command, command.Value, "debug",
+                        command.Kind == CommandKind.DebugDefeatMinion ? (int?)DebugPlayer(state, command.TargetSeat).Seat : null, true);
+                    break;
+                case CommandKind.DebugSetCrystal:
+                    Require(state.Phase != Phase.HeroSelection && state.Phase != Phase.Deployment, "wrong_phase", "请先完成初始准备。");
+                    var team = DebugPlayer(state, command.TargetSeat).Team;
+                    Require(int.TryParse(command.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out int life) && life >= 0 && life <= 99, "invalid_amount", "水晶生命须为0至99的整数。");
+                    if (team == Team.Blue) state.BlueCrystal = life; else state.RedCrystal = life;
+                    Emit(state, command, "DebugCrystalSet", detail: team + ":" + life);
+                    if (life == 0) DeclareVictory(state, command, OtherTeam(team), "crystal");
                     break;
                 case CommandKind.DebugDiscard: DebugDiscard(catalog, state, command); break;
                 case CommandKind.DebugRecover: DebugRecover(catalog, state, command); break;
@@ -63,7 +78,7 @@ namespace Goa2.Rules
         }
         public static List<Hex> LegalDebugTeleports(ContentCatalog catalog, GameState state, string unitId)
         {
-            if (!state.Sandbox || !state.Units.Any(u => u.Id == unitId)) return new List<Hex>();
+            if (!state.Sandbox || state.Phase == Phase.Finished || !state.Units.Any(u => u.Id == unitId)) return new List<Hex>();
             var occupied = new HashSet<Hex>(state.Units.Select(u => u.Position));
             return catalog.Cells.Where(c => !c.Obstacle && !occupied.Contains(c.Position)).OrderBy(c => c.Position.X).ThenBy(c => c.Position.Y).Select(c => c.Position).ToList();
         }

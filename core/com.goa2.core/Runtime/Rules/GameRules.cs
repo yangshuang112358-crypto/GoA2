@@ -23,6 +23,7 @@ namespace Goa2.Rules
         public void Apply(ContentCatalog catalog, GameState state, Command command)
         {
             Require(command.ActorSeat >= 0 && command.ActorSeat < 4, "invalid_actor", "无效席位。");
+            Require(state.Phase != Phase.Finished, "match_finished", "本局已经结束，请创建新对局。");
             switch (command.Kind)
             {
                 case CommandKind.ChooseHero: ChooseHero(catalog, state, command); break;
@@ -30,9 +31,10 @@ namespace Goa2.Rules
                 case CommandKind.SelectCard: SelectCard(catalog, state, command); break;
                 case CommandKind.ConfirmCard: ConfirmCard(catalog, state, command); break;
                 case CommandKind.ChooseInitiative: ChooseInitiative(state, command); break;
+                case CommandKind.ChooseMinionSpawn: ChooseMinionSpawn(catalog, state, command); break;
                 case CommandKind.Move: Move(catalog, state, command); break;
                 case CommandKind.Pass:
-                    Require(state.Phase == Phase.Action && state.ActiveSeat == command.ActorSeat, "not_active", "当前不由你行动。");
+                    Require(state.Phase == Phase.Action && state.ActiveSeat == command.ActorSeat && state.Pending == null, "not_active", "当前不由你行动，或仍有待处理选择。");
                     Emit(state, command, "ActionPassed", command.ActorSeat, ActiveCard(state).CardId);
                     FinishAction(catalog, state, command);
                     break;
@@ -48,6 +50,9 @@ namespace Goa2.Rules
                 case CommandKind.DebugConfirmAll:
                 case CommandKind.DebugAdvance:
                 case CommandKind.DebugSetGold:
+                case CommandKind.DebugRemoveMinion:
+                case CommandKind.DebugDefeatMinion:
+                case CommandKind.DebugSetCrystal:
                     ApplyDebug(catalog, state, command); break;
                 default: throw new RuleViolation("unsupported_command", "此操作尚未实装。");
             }

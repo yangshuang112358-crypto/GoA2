@@ -12,6 +12,7 @@ namespace Goa2.Tests
         [TestCase("sandbox-smoke.json")]
         [TestCase("permissions.json")]
         [TestCase("formal-turn.json")]
+        [TestCase("frontline.json")]
         public void PublishedScenarioPassesAgainstTheFormalCatalog(string file)
         {
             string root = ContentTests.Root();

@@ -31,6 +31,8 @@ namespace Goa2.Infrastructure.Scenarios
         public string Code = "ok";
         public string? Phase, Active, PendingKind, PendingChooser;
         public int? Round, Turn, Revealed;
+        public string? CombatRegion, Winner;
+        public int? BlueMarks, RedMarks, BlueMinions, RedMinions, BlueCrystal, RedCrystal;
         public Dictionary<string, int> Gold = new Dictionary<string, int>();
         public Dictionary<string, int> HandCounts = new Dictionary<string, int>();
         public Dictionary<string, int> DiscardCounts = new Dictionary<string, int>();

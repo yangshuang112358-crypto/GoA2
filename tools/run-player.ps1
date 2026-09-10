@@ -16,6 +16,9 @@ if (Test-Path -LiteralPath $goaPidPath) {
 $goaArguments = '-screen-fullscreen 0 -screen-width ' + $Width + ' -screen-height ' + $Height
 $goaArguments += ' -logFile "' + (Join-Path $goaRoot 'artifacts/unity/player.log') + '"'
 if ($Qa) {
+    # A new process must publish its own layout; stale snapshots can otherwise satisfy readiness checks.
+    $goaOldLayout = Join-Path $goaRoot 'artifacts/unity/render-latest.ui.json'
+    if (Test-Path -LiteralPath $goaOldLayout) { Remove-Item -LiteralPath $goaOldLayout }
     $goaArguments += ' -goaScreenshot "' + (Join-Path $goaRoot 'artifacts/unity/render-latest.png') + '"'
     $goaArguments += ' -goaSavePath "' + (Join-Path $goaRoot 'artifacts/unity/qa-save.json') + '"'
 }

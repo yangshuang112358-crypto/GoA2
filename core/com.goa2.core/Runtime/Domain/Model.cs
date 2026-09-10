@@ -6,14 +6,15 @@ using System.Linq;
 namespace Goa2.Domain
 {
     public enum Team { Blue, Red }
-    public enum Phase { HeroSelection, Deployment, Planning, InitiativeChoice, Action, RoundEnd }
+    public enum Phase { HeroSelection, Deployment, Planning, InitiativeChoice, Action, RoundEnd, EffectChoice, Finished }
     public enum CardZone { InHand, Selected, PlayedUnresolved, PlayedResolved, Discarded }
     public enum CommandKind
     {
         ChooseHero, DeployHero, SelectCard, ConfirmCard, ChooseInitiative, Move, Pass,
         SetQuickSelection, DebugGold, DebugTeleport, DebugDiscard, DebugRecover,
         DebugPrepare, DebugSelectAll, DebugEquipCard, DebugSetCoin,
-        DebugConfirmAll, DebugAdvance, DebugSetGold
+        DebugConfirmAll, DebugAdvance, DebugSetGold,
+        DebugRemoveMinion, DebugDefeatMinion, DebugSetCrystal, ChooseMinionSpawn
     }
     public enum MoveMode { Secondary, Fast }
 
@@ -133,9 +134,27 @@ namespace Goa2.Domain
         public string Kind = "";
         public int ChooserSeat;
         public List<int> CandidateSeats = new List<int>();
+        public List<Hex> CandidateCells = new List<Hex>();
+        public string UnitId = "";
         public string Source = "";
         public string ResumeAt = "";
         public bool Optional;
+    }
+    [Serializable]
+    public sealed class MinionSpawn
+    {
+        public UnitState Unit = new UnitState();
+        public Hex Origin;
+    }
+    [Serializable]
+    public sealed class FrontlineTransition
+    {
+        public Phase ResumePhase;
+        public int? ResumeActiveSeat;
+        public PendingChoice? ResumePending;
+        public string Source = "";
+        public bool FinishActionOnResume;
+        public List<MinionSpawn> Remaining = new List<MinionSpawn>();
     }
     [Serializable]
     public sealed class GameEvent
@@ -197,6 +216,12 @@ namespace Goa2.Domain
         public int RedCrystal;
         public int VictoryMarksRequired;
         public string CombatRegion = "";
+        public int BlueMarks;
+        public int RedMarks;
+        public int FrontlineSequence;
+        public Team? Winner;
+        public string VictoryReason = "";
+        public FrontlineTransition? Frontline;
         public List<PlayerState> Players = new List<PlayerState>();
         public List<UnitState> Units = new List<UnitState>();
         public PendingChoice? Pending;

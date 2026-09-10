@@ -15,7 +15,7 @@ namespace Goa2.Tests
             return new GameSession(catalog, new JsonStateCodec(), new GameRules().Create(catalog, "match", new[] { "A", "B", "C", "D" }, 42));
         }
         internal static Command Cmd(GameSession session, int seat, CommandKind kind, string value = "", int target = -1, Hex destination = default, MoveMode mode = MoveMode.Secondary) =>
-            new Command { Id = Guid.NewGuid().ToString("N"), MatchId = "match", ExpectedRevision = session.View(seat).Revision, ActorSeat = seat, Kind = kind, Value = value, TargetSeat = target, Destination = destination, MoveMode = mode };
+            new Command { Id = Guid.NewGuid().ToString("N"), MatchId = session.View(null).MatchId, ExpectedRevision = session.View(seat).Revision, ActorSeat = seat, Kind = kind, Value = value, TargetSeat = target, Destination = destination, MoveMode = mode };
         [Test]
         public void InvalidIdentityAndStaleCommandsLeaveWholeStateUnchanged()
         {

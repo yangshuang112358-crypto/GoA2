@@ -1,0 +1,12 @@
+{
+  "SchemaVersion": 1, "Id": "frontline", "Name": "推进、出生选择与泉水胜利", "Seed": 42,
+  "Steps": [
+    {"Command":"DebugPrepare","Value":"wasp,shargatha,brogan,arien","Expect":{"Phase":"Planning","BlueMinions":6,"RedMinions":6}},
+    {"Name":"英雄占住未来远程出生点","Command":"DebugTeleport","Value":"hero:0","Destination":{"X":2,"Y":-7}},
+    {"Name":"击败红重型获得4金并立即推进","Command":"DebugDefeatMinion","Value":"minion:-3,0","Target":"p1","Expect":{"Phase":"EffectChoice","CombatRegion":"redNear","BlueMarks":1,"RedMarks":0,"BlueMinions":5,"RedMinions":5,"Gold":{"p1":4},"PendingKind":"minion_spawn","PendingChooser":"p2","EventOrder":["MinionDefeated","GoldAwarded","MinionsCleared","FrontlineAdvanced","MinionSpawnChoiceRequired"]}},
+    {"Name":"错误队长不可安排","Command":"ChooseMinionSpawn","Destination":{"X":1,"Y":-7},"Expect":{"Code":"invalid_spawn"}},
+    {"Name":"红队长为远程兵选择相邻空格","Actor":"p2","Command":"ChooseMinionSpawn","Destination":{"X":1,"Y":-7},"Expect":{"Phase":"Planning","BlueMinions":5,"RedMinions":6,"Gold":{"p1":4},"Positions":{"minion:1:2,-7":{"X":1,"Y":-7}}}},
+    {"Name":"再次移除红重型到达泉水胜利，无额外金币","Command":"DebugRemoveMinion","Value":"minion:1:3,-7","Expect":{"Phase":"Finished","CombatRegion":"redFountain","Winner":"Blue","BlueMarks":2,"BlueMinions":0,"RedMinions":0,"Gold":{"p1":4},"EventCounts":{"MinionSpawned":0,"MatchWon":1}}},
+    {"Name":"胜负确定后不可继续修改","Command":"DebugGold","Value":"10","Target":"p1","Expect":{"Code":"match_finished","Gold":{"p1":4}}}
+  ]
+}

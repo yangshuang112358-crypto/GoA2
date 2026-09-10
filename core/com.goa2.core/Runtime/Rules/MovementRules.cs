@@ -10,7 +10,7 @@ namespace Goa2.Rules
         public static List<MoveOption> LegalMoves(ContentCatalog catalog, GameState state, int seat, MoveMode mode)
         {
             var empty = new List<MoveOption>();
-            if (state.Phase != Phase.Action || state.ActiveSeat != seat || seat < 0 || seat > 3) return empty;
+            if (state.Phase != Phase.Action || state.Pending != null || state.ActiveSeat != seat || seat < 0 || seat > 3) return empty;
             var player = state.Players[seat];
             var played = player.Cards.SingleOrDefault(c => c.Zone == CardZone.PlayedUnresolved);
             var unit = state.Units.SingleOrDefault(u => u.Seat == seat);

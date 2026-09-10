@@ -45,6 +45,13 @@ namespace Goa2.Domain
         public int BlueCrystal;
         public int RedCrystal;
         public string CombatRegion = "";
+        public int BlueMarks;
+        public int RedMarks;
+        public int VictoryMarksRequired;
+        public Team? Winner;
+        public string VictoryReason = "";
+        public List<string> RemovableMinions = new List<string>();
+        public UnitState? PendingSpawn;
         public List<PlayerView> Players = new List<PlayerView>();
         public List<UnitState> Units = new List<UnitState>();
         public PendingChoice? Pending;

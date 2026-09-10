@@ -114,6 +114,8 @@ namespace Goa2.Presentation
             team.Add(Text("水晶   蓝 " + view.BlueCrystal + " : " + view.RedCrystal + " 红", "section-title"));
             team.Add(Text("决策币 · " + (view.DecisionCoin == Team.Blue ? "蓝队" : "红队"), "body"));
             team.Add(Text("战区 · " + RegionName(view.CombatRegion), "body")); scroll.Add(team);
+            team.Add(Text("推进   蓝 " + view.BlueMarks + " : " + view.RedMarks + " 红 / " + view.VictoryMarksRequired, "body"));
+            if (view.Winner.HasValue) team.Add(Text((view.Winner == Team.Blue ? "蓝队" : "红队") + "获胜", "section-title"));
         }
         private static string ColorName(string color) => color switch { "gold" => "金", "silver" => "银", "red" => "红", "green" => "绿", "blue" => "蓝", _ => "紫" };
         private void BuildRevealedStrip(VisualElement parent, GameView view)

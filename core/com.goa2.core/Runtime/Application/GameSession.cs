@@ -77,6 +77,9 @@ namespace Goa2.Application
                 Sandbox = snapshot.Sandbox, QuickSelection = snapshot.QuickSelection,
                 DecisionCoin = snapshot.DecisionCoin, ActiveSeat = snapshot.ActiveSeat, BlueCaptain = snapshot.BlueCaptain, RedCaptain = snapshot.RedCaptain,
                 BlueCrystal = snapshot.BlueCrystal, RedCrystal = snapshot.RedCrystal, CombatRegion = snapshot.CombatRegion,
+                BlueMarks = snapshot.BlueMarks, RedMarks = snapshot.RedMarks, VictoryMarksRequired = snapshot.VictoryMarksRequired,
+                Winner = snapshot.Winner, VictoryReason = snapshot.VictoryReason, RemovableMinions = GameRules.LegalMinionRemovals(snapshot),
+                PendingSpawn = snapshot.Frontline?.Remaining.FirstOrDefault(s => s.Unit.Id == snapshot.Pending?.UnitId)?.Unit,
                 Units = snapshot.Units, Pending = snapshot.Pending,
                 Players = snapshot.Players.Select(p => new PlayerView
                 {
@@ -107,7 +110,7 @@ namespace Goa2.Application
                     var cells = GameRules.LegalDeployments(catalog, snapshot, seat.Value, player.Seat);
                     if (cells.Count > 0) view.Deployments.Add(player.Seat, cells);
                 }
-                view.CanPass = snapshot.Phase == Phase.Action && snapshot.ActiveSeat == seat;
+                view.CanPass = snapshot.Phase == Phase.Action && snapshot.ActiveSeat == seat && snapshot.Pending == null;
                 view.SecondaryMoves = MovementRules.LegalMoves(catalog, snapshot, seat.Value, MoveMode.Secondary);
                 view.FastMoves = MovementRules.LegalMoves(catalog, snapshot, seat.Value, MoveMode.Fast);
                 if (snapshot.Sandbox)
