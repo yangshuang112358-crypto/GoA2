@@ -14,6 +14,15 @@ namespace Goa2.Domain
         public bool Confirmed;
         public int HandCount;
         public List<CardInstance> Revealed = new List<CardInstance>();
+        public List<PublicPlay> Plays = new List<PublicPlay>();
+        public List<string> DiscardColors = new List<string>();
+    }
+    public sealed class PublicPlay
+    {
+        public int Round;
+        public int Turn;
+        public string CardId = "";
+        public string Color = "";
     }
     public sealed class MoveOption
     {
@@ -24,6 +33,8 @@ namespace Goa2.Domain
     {
         public string MatchId = "";
         public long Revision;
+        public bool Sandbox;
+        public bool QuickSelection;
         public Phase Phase;
         public int Round;
         public int Turn;
@@ -42,6 +53,7 @@ namespace Goa2.Domain
         public Dictionary<int, List<Hex>> Deployments = new Dictionary<int, List<Hex>>();
         public List<MoveOption> SecondaryMoves = new List<MoveOption>();
         public List<MoveOption> FastMoves = new List<MoveOption>();
+        public Dictionary<string, List<Hex>> DebugTeleports = new Dictionary<string, List<Hex>>();
         public bool CanPass;
         public List<GameEvent> Events = new List<GameEvent>();
     }

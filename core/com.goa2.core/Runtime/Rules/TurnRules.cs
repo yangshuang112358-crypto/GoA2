@@ -36,7 +36,7 @@ namespace Goa2.Rules
             }
             Emit(state, command, "PlanningStarted", detail: state.Round + ":" + state.Turn);
         }
-        private static void SelectCard(GameState state, Command command)
+        private static void SelectCard(ContentCatalog catalog, GameState state, Command command)
         {
             Require(state.Phase == Phase.Planning, "wrong_phase", "当前不是暗选阶段。");
             var player = state.Players[command.ActorSeat];
@@ -46,6 +46,7 @@ namespace Goa2.Rules
             foreach (var previous in player.Cards.Where(c => c.Zone == CardZone.Selected)) previous.Zone = CardZone.InHand;
             card!.Zone = CardZone.Selected;
             Emit(state, command, "CardSelected", player.Seat, card.CardId, player.Seat);
+            if (state.QuickSelection) TryReveal(catalog, state, command);
         }
         private static void ConfirmCard(ContentCatalog catalog, GameState state, Command command)
         {
@@ -54,7 +55,21 @@ namespace Goa2.Rules
             Require(!player.Confirmed && player.Cards.Any(c => c.Zone == CardZone.Selected), "nothing_to_confirm", "请先选择一张手牌。");
             player.Confirmed = true;
             Emit(state, command, "SelectionConfirmed", player.Seat);
-            if (!state.Players.All(p => p.Confirmed)) return;
+            TryReveal(catalog, state, command);
+        }
+        private static void TryReveal(ContentCatalog catalog, GameState state, Command command)
+        {
+            if (state.Phase != Phase.Planning) return;
+            if (state.QuickSelection)
+            {
+                if (state.Players.Any(p => p.Cards.Any(c => c.Zone == CardZone.InHand || c.Zone == CardZone.Selected) && !p.Cards.Any(c => c.Zone == CardZone.Selected))) return;
+                foreach (var player in state.Players)
+                {
+                    if (!player.Confirmed) Emit(state, command, "SelectionConfirmed", player.Seat);
+                    player.Confirmed = true;
+                }
+            }
+            else if (!state.Players.All(p => p.Confirmed)) return;
             foreach (var owner in state.Players)
             {
                 foreach (var card in owner.Cards.Where(c => c.Zone == CardZone.Selected))

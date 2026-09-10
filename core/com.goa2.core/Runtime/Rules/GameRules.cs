@@ -27,7 +27,7 @@ namespace Goa2.Rules
             {
                 case CommandKind.ChooseHero: ChooseHero(catalog, state, command); break;
                 case CommandKind.DeployHero: DeployHero(catalog, state, command); break;
-                case CommandKind.SelectCard: SelectCard(state, command); break;
+                case CommandKind.SelectCard: SelectCard(catalog, state, command); break;
                 case CommandKind.ConfirmCard: ConfirmCard(catalog, state, command); break;
                 case CommandKind.ChooseInitiative: ChooseInitiative(state, command); break;
                 case CommandKind.Move: Move(catalog, state, command); break;
@@ -36,6 +36,16 @@ namespace Goa2.Rules
                     Emit(state, command, "ActionPassed", command.ActorSeat, ActiveCard(state).CardId);
                     FinishAction(catalog, state, command);
                     break;
+                case CommandKind.SetQuickSelection:
+                case CommandKind.DebugGold:
+                case CommandKind.DebugTeleport:
+                case CommandKind.DebugDiscard:
+                case CommandKind.DebugRecover:
+                case CommandKind.DebugPrepare:
+                case CommandKind.DebugSelectAll:
+                case CommandKind.DebugEquipCard:
+                case CommandKind.DebugSetCoin:
+                    ApplyDebug(catalog, state, command); break;
                 default: throw new RuleViolation("unsupported_command", "此操作尚未实装。");
             }
         }

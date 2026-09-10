@@ -8,7 +8,12 @@ namespace Goa2.Domain
     public enum Team { Blue, Red }
     public enum Phase { HeroSelection, Deployment, Planning, InitiativeChoice, Action, RoundEnd }
     public enum CardZone { InHand, Selected, PlayedUnresolved, PlayedResolved, Discarded }
-    public enum CommandKind { ChooseHero, DeployHero, SelectCard, ConfirmCard, ChooseInitiative, Move, Pass }
+    public enum CommandKind
+    {
+        ChooseHero, DeployHero, SelectCard, ConfirmCard, ChooseInitiative, Move, Pass,
+        SetQuickSelection, DebugGold, DebugTeleport, DebugDiscard, DebugRecover,
+        DebugPrepare, DebugSelectAll, DebugEquipCard, DebugSetCoin
+    }
     public enum MoveMode { Secondary, Fast }
 
     [Serializable]
@@ -178,6 +183,8 @@ namespace Goa2.Domain
         public string RulesVersion = "";
         public long Revision;
         public int Seed;
+        public bool Sandbox;
+        public bool QuickSelection;
         public Phase Phase;
         public int Round = 1;
         public int Turn = 1;

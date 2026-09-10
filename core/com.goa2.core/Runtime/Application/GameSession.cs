@@ -74,6 +74,7 @@ namespace Goa2.Application
             var view = new GameView
             {
                 MatchId = snapshot.MatchId, Revision = snapshot.Revision, Phase = snapshot.Phase, Round = snapshot.Round, Turn = snapshot.Turn,
+                Sandbox = snapshot.Sandbox, QuickSelection = snapshot.QuickSelection,
                 DecisionCoin = snapshot.DecisionCoin, ActiveSeat = snapshot.ActiveSeat, BlueCaptain = snapshot.BlueCaptain, RedCaptain = snapshot.RedCaptain,
                 BlueCrystal = snapshot.BlueCrystal, RedCrystal = snapshot.RedCrystal, CombatRegion = snapshot.CombatRegion,
                 Units = snapshot.Units, Pending = snapshot.Pending,
@@ -81,12 +82,24 @@ namespace Goa2.Application
                 {
                     Seat = p.Seat, Team = p.Team, Name = p.Name, HeroId = p.HeroId, Level = p.Level, Gold = p.Gold, Confirmed = p.Confirmed,
                     HandCount = p.Cards.Count(c => c.Zone == CardZone.InHand || c.Zone == CardZone.Selected),
-                    Revealed = p.Cards.Where(c => c.Zone == CardZone.PlayedUnresolved || c.Zone == CardZone.PlayedResolved).ToList()
+                    Revealed = p.Cards.Where(c => c.Zone == CardZone.PlayedUnresolved || c.Zone == CardZone.PlayedResolved).ToList(),
+                    DiscardColors = p.Cards.Where(c => c.Zone == CardZone.Discarded).Select(c => catalog.Card(c.CardId).Color).ToList()
                 }).ToList(),
                 OwnCards = seat.HasValue && seat >= 0 && seat < 4 ? snapshot.Players[seat.Value].Cards : new System.Collections.Generic.List<CardInstance>(),
                 AvailableHeroes = snapshot.Phase == Phase.HeroSelection ? catalog.Heroes.Where(h => !snapshot.Players.Any(p => p.Seat != seat && p.HeroId == h.Id)).Select(h => h.Id).ToList() : new System.Collections.Generic.List<string>(),
                 Events = snapshot.Events.Where(e => e.PrivateTo == null || e.PrivateTo == seat).ToList()
             };
+            int playedRound = 1, playedTurn = 1;
+            foreach (var entry in snapshot.Events)
+            {
+                if (entry.Kind == "PlanningStarted")
+                {
+                    var parts = entry.Detail.Split(':');
+                    if (parts.Length == 2 && int.TryParse(parts[0], out int round) && int.TryParse(parts[1], out int turn)) { playedRound = round; playedTurn = turn; }
+                }
+                if (entry.Kind == "CardRevealed" && entry.Seat.HasValue && entry.CardId != null)
+                    view.Players[entry.Seat.Value].Plays.Add(new PublicPlay { Round = playedRound, Turn = playedTurn, CardId = entry.CardId, Color = catalog.Card(entry.CardId).Color });
+            }
             if (seat.HasValue && seat >= 0 && seat < 4)
             {
                 foreach (var player in snapshot.Players)
@@ -97,6 +110,8 @@ namespace Goa2.Application
                 view.CanPass = snapshot.Phase == Phase.Action && snapshot.ActiveSeat == seat;
                 view.SecondaryMoves = MovementRules.LegalMoves(catalog, snapshot, seat.Value, MoveMode.Secondary);
                 view.FastMoves = MovementRules.LegalMoves(catalog, snapshot, seat.Value, MoveMode.Fast);
+                if (snapshot.Sandbox)
+                    foreach (var unit in snapshot.Units) view.DebugTeleports.Add(unit.Id, GameRules.LegalDebugTeleports(catalog, snapshot, unit.Id));
             }
             return view;
         }
