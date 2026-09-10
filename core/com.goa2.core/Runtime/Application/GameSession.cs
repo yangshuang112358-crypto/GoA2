@@ -35,40 +35,61 @@ namespace Goa2.Application
         public string ExportSave() { lock (gate) return codec.Write(state); }
         public GameView View(int? seat) { lock (gate) return Project(seat); }
 
+        // The host supplies a canonical fresh origin. Saved files enter through
+        // LocalGameFactory.Restore, which also verifies the complete derived state.
+        public static GameSession Replay(ContentCatalog catalog,IStateCodec codec,GameState initial,System.Collections.Generic.IReadOnlyList<Command> commands)
+        {
+            if(commands==null || commands.Count>10000) throw new RuleViolation("invalid_replay","重放命令数量无效。");
+            var replay=new GameSession(catalog,codec,initial);
+            if(replay.state.Revision!=0 || replay.state.Receipts.Count!=0 || replay.state.AcceptedCommands.Count!=0)
+                throw new RuleViolation("invalid_replay_origin","重放须从新的规范初始状态开始。");
+            // This session is private until the complete import succeeds. Any rejected
+            // command abandons it, so intermediate copies and player views are unnecessary.
+            foreach(var command in commands)
+            {
+                var result=replay.ExecuteCore(command.ActorSeat,command,true);
+                if(!result.Accepted || result.Duplicate)
+                    throw new RuleViolation("invalid_replay","存档命令无法重放："+result.Code);
+            }
+            return replay;
+        }
+
         public CommandResult Execute(int authenticatedSeat, Command command)
         {
-            lock (gate)
-            {
-                if (authenticatedSeat < 0 || authenticatedSeat > 3 || command.ActorSeat != authenticatedSeat)
-                    return Reject("unauthorized", "连接身份与操作席位不符。", authenticatedSeat);
-                if (command.MatchId != state.MatchId) return Reject("wrong_match", "命令不属于本局。", authenticatedSeat);
-                if (string.IsNullOrWhiteSpace(command.Id) || command.Id.Length > 100)
-                    return Reject("invalid_command_id", "命令编号无效。", authenticatedSeat);
-                string fingerprint = Fingerprint(codec.WriteCommand(command));
-                var previous = state.Receipts.FirstOrDefault(r => r.Id == command.Id);
-                if (previous != null)
-                {
-                    if (previous.ActorSeat != authenticatedSeat || previous.Fingerprint != fingerprint)
-                        return Reject("command_id_conflict", "命令编号已被其他内容使用。", authenticatedSeat);
-                    return new CommandResult { Accepted = true, Duplicate = true, Code = "duplicate", View = Project(authenticatedSeat) };
-                }
-                if (command.ExpectedRevision != state.Revision) return Reject("stale_revision", "状态已更新，请重新选择。", authenticatedSeat);
-                var draft = codec.Read(codec.Write(state));
-                try { rules.Apply(catalog, draft, command); }
-                catch (RuleViolation error) { return Reject(error.Code, error.Message, authenticatedSeat); }
-                draft.Revision++;
-                draft.Receipts.Add(new CommandReceipt { Id = command.Id, ActorSeat = authenticatedSeat, Fingerprint = fingerprint, Revision = draft.Revision });
-                draft.AcceptedCommands.Add(new Command
-                {
-                    Id = command.Id, MatchId = command.MatchId, ExpectedRevision = command.ExpectedRevision, ActorSeat = command.ActorSeat,
-                    Kind = command.Kind, Value = command.Value, TargetSeat = command.TargetSeat, Destination = command.Destination, MoveMode = command.MoveMode
-                });
-                state = draft;
-                return new CommandResult { Accepted = true, Code = "ok", View = Project(authenticatedSeat) };
-            }
+            lock (gate) return ExecuteCore(authenticatedSeat,command,false);
         }
-        private CommandResult Reject(string code, string message, int seat) =>
-            new CommandResult { Code = code, Message = message, View = Project(seat >= 0 && seat < 4 ? (int?)seat : null) };
+        private CommandResult ExecuteCore(int authenticatedSeat,Command command,bool replay)
+        {
+            if (authenticatedSeat < 0 || authenticatedSeat > 3 || command.ActorSeat != authenticatedSeat)
+                return Reject("unauthorized", "连接身份与操作席位不符。", authenticatedSeat,replay);
+            if (command.MatchId != state.MatchId) return Reject("wrong_match", "命令不属于本局。", authenticatedSeat,replay);
+            if (string.IsNullOrWhiteSpace(command.Id) || command.Id.Length > 100)
+                return Reject("invalid_command_id", "命令编号无效。", authenticatedSeat,replay);
+            string fingerprint = Fingerprint(codec.WriteCommand(command));
+            var previous = state.Receipts.FirstOrDefault(r => r.Id == command.Id);
+            if (previous != null)
+            {
+                if (previous.ActorSeat != authenticatedSeat || previous.Fingerprint != fingerprint)
+                    return Reject("command_id_conflict", "命令编号已被其他内容使用。", authenticatedSeat,replay);
+                return new CommandResult { Accepted = true, Duplicate = true, Code = "duplicate", View = ResultView(authenticatedSeat,replay) };
+            }
+            if (command.ExpectedRevision != state.Revision) return Reject("stale_revision", "状态已更新，请重新选择。", authenticatedSeat,replay);
+            var draft = replay ? state : codec.Read(codec.Write(state));
+            try { rules.Apply(catalog, draft, command); }
+            catch (RuleViolation error) { return Reject(error.Code, error.Message, authenticatedSeat,replay); }
+            draft.Revision++;
+            draft.Receipts.Add(new CommandReceipt { Id = command.Id, ActorSeat = authenticatedSeat, Fingerprint = fingerprint, Revision = draft.Revision });
+            draft.AcceptedCommands.Add(new Command
+            {
+                Id = command.Id, MatchId = command.MatchId, ExpectedRevision = command.ExpectedRevision, ActorSeat = command.ActorSeat,
+                Kind = command.Kind, Value = command.Value, TargetSeat = command.TargetSeat, Destination = command.Destination, MoveMode = command.MoveMode
+            });
+            state = draft;
+            return new CommandResult { Accepted = true, Code = "ok", View = ResultView(authenticatedSeat,replay) };
+        }
+        private GameView ResultView(int? seat,bool replay) => replay ? new GameView() : Project(seat);
+        private CommandResult Reject(string code, string message, int seat,bool replay) =>
+            new CommandResult { Code = code, Message = message, View = ResultView(seat >= 0 && seat < 4 ? (int?)seat : null,replay) };
         private GameView Project(int? seat)
         {
             // Build from an independent snapshot, so no returned collection can mutate authority.
