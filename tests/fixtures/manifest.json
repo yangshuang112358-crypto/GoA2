@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "fixtures": [
+    {
+      "engine_version": 0,
+      "accepted_commands": 59,
+      "save": "tests/fixtures/legacy-v1-roundend.json",
+      "save_sha256": "23b0f81f93894a2072445d2498bf3125dbce6001210fea637c49928f291d23e9",
+      "input": null,
+      "input_sha256": null,
+      "provenance": "tests/fixtures/README.md"
+    },
+    {
+      "engine_version": 2,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine2-purple-aura.json",
+      "save_sha256": "b537129fa55a516ea57f25d34e63b039e22207c1546e0328922d4ba7469abedf",
+      "input": "tests/fixtures/engine2-purple-aura-scenario.json",
+      "input_sha256": "f78ea7d2e5f0e8e86706920bd2df9d17685aa76dddfd4d26c69feabea674d685",
+      "provenance": "tests/fixtures/engine2-purple-aura.md"
+    },
+    {
+      "engine_version": 4,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine4-barrier-pending.json",
+      "save_sha256": "4ca6719975a741c17d504c132e85e14c497f90e8af0604cb0b8d95e4a42ab7dc",
+      "input": "tests/fixtures/engine4-barrier-scenario.json",
+      "input_sha256": "1f05c165567fccd2f1f34eee2ebbd0efeb9c061fd0df8c27eaa48acc3dccf581",
+      "provenance": "tests/fixtures/engine4-barrier-pending.md"
+    },
+    {
+      "engine_version": 5,
+      "accepted_commands": 11,
+      "save": "tests/fixtures/engine5-headshot-pending.json",
+      "save_sha256": "d420379814df1214d08d76380ecf990ee65e002b9fdbfeda021201615161a83e",
+      "input": "tests/fixtures/engine5-headshot-scenario.json",
+      "input_sha256": "9bb3500fa37abfec7b2f35c6b6e1ab1612d4ed45a34130271a0169c06248f1c0",
+      "provenance": "tests/fixtures/engine5-headshot-pending.md"
+    },
+    {
+      "engine_version": 6,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine6-unsupported-defense.json",
+      "save_sha256": "354d15dbe0e250e2619fef05a5f29274aa64674ea99ef4612c7273ec33b5b473",
+      "input": "tests/fixtures/engine6-unsupported-defense-scenario.json",
+      "input_sha256": "99c299d0ebba28bccace9a70a16b25bdbf3f371bab47a32d81f6212597af8a2b",
+      "provenance": "tests/fixtures/engine6-unsupported-defense.md"
+    }
+  ]
+}

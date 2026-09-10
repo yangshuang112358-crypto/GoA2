@@ -31,6 +31,49 @@ def inside(root, relative):
     require(target.is_relative_to(root.resolve()), 'path escapes repository: '+relative)
     return target
 
+def validate_fixtures(root):
+    manifest = read(root / 'tests/fixtures/manifest.json')
+    require(type(manifest) is dict and set(manifest) == {'schema_version', 'fixtures'}, 'invalid fixture manifest fields')
+    require(manifest['schema_version'] == '1.0.0', 'unsupported fixture manifest version')
+    entries = manifest['fixtures']
+    require(type(entries) is list and len(entries) > 0, 'empty fixture manifest')
+    versions, covered = set(), set()
+
+    def fixture_path(relative, suffix):
+        require(type(relative) is str and re.fullmatch(r'tests/fixtures/[^/\\]+\.' + suffix, relative), 'invalid fixture path: ' + str(relative))
+        path = inside(root, relative)
+        require(path.is_relative_to((root / 'tests/fixtures').resolve()) and path.is_file(), 'missing or outside fixture: ' + relative)
+        return path
+
+    def captured_file(relative, digest):
+        path = fixture_path(relative, 'json')
+        require(type(digest) is str and re.fullmatch(r'[a-f0-9]{64}', digest), 'invalid fixture digest: ' + relative)
+        require(relative not in covered, 'duplicate captured file: ' + relative)
+        require(hashfile(path) == digest, 'historical fixture hash mismatch: ' + relative)
+        covered.add(relative)
+        return read(path)
+
+    fields = {'engine_version', 'accepted_commands', 'save', 'save_sha256', 'input', 'input_sha256', 'provenance'}
+    for entry in entries:
+        require(type(entry) is dict and set(entry) == fields, 'invalid fixture entry fields')
+        version, count = entry['engine_version'], entry['accepted_commands']
+        require(type(version) is int and version >= 0 and version not in versions, 'invalid or duplicate fixture engine version')
+        require(type(count) is int and 0 < count <= 10000, 'invalid fixture command count')
+        versions.add(version)
+        state = captured_file(entry['save'], entry['save_sha256'])
+        require(type(state) is dict, 'fixture state must be an object')
+        require(all(type(state.get(key, 0)) is int and state.get(key, 0) == version for key in ('InitialEngineVersion', 'EngineVersion')), 'fixture engine metadata mismatch')
+        require(type(state.get('Revision')) is int and state['Revision'] == count and type(state.get('AcceptedCommands')) is list and len(state['AcceptedCommands']) == count, 'fixture command metadata mismatch')
+        if entry['input'] is None:
+            require(entry['input_sha256'] is None, 'input digest has no captured input')
+        else:
+            captured_file(entry['input'], entry['input_sha256'])
+        fixture_path(entry['provenance'], 'md')
+    expected = {p.relative_to(root).as_posix() for p in (root / 'tests/fixtures').glob('engine*.json')}
+    expected.add('tests/fixtures/legacy-v1-roundend.json')
+    require(covered == expected, 'historical fixture manifest coverage mismatch')
+    return {'frozen_fixtures': len(entries), 'frozen_files': len(covered)}
+
 def schema_check(value, schema, path='$'):
     # Deliberately bounded subset used by the schemas shipped in this repository.
     known = {'$schema','title','description','type','const','enum','properties','required',
@@ -179,9 +222,11 @@ def validate(root=ROOT):
         require(inside(root,path).read_text(encoding='utf-8')==text.rstrip()+'\n','stale generated view: '+path)
     legacy_tests=read(root/'docs/history/legacy-tests.json')
     require(len(legacy_tests['tests'])==legacy_tests['test_count']==135,'legacy test evidence mismatch')
+    fixture_report=validate_fixtures(root)
     return {'result':'PASS','heroes':6,'cards':108,'map_cells':254,'obstacles':44,'card_review_drafts':108,
             'source_files':len(sm['files']),'rules':len(ruleids),'legacy_tests_passed':135,
-            'scope':'Restart data/documentation/tools only; no Goa2V1 game implementation tested.'}
+            **fixture_report,
+            'scope':'Restart data/documentation/tools and historical-fixture integrity only; no Goa2V1 game implementation tested.'}
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
