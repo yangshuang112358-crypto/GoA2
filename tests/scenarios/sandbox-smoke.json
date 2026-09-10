@@ -1,0 +1,18 @@
+{
+  "SchemaVersion": 1,
+  "Id": "sandbox-smoke",
+  "Name": "调试准备、恢复与四回合",
+  "Seed": 42,
+  "Sandbox": true,
+  "Steps": [
+    {"Name":"准备四名英雄与出生", "Command":"DebugPrepare", "Value":"wasp,shargatha,brogan,arien", "Expect":{"Phase":"Planning","HandCounts":{"p1":5,"p2":5,"p3":5,"p4":5}}},
+    {"Name":"给黄蜂10金币", "Command":"DebugGold", "Value":"10", "Target":"p1", "Expect":{"Gold":{"p1":10}}},
+    {"Name":"重复金币命令不重复加钱", "ReplayStep":2, "Expect":{"Code":"duplicate","Gold":{"p1":10}}},
+    {"Name":"传送黄蜂到战区", "Command":"DebugTeleport", "Value":"hero:0", "Destination":{"X":3,"Y":2}, "Expect":{"Positions":{"hero:0":{"X":3,"Y":2}}}},
+    {"Name":"拒绝传送到占用格", "Command":"DebugTeleport", "Value":"hero:2", "Destination":{"X":3,"Y":2}, "Expect":{"Code":"invalid_teleport"}},
+    {"Name":"弃置红牌显示颜色", "Command":"DebugDiscard", "Value":"wasp-01-电击", "Target":"p1", "Expect":{"HandCounts":{"p1":4},"DiscardCounts":{"p1":1},"EventOrder":["CardDiscarded","DiscardColorShown"]}},
+    {"Name":"取回红牌清空弃牌区", "Command":"DebugRecover", "Value":"wasp-01-电击", "Target":"p1", "Expect":{"HandCounts":{"p1":5},"DiscardCounts":{"p1":0}}},
+    {"Name":"选最高先攻并自动揭示", "Command":"DebugSelectAll", "Value":"highest", "Expect":{"Phase":"Action","Active":"p1","Revealed":4}},
+    {"Name":"快进到轮末保留全部出牌", "Command":"DebugAdvance", "Value":"round", "Expect":{"Phase":"RoundEnd","Round":1,"Turn":4,"Revealed":16,"Gold":{"p1":10},"HandCounts":{"p1":1,"p2":1,"p3":1,"p4":1},"EventCounts":{"ActionPassed":16,"CardRevealed":12},"Positions":{"hero:0":{"X":3,"Y":2}}}}
+  ]
+}

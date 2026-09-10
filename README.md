@@ -1,6 +1,6 @@
 # Goa2V1
 
-GoA2 电子版重启工程。[BATCH-02](docs/planning/BATCH-02.md)正在持续开发：Unity与Windows程序已可运行，测试模式、四边折叠界面和地图缩放已接入。同源纯C#核心42项测试在Unity EditMode通过，两个分辨率各19项真实鼠标/键盘检查通过；正式数据为6英雄、108牌、254格。主要牌效、完整轮末/升级与联网仍未实现。
+GoA2 电子版重启工程。[BATCH-02](docs/planning/BATCH-02.md)正在持续开发：Unity与Windows程序已可运行，测试模式、四边折叠界面和地图缩放已接入。同源纯C#核心50项测试在Unity EditMode通过，两个分辨率各19项真实鼠标/键盘检查通过；三份场景可无窗口运行或可见播放。正式数据为6英雄、108牌、254格。主要牌效、完整轮末/升级与联网仍未实现。
 
 立即体验：运行 artifacts/player/Goa2V1.exe。操作与开发入口见[启动与操作指南](docs/development/启动与操作指南.md)，验证范围见[本批记录](docs/verification/BATCH-02工作记录.md)。
 

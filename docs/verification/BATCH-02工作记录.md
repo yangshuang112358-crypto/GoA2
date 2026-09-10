@@ -35,3 +35,17 @@ Unity BuildWindows成功，实际Player无异常日志。新增run-player.ps1的
 Player重新构建与运行成功；测试/NUnit程序集没有进入发行Player。场景无窗口/可见执行仍在实施中。
 
 随后在加入强制选择保护并重新编译后，.NET也实际42/42通过（最新core.trx）；此前两份被阻止的报告仍保留。说明拦截并非每次构建都会发生，不能因此抹去环境问题或宣称安全策略已改变。
+
+## 第四阶段：无窗口与可见场景
+
+QA-01已实现。ScenarioRunner由Unity无窗口Player和可见Player共用；9步沙盒、7步普通对局权限、23步正式确认场景均通过无窗口执行。可见沙盒已实测暂停起步、单步、阻止手工命令干扰、继续播放；正式确认场景也在窗口通过。两者分别与无窗口最终状态哈希完全一致。
+
+- sandbox-smoke：40e5a974939ba7f1e2485a5a33b991b4e90d5233bbafd6c52fad2c590aa0b10b。
+- formal-turn：b1854c814e65f3095aeda47072b220d218d7878ec748b95f291c0d697325e587。
+- permissions：e473acdbb6593686006feb2aa13350c0664ec10e91fc58e0640fef8858f32c95。
+
+每步都校验结果并从保存的命令重放继续；拒绝和重复命令必须保持状态哈希。输入字段、整数/布尔类型、坐标完整性、重复键和大小写错误严格拒绝。新增场景测试先取得5项未实现失败；标量/坐标严格校验也先取得真实失败再修复。当前Unity完整50/50通过；.NET在加入三份正式场景前的47/47已通过。
+
+故意错误场景只完成准备一步，拒绝执行后续999金币命令；报告为失败，原生Player退出码1，修订1、金币0。该夹具保留在tests/fixtures，排除默认通过集。
+
+可见截图：batch02-scenario-paused.png、batch02-scenario-complete.png、batch02-formal-scenario-complete.png。运行报告、最终状态、输入和程序集哈希均在artifacts/scenarios。图形展示不冒充真实鼠标/键盘测试。

@@ -1,0 +1,16 @@
+{
+  "SchemaVersion": 1,
+  "Id": "permissions",
+  "Name": "普通对局权限与幂等",
+  "Seed": 42,
+  "Sandbox": false,
+  "Steps": [
+    {"Command":"DebugPrepare", "Expect":{"Code":"debug_disabled","Phase":"HeroSelection"}},
+    {"Command":"DebugGold", "Value":"100", "Target":"p1", "Expect":{"Code":"debug_disabled","Gold":{"p1":0}}},
+    {"Command":"ChooseHero", "Value":"wasp", "Actor":"p2", "AuthenticateAs":"p1", "Expect":{"Code":"unauthorized"}},
+    {"Command":"ChooseHero", "Value":"wasp", "Expect":{"HandCounts":{"p1":5}}},
+    {"Command":"ChooseHero", "Value":"wasp", "Actor":"p2", "Expect":{"Code":"hero_taken","HandCounts":{"p2":0}}},
+    {"Command":"ChooseHero", "Value":"shargatha", "Actor":"p5", "Expect":{"Code":"unauthorized"}},
+    {"ReplayStep":4, "Expect":{"Code":"duplicate","HandCounts":{"p1":5},"Gold":{"p1":0}}}
+  ]
+}

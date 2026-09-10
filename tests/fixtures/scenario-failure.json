@@ -1,0 +1,9 @@
+{
+  "SchemaVersion": 1,
+  "Id": "intentional-failure",
+  "Name": "预期失败：验证进程退出和停止后续命令",
+  "Steps": [
+    {"Command":"DebugPrepare","Expect":{"Phase":"Action"}},
+    {"Command":"DebugGold","Value":"999","Target":"p1"}
+  ]
+}

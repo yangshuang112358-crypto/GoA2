@@ -48,6 +48,8 @@ namespace Goa2.Presentation
         {
             if (created) return;
             created = true;
+            var args = Environment.GetCommandLineArgs();
+            if (UnityApplication.isBatchMode && args.Contains("-goaScenario")) { ScenarioPlayer.RunHeadless(args); return; }
             var host = new GameObject("Goa2 Application");
             DontDestroyOnLoad(host);
             host.AddComponent<GameScreen>();
@@ -76,6 +78,7 @@ namespace Goa2.Presentation
                 int saveIndex = Array.IndexOf(arguments, "-goaSavePath");
                 if (saveIndex >= 0 && saveIndex + 1 < arguments.Length) customSavePath = Path.GetFullPath(arguments[saveIndex + 1]);
                 catalog = ContentLoader.LoadDirectory(Path.Combine(UnityApplication.streamingAssetsPath, "Goa2"));
+                if (arguments.Contains("-goaScenario")) { SetupScenario(arguments); return; }
                 int loadIndex = Array.IndexOf(arguments, "-goaLoad");
                 if (loadIndex >= 0 && loadIndex + 1 < arguments.Length)
                 {
@@ -87,11 +90,14 @@ namespace Goa2.Presentation
             catch (Exception error)
             {
                 Debug.LogException(error);
+                var arguments = Environment.GetCommandLineArgs();
+                if (arguments.Contains("-goaScenario")) ScenarioPlayer.WriteFailure(arguments,error);
                 root.Add(new Label("无法加载项目内容。请先运行 tools/prepare_unity.py，再重新启动。\n" + error.Message));
             }
         }
         private void NewMatch()
         {
+            scenario = null;
             session = LocalGameFactory.Create(catalog, Guid.NewGuid().ToString("N"), new[] { "玩家 1", "玩家 2", "玩家 3", "玩家 4" }, UnityEngine.Random.Range(0, int.MaxValue), true);
             seat = 0; newMatchPending = false; notice = "测试对局已建立。可手工选英雄，或打开调试工具自动准备。";
             ClearPending(); Render();
@@ -102,6 +108,7 @@ namespace Goa2.Presentation
         }
         private void Submit(CommandKind kind, string value = "", int target = -1, Hex destination = default, MoveMode mode = MoveMode.Secondary)
         {
+            if (ScenarioRunning) { notice = "场景执行期间可查看角色和地图；完成后可转为手工操作。"; Render(); return; }
             var view = session.View(seat);
             var result = session.Execute(seat, new Command
             {

@@ -1,0 +1,32 @@
+{
+  "SchemaVersion": 1,
+  "Id": "formal-turn",
+  "Name": "四人确认与队长先攻选择",
+  "Seed": 42,
+  "Sandbox": false,
+  "Steps": [
+    {"Actor":"p1","Command":"ChooseHero","Value":"wasp"},
+    {"Actor":"p2","Command":"ChooseHero","Value":"shargatha"},
+    {"Actor":"p3","Command":"ChooseHero","Value":"brogan"},
+    {"Actor":"p4","Command":"ChooseHero","Value":"arien","Expect":{"Phase":"Deployment"}},
+    {"Actor":"blueCaptain","Command":"DeployHero","Target":"p1","Destination":{"X":-8,"Y":7}},
+    {"Actor":"blueCaptain","Command":"DeployHero","Target":"p3","Destination":{"X":-7,"Y":8}},
+    {"Actor":"redCaptain","Command":"DeployHero","Target":"p2","Destination":{"X":7,"Y":-9}},
+    {"Actor":"redCaptain","Command":"DeployHero","Target":"p4","Destination":{"X":7,"Y":-7},"Expect":{"Phase":"Planning"}},
+    {"Actor":"p1","Command":"SelectCard","Value":"wasp-00-闪耀之刃"},
+    {"Actor":"p2","Command":"SelectCard","Value":"shargatha-00-反击"},
+    {"Actor":"p3","Command":"SelectCard","Value":"brogan-00-猛攻"},
+    {"Actor":"p4","Command":"SelectCard","Value":"arien-00-华丽刀锋","Expect":{"Phase":"Planning","Revealed":0}},
+    {"Actor":"p1","Command":"ConfirmCard","Expect":{"Phase":"Planning"}},
+    {"Actor":"p2","Command":"ConfirmCard","Expect":{"Phase":"Planning"}},
+    {"Actor":"p3","Command":"ConfirmCard","Expect":{"Phase":"Planning","Revealed":0}},
+    {"Actor":"p4","Command":"ConfirmCard","Expect":{"Phase":"Action","Active":"p1","Revealed":4}},
+    {"Actor":"p2","Command":"Pass","Expect":{"Code":"not_active","Active":"p1"}},
+    {"Actor":"active","Command":"Pass","Expect":{"Active":"p3"}},
+    {"Actor":"active","Command":"Pass","Expect":{"Phase":"InitiativeChoice","PendingKind":"initiative","PendingChooser":"p2","Active":"none"}},
+    {"Actor":"p4","Command":"ChooseInitiative","Target":"p4","Expect":{"Code":"invalid_initiative_choice"}},
+    {"Actor":"chooser","Command":"ChooseInitiative","Target":"p4","Expect":{"Active":"p4","EventOrder":["InitiativeChosen","ActionStarted"]}},
+    {"Actor":"active","Command":"Pass","Expect":{"Active":"p2"}},
+    {"Actor":"active","Command":"Pass","Expect":{"Phase":"Planning","Turn":2,"Revealed":4,"HandCounts":{"p1":4,"p2":4,"p3":4,"p4":4}}}
+  ]
+}

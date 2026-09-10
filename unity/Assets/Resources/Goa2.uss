@@ -149,3 +149,5 @@
 .gallery-card { width: 290px; }
 .gallery-note, .status-badge { font-size: 14px; }
 .detail-text { max-height: 175px; }
+.scenario-bar { height: 44px; min-height: 44px; flex-direction: row; align-items: center; background-color: #213b43; padding-left: 10px; padding-right: 8px; margin-top: 5px; border-radius: 5px; }
+.scenario-info { flex-grow: 1; font-size: 16px; color: #e5d5a9; }

@@ -51,8 +51,10 @@ namespace Goa2.Presentation
             var controls = Box("header-controls"); header.Add(controls);
             controls.Add(Button(view.Sandbox ? (view.QuickSelection ? "测试 · 选完揭示" : "测试 · 手动确认") : "正式确认", () => { rightExpanded = true; showDebug = true; Render(); }, "mode-button"));
             controls.Add(Button("图鉴 108", () => { galleryOpen = true; galleryHero = catalog.Heroes[0].Id; Render(); }, "quiet-button"));
-            controls.Add(Button("保存", Save, "quiet-button")); controls.Add(Button("读取", Load, "quiet-button"));
-            controls.Add(Button("新对局", () => { newMatchPending = true; Render(); }, "quiet-button"));
+            controls.Add(Button("保存", Save, "quiet-button"));
+            var load = Button("读取", Load, "quiet-button"); load.SetEnabled(!ScenarioRunning); controls.Add(load);
+            var newGame = Button("新对局", () => { newMatchPending = true; Render(); }, "quiet-button"); newGame.SetEnabled(!ScenarioRunning); controls.Add(newGame);
+            BuildScenarioBar(shell);
             var workspace = Box("workspace"); shell.Add(workspace);
             BuildRoster(workspace, view);
             var center = Box("center-column"); workspace.Add(center);
