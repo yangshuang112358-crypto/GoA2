@@ -12,6 +12,8 @@ namespace Goa2.Domain
         public bool Ranged, Unblockable;
         public int BaseAttack, AttackBonus, EnemySupport, FriendlyGuard, FinalAttack;
         public int CardTextBonus;
+        public string CardTextReason = "";
+        public List<string> CardTextSourceUnits = new List<string>();
         public List<string> EnemySupportSources = new List<string>();
         public List<string> FriendlyGuardSources = new List<string>();
     }
@@ -19,6 +21,12 @@ namespace Goa2.Domain
     {
         public int BaseDefense, DefenseBonus, FinalDefense, AttackCompared;
         public bool IgnoresMinions, Blocked, Successful;
+    }
+    public sealed class CardAttackModifier
+    {
+        public int Amount;
+        public string Reason = "";
+        public List<string> UnitSources = new List<string>();
     }
     [Serializable]
     public sealed class CardExecution

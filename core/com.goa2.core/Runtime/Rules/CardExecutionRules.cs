@@ -90,7 +90,9 @@ namespace Goa2.Rules
                 if (state.Frontline == null) ContinueCard(catalog, state, command);
                 return;
             }
-            execution.Attack = CombatMath.Attack(state, card, execution.ControllerSeat, target.Id,CombatRules.CardTextAttackBonus(catalog,state,card,target));
+            var modifier=CombatRules.CardTextModifier(catalog,state,card,source,target);
+            execution.Attack = CombatMath.Attack(state, card, execution.ControllerSeat, target.Id,modifier.Amount);
+            execution.Attack.CardTextReason=modifier.Reason; execution.Attack.CardTextSourceUnits=modifier.UnitSources;
             Emit(state, command, "AttackCalculated", execution.ControllerSeat, card.Id);
             state.Events.Last().AttackValues = execution.Attack;
             state.Phase = Phase.EffectChoice;

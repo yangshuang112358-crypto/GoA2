@@ -206,7 +206,8 @@ namespace Goa2.Presentation
                 FilledPlayDots = root.Query<VisualElement>(className: "filled-dot").ToList().Count,
                 DiscardDotCount = root.Query<VisualElement>(className: "discard-dot").ToList().Count,
                 ActiveEffectCount=renderedView.Effects.Count, EffectAreaId=effectAreaId, EffectAreaCells=SelectedEffectArea(renderedView).Count,
-                PrimaryRestriction=renderedView.PrimaryRestriction };
+                PrimaryRestriction=renderedView.PrimaryRestriction,
+                AttackSourceSummary=root.Q<Label>("attack-card-text-sources")?.text ?? "" };
             root.Query<Button>().ForEach(button => layout.Buttons.Add(new QaButton { Name = button.name, Text = button.text, Bounds = button.worldBound, Enabled = button.enabledInHierarchy, Visible = VisibleCenter(button) }));
             root.Query<IntegerField>().ForEach(field => layout.Fields.Add(new QaField { Name = field.name, Bounds = field.worldBound, Value = field.value }));
             if (board != null)
@@ -231,7 +232,7 @@ namespace Goa2.Presentation
         [Serializable] private sealed class QaLayout
         {
             public int Width, Height, Seat, Round, Turn, ActiveSeat, FilledPlayDots, DiscardDotCount; public long Revision; public float Zoom, HexRadius; public Vector2 Focus; public Rect BoardBounds;
-            public string Phase = "", SelectedCell = "", RevealedHeading = "", EffectAreaId="", PrimaryRestriction="";
+            public string Phase = "", SelectedCell = "", RevealedHeading = "", EffectAreaId="", PrimaryRestriction="", AttackSourceSummary="";
             public int ActiveEffectCount, EffectAreaCells;
             public bool LeftExpanded, RightExpanded, TopExpanded, BottomExpanded;
             public List<QaButton> Buttons = new List<QaButton>(); public List<QaCell> Cells = new List<QaCell>();

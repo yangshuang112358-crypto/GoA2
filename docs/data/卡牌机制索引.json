@@ -304,7 +304,7 @@
       "hero_id": "shargatha",
       "family": "attack",
       "keyword_hints": [],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/shargatha-01-劈砍.md",
       "question_candidates": [
         "U-011"
@@ -326,7 +326,7 @@
       "hero_id": "shargatha",
       "family": "attack",
       "keyword_hints": [],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/shargatha-03-致命横扫.md",
       "question_candidates": [
         "U-011"
@@ -354,7 +354,7 @@
       "hero_id": "shargatha",
       "family": "attack",
       "keyword_hints": [],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/shargatha-05-死亡回旋.md",
       "question_candidates": [
         "U-011"
@@ -1144,7 +1144,7 @@
       "keyword_hints": [
         "conditional"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/tigerclaw-03-背刺.md",
       "question_candidates": [
         "U-011"

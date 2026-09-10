@@ -10,13 +10,31 @@ namespace Goa2.Rules
     {
         public static bool HasPrimaryProgram(CardDefinition card, int engineVersion = GameState.CurrentEngineVersion) => CardPrograms.Primary(card,engineVersion) != null;
         public static bool HasDefenseProgram(CardDefinition card, int engineVersion = GameState.CurrentEngineVersion) => CardPrograms.Defense(card,engineVersion) != null;
-        public static int CardTextAttackBonus(ContentCatalog catalog,GameState state,CardDefinition card,UnitState target)
+        public static CardAttackModifier CardTextModifier(ContentCatalog catalog,GameState state,CardDefinition card,UnitState source,UnitState target)
         {
+            var result=new CardAttackModifier();
             var program=CardPrograms.Primary(card,state.EngineVersion);
-            if (program==null || program.TargetRevealedAttackBonus==0 || target.Kind!="hero" || !target.Seat.HasValue) return 0;
-            bool usedAttack=state.Players[target.Seat.Value].Cards.Any(c => c.PlayedRound==state.Round && c.PlayedTurn==state.Turn && catalog.Card(c.CardId).PrimaryFamily=="attack");
-            return usedAttack ? program.TargetRevealedAttackBonus : 0;
+            if (program==null || program.AttackBonusValue==0) return result;
+            if (program.AttackBonusKind==AttackBonusKind.TargetUsedAttack)
+            {
+                if(target.Kind=="hero" && target.Seat.HasValue && state.Players[target.Seat.Value].Cards.Any(c => c.PlayedRound==state.Round && c.PlayedTurn==state.Turn && catalog.Card(c.CardId).PrimaryFamily=="attack"))
+                    result.Amount=program.AttackBonusValue;
+            }
+            else if (program.AttackBonusKind==AttackBonusKind.AdjacentEnemies)
+            {
+                result.Reason="source_adjacent_enemies";
+                result.UnitSources=state.Units.Where(u => u.Team!=source.Team && IsCombatUnit(u) && u.Position.Distance(source.Position)==1).Select(u => u.Id).OrderBy(id => id,System.StringComparer.Ordinal).ToList();
+                result.Amount=result.UnitSources.Count*program.AttackBonusValue;
+            }
+            else if (program.AttackBonusKind==AttackBonusKind.OtherFriendlySupport)
+            {
+                result.Reason="target_adjacent_other_allies";
+                result.UnitSources=state.Units.Where(u => u.Id!=source.Id && u.Team==source.Team && IsCombatUnit(u) && u.Position.Distance(target.Position)==1).Select(u => u.Id).OrderBy(id => id,System.StringComparer.Ordinal).ToList();
+                result.Amount=result.UnitSources.Count>0 ? program.AttackBonusValue : 0;
+            }
+            return result;
         }
+        private static bool IsCombatUnit(UnitState unit) => unit.Kind=="hero" || unit.Kind=="melee" || unit.Kind=="ranged" || unit.Kind=="heavy";
         public static List<string> AttackTargets(ContentCatalog catalog, GameState state, int seat)
         {
             var result = new List<string>();

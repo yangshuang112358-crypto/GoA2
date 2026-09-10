@@ -206,11 +206,21 @@
     },
     {
       "card_id": "shargatha-01-劈砍",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-01-劈砍.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/AdjacentAttackTests.cs",
+        "core/com.goa2.core/Tests/Editor/LegacySaveTests.cs",
+        "core/com.goa2.core/Tests/Editor/ScenarioTests.cs",
+        "tools/test-adjacent-attacks-ui.ps1"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Domain/Combat.cs"
+      ]
     },
     {
       "card_id": "shargatha-02-快速突刺",
@@ -231,11 +241,21 @@
     },
     {
       "card_id": "shargatha-03-致命横扫",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-03-致命横扫.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/AdjacentAttackTests.cs",
+        "core/com.goa2.core/Tests/Editor/LegacySaveTests.cs",
+        "core/com.goa2.core/Tests/Editor/ScenarioTests.cs",
+        "tools/test-adjacent-attacks-ui.ps1"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Domain/Combat.cs"
+      ]
     },
     {
       "card_id": "shargatha-04-横枪跃马",
@@ -247,11 +267,21 @@
     },
     {
       "card_id": "shargatha-05-死亡回旋",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-05-死亡回旋.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/AdjacentAttackTests.cs",
+        "core/com.goa2.core/Tests/Editor/LegacySaveTests.cs",
+        "core/com.goa2.core/Tests/Editor/ScenarioTests.cs",
+        "tools/test-adjacent-attacks-ui.ps1"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Domain/Combat.cs"
+      ]
     },
     {
       "card_id": "shargatha-06-海妖之歌",
@@ -675,11 +705,21 @@
     },
     {
       "card_id": "tigerclaw-03-背刺",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-03-背刺.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/AdjacentAttackTests.cs",
+        "core/com.goa2.core/Tests/Editor/LegacySaveTests.cs",
+        "core/com.goa2.core/Tests/Editor/ScenarioTests.cs",
+        "tools/test-adjacent-attacks-ui.ps1"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Domain/Combat.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-04-影袭",

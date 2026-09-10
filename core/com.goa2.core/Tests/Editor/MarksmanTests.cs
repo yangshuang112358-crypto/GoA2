@@ -72,10 +72,10 @@ namespace Goa2.Tests
             var card=state.Players[1].Cards.Single(c => c.CardId==used); card.Zone=zone;
             card.PlayedRound=round==0 ? (int?)null : round; card.PlayedTurn=turn==0 ? (int?)null : turn;
             var target=state.Units.Single(u => u.Seat==1);
-            foreach(string attacker in new[] {Marksman,Headshot}) Assert.That(CombatRules.CardTextAttackBonus(catalog,state,catalog.Card(attacker),target), Is.EqualTo(expected));
-            Assert.That(CombatRules.CardTextAttackBonus(catalog,state,catalog.Card("sabina-01-拔枪"),target), Is.Zero);
+            foreach(string attacker in new[] {Marksman,Headshot}) Assert.That(CombatRules.CardTextModifier(catalog,state,catalog.Card(attacker),state.Units.Single(u => u.Seat==0),target).Amount, Is.EqualTo(expected));
+            Assert.That(CombatRules.CardTextModifier(catalog,state,catalog.Card("sabina-01-拔枪"),state.Units.Single(u => u.Seat==0),target).Amount, Is.Zero);
             target.Kind="melee"; target.Seat=null;
-            Assert.That(CombatRules.CardTextAttackBonus(catalog,state,catalog.Card(Marksman),target), Is.Zero);
+            Assert.That(CombatRules.CardTextModifier(catalog,state,catalog.Card(Marksman),state.Units.Single(u => u.Seat==0),target).Amount, Is.Zero);
         }
         [TestCase(Marksman)]
         [TestCase(Headshot)]
@@ -89,7 +89,7 @@ namespace Goa2.Tests
             state.Players[0].RangedBonus=1;
             Assert.That(CombatRules.AttackTargets(catalog,state,0), Does.Contain(target.Id));
             state.Players[0].AttackBonus=1;
-            var attack=CombatMath.Attack(state,catalog.Card(card),0,target.Id,CombatRules.CardTextAttackBonus(catalog,state,catalog.Card(card),target));
+            var attack=CombatMath.Attack(state,catalog.Card(card),0,target.Id,CombatRules.CardTextModifier(catalog,state,catalog.Card(card),source,target).Amount);
             Assert.That(attack.CardTextBonus, Is.EqualTo(2)); Assert.That(attack.AttackBonus, Is.EqualTo(3));
             attack.EnemySupport=3; attack.FriendlyGuard=4; attack.FinalAttack=6;
             Assert.That(CombatMath.Defense(attack,6,0,ignoreMinions:true).Successful, Is.False);

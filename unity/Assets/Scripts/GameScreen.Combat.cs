@@ -12,6 +12,22 @@ namespace Goa2.Presentation
         private bool declineDefensePending;
         private static string AttackFormula(AttackBreakdown attack) => "攻击 " + attack.BaseAttack + " + 加成 " + (attack.AttackBonus-attack.CardTextBonus) +
             (attack.CardTextBonus==0 ? "" : " + 牌文 " + attack.CardTextBonus) + " + 敌兵 " + attack.EnemySupport + " − 友兵 " + attack.FriendlyGuard + " = " + attack.FinalAttack;
+        private void RenderAttackSources(VisualElement parent,GameView view,AttackBreakdown attack)
+        {
+            string summary="";
+            if (attack.CardTextReason=="source_adjacent_enemies")
+                summary="攻击者相邻敌方："+attack.CardTextSourceUnits.Count+"个"+
+                    (attack.CardTextSourceUnits.Count==0 ? "，牌文 +0" : " × "+attack.CardTextBonus/attack.CardTextSourceUnits.Count+" = +"+attack.CardTextBonus);
+            else if (attack.CardTextReason=="target_adjacent_other_allies")
+                summary="目标相邻的其他友方："+attack.CardTextSourceUnits.Count+"个，牌文 +"+attack.CardTextBonus;
+            if (summary=="") return;
+            var label=Text(summary,"body"); label.name="attack-card-text-sources"; parent.Add(label);
+            foreach(string id in attack.CardTextSourceUnits)
+            {
+                var unit=view.Units.SingleOrDefault(u => u.Id==id);
+                if(unit!=null) parent.Add(Text("· "+(unit.Seat.HasValue ? PlayerName(unit.Seat.Value) : MinionName(unit))+"（"+unit.Position+"）","muted"));
+            }
+        }
         private bool RenderCombatChoice(VisualElement parent, GameView view)
         {
             var choice = view.Pending;
@@ -60,6 +76,7 @@ namespace Goa2.Presentation
             if (view.Attack != null)
             {
                 parent.Add(Text(AttackFormula(view.Attack), "body"));
+                RenderAttackSources(parent,view,view.Attack);
                 parent.Add(Text(view.Attack.Ranged ? "本次是远程攻击" : "本次是非远程攻击", "muted"));
             }
             if (choice.ChooserSeat != seat) { parent.Add(Text("切换至对应角色选择防御。", "body")); return true; }

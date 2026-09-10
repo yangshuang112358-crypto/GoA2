@@ -1,0 +1,114 @@
+{
+  "SchemaVersion": 1,
+  "Id": "backstab",
+  "Name": "背刺：两名其他友方支援只提供一次牌文加成",
+  "Steps": [
+    {
+      "Value": "tigerclaw,arien,brogan,wasp",
+      "Command": "DebugPrepare"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-03-背刺",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Destination": {
+        "Y": -8,
+        "X": 6
+      },
+      "Value": "hero:0"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Destination": {
+        "Y": -8,
+        "X": 7
+      },
+      "Value": "hero:1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Destination": {
+        "Y": -8,
+        "X": 8
+      },
+      "Value": "hero:2"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Destination": {
+        "Y": -9,
+        "X": 7
+      },
+      "Value": "minion:1,0"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "tigerclaw-03-背刺"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      },
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Expect": {
+        "Code": "invalid_attack_target"
+      },
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:2"
+    },
+    {
+      "Expect": {
+        "AttackBase": 4,
+        "AttackBonus": 2,
+        "PendingChooser": "p2",
+        "AttackFinal": 7,
+        "CardTextBonus": 2,
+        "PendingKind": "defense"
+      },
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1"
+    },
+    {
+      "Expect": {
+        "Phase": "Action",
+        "Gold": {
+          "p1": 1,
+          "p3": 1
+        },
+        "EventOrder": [
+          "DefenseResolved",
+          "HeroDefeated",
+          "AttackResolved",
+          "CardResolved"
+        ],
+        "RedCrystal": 6,
+        "Active": "p3"
+      },
+      "Command": "Defend",
+      "Actor": "p2",
+      "Value": "arien-13-挑战者"
+    }
+  ]
+}

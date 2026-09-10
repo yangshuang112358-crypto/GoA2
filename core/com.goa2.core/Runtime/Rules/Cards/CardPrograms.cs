@@ -5,6 +5,7 @@ using Goa2.Domain;
 namespace Goa2.Rules.Cards
 {
     internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects }
+    internal enum AttackBonusKind { None, TargetUsedAttack, AdjacentEnemies, OtherFriendlySupport }
     internal enum DefenseFollowup { None, DiscardAttacker, DiscardAttackerThenImmunity }
     internal sealed class DefenseProgram
     {
@@ -26,13 +27,14 @@ namespace Goa2.Rules.Cards
         public readonly EffectDuration Duration;
         public readonly EffectAreaKind AreaKind;
         public readonly bool AdjacentAttack, OnlyHeroes;
-        public readonly int TargetRevealedAttackBonus;
+        public readonly AttackBonusKind AttackBonusKind;
+        public readonly int AttackBonusValue;
         public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
-            EffectAreaKind areaKind=EffectAreaKind.SkillRange, int targetAttackBonus=0, params InstructionKind[] instructions)
+            EffectAreaKind areaKind=EffectAreaKind.SkillRange, AttackBonusKind bonus=AttackBonusKind.None, int bonusValue=0, params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
             AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=EffectDuration.ThisTurn;
-            TargetRevealedAttackBonus=targetAttackBonus;
+            AttackBonusKind=bonus; AttackBonusValue=bonusValue;
             Instructions = System.Array.AsReadOnly(instructions.Length>0 ? instructions : new[] { InstructionKind.ChooseAttackTarget, InstructionKind.Attack, InstructionKind.End });
         }
         public PrimaryProgram(string id, EffectKind effect, EffectDuration duration)
@@ -52,8 +54,12 @@ namespace Goa2.Rules.Cards
         {
             ["sabina-01-拔枪"] = ("选择攻击距离内且不与你相邻的一个单位为目标。",0,NonAdjacentRanged),
             ["shargatha-02-快速突刺"] = ("选择攻击距离内且与你不相邻的一个单位为目标。",0,NonAdjacentRanged),
-            ["sabina-03-神枪手"] = ("选择攻击距离内且不与你相邻的一个单位为目标。如果目标英雄在此回合使用了攻击卡牌，则+2攻击。（已揭示卡视为使用，而非已结算）",5,new PrimaryProgram("non_adjacent_ranged_vs_revealed_attack",2,targetAttackBonus:2)),
-            ["sabina-05-一枪爆头"] = ("选择攻击距离内的一个单位为目标。如果目标英雄在此回合使用了攻击卡牌，则+2攻击。",5,new PrimaryProgram("ranged_vs_revealed_attack",1,targetAttackBonus:2))
+            ["sabina-03-神枪手"] = ("选择攻击距离内且不与你相邻的一个单位为目标。如果目标英雄在此回合使用了攻击卡牌，则+2攻击。（已揭示卡视为使用，而非已结算）",5,new PrimaryProgram("non_adjacent_ranged_vs_revealed_attack",2,bonus:AttackBonusKind.TargetUsedAttack,bonusValue:2)),
+            ["sabina-05-一枪爆头"] = ("选择攻击距离内的一个单位为目标。如果目标英雄在此回合使用了攻击卡牌，则+2攻击。",5,new PrimaryProgram("ranged_vs_revealed_attack",1,bonus:AttackBonusKind.TargetUsedAttack,bonusValue:2)),
+            ["shargatha-01-劈砍"] = ("选择与你相邻的一个单位为目标。每有一个与你相邻的敌方单位，+1攻击。（计算所有敌方单位，包括攻击目标。）",6,new PrimaryProgram("adjacent_attack_enemy_count_1",1,adjacent:true,bonus:AttackBonusKind.AdjacentEnemies,bonusValue:1)),
+            ["shargatha-03-致命横扫"] = ("选择与你相邻的一个单位为目标。每有一个与你相邻的敌方单位，+2攻击。",6,new PrimaryProgram("adjacent_attack_enemy_count_2",1,adjacent:true,bonus:AttackBonusKind.AdjacentEnemies,bonusValue:2)),
+            ["shargatha-05-死亡回旋"] = ("选择与你相邻的一个单位为目标。每有一个与你相邻的敌方单位，+3攻击。",6,new PrimaryProgram("adjacent_attack_enemy_count_3",1,adjacent:true,bonus:AttackBonusKind.AdjacentEnemies,bonusValue:3)),
+            ["tigerclaw-03-背刺"] = ("选择与你相邻的一个单位为目标。如果有友方单位与目标相邻，则+2攻击。（友方单位是指除你以外的另一个己方队伍的英雄或小兵）",6,new PrimaryProgram("adjacent_attack_other_friendly_support",1,adjacent:true,bonus:AttackBonusKind.OtherFriendlySupport,bonusValue:2))
         };
         private static readonly Dictionary<string,(string text, int minimumEngine, DefenseProgram program)> Defenses = new Dictionary<string,(string, int, DefenseProgram)>
         {
@@ -70,7 +76,8 @@ namespace Goa2.Rules.Cards
         };
         public static PrimaryProgram? Primary(CardDefinition card, int engineVersion)
         {
-            if (card.PrimaryFamily == "attack" && card.Subtype == "远程" && Attacks.TryGetValue(card.Id,out var attack) && card.Text == attack.text && engineVersion>=attack.minimumEngine) return attack.program;
+            if (card.PrimaryFamily == "attack" && Attacks.TryGetValue(card.Id,out var attack) && card.Text == attack.text && engineVersion>=attack.minimumEngine &&
+                (attack.program.AdjacentAttack ? string.IsNullOrEmpty(card.Subtype) : card.Subtype=="远程")) return attack.program;
             if (engineVersion >= 2 && card.PrimaryFamily == "skill" && card.Subtype == "范围" && Skills.TryGetValue(card.Id,out var skill) && card.Text == skill.text) return skill.program;
             if (engineVersion >= 3 && card.Id=="wasp-00-闪耀之刃" && card.PrimaryCategory=="基础攻击" && string.IsNullOrEmpty(card.Subtype) &&
                 card.Text=="选择与你相邻的一个英雄为目标。攻击后：取消与你相邻的敌方英雄技能卡上的激活效果。此回合：与你相邻的敌方英雄无法执行技能行动。") return ShiningBlade;

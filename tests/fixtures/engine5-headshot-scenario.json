@@ -1,0 +1,78 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine5-headshot",
+  "Name": "引擎5真实存档：一枪爆头攻击加成与待防御窗口",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "sabina,wasp,brogan,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "sabina-05-一枪爆头",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      }
+    },
+    {
+      "Actor": "p1",
+      "Command": "SelectCard",
+      "Value": "sabina-05-一枪爆头"
+    },
+    {
+      "Actor": "p2",
+      "Command": "SelectCard",
+      "Value": "wasp-00-闪耀之刃"
+    },
+    {
+      "Actor": "p3",
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Actor": "p4",
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p2"
+      }
+    },
+    {
+      "Actor": "p2",
+      "Command": "Pass",
+      "Expect": {
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2",
+        "AttackBase": 4,
+        "AttackBonus": 2,
+        "CardTextBonus": 2,
+        "AttackFinal": 6
+      }
+    }
+  ]
+}
