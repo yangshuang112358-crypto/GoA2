@@ -157,7 +157,7 @@ namespace Goa2.Presentation
                 case Phase.InitiativeChoice: return "先攻决策";
                 case Phase.Action: return "执行行动";
                 case Phase.EffectChoice: return "处理待选择";
-                case Phase.Finished: return "对局结束";
+                case Phase.Finished: return view.Winner.HasValue ? (view.Winner==Team.Blue ? "蓝队获胜" : "红队获胜") : "对局结束";
                 default: return "到达轮末";
             }
         }
@@ -209,6 +209,7 @@ namespace Goa2.Presentation
                 PrimaryRestriction=renderedView.PrimaryRestriction,
                 AttackSourceSummary=root.Q<Label>("attack-card-text-sources")?.text ?? "" };
             root.Query<Button>().ForEach(button => layout.Buttons.Add(new QaButton { Name = button.name, Text = button.text, Bounds = button.worldBound, Enabled = button.enabledInHierarchy, Visible = VisibleCenter(button) }));
+            root.Query<Label>().ForEach(label => { if(!string.IsNullOrEmpty(label.name)) layout.Labels.Add(new QaLabel {Name=label.name,Text=label.text,Bounds=label.worldBound,Visible=VisibleCenter(label)}); });
             root.Query<IntegerField>().ForEach(field => layout.Fields.Add(new QaField { Name = field.name, Bounds = field.worldBound, Value = field.value }));
             if (board != null)
             {
@@ -237,10 +238,12 @@ namespace Goa2.Presentation
             public bool LeftExpanded, RightExpanded, TopExpanded, BottomExpanded;
             public List<QaButton> Buttons = new List<QaButton>(); public List<QaCell> Cells = new List<QaCell>();
             public List<QaField> Fields = new List<QaField>();
+            public List<QaLabel> Labels = new List<QaLabel>();
         }
         [Serializable] private sealed class QaButton { public string Name = "", Text = ""; public Rect Bounds; public bool Enabled, Visible; }
         [Serializable] private sealed class QaCell { public int X, Y; public Vector2 Center; public bool Legal; }
         [Serializable] private sealed class QaField { public string Name = ""; public Rect Bounds; public int Value; }
+        [Serializable] private sealed class QaLabel { public string Name="", Text=""; public Rect Bounds; public bool Visible; }
         private List<Hex> LegalCells(GameView view)
         {
             if (debugTeleport && view.DebugTeleports.TryGetValue(debugUnitId, out var teleportTargets)) return teleportTargets;
@@ -449,6 +452,7 @@ namespace Goa2.Presentation
                 case "AttackResolved": return "本次攻击处理完毕";
                 case "CardEffectStopped": return "本牌剩余步骤无法执行，结束结算";
                 case "HeroDefeated": return actor + "被击败，等待下一张牌前复活";
+                case "HeroDefeatSource": return actor + "通过“" + catalog.Card(entry.CardId!).Name + "”击败原攻击者";
                 case "AssistGoldAwarded": return actor + "获得助攻 " + entry.Detail + " 金";
                 case "CrystalDamaged": return actor + "所在队伍水晶减少 " + entry.Detail;
                 case "HeroRespawnChoiceRequired": return actor + "需要选择复活位置";

@@ -1,0 +1,93 @@
+{
+  "SchemaVersion": 1,
+  "Id": "riposte-ranged",
+  "Name": "近身还击：相邻的远程攻击仍不能抵挡",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "sabina,tigerclaw,brogan,arien"
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugEquipCard",
+      "Value": "sabina-05-一枪爆头"
+    },
+    {
+      "Target": "p2",
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-17-近身还击"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 7
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:0"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 8
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:1"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "sabina-05-一枪爆头"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "tigerclaw-08-偷天妙手"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense",
+        "AttackFinal": 4
+      }
+    },
+    {
+      "Command": "Defend",
+      "Actor": "p2",
+      "Value": "tigerclaw-17-近身还击",
+      "Expect": {
+        "Code": "invalid_defense"
+      }
+    },
+    {
+      "Command": "DeclineDefense",
+      "Actor": "p2",
+      "Expect": {
+        "Gold": {
+          "p3": 1,
+          "p1": 1
+        },
+        "Active": "p3",
+        "RedCrystal": 6,
+        "Phase": "Action"
+      }
+    }
+  ]
+}

@@ -803,11 +803,22 @@
     },
     {
       "card_id": "tigerclaw-14-近身格挡",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-14-近身格挡.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ConditionalDefenseTests.cs",
+        "core/com.goa2.core/Tests/Editor/LegacySaveTests.cs",
+        "core/com.goa2.core/Tests/Editor/ScenarioTests.cs",
+        "tools/test-conditional-defenses-ui.ps1"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-15-侧步",
@@ -827,11 +838,22 @@
     },
     {
       "card_id": "tigerclaw-17-近身还击",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-17-近身还击.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ConditionalDefenseTests.cs",
+        "core/com.goa2.core/Tests/Editor/LegacySaveTests.cs",
+        "core/com.goa2.core/Tests/Editor/ScenarioTests.cs",
+        "tools/test-conditional-defenses-ui.ps1"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-18-躲闪",
@@ -939,11 +961,22 @@
     },
     {
       "card_id": "sabina-08-带头冲锋",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-08-带头冲锋.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ConditionalDefenseTests.cs",
+        "core/com.goa2.core/Tests/Editor/LegacySaveTests.cs",
+        "core/com.goa2.core/Tests/Editor/ScenarioTests.cs",
+        "tools/test-conditional-defenses-ui.ps1"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs"
+      ]
     },
     {
       "card_id": "sabina-09-战略控制",

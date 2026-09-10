@@ -9,6 +9,21 @@ namespace Goa2.Tests
     public sealed class LegacySaveTests
     {
         [Test]
+        public void EngineSixWithOnlyAnUnimplementedDefenseStillWaitsWithoutSilentlyRunningANewCounter()
+        {
+            var catalog=ContentLoader.LoadDirectory(ContentTests.Root());
+            string json=File.ReadAllText(Path.Combine(ContentTests.Root(),"tests","fixtures","engine6-unsupported-defense.json"));
+            var game=LocalGameFactory.Restore(catalog,json); Assert.That(game.View(null).EngineVersion, Is.EqualTo(6));
+            Assert.That(game.View(null).Pending!.Kind, Is.EqualTo("defense")); Assert.That(game.View(1).DefenseOptions, Is.Empty);
+            Assert.That(game.View(1).UnimplementedDefenseCards, Is.EqualTo(new[] {ConditionalDefenseTests.Riposte}));
+            Assert.That(game.ExportSave(), Is.EqualTo(new JsonStateCodec().Write(new JsonStateCodec().Read(json))));
+            Assert.That(game.Execute(1,SessionTests.Cmd(game,1,CommandKind.Defend,ConditionalDefenseTests.Riposte)).Code, Is.EqualTo("response_not_implemented"));
+            TurnFlowTests.Apply(game,1,CommandKind.DeclineDefense);
+            Assert.That(game.View(null).Players[1].AwaitingRespawn, Is.True); Assert.That(game.View(null).RedCrystal, Is.EqualTo(6));
+            Assert.That(game.View(null).Events.Any(e => e.Kind=="ForcedDiscardRequired" || e.Kind=="HeroDefeatSource"), Is.False);
+            Assert.That(LocalGameFactory.Restore(catalog,game.ExportSave()).ExportSave(), Is.EqualTo(game.ExportSave()));
+        }
+        [Test]
         public void EngineFiveKeepsItsPendingConditionalBonusWithoutNewCountSources()
         {
             var catalog=ContentLoader.LoadDirectory(ContentTests.Root());

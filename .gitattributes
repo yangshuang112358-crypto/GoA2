@@ -12,3 +12,6 @@
 *.asset whitespace=-blank-at-eol
 *.unity whitespace=-blank-at-eol
 sources/** -text -whitespace
+# Historical Player fixtures and inputs preserve the captured bytes and SHA-256.
+tests/fixtures/engine*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+tests/fixtures/legacy-v1-roundend.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

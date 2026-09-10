@@ -1324,7 +1324,7 @@
         "discard",
         "conditional"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/tigerclaw-14-近身格挡.md",
       "question_candidates": [
         "U-011"
@@ -1369,7 +1369,7 @@
         "discard",
         "conditional"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/tigerclaw-17-近身还击.md",
       "question_candidates": [
         "U-011"
@@ -1513,7 +1513,7 @@
       "keyword_hints": [
         "conditional"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/sabina-08-带头冲锋.md",
       "question_candidates": [
         "U-011"

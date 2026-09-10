@@ -47,7 +47,7 @@ namespace Goa2.Presentation
             var brand = Box("brand"); brand.Add(Text("GOA II", "brand-title")); brand.Add(Text("GOA2V1 · 开发版本", "eyebrow")); header.Add(brand);
             var phase = Box("phase-banner");
             phase.Add(Text("第 " + view.Round + " 轮 · 回合 " + view.Turn + "/4", "muted"));
-            phase.Add(Text(PhaseName(view), "phase-title")); header.Add(phase);
+            var stageTitle=Text(PhaseName(view), "phase-title"); stageTitle.name="match-stage"; phase.Add(stageTitle); header.Add(phase);
             var controls = Box("header-controls"); header.Add(controls);
             controls.Add(Button(view.Sandbox ? (view.QuickSelection ? "测试 · 选完揭示" : "测试 · 手动确认") : "正式确认", () => { rightExpanded = true; showDebug = true; Render(); }, "mode-button"));
             controls.Add(Button("图鉴 108", () => { galleryOpen = true; galleryHero = catalog.Heroes[0].Id; Render(); }, "quiet-button"));
@@ -206,6 +206,7 @@ namespace Goa2.Presentation
                 SeatLabel(tile, card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()), "body", 53, 25);
                 SeatLabel(tile, "先 " + card.Initiative + " · 移 " + Number(card.SecondaryMovement) + " / 防 " + Number(card.SecondaryDefense), "tiny", 82, 43);
                 string status = instance.Zone == CardZone.Selected ? (view.QuickSelection ? "已选 · 等待其他人" : view.Players[seat].Confirmed ? "已确认" : "已选 · 待确认") : ZoneName(instance);
+                if(view.DefenseRestrictions.TryGetValue(card.Id,out string restriction)) { status="本次不能防御"; tile.tooltip=DefenseRestrictionText(restriction); }
                 SeatLabel(tile, status, "card-zone", 130, 29); row.Add(tile);
             }
         }

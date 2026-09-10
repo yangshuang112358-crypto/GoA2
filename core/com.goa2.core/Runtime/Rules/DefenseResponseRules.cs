@@ -38,6 +38,11 @@ namespace Goa2.Rules
                 }
                 Emit(state,command,"ForcedDiscardSkipped",response.AttackerSeat,detail:"empty_hand");
                 response.Cursor++;
+                if (program!.Followup==DefenseFollowup.DiscardAttackerOrDefeat)
+                {
+                    DefeatHero(state,command,response.AttackerUnitId,response.ControllerSeat,response.SourceCardId,response.ControllerSeat);
+                    if (state.Phase==Phase.Finished) return false;
+                }
             }
             if (program!.Followup==DefenseFollowup.DiscardAttackerThenImmunity)
                 ApplyDefenseImmunity(catalog,state,command,response);

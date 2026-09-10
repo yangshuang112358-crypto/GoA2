@@ -69,6 +69,13 @@ namespace Goa2.Tests
         [TestCase("deadly-sweep.json")]
         [TestCase("death-spin.json")]
         [TestCase("backstab.json")]
+        [TestCase("melee-block.json")]
+        [TestCase("riposte-hand.json")]
+        [TestCase("riposte-empty.json")]
+        [TestCase("riposte-victory.json")]
+        [TestCase("riposte-ranged.json")]
+        [TestCase("lead-charge.json")]
+        [TestCase("lead-charge-unavailable.json")]
         public void PublishedScenarioPassesAgainstTheFormalCatalog(string file)
         {
             string root = ContentTests.Root();

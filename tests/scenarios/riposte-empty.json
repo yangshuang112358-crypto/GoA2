@@ -1,0 +1,213 @@
+{
+  "SchemaVersion": 1,
+  "Id": "riposte-empty",
+  "Name": "近身还击：空手攻击者被击败、轮末升级与下一轮复活",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "wasp,tigerclaw,brogan,arien"
+    },
+    {
+      "Target": "p2",
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-17-近身还击"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 7
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:0"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 8
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:1"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "wasp-00-闪耀之刃"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "tigerclaw-08-偷天妙手"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugDiscard",
+      "Value": "wasp-01-电击"
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugDiscard",
+      "Value": "wasp-06-静电封锁"
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugDiscard",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugDiscard",
+      "Value": "wasp-13-控物"
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2"
+      }
+    },
+    {
+      "Command": "Defend",
+      "Actor": "p2",
+      "Value": "tigerclaw-17-近身还击",
+      "Expect": {
+        "Phase": "Action",
+        "Gold": {
+          "p4": 1,
+          "p2": 1
+        },
+        "Active": "p3",
+        "EventOrder": [
+          "AttackResolved",
+          "EffectActivated",
+          "ForcedDiscardSkipped",
+          "HeroDefeated",
+          "CardResolved"
+        ],
+        "BlueCrystal": 6,
+        "RedCrystal": 7,
+        "EventCounts": {
+          "AttackResolved": 1,
+          "HeroDefeated": 1
+        }
+      }
+    },
+    {
+      "Command": "DebugAdvance",
+      "Value": "turn",
+      "Expect": {
+        "HandCounts": {
+          "p1": 0
+        },
+        "Turn": 2,
+        "Phase": "Planning",
+        "EffectCounts": {
+          "wasp-00-闪耀之刃": 0
+        }
+      }
+    },
+    {
+      "Command": "DebugAdvance",
+      "Value": "round",
+      "Expect": {
+        "Phase": "RoundEnd",
+        "Turn": 4
+      }
+    },
+    {
+      "Expect": {
+        "UpgradingPlayers": 2,
+        "Levels": {
+          "p4": 2,
+          "p2": 2
+        }
+      },
+      "Command": "ResolveRoundEnd"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p2",
+      "Value": "tigerclaw-03-背刺"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p4",
+      "Value": "arien-02-激流",
+      "Expect": {
+        "Round": 2,
+        "Turn": 1,
+        "Phase": "Planning"
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "wasp-00-闪耀之刃"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "tigerclaw-08-偷天妙手"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "PendingKind": "hero_respawn",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Destination": {
+        "Y": 7,
+        "X": -8
+      },
+      "Command": "RespawnHero",
+      "Actor": "p1",
+      "Expect": {
+        "BlueCrystal": 6,
+        "Active": "p1",
+        "Phase": "Action",
+        "EventCounts": {
+          "HeroDefeated": 0,
+          "HeroRespawned": 1
+        }
+      }
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p1",
+      "Expect": {
+        "Active": "p4",
+        "EventCounts": {
+          "AttackResolved": 0,
+          "HeroRespawned": 0,
+          "HeroDefeated": 0
+        }
+      }
+    }
+  ]
+}

@@ -70,8 +70,7 @@ namespace Goa2.Rules
                 if (card.PrimaryFamily == "defense")
                 {
                     if (primary == null) continue;
-                    if (primary.Block && attack.Unblockable || primary.RequiresRanged && !attack.Ranged ||
-                        attacker.Position.Distance(defender.Position) < primary.MinimumDistance) continue;
+                    if (DefenseRestriction(state,primary,attack,attacker,defender)!="") continue;
                     result.Add(new DefenseOption { CardId = card.Id, Primary = true, Block = primary.Block, IgnoresMinions = primary.IgnoresMinions,
                         Assessment = CombatMath.Defense(attack, card.PrimaryValue, state.Players[seat].DefenseBonus, primary.IgnoresMinions, primary.Block) });
                 }
@@ -79,6 +78,31 @@ namespace Goa2.Rules
                     result.Add(new DefenseOption { CardId = card.Id, Assessment = CombatMath.Defense(attack, card.SecondaryDefense.Value, state.Players[seat].DefenseBonus) });
             }
             return result;
+        }
+        public static Dictionary<string,string> DefenseRestrictions(ContentCatalog catalog,GameState state,int seat)
+        {
+            var result=new Dictionary<string,string>(); var attack=state.Execution?.Attack;
+            if(attack==null || state.Pending?.Kind!="defense" || state.Pending.ChooserSeat!=seat || seat!=attack.DefenderSeat) return result;
+            var defender=state.Units.SingleOrDefault(u => u.Seat==seat); var attacker=state.Units.SingleOrDefault(u => u.Seat==attack.AttackerSeat);
+            if(defender==null || attacker==null) return result;
+            foreach(var instance in state.Players[seat].Cards.Where(c => c.Zone==CardZone.InHand))
+            {
+                var program=CardPrograms.Defense(catalog.Card(instance.CardId),state.EngineVersion);
+                if(program==null) continue;
+                string reason=DefenseRestriction(state,program,attack,attacker,defender);
+                if(reason!="") result.Add(instance.CardId,reason);
+            }
+            return result;
+        }
+        private static string DefenseRestriction(GameState state,DefenseProgram program,AttackBreakdown attack,UnitState attacker,UnitState defender)
+        {
+            if(program.Block && attack.Unblockable) return "unblockable";
+            if(program.AttackKind==DefenseAttackKind.Ranged && !attack.Ranged) return "requires_ranged";
+            if(program.AttackKind==DefenseAttackKind.NonRanged && attack.Ranged) return "requires_non_ranged";
+            if(attacker.Position.Distance(defender.Position)<program.MinimumDistance) return "requires_minimum_distance";
+            if(program.RequiresAdjacentFriendlyMinion && !state.Units.Any(u => u.Team==defender.Team &&
+                (u.Kind=="melee" || u.Kind=="ranged" || u.Kind=="heavy") && u.Position.Distance(defender.Position)==1)) return "requires_adjacent_friendly_minion";
+            return "";
         }
         public static List<string> UnimplementedDefenses(ContentCatalog catalog, GameState state, int seat)
         {

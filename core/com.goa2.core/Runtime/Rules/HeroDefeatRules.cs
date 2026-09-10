@@ -7,15 +7,16 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
-        private static void DefeatHero(GameState state, Command command, string targetId, int killerSeat, string source)
+        private static void DefeatHero(GameState state, Command command, string targetId, int killerSeat, string source,int? sourcePrivateTo=null)
         {
             var unit = state.Units.SingleOrDefault(u => u.Id == targetId && u.Kind == "hero" && u.Seat.HasValue);
             Require(unit != null && killerSeat >= 0 && killerSeat < 4 && state.Players[killerSeat].Team != unit.Team, "invalid_defeat", "请选择存在的敌方英雄。");
             var victim = state.Players[unit!.Seat!.Value];
             Require(victim.Level >= 1 && victim.Level <= 8, "invalid_level", "英雄等级无效。");
             state.Units.Remove(unit); victim.AwaitingRespawn = true;
-            Emit(state, command, "HeroDefeated", victim.Seat, source == "debug" ? null : source, detail: "by:" + killerSeat);
+            Emit(state, command, "HeroDefeated", victim.Seat, source == "debug" || sourcePrivateTo.HasValue ? null : source, detail: "by:" + killerSeat);
             state.Events.Last().From = unit.Position;
+            if(sourcePrivateTo.HasValue) Emit(state,command,"HeroDefeatSource",killerSeat,source,sourcePrivateTo,detail:targetId);
             state.Players[killerSeat].Gold += victim.Level;
             Emit(state, command, "GoldAwarded", killerSeat, detail: victim.Level.ToString());
             int assist = new[] { 1, 1, 1, 2, 2, 2, 3, 3 }[victim.Level - 1];

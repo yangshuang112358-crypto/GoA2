@@ -1,0 +1,94 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine6-unsupported-defense",
+  "Name": "引擎6真实存档：只有尚未实装的近身还击时保留防御窗口",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "wasp,tigerclaw,brogan,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-17-近身还击",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "DebugDiscard",
+      "Value": "tigerclaw-00-瞬闪打击",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugDiscard",
+      "Value": "tigerclaw-02-偷袭",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugDiscard",
+      "Value": "tigerclaw-07-伺机待发",
+      "Target": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-00-闪耀之刃",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-08-偷天妙手",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense",
+        "HandCounts": {
+          "p2": 1
+        },
+        "PendingChooser": "p2"
+      }
+    },
+    {
+      "Command": "Defend",
+      "Value": "tigerclaw-17-近身还击",
+      "Actor": "p2",
+      "Expect": {
+        "Code": "response_not_implemented",
+        "PendingKind": "defense"
+      }
+    }
+  ]
+}

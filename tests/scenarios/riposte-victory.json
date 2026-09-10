@@ -1,0 +1,116 @@
+{
+  "SchemaVersion": 1,
+  "Id": "riposte-victory",
+  "Name": "近身还击：水晶归零后立即结束比赛",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "wasp,tigerclaw,brogan,arien"
+    },
+    {
+      "Target": "p2",
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-17-近身还击"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 7
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:0"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 8
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:1"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "wasp-00-闪耀之刃"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "tigerclaw-08-偷天妙手"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugSetCrystal",
+      "Value": "1"
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugDiscard",
+      "Value": "wasp-01-电击"
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugDiscard",
+      "Value": "wasp-06-静电封锁"
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugDiscard",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugDiscard",
+      "Value": "wasp-13-控物"
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2"
+      }
+    },
+    {
+      "Command": "Defend",
+      "Actor": "p2",
+      "Value": "tigerclaw-17-近身还击",
+      "Expect": {
+        "Phase": "Finished",
+        "Gold": {
+          "p4": 1,
+          "p2": 1
+        },
+        "EventCounts": {
+          "AttackResolved": 1
+        },
+        "EventOrder": [
+          "AttackResolved",
+          "HeroDefeated",
+          "CrystalDamaged",
+          "MatchWon"
+        ],
+        "BlueCrystal": 0,
+        "RedCrystal": 7,
+        "Winner": "Red"
+      }
+    }
+  ]
+}

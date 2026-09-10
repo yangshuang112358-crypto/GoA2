@@ -1,0 +1,99 @@
+{
+  "SchemaVersion": 1,
+  "Id": "lead-charge-unavailable",
+  "Name": "带头冲锋：无相邻友方小兵时不能抵挡",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "wasp,sabina,brogan,arien"
+    },
+    {
+      "Target": "p2",
+      "Command": "DebugEquipCard",
+      "Value": "sabina-08-带头冲锋"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 7
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:0"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 8
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:1"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "wasp-00-闪耀之刃"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "sabina-01-拔枪"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1"
+    },
+    {
+      "Command": "Defend",
+      "Actor": "p2",
+      "Value": "sabina-08-带头冲锋",
+      "Expect": {
+        "Code": "invalid_defense"
+      }
+    },
+    {
+      "Command": "DeclineDefense",
+      "Actor": "p2",
+      "Expect": {
+        "PendingChooser": "p2",
+        "RedCrystal": 6,
+        "PendingKind": "hero_respawn"
+      }
+    },
+    {
+      "Destination": {
+        "Y": -9,
+        "X": 7
+      },
+      "Command": "RespawnHero",
+      "Actor": "p2",
+      "Expect": {
+        "Active": "p2"
+      }
+    },
+    {
+      "Command": "DebugAdvance",
+      "Value": "turn",
+      "Expect": {
+        "Phase": "Planning",
+        "Turn": 2
+      }
+    }
+  ]
+}

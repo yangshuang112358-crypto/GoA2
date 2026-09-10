@@ -1,0 +1,125 @@
+{
+  "SchemaVersion": 1,
+  "Id": "riposte-hand",
+  "Name": "tigerclaw-17-近身还击: 原攻击后文完成后由攻击者强制弃牌",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "wasp,tigerclaw,brogan,arien"
+    },
+    {
+      "Target": "p2",
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-17-近身还击"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 7
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:0"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 8
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:1"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "wasp-00-闪耀之刃"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "tigerclaw-08-偷天妙手"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2"
+      }
+    },
+    {
+      "Command": "Defend",
+      "Actor": "p2",
+      "Value": "tigerclaw-17-近身还击",
+      "Expect": {
+        "PendingChooser": "p1",
+        "EventOrder": [
+          "DefenseResolved",
+          "AttackResolved",
+          "EffectActivated",
+          "ForcedDiscardRequired"
+        ],
+        "EffectCounts": {
+          "wasp-00-闪耀之刃": 1
+        },
+        "PendingKind": "forced_discard",
+        "EventCounts": {
+          "AttackResolved": 1
+        }
+      }
+    },
+    {
+      "Command": "ForcedDiscard",
+      "Actor": "p2",
+      "Value": "wasp-01-电击",
+      "Expect": {
+        "Code": "invalid_forced_discard"
+      }
+    },
+    {
+      "Command": "ForcedDiscard",
+      "Actor": "p1",
+      "Value": "wasp-01-电击",
+      "Expect": {
+        "Phase": "Action",
+        "DiscardCounts": {
+          "p2": 1,
+          "p1": 1
+        },
+        "Active": "p3",
+        "EventCounts": {
+          "AttackResolved": 0
+        },
+        "BlueCrystal": 7,
+        "RedCrystal": 7
+      }
+    },
+    {
+      "Command": "DebugAdvance",
+      "Value": "turn",
+      "Expect": {
+        "Turn": 2,
+        "Phase": "Planning",
+        "EffectCounts": {
+          "wasp-00-闪耀之刃": 0
+        }
+      }
+    }
+  ]
+}

@@ -10,6 +10,15 @@ namespace Goa2.Presentation
         private string defenseCardId = "";
         private string discardCardId = "";
         private bool declineDefensePending;
+        private static string DefenseRestrictionText(string reason) => reason switch
+        {
+            "unblockable" => "此攻击不可抵挡",
+            "requires_ranged" => "只可抵挡远程攻击",
+            "requires_non_ranged" => "只可抵挡非远程攻击",
+            "requires_minimum_distance" => "攻击者距离太近",
+            "requires_adjacent_friendly_minion" => "没有相邻友方小兵",
+            _ => "未满足牌面防御条件"
+        };
         private static string AttackFormula(AttackBreakdown attack) => "攻击 " + attack.BaseAttack + " + 加成 " + (attack.AttackBonus-attack.CardTextBonus) +
             (attack.CardTextBonus==0 ? "" : " + 牌文 " + attack.CardTextBonus) + " + 敌兵 " + attack.EnemySupport + " − 友兵 " + attack.FriendlyGuard + " = " + attack.FinalAttack;
         private void RenderAttackSources(VisualElement parent,GameView view,AttackBreakdown attack)
@@ -90,6 +99,11 @@ namespace Goa2.Presentation
                 if (id == defenseCardId) button.AddToClassList("chosen"); parent.Add(button);
             }
             foreach (string id in view.UnimplementedDefenseCards) parent.Add(Text(catalog.Card(id).Name + "：响应文字待实装，已保留等待。", "tiny"));
+            foreach(var restriction in view.DefenseRestrictions)
+            {
+                var card=catalog.Card(restriction.Key);
+                var label=Text(card.Name+"："+DefenseRestrictionText(restriction.Value),"muted"); label.name="defense-restriction-"+card.Color; parent.Add(label);
+            }
             if (defenseCardId != "" && view.DefenseOptions.Any(o => o.CardId == defenseCardId))
             {
                 RenderCardDetail(parent,catalog.Card(defenseCardId));
