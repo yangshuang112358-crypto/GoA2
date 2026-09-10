@@ -1,0 +1,9 @@
+{
+  "name": "Goa2.Core.Tests",
+  "references": ["Goa2.Domain", "Goa2.Rules", "Goa2.Application", "Goa2.Infrastructure"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "includePlatforms": ["Editor"],
+  "overrideReferences": true,
+  "precompiledReferences": ["nunit.framework.dll", "Newtonsoft.Json.dll"],
+  "autoReferenced": false
+}

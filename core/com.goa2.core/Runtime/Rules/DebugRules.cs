@@ -27,12 +27,13 @@ namespace Goa2.Rules
                     }
                     break;
                 case CommandKind.DebugGold:
+                case CommandKind.DebugSetGold:
                     var recipient = DebugPlayer(state, command.TargetSeat);
                     Require(int.TryParse(command.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out int amount), "invalid_amount", "请输入整数金币变化量。");
-                    long total = (long)recipient.Gold + amount;
+                    long total = command.Kind == CommandKind.DebugSetGold ? amount : (long)recipient.Gold + amount;
                     Require(total >= 0 && total <= 9999, "invalid_amount", "调试金币结果须在0至9999之间。");
                     recipient.Gold = (int)total;
-                    Emit(state, command, "DebugGoldChanged", recipient.Seat, detail: amount.ToString(CultureInfo.InvariantCulture));
+                    Emit(state, command, command.Kind == CommandKind.DebugSetGold ? "DebugGoldSet" : "DebugGoldChanged", recipient.Seat, detail: amount.ToString(CultureInfo.InvariantCulture));
                     break;
                 case CommandKind.DebugTeleport:
                     Require(LegalDebugTeleports(catalog, state, command.Value).Contains(command.Destination), "invalid_teleport", "请选择存在、无障碍且未占用的地图格。");
@@ -46,6 +47,8 @@ namespace Goa2.Rules
                 case CommandKind.DebugPrepare: DebugPrepare(catalog, state, command); break;
                 case CommandKind.DebugSelectAll: DebugSelectAll(catalog, state, command); break;
                 case CommandKind.DebugEquipCard: DebugEquip(catalog, state, command); break;
+                case CommandKind.DebugConfirmAll: DebugConfirmAll(catalog, state, command); break;
+                case CommandKind.DebugAdvance: DebugAdvance(catalog, state, command); break;
                 case CommandKind.DebugSetCoin:
                     Require(command.Value == "blue" || command.Value == "red", "invalid_team", "决策币只能为蓝或红。");
                     state.DecisionCoin = command.Value == "blue" ? Team.Blue : Team.Red;
@@ -149,6 +152,43 @@ namespace Goa2.Rules
             Require(existing != null && existing.Zone != CardZone.PlayedUnresolved && existing.Zone != CardZone.Selected, "invalid_equipment", "该颜色当前不可替换。");
             existing!.CardId = definition!.Id; existing.Zone = CardZone.InHand; existing.PlayedRound = null; existing.PlayedTurn = null;
             Emit(state, command, "DebugCardEquipped", player.Seat, definition.Id, player.Seat);
+        }
+        private static void DebugConfirmAll(ContentCatalog catalog, GameState state, Command command)
+        {
+            Require(state.Phase == Phase.Planning, "wrong_phase", "只能在选牌阶段确认。");
+            Require(state.Players.All(p => p.Confirmed || p.Cards.Any(c => c.Zone == CardZone.Selected)), "missing_selection", "请先为所有有手牌的玩家选择卡牌。");
+            foreach (var player in state.Players)
+                if (!player.Confirmed && state.Phase == Phase.Planning) ConfirmCard(catalog, state, AsActor(command, player.Seat));
+        }
+        private static void DebugAdvance(ContentCatalog catalog, GameState state, Command command)
+        {
+            Require(command.Value == "action" || command.Value == "turn" || command.Value == "round", "invalid_boundary", "请选择当前行动、当前回合或轮末。");
+            Require(state.Phase == Phase.Action || state.Phase == Phase.InitiativeChoice || (state.Phase == Phase.Planning && command.Value != "action"), "wrong_phase", "当前阶段不能快进；请先处理待选择事项。");
+            Require(state.Pending == null || (state.Phase == Phase.InitiativeChoice && state.Pending.Kind == "initiative"), "wrong_phase", "请先处理当前强制选择，快进不会代选卡牌效果。");
+            int round = state.Round, turn = state.Turn, actions = 0;
+            Emit(state, command, "DebugAdvanceStarted", detail: command.Value);
+            for (int step = 0; step < 128; step++)
+            {
+                if (state.Round != round || state.Phase == Phase.RoundEnd || (command.Value == "turn" && state.Turn != turn) || (command.Value == "action" && actions == 1)) break;
+                if (state.Phase == Phase.Planning)
+                {
+                    DebugSelectAll(catalog, state, AsActor(command, command.ActorSeat, "first"));
+                    if (state.Phase == Phase.Planning) DebugConfirmAll(catalog, state, command);
+                }
+                else if (state.Phase == Phase.InitiativeChoice && state.Pending?.Kind == "initiative")
+                {
+                    ChooseInitiative(state, AsActor(command, state.Pending.ChooserSeat, target: state.Pending.CandidateSeats.Min()));
+                }
+                else if (state.Phase == Phase.Action && state.Pending == null)
+                {
+                    var actor = AsActor(command, state.ActiveSeat!.Value);
+                    Emit(state, actor, "ActionPassed", actor.ActorSeat, ActiveCard(state).CardId);
+                    FinishAction(catalog, state, actor); actions++;
+                }
+                else break;
+                Require(step < 127, "advance_limit", "快进达到上限，操作未应用。");
+            }
+            Emit(state, command, "DebugAdvanceFinished", detail: command.Value + ":" + state.Phase);
         }
     }
 }

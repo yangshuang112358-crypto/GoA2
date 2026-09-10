@@ -12,7 +12,8 @@ namespace Goa2.Domain
     {
         ChooseHero, DeployHero, SelectCard, ConfirmCard, ChooseInitiative, Move, Pass,
         SetQuickSelection, DebugGold, DebugTeleport, DebugDiscard, DebugRecover,
-        DebugPrepare, DebugSelectAll, DebugEquipCard, DebugSetCoin
+        DebugPrepare, DebugSelectAll, DebugEquipCard, DebugSetCoin,
+        DebugConfirmAll, DebugAdvance, DebugSetGold
     }
     public enum MoveMode { Secondary, Fast }
 

@@ -31,9 +31,11 @@ namespace Goa2.Presentation
             {
                 int change = amount; coins.Add(Button("+" + amount, () => Submit(CommandKind.DebugGold, change.ToString(), seat), "compact-button"));
             }
-            var gold = new IntegerField("变化量") { value = debugGold, name = "debug-gold-delta" }; gold.AddToClassList("debug-input");
+            var gold = new IntegerField("数值") { value = debugGold, name = "debug-gold-delta" }; gold.AddToClassList("debug-input");
             gold.RegisterValueChangedCallback(e => debugGold = e.newValue); parent.Add(gold);
-            parent.Add(Button("应用金币变化", () => Submit(CommandKind.DebugGold, debugGold.ToString(), seat), "choice-button"));
+            var goldControls = Box("debug-button-row"); parent.Add(goldControls);
+            goldControls.Add(Button("应用金币变化", () => Submit(CommandKind.DebugGold, debugGold.ToString(), seat), "choice-button"));
+            goldControls.Add(Button("设为指定金币", () => Submit(CommandKind.DebugSetGold, debugGold.ToString(), seat), "choice-button"));
             parent.Add(Text("调试传送", "section-title"));
             if (view.Units.Count > 0)
             {
@@ -73,6 +75,15 @@ namespace Goa2.Presentation
             var coinRow = Box("debug-button-row"); parent.Add(coinRow);
             coinRow.Add(Button("设为蓝队", () => Submit(CommandKind.DebugSetCoin, "blue"), "choice-button"));
             coinRow.Add(Button("设为红队", () => Submit(CommandKind.DebugSetCoin, "red"), "choice-button"));
+            parent.Add(Text("流程快进", "section-title"));
+            var confirm = Button("确认所有已选牌", () => Submit(CommandKind.DebugConfirmAll), "choice-button");
+            confirm.SetEnabled(view.Phase == Phase.Planning); parent.Add(confirm);
+            var skip = Button("跳过当前行动", () => Submit(CommandKind.DebugAdvance, "action"), "choice-button");
+            skip.SetEnabled(view.Phase == Phase.Action || view.Phase == Phase.InitiativeChoice); parent.Add(skip);
+            bool canAdvance = view.Phase == Phase.Planning || view.Phase == Phase.Action || view.Phase == Phase.InitiativeChoice;
+            var turn = Button("跳过本回合", () => Submit(CommandKind.DebugAdvance, "turn"), "choice-button"); turn.SetEnabled(canAdvance); parent.Add(turn);
+            var round = Button("快速到轮末", () => Submit(CommandKind.DebugAdvance, "round"), "choice-button"); round.SetEnabled(canAdvance); parent.Add(round);
+            parent.Add(Text("快进会依次选牌并放弃行动，保留出牌记录；轮末结算仍需单独处理。", "tiny"));
         }
     }
 }

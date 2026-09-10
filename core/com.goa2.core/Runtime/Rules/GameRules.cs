@@ -45,6 +45,9 @@ namespace Goa2.Rules
                 case CommandKind.DebugSelectAll:
                 case CommandKind.DebugEquipCard:
                 case CommandKind.DebugSetCoin:
+                case CommandKind.DebugConfirmAll:
+                case CommandKind.DebugAdvance:
+                case CommandKind.DebugSetGold:
                     ApplyDebug(catalog, state, command); break;
                 default: throw new RuleViolation("unsupported_command", "此操作尚未实装。");
             }

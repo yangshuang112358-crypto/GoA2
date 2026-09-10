@@ -366,7 +366,23 @@ namespace Goa2.Presentation
                 case "InitiativeChoiceRequired": return actor + "需要选择先行动者";
                 case "RoundEndReached": return "到达轮末";
                 case "ActionPassed": return actor + "放弃此牌行动";
-                default: return actor + (entry.Kind == "DeploymentStarted" ? "开始安排出生" : entry.Kind == "EmptyHandSkipped" ? "无手牌，自动跳过" : "先攻选择已确认");
+                case "DeploymentStarted": return "开始安排出生";
+                case "EmptyHandSkipped": return actor + "无手牌，自动跳过";
+                case "InitiativeChosen": return actor + "被选为先行动者";
+                case "QuickSelectionChanged": return entry.Detail == "on" ? "开启选完即揭示" : "改为四人确认";
+                case "DebugGoldChanged": return actor + "调试金币变化 " + entry.Detail;
+                case "DebugGoldSet": return actor + "金币设为 " + entry.Detail;
+                case "DebugTeleported": return actor + "调试传送至 " + entry.To;
+                case "DebugPrepared": return "自动准备完成";
+                case "DebugCardEquipped": return actor + "装配测试牌 " + catalog.Card(entry.CardId!).Name;
+                case "DebugCoinChanged": return "决策币设为" + (entry.Detail == "blue" ? "蓝队" : "红队");
+                case "CardDiscarded": return actor + "弃置 " + catalog.Card(entry.CardId!).Name;
+                case "CardRecovered": return actor + "取回 " + catalog.Card(entry.CardId!).Name;
+                case "DiscardColorShown": return actor + "弃牌区加入" + ColorName(entry.Detail) + "牌";
+                case "RecoveredColorShown": return actor + "取回一张" + ColorName(entry.Detail) + "牌";
+                case "DebugAdvanceStarted": return "开始流程快进";
+                case "DebugAdvanceFinished": return "流程快进已停止";
+                default: return "对局状态已更新";
             }
         }
         private static string Number(int? value) => value?.ToString() ?? "—";

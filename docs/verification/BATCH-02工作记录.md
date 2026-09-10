@@ -23,3 +23,15 @@ tools/test-player-ui.ps1在1600×1000和1280×800各完成19项检查；输入�
 Unity BuildWindows成功，实际Player无异常日志。新增run-player.ps1的QA模式将存档隔离到artifacts目录，保留正常用户存档；-goaLoad恢复指定文件。
 
 仍在继续本批后续开发；上述检查不代表主要牌效或完整对局已经完成。
+
+## 第三阶段：流程快进与Unity同源测试
+
+新增DebugConfirmAll、DebugAdvance(action/turn/round)、DebugSetGold，以及5项边界测试。真实窗口点击“快速到轮末”后，修订2即完成自动准备与整轮快进，记录16次揭示、16次放弃后结算，停在RoundEnd；截图batch02-debug-roundend.png，实际存档qa-save.json。
+
+新增规则最初4项失败均为unsupported_command；实现后.NET测试宿主被Windows Smart App Control拒绝加载Goa2.Rules.dll（0x800711C7）。同一二进制重试仍被拒，已核实系统CodeIntegrity事件；未修改安全策略，也没有把环境失败当作行为失败或通过。
+
+已将核心测试移到UPM包Tests/Editor，.NET工程引用同样源码，接入编辑器自带Test Framework 1.6.0。Unity实际42/42通过；其中“快进不能丢弃无关强制选择”先取得0/1失败，再增加拒绝边界并通过。结果artifacts/unity/tests/core-editmode.xml。新增test-core.ps1的显式运行器选择与仅环境错误时的Auto切换。
+
+Player重新构建与运行成功；测试/NUnit程序集没有进入发行Player。场景无窗口/可见执行仍在实施中。
+
+随后在加入强制选择保护并重新编译后，.NET也实际42/42通过（最新core.trx）；此前两份被阻止的报告仍保留。说明拦截并非每次构建都会发生，不能因此抹去环境问题或宣称安全策略已改变。

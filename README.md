@@ -1,6 +1,6 @@
 # Goa2V1
 
-GoA2 电子版重启工程。[BATCH-02](docs/planning/BATCH-02.md)正在持续开发：Unity与Windows程序已可运行，测试模式、四边折叠界面和地图缩放已接入。纯C#核心37项测试通过，两个分辨率各19项真实鼠标/键盘检查通过；正式数据为6英雄、108牌、254格。主要牌效、完整轮末/升级与联网仍未实现。
+GoA2 电子版重启工程。[BATCH-02](docs/planning/BATCH-02.md)正在持续开发：Unity与Windows程序已可运行，测试模式、四边折叠界面和地图缩放已接入。同源纯C#核心42项测试在Unity EditMode通过，两个分辨率各19项真实鼠标/键盘检查通过；正式数据为6英雄、108牌、254格。主要牌效、完整轮末/升级与联网仍未实现。
 
 立即体验：运行 artifacts/player/Goa2V1.exe。操作与开发入口见[启动与操作指南](docs/development/启动与操作指南.md)，验证范围见[本批记录](docs/verification/BATCH-02工作记录.md)。
 
@@ -52,6 +52,7 @@ python -B -m unittest discover -s tests -v
 - docs：规则、经验、设计、任务与流程；docs/cards/drafts为自动生成分析输入。
 - tools / tests：资料校验、共享核心NUnit测试、内容打包与Unity构建脚本。
 - core/com.goa2.core：纯C#运行时唯一源码；四个.NET工程引用同一份文件。
+- core/com.goa2.core/Tests/Editor：核心测试唯一源码，.NET和Unity引用；入口见[自动化测试](docs/development/自动化测试.md)。
 - unity：Unity 6000.3.23f1工程，UI Toolkit地图/热座/卡牌界面与Editor构建入口。
 
 ## 开发运行
