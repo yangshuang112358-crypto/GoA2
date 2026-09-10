@@ -26,11 +26,11 @@ function Close-QaPlayer {
     [void]$goaProcess.CloseMainWindow()
     if (-not $goaProcess.WaitForExit(5000)) { throw 'The QA Player did not close.' }
 }
-function Open-Setup([string]$Scenario) {
+function Open-Setup([string]$Scenario,[int]$Steps=7) {
     Close-QaPlayer
     $goaSetup=Get-Content -LiteralPath (Join-Path $goaRoot "tests/scenarios/$Scenario.json") -Raw | ConvertFrom-Json
     $goaSetup.Id="ui-$Scenario-setup"
-    $goaSetup.Steps=@($goaSetup.Steps | Select-Object -First 7)
+    $goaSetup.Steps=@($goaSetup.Steps | Select-Object -First $Steps)
     $goaSetupPath=Join-Path $goaRoot "artifacts/unity/$($goaSetup.Id).json"
     $goaSetup | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $goaSetupPath -Encoding utf8
     & "$PSScriptRoot/run-scenarios.ps1" -Scenario $goaSetupPath
@@ -40,9 +40,9 @@ function Open-Setup([string]$Scenario) {
     do {
         Start-Sleep -Milliseconds 250
         try { $goaUi=Read-Ui } catch { continue }
-        if ($goaUi.Phase -eq 'Action' -and $goaUi.Revision -eq 7) { break }
+        if ($goaUi.Phase -eq 'Action' -and $goaUi.Revision -eq $Steps) { break }
     } while ([DateTime]::UtcNow -lt $goaDeadline)
-    Check ($goaUi.Phase -eq 'Action' -and $goaUi.Revision -eq 7) "$Scenario setup restores with its skill ready"
+    Check ($goaUi.Phase -eq 'Action' -and $goaUi.Revision -eq $Steps) "$Scenario setup restores with its action ready"
 }
 function Pass-Seat([int]$Key) {
     & "$PSScriptRoot/qa-player.ps1" -Action Key -Key $Key | Out-Null
@@ -93,6 +93,33 @@ try {
     Pass-Seat 3
     Pass-Seat 4
     Check ((Read-Ui).ActiveEffectCount -eq 0 -and (Read-Ui).PrimaryRestriction -eq '' -and (Read-Ui).Turn -eq 2) 'Skill suppression and its warning clear at the turn boundary'
+
+    Open-Setup 'shining-blade' 9
+    Check (@((Read-Ui).Buttons | Where-Object { $_.Name -eq 'begin-primary' -and $_.Text -eq '执行基础攻击' -and $_.Enabled }).Count -eq 1) 'Skill suppression leaves Shining Blade basic attack available'
+    Click -Element 'effect-area-effect:1'
+    Click -Element 'begin-primary'
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key Home | Out-Null
+    $goaCell=(Read-Ui).Cells | Where-Object { $_.X -eq 8 -and $_.Y -eq -10 }
+    Check ($goaCell.Legal) 'The adjacent enemy hero is offered as the basic attack target'
+    & "$PSScriptRoot/qa-player.ps1" -Action Click -X ([int]$goaCell.Center.x) -Y ([int]$goaCell.Center.y) | Out-Null
+    Click '^确认攻击 '
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 2 | Out-Null
+    Click -Element 'hand-blue'
+    Click '^确认使用 挑战者 防御$'
+    $goaState=Save-State
+    Check ($goaState.Effects.Count -eq 1 -and $goaState.Effects[0].SourceCardId -eq 'wasp-00-闪耀之刃' -and $goaState.Effects[0].AreaKind -eq 1) 'Successful defense is followed by a sourced adjacent silence'
+    Check ((Read-Ui).EffectAreaId -eq '' -and @($goaState.Events | Where-Object { $_.Kind -eq 'EffectCancelled' -and $_.CardId -eq 'arien-06-打断施法' }).Count -eq 1) 'The cancelled old skill and its displayed area are removed'
+    Click -Element 'effect-area-effect:2'
+    Check ((Read-Ui).EffectAreaCells -eq 4) 'The new adjacent area uses one hex distance at this map edge'
+    $goaRevision=(Read-Ui).Revision
+    Click -Element 'focus-hero'
+    $goaUi=Read-Ui
+    $goaCell=$goaUi.Cells | Where-Object { $_.X -eq 8 -and $_.Y -eq -10 }
+    Check ($goaUi.HexRadius -ge 19.9 -and [math]::Abs($goaCell.Center.x-($goaUi.BoardBounds.x+$goaUi.BoardBounds.width/2)) -lt 1 -and [math]::Abs($goaCell.Center.y-($goaUi.BoardBounds.y+$goaUi.BoardBounds.height/2)) -lt 1 -and $goaUi.Revision -eq $goaRevision) 'Locate hero centers the controlled character at a readable scale without a game command'
+    & "$PSScriptRoot/qa-player.ps1" -Action Capture -Name 'blade-ui-cancelled' | Out-Null
+    Pass-Seat 3
+    Pass-Seat 4
+    Check ((Read-Ui).Turn -eq 2 -and (Read-Ui).ActiveEffectCount -eq 0) 'Shining Blade silence expires after all remaining heroes finish'
 } catch {
     $goaChecks.Add([pscustomobject]@{check='Execution';passed=$false;error=$_.Exception.Message}); throw
 } finally {

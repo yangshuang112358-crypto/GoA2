@@ -1,0 +1,11 @@
+# 版本2的真实持续效果存档
+
+engine2-purple-aura.json由d5820ad对应的原生Player在2026-09-10 14:40（Asia/Shanghai）生成；当时新程序只支持版本2，电闪雷鸣有拥有状态但没有触发文字。输入是同目录engine2-purple-aura-scenario.json，15步全部通过。请保留这个固定文件，不用当前引擎重新生成来冒充旧档。
+
+最后状态：第二轮第一回合，黄蜂8级、六次正式卡升级、拥有紫卡，执行静电封锁后由布罗根行动；保留一条技能范围效果，没有紫卡弃牌窗口。旧文件尚无AreaKind字段，新版恢复须默认SkillRange。随后可以在下一次无选择的Planning明确采用新规则。
+
+存档SHA256：b537129fa55a516ea57f25d34e63b039e22207c1546e0328922d4ba7469abedf。
+输入SHA256：f78ea7d2e5f0e8e86706920bd2df9d17685aa76dddfd4d26c69feabea674d685。
+旧规则程序集SHA256：686b14947aea60c6cf6a6ddbe16fbb8ad508ac21bd149eb33491ec8e212615d8。
+
+验收见LegacySaveTests.EngineTwoPurpleOwnerKeepsItsHistoricalSkillWithoutNewAfterTriggers。普通确认旧档另见legacy-v1-roundend.json，两者覆盖不同历史边界。此场景不在默认通过场景目录中；它的预期描述版本2，不要求未来新对局继续没有紫卡触发。

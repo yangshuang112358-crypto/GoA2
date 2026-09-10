@@ -103,7 +103,6 @@
 .round-dots { position: absolute; top: 99px; left: 14px; right: 10px; height: 27px; flex-direction: row; align-items: center; }
 .bonus-line { font-size: 14px; color: #dcca91; white-space: normal; }
 .restriction-text { font-size: 17px; color: #eab5ae; white-space: normal; margin-bottom: 8px; }
-.area-caption { font-size: 14px; color: #c9afea; padding-left: 12px; min-height: 23px; }
 .round-dot { width: 24px; height: 24px; margin-right: 17px; border-width: 2px; border-color: #7b939c; border-radius: 20px; background-color: #14232d; }
 .filled-dot { border-color: #c5d1d0; }
 .discard-dots { position: absolute; top: 137px; left: 14px; right: 7px; flex-direction: row; align-items: center; flex-wrap: wrap; }
@@ -121,7 +120,7 @@
 .active-public-card { background-color: #36484a; border-left-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-color: #dbc18b; border-right-color: #dbc18b; border-bottom-color: #dbc18b; }
 .field { min-width: 0; min-height: 130px; margin-right: 0; flex-grow: 1; }
 .field-header { height: 41px; min-height: 41px; padding-left: 10px; padding-right: 6px; }
-.hex-board { min-height: 100px; overflow: hidden; }
+.hex-board { min-height: 60px; overflow: hidden; }
 .map-controls { flex-direction: row; }
 .board-footer { min-height: 30px; padding-top: 4px; padding-bottom: 3px; margin-bottom: 0; }
 .hand { height: 226px; min-height: 226px; padding-top: 0; padding-bottom: 6px; margin-top: 10px; border-width: 1px; border-color: #344e58; border-radius: 6px; }

@@ -1,0 +1,20 @@
+{
+  "SchemaVersion":1,"Id":"engine2-purple-aura","Name":"版本2存档夹具：紫卡拥有、基础技能与激活范围",
+  "Steps":[
+    {"Command":"DebugPrepare","Value":"wasp,shargatha,brogan,arien"},
+    {"Command":"DebugSetGold","Target":"p1","Value":"28"},
+    {"Command":"DebugAdvance","Value":"round"},
+    {"Command":"ResolveRoundEnd"},
+    {"Command":"ChooseUpgrade","Value":"wasp-03-电能波"},
+    {"Command":"ChooseUpgrade","Value":"wasp-08-偏转屏障"},
+    {"Command":"ChooseUpgrade","Value":"wasp-15-引力控制"},
+    {"Command":"ChooseUpgrade","Value":"wasp-05-电能爆炸"},
+    {"Command":"ChooseUpgrade","Value":"wasp-10-反射屏障"},
+    {"Command":"ChooseUpgrade","Value":"wasp-17-意念黑洞","Expect":{"Round":2,"Turn":1,"PurpleCards":{"p1":"wasp-12-电闪雷鸣"},"Levels":{"p1":8}}},
+    {"Actor":"p1","Command":"SelectCard","Value":"wasp-06-静电封锁"},
+    {"Actor":"p2","Command":"SelectCard","Value":"shargatha-06-海妖之歌"},
+    {"Actor":"p3","Command":"SelectCard","Value":"brogan-06-铜墙铁壁"},
+    {"Actor":"p4","Command":"SelectCard","Value":"arien-07-潮水","Expect":{"Active":"p1"}},
+    {"Command":"BeginPrimary","Expect":{"Phase":"Action","Active":"p3","EffectCounts":{"wasp-06-静电封锁":1},"PendingKind":"none"}}
+  ]
+}

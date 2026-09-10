@@ -158,6 +158,9 @@ namespace Goa2.Presentation
             var heading = Box("field-header"); field.Add(heading);
             heading.Add(Text("亚特兰蒂斯 · 254格", "section-title"));
             var tools = Box("map-controls"); heading.Add(tools);
+            var ownUnit=view.Units.SingleOrDefault(u => u.Seat==seat);
+            var focus=Button("定位角色",() => { if (ownUnit!=null) board?.FocusAt(ownUnit.Position); },"compact-button","focus-hero");
+            focus.SetEnabled(ownUnit!=null); tools.Add(focus);
             tools.Add(Button("−", () => board?.ZoomAtCenter(.8f), "compact-button"));
             tools.Add(Button("全图", () => board?.ResetView(), "compact-button"));
             tools.Add(Button("＋", () => board?.ZoomAtCenter(1.25f), "compact-button"));
@@ -166,16 +169,11 @@ namespace Goa2.Presentation
             {
                 if (!targets.Contains(cell)) { notice = "此格不可用于当前操作。"; return; }
                 chosenCell = cell; notice = "已选地图格 " + cell + "，确认后应用。"; Render();
-            }, cell => cellInfo.text = RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : ""), viewport, SelectedEffectArea(view));
+            }, cell => cellInfo.text = BoardHint(view,RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : "")), viewport, SelectedEffectArea(view));
             board.ViewportChanged = RequestCapture;
             field.Add(board);
-            cellInfo = Text(targets.Count == 0 ? "滚轮缩放 · 中/右键拖动 · Home全图" : targets.Count + " 个合法目标 · 点击后确认", "tiny");
+            cellInfo = Text(BoardHint(view,targets.Count == 0 ? "滚轮缩放 · 中/右键拖动 · Home全图" : targets.Count + " 个合法目标 · 点击后确认"), "tiny");
             cellInfo.AddToClassList("board-footer"); field.Add(cellInfo);
-            if (effectAreaId!="")
-            {
-                var effect=view.Effects.Single(e => e.Id==effectAreaId);
-                field.Add(Text("紫色描边 · " + catalog.Card(effect.SourceCardId).Name + " · 来源席位 " + (effect.ControllerSeat+1),"area-caption"));
-            }
         }
         private void BuildHand(VisualElement parent, GameView view)
         {

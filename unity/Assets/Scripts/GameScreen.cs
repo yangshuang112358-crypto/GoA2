@@ -198,7 +198,7 @@ namespace Goa2.Presentation
             if (revision != screenshotRevision || screenshotPath == null) yield break;
             Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(screenshotPath))!);
             var layout = new QaLayout { Width = Screen.width, Height = Screen.height, Seat = seat, Revision = renderedView.Revision,
-                Zoom = viewport.Zoom, Focus = viewport.Focus, Phase = renderedView.Phase.ToString(), Round = renderedView.Round, Turn = renderedView.Turn,
+                Zoom = viewport.Zoom, HexRadius=board?.HexRadius ?? 0, Focus = viewport.Focus, Phase = renderedView.Phase.ToString(), Round = renderedView.Round, Turn = renderedView.Turn,
                 LeftExpanded = leftExpanded, RightExpanded = rightExpanded, TopExpanded = topExpanded, BottomExpanded = bottomExpanded,
                 SelectedCell = chosenCell.HasValue ? chosenCell.Value.ToString() : "", BoardBounds = board?.worldBound ?? default,
                 ActiveSeat = renderedView.ActiveSeat ?? -1, RevealedHeading = root.Q<Label>("revealed-heading")?.text ?? "",
@@ -229,7 +229,7 @@ namespace Goa2.Presentation
         }
         [Serializable] private sealed class QaLayout
         {
-            public int Width, Height, Seat, Round, Turn, ActiveSeat, FilledPlayDots, DiscardDotCount; public long Revision; public float Zoom; public Vector2 Focus; public Rect BoardBounds;
+            public int Width, Height, Seat, Round, Turn, ActiveSeat, FilledPlayDots, DiscardDotCount; public long Revision; public float Zoom, HexRadius; public Vector2 Focus; public Rect BoardBounds;
             public string Phase = "", SelectedCell = "", RevealedHeading = "", EffectAreaId="", PrimaryRestriction="";
             public int ActiveEffectCount, EffectAreaCells;
             public bool LeftExpanded, RightExpanded, TopExpanded, BottomExpanded;
@@ -467,6 +467,7 @@ namespace Goa2.Presentation
                 case "EffectActivated": return "“" + catalog.Card(entry.CardId!).Name + "”生效";
                 case "EffectScheduled": return "“" + catalog.Card(entry.CardId!).Name + "”等待下一回合生效";
                 case "EffectExpired": return "“" + catalog.Card(entry.CardId!).Name + "”到期";
+                case "EffectCancelled": return actor + "取消了“" + catalog.Card(entry.CardId!).Name + "”的持续效果";
                 case "EffectNotScheduled": return "本轮没有下一回合，后续效果不生效";
                 case "ActionPassed": return actor + "放弃此牌行动";
                 case "DeploymentStarted": return "开始安排出生";

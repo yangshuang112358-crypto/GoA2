@@ -44,9 +44,9 @@ namespace Goa2.Tests
         {
             var catalog=BattlefieldTests.Catalog();
             var game=LocalGameFactory.Restore(catalog,File.ReadAllText(Path.Combine(ContentTests.Root(),"tests","fixtures","legacy-v1-roundend.json")));
-            Apply(game,0,CommandKind.ResolveRoundEnd); Apply(game,0,CommandKind.UpgradeEngine,"2");
+            Apply(game,0,CommandKind.ResolveRoundEnd); Apply(game,0,CommandKind.UpgradeEngine,GameState.CurrentEngineVersion.ToString());
             var state=new JsonStateCodec().Read(game.ExportSave());
-            Assert.That(state.Sandbox, Is.False); Assert.That(state.InitialEngineVersion, Is.EqualTo(0)); Assert.That(state.EngineVersion, Is.EqualTo(2));
+            Assert.That(state.Sandbox, Is.False); Assert.That(state.InitialEngineVersion, Is.EqualTo(0)); Assert.That(state.EngineVersion, Is.EqualTo(GameState.CurrentEngineVersion));
             Assert.That(state.AcceptedCommands.Count, Is.EqualTo(61));
             Assert.That(LocalGameFactory.Restore(catalog,game.ExportSave()).ExportSave(), Is.EqualTo(game.ExportSave()));
         }

@@ -5,6 +5,7 @@ namespace Goa2.Domain
 {
     public enum EffectDuration { ThisTurn, NextTurn, ThisRound }
     public enum EffectKind { MovementBoundary, SkillSuppression }
+    public enum EffectAreaKind { SkillRange, Adjacent }
     [Serializable]
     public sealed class EffectWindow
     {
@@ -18,6 +19,7 @@ namespace Goa2.Domain
         public int ProgramVersion = 1;
         public EffectKind Kind;
         public EffectDuration Duration;
+        public EffectAreaKind AreaKind;
         public EffectWindow Window = new EffectWindow();
     }
 }

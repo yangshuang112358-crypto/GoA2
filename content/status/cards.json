@@ -3,11 +3,22 @@
   "cards": [
     {
       "card_id": "wasp-00-闪耀之刃",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-00-闪耀之刃.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ShiningBladeTests.cs",
+        "core/com.goa2.core/Tests/Editor/EffectCancellationTests.cs",
+        "core/com.goa2.core/Tests/Editor/LegacySaveTests.cs",
+        "tools/test-auras-ui.ps1"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs"
+      ]
     },
     {
       "card_id": "wasp-01-电击",

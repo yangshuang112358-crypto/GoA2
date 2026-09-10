@@ -1,0 +1,20 @@
+{
+  "SchemaVersion":1,"Id":"shining-blade","Name":"闪耀之刃：防御成功后取消技能并建立相邻封技",
+  "Steps":[
+    {"Command":"DebugPrepare","Value":"wasp,arien,brogan,sabina"},
+    {"Command":"DebugTeleport","Value":"hero:0","Destination":{"X":7,"Y":-10}},
+    {"Command":"DebugTeleport","Value":"hero:1","Destination":{"X":8,"Y":-10}},
+    {"Command":"DebugSetCoin","Value":"red"},
+    {"Actor":"p1","Command":"SelectCard","Value":"wasp-00-闪耀之刃"},
+    {"Actor":"p2","Command":"SelectCard","Value":"arien-06-打断施法"},
+    {"Actor":"p3","Command":"SelectCard","Value":"brogan-06-铜墙铁壁"},
+    {"Actor":"p4","Command":"SelectCard","Value":"sabina-07-指挥","Expect":{"Active":"p2","Phase":"Action"}},
+    {"Actor":"p2","Command":"BeginPrimary","Expect":{"Active":"p1","EffectCounts":{"arien-06-打断施法":1},"PrimaryRestrictions":{"p1":"none"}}},
+    {"Actor":"p1","Command":"BeginPrimary","Expect":{"PendingKind":"attack_target","PendingChooser":"p1"}},
+    {"Actor":"p1","Command":"ChooseAttackTarget","Value":"hero:2","Expect":{"Code":"invalid_attack_target"}},
+    {"Actor":"p1","Command":"ChooseAttackTarget","Value":"hero:1","Expect":{"PendingKind":"defense","PendingChooser":"p2","EffectCounts":{"arien-06-打断施法":1,"wasp-00-闪耀之刃":0}}},
+    {"Actor":"p2","Command":"Defend","Value":"arien-13-挑战者","Expect":{"Active":"p3","EffectCounts":{"arien-06-打断施法":0,"wasp-00-闪耀之刃":1},"DiscardCounts":{"p2":1},"EventOrder":["DefenseResolved","AttackResolved","EffectCancelled","EffectCreated","EffectActivated","CardResolved"]}},
+    {"ReplayStep":13,"Expect":{"Code":"duplicate","EffectCounts":{"wasp-00-闪耀之刃":1},"EventCounts":{"EffectCancelled":0,"EffectCreated":0}}},
+    {"Command":"DebugAdvance","Value":"turn","Expect":{"Phase":"Planning","Turn":2,"EffectCounts":{"wasp-00-闪耀之刃":0},"EventCounts":{"EffectExpired":1}}}
+  ]
+}

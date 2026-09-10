@@ -9,6 +9,24 @@ namespace Goa2.Tests
     public sealed class LegacySaveTests
     {
         [Test]
+        public void EngineTwoPurpleOwnerKeepsItsHistoricalSkillWithoutNewAfterTriggers()
+        {
+            var catalog=ContentLoader.LoadDirectory(ContentTests.Root());
+            string json=File.ReadAllText(Path.Combine(ContentTests.Root(),"tests","fixtures","engine2-purple-aura.json"));
+            Assert.That(json, Does.Not.Contain("AreaKind"));
+            var game=LocalGameFactory.Restore(catalog,json); var view=game.View(null);
+            Assert.That(view.EngineVersion, Is.EqualTo(2)); Assert.That(view.Revision, Is.EqualTo(15));
+            Assert.That(view.Players[0].PurpleCardId, Is.EqualTo("wasp-12-电闪雷鸣"));
+            Assert.That(view.Effects.Single().AreaKind, Is.EqualTo(EffectAreaKind.SkillRange)); Assert.That(view.Pending, Is.Null);
+            Assert.That(view.SupportedPrimaryCards, Does.Not.Contain("wasp-00-闪耀之刃"));
+            Assert.That(game.ExportSave(), Is.EqualTo(new JsonStateCodec().Write(new JsonStateCodec().Read(json))));
+            TurnFlowTests.Apply(game,0,CommandKind.DebugAdvance,"turn");
+            TurnFlowTests.Apply(game,0,CommandKind.UpgradeEngine,GameState.CurrentEngineVersion.ToString());
+            Assert.That(game.View(null).SupportedPrimaryCards, Does.Contain("wasp-00-闪耀之刃"));
+            Assert.That(new JsonStateCodec().Read(game.ExportSave()).InitialEngineVersion, Is.EqualTo(2));
+            Assert.That(LocalGameFactory.Restore(catalog,game.ExportSave()).ExportSave(), Is.EqualTo(game.ExportSave()));
+        }
+        [Test]
         public void FormalLegacyRoundEndCanContinueThroughANewJournaledSettlementCommand()
         {
             var catalog=ContentLoader.LoadDirectory(ContentTests.Root());

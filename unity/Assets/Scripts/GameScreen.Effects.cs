@@ -10,6 +10,11 @@ namespace Goa2.Presentation
     {
         private string effectAreaId="";
         private List<Hex> SelectedEffectArea(GameView view) => view.EffectAreas.TryGetValue(effectAreaId,out var area) ? area : new List<Hex>();
+        private string BoardHint(GameView view,string hint)
+        {
+            var effect=view.Effects.SingleOrDefault(e => e.Id==effectAreaId);
+            return effect==null ? hint : "紫色描边 · " + catalog.Card(effect.SourceCardId).Name + " · 来源席位 " + (effect.ControllerSeat+1) + "\n" + hint;
+        }
         private void RenderActiveEffects(VisualElement parent,GameView view)
         {
             if (view.Effects.Count==0) return;
@@ -24,7 +29,7 @@ namespace Goa2.Presentation
                 else if (!view.Units.Any(u => u.Id==effect.SourceUnitId)) box.Add(Text("来源英雄离场，当前没有覆盖区域。", "tiny"));
                 else
                 {
-                    string meaning=effect.Kind==EffectKind.MovementBoundary ? "敌方移动不能跨越范围边界" : "范围内敌方英雄不能执行技能";
+                    string meaning=effect.Kind==EffectKind.MovementBoundary ? "敌方移动不能跨越范围边界" : effect.AreaKind==EffectAreaKind.Adjacent ? "相邻敌方英雄不能执行技能" : "范围内敌方英雄不能执行技能";
                     box.Add(Text(meaning,"tiny"));
                 }
                 var toggle=Button(effectAreaId==id ? "收起范围" : "在地图查看范围",() => { effectAreaId=effectAreaId==id ? "" : id; Render(); },"quiet-button","effect-area-"+id);

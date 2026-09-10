@@ -32,6 +32,7 @@ namespace Goa2.Presentation
         private int dragPointer;
         private Vector2 lastPointer;
         public Action? ViewportChanged;
+        public float HexRadius => radius;
 
         public HexBoard(ContentCatalog catalog, GameView view, IEnumerable<Hex> legal, Hex? selected, Action<Hex> choose, Action<CellDefinition> hover, BoardViewport viewport, IEnumerable<Hex>? effectArea=null)
         {
@@ -85,6 +86,12 @@ namespace Goa2.Presentation
         private Vector2 Center(Hex at) => origin + World(at) * radius;
         public Vector2 PanelCenter(Hex at) => this.LocalToWorld(Center(at));
         public void ResetView() { viewport.Initialized = false; viewport.Zoom = 1; LayoutBoard(); }
+        public void FocusAt(Hex cell)
+        {
+            viewport.Initialized=true; viewport.Focus=World(cell); LayoutBoard();
+            if (radius<=0) return;
+            viewport.Zoom=Mathf.Clamp(viewport.Zoom*20/radius,.25f,40f); LayoutBoard();
+        }
         public void ZoomAtCenter(float factor) => ZoomAround(contentRect.center, factor);
         private void ZoomAround(Vector2 pointer, float factor)
         {
@@ -102,7 +109,8 @@ namespace Goa2.Presentation
             float minX = points.Min(p => p.x) - 1, maxX = points.Max(p => p.x) + 1;
             float minY = points.Min(p => p.y) - 1, maxY = points.Max(p => p.y) + 1;
             if (!viewport.Initialized) { viewport.Focus = new Vector2((minX + maxX) * .5f, (minY + maxY) * .5f); viewport.Initialized = true; }
-            float fittedRadius = Mathf.Max(1, Mathf.Min((contentRect.width - 36) / (maxX - minX), (contentRect.height - 36) / (maxY - minY)));
+            float padding=Mathf.Min(18,Mathf.Min(contentRect.width,contentRect.height)*.07f);
+            float fittedRadius = Mathf.Max(1, Mathf.Min((contentRect.width - padding*2) / (maxX - minX), (contentRect.height - padding*2) / (maxY - minY)));
             if (!viewport.InitialScaleApplied)
             {
                 viewport.Zoom = Mathf.Max(1, 14 / fittedRadius);
@@ -113,9 +121,10 @@ namespace Goa2.Presentation
             foreach (var pair in labels)
             {
                 var center = Center(pair.unit.Position);
+                pair.label.style.display=radius >= (pair.unit.Seat.HasValue ? 5 : 9) ? DisplayStyle.Flex : DisplayStyle.None;
                 pair.label.style.left = center.x - radius; pair.label.style.top = center.y - radius * .62f;
                 pair.label.style.width = radius * 2; pair.label.style.height = radius * 1.24f;
-                pair.label.style.fontSize = Mathf.Clamp(radius * .78f, 10, 26);
+                pair.label.style.fontSize = Mathf.Clamp(radius * .78f, 8, 26);
             }
             MarkDirtyRepaint();
             ViewportChanged?.Invoke();

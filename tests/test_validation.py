@@ -32,7 +32,8 @@ class ImportGuardTests(unittest.TestCase):
         cell['state']='blueMeleeSpawn'
         with self.assertRaises(ValidationError):self.check()
     def test_inflated_card_status_rejected(self):
-        self.status[0]['status']='integration_tested'
+        # Keep the missing-evidence fixture independent of which cards are implemented.
+        self.status[0].update(status='integration_tested',contract=None,tests=[],implementation_files=[])
         with self.assertRaises(ValidationError):self.check()
     def test_schema_rejects_boolean_as_integer(self):
         schema=read(ROOT/'content/schemas/cards.schema.json')

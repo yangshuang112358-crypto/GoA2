@@ -21,7 +21,7 @@ namespace Goa2.Rules
             {
                 Id = "effect:" + state.EffectSequence, SourceCardId = execution.CardId, SourceUnitId = "hero:" + execution.ControllerSeat,
                 ControllerSeat = execution.ControllerSeat, CreatedRound = state.Round, CreatedTurn = state.Turn, CreationOrder = state.EffectSequence,
-                Kind = program.Effect!.Value, Duration = program.Duration, Window = window
+                Kind = program.Effect!.Value, Duration = program.Duration, AreaKind=program.AreaKind, Window = window
             };
             state.Effects.Add(effect);
             Emit(state,command,"EffectCreated",effect.ControllerSeat,effect.SourceCardId,detail:effect.Id);
@@ -33,6 +33,14 @@ namespace Goa2.Rules
             {
                 state.Effects.Remove(effect);
                 Emit(state,command,"EffectExpired",effect.ControllerSeat,effect.SourceCardId,detail:effect.Id);
+            }
+        }
+        private static void CancelAdjacentSkillEffects(ContentCatalog catalog,GameState state,Command command,CardExecution execution)
+        {
+            foreach(string id in EffectRules.CancellableAdjacentSkills(catalog,state,execution.ControllerSeat))
+            {
+                var effect=state.Effects.Single(e => e.Id==id); state.Effects.Remove(effect);
+                Emit(state,command,"EffectCancelled",execution.ControllerSeat,effect.SourceCardId,detail:execution.CardId+"|"+effect.Id);
             }
         }
         private static void ActivateScheduledEffects(GameState state, Command command)

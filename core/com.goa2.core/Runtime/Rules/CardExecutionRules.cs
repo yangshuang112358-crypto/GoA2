@@ -57,6 +57,10 @@ namespace Goa2.Rules
                         ApplyTimedEffect(catalog,state,command,execution,program);
                         execution.Cursor++;
                         break;
+                    case InstructionKind.CancelAdjacentSkillEffects:
+                        CancelAdjacentSkillEffects(catalog,state,command,execution);
+                        execution.Cursor++;
+                        break;
                 }
             }
             throw new RuleViolation("card_step_limit", "单次卡牌推进超过上限。");

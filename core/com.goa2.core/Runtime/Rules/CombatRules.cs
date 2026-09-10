@@ -20,15 +20,15 @@ namespace Goa2.Rules
             var source = state.Units.SingleOrDefault(u => u.Seat == seat);
             if (instance == null || source == null) return result;
             var card = catalog.Card(instance.CardId); var program = CardPrograms.Primary(card,state.EngineVersion);
-            if (program == null || program.Effect.HasValue) return result;
+            if (program == null || !program.Instructions.Contains(InstructionKind.ChooseAttackTarget)) return result;
             return Targets(catalog, state, source, card, program);
         }
         internal static List<string> Targets(ContentCatalog catalog, GameState state, UnitState source, CardDefinition card, PrimaryProgram program)
         {
-            int distance = (card.SubtypeValue ?? 0) + state.Players[source.Seat!.Value].RangedBonus;
+            int distance = program.AdjacentAttack ? 1 : (card.SubtypeValue ?? 0) + state.Players[source.Seat!.Value].RangedBonus;
             var removable = new HashSet<string>(GameRules.LegalMinionRemovals(state));
             return state.Units.Where(u => u.Team != source.Team && u.Position.Distance(source.Position) >= program.MinimumDistance &&
-                    u.Position.Distance(source.Position) <= distance && (u.Kind == "hero" || removable.Contains(u.Id)))
+                    u.Position.Distance(source.Position) <= distance && (u.Kind == "hero" || !program.OnlyHeroes && removable.Contains(u.Id)))
                 .Select(u => u.Id).OrderBy(id => id, System.StringComparer.Ordinal).ToList();
         }
         public static List<DefenseOption> DefenseOptions(ContentCatalog catalog, GameState state, int seat)

@@ -4,7 +4,7 @@ using Goa2.Domain;
 
 namespace Goa2.Rules.Cards
 {
-    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect }
+    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects }
     internal enum DefenseProgramKind { BlockNonAdjacentRanged, BlockRanged, NumericIgnoreMinions }
     internal sealed class PrimaryProgram
     {
@@ -13,10 +13,14 @@ namespace Goa2.Rules.Cards
         public readonly IReadOnlyList<InstructionKind> Instructions;
         public readonly EffectKind? Effect;
         public readonly EffectDuration Duration;
-        public PrimaryProgram(string id, int minimumDistance)
+        public readonly EffectAreaKind AreaKind;
+        public readonly bool AdjacentAttack, OnlyHeroes;
+        public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
+            EffectAreaKind areaKind=EffectAreaKind.SkillRange, params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
-            Instructions = System.Array.AsReadOnly(new[] { InstructionKind.ChooseAttackTarget, InstructionKind.Attack, InstructionKind.End });
+            AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=EffectDuration.ThisTurn;
+            Instructions = System.Array.AsReadOnly(instructions.Length>0 ? instructions : new[] { InstructionKind.ChooseAttackTarget, InstructionKind.Attack, InstructionKind.End });
         }
         public PrimaryProgram(string id, EffectKind effect, EffectDuration duration)
         {
@@ -27,6 +31,9 @@ namespace Goa2.Rules.Cards
     internal static class CardPrograms
     {
         private static readonly PrimaryProgram NonAdjacentRanged = new PrimaryProgram("non_adjacent_ranged_attack", 2);
+        private static readonly PrimaryProgram ShiningBlade = new PrimaryProgram("adjacent_hero_attack_cancel_skills",1,
+            adjacent:true,onlyHeroes:true,effect:EffectKind.SkillSuppression,areaKind:EffectAreaKind.Adjacent,
+            instructions:new[] {InstructionKind.ChooseAttackTarget,InstructionKind.Attack,InstructionKind.CancelAdjacentSkillEffects,InstructionKind.ApplyEffect,InstructionKind.End});
         // Binding IDs is confined to this registry. Shared execution never branches on a card ID.
         private static readonly Dictionary<string,string> AttackTexts = new Dictionary<string,string>
         {
@@ -48,6 +55,8 @@ namespace Goa2.Rules.Cards
         {
             if (card.PrimaryFamily == "attack" && card.Subtype == "远程" && AttackTexts.TryGetValue(card.Id,out var expected) && card.Text == expected) return NonAdjacentRanged;
             if (engineVersion >= 2 && card.PrimaryFamily == "skill" && card.Subtype == "范围" && Skills.TryGetValue(card.Id,out var skill) && card.Text == skill.text) return skill.program;
+            if (engineVersion >= 3 && card.Id=="wasp-00-闪耀之刃" && card.PrimaryCategory=="基础攻击" && string.IsNullOrEmpty(card.Subtype) &&
+                card.Text=="选择与你相邻的一个英雄为目标。攻击后：取消与你相邻的敌方英雄技能卡上的激活效果。此回合：与你相邻的敌方英雄无法执行技能行动。") return ShiningBlade;
             return null;
         }
         public static DefenseProgramKind? Defense(CardDefinition card, int engineVersion) => card.PrimaryFamily == "defense" &&
