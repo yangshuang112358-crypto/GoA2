@@ -1,0 +1,604 @@
+{
+  "batch": "BATCH-03",
+  "date": "2026-09-11",
+  "engineVersion": 9,
+  "contentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+  "runtimeCommit": "f37cbd3",
+  "build": {
+    "path": "artifacts/player/build-info.json",
+    "sha256": "08b5de8f1d99d585ed18b0741836549838fe8baec831e0a2567a075c4bb48720",
+    "sourceFiles": 191,
+    "sourceFilesMatch": true,
+    "payloadFilesMatch": true
+  },
+  "reports": [
+    {
+      "path": "artifacts/unity/tests/batch03-core-final.xml",
+      "sha256": "0747b4ea84182766793a78ecd0bbeec28128b9101f1af2164f0668d938461220",
+      "passed": true,
+      "checks": 405
+    },
+    {
+      "path": "artifacts/ui-suites/9c529d8eef5e45338934d83116836213/suite.json",
+      "sha256": "13b4790f2ffb9861ba44eb75192b289610f2059873b363804d8144e70967e6e9",
+      "passed": true,
+      "checks": 238,
+      "cases": 14,
+      "playerUnchanged": true
+    },
+    {
+      "path": "artifacts/unity/readability-ui-1600x1000-20260910-190444.json",
+      "sha256": "f3e93f4086dc322225e06764f60ee8194940eac1e4cab12dbda5ba9ba36829bb",
+      "passed": true,
+      "checks": 35
+    },
+    {
+      "path": "artifacts/unity/readability-ui-1280x800-20260910-191727.json",
+      "sha256": "0975586d7e473aad7165147086a6fae12d7ab05040cb3c2862dd57bfd83e6f81",
+      "passed": true,
+      "checks": 34
+    },
+    {
+      "path": "artifacts/playback-ui/d6f74e91ec9246d29729645bb528850b/controls.json",
+      "sha256": "00dc373107c9f5921ae1240add2c32c34444e2d370116a2500b27f462931a7be",
+      "passed": true,
+      "checks": 12
+    },
+    {
+      "path": "artifacts/reference-tests/eb62c42719ae433ab30c69ff70521b98/report.json",
+      "sha256": "3bb6860271e392a7fa601306c32c1f41eda26f75ef1a3a31241e7244005824ce",
+      "passed": true,
+      "checks": 23
+    },
+    {
+      "path": "artifacts/unity/batch03-validation.txt",
+      "sha256": "8128cb3b609e6b1af018b8f821fcf9e185a210fe6f2c45d1aebbb94bd59aef12",
+      "passed": true,
+      "checks": 32
+    }
+  ],
+  "scenarios": [
+    {
+      "input": {
+        "path": "tests/scenarios/backstab.json",
+        "sha256": "3f833a8c422902c913f0bef6297d36cca6128f1f2c87a4c60e75202bc1f6138b"
+      },
+      "run": {
+        "path": "artifacts/scenarios/backstab/headless/7117cacad7e6422881e1384291178700/run.json",
+        "sha256": "4fe0afedf1cb021f92ffa99618c127fbdebbe107e2a09a167fb841273cc0634d"
+      },
+      "report": {
+        "path": "artifacts/scenarios/backstab/headless/7117cacad7e6422881e1384291178700/report.json",
+        "sha256": "7e53f8345dffcd0ff7ad587546ad3c3022f6a8d2ade800f3492dee0631f95ef5",
+        "passed": true,
+        "steps": 14,
+        "stateHash": "6d864bfea1728d9a8c393fe8b503b0f74809d1cb6ddf9fe929a262c30dada06e"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/cleave.json",
+        "sha256": "a9baece1679601f8488909c8f937088a07bf665d20b72cf8cf7320fbc357d55c"
+      },
+      "run": {
+        "path": "artifacts/scenarios/cleave/headless/0cd398def5d24a3cb7845a4a6408818c/run.json",
+        "sha256": "5a822a582b8fad5f07ae68d6dd98a854d938d954107f131a0d437ffa42de2a64"
+      },
+      "report": {
+        "path": "artifacts/scenarios/cleave/headless/0cd398def5d24a3cb7845a4a6408818c/report.json",
+        "sha256": "247c388ab0a742bc9ee08f8f9956cb69c87d9e455dce5f3a400dd29e79fd6a30",
+        "passed": true,
+        "steps": 17,
+        "stateHash": "d2b9c296af5f457b4e1bc622144d0bdc023ba50e3ddbf4ebe639df864571b1db"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/combat-defense.json",
+        "sha256": "fcd54223a180a860434f8896a57412f501c3375fe6384da64e4403ccc98fe243"
+      },
+      "run": {
+        "path": "artifacts/scenarios/combat-defense/headless/06e8b250adf743a88045dec78ec12fe9/run.json",
+        "sha256": "08c692eb2c83ed0ed4c32651dee140f948ced7a411a49e9a7d8101a3b67315ad"
+      },
+      "report": {
+        "path": "artifacts/scenarios/combat-defense/headless/06e8b250adf743a88045dec78ec12fe9/report.json",
+        "sha256": "0de975c2c27a59b93cb0d94100f1d26893633ef37732f1202d94ea129d753bcd",
+        "passed": true,
+        "steps": 17,
+        "stateHash": "5db07059acb9a36d12cb2c1cc154841a8f9eb8c4b2693d6f53f30e624cd52d24"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/deadly-sweep.json",
+        "sha256": "c04b71b89d96f4429353cbc3f2345240de756153e686f1d2ff39d42cc0df6ce2"
+      },
+      "run": {
+        "path": "artifacts/scenarios/deadly-sweep/headless/a379d0ff13b542fea3f2c7f98a52ba98/run.json",
+        "sha256": "384733613c2566234dc2f2748b85f1cdb5cb78754ee9f346f1c8e7617b3b4a0e"
+      },
+      "report": {
+        "path": "artifacts/scenarios/deadly-sweep/headless/a379d0ff13b542fea3f2c7f98a52ba98/report.json",
+        "sha256": "1ab2d2ddf051bc8eefc39351f91924abf32cb97207c136627c944a2ebb066493",
+        "passed": true,
+        "steps": 17,
+        "stateHash": "afd71248bc4e8e5a43e49148240eb46aa5e80df1bbdb7e3f191dc870cd8dcca1"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/death-spin.json",
+        "sha256": "2a684cef78a2782f26831c0c7d7b5379a7a04f59383ca3d339507b5ca1a0aa62"
+      },
+      "run": {
+        "path": "artifacts/scenarios/death-spin/headless/6659e50cc7de4099b89cab9c6f08179e/run.json",
+        "sha256": "bb8422f2a14c50437e195c64f95de468a06584d2b525bc3a94fc0c9eb9a85f2e"
+      },
+      "report": {
+        "path": "artifacts/scenarios/death-spin/headless/6659e50cc7de4099b89cab9c6f08179e/report.json",
+        "sha256": "f5229b4715946de45dc65457d17b1d2c8c89c00959e8c3c03fe92eed064c8116",
+        "passed": true,
+        "steps": 17,
+        "stateHash": "c73f4a08cf3e959db2335b1cb1d09e2591a46d28f6aacbfa9190586bc399a3f5"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/debug-attack.json",
+        "sha256": "8280f07e81b76a6d8a5d6b757d7cf37fcaed0268b173e5049c0e4b0806778a23"
+      },
+      "run": {
+        "path": "artifacts/scenarios/debug-attack/headless/37153a2bb77b426fb2245695ca25034c/run.json",
+        "sha256": "c6aa7504b6a246a1f6b36fa1056808f102b9b1163384cee830137f354dc22537"
+      },
+      "report": {
+        "path": "artifacts/scenarios/debug-attack/headless/37153a2bb77b426fb2245695ca25034c/report.json",
+        "sha256": "16e162b051a888f9135ed61cb703ee13468470fed4fff2b5f27ec89fbe89ac20",
+        "passed": true,
+        "steps": 5,
+        "stateHash": "d97fd4b58612b3eca5d8f6eaf78c73680635ec4eda4afd9473f4b856bf269505"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/deflection-barrier.json",
+        "sha256": "4a4da6f080a0464d3f5f44db8ac1f712cecaaf34e0ce488acacf1054a29c4357"
+      },
+      "run": {
+        "path": "artifacts/scenarios/deflection-barrier/headless/71582a52601045ddb37bc7b416c4f402/run.json",
+        "sha256": "53872ee1940ad5bb353282eb138ea8c64fdf9c8583359ade48f9299ddc575062"
+      },
+      "report": {
+        "path": "artifacts/scenarios/deflection-barrier/headless/71582a52601045ddb37bc7b416c4f402/report.json",
+        "sha256": "58e564cc943f0b90c5bad80193208af00fcec46c4fd9e83834d56f4a77295e99",
+        "passed": true,
+        "steps": 19,
+        "stateHash": "86c09028225b507991a340ac2a22463cb285833c2a77781f8a750866d6491b60"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/formal-turn.json",
+        "sha256": "36d0e6882381781b7259051e9dd28450df2c9d64260cddb7622843dc4596cb94"
+      },
+      "run": {
+        "path": "artifacts/scenarios/formal-turn/headless/eb2e07200644485abefca5904851bae9/run.json",
+        "sha256": "255cd6364c20b203a37af3e06d9c20ce18ae45b87c4c55d33116cc2a8df5d95a"
+      },
+      "report": {
+        "path": "artifacts/scenarios/formal-turn/headless/eb2e07200644485abefca5904851bae9/report.json",
+        "sha256": "7e3d826c002ea41b52007f87d6b4a5177ad5039aec6b7a5d64bbfb712fa28545",
+        "passed": true,
+        "steps": 23,
+        "stateHash": "ddb905cdae703788b2d1fefbf7c498e4a5df69c6365b285e2e208edfb473d5ca"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/frontline.json",
+        "sha256": "10933c41c9687d798ea487c1acaf3cca862147776281bc6a1875d5050f6922e3"
+      },
+      "run": {
+        "path": "artifacts/scenarios/frontline/headless/a74db436e3a7477aa17117aa9ef94f60/run.json",
+        "sha256": "a5ce28597aad329a8e381fa1408769513e3746ed974e012eb73509094a8d3905"
+      },
+      "report": {
+        "path": "artifacts/scenarios/frontline/headless/a74db436e3a7477aa17117aa9ef94f60/report.json",
+        "sha256": "079359f5890360a111a908b1dd4bd18e66b64c6c7e103086a0e645288bb08ad3",
+        "passed": true,
+        "steps": 7,
+        "stateHash": "f0f153e86c126ee3e448c4f0c01939cec9d90e44dc030baff04b77b4a96a2fa2"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/headshot.json",
+        "sha256": "b08e5bde1852ada0dc4431686990dacb1f75eec9e75e24609b24bca6f0615d56"
+      },
+      "run": {
+        "path": "artifacts/scenarios/headshot/headless/57502182f3564451ac7165f966fb806d/run.json",
+        "sha256": "47eae289fd0d28f025fb936942282e31c94e4bf9478f86ef55171a83596d6881"
+      },
+      "report": {
+        "path": "artifacts/scenarios/headshot/headless/57502182f3564451ac7165f966fb806d/report.json",
+        "sha256": "13ce41a8cc506638239bde11244af88e37437048e53c85050fcec9e6db721b7d",
+        "passed": true,
+        "steps": 14,
+        "stateHash": "7283758be6b0c735553f145ff24b4efa877f2648a00df18db0abed0bfdf58d80"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/lead-charge-unavailable.json",
+        "sha256": "07fbc8e21ca4183c9e94bac185c3efa8577115ef1b28bd037ab79666816a4928"
+      },
+      "run": {
+        "path": "artifacts/scenarios/lead-charge-unavailable/headless/031c00d4c1e9479e9543f88222a8d531/run.json",
+        "sha256": "31d9adb95aa29f00ae92938f2af8202ff302e8496bb1a138a792b60bd8d7edb4"
+      },
+      "report": {
+        "path": "artifacts/scenarios/lead-charge-unavailable/headless/031c00d4c1e9479e9543f88222a8d531/report.json",
+        "sha256": "bc17f362f8390566f0582d2c99d92831ffc9feb6818a7523133f905edc68937d",
+        "passed": true,
+        "steps": 14,
+        "stateHash": "08f5b8d5c38425ff8638853f2af40b216dc0185b135508f1bfb0e4df6567b996"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/lead-charge.json",
+        "sha256": "a05104b65e01ba1ee5521bbd23b244087424e1669cae490ad6500c3edac4f480"
+      },
+      "run": {
+        "path": "artifacts/scenarios/lead-charge/headless/363eeea12f2c4cb8be3d40bc4b3a2d18/run.json",
+        "sha256": "4fbbf39c4aa5384f45c6869da9da47be2347eced3aaca8276cdb8b161d191f96"
+      },
+      "report": {
+        "path": "artifacts/scenarios/lead-charge/headless/363eeea12f2c4cb8be3d40bc4b3a2d18/report.json",
+        "sha256": "21caf4d75aa976d755262cc36968f673a429e9ab99f2dfbd73fef1b290f6c0eb",
+        "passed": true,
+        "steps": 13,
+        "stateHash": "7296690df76f4c2d11d1c8ac7fb2e6fbe036d0e09d8b098df2981414bfe612c2"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/marksman.json",
+        "sha256": "2dc882a1d232fe82aacf4151f445424c901e8e0eb1136a9ed70bf6793ceb99fb"
+      },
+      "run": {
+        "path": "artifacts/scenarios/marksman/headless/e37289c28e0a4a318068d381d9cca613/run.json",
+        "sha256": "32d88604ba30afe1911e0a10add5eb34f76f012665568f6ccafbc24064f383b6"
+      },
+      "report": {
+        "path": "artifacts/scenarios/marksman/headless/e37289c28e0a4a318068d381d9cca613/report.json",
+        "sha256": "cb09352f7c17d5ff45da26055ae12f583773956fe020e429c10d31753a023544",
+        "passed": true,
+        "steps": 13,
+        "stateHash": "5395b0ab97202f50e612e302d3b0db6315d10d641ef837b3b9fd421599ea3b07"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/melee-block.json",
+        "sha256": "1f6778c4e8f5f14fa4ec55ca78d0ff9acc49d038cfd33e40f33f1c59af0d99c9"
+      },
+      "run": {
+        "path": "artifacts/scenarios/melee-block/headless/7982d359e18346c283cb811048d33043/run.json",
+        "sha256": "bafda718083899365a868452b392f6ca82ff844a5537708ff43499704949dcaa"
+      },
+      "report": {
+        "path": "artifacts/scenarios/melee-block/headless/7982d359e18346c283cb811048d33043/report.json",
+        "sha256": "fa14b81753e3bdb36b5c51530c16592c9c22f3c8a199d36012b25756b0c378d2",
+        "passed": true,
+        "steps": 14,
+        "stateHash": "c5f1e5584c8e7f86c8fe4fed1c517d9805d27f60534579f5d1548abaea8379dd"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/permissions.json",
+        "sha256": "d6d68f9eb69263fa516307e1cdd43273a08010a817b386c7f1ad2d6e8fa496ae"
+      },
+      "run": {
+        "path": "artifacts/scenarios/permissions/headless/e77eda715c2947b49f5a8ba3d7e0eb85/run.json",
+        "sha256": "7574e34aecaa5c38618e7770ce39c9a824a40fcb9f324d87f0e420466daf5b8e"
+      },
+      "report": {
+        "path": "artifacts/scenarios/permissions/headless/e77eda715c2947b49f5a8ba3d7e0eb85/report.json",
+        "sha256": "e36eedb61d7bf38b02b1d05518619a6357429bb1c3de3f4ff6366163de0e4753",
+        "passed": true,
+        "steps": 7,
+        "stateHash": "a4056b655fb06a03c641a61acd1122745fc90575f79f790627906d48b2cf8d50"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/reflection-barrier.json",
+        "sha256": "584a868eb59c58af26c7c4e81f8f9b6fdaf50fb9a5c30e4f6d0aaafebeb34568"
+      },
+      "run": {
+        "path": "artifacts/scenarios/reflection-barrier/headless/b60a89e420d54f0988c49303fad942fc/run.json",
+        "sha256": "40bbf4834a58999f5042d0867a1a18ac84284c7428b4edc79a1ceb98b4e88516"
+      },
+      "report": {
+        "path": "artifacts/scenarios/reflection-barrier/headless/b60a89e420d54f0988c49303fad942fc/report.json",
+        "sha256": "61180df3e4cd4d65faac01a713e651a4fd06414f07467e35f30aa368fd0f21d9",
+        "passed": true,
+        "steps": 22,
+        "stateHash": "50ef3dba8845fb3ef1531e6e00e47385cfbb3e4d7b34438f7695850d5b141e31"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/riposte-empty.json",
+        "sha256": "f0013cd69808aa9988fd8f0fd54b16f7d72d113cb4d37a53510480036ba4840a"
+      },
+      "run": {
+        "path": "artifacts/scenarios/riposte-empty/headless/5c984f2d55e14940bc7ff5d11135f004/run.json",
+        "sha256": "66bb947e05b5ba045eb11300c25d43f21645f36f5a9c623cfc7da037d23e4969"
+      },
+      "report": {
+        "path": "artifacts/scenarios/riposte-empty/headless/5c984f2d55e14940bc7ff5d11135f004/report.json",
+        "sha256": "8d86d0335074fa625682c2919140264d7beb0da89a951d8aa0c3673e5e1caa19",
+        "passed": true,
+        "steps": 26,
+        "stateHash": "ead03d0cd0ba2594d8ce1baa984a5a7dab303c950093e274d86eac5a3d70da4f"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/riposte-hand.json",
+        "sha256": "63592f23757b8c90f4df6a839d3655cdc652381a84f4db6b3d3ca21b8c187fba"
+      },
+      "run": {
+        "path": "artifacts/scenarios/riposte-hand/headless/bd8370071e6041d89204d9624d5b3a7a/run.json",
+        "sha256": "765b141cc6d697fee91ff49ac2e0ded54681afb2f3ac3221cd289c1b22845701"
+      },
+      "report": {
+        "path": "artifacts/scenarios/riposte-hand/headless/bd8370071e6041d89204d9624d5b3a7a/report.json",
+        "sha256": "4a7da09343fec71ccdab7b7e1213d8f719370a347c120f9588eb071be7d5d968",
+        "passed": true,
+        "steps": 14,
+        "stateHash": "40772ec5f89d5ee5d53d7b9ffe5929182b0e2f6e8e99670dfd8d255afe1c9360"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/riposte-ranged.json",
+        "sha256": "426d23cc9588373153cf6d4ee110fdc8defd68091421747ea0389b9cd083670b"
+      },
+      "run": {
+        "path": "artifacts/scenarios/riposte-ranged/headless/fb411cd1696d401d83e3598a1e529d09/run.json",
+        "sha256": "0a8816fe913252283ec3222a8de4c5e24d86627856110177ec864c7010c49c51"
+      },
+      "report": {
+        "path": "artifacts/scenarios/riposte-ranged/headless/fb411cd1696d401d83e3598a1e529d09/report.json",
+        "sha256": "d29e83a4b441ad01b66c3f406b79c8427a42ae97db7c3e4a48ac0125f5450823",
+        "passed": true,
+        "steps": 13,
+        "stateHash": "726926548b6e548138edf01e10a5c7f244a54444a94da8cb176738b02f9325b7"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/riposte-victory.json",
+        "sha256": "1e32d0b79f7c9edd8eb4590d3d41ace76253174dc6a9b2e91bb2aed16d563806"
+      },
+      "run": {
+        "path": "artifacts/scenarios/riposte-victory/headless/00b70f6d368541d08cf1a9c496b4d374/run.json",
+        "sha256": "5f44420b5f64d71cfc77cb646ec4e90b6f5445b3dc0c0e173e2e7620060a83ff"
+      },
+      "report": {
+        "path": "artifacts/scenarios/riposte-victory/headless/00b70f6d368541d08cf1a9c496b4d374/report.json",
+        "sha256": "69aca4079be29df83855baab0dd2ca3f5d31e64f8d14ef018760ccd4b8b209a9",
+        "passed": true,
+        "steps": 16,
+        "stateHash": "d98d1272181855a9cb5d6ae65697ca3a4512fe2ff99444bf6946e0e7f762a9b7"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/round-frontline.json",
+        "sha256": "44c70b986231c2aa997c35a8f2abe1ed1e478862501d5c2e5df68d031f3f5291"
+      },
+      "run": {
+        "path": "artifacts/scenarios/round-frontline/headless/2c97b993a15f4a4fb9002c83b524295a/run.json",
+        "sha256": "5300bf803435a989b373b44a0f02e84e7edb514036d48fcc46bf156684cdf55b"
+      },
+      "report": {
+        "path": "artifacts/scenarios/round-frontline/headless/2c97b993a15f4a4fb9002c83b524295a/report.json",
+        "sha256": "0bc5c0fe1d09ffea99d16c0dc3b6b5497cae4cafadedfc111a411e531e64c692",
+        "passed": true,
+        "steps": 17,
+        "stateHash": "ed74c07c845237a39f3a581142d88b17453bf893e96ba32251a283f6b320229f"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/round-upgrades.json",
+        "sha256": "a96d6c47f1afa6c79adaadd529180dd9d1447f03143646b8414d2e2c469e1019"
+      },
+      "run": {
+        "path": "artifacts/scenarios/round-upgrades/headless/5c15691d58724f73ab3c94216d7b9d0c/run.json",
+        "sha256": "781ba6d208cd565aca0fbfeae1ecc4874799d95d7702e81b5dbb49f16d1bc9fc"
+      },
+      "report": {
+        "path": "artifacts/scenarios/round-upgrades/headless/5c15691d58724f73ab3c94216d7b9d0c/report.json",
+        "sha256": "ee4bc7c5d806942964205c9e0f26ffdd38e71b9c668e42cf72f1f4ba0fdaf661",
+        "passed": true,
+        "steps": 26,
+        "stateHash": "ed47ae1eb5cc988f267f2f992135f8a0be376dc184614aa42820466f178ff841"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/sandbox-smoke.json",
+        "sha256": "21bc5e51ed0639ce82802308c08c7e8f0aea351da624719c4ce3867e750e19a4"
+      },
+      "run": {
+        "path": "artifacts/scenarios/sandbox-smoke/headless/e5129d0a5b88476a96dad6ef164c44a5/run.json",
+        "sha256": "f8f6c11530a7b6cd8be81a1000a07daaa75514615d55b398e5778917bfbfa242"
+      },
+      "report": {
+        "path": "artifacts/scenarios/sandbox-smoke/headless/e5129d0a5b88476a96dad6ef164c44a5/report.json",
+        "sha256": "95e4650616cc1de00a20615ef915783d29c2abe5470fac4f71eb99af7bea4e00",
+        "passed": true,
+        "steps": 9,
+        "stateHash": "326d72674e54a14cc495f6bd97ac54d4d6d926b918bb48060662d43936144717"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/shining-blade.json",
+        "sha256": "53298deae2d420e37fe48b8d94a36dc098749fffe62f37f863397ee2b1c11a9a"
+      },
+      "run": {
+        "path": "artifacts/scenarios/shining-blade/headless/968a5b9c3aa349b18f9c6cbc6960e3d5/run.json",
+        "sha256": "7ef770232a507238a66f4078ec7872b66c5557ded0d40b2dea16b744f5711f7f"
+      },
+      "report": {
+        "path": "artifacts/scenarios/shining-blade/headless/968a5b9c3aa349b18f9c6cbc6960e3d5/report.json",
+        "sha256": "1cdf0329ee014d44c846a932fdf572eebddce54d663f8c2f2b9e19c2efd30cc3",
+        "passed": true,
+        "steps": 15,
+        "stateHash": "6d5867e5b351bda545c5915215ecc72fbb5bf967b5bfcdfd2e1058f614d856ac"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/skill-suppression.json",
+        "sha256": "c39797b64320fa61a69a3221f236624f524071ba61a2700c8113f20b92ffdad1"
+      },
+      "run": {
+        "path": "artifacts/scenarios/skill-suppression/headless/6720c1a1829c4adc9901d5b2f69956ed/run.json",
+        "sha256": "18a5584aad9df302c78b85341b68d1c67ba1090ec0677873371c4d7fe4966dfe"
+      },
+      "report": {
+        "path": "artifacts/scenarios/skill-suppression/headless/6720c1a1829c4adc9901d5b2f69956ed/report.json",
+        "sha256": "8f075b96c2f3ddf5cd677ba5725990418dd522f26beb8882add82bb16668e4b5",
+        "passed": true,
+        "steps": 12,
+        "stateHash": "1dff39045dc7f4fb76b021f8637606e75a27b3dd4c3b2fef8dd5c16f47c16d93"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/spawn-order.json",
+        "sha256": "1a7528bac504e389cca73a085e50cf99a8631000f1d194345f30fbf72d9da820"
+      },
+      "run": {
+        "path": "artifacts/scenarios/spawn-order/headless/7e5fa301c66b4e84b4964780c2befb29/run.json",
+        "sha256": "6e1f3ae65519647dca8f6ec88cebd6f98af008f248a0e3bd557bafa08c897589"
+      },
+      "report": {
+        "path": "artifacts/scenarios/spawn-order/headless/7e5fa301c66b4e84b4964780c2befb29/report.json",
+        "sha256": "cf31616fe0ec1bd8a2eea0ef22b0cd8597733955b4798e329f89bad0ebafeca7",
+        "passed": true,
+        "steps": 7,
+        "stateHash": "3b5e9085912760ac12d40a650698afc092e7f1d24423384932cf3d89bd1a0e03"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/static-field.json",
+        "sha256": "fb9c248dea047134dfddbb80bb62f509cadba2c4c8cacabf0e25eded6e1d0abd"
+      },
+      "run": {
+        "path": "artifacts/scenarios/static-field/headless/1450c27eff8e403493a04d3fe344ab70/run.json",
+        "sha256": "8ec1a965b01d9ba92173b1e1ac72ceebf817e6e3a5a53481179dfecb643891a1"
+      },
+      "report": {
+        "path": "artifacts/scenarios/static-field/headless/1450c27eff8e403493a04d3fe344ab70/report.json",
+        "sha256": "c3e41699d4fe000c923a0caf3f0560570ca7040ca3982674863b8d7fcfc2440d",
+        "passed": true,
+        "steps": 13,
+        "stateHash": "f1775d5c43eafa2bbc83af483e1b89dcdcf448f0a2149dde607f5b2f587d1bab"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/throwing-axe-reflection.json",
+        "sha256": "6f247c8e98990869535c40dfefaf067531af89b53cf8d0eeb9a507b7be03eb37"
+      },
+      "run": {
+        "path": "artifacts/scenarios/throwing-axe-reflection/headless/ee81c2215ba14feda25de4265db9363e/run.json",
+        "sha256": "60f2290b96bb5f4f5d438f238edac870323af54aa73f498bae95152ab8b57ca2"
+      },
+      "report": {
+        "path": "artifacts/scenarios/throwing-axe-reflection/headless/ee81c2215ba14feda25de4265db9363e/report.json",
+        "sha256": "802dd38da57716e90a6546bbb1729d2082cb9e48f919ef147e223255612d64ca",
+        "passed": true,
+        "steps": 20,
+        "stateHash": "8a85ee4e5842d7949fe755cb55befe4a17f6376535f52a7b129dc7c9dc9e445d"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/throwing-axe-skip.json",
+        "sha256": "ff9bb2304f9beaaa2e3cf6809adc11e3b351cb0b02b1d3dec7cf6a2c07bf30cf"
+      },
+      "run": {
+        "path": "artifacts/scenarios/throwing-axe-skip/headless/22f753c6500641a8868ea86bd2ca9d17/run.json",
+        "sha256": "256deaf47adefa52a270cbd1454f41c47fb6b539f2adc57aaa5ba8db15b241e0"
+      },
+      "report": {
+        "path": "artifacts/scenarios/throwing-axe-skip/headless/22f753c6500641a8868ea86bd2ca9d17/report.json",
+        "sha256": "045b26deaa2e3ebf0aa39b1fa21f5a1bef0a80faa4bf9b73dee1e436422325ed",
+        "passed": true,
+        "steps": 13,
+        "stateHash": "a9e0294ae5aa919332a1482e272cf7d4d0da91f0b8687014bed75c484ce29e7c"
+      }
+    },
+    {
+      "input": {
+        "path": "tests/scenarios/throwing-spear-existing-discard.json",
+        "sha256": "d7f42bee8710c10e7d26f1a7e84d01ff01622c87bfaa83145c3bbc7dd233231c"
+      },
+      "run": {
+        "path": "artifacts/scenarios/throwing-spear-existing-discard/headless/24554d9945ee453ba22924188817a76c/run.json",
+        "sha256": "f5c686b9507f1a94ac8b9ba5fed241a7980e842b5e0ba4972938b63e5f16a323"
+      },
+      "report": {
+        "path": "artifacts/scenarios/throwing-spear-existing-discard/headless/24554d9945ee453ba22924188817a76c/report.json",
+        "sha256": "ab23f4efc6063eee5158e1ffe1e90dfa531beb54d286dc22a9f827dd092d715c",
+        "passed": true,
+        "steps": 14,
+        "stateHash": "2b53dd4a42d173f7810f68872ae4f21a05ed1ebe7b375d704067d00d57aa9e4b"
+      }
+    }
+  ],
+  "scenarioCoreAssemblies": {
+    "Goa2.Application.dll": "9c5ca06f424c426e8b7e251804b2dca38a639b46f9ec3a6e6ca458ada0422776",
+    "Goa2.Domain.dll": "e5d789ff41a1edc0037118f5a59ec17063707e2825f7fc29f3870d6afb8a4016",
+    "Goa2.Infrastructure.dll": "a57796ef5d324b663d01228e475490225687f98fce825244fc5c923ea7090b1e",
+    "Goa2.Rules.dll": "fc63dc97d90a1c2c450b7ba3fc9c64fd9eed37d04ee2d75e27ee6b3fcc654158"
+  },
+  "scenarioNote": "30 canonical scenarios match current inputs and four final core DLL hashes; some ran before final presentation-only rebuild. Final payload additionally verified by independent extracted-package smoke and real UI suites.",
+  "package": {
+    "path": "artifacts/releases/Goa2V1-e9-batch03-20260910-190705-63dbd031.zip",
+    "sha256": "ce41464384ac93d986d5ea72265c8897a3a309160c62aa8bfe990bd41a0e07a0"
+  },
+  "packageSmoke": {
+    "path": "artifacts/release-smoke/4fa7faa64fb647e2a665e549abd4a7b3/smoke.json",
+    "sha256": "f54f143a00fadfb6418f71afef05f6bd47f70476a5c061c452e1bac6b0c41f75",
+    "passed": true,
+    "steps": 20
+  },
+  "offlineBrowser": {
+    "path": "artifacts/reference/Goa2V1-资料浏览器.html",
+    "sha256": "b7d277931748b1c1db08fc58598e0aa036a094cfdc248a4a57bae519d076b912"
+  },
+  "limitations": [
+    "No line-coverage percentage measured",
+    "87 data-only cards and six ultimate effect texts remain unimplemented",
+    "Standalone dotnet testhost blocked by local Windows application control; 405 same-source tests ran in Unity",
+    "Suite captured git commit before UI commit; build SourceFiles hashes verified against final working tree"
+  ],
+  "retainedFailures": [
+    "artifacts/unity/tests/batch03-purple-red.xml",
+    "artifacts/unity/tests/batch03-attack-red.xml",
+    "artifacts/ui-suites/067d273095ee40f087913709bca3597f/suite.json"
+  ]
+}

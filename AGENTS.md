@@ -1,6 +1,6 @@
 # Goa2V1 开发约定
 
-项目当前阶段、入口与校验命令见README；BATCH-02约12小时本地开发的逐项结果见docs/verification/BATCH-02验收.md，原授权范围保留在docs/planning/BATCH-02.md。继续工作时以用户最新指令和docs/planning/下一批开发计划.md确定范围，不重新搭建已完成部分。
+项目当前阶段、入口与校验命令见README；当前BATCH-03十项界面与测试改进见docs/verification/BATCH-03验收.md，范围见docs/planning/BATCH-03.md。BATCH-02约12小时开发保留为历史验收。继续工作时以用户最新指令和docs/planning/下一批开发计划.md确定范围，不重新搭建已完成部分。
 先检查Git状态及当前任务范围。用户最新明确指令优先，不覆盖用户已有修改。
 
 1. 阅读docs/rules/规则手册.md、裁定记录.md、相关卡原文及待确认规则。
