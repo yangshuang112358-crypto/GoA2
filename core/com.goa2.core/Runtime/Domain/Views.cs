@@ -15,6 +15,7 @@ namespace Goa2.Domain
         public bool AwaitingRespawn;
         public string? PurpleCardId;
         public int HandCount;
+        public Dictionary<string, int> PermanentBonuses = new Dictionary<string, int>();
         public List<CardInstance> Revealed = new List<CardInstance>();
         public List<PublicPlay> Plays = new List<PublicPlay>();
         public List<string> DiscardColors = new List<string>();
@@ -57,8 +58,12 @@ namespace Goa2.Domain
         public List<UnitState> PendingSpawns = new List<UnitState>();
         public Dictionary<string, List<Hex>> SpawnChoices = new Dictionary<string, List<Hex>>();
         public int EngineVersion;
+        public bool CanUpgradeEngine;
         public bool CanBeginPrimary;
         public bool PrimarySupported;
+        public string PrimaryRestriction = "";
+        public List<ActiveEffect> Effects = new List<ActiveEffect>();
+        public Dictionary<string, List<Hex>> EffectAreas = new Dictionary<string, List<Hex>>();
         public List<string> SupportedPrimaryCards = new List<string>();
         public List<string> SupportedDefenseCards = new List<string>();
         public List<string> AttackTargets = new List<string>();

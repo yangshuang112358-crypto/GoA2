@@ -84,18 +84,26 @@ namespace Goa2.Application
                 PendingSpawn = snapshot.Frontline?.Remaining.FirstOrDefault(s => s.Unit.Id == snapshot.Pending?.UnitId)?.Unit,
                 PendingSpawns = snapshot.Frontline?.Remaining.Select(s => s.Unit).ToList() ?? new System.Collections.Generic.List<UnitState>(),
                 EngineVersion = snapshot.EngineVersion,
+                CanUpgradeEngine = seat.HasValue && GameRules.CanUpgradeEngine(snapshot),
                 Attack = snapshot.Execution?.Attack,
                 RoundEndStage = snapshot.RoundEnd?.Stage ?? "",
                 RemainingMinionRemovals = snapshot.RoundEnd?.RemainingRemovals ?? 0,
                 UpgradingSeats = snapshot.RoundEnd?.Upgrades.Where(p => p.PendingLevels.Count > 0).Select(p => p.Seat).ToList() ?? new System.Collections.Generic.List<int>(),
-                SupportedPrimaryCards = catalog.Cards.Where(CombatRules.HasPrimaryProgram).Select(c => c.Id).ToList(),
-                SupportedDefenseCards = catalog.Cards.Where(CombatRules.HasDefenseProgram).Select(c => c.Id).ToList(),
+                Effects = snapshot.Effects,
+                EffectAreas = snapshot.Effects.ToDictionary(e => e.Id, e => EffectRules.Area(catalog,snapshot,e)),
+                SupportedPrimaryCards = catalog.Cards.Where(c => CombatRules.HasPrimaryProgram(c,snapshot.EngineVersion)).Select(c => c.Id).ToList(),
+                SupportedDefenseCards = catalog.Cards.Where(c => CombatRules.HasDefenseProgram(c,snapshot.EngineVersion)).Select(c => c.Id).ToList(),
                 Units = snapshot.Units, Pending = snapshot.Pending,
                 Players = snapshot.Players.Select(p => new PlayerView
                 {
                     Seat = p.Seat, Team = p.Team, Name = p.Name, HeroId = p.HeroId, Level = p.Level, Gold = p.Gold, Confirmed = p.Confirmed,
                     AwaitingRespawn = p.AwaitingRespawn,
                     PurpleCardId = p.PurpleCardId,
+                    PermanentBonuses = new System.Collections.Generic.Dictionary<string,int>
+                    {
+                        ["攻击"]=p.AttackBonus,["防御"]=p.DefenseBonus,["移动"]=p.MovementBonus,
+                        ["先攻"]=p.InitiativeBonus,["范围"]=p.RangeBonus,["远程"]=p.RangedBonus
+                    }.Where(b => b.Value!=0).ToDictionary(b => b.Key,b => b.Value),
                     HandCount = p.Cards.Count(c => c.Zone == CardZone.InHand || c.Zone == CardZone.Selected),
                     Revealed = p.Cards.Where(c => c.Zone == CardZone.PlayedUnresolved || c.Zone == CardZone.PlayedResolved).ToList(),
                     DiscardColors = p.Cards.Where(c => c.Zone == CardZone.Discarded).Select(c => catalog.Card(c.CardId).Color).ToList()
@@ -124,8 +132,9 @@ namespace Goa2.Application
                 }
                 view.CanPass = snapshot.Phase == Phase.Action && snapshot.ActiveSeat == seat && snapshot.Pending == null && snapshot.Execution == null;
                 var playedCard = snapshot.Players[seat.Value].Cards.SingleOrDefault(c => c.Zone == CardZone.PlayedUnresolved);
-                view.PrimarySupported = playedCard != null && CombatRules.HasPrimaryProgram(catalog.Card(playedCard.CardId));
-                view.CanBeginPrimary = view.CanPass && view.PrimarySupported && snapshot.Units.Any(u => u.Seat == seat);
+                view.PrimarySupported = playedCard != null && CombatRules.HasPrimaryProgram(catalog.Card(playedCard.CardId),snapshot.EngineVersion);
+                view.PrimaryRestriction = playedCard == null ? "" : EffectRules.SkillRestriction(catalog,snapshot,seat.Value,catalog.Card(playedCard.CardId));
+                view.CanBeginPrimary = view.CanPass && view.PrimarySupported && view.PrimaryRestriction == "" && snapshot.Units.Any(u => u.Seat == seat);
                 view.AttackTargets = CombatRules.AttackTargets(catalog, snapshot, seat.Value);
                 view.DefenseOptions = CombatRules.DefenseOptions(catalog, snapshot, seat.Value);
                 view.UnimplementedDefenseCards = CombatRules.UnimplementedDefenses(catalog, snapshot, seat.Value);

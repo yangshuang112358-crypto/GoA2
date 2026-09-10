@@ -1,0 +1,18 @@
+{
+  "SchemaVersion":1,"Id":"static-field","Name":"静电封锁：范围内移动、越界拒绝与到期","Seed":42,
+  "Steps":[
+    {"Command":"DebugPrepare","Value":"wasp,sabina,brogan,arien"},
+    {"Command":"DebugTeleport","Value":"hero:0","Destination":{"X":7,"Y":-10}},
+    {"Command":"DebugTeleport","Value":"hero:1","Destination":{"X":8,"Y":-9}},
+    {"Actor":"p1","Command":"SelectCard","Value":"wasp-06-静电封锁"},
+    {"Actor":"p2","Command":"SelectCard","Value":"sabina-01-拔枪"},
+    {"Actor":"p3","Command":"SelectCard","Value":"brogan-06-铜墙铁壁"},
+    {"Actor":"p4","Command":"SelectCard","Value":"arien-07-潮水","Expect":{"Phase":"Action","Active":"p1","EffectCounts":{"wasp-06-静电封锁":0}}},
+    {"Command":"BeginPrimary","Expect":{"Active":"p2","EffectCounts":{"wasp-06-静电封锁":1},"EventOrder":["PrimaryActionStarted","EffectCreated","EffectActivated","CardResolved"]}},
+    {"Name":"重发不重复建立效果","ReplayStep":8,"Expect":{"Code":"duplicate","EffectCounts":{"wasp-06-静电封锁":1},"EventCounts":{"EffectCreated":0}}},
+    {"Name":"不能提交未高亮的圈外邻格","Actor":"p2","Command":"Move","Destination":{"X":8,"Y":-8},"Expect":{"Code":"invalid_move","Active":"p2","Positions":{"hero:1":{"X":8,"Y":-9}}}},
+    {"Name":"仍可在范围内正常移动","Actor":"p2","Command":"Move","Destination":{"X":8,"Y":-10},"Expect":{"Active":"p3","Positions":{"hero:1":{"X":8,"Y":-10}},"EffectCounts":{"wasp-06-静电封锁":1}}},
+    {"Actor":"p3","Command":"Pass"},
+    {"Actor":"p4","Command":"Pass","Expect":{"Phase":"Planning","Turn":2,"EffectCounts":{"wasp-06-静电封锁":0},"EventOrder":["TurnEnded","EffectExpired","PlanningStarted"]}}
+  ]
+}

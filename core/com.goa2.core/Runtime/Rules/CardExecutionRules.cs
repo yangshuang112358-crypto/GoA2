@@ -12,8 +12,9 @@ namespace Goa2.Rules
             Require(state.Phase == Phase.Action && state.ActiveSeat == command.ActorSeat && state.Pending == null && state.Execution == null,
                 "not_active", "当前不能开始主要行动。");
             Require(state.Units.Any(u => u.Seat == command.ActorSeat), "hero_absent", "英雄不在地图上。");
-            var card = ActiveCard(state); var program = CardPrograms.Attack(catalog.Card(card.CardId));
+            var card = ActiveCard(state); var definition = catalog.Card(card.CardId); var program = CardPrograms.Primary(definition,state.EngineVersion);
             Require(program != null, "primary_not_implemented", "此卡主要行动尚未实装。");
+            Require(EffectRules.SkillRestriction(catalog,state,command.ActorSeat,definition) == "", "primary_restricted", "当前技能受到打断施法限制。");
             state.Execution = new CardExecution { CardId = card.CardId, ControllerSeat = command.ActorSeat, ProgramId = program!.Id, ProgramVersion = program.Version };
             Emit(state, command, "PrimaryActionStarted", command.ActorSeat, card.CardId);
             ContinueCard(catalog, state, command);
@@ -22,7 +23,7 @@ namespace Goa2.Rules
         {
             if (state.Execution == null || state.Phase == Phase.Finished) return;
             var execution = state.Execution; var card = catalog.Card(execution.CardId);
-            var program = CardPrograms.Attack(card) ?? throw new RuleViolation("incompatible_program", "卡牌程序版本不兼容。");
+            var program = CardPrograms.Primary(card,state.EngineVersion) ?? throw new RuleViolation("incompatible_program", "卡牌程序版本不兼容。");
             Require(program.Id == execution.ProgramId && program.Version == execution.ProgramVersion, "incompatible_program", "卡牌程序版本不兼容。");
             if (execution.AwaitingAttackCompletion)
             {
@@ -52,6 +53,10 @@ namespace Goa2.Rules
                     case InstructionKind.End:
                         EndCardExecution(catalog, state, command);
                         return;
+                    case InstructionKind.ApplyEffect:
+                        ApplyTimedEffect(catalog,state,command,execution,program);
+                        execution.Cursor++;
+                        break;
                 }
             }
             throw new RuleViolation("card_step_limit", "单次卡牌推进超过上限。");
@@ -65,7 +70,7 @@ namespace Goa2.Rules
             Emit(state, command, "AttackTargetChosen", command.ActorSeat, state.Execution.CardId, detail: command.Value);
             ContinueCard(catalog, state, command);
         }
-        private static void StartAttack(ContentCatalog catalog, GameState state, Command command, AttackProgram program)
+        private static void StartAttack(ContentCatalog catalog, GameState state, Command command, PrimaryProgram program)
         {
             var execution = state.Execution!; var card = catalog.Card(execution.CardId);
             var source = state.Units.SingleOrDefault(u => u.Seat == execution.ControllerSeat);

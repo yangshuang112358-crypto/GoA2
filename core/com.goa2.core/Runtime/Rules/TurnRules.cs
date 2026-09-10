@@ -29,6 +29,7 @@ namespace Goa2.Rules
         private static void StartPlanning(GameState state, Command command)
         {
             state.Phase = Phase.Planning; state.ActiveSeat = null; state.Pending = null;
+            ActivateScheduledEffects(state,command);
             foreach (var player in state.Players)
             {
                 player.Confirmed = !player.Cards.Any(c => c.Zone == CardZone.InHand);
@@ -143,6 +144,7 @@ namespace Goa2.Rules
         private static void EndTurn(ContentCatalog catalog, GameState state, Command command)
         {
             Emit(state, command, "TurnEnded", detail: state.Round + ":" + state.Turn);
+            ExpireEffectsAtTurnBoundary(state,command);
             if (state.Turn == catalog.Rules.TurnsPerRound)
             {
                 state.Phase = Phase.RoundEnd;

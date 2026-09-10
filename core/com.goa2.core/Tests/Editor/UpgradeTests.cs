@@ -10,6 +10,20 @@ namespace Goa2.Tests
     public sealed class UpgradeTests
     {
         [Test]
+        public void PublicPermanentNumbersDoNotExposePrivateUpgradeChoicesOrMutateAuthority()
+        {
+            var catalog=BattlefieldTests.Catalog(); var game=BattlefieldTests.Ready(catalog);
+            Apply(game,0,CommandKind.DebugSetGold,"1",target:0); Apply(game,0,CommandKind.DebugAdvance,"round"); Apply(game,0,CommandKind.ResolveRoundEnd);
+            var option=game.View(0).UpgradeOptions.First(); Apply(game,0,CommandKind.ChooseUpgrade,option.CardId);
+            var observer=game.View(null);
+            Assert.That(observer.Players[0].PermanentBonuses.Count, Is.EqualTo(1));
+            Assert.That(observer.Players[0].PermanentBonuses[option.Bonus], Is.EqualTo(1));
+            Assert.That(observer.OwnUpgradeHistory, Is.Empty); Assert.That(game.View(1).OwnUpgradeHistory, Is.Empty);
+            Assert.That(observer.Events.Any(e => e.CardId==option.RejectedCardId), Is.False);
+            observer.Players[0].PermanentBonuses[option.Bonus]=100;
+            Assert.That(game.View(null).Players[0].PermanentBonuses[option.Bonus], Is.EqualTo(1));
+        }
+        [Test]
         public void ThreeColorLadderAwardsEachRejectedIconWithItsSourceAndNeverTheChosenIcon()
         {
             var catalog=BattlefieldTests.Catalog(); var game=BattlefieldTests.Ready(catalog);

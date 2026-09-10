@@ -42,6 +42,7 @@ namespace Goa2.Rules
                 case CommandKind.ResolveRoundEnd: ResolveRoundEnd(catalog, state, command); break;
                 case CommandKind.ChooseRoundMinionRemoval: ChooseRoundMinionRemoval(catalog, state, command); break;
                 case CommandKind.ChooseUpgrade: ChooseUpgrade(catalog, state, command); break;
+                case CommandKind.UpgradeEngine: UpgradeEngine(state, command); break;
                 case CommandKind.Move: Move(catalog, state, command); break;
                 case CommandKind.Pass:
                     Require(state.Phase == Phase.Action && state.ActiveSeat == command.ActorSeat && state.Pending == null && state.Execution == null, "not_active", "当前不由你行动，或仍有待处理选择。");

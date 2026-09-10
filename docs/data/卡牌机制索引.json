@@ -101,7 +101,7 @@
         "move",
         "continuous"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/wasp-06-静电封锁.md",
       "question_candidates": [
         "U-011"
@@ -946,7 +946,7 @@
         "continuous",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/arien-06-打断施法.md",
       "question_candidates": [
         "U-011"

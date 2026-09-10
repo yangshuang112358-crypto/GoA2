@@ -51,11 +51,24 @@
     },
     {
       "card_id": "wasp-06-静电封锁",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-06-静电封锁.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/AuraFlowTests.cs",
+        "core/com.goa2.core/Tests/Editor/AuraGeometryTests.cs",
+        "core/com.goa2.core/Tests/Editor/EffectTimelineTests.cs",
+        "core/com.goa2.core/Tests/Editor/EngineUpgradeTests.cs",
+        "tools/test-auras-ui.ps1"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs"
+      ]
     },
     {
       "card_id": "wasp-07-抵挡屏障",
@@ -499,11 +512,24 @@
     },
     {
       "card_id": "arien-06-打断施法",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-06-打断施法.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/AuraFlowTests.cs",
+        "core/com.goa2.core/Tests/Editor/AuraGeometryTests.cs",
+        "core/com.goa2.core/Tests/Editor/EffectTimelineTests.cs",
+        "core/com.goa2.core/Tests/Editor/EngineUpgradeTests.cs",
+        "tools/test-auras-ui.ps1"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs"
+      ]
     },
     {
       "card_id": "arien-07-潮水",

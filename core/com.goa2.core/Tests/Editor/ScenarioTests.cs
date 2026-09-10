@@ -10,6 +10,16 @@ namespace Goa2.Tests
     public sealed class ScenarioTests
     {
         [Test]
+        public void AuraAssertionsRejectWrongSourcesAndRestrictions()
+        {
+            var step=Step("DebugPrepare");
+            step.Expect.EffectCounts["wasp-06-静电封锁"]=1;
+            step.Expect.PrimaryRestrictions["p1"]="arien-06-打断施法";
+            var runner=Run(Definition(step));
+            Assert.That(runner.Report.Passed, Is.False);
+            Assert.That(runner.Report.Steps.Single().Errors.Count, Is.EqualTo(2));
+        }
+        [Test]
         public void UpgradeAssertionsCheckTheActualStateInsteadOfOnlyAcceptingTheCommand()
         {
             var definition = new Goa2.Infrastructure.Scenarios.ScenarioDefinition
@@ -41,6 +51,8 @@ namespace Goa2.Tests
         [TestCase("combat-defense.json")]
         [TestCase("round-upgrades.json")]
         [TestCase("round-frontline.json")]
+        [TestCase("static-field.json")]
+        [TestCase("skill-suppression.json")]
         public void PublishedScenarioPassesAgainstTheFormalCatalog(string file)
         {
             string root = ContentTests.Root();
@@ -127,7 +139,11 @@ namespace Goa2.Tests
                 valid.Replace("\"SchemaVersion\":1", "\"SchemaVersion\":1,\"Seed\":1.5"),
                 valid.Replace("\"SchemaVersion\":1", "\"SchemaVersion\":1,\"seed\":42"),
                 valid.Replace("\"Command\":\"DebugPrepare\"", "\"Command\":\"DebugPrepare\",\"Destination\":{\"X\":1}"),
-                valid.Replace("\"Command\":\"DebugPrepare\"", "\"Command\":\"DebugPrepare\",\"Destination\":{\"X\":1.5,\"Y\":2}") })
+                valid.Replace("\"Command\":\"DebugPrepare\"", "\"Command\":\"DebugPrepare\",\"Destination\":{\"X\":1.5,\"Y\":2}"),
+                valid.Replace("\"Command\":\"DebugPrepare\"", "\"Command\":\"DebugPrepare\",\"Expect\":{\"EffectCounts\":{\"card\":-1}}"),
+                valid.Replace("\"Command\":\"DebugPrepare\"", "\"Command\":\"DebugPrepare\",\"Expect\":{\"EffectCounts\":null}"),
+                valid.Replace("\"Command\":\"DebugPrepare\"", "\"Command\":\"DebugPrepare\",\"Expect\":{\"PrimaryRestrictions\":{\"p5\":\"none\"}}"),
+                valid.Replace("\"Command\":\"DebugPrepare\"", "\"Command\":\"DebugPrepare\",\"Expect\":{\"PrimaryRestrictions\":{\"p1\":\"\"}}") })
                 Assert.Throws<InvalidDataException>(() => ScenarioRunner.Load(invalid), invalid);
         }
     }

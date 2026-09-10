@@ -101,6 +101,9 @@
 .seat-name { font-size: 21px; }
 .seat-card Label, .hand-card Label { -unity-text-align: middle-left; }
 .round-dots { position: absolute; top: 99px; left: 14px; right: 10px; height: 27px; flex-direction: row; align-items: center; }
+.bonus-line { font-size: 14px; color: #dcca91; white-space: normal; }
+.restriction-text { font-size: 17px; color: #eab5ae; white-space: normal; margin-bottom: 8px; }
+.area-caption { font-size: 14px; color: #c9afea; padding-left: 12px; min-height: 23px; }
 .round-dot { width: 24px; height: 24px; margin-right: 17px; border-width: 2px; border-color: #7b939c; border-radius: 20px; background-color: #14232d; }
 .filled-dot { border-color: #c5d1d0; }
 .discard-dots { position: absolute; top: 137px; left: 14px; right: 7px; flex-direction: row; align-items: center; flex-wrap: wrap; }

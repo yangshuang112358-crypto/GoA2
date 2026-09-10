@@ -134,9 +134,21 @@ namespace Goa2.Presentation
         }
         private string HeroName(string? id) => catalog.Heroes.FirstOrDefault(h => h.Id == id)?.Name.Split('·').Last() ?? "未选英雄";
         private string PlayerName(int number) => "席位 " + (number + 1) + " · " + HeroName(renderedView.Players[number].HeroId);
-        private static string PhaseName(Phase phase)
+        private static string PhaseName(GameView view)
         {
-            switch (phase)
+            if (view.RoundEndStage=="upgrades") return "英雄升级";
+            if (view.Pending!=null)
+            {
+                switch(view.Pending.Kind)
+                {
+                    case "attack_target": return "选择攻击目标";
+                    case "defense": return "选择防御";
+                    case "hero_respawn": return "英雄复活";
+                    case "round_minion_removal": return "轮末小兵战斗";
+                    case "minion_spawn": return "安排小兵出生";
+                }
+            }
+            switch (view.Phase)
             {
                 case Phase.HeroSelection: return "选择英雄";
                 case Phase.Deployment: return "安排出生";
@@ -153,6 +165,7 @@ namespace Goa2.Presentation
             root.Query<ScrollView>().ForEach(scroll => { if (scroll.name.StartsWith("goa-scroll-")) scrollPositions[scroll.name] = scroll.scrollOffset; });
             root.Clear();
             renderedView = session.View(seat);
+            if (!renderedView.EffectAreas.ContainsKey(effectAreaId)) effectAreaId="";
             BuildLayout(renderedView);
             if (galleryOpen) RenderGallery();
             if (publicCardsOpen) RenderPublicCards(renderedView);
@@ -190,7 +203,9 @@ namespace Goa2.Presentation
                 SelectedCell = chosenCell.HasValue ? chosenCell.Value.ToString() : "", BoardBounds = board?.worldBound ?? default,
                 ActiveSeat = renderedView.ActiveSeat ?? -1, RevealedHeading = root.Q<Label>("revealed-heading")?.text ?? "",
                 FilledPlayDots = root.Query<VisualElement>(className: "filled-dot").ToList().Count,
-                DiscardDotCount = root.Query<VisualElement>(className: "discard-dot").ToList().Count };
+                DiscardDotCount = root.Query<VisualElement>(className: "discard-dot").ToList().Count,
+                ActiveEffectCount=renderedView.Effects.Count, EffectAreaId=effectAreaId, EffectAreaCells=SelectedEffectArea(renderedView).Count,
+                PrimaryRestriction=renderedView.PrimaryRestriction };
             root.Query<Button>().ForEach(button => layout.Buttons.Add(new QaButton { Name = button.name, Text = button.text, Bounds = button.worldBound, Enabled = button.enabledInHierarchy, Visible = VisibleCenter(button) }));
             root.Query<IntegerField>().ForEach(field => layout.Fields.Add(new QaField { Name = field.name, Bounds = field.worldBound, Value = field.value }));
             if (board != null)
@@ -215,7 +230,8 @@ namespace Goa2.Presentation
         [Serializable] private sealed class QaLayout
         {
             public int Width, Height, Seat, Round, Turn, ActiveSeat, FilledPlayDots, DiscardDotCount; public long Revision; public float Zoom; public Vector2 Focus; public Rect BoardBounds;
-            public string Phase = "", SelectedCell = "", RevealedHeading = "";
+            public string Phase = "", SelectedCell = "", RevealedHeading = "", EffectAreaId="", PrimaryRestriction="";
+            public int ActiveEffectCount, EffectAreaCells;
             public bool LeftExpanded, RightExpanded, TopExpanded, BottomExpanded;
             public List<QaButton> Buttons = new List<QaButton>(); public List<QaCell> Cells = new List<QaCell>();
             public List<QaField> Fields = new List<QaField>();
@@ -257,7 +273,7 @@ namespace Goa2.Presentation
         private void RenderSidebar(VisualElement sidebar, GameView view)
         {
             sidebar.Add(Text("当前席位 " + (seat + 1), "eyebrow"));
-            sidebar.Add(Text(PhaseName(view.Phase), "panel-title"));
+            sidebar.Add(Text(PhaseName(view), "panel-title"));
             switch (view.Phase)
             {
                 case Phase.HeroSelection:
@@ -292,6 +308,11 @@ namespace Goa2.Presentation
                     }
                     break;
                 case Phase.Planning:
+                    if (view.CanUpgradeEngine)
+                    {
+                        sidebar.Add(Text("此存档使用先前的规则能力。选牌前可采用当前版本，保留已有对局历史。", "body"));
+                        sidebar.Add(Button("采用当前规则", () => Submit(CommandKind.UpgradeEngine, GameState.CurrentEngineVersion.ToString()), "quiet-button", "upgrade-engine"));
+                    }
                     if (view.Players[seat].Confirmed) sidebar.Add(Text("你已确认。等待其他有手牌的玩家确认后，自动翻牌。", "body"));
                     else
                     {
@@ -325,8 +346,9 @@ namespace Goa2.Presentation
                     RenderCardDetail(sidebar, catalog.Card(played.CardId));
                     if (view.ActiveSeat == seat)
                     {
-                        var primary = Button("开始主要攻击", () => { debugTeleport = false; Submit(CommandKind.BeginPrimary); }, "primary-button", "begin-primary");
+                        var primary = Button("执行" + catalog.Card(played.CardId).PrimaryCategory, () => { debugTeleport = false; Submit(CommandKind.BeginPrimary); }, "primary-button", "begin-primary");
                         primary.SetEnabled(view.CanBeginPrimary); sidebar.Add(primary);
+                        if (view.PrimaryRestriction!="") sidebar.Add(Text("受到“" + catalog.Card(view.PrimaryRestriction).Name + "”影响，当前不能执行技能。可选择其他合法行动或放弃。", "restriction-text"));
                         if (view.PrimarySupported) sidebar.Add(Text("开始后按牌文完成行动；不能再改选次要移动或放弃。", "tiny"));
                         var normal = Button("次要移动" + (moveMode == MoveMode.Secondary ? "  ✓" : ""), () => { debugTeleport = false; moveMode = MoveMode.Secondary; chosenCell = null; passPending = false; Render(); }, "choice-button");
                         normal.SetEnabled(view.SecondaryMoves.Count > 0); sidebar.Add(normal);
@@ -349,6 +371,7 @@ namespace Goa2.Presentation
                     RenderVictory(sidebar, view);
                     break;
             }
+            RenderActiveEffects(sidebar, view);
             RenderPermanentStats(sidebar, view);
             RenderRecentEvents(sidebar, view);
         }
@@ -439,6 +462,12 @@ namespace Goa2.Presentation
                 case "PurpleCardGranted": return actor + "获得紫卡“" + catalog.Card(entry.CardId!).Name + "”";
                 case "RoundCompensationGranted": return actor + "本轮未升级，获得补偿 1 金";
                 case "RoundEnded": return "第 " + entry.Detail + " 轮结算完成";
+                case "EngineUpgraded": return "已采用更新的规则能力，原对局记录已保留";
+                case "EffectCreated": return actor + "建立“" + catalog.Card(entry.CardId!).Name + "”持续效果";
+                case "EffectActivated": return "“" + catalog.Card(entry.CardId!).Name + "”生效";
+                case "EffectScheduled": return "“" + catalog.Card(entry.CardId!).Name + "”等待下一回合生效";
+                case "EffectExpired": return "“" + catalog.Card(entry.CardId!).Name + "”到期";
+                case "EffectNotScheduled": return "本轮没有下一回合，后续效果不生效";
                 case "ActionPassed": return actor + "放弃此牌行动";
                 case "DeploymentStarted": return "开始安排出生";
                 case "EmptyHandSkipped": return actor + "无手牌，自动跳过";

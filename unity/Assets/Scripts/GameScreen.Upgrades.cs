@@ -81,11 +81,11 @@ namespace Goa2.Presentation
         }
         private void RenderPermanentStats(VisualElement parent, GameView view)
         {
-            if (view.OwnUpgradeHistory.Count > 0)
+            if (view.Players[seat].PermanentBonuses.Count > 0)
             {
                 var box = Box("event-box"); parent.Add(box);
                 box.Add(Text("永久加成", "section-title"));
-                box.Add(Text(string.Join(" · ", view.OwnUpgradeHistory.GroupBy(h => h.Bonus).Select(g => g.Key + " +" + g.Sum(h => h.Amount))), "body"));
+                box.Add(Text(string.Join(" · ", view.Players[seat].PermanentBonuses.Select(b => b.Key + " +" + b.Value)), "body"));
                 box.Add(Button(showBonusSources ? "收起加成来源" : "查看加成来源", () => { showBonusSources = !showBonusSources; Render(); }, "quiet-button", "bonus-sources"));
                 if (showBonusSources) foreach (var record in view.OwnUpgradeHistory)
                     box.Add(Text("Lv." + record.HeroLevel + " · " + catalog.Card(record.RejectedCardId).Name + " → " + record.Bonus + " +" + record.Amount, "tiny"));

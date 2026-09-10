@@ -1,0 +1,35 @@
+#nullable enable
+using System.Collections.Generic;
+using System.Linq;
+using Goa2.Domain;
+using UnityEngine.UIElements;
+
+namespace Goa2.Presentation
+{
+    public sealed partial class GameScreen
+    {
+        private string effectAreaId="";
+        private List<Hex> SelectedEffectArea(GameView view) => view.EffectAreas.TryGetValue(effectAreaId,out var area) ? area : new List<Hex>();
+        private void RenderActiveEffects(VisualElement parent,GameView view)
+        {
+            if (view.Effects.Count==0) return;
+            var box=Box("event-box"); parent.Add(box); box.Add(Text("持续效果", "section-title"));
+            foreach(var effect in view.Effects.OrderBy(e => e.CreationOrder))
+            {
+                string id=effect.Id;
+                box.Add(Text(catalog.Card(effect.SourceCardId).Name + " · 来源席位 " + (effect.ControllerSeat+1),"body"));
+                box.Add(Text("至第 " + effect.Window.EndRound + " 轮第 " + effect.Window.EndTurn + " 回合结束", "tiny"));
+                if (effect.Window.StartRound>view.Round || effect.Window.StartTurn>view.Turn && effect.Window.StartRound==view.Round)
+                    box.Add(Text("等待第 " + effect.Window.StartRound + " 轮第 " + effect.Window.StartTurn + " 回合生效", "tiny"));
+                else if (!view.Units.Any(u => u.Id==effect.SourceUnitId)) box.Add(Text("来源英雄离场，当前没有覆盖区域。", "tiny"));
+                else
+                {
+                    string meaning=effect.Kind==EffectKind.MovementBoundary ? "敌方移动不能跨越范围边界" : "范围内敌方英雄不能执行技能";
+                    box.Add(Text(meaning,"tiny"));
+                }
+                var toggle=Button(effectAreaId==id ? "收起范围" : "在地图查看范围",() => { effectAreaId=effectAreaId==id ? "" : id; Render(); },"quiet-button","effect-area-"+id);
+                toggle.SetEnabled(view.EffectAreas.TryGetValue(id,out var area) && area.Count>0); box.Add(toggle);
+            }
+        }
+    }
+}

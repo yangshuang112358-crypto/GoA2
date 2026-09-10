@@ -1,0 +1,17 @@
+{
+  "SchemaVersion":1,"Id":"skill-suppression","Name":"打断施法：敌方技能禁止、合法放弃与到期","Seed":42,
+  "Steps":[
+    {"Command":"DebugPrepare","Value":"arien,wasp,brogan,sabina"},
+    {"Command":"DebugTeleport","Value":"hero:0","Destination":{"X":7,"Y":-10}},
+    {"Command":"DebugTeleport","Value":"hero:1","Destination":{"X":8,"Y":-9}},
+    {"Actor":"p1","Command":"SelectCard","Value":"arien-06-打断施法"},
+    {"Actor":"p2","Command":"SelectCard","Value":"wasp-06-静电封锁"},
+    {"Actor":"p3","Command":"SelectCard","Value":"brogan-06-铜墙铁壁"},
+    {"Actor":"p4","Command":"SelectCard","Value":"sabina-07-指挥","Expect":{"Phase":"Action","Active":"p1","PrimaryRestrictions":{"p2":"none"},"EffectCounts":{"arien-06-打断施法":0}}},
+    {"Command":"BeginPrimary","Expect":{"Active":"p2","PrimaryRestrictions":{"p2":"arien-06-打断施法"},"EffectCounts":{"arien-06-打断施法":1}}},
+    {"Name":"受阻启动不消耗卡，不产生黄蜂效果","Actor":"p2","Command":"BeginPrimary","Expect":{"Code":"primary_restricted","Active":"p2","EffectCounts":{"wasp-06-静电封锁":0,"arien-06-打断施法":1}}},
+    {"Name":"仍可放弃已揭示的牌","Actor":"p2","Command":"Pass","Expect":{"Active":"p3"}},
+    {"Actor":"p3","Command":"Pass"},
+    {"Actor":"p4","Command":"Pass","Expect":{"Phase":"Planning","Turn":2,"PrimaryRestrictions":{"p2":"none"},"EffectCounts":{"arien-06-打断施法":0},"EventOrder":["TurnEnded","EffectExpired","PlanningStarted"]}}
+  ]
+}

@@ -16,7 +16,7 @@ namespace Goa2.Domain
         DebugConfirmAll, DebugAdvance, DebugSetGold,
         DebugRemoveMinion, DebugDefeatMinion, DebugSetCrystal, ChooseMinionSpawn,
         BeginPrimary, ChooseAttackTarget, Defend, DeclineDefense, RespawnHero, DebugDefeatHero,
-        ResolveRoundEnd, ChooseRoundMinionRemoval, ChooseUpgrade
+        ResolveRoundEnd, ChooseRoundMinionRemoval, ChooseUpgrade, UpgradeEngine
     }
     public enum MoveMode { Secondary, Fast }
 
@@ -209,7 +209,7 @@ namespace Goa2.Domain
     public sealed class GameState
     {
         public const string CurrentProtocol = "1.0.0";
-        public const int CurrentEngineVersion = 1;
+        public const int CurrentEngineVersion = 2;
         public int InitialEngineVersion;
         public int EngineVersion;
         public string ProtocolVersion = CurrentProtocol;
@@ -240,6 +240,8 @@ namespace Goa2.Domain
         public FrontlineTransition? Frontline;
         public CardExecution? Execution;
         public RoundEndProgress? RoundEnd;
+        public int EffectSequence;
+        public List<ActiveEffect> Effects = new List<ActiveEffect>();
         public List<PlayerState> Players = new List<PlayerState>();
         public List<UnitState> Units = new List<UnitState>();
         public PendingChoice? Pending;

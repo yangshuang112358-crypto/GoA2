@@ -19,15 +19,16 @@ namespace Goa2.Rules
             bool primaryMove = card.PrimaryFamily == "movement" && card.PrimaryValue > 0;
             bool secondaryMove = card.PrimaryFamily != "movement" && card.SecondaryMovement > 0;
             if (mode == MoveMode.Secondary && secondaryMove)
-                return Reachable(catalog, state, unit.Position, card.SecondaryMovement!.Value + player.MovementBonus);
+                return Reachable(catalog, state, unit, card.SecondaryMovement!.Value + player.MovementBonus);
             if (mode == MoveMode.Fast && (primaryMove || secondaryMove))
                 return Fast(catalog, state, unit);
             return empty;
         }
-        private static List<MoveOption> Reachable(ContentCatalog catalog, GameState state, Hex origin, int budget)
+        private static List<MoveOption> Reachable(ContentCatalog catalog, GameState state, UnitState unit, int budget)
         {
             var result = new List<MoveOption>();
             if (budget <= 0) return result;
+            var origin = unit.Position;
             var cells = catalog.Cells.ToDictionary(c => c.Position);
             var occupied = new HashSet<Hex>(state.Units.Select(u => u.Position));
             var paths = new Dictionary<Hex, List<Hex>> { [origin] = new List<Hex> { origin } };
@@ -39,6 +40,7 @@ namespace Goa2.Rules
                 foreach (var next in current.Neighbors())
                 {
                     if (paths.ContainsKey(next) || occupied.Contains(next) || !cells.TryGetValue(next, out var cell) || cell.Obstacle) continue;
+                    if (!EffectRules.CanMoveAcross(catalog,state,unit,current,next)) continue;
                     var path = new List<Hex>(paths[current]) { next };
                     paths.Add(next, path); queue.Enqueue(next);
                     result.Add(new MoveOption { Destination = next, Path = path });
@@ -58,7 +60,7 @@ namespace Goa2.Rules
                     if (cells.TryGetValue(neighbor, out var adjacent) && !adjacent.Obstacle) allowedRegions.Add(adjacent.Region);
             allowedRegions.ExceptWith(enemyRegions);
             var occupied = new HashSet<Hex>(state.Units.Select(u => u.Position));
-            return catalog.Cells.Where(c => !c.Obstacle && allowedRegions.Contains(c.Region) && !occupied.Contains(c.Position))
+            return catalog.Cells.Where(c => !c.Obstacle && allowedRegions.Contains(c.Region) && !occupied.Contains(c.Position) && EffectRules.CanMoveAcross(catalog,state,source,source.Position,c.Position))
                 .OrderBy(c => c.Position.X).ThenBy(c => c.Position.Y)
                 .Select(c => new MoveOption { Destination = c.Position, Path = new List<Hex> { source.Position, c.Position } }).ToList();
         }

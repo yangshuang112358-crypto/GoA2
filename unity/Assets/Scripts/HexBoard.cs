@@ -20,6 +20,7 @@ namespace Goa2.Presentation
         private readonly ContentCatalog catalog;
         private readonly GameView view;
         private readonly HashSet<Hex> legal;
+        private readonly HashSet<Hex> effectArea;
         private readonly Hex? selected;
         private readonly Action<Hex> choose;
         private readonly Action<CellDefinition> hover;
@@ -32,11 +33,12 @@ namespace Goa2.Presentation
         private Vector2 lastPointer;
         public Action? ViewportChanged;
 
-        public HexBoard(ContentCatalog catalog, GameView view, IEnumerable<Hex> legal, Hex? selected, Action<Hex> choose, Action<CellDefinition> hover, BoardViewport viewport)
+        public HexBoard(ContentCatalog catalog, GameView view, IEnumerable<Hex> legal, Hex? selected, Action<Hex> choose, Action<CellDefinition> hover, BoardViewport viewport, IEnumerable<Hex>? effectArea=null)
         {
             this.catalog = catalog; this.view = view; this.legal = new HashSet<Hex>(legal);
             this.selected = selected; this.choose = choose; this.hover = hover;
             this.viewport = viewport;
+            this.effectArea = new HashSet<Hex>(effectArea ?? Enumerable.Empty<Hex>());
             name = "hex-board"; AddToClassList("hex-board");
             generateVisualContent += Draw;
             RegisterCallback<GeometryChangedEvent>(_ => LayoutBoard());
@@ -177,6 +179,11 @@ namespace Goa2.Presentation
                     painter.Arc(center, Mathf.Max(2, radius * .19f), 0, 360);
                     painter.strokeColor = ColorOf(cell.Spawn.StartsWith("blue", StringComparison.Ordinal) ? "#83b8e6" : "#d49a9a");
                     painter.lineWidth = cell.Spawn.Contains("Hero") ? 2 : 1; painter.Stroke();
+                }
+                if (effectArea.Contains(cell.Position))
+                {
+                    Polygon(painter,center,radius-2.5f);
+                    painter.strokeColor=ColorOf("#ba9ceb"); painter.lineWidth=2; painter.Stroke();
                 }
                 if (legal.Contains(cell.Position))
                 {

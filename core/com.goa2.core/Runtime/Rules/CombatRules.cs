@@ -8,8 +8,8 @@ namespace Goa2.Rules
 {
     public static class CombatRules
     {
-        public static bool HasPrimaryProgram(CardDefinition card) => CardPrograms.Attack(card) != null;
-        public static bool HasDefenseProgram(CardDefinition card) => CardPrograms.Defense(card) != null;
+        public static bool HasPrimaryProgram(CardDefinition card, int engineVersion = GameState.CurrentEngineVersion) => CardPrograms.Primary(card,engineVersion) != null;
+        public static bool HasDefenseProgram(CardDefinition card, int engineVersion = GameState.CurrentEngineVersion) => CardPrograms.Defense(card,engineVersion) != null;
         public static List<string> AttackTargets(ContentCatalog catalog, GameState state, int seat)
         {
             var result = new List<string>();
@@ -19,11 +19,11 @@ namespace Goa2.Rules
             var instance = state.Players[seat].Cards.SingleOrDefault(c => c.Zone == CardZone.PlayedUnresolved);
             var source = state.Units.SingleOrDefault(u => u.Seat == seat);
             if (instance == null || source == null) return result;
-            var card = catalog.Card(instance.CardId); var program = CardPrograms.Attack(card);
-            if (program == null) return result;
+            var card = catalog.Card(instance.CardId); var program = CardPrograms.Primary(card,state.EngineVersion);
+            if (program == null || program.Effect.HasValue) return result;
             return Targets(catalog, state, source, card, program);
         }
-        internal static List<string> Targets(ContentCatalog catalog, GameState state, UnitState source, CardDefinition card, AttackProgram program)
+        internal static List<string> Targets(ContentCatalog catalog, GameState state, UnitState source, CardDefinition card, PrimaryProgram program)
         {
             int distance = (card.SubtypeValue ?? 0) + state.Players[source.Seat!.Value].RangedBonus;
             var removable = new HashSet<string>(GameRules.LegalMinionRemovals(state));
@@ -40,7 +40,7 @@ namespace Goa2.Rules
             if (defender == null || attacker == null) return result;
             foreach (var instance in state.Players[seat].Cards.Where(c => c.Zone == CardZone.InHand))
             {
-                var card = catalog.Card(instance.CardId); var primary = CardPrograms.Defense(card);
+                var card = catalog.Card(instance.CardId); var primary = CardPrograms.Defense(card,state.EngineVersion);
                 if (card.PrimaryFamily == "defense")
                 {
                     if (!primary.HasValue) continue;
@@ -59,7 +59,7 @@ namespace Goa2.Rules
         {
             if (state.Pending?.Kind != "defense" || state.Pending.ChooserSeat != seat) return new List<string>();
             return state.Players[seat].Cards.Where(c => c.Zone == CardZone.InHand).Select(c => catalog.Card(c.CardId))
-                .Where(c => c.PrimaryFamily == "defense" && CardPrograms.Defense(c) == null).Select(c => c.Id).ToList();
+                .Where(c => c.PrimaryFamily == "defense" && CardPrograms.Defense(c,state.EngineVersion) == null).Select(c => c.Id).ToList();
         }
     }
 }

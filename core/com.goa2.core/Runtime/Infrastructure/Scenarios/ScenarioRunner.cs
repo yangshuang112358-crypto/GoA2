@@ -113,6 +113,8 @@ namespace Goa2.Infrastructure.Scenarios
                 if (expect.RoundEndStage != null) Guard(expect.RoundEndStage == "none" || expect.RoundEndStage == "minion_battle" || expect.RoundEndStage == "upgrades", "轮末阶段期望无效。");
                 if (expect.UpgradingPlayers.HasValue) Guard(expect.UpgradingPlayers >= 0 && expect.UpgradingPlayers <= 4, "待升级人数须为0—4。");
                 if (expect.RemainingMinionRemovals.HasValue) Guard(expect.RemainingMinionRemovals >= 0, "待移除小兵数不能为负。");
+                Guard(expect.EffectCounts != null && expect.EffectCounts.All(p => !string.IsNullOrWhiteSpace(p.Key) && p.Value>=0), "持续效果期望须为来源卡牌ID及非负数量。");
+                Guard(expect.PrimaryRestrictions != null && expect.PrimaryRestrictions.All(p => Regex.IsMatch(p.Key,"\\Ap[1-4]\\z") && !string.IsNullOrWhiteSpace(p.Value)), "行动禁止期望须使用p1至p4及来源卡牌ID或none。");
                 Guard(expect.Positions != null && expect.EventCounts != null && expect.EventOrder != null, "期望集合不能为null。");
                 Guard(expect.EventCounts!.All(p => !string.IsNullOrWhiteSpace(p.Key) && p.Value >= 0) && expect.EventOrder!.All(e => !string.IsNullOrWhiteSpace(e)), "期望事件无效。");
             }
@@ -191,7 +193,7 @@ namespace Goa2.Infrastructure.Scenarios
         {
             if (!EqualityComparer<T>.Default.Equals(expected, actual)) result.Errors.Add(field + ": expected " + expected + ", actual " + actual);
         }
-        private static void Check(ScenarioExpectation expect, ScenarioStepResult result, GameState state, GameView view, int eventStart)
+        private void Check(ScenarioExpectation expect, ScenarioStepResult result, GameState state, GameView view, int eventStart)
         {
             if (expect.Phase != null) Equal(result, "Phase", expect.Phase, state.Phase.ToString());
             if (expect.Round.HasValue) Equal(result, "Round", expect.Round.Value, state.Round);
@@ -217,6 +219,12 @@ namespace Goa2.Infrastructure.Scenarios
             if (expect.RoundEndStage != null) Equal(result,"RoundEndStage",expect.RoundEndStage,state.RoundEnd?.Stage ?? "none");
             if (expect.UpgradingPlayers.HasValue) Equal(result,"UpgradingPlayers",expect.UpgradingPlayers.Value,view.UpgradingSeats.Count);
             if (expect.RemainingMinionRemovals.HasValue) Equal(result,"RemainingMinionRemovals",expect.RemainingMinionRemovals.Value,state.RoundEnd?.RemainingRemovals ?? 0);
+            foreach (var pair in expect.EffectCounts) Equal(result,"EffectCounts."+pair.Key,pair.Value,state.Effects.Count(e => e.SourceCardId==pair.Key));
+            foreach (var pair in expect.PrimaryRestrictions)
+            {
+                string restriction=Session.View(Seat(pair.Key,view)).PrimaryRestriction;
+                Equal(result,"PrimaryRestrictions."+pair.Key,pair.Value,restriction=="" ? "none" : restriction);
+            }
             foreach (var pair in expect.Positions)
             {
                 var unit = state.Units.FirstOrDefault(u => u.Id == pair.Key);

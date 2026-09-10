@@ -47,7 +47,7 @@ namespace Goa2.Presentation
             var brand = Box("brand"); brand.Add(Text("GOA II", "brand-title")); brand.Add(Text("GOA2V1 · 开发版本", "eyebrow")); header.Add(brand);
             var phase = Box("phase-banner");
             phase.Add(Text("第 " + view.Round + " 轮 · 回合 " + view.Turn + "/4", "muted"));
-            phase.Add(Text(PhaseName(view.Phase), "phase-title")); header.Add(phase);
+            phase.Add(Text(PhaseName(view), "phase-title")); header.Add(phase);
             var controls = Box("header-controls"); header.Add(controls);
             controls.Add(Button(view.Sandbox ? (view.QuickSelection ? "测试 · 选完揭示" : "测试 · 手动确认") : "正式确认", () => { rightExpanded = true; showDebug = true; Render(); }, "mode-button"));
             controls.Add(Button("图鉴 108", () => { galleryOpen = true; galleryHero = catalog.Heroes[0].Id; Render(); }, "quiet-button"));
@@ -82,15 +82,22 @@ namespace Goa2.Presentation
                 int target = player.Seat;
                 var card = Button("", () => SwitchSeat(target), "seat-card");
                 card.name = "seat-" + (target + 1);
-                card.style.height = player.DiscardColors.Count > 0 ? 174 : 136;
-                card.style.minHeight = player.DiscardColors.Count > 0 ? 174 : 136;
+                int bonusHeight=((player.PermanentBonuses.Count+2)/3)*22;
+                card.style.height = (player.DiscardColors.Count > 0 ? 174 : 136)+bonusHeight;
+                card.style.minHeight = (player.DiscardColors.Count > 0 ? 174 : 136)+bonusHeight;
                 card.AddToClassList(player.Team == Team.Blue ? "blue-seat" : "red-seat");
                 if (seat == target) card.AddToClassList("selected-seat");
                 string captain = target == view.BlueCaptain || target == view.RedCaptain ? " · 队长" : "";
                 SeatLabel(card, (player.Team == Team.Blue ? "蓝队" : "红队") + " / " + (target + 1) + captain, "eyebrow", 5, 22);
                 SeatLabel(card, HeroName(player.HeroId) + (player.AwaitingRespawn ? " · 待复活" : view.UpgradingSeats.Contains(target) ? " · 待升级" : view.ActiveSeat == target ? " · 行动" : ""), "seat-name", 29, 30);
                 SeatLabel(card, "Lv." + player.Level + "   " + player.Gold + " 金   手牌 " + player.HandCount, "tiny", 63, 24);
+                if (bonusHeight>0)
+                {
+                    var bonuses=player.PermanentBonuses.Select(p => p.Key + "+" + p.Value).ToList();
+                    for(int line=0;line*3<bonuses.Count;line++) SeatLabel(card,string.Join(" · ",bonuses.Skip(line*3).Take(3)),"bonus-line",90+line*22,22);
+                }
                 var rounds = Box("round-dots"); card.Add(rounds);
+                rounds.style.top=99+bonusHeight;
                 for (int turn = 1; turn <= 4; turn++)
                 {
                     int cycle = turn;
@@ -103,6 +110,7 @@ namespace Goa2.Presentation
                 if (player.DiscardColors.Count > 0)
                 {
                     var discards = Box("discard-dots"); card.Add(discards); discards.Add(Text("弃", "tiny"));
+                    discards.style.top=137+bonusHeight;
                     foreach (string color in player.DiscardColors)
                     {
                         var dot = Box("discard-dot"); dot.style.backgroundColor = CardColor(color); dot.tooltip = "弃牌 · " + ColorName(color); discards.Add(dot);
@@ -158,11 +166,16 @@ namespace Goa2.Presentation
             {
                 if (!targets.Contains(cell)) { notice = "此格不可用于当前操作。"; return; }
                 chosenCell = cell; notice = "已选地图格 " + cell + "，确认后应用。"; Render();
-            }, cell => cellInfo.text = RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : ""), viewport);
+            }, cell => cellInfo.text = RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : ""), viewport, SelectedEffectArea(view));
             board.ViewportChanged = RequestCapture;
             field.Add(board);
             cellInfo = Text(targets.Count == 0 ? "滚轮缩放 · 中/右键拖动 · Home全图" : targets.Count + " 个合法目标 · 点击后确认", "tiny");
             cellInfo.AddToClassList("board-footer"); field.Add(cellInfo);
+            if (effectAreaId!="")
+            {
+                var effect=view.Effects.Single(e => e.Id==effectAreaId);
+                field.Add(Text("紫色描边 · " + catalog.Card(effect.SourceCardId).Name + " · 来源席位 " + (effect.ControllerSeat+1),"area-caption"));
+            }
         }
         private void BuildHand(VisualElement parent, GameView view)
         {
