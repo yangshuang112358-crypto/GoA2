@@ -31,6 +31,8 @@ namespace Goa2.Presentation
         private bool startupFailed;
         private string notice = "";
         private string? galleryHero;
+        private string galleryQuery="";
+        private bool galleryOnlySupported;
         private bool galleryOpen;
         private bool publicCardsOpen;
         private string? screenshotPath;
@@ -220,6 +222,7 @@ namespace Goa2.Presentation
             root.Query<Button>().ForEach(button => layout.Buttons.Add(new QaButton { Name = button.name, Text = button.text, Bounds = button.worldBound, Enabled = button.enabledInHierarchy, Visible = VisibleCenter(button) }));
             root.Query<Label>().ForEach(label => { if(!string.IsNullOrEmpty(label.name)) layout.Labels.Add(new QaLabel {Name=label.name,Text=label.text,Bounds=label.worldBound,Visible=VisibleCenter(label)}); });
             root.Query<IntegerField>().ForEach(field => layout.Fields.Add(new QaField { Name = field.name, Bounds = field.worldBound, Value = field.value }));
+            root.Query<TextField>().ForEach(field => { if(!string.IsNullOrEmpty(field.name)) layout.TextFields.Add(new QaTextField {Name=field.name,Bounds=field.worldBound,Value=field.value}); });
             if (board != null)
             {
                 var legal = new HashSet<Hex>(LegalCells(renderedView));
@@ -256,11 +259,13 @@ namespace Goa2.Presentation
             public bool LeftExpanded, RightExpanded, TopExpanded, BottomExpanded;
             public List<QaButton> Buttons = new List<QaButton>(); public List<QaCell> Cells = new List<QaCell>();
             public List<QaField> Fields = new List<QaField>();
+            public List<QaTextField> TextFields = new List<QaTextField>();
             public List<QaLabel> Labels = new List<QaLabel>();
         }
         [Serializable] private sealed class QaButton { public string Name = "", Text = ""; public Rect Bounds; public bool Enabled, Visible; }
         [Serializable] private sealed class QaCell { public int X, Y; public Vector2 Center; public bool Legal; }
         [Serializable] private sealed class QaField { public string Name = ""; public Rect Bounds; public int Value; }
+        [Serializable] private sealed class QaTextField { public string Name="",Value=""; public Rect Bounds; }
         [Serializable] private sealed class QaLabel { public string Name="", Text=""; public Rect Bounds; public bool Visible; }
         private List<Hex> LegalCells(GameView view)
         {
@@ -541,28 +546,58 @@ namespace Goa2.Presentation
             var header = Box("gallery-header");
             header.Add(Text("卡牌图鉴", "panel-title"));
             header.Add(Text("6 名英雄 / 108 张正式卡牌", "muted"));
-            header.Add(Button("返回战场", () => { galleryOpen = false; Render(); }, "primary-button")); overlay.Add(header);
+            header.Add(Button("返回战场", () => { galleryOpen = false; Render(); }, "primary-button","gallery-return")); overlay.Add(header);
             var tabs = Box("gallery-tabs"); overlay.Add(tabs);
+            var all=Button("全部 · 108",()=>{galleryHero="";Render();},"quiet-button","gallery-all");
+            if(galleryHero=="") all.AddToClassList("chosen");tabs.Add(all);
             foreach (var hero in catalog.Heroes)
             {
                 string id = hero.Id;
-                var tab = Button(HeroName(id) + " · 18", () => { galleryHero = id; Render(); }, "quiet-button");
+                var tab = Button(HeroName(id) + " · 18", () => { galleryHero = id; Render(); }, "quiet-button","gallery-hero-"+id);
                 if (galleryHero == id) tab.AddToClassList("chosen"); tabs.Add(tab);
             }
             overlay.Add(Text("以下为正式牌面数据；每张牌标明当前可执行的主要行动或防御响应。", "gallery-note"));
+            var filters=Box("gallery-filters");overlay.Add(filters);
+            var query=new TextField("搜索") {name="gallery-query",value=galleryQuery,maxLength=128};query.AddToClassList("gallery-search");filters.Add(query);
+            var supported=new HashSet<string>(renderedView.SupportedPrimaryCards.Concat(renderedView.SupportedDefenseCards));
+            Button supportedButton=null!;
+            var count=Text("","muted");count.name="gallery-count";overlay.Add(count);
             var scroll = new ScrollView(); scroll.AddToClassList("gallery-scroll"); overlay.Add(scroll);
             scroll.contentContainer.AddToClassList("gallery-grid");
-            foreach (var card in catalog.Cards.Where(c => c.HeroId == galleryHero))
+            var tiles=new List<(CardDefinition card,VisualElement tile)>();
+            var empty=Text("没有匹配卡牌。请修改关键词或筛选条件。","body");empty.name="gallery-empty";overlay.Add(empty);
+            void FilterCards()
+            {
+                string term=galleryQuery.Trim();int visible=0;
+                foreach(var entry in tiles)
+                {
+                    var c=entry.card;
+                    bool matches=(!galleryOnlySupported || supported.Contains(c.Id)) &&
+                        (term=="" || c.Id.IndexOf(term,StringComparison.OrdinalIgnoreCase)>=0 || c.Name.IndexOf(term,StringComparison.OrdinalIgnoreCase)>=0 || c.Text.IndexOf(term,StringComparison.OrdinalIgnoreCase)>=0 || HeroName(c.HeroId).IndexOf(term,StringComparison.OrdinalIgnoreCase)>=0);
+                    entry.tile.style.display=matches ? DisplayStyle.Flex : DisplayStyle.None;if(matches) visible++;
+                }
+                count.text="显示 "+visible+" / "+tiles.Count+" 张 · "+(galleryHero=="" ? "全部英雄" : HeroName(galleryHero));
+                empty.style.display=visible==0 ? DisplayStyle.Flex : DisplayStyle.None;
+                supportedButton.text=galleryOnlySupported ? "本局可用 ✓" : "只看本局可用";
+                scroll.scrollOffset=Vector2.zero;RequestCapture();
+            }
+            query.RegisterValueChangedCallback(e=>{galleryQuery=e.newValue;FilterCards();});
+            filters.Add(Button("清空",()=>{query.value="";query.Focus();},"quiet-button","gallery-clear"));
+            supportedButton=Button("",()=>{galleryOnlySupported=!galleryOnlySupported;FilterCards();},"quiet-button","gallery-supported");filters.Add(supportedButton);
+            foreach (var card in catalog.Cards.Where(c => galleryHero=="" || c.HeroId == galleryHero))
             {
                 var tile = Box("gallery-card"); tile.AddToClassList("color-" + card.Color);
-                tile.Add(Text(card.Name, "card-name"));
-                tile.Add(Text((card.Level.HasValue ? "卡牌等级 " + card.Level : "基础牌") + "    先攻 " + card.Initiative, "muted"));
+                var name=Text(card.Name,"card-name");name.name="gallery-card-name-"+card.Id;tile.Add(name);
+                tile.Add(Text((card.Color=="purple" ? "紫卡 · 英雄8级获得" : card.Level.HasValue ? "卡牌等级 " + card.Level : "基础牌") + "    先攻 " + card.Initiative, "muted"));
+                if(galleryHero=="") tile.Add(Text(HeroName(card.HeroId),"tiny"));
                 tile.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "body"));
                 tile.Add(Text(card.Text, "card-rules"));
                 tile.Add(Text("次要移动 " + Number(card.SecondaryMovement) + "    次要防御 " + Number(card.SecondaryDefense), "tiny"));
                 tile.Add(Text("底部被动 " + (card.Passive ?? "无"), "tiny"));
                 tile.Add(Text(renderedView.SupportedPrimaryCards.Contains(card.Id) ? "主要行动 · 已开放" : renderedView.SupportedDefenseCards.Contains(card.Id) ? "防御响应 · 已开放" : "牌文效果 · 待实施", "status-badge")); scroll.Add(tile);
+                tiles.Add((card,tile));
             }
+            FilterCards();
         }
         private void RenderPublicCards(GameView view)
         {

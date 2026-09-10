@@ -65,6 +65,11 @@
 .gallery-tabs { flex-direction: row; margin-bottom: 8px; }
 .gallery-tabs .quiet-button { flex-grow: 1; margin-right: 8px; }
 .gallery-note { font-size: 12px; color: #b9c8c0; margin-bottom: 12px; }
+.gallery-filters { flex-direction: row; align-items: center; margin-bottom: 10px; }
+.gallery-search { flex-grow: 1; height: 40px; margin-right: 12px; font-size: 17px; }
+.gallery-search > Label { min-width: 55px; width: 55px; color: #b9c8c0; }
+.gallery-search .unity-base-text-field__input { color: #e4eae8; background-color: #152730; padding-left: 9px; padding-right: 9px; }
+.gallery-filters .quiet-button { margin-left: 6px; margin-bottom: 0; }
 .gallery-scroll { flex-grow: 1; }
 .gallery-grid { flex-direction: row; flex-wrap: wrap; }
 .gallery-card { width: 268px; min-height: 248px; padding: 16px; margin: 0 14px 14px 0; background-color: #1d303b; border-width: 1px; border-color: #43575e; border-top-width: 4px; border-radius: 6px; }

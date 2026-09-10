@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('all','smoke','presets','recovery','battlefield','combat','upgrade','round-minion','auras','barriers','marksman','adjacent-attacks','conditional-defenses','optional-discard')]
+    [ValidateSet('all','smoke','presets','recovery','gallery','battlefield','combat','upgrade','round-minion','auras','barriers','marksman','adjacent-attacks','conditional-defenses','optional-discard')]
     [string[]]$Case = @('all'),
     [ValidateRange(1152,3840)][int]$Width = 1280,
     [ValidateRange(768,2160)][int]$Height = 800,
@@ -11,6 +11,7 @@ $goaCases = [ordered]@{
     smoke = @('test-player-ui.ps1','ui-smoke')
     presets = @('test-presets-ui.ps1','presets-ui')
     recovery = @('test-recovery-ui.ps1','recovery-ui')
+    gallery = @('test-gallery-ui.ps1','gallery-ui')
     battlefield = @('test-battlefield-ui.ps1','battlefield-ui')
     combat = @('test-combat-ui.ps1','combat-ui')
     upgrade = @('test-upgrade-ui.ps1','upgrade-ui')
@@ -44,7 +45,7 @@ try {
     New-Item -ItemType Directory -Path $goaOutput | Out-Null
     $goaPayload = Get-PlayerEvidence
     $goaPayload | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $goaOutput 'player-before.json') -Encoding utf8
-    $goaInputs = @('qa-player.ps1','run-player.ps1','run-scenarios.ps1','ui-qa-common.ps1','test-ui-suite.ps1') + @($goaSelected | ForEach-Object { $goaCases[$_][0] })
+    $goaInputs = @('qa-player.ps1','qa-text.ps1','run-player.ps1','run-scenarios.ps1','ui-qa-common.ps1','test-ui-suite.ps1') + @($goaSelected | ForEach-Object { $goaCases[$_][0] })
     $goaInputEvidence = @($goaInputs | Select-Object -Unique | ForEach-Object {
         $goaPath = Join-Path $PSScriptRoot $_
         [pscustomobject]@{path="tools/$_";sha256=(Get-FileHash -LiteralPath $goaPath -Algorithm SHA256).Hash.ToLowerInvariant()}
