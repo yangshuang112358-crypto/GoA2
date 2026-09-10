@@ -136,6 +136,7 @@ namespace Goa2.Domain
         public List<int> CandidateSeats = new List<int>();
         public List<Hex> CandidateCells = new List<Hex>();
         public string UnitId = "";
+        public List<string> CandidateUnits = new List<string>();
         public string Source = "";
         public string ResumeAt = "";
         public bool Optional;
@@ -196,6 +197,9 @@ namespace Goa2.Domain
     public sealed class GameState
     {
         public const string CurrentProtocol = "1.0.0";
+        public const int CurrentEngineVersion = 1;
+        public int InitialEngineVersion;
+        public int EngineVersion;
         public string ProtocolVersion = CurrentProtocol;
         public string MatchId = "";
         public string ContentVersion = "";

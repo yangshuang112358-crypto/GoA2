@@ -18,11 +18,14 @@ namespace Goa2.Rules
                 !state.Units.Any(other => other.Id != u.Id && IsMinion(other) && other.Team == u.Team)))
                 .Select(u => u.Id).OrderBy(id => id, StringComparer.Ordinal).ToList();
         }
-        public static List<Hex> LegalMinionSpawns(ContentCatalog catalog, GameState state, int seat)
+        public static List<Hex> LegalMinionSpawns(ContentCatalog catalog, GameState state, int seat, string unitId = "")
         {
             if (state.Phase != Phase.EffectChoice || state.Frontline == null || state.Pending?.Kind != "minion_spawn" || state.Pending.ChooserSeat != seat)
                 return new List<Hex>();
-            var spawn = state.Frontline.Remaining.FirstOrDefault(s => s.Unit.Id == state.Pending.UnitId);
+            if (unitId == "") unitId = state.Pending.UnitId;
+            if (state.Pending.CandidateUnits.Count > 0 ? !state.Pending.CandidateUnits.Contains(unitId) : unitId != state.Pending.UnitId)
+                return new List<Hex>();
+            var spawn = state.Frontline.Remaining.FirstOrDefault(s => s.Unit.Id == unitId);
             return spawn == null ? new List<Hex>() : SpawnCells(catalog, state, spawn);
         }
         private static List<Hex> SpawnCells(ContentCatalog catalog, GameState state, MinionSpawn spawn)
@@ -111,20 +114,29 @@ namespace Goa2.Rules
                 return;
             }
             var next = progress.Remaining[0];
-            bool conflict = progress.Remaining.Any(a => progress.Remaining.Any(b => a != b && SpawnCells(catalog, state, a).Intersect(SpawnCells(catalog, state, b)).Any()));
+            var units = new List<string>();
+            if (state.EngineVersion >= 1)
+            {
+                var teams = progress.Remaining.Select(s => s.Unit.Team).Distinct().ToList();
+                var team = teams.Count > 1 ? state.DecisionCoin : teams[0];
+                units = progress.Remaining.Where(s => s.Unit.Team == team).Select(s => s.Unit.Id).ToList();
+                next = progress.Remaining.First(s => s.Unit.Id == units[0]);
+            }
+            bool conflict = state.EngineVersion == 0 && progress.Remaining.Any(a => progress.Remaining.Any(b => a != b && SpawnCells(catalog, state, a).Intersect(SpawnCells(catalog, state, b)).Any()));
             state.Pending = new PendingChoice
             {
                 Id = "spawn:" + state.FrontlineSequence + ":" + (state.Events.Count + 1),
                 Kind = conflict ? "spawn_order_unresolved" : "minion_spawn", ChooserSeat = Captain(state, next.Unit.Team),
                 UnitId = next.Unit.Id, Source = progress.Source, ResumeAt = "frontline_spawns", Optional = false,
-                CandidateCells = conflict ? new List<Hex>() : SpawnCells(catalog, state, next)
+                CandidateCells = conflict ? new List<Hex>() : SpawnCells(catalog, state, next), CandidateUnits = units
             };
             Emit(state, command, conflict ? "SpawnOrderRulingRequired" : "MinionSpawnChoiceRequired", state.Pending.ChooserSeat, detail: next.Unit.Id);
         }
         private static void ChooseMinionSpawn(ContentCatalog catalog, GameState state, Command command)
         {
-            Require(LegalMinionSpawns(catalog, state, command.ActorSeat).Contains(command.Destination), "invalid_spawn", "请由指定队长选择合法出生空格。");
-            var spawn = state.Frontline!.Remaining.Single(s => s.Unit.Id == state.Pending!.UnitId);
+            Require(LegalMinionSpawns(catalog, state, command.ActorSeat, command.Value).Contains(command.Destination), "invalid_spawn", "请由指定队长选择合法出生空格。");
+            string unitId = command.Value == "" ? state.Pending!.UnitId : command.Value;
+            var spawn = state.Frontline!.Remaining.Single(s => s.Unit.Id == unitId);
             SpawnMinion(state, command, spawn, command.Destination); state.Frontline.Remaining.Remove(spawn);
             ContinueFrontline(catalog, state, command);
         }

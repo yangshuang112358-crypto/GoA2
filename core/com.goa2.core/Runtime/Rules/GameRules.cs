@@ -7,13 +7,15 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
-        public GameState Create(ContentCatalog catalog, string matchId, string[] names, int seed)
+        public GameState Create(ContentCatalog catalog, string matchId, string[] names, int seed, int engineVersion = GameState.CurrentEngineVersion)
         {
+            Require(engineVersion >= 0 && engineVersion <= GameState.CurrentEngineVersion, "incompatible_engine", "规则引擎版本不兼容。");
             Require(names.Length == 4 && names.All(n => !string.IsNullOrWhiteSpace(n) && n.Length <= 40), "invalid_players", "需要四个有效玩家名称。");
             Require(!string.IsNullOrWhiteSpace(matchId) && matchId.Length <= 100, "invalid_match", "对局编号无效。");
             return new GameState
             {
                 MatchId = matchId, ContentVersion = catalog.Version, ContentHash = catalog.Hash,
+                InitialEngineVersion = engineVersion, EngineVersion = engineVersion,
                 RulesVersion = catalog.Rules.Version, Seed = seed, DecisionCoin = (seed & 1) == 0 ? Team.Blue : Team.Red,
                 BlueCrystal = catalog.Rules.StartingCrystalLife, RedCrystal = catalog.Rules.StartingCrystalLife,
                 VictoryMarksRequired = catalog.Rules.FrontlineVictoryMarks, CombatRegion = catalog.Rules.InitialCombatRegion,

@@ -52,6 +52,9 @@ namespace Goa2.Domain
         public string VictoryReason = "";
         public List<string> RemovableMinions = new List<string>();
         public UnitState? PendingSpawn;
+        public List<UnitState> PendingSpawns = new List<UnitState>();
+        public Dictionary<string, List<Hex>> SpawnChoices = new Dictionary<string, List<Hex>>();
+        public int EngineVersion;
         public List<PlayerView> Players = new List<PlayerView>();
         public List<UnitState> Units = new List<UnitState>();
         public PendingChoice? Pending;

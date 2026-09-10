@@ -12,9 +12,9 @@ namespace Goa2.Tests
     public sealed class BattlefieldTests
     {
         internal static ContentCatalog Catalog() => ContentLoader.LoadDirectory(ContentTests.Root());
-        internal static GameSession Ready(ContentCatalog catalog)
+        internal static GameSession Ready(ContentCatalog catalog, int engineVersion = GameState.CurrentEngineVersion)
         {
-            var game = LocalGameFactory.Create(catalog, "battle", new[] { "A", "B", "C", "D" }, 42, true);
+            var game = LocalGameFactory.Create(catalog, "battle", new[] { "A", "B", "C", "D" }, 42, true, engineVersion);
             Apply(game, 0, CommandKind.DebugPrepare, "wasp,shargatha,brogan,arien");
             return game;
         }
@@ -152,9 +152,9 @@ namespace Goa2.Tests
             Assert.That(game.View(null).Units.Count, Is.EqualTo(15));
         }
         [Test]
-        public void ConflictingBlockedSpawnsWaitForRulingWithoutLosingEitherMinion()
+        public void LegacyConflictingSpawnsPreserveTheirHistoricalPauseDuringReplay()
         {
-            var catalog = Catalog(); var game = Ready(catalog);
+            var catalog = Catalog(); var game = Ready(catalog, 0);
             Apply(game, 0, CommandKind.DebugTeleport, "hero:0", cell: new Hex(2,-7));
             Apply(game, 0, CommandKind.DebugTeleport, "hero:2", cell: new Hex(3,-7));
             Apply(game, 0, CommandKind.DebugRemoveMinion, Heavy(game, Team.Red));

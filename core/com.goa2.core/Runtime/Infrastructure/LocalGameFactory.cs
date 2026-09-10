@@ -9,9 +9,9 @@ namespace Goa2.Infrastructure
 {
     public static class LocalGameFactory
     {
-        public static GameSession Create(ContentCatalog catalog, string matchId, string[] names, int seed, bool sandbox = false)
+        public static GameSession Create(ContentCatalog catalog, string matchId, string[] names, int seed, bool sandbox = false, int engineVersion = GameState.CurrentEngineVersion)
         {
-            var initial = new GameRules().Create(catalog, matchId, names, seed);
+            var initial = new GameRules().Create(catalog, matchId, names, seed, engineVersion);
             initial.Sandbox = sandbox; initial.QuickSelection = sandbox;
             return new GameSession(catalog, new JsonStateCodec(), initial);
         }
@@ -25,7 +25,7 @@ namespace Goa2.Infrastructure
                 _ = new GameSession(catalog, codec, saved);
                 if (saved.Players == null || saved.Players.Count != 4 || saved.AcceptedCommands == null || saved.AcceptedCommands.Count > 10000)
                     throw new RuleViolation("invalid_save", "存档结构或命令数量无效。");
-                var replay = Create(catalog, saved.MatchId, saved.Players.OrderBy(p => p.Seat).Select(p => p.Name).ToArray(), saved.Seed, saved.Sandbox);
+                var replay = Create(catalog, saved.MatchId, saved.Players.OrderBy(p => p.Seat).Select(p => p.Name).ToArray(), saved.Seed, saved.Sandbox, saved.InitialEngineVersion);
                 foreach (var command in saved.AcceptedCommands)
                 {
                     var result = replay.Execute(command.ActorSeat, command);

@@ -26,6 +26,8 @@ namespace Goa2.Application
         }
         private void ValidateVersion()
         {
+            if (state.EngineVersion < 0 || state.EngineVersion > GameState.CurrentEngineVersion || state.InitialEngineVersion < 0 || state.InitialEngineVersion > state.EngineVersion)
+                throw new RuleViolation("incompatible_engine", "规则引擎版本不兼容。");
             if (state.ProtocolVersion != GameState.CurrentProtocol || state.ContentHash != catalog.Hash ||
                 state.ContentVersion != catalog.Version || state.RulesVersion != catalog.Rules.Version)
                 throw new RuleViolation("incompatible_save", "存档协议、规则或内容版本不匹配。");
@@ -80,6 +82,8 @@ namespace Goa2.Application
                 BlueMarks = snapshot.BlueMarks, RedMarks = snapshot.RedMarks, VictoryMarksRequired = snapshot.VictoryMarksRequired,
                 Winner = snapshot.Winner, VictoryReason = snapshot.VictoryReason, RemovableMinions = GameRules.LegalMinionRemovals(snapshot),
                 PendingSpawn = snapshot.Frontline?.Remaining.FirstOrDefault(s => s.Unit.Id == snapshot.Pending?.UnitId)?.Unit,
+                PendingSpawns = snapshot.Frontline?.Remaining.Select(s => s.Unit).ToList() ?? new System.Collections.Generic.List<UnitState>(),
+                EngineVersion = snapshot.EngineVersion,
                 Units = snapshot.Units, Pending = snapshot.Pending,
                 Players = snapshot.Players.Select(p => new PlayerView
                 {
@@ -111,6 +115,9 @@ namespace Goa2.Application
                     if (cells.Count > 0) view.Deployments.Add(player.Seat, cells);
                 }
                 view.CanPass = snapshot.Phase == Phase.Action && snapshot.ActiveSeat == seat && snapshot.Pending == null;
+                if (snapshot.Pending?.Kind == "minion_spawn" && snapshot.Pending.ChooserSeat == seat && snapshot.Frontline != null)
+                    foreach (var spawn in snapshot.Frontline.Remaining.Where(s => snapshot.Pending.CandidateUnits.Count > 0 ? snapshot.Pending.CandidateUnits.Contains(s.Unit.Id) : s.Unit.Id == snapshot.Pending.UnitId))
+                        view.SpawnChoices.Add(spawn.Unit.Id, GameRules.LegalMinionSpawns(catalog, snapshot, seat.Value, spawn.Unit.Id));
                 view.SecondaryMoves = MovementRules.LegalMoves(catalog, snapshot, seat.Value, MoveMode.Secondary);
                 view.FastMoves = MovementRules.LegalMoves(catalog, snapshot, seat.Value, MoveMode.Fast);
                 if (snapshot.Sandbox)

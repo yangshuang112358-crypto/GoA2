@@ -224,7 +224,11 @@ namespace Goa2.Presentation
         private List<Hex> LegalCells(GameView view)
         {
             if (debugTeleport && view.DebugTeleports.TryGetValue(debugUnitId, out var teleportTargets)) return teleportTargets;
-            if (view.Pending?.Kind == "minion_spawn" && view.Pending.ChooserSeat == seat) return view.Pending.CandidateCells;
+            if (view.Pending?.Kind == "minion_spawn" && view.Pending.ChooserSeat == seat)
+            {
+                PrepareSpawnSelection(view);
+                return view.SpawnChoices.TryGetValue(spawnUnitId, out var cells) ? cells : new List<Hex>();
+            }
             if (view.Phase == Phase.Deployment && view.Deployments.Count > 0)
             {
                 if (!view.Deployments.ContainsKey(deploymentSeat)) deploymentSeat = view.Deployments.Keys.First();
