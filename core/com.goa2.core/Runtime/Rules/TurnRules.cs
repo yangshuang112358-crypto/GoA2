@@ -98,7 +98,7 @@ namespace Goa2.Rules
                 state.DecisionCoin = winningTeam == Team.Blue ? Team.Red : Team.Blue;
                 Emit(state, command, "DecisionCoinFlipped", detail: winningTeam + " wins; now " + state.DecisionCoin);
             }
-            if (candidates.Count == 1) BeginAction(state, command, candidates[0].Seat);
+            if (candidates.Count == 1) BeginAction(catalog, state, command, candidates[0].Seat);
             else
             {
                 state.Phase = Phase.InitiativeChoice;
@@ -111,17 +111,25 @@ namespace Goa2.Rules
                 Emit(state, command, "InitiativeChoiceRequired", state.Pending.ChooserSeat);
             }
         }
-        private static void ChooseInitiative(GameState state, Command command)
+        private static void ChooseInitiative(ContentCatalog catalog, GameState state, Command command)
         {
             var pending = state.Pending;
             Require(state.Phase == Phase.InitiativeChoice && pending != null && pending.ChooserSeat == command.ActorSeat && pending.CandidateSeats.Contains(command.TargetSeat),
                 "invalid_initiative_choice", "只能由指定队长选择并列的本队席位。");
             Emit(state, command, "InitiativeChosen", command.TargetSeat);
-            BeginAction(state, command, command.TargetSeat);
+            BeginAction(catalog, state, command, command.TargetSeat);
         }
-        private static void BeginAction(GameState state, Command command, int seat)
+        private static void BeginAction(ContentCatalog catalog, GameState state, Command command, int seat)
         {
             state.Pending = null; state.ActiveSeat = seat; state.Phase = Phase.Action;
+            if (state.Players[seat].AwaitingRespawn)
+            {
+                state.Phase = Phase.EffectChoice;
+                state.Pending = new PendingChoice { Id = "respawn:" + (state.Events.Count + 1), Kind = "hero_respawn", ChooserSeat = seat, UnitId = "hero:" + seat, Source = "R-DEFEAT", ResumeAt = "begin_action" };
+                state.Pending.CandidateCells = LegalRespawns(catalog, state, seat);
+                Emit(state, command, "HeroRespawnChoiceRequired", seat, ActiveCard(state).CardId);
+                return;
+            }
             Emit(state, command, "ActionStarted", seat, ActiveCard(state).CardId);
         }
         private static CardInstance ActiveCard(GameState state) => state.Players[state.ActiveSeat!.Value].Cards.Single(c => c.Zone == CardZone.PlayedUnresolved);

@@ -14,6 +14,7 @@ namespace Goa2.Tests
         [TestCase("formal-turn.json")]
         [TestCase("frontline.json")]
         [TestCase("spawn-order.json")]
+        [TestCase("combat-defense.json")]
         public void PublishedScenarioPassesAgainstTheFormalCatalog(string file)
         {
             string root = ContentTests.Root();

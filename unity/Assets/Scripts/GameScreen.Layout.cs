@@ -88,7 +88,7 @@ namespace Goa2.Presentation
                 if (seat == target) card.AddToClassList("selected-seat");
                 string captain = target == view.BlueCaptain || target == view.RedCaptain ? " · 队长" : "";
                 SeatLabel(card, (player.Team == Team.Blue ? "蓝队" : "红队") + " / " + (target + 1) + captain, "eyebrow", 5, 22);
-                SeatLabel(card, HeroName(player.HeroId) + (view.ActiveSeat == target ? " · 行动" : ""), "seat-name", 29, 30);
+                SeatLabel(card, HeroName(player.HeroId) + (player.AwaitingRespawn ? " · 待复活" : view.ActiveSeat == target ? " · 行动" : ""), "seat-name", 29, 30);
                 SeatLabel(card, "Lv." + player.Level + "   " + player.Gold + " 金   手牌 " + player.HandCount, "tiny", 63, 24);
                 var rounds = Box("round-dots"); card.Add(rounds);
                 for (int turn = 1; turn <= 4; turn++)
@@ -178,13 +178,15 @@ namespace Goa2.Presentation
                 var card = catalog.Card(instance.CardId);
                 var tile = Button("", () =>
                 {
-                    if (view.Phase == Phase.Planning && !view.Players[seat].Confirmed && (instance.Zone == CardZone.InHand || instance.Zone == CardZone.Selected)) Submit(CommandKind.SelectCard, card.Id);
+                    if (view.Pending?.Kind == "defense" && view.Pending.ChooserSeat == seat && view.DefenseOptions.Any(o => o.CardId == card.Id))
+                    { defenseCardId = card.Id; declineDefensePending = false; showDebug = false; Render(); }
+                    else if (view.Phase == Phase.Planning && !view.Players[seat].Confirmed && (instance.Zone == CardZone.InHand || instance.Zone == CardZone.Selected)) Submit(CommandKind.SelectCard, card.Id);
                     else { galleryHero = card.HeroId; galleryOpen = true; Render(); }
                 }, "hand-card");
                 tile.name = "hand-" + card.Color;
                 tile.AddToClassList("color-" + card.Color);
                 if (instance == view.OwnCards.Last()) tile.AddToClassList("last-card");
-                if (instance.Zone == CardZone.Selected) tile.AddToClassList("chosen");
+                if (instance.Zone == CardZone.Selected || defenseCardId == card.Id) tile.AddToClassList("chosen");
                 if (instance.Zone == CardZone.PlayedResolved || instance.Zone == CardZone.Discarded) tile.AddToClassList("spent");
                 SeatLabel(tile, card.Name, "card-name", 6, 45);
                 SeatLabel(tile, card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()), "body", 53, 25);

@@ -1,0 +1,22 @@
+{
+  "SchemaVersion":1,"Id":"combat-defense","Name":"远程攻击、防御失败与本人复活","Seed":42,
+  "Steps":[
+    {"Command":"DebugPrepare","Value":"sabina,wasp,brogan,arien"},
+    {"Command":"DebugTeleport","Value":"hero:0","Destination":{"X":7,"Y":-10}},
+    {"Command":"DebugTeleport","Value":"hero:1","Destination":{"X":8,"Y":-9}},
+    {"Actor":"p1","Command":"SelectCard","Value":"sabina-01-拔枪"},
+    {"Actor":"p2","Command":"SelectCard","Value":"wasp-01-电击"},
+    {"Actor":"p3","Command":"SelectCard","Value":"brogan-06-铜墙铁壁"},
+    {"Actor":"p4","Command":"SelectCard","Value":"arien-07-潮水","Expect":{"Phase":"Action","Active":"p1","Revealed":4}},
+    {"Command":"BeginPrimary","Expect":{"Phase":"EffectChoice","PendingKind":"attack_target","PendingChooser":"p1"}},
+    {"Name":"错误席位不能代选攻击目标","Actor":"p2","Command":"ChooseAttackTarget","Value":"hero:1","Expect":{"Code":"invalid_attack_target"}},
+    {"Command":"ChooseAttackTarget","Value":"hero:1","Expect":{"Phase":"EffectChoice","PendingKind":"defense","PendingChooser":"p2","EventCounts":{"AttackDeclared":1,"AttackCalculated":1}}},
+    {"Name":"攻击者不能代替目标出防御牌","Actor":"p1","Command":"Defend","Value":"wasp-00-闪耀之刃","Expect":{"Code":"invalid_defender"}},
+    {"Name":"防御2不足以挡住攻击4","Actor":"p2","Command":"Defend","Value":"wasp-00-闪耀之刃","Expect":{"PendingKind":"hero_respawn","PendingChooser":"p2","Gold":{"p1":1,"p3":1},"RedCrystal":6,"DiscardCounts":{"p2":1},"EventOrder":["CardDiscarded","DefenseResolved","HeroDefeated","GoldAwarded","AssistGoldAwarded","CrystalDamaged","AttackResolved","CardResolved","HeroRespawnChoiceRequired"]}},
+    {"Name":"队长也不能替敌方英雄复活","Actor":"p1","Command":"RespawnHero","Destination":{"X":7,"Y":-9},"Expect":{"Code":"invalid_respawn"}},
+    {"Name":"本人复活继续原来已出的电击","Actor":"p2","Command":"RespawnHero","Destination":{"X":7,"Y":-9},"Expect":{"Phase":"Action","Active":"p2","RedCrystal":6,"Positions":{"hero:1":{"X":7,"Y":-9}}}},
+    {"Actor":"p2","Command":"Pass","Expect":{"Active":"p3"}},
+    {"Actor":"p3","Command":"Pass","Expect":{"Active":"p4"}},
+    {"Actor":"p4","Command":"Pass","Expect":{"Phase":"Planning","Turn":2,"Revealed":4,"HandCounts":{"p1":4,"p2":3,"p3":4,"p4":4},"Gold":{"p1":1,"p3":1},"RedCrystal":6}}
+  ]
+}

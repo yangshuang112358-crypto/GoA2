@@ -114,7 +114,7 @@
       "keyword_hints": [
         "conditional"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/wasp-07-抵挡屏障.md",
       "question_candidates": [
         "U-011"
@@ -315,7 +315,7 @@
       "hero_id": "shargatha",
       "family": "attack",
       "keyword_hints": [],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/shargatha-02-快速突刺.md",
       "question_candidates": [
         "U-011"
@@ -1040,7 +1040,7 @@
       "hero_id": "arien",
       "family": "defense",
       "keyword_hints": [],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/arien-13-挑战者.md",
       "question_candidates": [
         "U-011"
@@ -1380,7 +1380,7 @@
       "hero_id": "tigerclaw",
       "family": "defense",
       "keyword_hints": [],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/tigerclaw-18-躲闪.md",
       "question_candidates": [
         "U-011"
@@ -1406,7 +1406,7 @@
       "hero_id": "sabina",
       "family": "attack",
       "keyword_hints": [],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/sabina-01-拔枪.md",
       "question_candidates": [
         "U-011"

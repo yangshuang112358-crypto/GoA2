@@ -84,10 +84,14 @@ namespace Goa2.Application
                 PendingSpawn = snapshot.Frontline?.Remaining.FirstOrDefault(s => s.Unit.Id == snapshot.Pending?.UnitId)?.Unit,
                 PendingSpawns = snapshot.Frontline?.Remaining.Select(s => s.Unit).ToList() ?? new System.Collections.Generic.List<UnitState>(),
                 EngineVersion = snapshot.EngineVersion,
+                Attack = snapshot.Execution?.Attack,
+                SupportedPrimaryCards = catalog.Cards.Where(CombatRules.HasPrimaryProgram).Select(c => c.Id).ToList(),
+                SupportedDefenseCards = catalog.Cards.Where(CombatRules.HasDefenseProgram).Select(c => c.Id).ToList(),
                 Units = snapshot.Units, Pending = snapshot.Pending,
                 Players = snapshot.Players.Select(p => new PlayerView
                 {
                     Seat = p.Seat, Team = p.Team, Name = p.Name, HeroId = p.HeroId, Level = p.Level, Gold = p.Gold, Confirmed = p.Confirmed,
+                    AwaitingRespawn = p.AwaitingRespawn,
                     HandCount = p.Cards.Count(c => c.Zone == CardZone.InHand || c.Zone == CardZone.Selected),
                     Revealed = p.Cards.Where(c => c.Zone == CardZone.PlayedUnresolved || c.Zone == CardZone.PlayedResolved).ToList(),
                     DiscardColors = p.Cards.Where(c => c.Zone == CardZone.Discarded).Select(c => catalog.Card(c.CardId).Color).ToList()
@@ -114,7 +118,14 @@ namespace Goa2.Application
                     var cells = GameRules.LegalDeployments(catalog, snapshot, seat.Value, player.Seat);
                     if (cells.Count > 0) view.Deployments.Add(player.Seat, cells);
                 }
-                view.CanPass = snapshot.Phase == Phase.Action && snapshot.ActiveSeat == seat && snapshot.Pending == null;
+                view.CanPass = snapshot.Phase == Phase.Action && snapshot.ActiveSeat == seat && snapshot.Pending == null && snapshot.Execution == null;
+                var playedCard = snapshot.Players[seat.Value].Cards.SingleOrDefault(c => c.Zone == CardZone.PlayedUnresolved);
+                view.PrimarySupported = playedCard != null && CombatRules.HasPrimaryProgram(catalog.Card(playedCard.CardId));
+                view.CanBeginPrimary = view.CanPass && view.PrimarySupported && snapshot.Units.Any(u => u.Seat == seat);
+                view.AttackTargets = CombatRules.AttackTargets(catalog, snapshot, seat.Value);
+                view.DefenseOptions = CombatRules.DefenseOptions(catalog, snapshot, seat.Value);
+                view.UnimplementedDefenseCards = CombatRules.UnimplementedDefenses(catalog, snapshot, seat.Value);
+                view.RespawnCells = GameRules.LegalRespawns(catalog, snapshot, seat.Value);
                 if (snapshot.Pending?.Kind == "minion_spawn" && snapshot.Pending.ChooserSeat == seat && snapshot.Frontline != null)
                     foreach (var spawn in snapshot.Frontline.Remaining.Where(s => snapshot.Pending.CandidateUnits.Count > 0 ? snapshot.Pending.CandidateUnits.Contains(s.Unit.Id) : s.Unit.Id == snapshot.Pending.UnitId))
                         view.SpawnChoices.Add(spawn.Unit.Id, GameRules.LegalMinionSpawns(catalog, snapshot, seat.Value, spawn.Unit.Id));

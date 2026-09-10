@@ -12,6 +12,7 @@ namespace Goa2.Domain
         public int Level;
         public int Gold;
         public bool Confirmed;
+        public bool AwaitingRespawn;
         public int HandCount;
         public List<CardInstance> Revealed = new List<CardInstance>();
         public List<PublicPlay> Plays = new List<PublicPlay>();
@@ -55,6 +56,15 @@ namespace Goa2.Domain
         public List<UnitState> PendingSpawns = new List<UnitState>();
         public Dictionary<string, List<Hex>> SpawnChoices = new Dictionary<string, List<Hex>>();
         public int EngineVersion;
+        public bool CanBeginPrimary;
+        public bool PrimarySupported;
+        public List<string> SupportedPrimaryCards = new List<string>();
+        public List<string> SupportedDefenseCards = new List<string>();
+        public List<string> AttackTargets = new List<string>();
+        public List<DefenseOption> DefenseOptions = new List<DefenseOption>();
+        public List<string> UnimplementedDefenseCards = new List<string>();
+        public AttackBreakdown? Attack;
+        public List<Hex> RespawnCells = new List<Hex>();
         public List<PlayerView> Players = new List<PlayerView>();
         public List<UnitState> Units = new List<UnitState>();
         public PendingChoice? Pending;

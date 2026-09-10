@@ -36,15 +36,25 @@ namespace Goa2.Rules
                     Emit(state, command, command.Kind == CommandKind.DebugSetGold ? "DebugGoldSet" : "DebugGoldChanged", recipient.Seat, detail: amount.ToString(CultureInfo.InvariantCulture));
                     break;
                 case CommandKind.DebugTeleport:
+                    Require(state.Execution == null || state.Frontline != null, "pending_card", "请先完成当前卡牌响应；推进出生中仍可调试占位。");
                     Require(LegalDebugTeleports(catalog, state, command.Value).Contains(command.Destination), "invalid_teleport", "请选择存在、无障碍且未占用的地图格。");
                     var unit = state.Units.Single(u => u.Id == command.Value);
                     var origin = unit.Position; unit.Position = command.Destination;
                     Emit(state, command, "DebugTeleported", unit.Seat, detail: unit.Id);
                     state.Events.Last().From = origin; state.Events.Last().To = unit.Position;
                     if (state.Frontline != null) ContinueFrontline(catalog, state, command);
+                    if (state.Pending?.Kind == "hero_respawn") state.Pending.CandidateCells = LegalRespawns(catalog, state, state.Pending.ChooserSeat);
+                    break;
+                case CommandKind.DebugDefeatHero:
+                    Require(state.Execution == null && state.Frontline == null && state.Phase != Phase.HeroSelection && state.Phase != Phase.Deployment, "pending_card", "请在准备完成且没有卡牌响应时调试击败。");
+                    var victim = state.Units.SingleOrDefault(u => u.Id == command.Value && u.Kind == "hero");
+                    int? victimSeat = victim?.Seat;
+                    DefeatHero(state, command, command.Value, DebugPlayer(state, command.TargetSeat).Seat, "debug");
+                    if (state.Phase == Phase.Action && state.ActiveSeat == victimSeat) FinishAction(catalog, state, command);
                     break;
                 case CommandKind.DebugRemoveMinion:
                 case CommandKind.DebugDefeatMinion:
+                    Require(state.Execution == null, "pending_card", "请先完成当前卡牌响应。");
                     Require(state.Phase != Phase.HeroSelection && state.Phase != Phase.Deployment, "wrong_phase", "请先完成初始准备。");
                     RemoveMinion(catalog, state, command, command.Value, "debug",
                         command.Kind == CommandKind.DebugDefeatMinion ? (int?)DebugPlayer(state, command.TargetSeat).Seat : null, true);
@@ -78,7 +88,7 @@ namespace Goa2.Rules
         }
         public static List<Hex> LegalDebugTeleports(ContentCatalog catalog, GameState state, string unitId)
         {
-            if (!state.Sandbox || state.Phase == Phase.Finished || !state.Units.Any(u => u.Id == unitId)) return new List<Hex>();
+            if (!state.Sandbox || state.Phase == Phase.Finished || state.Execution != null && state.Frontline == null || !state.Units.Any(u => u.Id == unitId)) return new List<Hex>();
             var occupied = new HashSet<Hex>(state.Units.Select(u => u.Position));
             return catalog.Cells.Where(c => !c.Obstacle && !occupied.Contains(c.Position)).OrderBy(c => c.Position.X).ThenBy(c => c.Position.Y).Select(c => c.Position).ToList();
         }
@@ -131,6 +141,7 @@ namespace Goa2.Rules
         }
         private static void DebugDiscard(ContentCatalog catalog, GameState state, Command command)
         {
+            Require(state.Execution == null, "pending_card", "请先完成当前卡牌响应。");
             var player = DebugPlayer(state, command.TargetSeat);
             var card = player.Cards.SingleOrDefault(c => c.CardId == command.Value && (c.Zone == CardZone.InHand || c.Zone == CardZone.Selected));
             Require(card != null && !(card.Zone == CardZone.Selected && player.Confirmed), "invalid_discard", "只能调试弃置未锁定的手牌。");
@@ -148,6 +159,7 @@ namespace Goa2.Rules
         }
         private static void DebugRecover(ContentCatalog catalog, GameState state, Command command)
         {
+            Require(state.Execution == null, "pending_card", "请先完成当前卡牌响应。");
             var player = DebugPlayer(state, command.TargetSeat);
             var card = player.Cards.SingleOrDefault(c => c.CardId == command.Value && c.Zone == CardZone.Discarded);
             Require(card != null, "invalid_recovery", "只能取回本人的弃牌。");
@@ -192,7 +204,7 @@ namespace Goa2.Rules
                 }
                 else if (state.Phase == Phase.InitiativeChoice && state.Pending?.Kind == "initiative")
                 {
-                    ChooseInitiative(state, AsActor(command, state.Pending.ChooserSeat, target: state.Pending.CandidateSeats.Min()));
+                    ChooseInitiative(catalog, state, AsActor(command, state.Pending.ChooserSeat, target: state.Pending.CandidateSeats.Min()));
                 }
                 else if (state.Phase == Phase.Action && state.Pending == null)
                 {

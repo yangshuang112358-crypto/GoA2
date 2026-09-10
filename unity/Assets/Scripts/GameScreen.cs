@@ -105,6 +105,7 @@ namespace Goa2.Presentation
         private void ClearPending()
         {
             chosenHero = null; chosenCell = null; moveMode = null; initiativeSeat = null; passPending = false; deploymentSeat = -1;
+            defenseCardId = ""; declineDefensePending = false;
         }
         private void Submit(CommandKind kind, string value = "", int target = -1, Hex destination = default, MoveMode mode = MoveMode.Secondary)
         {
@@ -224,6 +225,9 @@ namespace Goa2.Presentation
         private List<Hex> LegalCells(GameView view)
         {
             if (debugTeleport && view.DebugTeleports.TryGetValue(debugUnitId, out var teleportTargets)) return teleportTargets;
+            if (view.Pending?.Kind == "attack_target" && view.Pending.ChooserSeat == seat)
+                return view.Units.Where(u => view.AttackTargets.Contains(u.Id)).Select(u => u.Position).ToList();
+            if (view.Pending?.Kind == "hero_respawn") return view.RespawnCells;
             if (view.Pending?.Kind == "minion_spawn" && view.Pending.ChooserSeat == seat)
             {
                 PrepareSpawnSelection(view);
@@ -319,6 +323,9 @@ namespace Goa2.Presentation
                     RenderCardDetail(sidebar, catalog.Card(played.CardId));
                     if (view.ActiveSeat == seat)
                     {
+                        var primary = Button("开始主要攻击", () => { debugTeleport = false; Submit(CommandKind.BeginPrimary); }, "primary-button", "begin-primary");
+                        primary.SetEnabled(view.CanBeginPrimary); sidebar.Add(primary);
+                        if (view.PrimarySupported) sidebar.Add(Text("开始后按牌文完成行动；不能再改选次要移动或放弃。", "tiny"));
                         var normal = Button("次要移动" + (moveMode == MoveMode.Secondary ? "  ✓" : ""), () => { debugTeleport = false; moveMode = MoveMode.Secondary; chosenCell = null; passPending = false; Render(); }, "choice-button");
                         normal.SetEnabled(view.SecondaryMoves.Count > 0); sidebar.Add(normal);
                         var fast = Button("快速移动" + (moveMode == MoveMode.Fast ? "  ✓" : ""), () => { debugTeleport = false; moveMode = MoveMode.Fast; chosenCell = null; passPending = false; Render(); }, "choice-button");
@@ -327,7 +334,7 @@ namespace Goa2.Presentation
                             Confirm(sidebar, "确认移动至 " + chosenCell.Value, () => Submit(CommandKind.Move, destination: chosenCell!.Value, mode: moveMode!.Value));
                         else if (passPending) Confirm(sidebar, "确认放弃此牌行动", () => Submit(CommandKind.Pass));
                         else sidebar.Add(Button("放弃此牌行动", () => { passPending = true; moveMode = null; chosenCell = null; Render(); }, "quiet-button"));
-                        sidebar.Add(Text("主要行动效果待实施；可执行已开放的基础行动。", "tiny"));
+                        if (!view.PrimarySupported) sidebar.Add(Text("此卡主要行动待实装；次要行动按显示选项使用。", "tiny"));
                     }
                     break;
                 case Phase.RoundEnd:
@@ -336,7 +343,7 @@ namespace Goa2.Presentation
                     sidebar.Add(Button("保存本轮进度", Save, "primary-button"));
                     break;
                 case Phase.EffectChoice:
-                    RenderBattlefieldChoice(sidebar, view);
+                    if (!RenderCombatChoice(sidebar, view)) RenderBattlefieldChoice(sidebar, view);
                     break;
                 case Phase.Finished:
                     RenderVictory(sidebar, view);
@@ -397,6 +404,23 @@ namespace Goa2.Presentation
                 case "FrontlineCompleted": return "推进出生完成，继续原流程";
                 case "DebugCrystalSet": return "调试水晶生命已更新";
                 case "MatchWon": return (entry.Detail.StartsWith("Blue:") ? "蓝队" : "红队") + "获胜";
+                case "PrimaryActionStarted": return actor + "开始主要行动";
+                case "AttackTargetChoiceRequired": return actor + "选择攻击目标";
+                case "AttackTargetChosen": return actor + "确认攻击目标";
+                case "AttackDeclared": return actor + "发起攻击";
+                case "AttackCalculated": return entry.AttackValues == null ? "计算攻击" : AttackFormula(entry.AttackValues);
+                case "DefenseChoiceRequired": return actor + "需要选择防御";
+                case "NoDefenseAvailable": return actor + "没有可用防御牌";
+                case "DefenseDeclined": return actor + "选择不防御";
+                case "DefenseCalculated": return actor + "防御计算 " + entry.Detail;
+                case "DefenseResolved": return actor + (entry.Detail == "success" ? "防御成功" : "防御失败");
+                case "AttackResolved": return "本次攻击处理完毕";
+                case "CardEffectStopped": return "本牌剩余步骤无法执行，结束结算";
+                case "HeroDefeated": return actor + "被击败，等待下一张牌前复活";
+                case "AssistGoldAwarded": return actor + "获得助攻 " + entry.Detail + " 金";
+                case "CrystalDamaged": return actor + "所在队伍水晶减少 " + entry.Detail;
+                case "HeroRespawnChoiceRequired": return actor + "需要选择复活位置";
+                case "HeroRespawned": return actor + "已复活，继续本张牌";
                 case "ActionPassed": return actor + "放弃此牌行动";
                 case "DeploymentStarted": return "开始安排出生";
                 case "EmptyHandSkipped": return actor + "无手牌，自动跳过";
@@ -455,7 +479,7 @@ namespace Goa2.Presentation
                 tile.Add(Text(card.Text, "card-rules"));
                 tile.Add(Text("次要移动 " + Number(card.SecondaryMovement) + "    次要防御 " + Number(card.SecondaryDefense), "tiny"));
                 tile.Add(Text("底部被动 " + (card.Passive ?? "无"), "tiny"));
-                tile.Add(Text("牌文效果 · 待实施", "status-badge")); scroll.Add(tile);
+                tile.Add(Text(renderedView.SupportedPrimaryCards.Contains(card.Id) ? "主要行动 · 已开放" : renderedView.SupportedDefenseCards.Contains(card.Id) ? "防御响应 · 已开放" : "牌文效果 · 待实施", "status-badge")); scroll.Add(tile);
             }
         }
         private void RenderPublicCards(GameView view)

@@ -59,11 +59,18 @@
     },
     {
       "card_id": "wasp-07-抵挡屏障",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-07-抵挡屏障.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CombatQueryTests.cs",
+        "core/com.goa2.core/Tests/Editor/CombatFlowTests.cs"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs"
+      ]
     },
     {
       "card_id": "wasp-08-偏转屏障",
@@ -163,11 +170,18 @@
     },
     {
       "card_id": "shargatha-02-快速突刺",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-02-快速突刺.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CombatQueryTests.cs",
+        "core/com.goa2.core/Tests/Editor/CombatFlowTests.cs"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs"
+      ]
     },
     {
       "card_id": "shargatha-03-致命横扫",
@@ -539,11 +553,18 @@
     },
     {
       "card_id": "arien-13-挑战者",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-13-挑战者.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CombatQueryTests.cs",
+        "core/com.goa2.core/Tests/Editor/CombatFlowTests.cs"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs"
+      ]
     },
     {
       "card_id": "arien-14-滑溜溜",
@@ -715,11 +736,18 @@
     },
     {
       "card_id": "tigerclaw-18-躲闪",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-18-躲闪.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CombatQueryTests.cs",
+        "core/com.goa2.core/Tests/Editor/CombatFlowTests.cs"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs"
+      ]
     },
     {
       "card_id": "sabina-00-近身射击",
@@ -731,11 +759,18 @@
     },
     {
       "card_id": "sabina-01-拔枪",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-01-拔枪.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CombatQueryTests.cs",
+        "core/com.goa2.core/Tests/Editor/CombatFlowTests.cs"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs"
+      ]
     },
     {
       "card_id": "sabina-02-交叉火力",

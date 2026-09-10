@@ -14,7 +14,8 @@ namespace Goa2.Domain
         SetQuickSelection, DebugGold, DebugTeleport, DebugDiscard, DebugRecover,
         DebugPrepare, DebugSelectAll, DebugEquipCard, DebugSetCoin,
         DebugConfirmAll, DebugAdvance, DebugSetGold,
-        DebugRemoveMinion, DebugDefeatMinion, DebugSetCrystal, ChooseMinionSpawn
+        DebugRemoveMinion, DebugDefeatMinion, DebugSetCrystal, ChooseMinionSpawn,
+        BeginPrimary, ChooseAttackTarget, Defend, DeclineDefense, RespawnHero, DebugDefeatHero
     }
     public enum MoveMode { Secondary, Fast }
 
@@ -115,7 +116,12 @@ namespace Goa2.Domain
         public int Gold;
         public int InitiativeBonus;
         public int MovementBonus;
+        public int AttackBonus;
+        public int DefenseBonus;
+        public int RangeBonus;
+        public int RangedBonus;
         public bool Confirmed;
+        public bool AwaitingRespawn;
         public List<CardInstance> Cards = new List<CardInstance>();
     }
     [Serializable]
@@ -155,6 +161,7 @@ namespace Goa2.Domain
         public PendingChoice? ResumePending;
         public string Source = "";
         public bool FinishActionOnResume;
+        public bool ResumeCardExecution;
         public List<MinionSpawn> Remaining = new List<MinionSpawn>();
     }
     [Serializable]
@@ -171,6 +178,7 @@ namespace Goa2.Domain
         public Hex? To;
         public List<Hex> Path = new List<Hex>();
         public string Detail = "";
+        public AttackBreakdown? AttackValues;
     }
     [Serializable]
     public sealed class Command
@@ -226,6 +234,7 @@ namespace Goa2.Domain
         public Team? Winner;
         public string VictoryReason = "";
         public FrontlineTransition? Frontline;
+        public CardExecution? Execution;
         public List<PlayerState> Players = new List<PlayerState>();
         public List<UnitState> Units = new List<UnitState>();
         public PendingChoice? Pending;

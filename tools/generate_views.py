@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def outputs(root=ROOT):
     cards = json.loads((root / 'content/canonical/cards.json').read_text(encoding='utf-8'))['cards']
     heroes = json.loads((root / 'content/canonical/heroes.json').read_text(encoding='utf-8'))['heroes']
+    statuses = {s['card_id']: s for s in json.loads((root / 'content/status/cards.json').read_text(encoding='utf-8'))['cards']}
     out = {}
     index = []
     keywords = {
@@ -18,8 +19,9 @@ def outputs(root=ROOT):
     }
     for hero in heroes:
         hc = [c for c in cards if c['hero_id'] == hero['hero_id']]
-        lines = ['# ' + hero['name'] + '：卡牌资料', '', '自动生成的正式数据阅读视图。勿手工编辑；所有牌在本批均为 data_only。', '']
+        lines = ['# ' + hero['name'] + '：卡牌资料', '', '自动生成的正式数据阅读视图。勿手工编辑；实现证据统一记录在content/status/cards.json。', '']
         for c in hc:
+            status = statuses[c['id']]
             a, s = c['primary_action'], c['secondary_actions']
             facts = [f"- ID：{c['id']}", f"- 颜色 / 卡牌等级 / 先攻：{c['color_key']} / {c['level']} / {c['initiative']}",
                      f"- 主要行动：{a['category']} {a['value']}；感叹号：{a['exclamation']}",
@@ -34,7 +36,7 @@ def outputs(root=ROOT):
             if 'marker' in tags: questions.append('U-004')
             if 'repeat' in tags and c['color_key'] == 'purple': questions.append('U-008')
             index.append({'card_id':c['id'],'hero_id':c['hero_id'],'family':a['family'],'keyword_hints':tags,
-                          'analysis_status':'not_specified','draft':draft,'question_candidates':questions})
+                          'analysis_status':'not_specified' if status['contract'] is None else 'specified','draft':draft,'question_candidates':questions})
             out[draft] = '\n'.join(['# ' + c['name'] + '：规格准备稿', '',
                 '自动生成。仅保留输入与分析检查点，不代表合同已确定；请在独立正式合同中完成分析。', ''] + facts + [
                 '', '## 正式原文', '', a['text'], '', '## 分析检查点', '',
@@ -47,7 +49,7 @@ def outputs(root=ROOT):
                 '- 建立正常、边界、无目标、强制/可选、选择者、空资源、免疫/占位、重复/联动、保存恢复、非法命令与私有投影矩阵。',
                 '- 每项必须有初态、命令、事件、终态与禁止副作用；不适用写理由。',
                 '- 下一小任务：完成该牌合同及实质疑问，再实现一个最小必要原语。',
-                '- 当前状态：data_only；实际测试证据：无。', ''])
+                '- 当前状态：' + status['status'] + '；合同与实际测试证据见content/status/cards.json。', ''])
         out['docs/data/cards/' + hero['hero_id'] + '.md'] = '\n'.join(lines)
     out['docs/data/卡牌机制索引.json'] = json.dumps({'notice':'Keyword hints only; not effect semantics or completion evidence.','cards':index},ensure_ascii=False,indent=2)+'\n'
     return out

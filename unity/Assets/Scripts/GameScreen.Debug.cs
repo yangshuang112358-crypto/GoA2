@@ -58,6 +58,11 @@ namespace Goa2.Presentation
                     var defeat = Button("击败小兵 · 计金币", () => Submit(CommandKind.DebugDefeatMinion, debugUnitId, seat), "choice-button", "debug-defeat-minion");
                     defeat.SetEnabled(view.Phase != Phase.EffectChoice && view.Phase != Phase.Deployment && selectedUnit.Team != view.Players[seat].Team); removal.Add(defeat);
                 }
+                else
+                {
+                    var defeatHero = Button("击败该英雄 · 计奖励", () => Submit(CommandKind.DebugDefeatHero, debugUnitId, seat), "choice-button", "debug-defeat-hero");
+                    defeatHero.SetEnabled(view.Phase != Phase.EffectChoice && view.Phase != Phase.Deployment && selectedUnit.Team != view.Players[seat].Team); parent.Add(defeatHero);
+                }
             }
             parent.Add(Text("战线与水晶", "section-title"));
             foreach (var heavy in view.Units.Where(u => u.Kind == "heavy"))
@@ -81,8 +86,8 @@ namespace Goa2.Presentation
                 picker.RegisterValueChangedCallback(_ => { debugCardId = cards[picker.index].CardId; Render(); }); parent.Add(picker);
                 var controls = Box("debug-button-row"); parent.Add(controls);
                 var selected = cards.First(c => c.CardId == debugCardId);
-                var discard = Button("弃置所选牌", () => Submit(CommandKind.DebugDiscard, debugCardId, seat), "choice-button"); discard.SetEnabled(selected.Zone != CardZone.Discarded); controls.Add(discard);
-                var recover = Button("取回所选弃牌", () => Submit(CommandKind.DebugRecover, debugCardId, seat), "choice-button"); recover.SetEnabled(selected.Zone == CardZone.Discarded); controls.Add(recover);
+                var discard = Button("弃置所选牌", () => Submit(CommandKind.DebugDiscard, debugCardId, seat), "choice-button"); discard.SetEnabled(view.Phase != Phase.EffectChoice && selected.Zone != CardZone.Discarded); controls.Add(discard);
+                var recover = Button("取回所选弃牌", () => Submit(CommandKind.DebugRecover, debugCardId, seat), "choice-button"); recover.SetEnabled(view.Phase != Phase.EffectChoice && selected.Zone == CardZone.Discarded); controls.Add(recover);
             }
             var equipment = catalog.Cards.Where(c => c.HeroId == view.Players[seat].HeroId && c.Color != "purple").ToList();
             if (equipment.Count > 0)

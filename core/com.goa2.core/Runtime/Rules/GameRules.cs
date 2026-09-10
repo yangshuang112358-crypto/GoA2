@@ -32,11 +32,16 @@ namespace Goa2.Rules
                 case CommandKind.DeployHero: DeployHero(catalog, state, command); break;
                 case CommandKind.SelectCard: SelectCard(catalog, state, command); break;
                 case CommandKind.ConfirmCard: ConfirmCard(catalog, state, command); break;
-                case CommandKind.ChooseInitiative: ChooseInitiative(state, command); break;
+                case CommandKind.ChooseInitiative: ChooseInitiative(catalog, state, command); break;
                 case CommandKind.ChooseMinionSpawn: ChooseMinionSpawn(catalog, state, command); break;
+                case CommandKind.BeginPrimary: BeginPrimary(catalog, state, command); break;
+                case CommandKind.ChooseAttackTarget: ChooseAttackTarget(catalog, state, command); break;
+                case CommandKind.Defend: Defend(catalog, state, command); break;
+                case CommandKind.DeclineDefense: DeclineDefense(catalog, state, command); break;
+                case CommandKind.RespawnHero: RespawnHero(catalog, state, command); break;
                 case CommandKind.Move: Move(catalog, state, command); break;
                 case CommandKind.Pass:
-                    Require(state.Phase == Phase.Action && state.ActiveSeat == command.ActorSeat && state.Pending == null, "not_active", "当前不由你行动，或仍有待处理选择。");
+                    Require(state.Phase == Phase.Action && state.ActiveSeat == command.ActorSeat && state.Pending == null && state.Execution == null, "not_active", "当前不由你行动，或仍有待处理选择。");
                     Emit(state, command, "ActionPassed", command.ActorSeat, ActiveCard(state).CardId);
                     FinishAction(catalog, state, command);
                     break;
@@ -55,6 +60,7 @@ namespace Goa2.Rules
                 case CommandKind.DebugRemoveMinion:
                 case CommandKind.DebugDefeatMinion:
                 case CommandKind.DebugSetCrystal:
+                case CommandKind.DebugDefeatHero:
                     ApplyDebug(catalog, state, command); break;
                 default: throw new RuleViolation("unsupported_command", "此操作尚未实装。");
             }
