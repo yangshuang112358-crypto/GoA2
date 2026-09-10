@@ -27,6 +27,8 @@ namespace Goa2.Presentation
         private int? initiativeSeat;
         private bool passPending;
         private bool newMatchPending;
+        private string newMatchError = "";
+        private bool startupFailed;
         private string notice = "";
         private string? galleryHero;
         private bool galleryOpen;
@@ -89,14 +91,18 @@ namespace Goa2.Presentation
             }
             catch (Exception error)
             {
-                Debug.LogException(error);
+                Debug.LogWarning("启动读取失败："+error.Message);
                 var arguments = Environment.GetCommandLineArgs();
                 if (arguments.Contains("-goaScenario")) ScenarioPlayer.WriteFailure(arguments,error);
-                root.Add(new Label("无法加载项目内容。请先运行 tools/prepare_unity.py，再重新启动。\n" + error.Message));
+                int loadIndex=Array.IndexOf(arguments,"-goaLoad");
+                string? failedSave=catalog!=null && loadIndex>=0 && loadIndex+1<arguments.Length ? arguments[loadIndex+1] : null;
+                RenderStartupFailure(failedSave,error.Message);
+                if(arguments.Contains("-goaScenarioQuit")) root.schedule.Execute(()=>UnityApplication.Quit(1)).StartingIn(1500);
             }
         }
         private void NewMatch()
         {
+            startupFailed=false; newMatchError="";
             scenario = null;
             session = LocalGameFactory.Create(catalog, Guid.NewGuid().ToString("N"), new[] { "玩家 1", "玩家 2", "玩家 3", "玩家 4" }, UnityEngine.Random.Range(0, int.MaxValue), true);
             seat = 0; newMatchPending = false; notice = "测试对局已建立。可手工选英雄，或打开调试工具自动准备。";
@@ -202,7 +208,7 @@ namespace Goa2.Presentation
             if (revision != screenshotRevision || screenshotPath == null) yield break;
             Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(screenshotPath))!);
             var layout = new QaLayout { Width = Screen.width, Height = Screen.height, Seat = seat, Revision = renderedView.Revision,
-                Zoom = viewport.Zoom, HexRadius=board?.HexRadius ?? 0, Focus = viewport.Focus, Phase = renderedView.Phase.ToString(), Round = renderedView.Round, Turn = renderedView.Turn,
+                Zoom = viewport.Zoom, HexRadius=board?.HexRadius ?? 0, Focus = viewport.Focus, Phase = startupFailed ? "StartupError" : renderedView.Phase.ToString(), Round = renderedView.Round, Turn = renderedView.Turn,
                 LeftExpanded = leftExpanded, RightExpanded = rightExpanded, TopExpanded = topExpanded, BottomExpanded = bottomExpanded,
                 SelectedCell = chosenCell.HasValue ? chosenCell.Value.ToString() : "", BoardBounds = board?.worldBound ?? default,
                 ActiveSeat = renderedView.ActiveSeat ?? -1, RevealedHeading = root.Q<Label>("revealed-heading")?.text ?? "",
@@ -587,8 +593,9 @@ namespace Goa2.Presentation
             var dialog = Box("dialog"); overlay.Add(dialog);
             dialog.Add(Text("开始新对局", "panel-title"));
             dialog.Add(Text("将先保存当前对局，再建立新的四人热座。", "body"));
-            dialog.Add(Button("保存并开始", () => { if (SaveCurrent()) NewMatch(); }, "primary-button"));
-            dialog.Add(Button("继续当前对局", () => { newMatchPending = false; Render(); }, "quiet-button"));
+            if(newMatchError!="") { var message=Text(newMatchError,"restriction-text");message.name="new-match-save-error";dialog.Add(message); }
+            dialog.Add(Button("保存并开始", () => { if (SaveCurrent()) NewMatch(); else { newMatchError="保存失败，当前对局仍保留。请检查保存目录是否可写后重试，或继续当前对局。"; Render(); } }, "primary-button"));
+            dialog.Add(Button("继续当前对局", () => { newMatchPending = false;newMatchError=""; Render(); }, "quiet-button"));
         }
         private bool SaveCurrent()
         {

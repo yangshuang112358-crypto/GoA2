@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('all','smoke','presets','battlefield','combat','upgrade','round-minion','auras','barriers','marksman','adjacent-attacks','conditional-defenses','optional-discard')]
+    [ValidateSet('all','smoke','presets','recovery','battlefield','combat','upgrade','round-minion','auras','barriers','marksman','adjacent-attacks','conditional-defenses','optional-discard')]
     [string[]]$Case = @('all'),
     [ValidateRange(1152,3840)][int]$Width = 1280,
     [ValidateRange(768,2160)][int]$Height = 800,
@@ -10,6 +10,7 @@ $goaRoot = Split-Path -Parent $PSScriptRoot
 $goaCases = [ordered]@{
     smoke = @('test-player-ui.ps1','ui-smoke')
     presets = @('test-presets-ui.ps1','presets-ui')
+    recovery = @('test-recovery-ui.ps1','recovery-ui')
     battlefield = @('test-battlefield-ui.ps1','battlefield-ui')
     combat = @('test-combat-ui.ps1','combat-ui')
     upgrade = @('test-upgrade-ui.ps1','upgrade-ui')

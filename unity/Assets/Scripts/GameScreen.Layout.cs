@@ -15,7 +15,7 @@ namespace Goa2.Presentation
         private HexBoard? board;
         private void Update()
         {
-            if (session == null || galleryOpen || publicCardsOpen || newMatchPending || debugPresetsOpen || IsEditingText()) return;
+            if (session == null || startupFailed || galleryOpen || publicCardsOpen || newMatchPending || debugPresetsOpen || IsEditingText()) return;
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) SwitchSeat(0);
             if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)) SwitchSeat(1);
             if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)) SwitchSeat(2);
