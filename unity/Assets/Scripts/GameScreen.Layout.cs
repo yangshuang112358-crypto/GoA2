@@ -15,7 +15,7 @@ namespace Goa2.Presentation
         private HexBoard? board;
         private void Update()
         {
-            if (session == null || galleryOpen || publicCardsOpen || newMatchPending || IsEditingText()) return;
+            if (session == null || galleryOpen || publicCardsOpen || newMatchPending || debugPresetsOpen || IsEditingText()) return;
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) SwitchSeat(0);
             if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)) SwitchSeat(1);
             if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)) SwitchSeat(2);
@@ -34,6 +34,19 @@ namespace Goa2.Presentation
             seat = next; ClearPending();
             debugUnitId = renderedView.Units.FirstOrDefault(u => u.Seat == seat)?.Id ?? "";
             notice = "正在操控" + PlayerName(seat) + "。"; Render();
+            var roster=root.Q<ScrollView>("goa-scroll-roster");
+            var selected=roster?.Q<Button>("seat-"+(next+1));
+            if(roster==null || selected==null) return;
+            EventCallback<GeometryChangedEvent>? reveal=null;
+            reveal=_ =>
+            {
+                if(selected.worldBound.height<=0 || roster.contentViewport.worldBound.height<=0) return;
+                selected.UnregisterCallback(reveal);
+                // Wait for this rebuilt card's layout, then reveal it once. Ordinary
+                // state refreshes keep the user's scroll position and map viewport.
+                roster.ScrollTo(selected);
+            };
+            selected.RegisterCallback(reveal);
         }
         private static Color CardColor(string color)
         {
@@ -202,12 +215,22 @@ namespace Goa2.Presentation
                 if (instance == view.OwnCards.Last()) tile.AddToClassList("last-card");
                 if (instance.Zone == CardZone.Selected || defenseCardId == card.Id || discardCardId == card.Id) tile.AddToClassList("chosen");
                 if (instance.Zone == CardZone.PlayedResolved || instance.Zone == CardZone.Discarded) tile.AddToClassList("spent");
-                SeatLabel(tile, card.Name, "card-name", 6, 45);
-                SeatLabel(tile, card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()), "body", 53, 25);
-                SeatLabel(tile, "先 " + card.Initiative + " · 移 " + Number(card.SecondaryMovement) + " / 防 " + Number(card.SecondaryDefense), "tiny", 82, 43);
+                SeatLabel(tile, card.Name, "card-name", 4, 50);
+                string actionValue=card.Exclamation ? "!" : card.PrimaryValue.ToString();
+                var primary=SeatLabel(tile,card.PrimaryCategory+" "+actionValue,"body",60,25);
+                primary.style.whiteSpace=WhiteSpace.NoWrap;
+                tile.RegisterCallback<GeometryChangedEvent>(e =>
+                {
+                    bool narrow=e.newRect.width<106;
+                    primary.style.fontSize=narrow ? 14 : 17;
+                    primary.text=card.PrimaryCategory+(narrow ? "" : " ")+actionValue;
+                });
+                var stats=SeatLabel(tile, "先 " + card.Initiative + "\n移" + Number(card.SecondaryMovement) + " · 防" + Number(card.SecondaryDefense), "tiny", 90, 40);
+                stats.style.whiteSpace=WhiteSpace.NoWrap;
+                tile.tooltip=card.Name+"\n"+card.PrimaryCategory+" "+actionValue+SubtypeText(card)+"\n"+card.Text;
                 string status = instance.Zone == CardZone.Selected ? (view.QuickSelection ? "已选 · 等待其他人" : view.Players[seat].Confirmed ? "已确认" : "已选 · 待确认") : ZoneName(instance);
-                if(view.DefenseRestrictions.TryGetValue(card.Id,out string restriction)) { status="本次不能防御"; tile.tooltip=DefenseRestrictionText(restriction); }
-                SeatLabel(tile, status, "card-zone", 130, 29); row.Add(tile);
+                if(view.DefenseRestrictions.TryGetValue(card.Id,out string restriction)) { status="本次不能防御"; tile.tooltip+="\n"+DefenseRestrictionText(restriction); }
+                SeatLabel(tile, status, "card-zone", 140, 32).style.whiteSpace=WhiteSpace.Normal; row.Add(tile);
             }
         }
         private void BuildRightPanel(VisualElement parent, GameView view)

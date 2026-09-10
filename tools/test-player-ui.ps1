@@ -85,7 +85,9 @@ try {
     Assert-Ui ((Read-Ui).Seat -eq 2 -and $goaSave.Players[2].Gold -gt 0 -and $goaSave.Players[0].Gold -eq 0) 'Numeric input does not trigger a seat shortcut'
     Click-Ui '^在地图选择落点$'
     $goaUi = Read-Ui
-    $goaTarget = $goaUi.Cells | Where-Object Legal | Sort-Object { [Math]::Pow($_.Center.x-$goaCenterX,2)+[Math]::Pow($_.Center.y-$goaCenterY,2) } | Select-Object -First 1
+    $goaMap = $goaUi.BoardBounds
+    $goaTarget = $goaUi.Cells | Where-Object { $_.Legal -and $_.Center.x -gt ($goaMap.x+2) -and $_.Center.x -lt ($goaMap.x+$goaMap.width-2) -and $_.Center.y -gt ($goaMap.y+2) -and $_.Center.y -lt ($goaMap.y+$goaMap.height-2) } | Sort-Object { [Math]::Pow($_.Center.x-$goaCenterX,2)+[Math]::Pow($_.Center.y-$goaCenterY,2) } | Select-Object -First 1
+    if (-not $goaTarget) { throw 'Teleport selection has no visible legal cell; do not send a fallback click.' }
     & "$PSScriptRoot/qa-player.ps1" -Action Click -X ([int]$goaTarget.Center.x) -Y ([int]$goaTarget.Center.y) | Out-Null
     Assert-Ui ((Read-Ui).SelectedCell -eq "$($goaTarget.X),$($goaTarget.Y)") 'Zoomed map click selects the advertised legal hex'
     Click-Ui '^确认调试传送'; $goaSave = Read-TestSave

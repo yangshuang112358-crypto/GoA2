@@ -27,6 +27,9 @@ namespace Goa2.Editor
                 Directory.CreateDirectory(Path.GetDirectoryName(target)!);
                 File.WriteAllBytes(target, File.ReadAllBytes(Path.Combine(Root, relative)));
             }
+            string debugPath=Path.Combine(UnityApplication.streamingAssetsPath,"Goa2Debug","presets.json");
+            Directory.CreateDirectory(Path.GetDirectoryName(debugPath)!);
+            File.WriteAllText(debugPath,DebugPositions.Prepare(Root),new System.Text.UTF8Encoding(false));
             PlayerSettings.companyName = "Goa2V1";
             PlayerSettings.productName = "Goa2V1";
             PlayerSettings.bundleVersion = "0.1.0";

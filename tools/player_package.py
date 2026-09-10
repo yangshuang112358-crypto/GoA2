@@ -59,7 +59,7 @@ def file_digest(path):
         return digest(stream)
 
 
-SOURCE_DIRS = ('core/com.goa2.core/Runtime', 'unity/Assets', 'unity/Packages', 'unity/ProjectSettings', 'content/canonical')
+SOURCE_DIRS = ('core/com.goa2.core/Runtime', 'unity/Assets', 'unity/Packages', 'unity/ProjectSettings', 'content/canonical', 'tests/scenarios')
 
 
 def source_paths(root):
@@ -70,8 +70,10 @@ def source_paths(root):
                 relative = path.relative_to(root).as_posix()
                 if relative == 'unity/Assets/StreamingAssets/Goa2.meta' or relative.startswith('unity/Assets/StreamingAssets/Goa2/'):
                     continue
+                if relative == 'unity/Assets/StreamingAssets/Goa2Debug.meta' or relative.startswith('unity/Assets/StreamingAssets/Goa2Debug/'):
+                    continue
                 paths.add(relative)
-    for relative in ('content/manifest.json', 'core/com.goa2.core/package.json'):
+    for relative in ('content/manifest.json', 'core/com.goa2.core/package.json', 'tools/debug-positions.json'):
         if (root / relative).is_file():
             paths.add(relative)
     return paths

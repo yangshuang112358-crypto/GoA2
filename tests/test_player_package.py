@@ -77,6 +77,23 @@ class PlayerPackageTests(unittest.TestCase):
         with self.assertRaises(PackageError):
             verify_build(self.player, self.source)
 
+    def test_debug_preset_metadata_and_scenario_changes_require_a_rebuild(self):
+        inputs = ('tools/debug-positions.json', 'tests/scenarios/fixture.json')
+        for relative in inputs:
+            path = self.source / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text('{}', encoding='utf-8')
+            self.info['SourceFiles'].append(self.record(self.source, relative))
+        self.write_info()
+        verify_build(self.player, self.source)
+        for relative in inputs:
+            with self.subTest(relative=relative):
+                path = self.source / relative
+                path.write_text('{"changed":true}', encoding='utf-8')
+                with self.assertRaises(PackageError):
+                    verify_build(self.player, self.source)
+                path.write_text('{}', encoding='utf-8')
+
     def test_packaging_does_not_overwrite_an_existing_output(self):
         archive = self.root / 'existing.zip'
         archive.write_bytes(b'existing output')

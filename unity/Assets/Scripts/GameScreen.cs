@@ -172,6 +172,7 @@ namespace Goa2.Presentation
             if (galleryOpen) RenderGallery();
             if (publicCardsOpen) RenderPublicCards(renderedView);
             if (newMatchPending) RenderNewMatchDialog();
+            if (debugPresetsOpen) RenderDebugPositions();
             root.Query<ScrollView>().ForEach(scroll =>
             {
                 if (scrollPositions.TryGetValue(scroll.name, out var offset)) scroll.schedule.Execute(() => scroll.scrollOffset = offset);
@@ -185,13 +186,14 @@ namespace Goa2.Presentation
             captureJob?.Pause();
             captureJob = root.schedule.Execute(() => StartCoroutine(CaptureFrame(++screenshotRevision))).StartingIn(100);
         }
-        private static void SeatLabel(VisualElement parent, string caption, string css, float top, float height)
+        private static Label SeatLabel(VisualElement parent, string caption, string css, float top, float height)
         {
             var label = Text(caption, css);
             label.style.position = Position.Absolute;
             label.style.left = 10; label.style.right = 5; label.style.top = top; label.style.height = height;
             label.style.marginTop = 0; label.style.marginBottom = 0; label.style.paddingTop = 0; label.style.paddingBottom = 0;
             parent.Add(label);
+            return label;
         }
         private IEnumerator CaptureFrame(int revision)
         {
@@ -229,7 +231,16 @@ namespace Goa2.Presentation
             Vector2 center = element.worldBound.center;
             for (var ancestor = element.parent; ancestor != null; ancestor = ancestor.parent)
                 if (ancestor is ScrollView scroll && !scroll.contentViewport.worldBound.Contains(center)) return false;
-            return center.x >= 0 && center.y >= 0 && center.x < Screen.width && center.y < Screen.height;
+            if (center.x < 0 || center.y < 0 || center.x >= Screen.width || center.y >= Screen.height) return false;
+            if (element is Button)
+            {
+                // A point inside the reported viewport can still be clipped or covered.
+                // QA must use the same hit-test result as a real pointer click.
+                for (var picked = element.panel?.Pick(center); picked != null; picked = picked.parent)
+                    if (picked == element) return true;
+                return false;
+            }
+            return true;
         }
         [Serializable] private sealed class QaLayout
         {

@@ -4,6 +4,8 @@ __pycache__/
 TestResults/
 unity/Assets/StreamingAssets/Goa2/
 unity/Assets/StreamingAssets/Goa2.meta
+unity/Assets/StreamingAssets/Goa2Debug/
+unity/Assets/StreamingAssets/Goa2Debug.meta
 *.user
 *.suo
 *.py[cod]

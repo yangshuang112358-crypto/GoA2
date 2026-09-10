@@ -16,6 +16,11 @@ namespace Goa2.Presentation
         private void RenderDebugPanel(VisualElement parent, GameView view)
         {
             parent.Add(Text("手工测试", "panel-title"));
+            if(view.Sandbox)
+            {
+                var positions=Button("打开测试局面…",OpenDebugPositions,"choice-button","open-debug-presets");
+                positions.SetEnabled(!ScenarioRunning); parent.Add(positions);
+            }
             if (view.Phase == Phase.Finished) { RenderVictory(parent, view); return; }
             if (!view.Sandbox) { parent.Add(Text("这是普通确认对局。创建新的测试对局后可使用调试工具。", "body")); return; }
             parent.Add(Text(PlayerName(seat), "section-title"));

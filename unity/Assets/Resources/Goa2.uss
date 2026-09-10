@@ -71,6 +71,7 @@
 .status-badge { color: #a5bfb4; font-size: 10px; margin-top: 10px; border-top-width: 1px; border-top-color: #426057; padding-top: 8px; }
 .dialog-overlay { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0,0,0,.7); justify-content: center; align-items: center; }
 .dialog { width: 420px; padding: 28px; background-color: #23343e; border-width: 1px; border-color: #d4b789; border-radius: 8px; }
+.debug-preset-dialog { width: 760px; max-width: 90%; max-height: 94%; padding: 22px; }
 .unity-scroller--vertical { width: 9px; min-width: 9px; }
 .unity-scroller__low-button, .unity-scroller__high-button { display: none; }
 .unity-base-slider__tracker { background-color: #10222d; border-width: 0; }
@@ -111,7 +112,7 @@
 .team-info { padding: 8px; }
 .revealed-panel { height: 232px; min-height: 232px; margin-bottom: 10px; background-color: #172832; border-radius: 6px; border-width: 1px; border-color: #344e58; }
 .revealed-row { flex-direction: row; flex-grow: 1; flex-basis: 0; min-height: 0; padding: 6px; }
-.revealed-card { flex-grow: 1; flex-basis: 0; min-width: 0; padding: 7px; margin-right: 5px; background-color: #20343f; border-top-width: 3px; border-top-color: #4c626d; border-radius: 4px; }
+.revealed-card { flex-grow: 1; flex-basis: 0; min-width: 0; padding: 7px; margin-right: 5px; background-color: #20343f; border-top-width: 3px; border-top-color: #4c626d; border-radius: 4px; overflow: hidden; }
 .revealed-card .eyebrow { font-size: 13px; margin-bottom: 1px; }
 .revealed-card .tiny { font-size: 13px; margin-bottom: 0; }
 .public-card-name { font-size: 18px; color: #f1dfbc; -unity-font-style: bold; white-space: normal; }
@@ -123,9 +124,9 @@
 .hex-board { min-height: 60px; overflow: hidden; }
 .map-controls { flex-direction: row; }
 .board-footer { min-height: 30px; padding-top: 4px; padding-bottom: 3px; margin-bottom: 0; }
-.hand { height: 226px; min-height: 226px; padding-top: 0; padding-bottom: 6px; margin-top: 10px; border-width: 1px; border-color: #344e58; border-radius: 6px; }
+.hand { height: 236px; min-height: 236px; padding-top: 0; padding-bottom: 6px; margin-top: 10px; border-width: 1px; border-color: #344e58; border-radius: 6px; }
 .hand-row { padding-top: 6px; padding-left: 5px; padding-right: 5px; }
-.hand-card { margin-right: 6px; padding: 0; min-width: 0; }
+.hand-card { margin-right: 6px; padding: 0; min-width: 0; overflow: hidden; }
 .hand-card .card-name { font-size: 19px; }
 .hand-card .tiny { font-size: 14px; }
 .hand-card .card-zone { font-size: 13px; }

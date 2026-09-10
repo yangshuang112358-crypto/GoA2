@@ -29,7 +29,7 @@ namespace Goa2.Editor
     {
         // Keep these input roots aligned with tools/player_package.py. Generated catalog
         // copies are excluded here and covered by the original content and Player payload.
-        private static readonly string[] SourceDirectories={"core/com.goa2.core/Runtime","unity/Assets","unity/Packages","unity/ProjectSettings","content/canonical"};
+        private static readonly string[] SourceDirectories={"core/com.goa2.core/Runtime","unity/Assets","unity/Packages","unity/ProjectSettings","content/canonical","tests/scenarios"};
         private static string Relative(string root,string file) => file.Substring(root.TrimEnd(System.IO.Path.DirectorySeparatorChar).Length+1).Replace('\\','/');
         private static BuildFileRecord Record(string root,string path)
         {
@@ -44,7 +44,9 @@ namespace Goa2.Editor
             var files=SourceDirectories.SelectMany(directory=>Directory.EnumerateFiles(System.IO.Path.Combine(root,directory),"*",SearchOption.AllDirectories))
                 .Append(System.IO.Path.Combine(root,"content","manifest.json"))
                 .Append(System.IO.Path.Combine(root,"core","com.goa2.core","package.json"))
+                .Append(System.IO.Path.Combine(root,"tools","debug-positions.json"))
                 .Where(file=>Relative(root,file)!="unity/Assets/StreamingAssets/Goa2.meta" && !Relative(root,file).StartsWith("unity/Assets/StreamingAssets/Goa2/",StringComparison.Ordinal))
+                .Where(file=>Relative(root,file)!="unity/Assets/StreamingAssets/Goa2Debug.meta" && !Relative(root,file).StartsWith("unity/Assets/StreamingAssets/Goa2Debug/",StringComparison.Ordinal))
                 .OrderBy(file=>Relative(root,file),StringComparer.Ordinal);
             return files.Select(file=>Record(root,file)).ToList();
         }
