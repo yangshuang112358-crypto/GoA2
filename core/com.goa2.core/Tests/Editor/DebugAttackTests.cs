@@ -49,8 +49,8 @@ namespace Goa2.Tests
         {
             var catalog=BattlefieldTests.Catalog(); var game=BattlefieldTests.Ready(catalog);
             Apply(game,0,CommandKind.DebugAttack,"hero:1|5");
-            Assert.That(game.View(1).Pending.Kind, Is.EqualTo("defense"));
-            Assert.That(game.View(1).Attack.BaseAttack, Is.EqualTo(5));
+            Assert.That(game.View(1).Pending?.Kind, Is.EqualTo("defense"));
+            Assert.That(game.View(1).Attack?.BaseAttack, Is.EqualTo(5));
             game=LocalGameFactory.Restore(catalog,game.ExportSave());
             Apply(game,1,CommandKind.DeclineDefense);
             Assert.That(game.View(0).Phase, Is.EqualTo(Phase.Planning));
