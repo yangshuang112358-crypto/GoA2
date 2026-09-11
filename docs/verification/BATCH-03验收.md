@@ -37,7 +37,7 @@
 
 ## 程序与截图
 
-最新Windows程序包：[Goa2V1 Engine9 BATCH03](../../artifacts/releases/Goa2V1-e9-batch03-20260910-190705-63dbd031.zip)。解压后运行Goa2V1.exe；本地已构建入口为artifacts/player/Goa2V1.exe。包SHA256：
+本批Windows程序包保存在本机：`artifacts/releases/Goa2V1-e9-batch03-20260910-190705-63dbd031.zip`。构建产物未提交GitHub，克隆源码后须自行构建；本机包解压后运行Goa2V1.exe，本地已构建入口为artifacts/player/Goa2V1.exe。包SHA256：
 
 `ce41464384ac93d986d5ea72265c8897a3a309160c62aa8bfe990bd41a0e07a0`
 

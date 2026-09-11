@@ -55,7 +55,7 @@ python -B -m unittest discover -s tests -v
 
 工具校验JSON结构、ID/引用、升级树、地图出生点、原文迁移一致、来源和内容哈希、文档链接/历史引用以及生成视图。不启动旧服务器，不执行sources中的历史代码。
 内容变更后用 python -B tools/generate_views.py 更新可读视图；工具只写生成目录，不生成正式卡牌合同。
-本地结果见[验收报告](docs/verification/启动包验收.md)。GitHub Actions配置已提供，远程CI尚未运行。
+本地结果见[验收报告](docs/verification/启动包验收.md)。GitHub Actions已启用，远程结果见[内容与核心检查](https://github.com/yangshuang112358-crypto/GoA2/actions/workflows/validate.yml)。
 
 ## 目录与权威
 
