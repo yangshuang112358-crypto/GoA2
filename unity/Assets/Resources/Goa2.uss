@@ -191,7 +191,7 @@ Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
 .revealed-panel { height: 246px; min-height: 246px; }
 .revealed-row { padding: 0; flex-direction: column; }
 .revealed-card { width: 230px; min-width: 230px; height: 290px; min-height: 290px; flex-grow: 0; flex-shrink: 0; flex-basis: auto; border-top-width: 0; padding-top: 0; }
-.team-stripe { height: 6px; min-height: 6px; margin-left: -7px; margin-right: -7px; }
+.team-stripe { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; min-height: 6px; flex-shrink: 0; }
 .card-color-stripe { height: 9px; min-height: 9px; margin-left: -7px; margin-right: -7px; }
 .revealed-card .public-card-name { min-height: 34px; }
 .field-header { height: auto; min-height: 54px; flex-wrap: wrap; }
@@ -245,7 +245,7 @@ Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
 .hand-row, .revealed-row { min-height: 0; flex-basis: 0; flex-grow: 1; flex-shrink: 1; }
 .hand-card .card-zone { min-height: 30px; flex-shrink: 0; }
 .revealed-panel { height: 280px; min-height: 280px; }
-.revealed-card { height: 202px; min-height: 202px; }
+.revealed-card { height: 202px; min-height: 202px; padding-bottom: 14px; }
 .empty-revealed-panel { height: 140px; min-height: 140px; }
 .empty-revealed-panel .revealed-card { height: 60px; min-height: 60px; }
 .hand-card .card-rules-preview { -unity-text-align: upper-left; }

@@ -28,6 +28,12 @@ try {
     Check (@((Read-Ui).Elements | Where-Object { $_.Name -match '^revealed-color-[1-4]$' -and $_.Bounds.height -eq 9 }).Count -eq 4) 'All revealed card color stripes are nine pixels'
     $goaTeams=@((Read-Ui).Elements | Where-Object Name -match '^revealed-team-[1-4]$')
     Check (@($goaTeams | Where-Object {$_.Bounds.height -eq 6}).Count -eq 4 -and @($goaTeams | Where-Object {$_.Name -match '[13]$' -and $_.Background.b -gt $_.Background.r}).Count -eq 2 -and @($goaTeams | Where-Object {$_.Name -match '[24]$' -and $_.Background.r -gt $_.Background.b}).Count -eq 2) 'Revealed cards have separate six-pixel blue and red team stripes'
+    foreach($goaTeam in $goaTeams) {
+        $goaSeat=$goaTeam.Name.Split('-')[-1]
+        $goaTile=$goaTiles | Where-Object Name -eq ('revealed-seat-'+$goaSeat)
+        $goaColor=(Read-Ui).Elements | Where-Object Name -eq ('revealed-color-'+$goaSeat)
+        Check ($goaTeam.Bounds.y -gt ($goaColor.Bounds.y+$goaColor.Bounds.height) -and [Math]::Abs(($goaTeam.Bounds.y+$goaTeam.Bounds.height)-($goaTile.Bounds.y+$goaTile.Bounds.height)) -le 2) "Seat $goaSeat team stripe is at the bottom, separate from its top card stripe"
+    }
     Click -Element 'resolve-round-end'
     $goaUi=Read-Ui
     Check (@($goaUi.Buttons | Where-Object Name -like 'upgrade-card-*').Count -eq 6) 'All six candidates are present together'

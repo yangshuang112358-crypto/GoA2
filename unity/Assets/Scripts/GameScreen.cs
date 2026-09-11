@@ -91,6 +91,7 @@ namespace Goa2.Presentation
                 }
                 else NewMatch();
                 StartCardReadingAudit(arguments);
+                StartRevealedStripeAudit(arguments);
             }
             catch (Exception error)
             {

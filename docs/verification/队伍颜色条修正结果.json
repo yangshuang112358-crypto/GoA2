@@ -1,0 +1,1723 @@
+{
+  "date": "2026-09-12",
+  "engineVersion": 9,
+  "standaloneLaunch": "Blocked by Windows Smart App Control; not passed",
+  "physicalInput": "Not run",
+  "layoutRuns": [
+    {
+      "sha256": "e20c5160afec29c870f0ee36f52d0edb936a22677ac18229e109e666783a62e9",
+      "path": "artifacts/revealed-stripes/4f722e5df6844c4090c1579844bc5784/report.json",
+      "report": {
+        "Mode": "Unity Editor Play Mode geometry with debug setup and commands; no standalone Player or physical input",
+        "StartedUtc": "2026-09-11T18:59:06.7004535Z",
+        "FinishedUtc": "2026-09-11T18:59:07.8872923Z",
+        "Width": 1600,
+        "Height": 1000,
+        "Passed": false,
+        "States": [
+          {
+            "Name": "No selections",
+            "Phase": "Planning",
+            "ExpectedCards": 0,
+            "ActualCards": 0,
+            "Passed": false,
+            "Tiles": [
+              {
+                "Seat": 1,
+                "HasCard": false,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 242.0
+              },
+              {
+                "Seat": 2,
+                "HasCard": false,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 242.0
+              },
+              {
+                "Seat": 3,
+                "HasCard": false,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 242.0
+              },
+              {
+                "Seat": 4,
+                "HasCard": false,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 242.0
+              }
+            ]
+          },
+          {
+            "Name": "Three private selections, nothing revealed",
+            "Phase": "Planning",
+            "ExpectedCards": 0,
+            "ActualCards": 0,
+            "Passed": false,
+            "Tiles": [
+              {
+                "Seat": 1,
+                "HasCard": false,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 242.0
+              },
+              {
+                "Seat": 2,
+                "HasCard": false,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 242.0
+              },
+              {
+                "Seat": 3,
+                "HasCard": false,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 242.0
+              },
+              {
+                "Seat": 4,
+                "HasCard": false,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 242.0
+              }
+            ]
+          },
+          {
+            "Name": "Four revealed cards",
+            "Phase": "Action",
+            "ExpectedCards": 4,
+            "ActualCards": 4,
+            "Passed": false,
+            "Tiles": [
+              {
+                "Seat": 1,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 329.0,
+                  "y": 179.0,
+                  "width": 344.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 329.0,
+                  "y": 185.0,
+                  "width": 344.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 358.0
+              },
+              {
+                "Seat": 2,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 358.0
+              },
+              {
+                "Seat": 3,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 358.0
+              },
+              {
+                "Seat": 4,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 358.0
+              }
+            ]
+          },
+          {
+            "Name": "Next planning retains revealed cards",
+            "Phase": "Planning",
+            "ExpectedCards": 4,
+            "ActualCards": 4,
+            "Passed": false,
+            "Tiles": [
+              {
+                "Seat": 1,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 358.0
+              },
+              {
+                "Seat": 2,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 358.0
+              },
+              {
+                "Seat": 3,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 358.0
+              },
+              {
+                "Seat": 4,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": true,
+                "Passed": false,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 185.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 358.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "sha256": "5e0a73b9eb38c5d8faba1a8d1a7b8ae08290bdbf13f5a33dbeeb57cae36aa0a6",
+      "path": "artifacts/revealed-stripes/1e8efae59aa040cabb22735a2a64368f/report.json",
+      "report": {
+        "Mode": "Unity Editor Play Mode geometry with debug setup and commands; no standalone Player or physical input",
+        "StartedUtc": "2026-09-11T19:01:22.124633Z",
+        "FinishedUtc": "2026-09-11T19:01:23.2972509Z",
+        "Width": 1600,
+        "Height": 1000,
+        "Passed": true,
+        "States": [
+          {
+            "Name": "No selections",
+            "Phase": "Planning",
+            "ExpectedCards": 0,
+            "ActualCards": 0,
+            "Passed": true,
+            "Tiles": [
+              {
+                "Seat": 1,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              },
+              {
+                "Seat": 2,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              },
+              {
+                "Seat": 3,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              },
+              {
+                "Seat": 4,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              }
+            ]
+          },
+          {
+            "Name": "Three private selections, nothing revealed",
+            "Phase": "Planning",
+            "ExpectedCards": 0,
+            "ActualCards": 0,
+            "Passed": true,
+            "Tiles": [
+              {
+                "Seat": 1,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              },
+              {
+                "Seat": 2,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              },
+              {
+                "Seat": 3,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              },
+              {
+                "Seat": 4,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              }
+            ]
+          },
+          {
+            "Name": "Four revealed cards",
+            "Phase": "Action",
+            "ExpectedCards": 4,
+            "ActualCards": 4,
+            "Passed": true,
+            "Tiles": [
+              {
+                "Seat": 1,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 329.0,
+                  "y": 373.0,
+                  "width": 344.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 329.0,
+                  "y": 179.0,
+                  "width": 344.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              },
+              {
+                "Seat": 2,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              },
+              {
+                "Seat": 3,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              },
+              {
+                "Seat": 4,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              }
+            ]
+          },
+          {
+            "Name": "Next planning retains revealed cards",
+            "Phase": "Planning",
+            "ExpectedCards": 4,
+            "ActualCards": 4,
+            "Passed": true,
+            "Tiles": [
+              {
+                "Seat": 1,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              },
+              {
+                "Seat": 2,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              },
+              {
+                "Seat": 3,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              },
+              {
+                "Seat": 4,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "sha256": "f1fd47146c092995e60aca6cd963d4eeecae9426ff7cf8030d1ec48b855426d0",
+      "path": "artifacts/revealed-stripes/28eff55ffe5547a8b70ddaa00562af0d/report.json",
+      "report": {
+        "Mode": "Unity Editor Play Mode geometry with debug setup and commands; no standalone Player or physical input",
+        "StartedUtc": "2026-09-11T19:02:17.4752317Z",
+        "FinishedUtc": "2026-09-11T19:02:18.6635739Z",
+        "Width": 1280,
+        "Height": 800,
+        "Passed": true,
+        "States": [
+          {
+            "Name": "No selections",
+            "Phase": "Planning",
+            "ExpectedCards": 0,
+            "ActualCards": 0,
+            "Passed": true,
+            "Tiles": [
+              {
+                "Seat": 1,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              },
+              {
+                "Seat": 2,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              },
+              {
+                "Seat": 3,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              },
+              {
+                "Seat": 4,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              }
+            ]
+          },
+          {
+            "Name": "Three private selections, nothing revealed",
+            "Phase": "Planning",
+            "ExpectedCards": 0,
+            "ActualCards": 0,
+            "Passed": true,
+            "Tiles": [
+              {
+                "Seat": 1,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              },
+              {
+                "Seat": 2,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              },
+              {
+                "Seat": 3,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              },
+              {
+                "Seat": 4,
+                "HasCard": false,
+                "EmptyHasNoStripes": true,
+                "TeamAtBottom": false,
+                "SeparateFromContent": false,
+                "CardColorAtTop": false,
+                "CorrectTeam": false,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 60.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 0.0,
+                  "y": 0.0,
+                  "width": 0.0,
+                  "height": 0.0
+                },
+                "ContentBottom": 0.0
+              }
+            ]
+          },
+          {
+            "Name": "Four revealed cards",
+            "Phase": "Action",
+            "ExpectedCards": 4,
+            "ActualCards": 4,
+            "Passed": true,
+            "Tiles": [
+              {
+                "Seat": 1,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 329.0,
+                  "y": 373.0,
+                  "width": 344.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 329.0,
+                  "y": 179.0,
+                  "width": 344.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              },
+              {
+                "Seat": 2,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              },
+              {
+                "Seat": 3,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              },
+              {
+                "Seat": 4,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              }
+            ]
+          },
+          {
+            "Name": "Next planning retains revealed cards",
+            "Phase": "Planning",
+            "ExpectedCards": 4,
+            "ActualCards": 4,
+            "Passed": true,
+            "Tiles": [
+              {
+                "Seat": 1,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 327.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              },
+              {
+                "Seat": 2,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 680.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              },
+              {
+                "Seat": 3,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1033.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              },
+              {
+                "Seat": 4,
+                "HasCard": true,
+                "EmptyHasNoStripes": false,
+                "TeamAtBottom": true,
+                "SeparateFromContent": true,
+                "CardColorAtTop": true,
+                "CorrectTeam": true,
+                "Passed": true,
+                "CardBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 202.0
+                },
+                "TeamBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 375.0,
+                  "width": 348.0,
+                  "height": 6.0
+                },
+                "ColorBounds": {
+                  "serializedVersion": "2",
+                  "x": 1386.0,
+                  "y": 179.0,
+                  "width": 348.0,
+                  "height": 9.0
+                },
+                "ContentBottom": 352.0
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 1,
+    "bytes": 107808095
+  },
+  "pythonTestsPassed": 32,
+  "archive": "artifacts/releases/Goa2V1-e9-team-stripe-20260912-20260911-190350-c9e44508.zip",
+  "archiveSha256": "fa042b8f93ad4c288418b2aae9162f91683f4a5eef10d86999741d3386861ec8",
+  "deferredRuling": "D-025 / EFFECT-001; recorded only",
+  "keywordPresentation": "Research only",
+  "sourceFiles": [
+    {
+      "path": "unity/Assets/Scripts/GameScreen.Layout.cs",
+      "sha256": "f146bbebae4d3f60c41de8b6bccda551c643c1a7f19fd7f3d65c0c76bdc8add6"
+    },
+    {
+      "path": "unity/Assets/Resources/Goa2.uss",
+      "sha256": "3d6efe0bc15b948b8119cc7f33a47b61695c5c8d28cd53bdf51a41b7c7b9d58e"
+    },
+    {
+      "path": "unity/Assets/Scripts/GameScreen.RevealedStripeAudit.cs",
+      "sha256": "94e30cfdf21603e012f6faf18773d8975eada93367e18224b40ac1b0bc4fc9fa"
+    },
+    {
+      "path": "unity/Assets/Editor/RevealedStripeAuditRunner.cs",
+      "sha256": "bfc5a6391a90f210e8f77f5eb0b8fa06c44422ee16877018b3b781eab24e16a5"
+    }
+  ]
+}

@@ -162,15 +162,14 @@ namespace Goa2.Presentation
                 var play = latest == null ? null : player.Plays.LastOrDefault(p => p.Round == latest.Round && p.Turn == latest.Turn);
                 var tile = Box("revealed-card"); row.Add(tile);
                 tile.name="revealed-seat-"+(player.Seat+1);
-                var teamStrip=Box("team-stripe");teamStrip.name="revealed-team-"+(player.Seat+1);teamStrip.style.backgroundColor=player.Team==Team.Blue ? new Color(.15f,.45f,.95f) : new Color(.9f,.2f,.25f);tile.Add(teamStrip);
-                var colorStrip=Box("card-color-stripe");colorStrip.name="revealed-color-"+(player.Seat+1);tile.Add(colorStrip);
                 if (play == null) { tile.Add(Text((player.Seat+1)+" · "+HeroName(player.HeroId)+" · "+(latest==null ? "尚未揭示" : "未出牌"),"muted")); continue; }
                 var card = catalog.Card(play.CardId); tile.style.borderTopColor = CardColor(card.Color);
-                colorStrip.style.backgroundColor=CardColor(card.Color);
+                var colorStrip=Box("card-color-stripe");colorStrip.name="revealed-color-"+(player.Seat+1);colorStrip.style.backgroundColor=CardColor(card.Color);tile.Add(colorStrip);
                 if (view.ActiveSeat == player.Seat) tile.AddToClassList("active-public-card");
                 tile.Add(Text((player.Seat+1)+" · "+HeroName(player.HeroId)+" · "+card.Name, "public-card-name"));
                 CardRulesPreview(tile,card,"revealed-rules-"+player.Seat);
                 CompactCardNumbers(tile,card,player,true,"revealed-"+player.Seat,true);
+                var teamStrip=Box("team-stripe");teamStrip.name="revealed-team-"+(player.Seat+1);teamStrip.style.backgroundColor=player.Team==Team.Blue ? new Color(.15f,.45f,.95f) : new Color(.9f,.2f,.25f);tile.Add(teamStrip);
                 AttachCardReading(tile,card,player);
             }
         }
