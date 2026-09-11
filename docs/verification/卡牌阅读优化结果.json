@@ -1,0 +1,59 @@
+{
+  "packageSmoke": {
+    "passed": true,
+    "steps": 20
+  },
+  "date": "2026-09-11",
+  "fullCardLayouts": {
+    "large": 108,
+    "passed": true,
+    "small": 108,
+    "mode": "Real Player font/layout measurement and synthetic pointer events"
+  },
+  "note": "Full card reading code and stylesheet are unchanged since the 108+108 audits; the final upgrade-only compact-number change has its own actual Player grid snapshot. Package was independently extracted and run.",
+  "upgradeGrid": {
+    "allFullBoundsWithinViewport": true,
+    "width": 1600,
+    "height": 1000,
+    "rows": 3,
+    "cards": 6
+  },
+  "physicalInput": "Not completed: Windows repeatedly refused foreground focus; no input sent to other apps",
+  "sourceFilesMatchFinalBuild": true,
+  "failureFirst": "artifacts/unity/card-reading-ui-1600x1000-20260911-032028.json",
+  "reports": [
+    {
+      "path": "artifacts/card-layout/40e44d2b84a24b678e1b80fb6583a9f2/report.json",
+      "sha256": "5693a3522db876e24c198639b9f9aa74d00114fe753898f094cf1652ee1e09ea"
+    },
+    {
+      "path": "artifacts/card-layout/62eac90424564157904797572b62f276/report.json",
+      "sha256": "5992969ceb89ce454be34b791fa20ccbe6561d2589fb2b5fcd1b43996a340501"
+    },
+    {
+      "path": "artifacts/unity/card-reading-upgrades-final.ui.json",
+      "sha256": "24558b31025453d259712b9f896099deddfb4162f47c476c985e17fc6a2b3f76"
+    },
+    {
+      "path": "artifacts/unity/card-reading-validation.txt",
+      "sha256": "9421f9b1e71c7fb28d1bda3a2f43f7378a65f6e4c31172c970cb02b599be592b"
+    },
+    {
+      "path": "artifacts/release-smoke/473918668172420f85df0f948726a2c0/smoke.json",
+      "sha256": "30df74b4482ecac299a9f2b2f1e6b6410378c9b8aac26e1c357199cdffbe843b"
+    },
+    {
+      "path": "artifacts/releases/Goa2V1-e9-card-reading-20260911-034427-e77aac35.zip",
+      "sha256": "4931015e618245b4abae249e5faaadaeffa914cd0352c9b8eb0e1c49ee3554e7"
+    },
+    {
+      "path": "artifacts/player/build-info.json",
+      "sha256": "19db32e8ed2441e868e85fda75c54dbbc81e0d94582ca6c1bed03466fefeed56"
+    }
+  ],
+  "engineVersion": 9,
+  "validation": {
+    "checks": 32,
+    "passed": true
+  }
+}

@@ -30,10 +30,10 @@ namespace Goa2.Presentation
                     tile.style.borderTopColor=CardColor(color);
                     if(upgradeCardId==id) tile.AddToClassList("chosen");
                     tile.Add(Text(card.Name+" · "+level+"级","card-name"));
-                    tile.Add(Text(card.PrimaryCategory+" "+(card.Exclamation ? "!" : card.PrimaryValue.ToString())+SubtypeText(card),"body"));
-                    tile.Add(Text("先 "+card.Initiative+" · 移 "+Number(card.SecondaryMovement)+" / 防 "+Number(card.SecondaryDefense),"tiny"));
+                    CardRulesPreview(tile,card,"upgrade-rules-"+id);
+                    CompactCardNumbers(tile,card,view.Players[seat],false,"upgrade-"+id);
                     tile.Add(Text(option==null ? "此色本阶段已升级" : purple ? "8级唯一紫卡 · 仍须确认" : "永久"+option.Bonus+" +1（未选卡）","card-zone"));
-                    tile.tooltip=card.Text+(option==null || purple ? "" : "\n被动来自："+catalog.Card(option.RejectedCardId).Name);
+                    AttachCardReading(tile,card,view.Players[seat]);
                     row.Add(tile);
                 }
             }

@@ -223,3 +223,38 @@ Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
 .purple-preview { position: absolute; width: 500px; padding: 16px; background-color: #211b35; border-width: 2px; border-color: #b17ce3; }
 .section-title { color: #d7e5e4; }
 .event-box .panel-heading .eyebrow { flex-grow: 1; }
+
+/* Card reading: a compact description in the rail and a full-size, non-scrolling hover card. */
+.revealed-panel, .hand { height: 318px; min-height: 318px; }
+.hand.upgrade-panel { height: auto; min-height: 760px; }
+.hand-card, .revealed-card { width: 348px; min-width: 348px; height: 244px; min-height: 244px; align-items: stretch; }
+.hand-card .card-name { min-height: 34px; margin-top: 0; margin-bottom: 2px; }
+.hand-card .card-zone { margin-top: 0; margin-bottom: 0; }
+.card-rules-preview { width: 100%; font-size: 26px; color: #e0e9e5; white-space: normal; overflow: hidden; text-overflow: clip; height: 64px; min-height: 64px; flex-shrink: 0; margin-top: 0; margin-bottom: 4px; -unity-text-align: upper-left; }
+.card-compact-stats { width: 100%; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; margin-top: 2px; }
+.card-stat-chip { flex-direction: row; align-items: center; flex-grow: 0; flex-shrink: 0; min-height: 30px; margin-right: 12px; }
+.card-stat-chip .tiny { margin-bottom: 0; white-space: nowrap; }
+.card-stat-chip .passive-plus { margin-left: 4px; margin-top: 0; margin-bottom: 0; }
+.revealed-card .eyebrow { margin-top: 0; margin-bottom: 0; }
+.card-preview { position: absolute; padding: 20px; background-color: #172a36; border-width: 2px; border-color: #abc6cc; border-top-width: 9px; border-radius: 6px; }
+.card-preview .panel-title { margin-bottom: 6px; }
+.card-preview-rules { font-size: 28px; color: #f0f2e9; white-space: normal; margin-top: 12px; margin-bottom: 16px; flex-shrink: 0; }
+.card-preview .card-compact-stats { margin-top: 4px; margin-bottom: 8px; }
+.card-detail .card-rules { flex-shrink: 0; }
+.upgrade-card .card-rules-preview { height: 58px; min-height: 58px; }
+.hand-row, .revealed-row { min-height: 0; flex-basis: 0; flex-grow: 1; flex-shrink: 1; }
+.hand-card .card-zone { min-height: 30px; flex-shrink: 0; }
+.revealed-panel { height: 280px; min-height: 280px; }
+.revealed-card { height: 202px; min-height: 202px; }
+.empty-revealed-panel { height: 140px; min-height: 140px; }
+.empty-revealed-panel .revealed-card { height: 60px; min-height: 60px; }
+.hand-card .card-rules-preview { -unity-text-align: upper-left; }
+.hand { height: 340px; min-height: 340px; }
+.hand-card { height: 262px; min-height: 262px; }
+.hand-card .card-name { height: 36px; min-height: 36px; padding-top: 0; padding-bottom: 0; }
+.card-rules-preview, .upgrade-card .card-rules-preview { white-space: nowrap; height: 80px; min-height: 80px; margin: 0; padding: 0; }
+.card-stat-chip { height: 36px; min-height: 36px; }
+.card-stat-chip .tiny, .card-stat-chip .passive-plus { margin: 0; padding: 0; }
+.card-stat-chip .passive-plus { margin-left: 4px; }
+.hand-card .card-zone { height: 34px; min-height: 34px; padding: 0; }
+.revealed-card .public-card-name { height: 40px; min-height: 40px; overflow: hidden; }

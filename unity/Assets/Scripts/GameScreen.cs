@@ -90,6 +90,7 @@ namespace Goa2.Presentation
                     notice = "已恢复指定存档。"; Render();
                 }
                 else NewMatch();
+                StartCardReadingAudit(arguments);
             }
             catch (Exception error)
             {
@@ -179,6 +180,7 @@ namespace Goa2.Presentation
                 spaceGuardInstalled=true;
             }
             root.Query<ScrollView>().ForEach(scroll => { if (scroll.name.StartsWith("goa-scroll-")) scrollPositions[scroll.name] = scroll.scrollOffset; });
+            HideCardPreview();
             root.Clear();
             confirmAction=null; confirmButton=null;
             renderedView = session.View(seat);
@@ -231,7 +233,9 @@ namespace Goa2.Presentation
             root.Query<Button>().ForEach(button => layout.Buttons.Add(new QaButton { Name = button.name, Text = button.text, Bounds = button.worldBound, Enabled = button.enabledInHierarchy, Visible = VisibleCenter(button), Viewports=ScrollViewports(button) }));
             root.Query<Label>().ForEach(label => { if(!string.IsNullOrEmpty(label.name)) layout.Labels.Add(new QaLabel {Name=label.name,Text=label.text,Bounds=label.worldBound,Visible=VisibleCenter(label),FontSize=label.resolvedStyle.fontSize,Color=label.resolvedStyle.color}); });
             layout.MinimumFontSize=root.Query<TextElement>().ToList().Where(e=>!string.IsNullOrEmpty(e.text) && VisibleCenter(e)).Select(e=>e.resolvedStyle.fontSize).DefaultIfEmpty(26).Min();
-            root.Query<VisualElement>().ForEach(e=> {if(e.name.StartsWith("purple-") || e.name.StartsWith("revealed-") || e.name.StartsWith("gallery-row-") || e.name.StartsWith("upgrade-row-") || e.name.StartsWith("hand-")) layout.Elements.Add(new QaElement {Name=e.name,Bounds=e.worldBound,Visible=VisibleCenter(e),Background=e.resolvedStyle.backgroundColor,BorderTop=e.resolvedStyle.borderTopWidth});});
+            layout.CardPreviewScrollCount=cardPreview?.Query<ScrollView>().ToList().Count ?? 0;
+            layout.NestedCardScrollCount=root.Query<ScrollView>().ToList().Count(e=>e.ClassListContains("detail-text") || e.ClassListContains("public-card-text"));
+            root.Query<VisualElement>().ForEach(e=> {if(e.name.StartsWith("purple-") || e.name.StartsWith("revealed-") || e.name.StartsWith("gallery-row-") || e.name.StartsWith("upgrade-row-") || e.name.StartsWith("hand-") || e.name.StartsWith("card-preview") || e.name.StartsWith("inspect-")) layout.Elements.Add(new QaElement {Name=e.name,Bounds=e.worldBound,Visible=VisibleCenter(e),Background=e.resolvedStyle.backgroundColor,BorderTop=e.resolvedStyle.borderTopWidth});});
             root.Query<ScrollView>().ForEach(scroll=>
             {
                 var slider=scroll.horizontalScroller.Q<Slider>();var thumb=slider?.Q(className:"unity-base-slider__dragger");
@@ -283,6 +287,7 @@ namespace Goa2.Presentation
             public int Width, Height, Seat, Round, Turn, ActiveSeat, FilledPlayDots, DiscardDotCount; public long Revision; public float Zoom, HexRadius; public Vector2 Focus; public Rect BoardBounds;
             public string Phase = "", SelectedCell = "", RevealedHeading = "", EffectAreaId="", PrimaryRestriction="", AttackSourceSummary="";
             public int ActiveEffectCount, EffectAreaCells;
+            public int CardPreviewScrollCount, NestedCardScrollCount;
             public float MinimumFontSize;
             public List<QaElement> Elements=new List<QaElement>();
             public List<QaScroll> Scrolls=new List<QaScroll>();
@@ -448,15 +453,15 @@ namespace Goa2.Presentation
         {
             var box = Box("card-detail");
             box.Add(Text(card.Name + "    先攻 " + card.Initiative, "section-title"));
+            box.Add(Text(card.Text, "card-rules"));
             box.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "muted"));
-            var scroll = new ScrollView(); scroll.AddToClassList("detail-text");
-            scroll.Add(Text(card.Text, "card-rules")); box.Add(scroll);
             box.Add(Text("移 " + Number(card.SecondaryMovement) + "    防 " + Number(card.SecondaryDefense), "tiny"));
             parent.Add(box);
+            AttachCardReading(box,card);
         }
         private void RenderRecentEvents(VisualElement parent, GameView view)
         {
-            var box = Box("event-box");
+            var box = Box("event-box");box.name="recent-event-log";
             var heading=Box("panel-heading");box.Add(heading);heading.Add(Text("最近记录","eyebrow"));
             heading.Add(Button("展开",()=>{historyOpen=true;historyRound=view.Round;Render();},"compact-button","history-open"));
             foreach (var entry in view.Events.TakeLast(12))
@@ -632,7 +637,7 @@ namespace Goa2.Presentation
             supportedButton=Button("",()=>{galleryOnlySupported=!galleryOnlySupported;FilterCards();},"quiet-button","gallery-supported");filters.Add(supportedButton);
             foreach (var card in catalog.Cards.Where(c => galleryHero=="" || c.HeroId == galleryHero))
             {
-                var tile = Box("gallery-card"); tile.AddToClassList("color-" + card.Color);
+                var tile = Box("gallery-card");tile.name="inspect-gallery-"+card.Id; tile.AddToClassList("color-" + card.Color);
                 tile.style.borderTopColor=CardColor(card.Color);
                 var name=Text(card.Name,"card-name");name.name="gallery-card-name-"+card.Id;tile.Add(name);
                 tile.Add(Text((card.Color=="purple" ? "紫卡 · 英雄8级获得" : card.Level.HasValue ? "卡牌等级 " + card.Level : "基础牌") + "    先攻 " + card.Initiative, "muted"));
@@ -643,6 +648,7 @@ namespace Goa2.Presentation
                 tile.Add(Text("底部被动 " + (card.Passive ?? "无"), "tiny"));
                 tile.Add(Text(renderedView.SupportedPrimaryCards.Contains(card.Id) ? "主要行动 · 已开放" : renderedView.SupportedDefenseCards.Contains(card.Id) ? "防御响应 · 已开放" : "牌文效果 · 待实施", "status-badge")); colorRows[card.Color].Add(tile);
                 tiles.Add((card,tile));
+                AttachCardReading(tile,card);
             }
             FilterCards();
         }
@@ -666,6 +672,7 @@ namespace Goa2.Presentation
                 tile.Add(Text(card.Text, "card-rules"));
                 tile.Add(Text("次要移动 " + Number(card.SecondaryMovement) + " · 次要防御 " + Number(card.SecondaryDefense), "tiny"));
                 tile.Add(Text("底部被动 " + (card.Passive ?? "无"), "tiny")); scroll.Add(tile);
+                AttachCardReading(tile,card,player);
             }
             if (view.Players.All(player => player.Plays.Count == 0)) scroll.Add(Text("本对局尚未揭示卡牌。", "body"));
         }
