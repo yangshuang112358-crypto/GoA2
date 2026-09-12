@@ -1,0 +1,64 @@
+{
+  "engine": 33,
+  "implemented_cards": 44,
+  "data_only_cards": 64,
+  "build_utc": "2026-09-12T21:46:54.1040853Z",
+  "assemblies": {
+    "Goa2.Application.dll": "6a419b3e8618b418de50f69c313a8c8fc7314cfa39ee1806bd4e2f937c91090a",
+    "Goa2.Domain.dll": "49357a2776aeae9cc8a6c52f614d6ce71d5f285d72ba067a3b32388231f91084",
+    "Goa2.Infrastructure.dll": "679ee646b513cd96321bc2d5332dacaf53b88f059e96ff38169ed406d89ec13f",
+    "Goa2.Presentation.dll": "27aa59f43839c7f17cb4444fa8af5489ee319567d6142e7a35d55716011ffc2a",
+    "Goa2.Rules.dll": "1f8b8d33058b4c444cf22bad601e5274b7ea7b0d644eb7b21e28dfdd1fd80240"
+  },
+  "core": {
+    "passed": 950,
+    "failed": 0,
+    "report": "artifacts/tests/bash-core.trx",
+    "card_specific": 8
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/bash-basic.json",
+        "input_sha256": "7d3eb2c0fe7db80ee5375769a1b9c682fa382f0e631fd268d5bc669b3ebf45ce",
+        "report": "artifacts/scenarios/bash-basic/headless/55195671471d4d9491369560fac2fd32/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/bash-resolved.json",
+        "input_sha256": "8d956f2826eb887cc646d7700e0d2c7293bd059b6455b22859fc0a5464a93304",
+        "report": "artifacts/scenarios/bash-resolved/headless/e3fb6801da6648f69390c999d2988d02/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/bash-empty.json",
+        "input_sha256": "524eb59bbf81d102e3a1552fb99f86f54806fa244a628a5b21dd6841175e2930",
+        "report": "artifacts/scenarios/bash-empty/headless/b097e54e5bad4a4cbdd6b7d2e4ecdd1d/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine33-bash-discard-scenario.json",
+        "input_sha256": "782048a929ca81f8a28b87901c4f1007873548f30c72b373f7d850f344c43c48",
+        "report": "artifacts/scenarios/engine33-bash-discard-scenario/headless/c57d41db5b76484d97e072bf64dfd081/report.json",
+        "steps": 13,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 58
+  },
+  "manual_presets": [
+    "shield-bash"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/bash-discard-ui-fixed/layout.ui.json",
+    "revision": 13,
+    "seat": 1,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false
+  }
+}

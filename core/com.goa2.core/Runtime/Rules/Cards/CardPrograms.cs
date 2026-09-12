@@ -4,8 +4,8 @@ using Goa2.Domain;
 
 namespace Goa2.Rules.Cards
 {
-    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget, OptionalRepeatAttackAfterHeroDefeat, OptionalMinionRemovalAfterDefeat, PushAttackTargetIfAdjacent, MoveIntoAttackTargetCell, RequiredStraightMoveToAttack, RequiredStraightMoveThroughEnemy, PrimaryMovement }
-    internal enum HeroTargetKind { None, AlliedNearEnemy }
+    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget, OptionalRepeatAttackAfterHeroDefeat, OptionalMinionRemovalAfterDefeat, PushAttackTargetIfAdjacent, MoveIntoAttackTargetCell, RequiredStraightMoveToAttack, RequiredStraightMoveThroughEnemy, PrimaryMovement, TargetDiscardIfAble }
+    internal enum HeroTargetKind { None, AlliedNearEnemy, AdjacentEnemyUsedAttack }
     internal enum AttackBonusKind { None, TargetUsedAttack, AdjacentEnemies, OtherFriendlySupport }
     internal enum AttackRangeBonusKind { None, DiscardedBeforeAttack, OwnDiscardPile }
     internal enum DefenseFollowup { None, DiscardAttacker, DiscardAttackerThenImmunity, DiscardAttackerOrDefeat, OptionalStraightMove }
@@ -149,6 +149,7 @@ namespace Goa2.Rules.Cards
         };
         private static readonly Dictionary<string,(string text, int minimumEngine, string? subtype, PrimaryProgram program)> Skills = new Dictionary<string,(string, int, string?, PrimaryProgram)>
         {
+            ["brogan-15-盾牌猛击"] = ("与你相邻的一个敌方英雄，如果在此回合打出过攻击卡，该英雄丢弃一张卡牌（如果可行）。",33,null,new PrimaryProgram("adjacent_enemy_attack_history_discard",0,heroTarget:HeroTargetKind.AdjacentEnemyUsedAttack,instructions:new[]{InstructionKind.ChooseHeroTarget,InstructionKind.TargetDiscardIfAble,InstructionKind.End})),
             ["brogan-10-吟游诗人"] = ("如果你或攻击距离内的一个友方英雄与敌方单位相邻，则该友方英雄可以拿回一张已结算或已丢弃的卡牌。",16,"远程",
                 new PrimaryProgram("ally_near_enemy_optional_resolved_or_discard_recovery",0,heroTarget:HeroTargetKind.AlliedNearEnemy,recoverResolved:true,
                     instructions:new[]{InstructionKind.ChooseHeroTarget,InstructionKind.OptionalRecoverDiscard,InstructionKind.End})),

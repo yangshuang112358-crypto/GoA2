@@ -104,6 +104,10 @@ namespace Goa2.Rules
                         ApplyTimedEffect(catalog,state,command,execution,program);
                         execution.Cursor++;
                         break;
+                    case InstructionKind.TargetDiscardIfAble:
+                        if(BeginTargetDiscard(state,command,execution))return;
+                        execution.Cursor++;
+                        break;
                     case InstructionKind.CancelAdjacentSkillEffects:
                         CancelAdjacentSkillEffects(catalog,state,command,execution);
                         execution.Cursor++;

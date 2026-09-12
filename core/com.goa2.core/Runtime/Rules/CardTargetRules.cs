@@ -11,13 +11,28 @@ namespace Goa2.Rules
         private static List<string> HeroTargets(ContentCatalog catalog,GameState state,CardExecution execution,PrimaryProgram program)
         {
             var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
-            if(source==null || program.HeroTarget!=HeroTargetKind.AlliedNearEnemy) return new List<string>();
+            if(source==null)return new List<string>();
+            if(program.HeroTarget==HeroTargetKind.AdjacentEnemyUsedAttack)
+                return state.Units.Where(t=>t.Kind=="hero" && t.Seat.HasValue && t.Team!=source.Team && t.Position.Distance(source.Position)==1 &&
+                    state.Players[t.Seat!.Value].Cards.Any(c=>c.PlayedRound==state.Round && c.PlayedTurn==state.Turn && catalog.Card(c.CardId).PrimaryFamily=="attack"))
+                    .Select(t=>t.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
+            if(program.HeroTarget!=HeroTargetKind.AlliedNearEnemy)return new List<string>();
             var card=catalog.Card(execution.CardId);
             int range=(card.SubtypeValue??0)+state.Players[execution.ControllerSeat].RangedBonus;
             return state.Units.Where(target=>target.Kind=="hero" && target.Seat.HasValue && target.Team==source.Team &&
                 target.Position.Distance(source.Position)<=range && state.Units.Any(enemy=>enemy.Team!=target.Team &&
                     (enemy.Kind=="hero" || enemy.Kind=="melee" || enemy.Kind=="ranged" || enemy.Kind=="heavy") && enemy.Position.Distance(target.Position)==1))
                 .Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
+        }
+        private static bool BeginTargetDiscard(GameState state,Command command,CardExecution execution)
+        {
+            var target=state.Units.SingleOrDefault(u=>u.Id==execution.TargetUnitId && u.Kind=="hero" && u.Seat.HasValue);
+            if(target==null)return false;
+            int seat=target.Seat!.Value;
+            if(!state.Players[seat].Cards.Any(c=>c.Zone==CardZone.InHand)){Emit(state,command,"ForcedDiscardSkipped",seat,execution.CardId,detail:"empty_hand");return false;}
+            state.Phase=Phase.EffectChoice;
+            state.Pending=new PendingChoice{Id="forced-discard:"+(state.Events.Count+1),Kind="forced_discard",ChooserSeat=seat,Source=execution.CardId,UnitId=target.Id,ResumeAt="primary_discard",Optional=false};
+            Emit(state,command,"ForcedDiscardRequired",seat,execution.CardId);return true;
         }
         public static List<string> LegalEffectTargets(ContentCatalog catalog,GameState state,int seat)
         {

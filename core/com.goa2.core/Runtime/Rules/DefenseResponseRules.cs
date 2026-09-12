@@ -11,7 +11,7 @@ namespace Goa2.Rules
         public static bool CanDeclineRetaliationDiscard(ContentCatalog catalog,GameState state,int seat)
         {
             // The saved engine version owns this ruling; old response windows keep their options.
-            if(state.EngineVersion<10 || LegalForcedDiscards(state,seat).Count==0) return false;
+            if(state.EngineVersion<10 || state.Execution?.DefenseResponse==null || LegalForcedDiscards(state,seat).Count==0) return false;
             var response=state.Execution!.DefenseResponse!;
             var program=CardPrograms.Defense(catalog.Card(response.SourceCardId),state.EngineVersion);
             return program!=null && program.Id==response.ProgramId && program.Version==response.ProgramVersion &&
@@ -30,6 +30,10 @@ namespace Goa2.Rules
         }
         public static List<string> LegalForcedDiscards(GameState state,int seat)
         {
+            if(state.EngineVersion>=33 && state.Phase==Phase.EffectChoice && state.Pending?.Kind=="forced_discard" &&
+                state.Pending.ResumeAt=="primary_discard" && state.Pending.ChooserSeat==seat && state.Execution!=null &&
+                state.Execution.TargetUnitId==state.Pending.UnitId)
+                return state.Players[seat].Cards.Where(c=>c.Zone==CardZone.InHand).Select(c=>c.CardId).ToList();
             var response=state.Execution?.DefenseResponse;
             if (state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="forced_discard" || state.Pending.ChooserSeat!=seat ||
                 response==null || response.AttackerSeat!=seat || response.Cursor!=0) return new List<string>();
@@ -88,6 +92,10 @@ namespace Goa2.Rules
             Emit(state,command,"CardDiscarded",command.ActorSeat,instance.CardId,command.ActorSeat);
             Emit(state,command,"DiscardColorShown",command.ActorSeat,detail:catalog.Card(instance.CardId).Color);
             Emit(state,command,"ForcedDiscardCompleted",command.ActorSeat);
+            if(state.EngineVersion>=33 && state.Pending!.ResumeAt=="primary_discard")
+            {
+                state.Execution!.Cursor++;state.Pending=null;state.Phase=Phase.Action;ContinueCard(catalog,state,command);return;
+            }
             state.Execution!.DefenseResponse!.Cursor++;
             state.Pending=null; state.Phase=Phase.Action;
             EndCardExecution(catalog,state,command);

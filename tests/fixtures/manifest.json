@@ -279,6 +279,15 @@
       "input": "tests/fixtures/engine32-battlearms-defense-scenario.json",
       "input_sha256": "ae869af991803c9afd19805241e69bdd90901ba264dfbc4405fc407e47e8ec2c",
       "provenance": "tests/fixtures/engine32-battlearms-defense.md"
+    },
+    {
+      "engine_version": 33,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine33-bash-discard.json",
+      "save_sha256": "86bd97332db530bbed6ac20519ec2568144b36e01e849d985422b1e144f43642",
+      "input": "tests/fixtures/engine33-bash-discard-scenario.json",
+      "input_sha256": "782048a929ca81f8a28b87901c4f1007873548f30c72b373f7d850f344c43c48",
+      "provenance": "tests/fixtures/engine33-bash-discard.md"
     }
   ]
 }
