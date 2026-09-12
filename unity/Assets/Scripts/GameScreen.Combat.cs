@@ -42,6 +42,17 @@ namespace Goa2.Presentation
         {
             var choice = view.Pending;
             if (choice == null) return false;
+            if (choice.Kind == "effect_move")
+            {
+                parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择牌文移动。","section-title"));
+                RenderCardDetail(parent,catalog.Card(choice.Source));
+                if(choice.ChooserSeat!=seat) { parent.Add(Text("等待对应角色选择移动或跳过。","body"));return true; }
+                parent.Add(Text("攻击已结算。点击高亮格后确认，或选择不移动。","body"));
+                if(chosenCell.HasValue && view.EffectMoves.Any(m=>m.Destination==chosenCell.Value))
+                    Confirm(parent,"确认牌文移动至 "+chosenCell.Value,()=>Submit(CommandKind.ChooseEffectMove,destination:chosenCell!.Value));
+                parent.Add(Button("不移动，继续结算",()=>Submit(CommandKind.ChooseEffectMove,"skip"),"quiet-button","effect-move-skip"));
+                return true;
+            }
             if (choice.Kind == "optional_discard")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat) + "选择是否在攻击前弃置一张手牌。", "section-title"));

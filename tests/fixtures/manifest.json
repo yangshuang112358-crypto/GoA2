@@ -81,6 +81,15 @@
       "input": "tests/fixtures/engine10-riposte-choice-scenario.json",
       "input_sha256": "06e072c7d01d9c1847d4c7844f97f8db97ce3b5a6384f7f56acb67d8a7632af3",
       "provenance": "tests/fixtures/engine10-riposte-choice.md"
+    },
+    {
+      "engine_version": 11,
+      "accepted_commands": 10,
+      "save": "tests/fixtures/engine11-sneak-choice.json",
+      "save_sha256": "b3a0710b8d85b0d6c12192c572ae270590bfb052ebb4dd5849b119457ce16520",
+      "input": "tests/fixtures/engine11-sneak-choice-scenario.json",
+      "input_sha256": "f249ac9c9213a821bf6dc7c5eca43ea7079426e4e5e56fcd4fb221ca8e3d011e",
+      "provenance": "tests/fixtures/engine11-sneak-choice.md"
     }
   ]
 }

@@ -1,0 +1,105 @@
+{
+  "SchemaVersion": 1,
+  "Id": "sneak-static",
+  "Name": "偷袭与静电封锁：攻击后移动仍不能越过范围边界",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "wasp,tigerclaw,brogan,arien"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 8,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "wasp-06-静电封锁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "tigerclaw-02-偷袭"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p2"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p2",
+      "Value": "hero:2"
+    },
+    {
+      "Command": "DeclineDefense",
+      "Actor": "p3",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p2"
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p2",
+      "Destination": {
+        "X": 8,
+        "Y": -8
+      },
+      "Expect": {
+        "Code": "invalid_effect_move"
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p2",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      },
+      "Expect": {
+        "EventCounts": {
+          "UnitMoved": 1,
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

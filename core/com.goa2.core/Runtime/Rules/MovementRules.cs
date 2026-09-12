@@ -24,7 +24,7 @@ namespace Goa2.Rules
                 return Fast(catalog, state, unit);
             return empty;
         }
-        private static List<MoveOption> Reachable(ContentCatalog catalog, GameState state, UnitState unit, int budget)
+        internal static List<MoveOption> Reachable(ContentCatalog catalog, GameState state, UnitState unit, int budget)
         {
             var result = new List<MoveOption>();
             if (budget <= 0) return result;

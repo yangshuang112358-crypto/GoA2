@@ -157,6 +157,7 @@ namespace Goa2.Tests
                         return defenses.Count>0 && Next(5)!=0 ? Step(CommandKind.Defend,seat,Pick(defenses).CardId) : Step(CommandKind.DeclineDefense,seat);
                     case "forced_discard": return Step(CommandKind.ForcedDiscard,seat,Pick(own.ForcedDiscardCards));
                     case "optional_discard": return Step(CommandKind.ChooseOptionalDiscard,seat,Next(3)==0 ? "skip" : Pick(own.OptionalDiscardCards));
+                    case "effect_move": return Next(3)==0 ? Step(CommandKind.ChooseEffectMove,seat,"skip") : Step(CommandKind.ChooseEffectMove,seat,at:Pick(own.EffectMoves).Destination);
                     case "round_minion_removal": return Step(CommandKind.ChooseRoundMinionRemoval,seat,Pick(own.RoundMinionRemovals));
                     case "minion_spawn":
                         return Pick(own.SpawnChoices.SelectMany(pair=>pair.Value.Select(at=>Step(CommandKind.ChooseMinionSpawn,seat,pair.Key,at:at))));

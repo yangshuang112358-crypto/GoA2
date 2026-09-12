@@ -717,11 +717,20 @@
     },
     {
       "card_id": "tigerclaw-02-偷袭",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-02-偷袭.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/SneakAttackTests.cs",
+        "tests/scenarios/sneak-move.json",
+        "tests/scenarios/sneak-skip.json",
+        "tests/scenarios/sneak-static.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-03-背刺",

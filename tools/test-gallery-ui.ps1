@@ -1,4 +1,4 @@
-param([ValidateRange(1152,3840)][int]$Width=1280,[ValidateRange(768,2160)][int]$Height=800)
+﻿param([ValidateRange(1152,3840)][int]$Width=1280,[ValidateRange(768,2160)][int]$Height=800)
 $ErrorActionPreference='Stop'
 $goaRoot=Split-Path -Parent $PSScriptRoot
 $goaChecks=[Collections.Generic.List[object]]::new()
@@ -24,7 +24,7 @@ try {
     Click -Element 'gallery-all'
     Check ((Gallery-Count) -eq 108) 'All heroes can be searched together'
     Click -Element 'gallery-supported'
-    Check ((Gallery-Count) -eq 21) 'The current engine exposes exactly its twenty-one supported cards'
+    Check ((Gallery-Count) -eq 22) 'The current engine exposes exactly its twenty-two supported cards'
     Click -Element 'gallery-supported'
     Type-Gallery '飞斧'
     Check ((Gallery-Count) -eq 1 -and @((Read-Ui).Labels | Where-Object { $_.Name -like 'gallery-card-name-*' -and $_.Visible -and $_.Text -eq '投掷飞斧' }).Count -eq 1) 'Real Unicode keyboard input finds the throwing axe without truncating its name'

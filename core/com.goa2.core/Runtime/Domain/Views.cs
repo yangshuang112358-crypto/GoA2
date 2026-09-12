@@ -92,6 +92,7 @@ namespace Goa2.Domain
         public Dictionary<int, List<Hex>> Deployments = new Dictionary<int, List<Hex>>();
         public List<MoveOption> SecondaryMoves = new List<MoveOption>();
         public List<MoveOption> FastMoves = new List<MoveOption>();
+        public List<MoveOption> EffectMoves = new List<MoveOption>();
         public Dictionary<string, List<Hex>> DebugTeleports = new Dictionary<string, List<Hex>>();
         public bool CanPass;
         public List<GameEvent> Events = new List<GameEvent>();

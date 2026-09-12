@@ -78,5 +78,21 @@
     "through_step": 12,
     "phase": "EffectChoice",
     "pending": "forced_discard"
+  },
+  {
+    "id": "sneak-move",
+    "title": "偷袭：击败后选择1格或不移动",
+    "scenario": "sneak-move",
+    "through_step": 10,
+    "phase": "EffectChoice",
+    "pending": "effect_move"
+  },
+  {
+    "id": "sneak-static",
+    "title": "偷袭×静电封锁：范围内攻击后不能越界",
+    "scenario": "sneak-static",
+    "through_step": 12,
+    "phase": "EffectChoice",
+    "pending": "effect_move"
   }
 ]

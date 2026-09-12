@@ -1,0 +1,106 @@
+{
+  "SchemaVersion": 1,
+  "Id": "sneak-move",
+  "Name": "偷袭：英雄击败后移动1格；权限、恢复和结束",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "tigerclaw,wasp,brogan,arien"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "tigerclaw-02-偷袭"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2"
+      }
+    },
+    {
+      "Command": "DeclineDefense",
+      "Actor": "p2",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p1",
+        "EventOrder": [
+          "DefenseResolved",
+          "AttackResolved",
+          "EffectMoveChoiceRequired"
+        ]
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p2",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      },
+      "Expect": {
+        "Code": "invalid_effect_move"
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p1",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      },
+      "Expect": {
+        "EventCounts": {
+          "UnitMoved": 1,
+          "CardResolved": 1,
+          "AttackResolved": 0
+        }
+      }
+    }
+  ]
+}

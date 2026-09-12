@@ -1,0 +1,80 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine11-sneak-choice",
+  "Name": "引擎11真实偷袭牌文移动窗口",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "tigerclaw,wasp,brogan,arien"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "tigerclaw-02-偷袭"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2"
+      }
+    },
+    {
+      "Command": "DeclineDefense",
+      "Actor": "p2",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p1",
+        "EventOrder": [
+          "DefenseResolved",
+          "AttackResolved",
+          "EffectMoveChoiceRequired"
+        ]
+      }
+    }
+  ]
+}

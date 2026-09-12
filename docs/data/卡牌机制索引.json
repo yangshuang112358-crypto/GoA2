@@ -1130,7 +1130,7 @@
         "choice_wording",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/tigerclaw-02-偷袭.md",
       "question_candidates": [
         "U-011",

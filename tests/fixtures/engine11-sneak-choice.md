@@ -1,0 +1,9 @@
+# 引擎11真实偷袭移动窗口
+
+2026-09-13在任何引擎12代码前，由引擎11 Windows Player执行10步捕获。状态等待原攻击者选择牌文移动，保留父攻击游标。报告Passed，退出0；不是手工拼装或回写版本号。
+
+原生报告：artifacts/scenarios/engine11-sneak-choice-scenario/headless/b49559879aac41028189d1762419d7f9/report.json
+
+保存SHA-256：b3a0710b8d85b0d6c12192c572ae270590bfb052ebb4dd5849b119457ce16520
+
+输入SHA-256：f249ac9c9213a821bf6dc7c5eca43ea7079426e4e5e56fcd4fb221ca8e3d011e

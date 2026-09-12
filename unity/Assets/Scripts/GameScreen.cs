@@ -156,6 +156,7 @@ namespace Goa2.Presentation
                     case "defense": return "选择防御";
                     case "forced_discard": return "反制选择";
                     case "optional_discard": return "攻击前弃牌";
+                    case "effect_move": return "牌文移动";
                     case "hero_respawn": return "英雄复活";
                     case "round_minion_removal": return "轮末小兵战斗";
                     case "minion_spawn": return "安排小兵出生";
@@ -313,6 +314,7 @@ namespace Goa2.Presentation
             if (view.Pending?.Kind == "attack_target" && view.Pending.ChooserSeat == seat)
                 return view.Units.Where(u => view.AttackTargets.Contains(u.Id)).Select(u => u.Position).ToList();
             if (view.Pending?.Kind == "hero_respawn") return view.RespawnCells;
+            if (view.Pending?.Kind == "effect_move") return view.EffectMoves.Select(m=>m.Destination).ToList();
             if (view.Pending?.Kind == "round_minion_removal") return view.Units.Where(u => view.RoundMinionRemovals.Contains(u.Id)).Select(u => u.Position).ToList();
             if (view.Pending?.Kind == "minion_spawn" && view.Pending.ChooserSeat == seat)
             {
@@ -484,6 +486,8 @@ namespace Goa2.Presentation
                 case "SelectionConfirmed": return actor + "已确认";
                 case "CardRevealed": return actor + "揭示 " + catalog.Card(entry.CardId!).Name;
                 case "UnitMoved": return actor + "移动至 " + entry.To;
+                case "EffectMoveChoiceRequired": return actor+"可按牌文移动"+entry.Detail+"格";
+                case "EffectMoveSkipped": return actor+(entry.Detail=="declined" ? "选择不进行牌文移动" : "没有可用的牌文移动落点");
                 case "ActionStarted": return actor + "开始行动";
                 case "CardResolved": return actor + "的牌已结算";
                 case "PlanningStarted": return "进入暗选 " + entry.Detail;

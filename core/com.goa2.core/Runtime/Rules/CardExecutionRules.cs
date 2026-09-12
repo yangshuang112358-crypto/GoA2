@@ -64,6 +64,10 @@ namespace Goa2.Rules
                     case InstructionKind.End:
                         EndCardExecution(catalog, state, command);
                         return;
+                    case InstructionKind.OptionalTextMove:
+                        if (BeginTextMove(catalog,state,command,execution,program)) return;
+                        execution.Cursor++;
+                        break;
                     case InstructionKind.ApplyEffect:
                         ApplyTimedEffect(catalog,state,command,execution,program);
                         execution.Cursor++;
@@ -98,7 +102,9 @@ namespace Goa2.Rules
             {
                 execution.AttackOutcome = "minion_defeated";
                 RemoveMinion(catalog, state, command, target.Id, card.Id, execution.ControllerSeat, resumeCardExecution: true);
-                if (state.Frontline == null) ContinueCard(catalog, state, command);
+                // A synchronous frontline can already resume the card into its next choice.
+                // Older journals retain their original continuation behavior.
+                if (state.Frontline == null && (state.EngineVersion<11 || state.Pending==null)) ContinueCard(catalog, state, command);
                 return;
             }
             var modifier=CombatRules.CardTextModifier(catalog,state,card,source,target);

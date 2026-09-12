@@ -17,7 +17,7 @@ namespace Goa2.Domain
         DebugRemoveMinion, DebugDefeatMinion, DebugSetCrystal, ChooseMinionSpawn,
         BeginPrimary, ChooseAttackTarget, Defend, DeclineDefense, RespawnHero, DebugDefeatHero,
         ResolveRoundEnd, ChooseRoundMinionRemoval, ChooseUpgrade, UpgradeEngine, ForcedDiscard, ChooseOptionalDiscard, DebugAttack,
-        DeclineRetaliationDiscard
+        DeclineRetaliationDiscard, ChooseEffectMove
     }
     public enum MoveMode { Secondary, Fast }
 
@@ -211,7 +211,7 @@ namespace Goa2.Domain
     public sealed class GameState
     {
         public const string CurrentProtocol = "1.0.0";
-        public const int CurrentEngineVersion = 10;
+        public const int CurrentEngineVersion = 11;
         public int InitialEngineVersion;
         public int EngineVersion;
         public string ProtocolVersion = CurrentProtocol;
