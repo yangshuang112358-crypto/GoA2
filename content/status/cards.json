@@ -500,11 +500,22 @@
     },
     {
       "card_id": "brogan-10-吟游诗人",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-10-吟游诗人.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/MinstrelTests.cs",
+        "tests/scenarios/minstrel-resolved.json",
+        "tests/scenarios/minstrel-skip.json",
+        "tests/scenarios/minstrel-aura.json",
+        "tests/scenarios/war-drum-reflection.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs"
+      ]
     },
     {
       "card_id": "brogan-11-巩固防线",

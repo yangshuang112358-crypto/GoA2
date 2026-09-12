@@ -1,0 +1,17 @@
+{
+  "source_page": "https://wolffdesigna.com/products/guards-of-atlantis-ii-1",
+  "pdf_url": "https://drive.google.com/file/d/1qceAxzEcdkMYP-00F61wNiUiiyj6iJAc/view",
+  "file": "artifacts/research/goa2-2nd-printing.pdf",
+  "sha256": "2c19b11d632759e9e3517e6a1450d643c7308bc1499b40907b284fc65545ba98",
+  "pdf_pages": 24,
+  "checked_printed_pages": [
+    10,
+    17
+  ],
+  "scope": [
+    "retrieve card",
+    "active effects cancelled when source card changes state",
+    "friendly excludes source hero"
+  ],
+  "full_rulebook_audit": false
+}

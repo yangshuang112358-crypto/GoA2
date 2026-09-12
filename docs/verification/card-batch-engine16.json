@@ -1,0 +1,211 @@
+{
+  "engine": 16,
+  "implemented_cards": 27,
+  "data_only_cards": 81,
+  "core": {
+    "passed": 570,
+    "failed": 0,
+    "report": "artifacts/tests/minstrel-core.trx",
+    "card_specific": 15
+  },
+  "native_before_ui_reorder": {
+    "results": [
+      {
+        "input": "tests/scenarios/minstrel-resolved.json",
+        "input_sha256": "275ae49033c7b7e9a653639c2c0e02461e09de761dc512d5011bfe58118b40cd",
+        "report": "artifacts/scenarios/minstrel-resolved/headless/8fdb66a8abad43c589bdb8cffe1fe8c7/report.json",
+        "assemblies": {
+          "Goa2.Rules.dll": "f9ca69a7cd2d7aff09e5bc1e02e4d720fd4618ad3ba0888bd49968096f0a6272",
+          "Goa2.Infrastructure.dll": "4410fae35060a776aa2174183345b67a205e884d446e6db0cbea2908a32a7be4",
+          "Goa2.Application.dll": "4bc4b537523baf9e3fff280589df22fa1a40fd761d52298cc04a25ac9f49b7f3",
+          "Goa2.Presentation.dll": "e4d75d5b69b4966da742a1b8dbcaf04bd9aa266961b9f86d3051ac5dfb92b237",
+          "Goa2.Domain.dll": "6ab3cd9f5a5cf9f12bbf225852267072be9995e598c8657e31606b892583dbe6"
+        },
+        "steps": 31,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/minstrel-skip.json",
+        "input_sha256": "2908df0570353c0a47c844f9e89d488cd5613a02275c57cbbb789ab64827a340",
+        "report": "artifacts/scenarios/minstrel-skip/headless/c3db8705a19a403aaea1cbc726b750e0/report.json",
+        "assemblies": {
+          "Goa2.Rules.dll": "f9ca69a7cd2d7aff09e5bc1e02e4d720fd4618ad3ba0888bd49968096f0a6272",
+          "Goa2.Infrastructure.dll": "4410fae35060a776aa2174183345b67a205e884d446e6db0cbea2908a32a7be4",
+          "Goa2.Application.dll": "4bc4b537523baf9e3fff280589df22fa1a40fd761d52298cc04a25ac9f49b7f3",
+          "Goa2.Presentation.dll": "e4d75d5b69b4966da742a1b8dbcaf04bd9aa266961b9f86d3051ac5dfb92b237",
+          "Goa2.Domain.dll": "6ab3cd9f5a5cf9f12bbf225852267072be9995e598c8657e31606b892583dbe6"
+        },
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/minstrel-aura.json",
+        "input_sha256": "91677bc533b9c1b85de5632d67a2a8cf026c270593f97e5aecb568077e48c0f9",
+        "report": "artifacts/scenarios/minstrel-aura/headless/52fa24565851486abe60d97e8c01e3da/report.json",
+        "assemblies": {
+          "Goa2.Rules.dll": "f9ca69a7cd2d7aff09e5bc1e02e4d720fd4618ad3ba0888bd49968096f0a6272",
+          "Goa2.Infrastructure.dll": "4410fae35060a776aa2174183345b67a205e884d446e6db0cbea2908a32a7be4",
+          "Goa2.Application.dll": "4bc4b537523baf9e3fff280589df22fa1a40fd761d52298cc04a25ac9f49b7f3",
+          "Goa2.Presentation.dll": "e4d75d5b69b4966da742a1b8dbcaf04bd9aa266961b9f86d3051ac5dfb92b237",
+          "Goa2.Domain.dll": "6ab3cd9f5a5cf9f12bbf225852267072be9995e598c8657e31606b892583dbe6"
+        },
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/war-drum-reflection.json",
+        "input_sha256": "0a9a08ecdf1af243a604af42ea2db12185a73665014313cb0586374ac210818b",
+        "report": "artifacts/scenarios/war-drum-reflection/headless/33c4f9fda1a9437f915baf6864dd67e4/report.json",
+        "assemblies": {
+          "Goa2.Rules.dll": "f9ca69a7cd2d7aff09e5bc1e02e4d720fd4618ad3ba0888bd49968096f0a6272",
+          "Goa2.Infrastructure.dll": "4410fae35060a776aa2174183345b67a205e884d446e6db0cbea2908a32a7be4",
+          "Goa2.Application.dll": "4bc4b537523baf9e3fff280589df22fa1a40fd761d52298cc04a25ac9f49b7f3",
+          "Goa2.Presentation.dll": "e4d75d5b69b4966da742a1b8dbcaf04bd9aa266961b9f86d3051ac5dfb92b237",
+          "Goa2.Domain.dll": "6ab3cd9f5a5cf9f12bbf225852267072be9995e598c8657e31606b892583dbe6"
+        },
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/war-drum-ally.json",
+        "input_sha256": "8082143b37e9462c63af9c8bde648487bba35c380d9d154d7496e19e327a8c61",
+        "report": "artifacts/scenarios/war-drum-ally/headless/3a32520b9c9a4441ab35e28ffb0db8ad/report.json",
+        "assemblies": {
+          "Goa2.Rules.dll": "f9ca69a7cd2d7aff09e5bc1e02e4d720fd4618ad3ba0888bd49968096f0a6272",
+          "Goa2.Infrastructure.dll": "4410fae35060a776aa2174183345b67a205e884d446e6db0cbea2908a32a7be4",
+          "Goa2.Application.dll": "4bc4b537523baf9e3fff280589df22fa1a40fd761d52298cc04a25ac9f49b7f3",
+          "Goa2.Presentation.dll": "e4d75d5b69b4966da742a1b8dbcaf04bd9aa266961b9f86d3051ac5dfb92b237",
+          "Goa2.Domain.dll": "6ab3cd9f5a5cf9f12bbf225852267072be9995e598c8657e31606b892583dbe6"
+        },
+        "steps": 32,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/war-drum-self.json",
+        "input_sha256": "ef879a3e605586bbc0017cbc18179117bb0a28e8bbdaa50094628a7f1df0ee6e",
+        "report": "artifacts/scenarios/war-drum-self/headless/9e5b80288871433bab036440b9949f41/report.json",
+        "assemblies": {
+          "Goa2.Rules.dll": "f9ca69a7cd2d7aff09e5bc1e02e4d720fd4618ad3ba0888bd49968096f0a6272",
+          "Goa2.Infrastructure.dll": "4410fae35060a776aa2174183345b67a205e884d446e6db0cbea2908a32a7be4",
+          "Goa2.Application.dll": "4bc4b537523baf9e3fff280589df22fa1a40fd761d52298cc04a25ac9f49b7f3",
+          "Goa2.Presentation.dll": "e4d75d5b69b4966da742a1b8dbcaf04bd9aa266961b9f86d3051ac5dfb92b237",
+          "Goa2.Domain.dll": "6ab3cd9f5a5cf9f12bbf225852267072be9995e598c8657e31606b892583dbe6"
+        },
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/war-drum-silence.json",
+        "input_sha256": "8cddfeb11544cfa16c58bb5ba12a738412d393df3128f219b554690a1d221ec1",
+        "report": "artifacts/scenarios/war-drum-silence/headless/bddec9a5ee194c8ba2852fb04f20e566/report.json",
+        "assemblies": {
+          "Goa2.Rules.dll": "f9ca69a7cd2d7aff09e5bc1e02e4d720fd4618ad3ba0888bd49968096f0a6272",
+          "Goa2.Infrastructure.dll": "4410fae35060a776aa2174183345b67a205e884d446e6db0cbea2908a32a7be4",
+          "Goa2.Application.dll": "4bc4b537523baf9e3fff280589df22fa1a40fd761d52298cc04a25ac9f49b7f3",
+          "Goa2.Presentation.dll": "e4d75d5b69b4966da742a1b8dbcaf04bd9aa266961b9f86d3051ac5dfb92b237",
+          "Goa2.Domain.dll": "6ab3cd9f5a5cf9f12bbf225852267072be9995e598c8657e31606b892583dbe6"
+        },
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/loyal-recover.json",
+        "input_sha256": "d89a907aa9087e4fcd99424120868eec98d85338dae2b4d4dbb1123d1f2f66fe",
+        "report": "artifacts/scenarios/loyal-recover/headless/a1a1b13afe654f04a17a5e524453c8a6/report.json",
+        "assemblies": {
+          "Goa2.Rules.dll": "f9ca69a7cd2d7aff09e5bc1e02e4d720fd4618ad3ba0888bd49968096f0a6272",
+          "Goa2.Infrastructure.dll": "4410fae35060a776aa2174183345b67a205e884d446e6db0cbea2908a32a7be4",
+          "Goa2.Application.dll": "4bc4b537523baf9e3fff280589df22fa1a40fd761d52298cc04a25ac9f49b7f3",
+          "Goa2.Presentation.dll": "e4d75d5b69b4966da742a1b8dbcaf04bd9aa266961b9f86d3051ac5dfb92b237",
+          "Goa2.Domain.dll": "6ab3cd9f5a5cf9f12bbf225852267072be9995e598c8657e31606b892583dbe6"
+        },
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/loyal-silence.json",
+        "input_sha256": "4feb9ab7222793b9426b900ea490a12d33ebcfa25011225c831a5bd69c3369ba",
+        "report": "artifacts/scenarios/loyal-silence/headless/b6f1eb20a12a4a6da7c6d33850997fd9/report.json",
+        "assemblies": {
+          "Goa2.Rules.dll": "f9ca69a7cd2d7aff09e5bc1e02e4d720fd4618ad3ba0888bd49968096f0a6272",
+          "Goa2.Infrastructure.dll": "4410fae35060a776aa2174183345b67a205e884d446e6db0cbea2908a32a7be4",
+          "Goa2.Application.dll": "4bc4b537523baf9e3fff280589df22fa1a40fd761d52298cc04a25ac9f49b7f3",
+          "Goa2.Presentation.dll": "e4d75d5b69b4966da742a1b8dbcaf04bd9aa266961b9f86d3051ac5dfb92b237",
+          "Goa2.Domain.dll": "6ab3cd9f5a5cf9f12bbf225852267072be9995e598c8657e31606b892583dbe6"
+        },
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/loyal-skip.json",
+        "input_sha256": "e1f33f33274c98e8fc84d04987f9ddbe30056f68361784d8ec934b97d2b13ddc",
+        "report": "artifacts/scenarios/loyal-skip/headless/a2137766926240638e8cb85c3187176c/report.json",
+        "assemblies": {
+          "Goa2.Rules.dll": "f9ca69a7cd2d7aff09e5bc1e02e4d720fd4618ad3ba0888bd49968096f0a6272",
+          "Goa2.Infrastructure.dll": "4410fae35060a776aa2174183345b67a205e884d446e6db0cbea2908a32a7be4",
+          "Goa2.Application.dll": "4bc4b537523baf9e3fff280589df22fa1a40fd761d52298cc04a25ac9f49b7f3",
+          "Goa2.Presentation.dll": "e4d75d5b69b4966da742a1b8dbcaf04bd9aa266961b9f86d3051ac5dfb92b237",
+          "Goa2.Domain.dll": "6ab3cd9f5a5cf9f12bbf225852267072be9995e598c8657e31606b892583dbe6"
+        },
+        "steps": 13,
+        "passed": true
+      }
+    ],
+    "scenarios": 10,
+    "steps": 201
+  },
+  "manual_presets": [
+    "minstrel",
+    "minstrel-aura",
+    "war-drum-reflection"
+  ],
+  "build_utc": "2026-09-12T19:23:10.4028189Z",
+  "assemblies": {
+    "Goa2.Domain.dll": "6ab3cd9f5a5cf9f12bbf225852267072be9995e598c8657e31606b892583dbe6",
+    "Goa2.Rules.dll": "f9ca69a7cd2d7aff09e5bc1e02e4d720fd4618ad3ba0888bd49968096f0a6272",
+    "Goa2.Application.dll": "4bc4b537523baf9e3fff280589df22fa1a40fd761d52298cc04a25ac9f49b7f3",
+    "Goa2.Infrastructure.dll": "4410fae35060a776aa2174183345b67a205e884d446e6db0cbea2908a32a7be4",
+    "Goa2.Presentation.dll": "bf31dcf3804865f8691d87517262416706a7f82d6f553322cb3617ebd2720dee"
+  },
+  "native_after_ui_reorder": {
+    "results": [
+      {
+        "input": "tests/scenarios/minstrel-resolved.json",
+        "input_sha256": "275ae49033c7b7e9a653639c2c0e02461e09de761dc512d5011bfe58118b40cd",
+        "report": "artifacts/scenarios/minstrel-resolved/headless/06c2ee43e17344d58af69bb40931d004/report.json",
+        "steps": 31,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/minstrel-aura.json",
+        "input_sha256": "91677bc533b9c1b85de5632d67a2a8cf026c270593f97e5aecb568077e48c0f9",
+        "report": "artifacts/scenarios/minstrel-aura/headless/a0802062701341f993a19a0b70d813f6/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/war-drum-reflection.json",
+        "input_sha256": "0a9a08ecdf1af243a604af42ea2db12185a73665014313cb0586374ac210818b",
+        "report": "artifacts/scenarios/war-drum-reflection/headless/56a341dc7f7c405ca6f36a495e2d6100/report.json",
+        "steps": 20,
+        "passed": true
+      }
+    ],
+    "scenarios": 3,
+    "steps": 67
+  },
+  "ui": {
+    "report": "artifacts/minstrel-ui/controls-first/layout.ui.json",
+    "seat": 2,
+    "revision": 19,
+    "visible_recovery_buttons": [
+      "偷袭 · 已结算",
+      "躲闪 · 已丢弃",
+      "不取回，继续结算"
+    ],
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false,
+    "note": "Hidden window produced black PNG; only actual Player UI layout/labels are evidence, not visual or physical-click acceptance."
+  },
+  "note": "Ten native scenarios/201 steps preceded the UI-only controls reorder. Final Player reran three affected native scenarios/67 steps. No current full native sweep or physical suite claimed."
+}

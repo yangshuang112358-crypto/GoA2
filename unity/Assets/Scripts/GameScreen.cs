@@ -158,7 +158,7 @@ namespace Goa2.Presentation
                     case "forced_discard": return "反制选择";
                     case "optional_discard": return "攻击前弃牌";
                     case "effect_move": return "牌文移动";
-                    case "recover_discard": return "取回弃牌";
+                    case "recover_discard": return "取回卡牌";
                     case "hero_respawn": return "英雄复活";
                     case "round_minion_removal": return "轮末小兵战斗";
                     case "minion_spawn": return "安排小兵出生";
@@ -493,10 +493,10 @@ namespace Goa2.Presentation
                 case "CardRevealed": return actor + "揭示 " + catalog.Card(entry.CardId!).Name;
                 case "UnitMoved": return actor + "移动至 " + entry.To;
                 case "EffectMoveChoiceRequired": return actor+"可按牌文移动"+entry.Detail+"格";
-                case "RecoverDiscardRequired": return actor+"可取回一张弃牌";
+                case "RecoverDiscardRequired": return actor+"可按牌文取回一张卡牌";
                 case "EffectTargetChoiceRequired": return actor+"选择牌文作用的英雄";
                 case "EffectTargetChosen": return actor+"选定牌文目标 · "+entry.Detail;
-                case "RecoverDiscardSkipped": return actor+(entry.Detail=="declined" ? "选择不取回弃牌" : "不满足取回条件或没有弃牌");
+                case "RecoverDiscardSkipped": return actor+(entry.Detail=="declined" ? "选择不取回卡牌" : "不满足取回条件或没有可取回的卡牌");
                 case "RecoverDiscardCompleted": return actor+"完成牌文取回";
                 case "EffectMoveSkipped": return actor+(entry.Detail=="declined" ? "选择不进行牌文移动" : entry.Detail=="pre_attack_move_used" ? "攻击前已移动，略过攻击后移动" : "没有可用的牌文移动落点");
                 case "ActionStarted": return actor + "开始行动";

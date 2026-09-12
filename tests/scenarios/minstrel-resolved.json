@@ -1,0 +1,206 @@
+{
+  "SchemaVersion": 1,
+  "Id": "minstrel-resolved",
+  "Name": "吟游诗人：取回已结算偷袭，下一回合重新攻击",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "brogan,sabina,tigerclaw,arien"
+    },
+    {
+      "Value": "brogan-10-吟游诗人",
+      "Command": "DebugEquipCard",
+      "Target": "p1"
+    },
+    {
+      "Value": "brogan-02-投掷飞斧",
+      "Command": "DebugEquipCard",
+      "Target": "p1"
+    },
+    {
+      "Value": "tigerclaw-18-躲闪",
+      "Command": "DebugEquipCard",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugSetCoin",
+      "Value": "blue"
+    },
+    {
+      "Value": "hero:0",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Value": "hero:1",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Value": "hero:2",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 8,
+        "Y": -9
+      }
+    },
+    {
+      "Value": "hero:3",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      }
+    },
+    {
+      "Value": "brogan-02-投掷飞斧",
+      "Command": "DebugDiscard",
+      "Target": "p1"
+    },
+    {
+      "Value": "tigerclaw-18-躲闪",
+      "Command": "DebugDiscard",
+      "Target": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-10-吟游诗人"
+    },
+    {
+      "Value": "sabina-00-近身射击",
+      "Command": "SelectCard",
+      "Actor": "p2"
+    },
+    {
+      "Value": "tigerclaw-02-偷袭",
+      "Command": "SelectCard",
+      "Actor": "p3"
+    },
+    {
+      "Value": "arien-07-潮水",
+      "Command": "SelectCard",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2"
+    },
+    {
+      "Command": "Pass",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      },
+      "Actor": "p3"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Expect": {
+        "PendingKind": "effect_target",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "hero:2",
+      "Expect": {
+        "PendingKind": "recover_discard",
+        "PendingChooser": "p3",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "ChooseRecoveredCard",
+      "Value": "tigerclaw-02-偷袭",
+      "Expect": {
+        "Code": "invalid_recovery_choice"
+      }
+    },
+    {
+      "Command": "ChooseRecoveredCard",
+      "Actor": "p3",
+      "Value": "tigerclaw-02-偷袭",
+      "Expect": {
+        "HandCounts": {
+          "p3": 4
+        },
+        "DiscardCounts": {
+          "p3": 1
+        },
+        "EventCounts": {
+          "CardRecovered": 1,
+          "CardResolved": 1
+        },
+        "Active": "p4"
+      }
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Planning",
+        "Turn": 2
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-13-冲拳"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "sabina-01-拔枪"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "tigerclaw-02-偷袭"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-01-汹涌"
+    },
+    {
+      "Command": "ChooseInitiative",
+      "Target": "p3"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p3"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p3",
+      "Value": "hero:3",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p4"
+      }
+    },
+    {
+      "Command": "DeclineDefense",
+      "Actor": "p4",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "EventCounts": {
+          "HeroDefeated": 1
+        }
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p3",
+      "Value": "skip",
+      "Expect": {
+        "Active": "p1"
+      }
+    }
+  ]
+}

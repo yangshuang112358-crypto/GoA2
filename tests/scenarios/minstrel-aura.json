@@ -1,0 +1,120 @@
+{
+  "SchemaVersion": 1,
+  "Id": "minstrel-aura",
+  "Name": "吟游诗人：取回静电封锁并取消其持续效果",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "brogan,sabina,wasp,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "brogan-10-吟游诗人",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "wasp-06-静电封锁",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugSetCoin",
+      "Value": "blue"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 8,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-10-吟游诗人"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "sabina-00-近身射击"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "wasp-06-静电封锁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p3",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1",
+        "EffectCounts": {
+          "wasp-06-静电封锁": 1
+        }
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Expect": {
+        "PendingKind": "effect_target",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "hero:2",
+      "Expect": {
+        "PendingKind": "recover_discard",
+        "PendingChooser": "p3",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "ChooseRecoveredCard",
+      "Actor": "p3",
+      "Value": "wasp-06-静电封锁",
+      "Expect": {
+        "Active": "p4",
+        "EffectCounts": {
+          "wasp-06-静电封锁": 0
+        },
+        "EventCounts": {
+          "EffectCancelled": 1,
+          "CardRecovered": 1
+        },
+        "EventOrder": [
+          "EffectCancelled",
+          "CardRecovered",
+          "RecoverDiscardCompleted",
+          "CardResolved"
+        ]
+      }
+    }
+  ]
+}

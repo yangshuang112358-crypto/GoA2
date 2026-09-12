@@ -45,30 +45,32 @@ namespace Goa2.Presentation
             if(choice.Kind=="effect_target")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择牌文作用的英雄。","section-title"));
-                RenderCardDetail(parent,catalog.Card(choice.Source));
-                if(choice.ChooserSeat!=seat) {parent.Add(Text("等待来源英雄选择目标。","body"));return true;}
+                if(choice.ChooserSeat!=seat) {parent.Add(Text("等待来源英雄选择目标。","body"));RenderCardDetail(parent,catalog.Card(choice.Source));return true;}
                 var target=chosenCell.HasValue ? view.Units.SingleOrDefault(u=>u.Position==chosenCell.Value && view.EffectTargets.Contains(u.Id)) : null;
                 if(target!=null) Confirm(parent,"确认选择 "+PlayerName(target.Seat!.Value),()=>Submit(CommandKind.ChooseEffectTarget,target.Id));
                 else parent.Add(Text("点击高亮英雄后确认；后续取回由受益英雄本人选择。","body"));
+                RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
             }
             if (choice.Kind == "recover_discard")
             {
-                parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择取回一张弃牌。","section-title"));
-                RenderCardDetail(parent,catalog.Card(choice.Source));
-                if(choice.ChooserSeat!=seat) { parent.Add(Text("等待对应角色选择取回或跳过。","body"));return true; }
+                parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择取回一张卡牌。","section-title"));
+                if(choice.ChooserSeat!=seat) { parent.Add(Text("等待对应角色选择取回或跳过。","body"));RenderCardDetail(parent,catalog.Card(choice.Source));return true; }
                 foreach(string id in view.RecoverableCards)
                 {
                     string selected=id;
-                    var button=Button(catalog.Card(id).Name,()=> { discardCardId=selected;Render(); },"choice-button","recover-card-"+catalog.Card(id).Color);
+                    string zone=view.OwnCards.Single(c=>c.CardId==id).Zone==CardZone.PlayedResolved ? "已结算" : "已丢弃";
+                    var button=Button(catalog.Card(id).Name+" · "+zone,()=> { discardCardId=selected;Render(); },"choice-button","recover-card-"+catalog.Card(id).Color);
                     if(discardCardId==id) button.AddToClassList("chosen");parent.Add(button);
                 }
                 if(view.RecoverableCards.Contains(discardCardId))
                 {
-                    RenderCardDetail(parent,catalog.Card(discardCardId));
                     Confirm(parent,"确认取回 "+catalog.Card(discardCardId).Name,()=>Submit(CommandKind.ChooseRecoveredCard,discardCardId));
+                    if(view.EngineVersion>=16 && view.Effects.Any(e=>e.ControllerSeat==seat && e.SourceCardId==discardCardId))
+                        parent.Add(Text("取回此牌会取消它当前或待生效的持续效果。","body"));
                 }
                 parent.Add(Button("不取回，继续结算",()=>Submit(CommandKind.ChooseRecoveredCard,"skip"),"quiet-button","recover-card-skip"));
+                RenderCardDetail(parent,catalog.Card(view.RecoverableCards.Contains(discardCardId)?discardCardId:choice.Source));
                 return true;
             }
             if (choice.Kind == "effect_move")

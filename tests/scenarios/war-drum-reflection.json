@@ -1,0 +1,145 @@
+{
+  "SchemaVersion": 1,
+  "Id": "war-drum-reflection",
+  "Name": "战鼓×反射屏障：完整远程攻击、反制与取回取消",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "brogan,sabina,wasp,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "brogan-08-战鼓",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "wasp-10-反射屏障",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugSetCoin",
+      "Value": "blue"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 8,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-08-战鼓"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "sabina-01-拔枪"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "wasp-00-闪耀之刃"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p3",
+      "Expect": {
+        "Active": "p2",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p2"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p2",
+      "Value": "hero:2"
+    },
+    {
+      "Command": "Defend",
+      "Actor": "p3",
+      "Value": "wasp-10-反射屏障",
+      "Expect": {
+        "PendingKind": "forced_discard",
+        "PendingChooser": "p2"
+      }
+    },
+    {
+      "Command": "ForcedDiscard",
+      "Actor": "p2",
+      "Value": "sabina-00-近身射击",
+      "Expect": {
+        "Active": "p1",
+        "EffectCounts": {
+          "wasp-10-反射屏障": 1
+        }
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Expect": {
+        "PendingKind": "effect_target",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "hero:2",
+      "Expect": {
+        "PendingKind": "recover_discard",
+        "PendingChooser": "p3",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "ChooseRecoveredCard",
+      "Actor": "p3",
+      "Value": "wasp-10-反射屏障",
+      "Expect": {
+        "Active": "p4",
+        "EffectCounts": {
+          "wasp-10-反射屏障": 0
+        },
+        "EventCounts": {
+          "EffectCancelled": 1,
+          "ProtectionExpired": 1,
+          "CardRecovered": 1
+        }
+      }
+    }
+  ]
+}

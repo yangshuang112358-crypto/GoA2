@@ -126,6 +126,15 @@
       "input": "tests/fixtures/engine15-war-drum-recovery-scenario.json",
       "input_sha256": "ff625a68f0327a2ec6ad49f8bbcdbed3e9f7fd5443bcebae12a67fe85cdf2f00",
       "provenance": "tests/fixtures/engine15-war-drum-recovery.md"
+    },
+    {
+      "engine_version": 16,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine16-minstrel-aura.json",
+      "save_sha256": "77862b5a137ef2109e074c0415102bae10673ff050ac0ca1b51fe31bc54181f4",
+      "input": "tests/fixtures/engine16-minstrel-aura-scenario.json",
+      "input_sha256": "c146cddc5ae5c64194b7a54cd815e32c2b4dacf5f0e58ee7bc51e27c275e56ce",
+      "provenance": "tests/fixtures/engine16-minstrel-aura.md"
     }
   ]
 }

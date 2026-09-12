@@ -207,6 +207,7 @@ namespace Goa2.Rules
             Require(card != null, "invalid_recovery", "只能取回本人的弃牌。");
             bool wasEmpty = !player.Cards.Any(c => c.Zone == CardZone.InHand || c.Zone == CardZone.Selected);
             card!.Zone = CardZone.InHand;
+            CancelRetrievedCardEffects(state,command,player.Seat,card.CardId);
             if (wasEmpty && state.Phase == Phase.Planning) player.Confirmed = false;
             Emit(state, command, "CardRecovered", player.Seat, card.CardId, player.Seat);
             Emit(state, command, "RecoveredColorShown", player.Seat, detail: catalog.Card(card.CardId).Color);

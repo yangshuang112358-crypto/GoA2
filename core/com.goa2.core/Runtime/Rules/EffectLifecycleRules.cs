@@ -7,6 +7,16 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
+        private static void CancelRetrievedCardEffects(GameState state,Command command,int owner,string cardId)
+        {
+            if(state.EngineVersion<16)return;
+            foreach(var effect in state.Effects.Where(e=>e.ControllerSeat==owner && e.SourceCardId==cardId).OrderBy(e=>e.CreationOrder).ToList())
+            {
+                state.Effects.Remove(effect);
+                Emit(state,command,"EffectCancelled",owner,cardId,effect.SourcePrivateTo,detail:"card_retrieved|"+effect.Id);
+                if(effect.SourcePrivateTo.HasValue)Emit(state,command,"ProtectionExpired",owner,detail:effect.Kind+":"+effect.Id);
+            }
+        }
         private static void ApplyTimedEffect(ContentCatalog catalog, GameState state, Command command, CardExecution execution, PrimaryProgram program)
         {
             Require(program.Effect.HasValue, "invalid_effect_program", "卡牌缺少持续效果定义。");

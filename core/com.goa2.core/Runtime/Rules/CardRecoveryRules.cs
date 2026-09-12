@@ -8,6 +8,7 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
+        private static bool RecoverableZone(CardInstance card,PrimaryProgram program) => card.Zone==CardZone.Discarded || program.RecoverResolved && card.Zone==CardZone.PlayedResolved;
         private static int? RecoveryRecipient(GameState state,CardExecution execution,PrimaryProgram program) => program.HeroTarget==HeroTargetKind.None ?
             execution.ControllerSeat : state.Units.SingleOrDefault(u=>u.Id==execution.TargetUnitId && u.Kind=="hero")?.Seat;
         private static bool RecoveryCondition(ContentCatalog catalog,GameState state,int seat,CardExecution execution,PrimaryProgram program)
@@ -29,12 +30,12 @@ namespace Goa2.Rules
         public static List<string> LegalRecoveries(ContentCatalog catalog,GameState state,int seat)
         {
             var program=RecoveryProgram(catalog,state,seat);
-            return program!=null && RecoveryCondition(catalog,state,seat,state.Execution!,program) ? state.Players[seat].Cards.Where(c=>c.Zone==CardZone.Discarded).Select(c=>c.CardId).ToList() : new List<string>();
+            return program!=null && RecoveryCondition(catalog,state,seat,state.Execution!,program) ? state.Players[seat].Cards.Where(c=>RecoverableZone(c,program)).Select(c=>c.CardId).ToList() : new List<string>();
         }
         private static bool BeginRecovery(ContentCatalog catalog,GameState state,Command command,CardExecution execution,PrimaryProgram program)
         {
             int? recipient=RecoveryRecipient(state,execution,program);
-            if(!recipient.HasValue || !RecoveryCondition(catalog,state,recipient.Value,execution,program) || !state.Players[recipient.Value].Cards.Any(c=>c.Zone==CardZone.Discarded))
+            if(!recipient.HasValue || !RecoveryCondition(catalog,state,recipient.Value,execution,program) || !state.Players[recipient.Value].Cards.Any(c=>RecoverableZone(c,program)))
             {
                 Emit(state,command,"RecoverDiscardSkipped",execution.ControllerSeat,execution.CardId,detail:"no_candidates");return false;
             }
@@ -46,13 +47,14 @@ namespace Goa2.Rules
         private static void ChooseRecoveredCard(ContentCatalog catalog,GameState state,Command command)
         {
             Require(RecoveryProgram(catalog,state,command.ActorSeat)!=null && (command.Value=="skip" || LegalRecoveries(catalog,state,command.ActorSeat).Contains(command.Value)),
-                "invalid_recovery_choice","请由本人选择当前可取回的弃牌，或明确不取回。");
+                "invalid_recovery_choice","请由本人选择牌文允许取回的卡牌，或明确不取回。");
             var execution=state.Execution!;
             if(command.Value=="skip") Emit(state,command,"RecoverDiscardSkipped",command.ActorSeat,execution.CardId,detail:"declined");
             else
             {
-                var card=state.Players[command.ActorSeat].Cards.Single(c=>c.CardId==command.Value && c.Zone==CardZone.Discarded);
+                var card=state.Players[command.ActorSeat].Cards.Single(c=>c.CardId==command.Value);
                 card.Zone=CardZone.InHand;
+                CancelRetrievedCardEffects(state,command,command.ActorSeat,card.CardId);
                 Emit(state,command,"CardRecovered",command.ActorSeat,card.CardId,command.ActorSeat);
                 Emit(state,command,"RecoveredColorShown",command.ActorSeat,detail:catalog.Card(card.CardId).Color);
                 Emit(state,command,"RecoverDiscardCompleted",command.ActorSeat,execution.CardId);
