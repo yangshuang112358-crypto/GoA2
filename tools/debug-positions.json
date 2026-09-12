@@ -94,5 +94,29 @@
     "through_step": 12,
     "phase": "EffectChoice",
     "pending": "effect_move"
+  },
+  {
+    "id": "loyal-recover",
+    "title": "忠实信徒：取回弃牌或跳过",
+    "scenario": "loyal-recover",
+    "through_step": 11,
+    "phase": "EffectChoice",
+    "pending": "recover_discard"
+  },
+  {
+    "id": "loyal-defense",
+    "title": "忠实信徒×拔枪：刚取回的劈砍可以防御",
+    "scenario": "loyal-recover",
+    "through_step": 15,
+    "phase": "EffectChoice",
+    "pending": "defense"
+  },
+  {
+    "id": "loyal-silence",
+    "title": "忠实信徒×打断施法：技能被封锁",
+    "scenario": "loyal-silence",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": ""
   }
 ]

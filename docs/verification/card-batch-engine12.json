@@ -1,0 +1,364 @@
+{
+  "engine": 12,
+  "implemented_cards": 23,
+  "data_only_cards": 85,
+  "build_utc": "2026-09-12T16:59:06.0014326Z",
+  "build_info_sha256": "a870f0ee40750d197a0727bdd90dd153abe80f5756c7ea5228be0b2d3c4735af",
+  "assemblies": {
+    "Goa2.Application.dll": "537c9b54e0987f03278bed8225ddce4bdbbe9a10da5c796fa6b531de34f6b036",
+    "Goa2.Domain.dll": "af999ba29f86e13d7ddad4cad15681d5d8c2f26d0018df3e97a4d2f59d6efff5",
+    "Goa2.Infrastructure.dll": "80567d52f81259a181f8f5370adc7331366b5f1828ea4ed40c1ae584c90fe2af",
+    "Goa2.Presentation.dll": "26b72ac3a9f07aae675129fd9bb0336d3617bb1ed8b14fe8218e433939e4d4e6",
+    "Goa2.Rules.dll": "92f35a29d95d9ed4b64fdb30299e151172452356e51003412929d54957aa3a29"
+  },
+  "core": {
+    "report": "artifacts/tests/core.trx",
+    "report_sha256": "1748e52f38c84c8055c18c908639c2182f752d480df7b68a9652db60c3868022",
+    "passed": 488,
+    "failed": 0,
+    "skipped": 0,
+    "card_specific": {
+      "偷袭": 21,
+      "忠实信徒": 21
+    }
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "native": {
+    "scenarios": 38,
+    "steps": 557,
+    "results": [
+      {
+        "input": "tests/scenarios/backstab.json",
+        "input_sha256": "3f833a8c422902c913f0bef6297d36cca6128f1f2c87a4c60e75202bc1f6138b",
+        "report": "artifacts/scenarios/backstab/headless/76939ccdae634b979efde5037cea1b0e/report.json",
+        "steps": 14,
+        "final_state_sha256": "a012825922ef146cce071ab80722faf26d60513bc390409941aa23632c7c4198",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/cleave.json",
+        "input_sha256": "a9baece1679601f8488909c8f937088a07bf665d20b72cf8cf7320fbc357d55c",
+        "report": "artifacts/scenarios/cleave/headless/2b527e4128004f16827877ca7a6ee88f/report.json",
+        "steps": 17,
+        "final_state_sha256": "81ca5cd703b6ad0f5b46d153aa2eee5e9f21e93b4520f6f8aab0f765d71d8a6f",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/combat-defense.json",
+        "input_sha256": "fcd54223a180a860434f8896a57412f501c3375fe6384da64e4403ccc98fe243",
+        "report": "artifacts/scenarios/combat-defense/headless/71f602513e0e4711aea636d80752364b/report.json",
+        "steps": 17,
+        "final_state_sha256": "545cbd8ca64ebad32297324d7f6eaa1e3f42c5c882cac6dd7c5b8ea349eaf9af",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/deadly-sweep.json",
+        "input_sha256": "c04b71b89d96f4429353cbc3f2345240de756153e686f1d2ff39d42cc0df6ce2",
+        "report": "artifacts/scenarios/deadly-sweep/headless/de8d9cd2b9404a85b48ce50ef2200e07/report.json",
+        "steps": 17,
+        "final_state_sha256": "fc0d6e8a4f7404f4294a516dc37f6fbb9390f4396920859d7ecec9c2abb037b0",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/death-spin.json",
+        "input_sha256": "2a684cef78a2782f26831c0c7d7b5379a7a04f59383ca3d339507b5ca1a0aa62",
+        "report": "artifacts/scenarios/death-spin/headless/0b10cdcfd80246da9084765ee56aefc7/report.json",
+        "steps": 17,
+        "final_state_sha256": "01c166e1277300de903214af90ef147e803d90fa13e1ddfb39e796ec6d8ede7f",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/debug-attack.json",
+        "input_sha256": "8280f07e81b76a6d8a5d6b757d7cf37fcaed0268b173e5049c0e4b0806778a23",
+        "report": "artifacts/scenarios/debug-attack/headless/b29a9a23eb3e4a31af81bf960ddd7420/report.json",
+        "steps": 5,
+        "final_state_sha256": "fd98b296327608b521353e6c2f1d2fd8d647caa9ed05bfc472086b5702ac6957",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/deflection-barrier.json",
+        "input_sha256": "4a4da6f080a0464d3f5f44db8ac1f712cecaaf34e0ce488acacf1054a29c4357",
+        "report": "artifacts/scenarios/deflection-barrier/headless/5c3716cc7f00446b9c1ec16ddcc15fbe/report.json",
+        "steps": 19,
+        "final_state_sha256": "3c884b1d1f210ece96fe6e1870c5af68ca9756397456064d50cfb6c9604a889f",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/formal-turn.json",
+        "input_sha256": "36d0e6882381781b7259051e9dd28450df2c9d64260cddb7622843dc4596cb94",
+        "report": "artifacts/scenarios/formal-turn/headless/bb589156422d4d33861ba0a4541d328a/report.json",
+        "steps": 23,
+        "final_state_sha256": "329b231693e00c5d2681685916815e8038884953d60365eb2b8ab5d3d2e8d799",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/frontline.json",
+        "input_sha256": "10933c41c9687d798ea487c1acaf3cca862147776281bc6a1875d5050f6922e3",
+        "report": "artifacts/scenarios/frontline/headless/d95ab0a2c03b4a9ab1280163a4261a2e/report.json",
+        "steps": 7,
+        "final_state_sha256": "7b616550af4cb8e73fa143090abed9bbeea51885de082dd2f7ebd75766dd1ada",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/headshot.json",
+        "input_sha256": "b08e5bde1852ada0dc4431686990dacb1f75eec9e75e24609b24bca6f0615d56",
+        "report": "artifacts/scenarios/headshot/headless/2b127d25b17441d49ce7f8ca98d584c6/report.json",
+        "steps": 14,
+        "final_state_sha256": "b6fc3092ed30c6a8aa608a6f3e865962eae4d8a4bc447da3bbf37fe8d9ee5b36",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/lead-charge-unavailable.json",
+        "input_sha256": "07fbc8e21ca4183c9e94bac185c3efa8577115ef1b28bd037ab79666816a4928",
+        "report": "artifacts/scenarios/lead-charge-unavailable/headless/2c4eebc66f1e478cba66334b1a664893/report.json",
+        "steps": 14,
+        "final_state_sha256": "fd125a8c6937e7818a1125046f12f8d53d345637022ec1d1d144e8749bb81275",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/lead-charge.json",
+        "input_sha256": "a05104b65e01ba1ee5521bbd23b244087424e1669cae490ad6500c3edac4f480",
+        "report": "artifacts/scenarios/lead-charge/headless/9e4155d41dda4db8b8726e410524b7b0/report.json",
+        "steps": 13,
+        "final_state_sha256": "aedc01b5c964fd0bb9f80c1269eb53b57a5e6670bdc0b16ace0379b66d568bb8",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/loyal-recover.json",
+        "input_sha256": "d89a907aa9087e4fcd99424120868eec98d85338dae2b4d4dbb1123d1f2f66fe",
+        "report": "artifacts/scenarios/loyal-recover/headless/dac1a1efb5934e64beb2d1730f16ed50/report.json",
+        "steps": 16,
+        "final_state_sha256": "7d677c5b09f3a9b1cc6361a47c846d32bff06bffe56a9e67a0fca9a07499c71c",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/loyal-silence.json",
+        "input_sha256": "4feb9ab7222793b9426b900ea490a12d33ebcfa25011225c831a5bd69c3369ba",
+        "report": "artifacts/scenarios/loyal-silence/headless/14aaf4d4ac274465a12761dad247f793/report.json",
+        "steps": 13,
+        "final_state_sha256": "c4d508fbde5336ad39000d0526604770ec41bb8a2b1a86201bcb78a1c6464490",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/loyal-skip.json",
+        "input_sha256": "e1f33f33274c98e8fc84d04987f9ddbe30056f68361784d8ec934b97d2b13ddc",
+        "report": "artifacts/scenarios/loyal-skip/headless/ccadf21905684586b917467236d37d78/report.json",
+        "steps": 13,
+        "final_state_sha256": "3aa40c92d515b40695aee75a0672bf787022568e504770a614ff8a54570fc245",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/marksman.json",
+        "input_sha256": "2dc882a1d232fe82aacf4151f445424c901e8e0eb1136a9ed70bf6793ceb99fb",
+        "report": "artifacts/scenarios/marksman/headless/d7c5b385068343a38a8bba5c995d3be3/report.json",
+        "steps": 13,
+        "final_state_sha256": "887aa6677ee7e190e8321460cac499df8aa1678d38c83c6d032ea661fd26ce07",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/melee-block.json",
+        "input_sha256": "1f6778c4e8f5f14fa4ec55ca78d0ff9acc49d038cfd33e40f33f1c59af0d99c9",
+        "report": "artifacts/scenarios/melee-block/headless/e1b8a007c5954e0e98e8473242e383b2/report.json",
+        "steps": 14,
+        "final_state_sha256": "8389087a53bd3e7fddfb69aea9db82ead64bcf9a628465f7b805c66bb215f274",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/permissions.json",
+        "input_sha256": "d6d68f9eb69263fa516307e1cdd43273a08010a817b386c7f1ad2d6e8fa496ae",
+        "report": "artifacts/scenarios/permissions/headless/73b6b367db954e248da4742c2bb8abe0/report.json",
+        "steps": 7,
+        "final_state_sha256": "925920ebce4effc60bd3a6a6d3967eafb46fd5e03939975cadda8f3eb28f0d04",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/reflection-barrier.json",
+        "input_sha256": "584a868eb59c58af26c7c4e81f8f9b6fdaf50fb9a5c30e4f6d0aaafebeb34568",
+        "report": "artifacts/scenarios/reflection-barrier/headless/bf626272eab74b4c992bc6910e06ea9e/report.json",
+        "steps": 22,
+        "final_state_sha256": "f8fe71fa7b99e3825d620884b25231168a47074e319ce92b92713f7c6b8571c6",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/riposte-decline-victory.json",
+        "input_sha256": "f9bf6394242a4383f54489b7a10e114fc2248d00b93209caf3b41770448af80f",
+        "report": "artifacts/scenarios/riposte-decline-victory/headless/e9429b713ab148a39affbd2b518ed97c/report.json",
+        "steps": 13,
+        "final_state_sha256": "63a1c39b095dc7cfb3292bb211a5c3906754f6a442002362740d705d4abaab8c",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/riposte-decline.json",
+        "input_sha256": "c679a1e3ff0b366b30c17206d3ada0faeb6387454dd5ce0b5f61b011d039e70e",
+        "report": "artifacts/scenarios/riposte-decline/headless/d6632ce998f843e0a6286424b2f23cad/report.json",
+        "steps": 16,
+        "final_state_sha256": "4444719aad0e73d819151eedd170eec04f81da647a7fdbd0b3b961d586747c10",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/riposte-empty.json",
+        "input_sha256": "f0013cd69808aa9988fd8f0fd54b16f7d72d113cb4d37a53510480036ba4840a",
+        "report": "artifacts/scenarios/riposte-empty/headless/9fdacc6738cc4a8fa6679bfe1ae6170f/report.json",
+        "steps": 26,
+        "final_state_sha256": "d39be2b9f98114554573a31d463308db198bee0578c483abf1be75ba273ae594",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/riposte-hand.json",
+        "input_sha256": "63592f23757b8c90f4df6a839d3655cdc652381a84f4db6b3d3ca21b8c187fba",
+        "report": "artifacts/scenarios/riposte-hand/headless/207a746d29364c2ca9a8dd2cc1cd6e02/report.json",
+        "steps": 14,
+        "final_state_sha256": "e50392bfbba8023326b0f97b5034ddac3aeece4ec3866c00e72c9f5d12d916f9",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/riposte-ranged.json",
+        "input_sha256": "426d23cc9588373153cf6d4ee110fdc8defd68091421747ea0389b9cd083670b",
+        "report": "artifacts/scenarios/riposte-ranged/headless/650c16e8cebb4f099ea9d6608c0916fc/report.json",
+        "steps": 13,
+        "final_state_sha256": "5dc5921dfafde7e27073ea31fd58ef285efe59f7ad3f1c079f8953ef39579276",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/riposte-victory.json",
+        "input_sha256": "1e32d0b79f7c9edd8eb4590d3d41ace76253174dc6a9b2e91bb2aed16d563806",
+        "report": "artifacts/scenarios/riposte-victory/headless/5dee9bd66d8c41e3979e8731e15a7d9e/report.json",
+        "steps": 16,
+        "final_state_sha256": "c33adb9d1f9561e891eea2e68bf856bf904ee23ffda4152b993321cafbec8067",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/round-frontline.json",
+        "input_sha256": "44c70b986231c2aa997c35a8f2abe1ed1e478862501d5c2e5df68d031f3f5291",
+        "report": "artifacts/scenarios/round-frontline/headless/79a55467ba474dc389f1e2faf8b02e4d/report.json",
+        "steps": 17,
+        "final_state_sha256": "af69c82be70a7789cc584933d9b8d3b695dede55097c038834c573771ddcd126",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/round-upgrades.json",
+        "input_sha256": "a96d6c47f1afa6c79adaadd529180dd9d1447f03143646b8414d2e2c469e1019",
+        "report": "artifacts/scenarios/round-upgrades/headless/12abac6cdce545f0a0739b6380b2e9f7/report.json",
+        "steps": 26,
+        "final_state_sha256": "1683064a96fcb91e799bf92feba3c4687e865a7adcaca882c585dd16488f5e2f",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sandbox-smoke.json",
+        "input_sha256": "21bc5e51ed0639ce82802308c08c7e8f0aea351da624719c4ce3867e750e19a4",
+        "report": "artifacts/scenarios/sandbox-smoke/headless/0a5801a00d7b427cbb318e0c94170855/report.json",
+        "steps": 9,
+        "final_state_sha256": "12daeab8ed3eca0cc3a7a640d00f1709648b2bc53d4c12b347ea01425a6a19e3",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shining-blade.json",
+        "input_sha256": "53298deae2d420e37fe48b8d94a36dc098749fffe62f37f863397ee2b1c11a9a",
+        "report": "artifacts/scenarios/shining-blade/headless/f344d9e3dd0b40ed88e45fa35287a411/report.json",
+        "steps": 15,
+        "final_state_sha256": "c65cdbc4fcb0fc6862d830e27bc4cd70ebf956ffd6dd1b02096809e7bf8507a4",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/skill-suppression.json",
+        "input_sha256": "c39797b64320fa61a69a3221f236624f524071ba61a2700c8113f20b92ffdad1",
+        "report": "artifacts/scenarios/skill-suppression/headless/82eb03bc9160466c891ffd7f7f728459/report.json",
+        "steps": 12,
+        "final_state_sha256": "0c766b8049342aef1a7f06622317584f5adc791bb21633e6c3facafb5924ad9b",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sneak-move.json",
+        "input_sha256": "27c22a12d6c2ec4e4ad18027ee48f8d740748081e6e12023170fc4706a89d335",
+        "report": "artifacts/scenarios/sneak-move/headless/603916fdaad141bb8f2df87a5282f6a6/report.json",
+        "steps": 12,
+        "final_state_sha256": "e43f117c59e556797035de189cefa5da676385d5fd1b9d7c6dc3b6ab640ce49a",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sneak-skip.json",
+        "input_sha256": "e5f43ddaa0f124f3d90835115b870fbece1034e7de7278492c358650460bdfcd",
+        "report": "artifacts/scenarios/sneak-skip/headless/979bd5b19e6d4bdc9298fd78c20f8b71/report.json",
+        "steps": 12,
+        "final_state_sha256": "9889764b5cac4f3a81f320e8f87494e671fc4866a078f1756ad5588fbbe897da",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sneak-static.json",
+        "input_sha256": "f26c6e4463406033da2bb8e02f62e013875eddd5d3abd9a1e034df2578f6cc0f",
+        "report": "artifacts/scenarios/sneak-static/headless/2786f445c0864c878fac3b40389844ff/report.json",
+        "steps": 14,
+        "final_state_sha256": "fc21ca8689b7e8972076f1ac793f72a3ab0e776032a67332827c8933b9ed45aa",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/spawn-order.json",
+        "input_sha256": "1a7528bac504e389cca73a085e50cf99a8631000f1d194345f30fbf72d9da820",
+        "report": "artifacts/scenarios/spawn-order/headless/a3b169b36c07494598855ffb27cf2923/report.json",
+        "steps": 7,
+        "final_state_sha256": "a7c32ce37a52d0c42002d11e9b08914b6832c193befde16360e51818e5d7db9b",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/static-field.json",
+        "input_sha256": "fb9c248dea047134dfddbb80bb62f509cadba2c4c8cacabf0e25eded6e1d0abd",
+        "report": "artifacts/scenarios/static-field/headless/8bfdb3824a3941228bd542d5cbc8829e/report.json",
+        "steps": 13,
+        "final_state_sha256": "9d8254193f58ba6e0bc9854afb80adb283f22f08ea0e2e06a10479dc9072c032",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/throwing-axe-reflection.json",
+        "input_sha256": "6f247c8e98990869535c40dfefaf067531af89b53cf8d0eeb9a507b7be03eb37",
+        "report": "artifacts/scenarios/throwing-axe-reflection/headless/51e4cbcf3e7040649de3b9fb7b60d40a/report.json",
+        "steps": 20,
+        "final_state_sha256": "c298ae18090d6a943900f5c6f4b03536d78e2736785040ef06e3118c871d6457",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/throwing-axe-skip.json",
+        "input_sha256": "ff9bb2304f9beaaa2e3cf6809adc11e3b351cb0b02b1d3dec7cf6a2c07bf30cf",
+        "report": "artifacts/scenarios/throwing-axe-skip/headless/9e164c4999a446d8b422b47666521e18/report.json",
+        "steps": 13,
+        "final_state_sha256": "30a7fb74d046a8cfe21b6dc4b6d1f271a117f5b20235fcdc1cca4bcb3c04dd6c",
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/throwing-spear-existing-discard.json",
+        "input_sha256": "d7f42bee8710c10e7d26f1a7e84d01ff01622c87bfaa83145c3bbc7dd233231c",
+        "report": "artifacts/scenarios/throwing-spear-existing-discard/headless/cd877ca9eee84f8cbaa129fc06683aff/report.json",
+        "steps": 14,
+        "final_state_sha256": "e1856ad1730726fd16019ef97df92f3c4c64270cedbd9a1a8cb1ffaaeabbbebd",
+        "passed": true
+      }
+    ]
+  },
+  "layout": {
+    "report": "artifacts/card-layout/c9324b2410fd46a2a0b0719a258379e8/report.json",
+    "passed": true,
+    "cards": 108,
+    "mode": "Real Player layout and synthetic pointer events; no physical input"
+  },
+  "browser": {
+    "report": "artifacts/reference-tests/a62d660178fa4bcda05106dc4d969953/report.json",
+    "passed": true,
+    "checks": 23
+  },
+  "physical_ui": {
+    "sneak": "blocked_foreground_ownership",
+    "loyal": "not_run",
+    "full_suite": "not_run",
+    "scripts": [
+      "tools/test-sneak-ui.ps1",
+      "tools/test-loyal-ui.ps1"
+    ]
+  },
+  "package": {
+    "path": "artifacts/releases/Goa2V1-e12-cards-20260913-20260912-170136-92e31c8e.zip",
+    "sha256": "64f526b965bf50a9a4ec48c99d0180b7dd2a0990e4aa4fc6dbdc63e3e1e64ce7",
+    "bytes": 47268336
+  }
+}

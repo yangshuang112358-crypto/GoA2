@@ -1,5 +1,5 @@
-﻿param(
-    [ValidateSet('all','smoke','presets','recovery','gallery','battlefield','combat','upgrade','round-minion','auras','barriers','marksman','adjacent-attacks','conditional-defenses','optional-discard','riposte-choice','sneak')]
+param(
+    [ValidateSet('all','smoke','presets','recovery','gallery','battlefield','combat','upgrade','round-minion','auras','barriers','marksman','adjacent-attacks','conditional-defenses','optional-discard','riposte-choice','sneak','loyal')]
     [string[]]$Case = @('all'),
     [ValidateRange(1152,3840)][int]$Width = 1280,
     [ValidateRange(768,2160)][int]$Height = 800,
@@ -8,6 +8,7 @@
 $ErrorActionPreference = 'Stop'
 $goaRoot = Split-Path -Parent $PSScriptRoot
 $goaCases = [ordered]@{
+    loyal = @('test-loyal-ui.ps1','loyal-ui')
     sneak = @('test-sneak-ui.ps1','sneak-ui')
     smoke = @('test-player-ui.ps1','ui-smoke')
     presets = @('test-presets-ui.ps1','presets-ui')

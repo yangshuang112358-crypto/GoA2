@@ -42,6 +42,25 @@ namespace Goa2.Presentation
         {
             var choice = view.Pending;
             if (choice == null) return false;
+            if (choice.Kind == "recover_discard")
+            {
+                parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择取回一张弃牌。","section-title"));
+                RenderCardDetail(parent,catalog.Card(choice.Source));
+                if(choice.ChooserSeat!=seat) { parent.Add(Text("等待对应角色选择取回或跳过。","body"));return true; }
+                foreach(string id in view.RecoverableCards)
+                {
+                    string selected=id;
+                    var button=Button(catalog.Card(id).Name,()=> { discardCardId=selected;Render(); },"choice-button","recover-card-"+catalog.Card(id).Color);
+                    if(discardCardId==id) button.AddToClassList("chosen");parent.Add(button);
+                }
+                if(view.RecoverableCards.Contains(discardCardId))
+                {
+                    RenderCardDetail(parent,catalog.Card(discardCardId));
+                    Confirm(parent,"确认取回 "+catalog.Card(discardCardId).Name,()=>Submit(CommandKind.ChooseRecoveredCard,discardCardId));
+                }
+                parent.Add(Button("不取回，继续结算",()=>Submit(CommandKind.ChooseRecoveredCard,"skip"),"quiet-button","recover-card-skip"));
+                return true;
+            }
             if (choice.Kind == "effect_move")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择牌文移动。","section-title"));

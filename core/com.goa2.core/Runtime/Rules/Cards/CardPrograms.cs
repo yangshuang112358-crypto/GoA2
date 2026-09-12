@@ -4,7 +4,7 @@ using Goa2.Domain;
 
 namespace Goa2.Rules.Cards
 {
-    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove }
+    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard }
     internal enum AttackBonusKind { None, TargetUsedAttack, AdjacentEnemies, OtherFriendlySupport }
     internal enum AttackRangeBonusKind { None, DiscardedBeforeAttack, OwnDiscardPile }
     internal enum DefenseFollowup { None, DiscardAttacker, DiscardAttackerThenImmunity, DiscardAttackerOrDefeat }
@@ -37,15 +37,17 @@ namespace Goa2.Rules.Cards
         public readonly AttackRangeBonusKind RangeBonusKind;
         public readonly int RangeBonusValue;
         public readonly int TextMoveDistance;
+        public readonly bool RecoveryRequiresAdjacentMinion;
         public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
             EffectAreaKind areaKind=EffectAreaKind.SkillRange, AttackBonusKind bonus=AttackBonusKind.None, int bonusValue=0,
-            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,params InstructionKind[] instructions)
+            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
             AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=EffectDuration.ThisTurn;
             AttackBonusKind=bonus; AttackBonusValue=bonusValue;
             RangeBonusKind=rangeBonus; RangeBonusValue=rangeBonusValue;
             TextMoveDistance=textMoveDistance;
+            RecoveryRequiresAdjacentMinion=recoveryRequiresAdjacentMinion;
             Instructions = System.Array.AsReadOnly(instructions.Length>0 ? instructions : new[] { InstructionKind.ChooseAttackTarget, InstructionKind.Attack, InstructionKind.End });
         }
         public PrimaryProgram(string id, EffectKind effect, EffectDuration duration)
@@ -90,16 +92,18 @@ namespace Goa2.Rules.Cards
             ["tigerclaw-17-近身还击"] = ("抵挡一次非远程攻击。攻击者丢弃一张卡牌，否则被击败。",7,new DefenseProgram("block_non_ranged_discard_or_defeat_attacker",true,followup:DefenseFollowup.DiscardAttackerOrDefeat,attackKind:DefenseAttackKind.NonRanged)),
             ["sabina-08-带头冲锋"] = ("如果你与一个友方小兵相邻，抵挡此次攻击。",7,new DefenseProgram("block_with_adjacent_friendly_minion",true,attackKind:DefenseAttackKind.Any,adjacentFriendlyMinion:true))
         };
-        private static readonly Dictionary<string,(string text, PrimaryProgram program)> Skills = new Dictionary<string,(string, PrimaryProgram)>
+        private static readonly Dictionary<string,(string text, int minimumEngine, string? subtype, PrimaryProgram program)> Skills = new Dictionary<string,(string, int, string?, PrimaryProgram)>
         {
-            ["wasp-06-静电封锁"] = ("此回合：技能范围内的敌方单位无法移动或快速移动来脱离技能范围。技能范围外的敌方单位无法移动或快速移动进入技能范围。", new PrimaryProgram("movement_boundary_aura",EffectKind.MovementBoundary,EffectDuration.ThisTurn)),
-            ["arien-06-打断施法"] = ("此回合：在技能范围内的敌方英雄不能执行技能。（打断施法不会阻止攻击行动。）", new PrimaryProgram("skill_suppression_aura",EffectKind.SkillSuppression,EffectDuration.ThisTurn))
+            ["wasp-06-静电封锁"] = ("此回合：技能范围内的敌方单位无法移动或快速移动来脱离技能范围。技能范围外的敌方单位无法移动或快速移动进入技能范围。",2,"范围",new PrimaryProgram("movement_boundary_aura",EffectKind.MovementBoundary,EffectDuration.ThisTurn)),
+            ["arien-06-打断施法"] = ("此回合：在技能范围内的敌方英雄不能执行技能。（打断施法不会阻止攻击行动。）",2,"范围",new PrimaryProgram("skill_suppression_aura",EffectKind.SkillSuppression,EffectDuration.ThisTurn)),
+            ["shargatha-15-忠实信徒"] = ("如果你与一个小兵相邻，你可以拿回一张已丢弃的卡牌。",12,null,new PrimaryProgram("optional_discard_recovery_near_minion",0,recoveryRequiresAdjacentMinion:true,
+                instructions:new[]{InstructionKind.OptionalRecoverDiscard,InstructionKind.End}))
         };
         public static PrimaryProgram? Primary(CardDefinition card, int engineVersion)
         {
             if (card.PrimaryFamily == "attack" && Attacks.TryGetValue(card.Id,out var attack) && card.Text == attack.text && engineVersion>=attack.minimumEngine &&
                 (attack.program.AdjacentAttack ? string.IsNullOrEmpty(card.Subtype) : card.Subtype=="远程")) return attack.program;
-            if (engineVersion >= 2 && card.PrimaryFamily == "skill" && card.Subtype == "范围" && Skills.TryGetValue(card.Id,out var skill) && card.Text == skill.text) return skill.program;
+            if (card.PrimaryFamily == "skill" && Skills.TryGetValue(card.Id,out var skill) && engineVersion>=skill.minimumEngine && card.Subtype==skill.subtype && card.Text==skill.text) return skill.program;
             if (engineVersion >= 3 && card.Id=="wasp-00-闪耀之刃" && card.PrimaryCategory=="基础攻击" && string.IsNullOrEmpty(card.Subtype) &&
                 card.Text=="选择与你相邻的一个英雄为目标。攻击后：取消与你相邻的敌方英雄技能卡上的激活效果。此回合：与你相邻的敌方英雄无法执行技能行动。") return ShiningBlade;
             return null;

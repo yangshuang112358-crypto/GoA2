@@ -15,7 +15,7 @@ function check(value,name){report.checks.push({check:name,passed:!!value});if(!v
   await page.goto(pathToFileURL(input).href);await page.waitForSelector('.card');
   check(await page.locator('.card').count()===108,'The offline page lists all 108 cards');
   await page.selectOption('#hero-filter','wasp');check(await page.locator('.card').count()===18,'Hero filtering preserves all 18 formal cards');
-  await page.selectOption('#hero-filter','');await page.selectOption('#status-filter','implemented');check(await page.locator('.card').count()===22,'Implementation status is separate from the full catalog');
+  await page.selectOption('#hero-filter','');await page.selectOption('#status-filter','implemented');check(await page.locator('.card').count()===23,'Implementation status is separate from the full catalog');
   await page.selectOption('#status-filter','');await page.selectOption('#color-filter','purple');check(await page.locator('.card').count()===6,'All six purple cards remain searchable');
   await page.locator('.card').first().click();check((await page.locator('#card-detail').innerText()).includes('英雄8级'),'Purple card rank and hero unlock level are not confused');await page.keyboard.press('Escape');
   await page.selectOption('#color-filter','');await page.fill('#card-search','投掷飞斧');check(await page.locator('.card').count()===1,'Chinese name search finds the exact throwing axe');

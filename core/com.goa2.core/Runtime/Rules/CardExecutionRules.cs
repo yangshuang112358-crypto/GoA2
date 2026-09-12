@@ -68,6 +68,10 @@ namespace Goa2.Rules
                         if (BeginTextMove(catalog,state,command,execution,program)) return;
                         execution.Cursor++;
                         break;
+                    case InstructionKind.OptionalRecoverDiscard:
+                        if (BeginRecovery(state,command,execution,program)) return;
+                        execution.Cursor++;
+                        break;
                     case InstructionKind.ApplyEffect:
                         ApplyTimedEffect(catalog,state,command,execution,program);
                         execution.Cursor++;
