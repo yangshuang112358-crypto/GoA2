@@ -36,6 +36,7 @@ namespace Goa2.Rules
         }
         public static List<MoveOption> LegalEffectMoves(ContentCatalog catalog,GameState state,int seat)
         {
+            if(state.Pending?.ResumeAt=="defense_response_move")return LegalDefenseMoves(catalog,state,seat);
             if(state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="effect_move" || state.Pending.ChooserSeat!=seat ||
                 state.Execution?.ControllerSeat!=seat) return new List<MoveOption>();
             var program=TextMoveProgram(catalog,state);
@@ -70,6 +71,7 @@ namespace Goa2.Rules
         }
         private static void ChooseEffectMove(ContentCatalog catalog,GameState state,Command command)
         {
+            if(state.Pending?.ResumeAt=="defense_response_move"){ChooseDefenseMove(catalog,state,command);return;}
             Require(state.Phase==Phase.EffectChoice && state.Pending?.Kind=="effect_move" && state.Pending.ChooserSeat==command.ActorSeat &&
                 state.Pending.Optional && state.Execution?.ControllerSeat==command.ActorSeat && TextMoveProgram(catalog,state)!=null &&
                 (command.Value=="" || command.Value=="skip") && command.MoveMode==MoveMode.Secondary,

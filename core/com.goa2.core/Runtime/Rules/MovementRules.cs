@@ -48,6 +48,23 @@ namespace Goa2.Rules
             }
             return result.OrderBy(o => o.Destination.X).ThenBy(o => o.Destination.Y).ToList();
         }
+        internal static List<MoveOption> StraightExact(ContentCatalog catalog,GameState state,UnitState unit,int distance)
+        {
+            var result=new List<MoveOption>();if(distance<1)return result;
+            var occupied=new HashSet<Hex>(state.Units.Select(u=>u.Position));
+            foreach(var first in unit.Position.Neighbors())
+            {
+                var delta=new Hex(first.X-unit.Position.X,first.Y-unit.Position.Y);var path=new List<Hex>{unit.Position};var current=unit.Position;
+                for(int i=0;i<distance;i++)
+                {
+                    var next=new Hex(current.X+delta.X,current.Y+delta.Y);
+                    if(catalog.Cell(next)?.Obstacle!=false || occupied.Contains(next) || !EffectRules.CanMoveAcross(catalog,state,unit,current,next))break;
+                    path.Add(next);current=next;
+                }
+                if(path.Count==distance+1)result.Add(new MoveOption{Destination=current,Path=path});
+            }
+            return result.OrderBy(o=>o.Destination.X).ThenBy(o=>o.Destination.Y).ToList();
+        }
         private static List<MoveOption> Fast(ContentCatalog catalog, GameState state, UnitState source)
         {
             var cells = catalog.Cells.ToDictionary(c => c.Position);

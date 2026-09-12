@@ -42,7 +42,12 @@ namespace Goa2.Rules
             Require(program != null && program.Id==response.ProgramId && program.Version==response.ProgramVersion,
                 "incompatible_program", "防御后处理程序版本不兼容。");
             Require(response.Cursor>=0 && response.Cursor<=1, "invalid_program_cursor", "防御后处理步骤无效。");
-            if (response.Cursor==0)
+            if(response.Cursor==0 && program!.Followup==DefenseFollowup.OptionalStraightMove)
+            {
+                if(BeginDefenseMove(catalog,state,command,response,program))return false;
+                response.Cursor++;
+            }
+            else if (response.Cursor==0)
             {
                 if (state.Players[response.AttackerSeat].Cards.Any(c => c.Zone==CardZone.InHand))
                 {

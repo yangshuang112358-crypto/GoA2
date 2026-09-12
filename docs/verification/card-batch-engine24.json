@@ -1,0 +1,84 @@
+{
+  "engine": 24,
+  "implemented_cards": 35,
+  "data_only_cards": 73,
+  "build_utc": "2026-09-12T20:32:43.2777451Z",
+  "assemblies": {
+    "Goa2.Application.dll": "485a32119492e3a5a17ff08ed8a8fabc2e4c200e5525ed38230a6a25121efd35",
+    "Goa2.Domain.dll": "1f3dd6f741051e67eeb2e841da1ce7772cb67a6f0c83595df367148d8baa7a81",
+    "Goa2.Infrastructure.dll": "b27af36ae1e933326fb14b16507960e088b5d35fd70adae71e5b6d1b6598461b",
+    "Goa2.Presentation.dll": "be81253390adc0d4c5881c16a8b8448c4c11c369e35ce63ce75e094c4b634e69",
+    "Goa2.Rules.dll": "6bd6a61503885c0c25569e806318ab0095503aaa9cd2a00010ad67327c69a501"
+  },
+  "core": {
+    "passed": 746,
+    "failed": 0,
+    "report": "artifacts/tests/sidestep-core.trx",
+    "card_specific": 17
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/sidestep-move.json",
+        "input_sha256": "64e9daaa5da479e11a453e4e20308926f26cb3b9e8ee804bf3ebe67fece8c893",
+        "report": "artifacts/scenarios/sidestep-move/headless/ca85d5b3dd1941c5a1d0b6c358886a26/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sidestep-skip.json",
+        "input_sha256": "4c3039fc1139ab11a6ae6d6527af31ee7411178ad8bb1e849929cabb4590b3ef",
+        "report": "artifacts/scenarios/sidestep-skip/headless/2b26d6410b50412d8abb76c33b8fc09a/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sidestep-push.json",
+        "input_sha256": "7384719d2f576e9cc4c3dd53c9480465f805b2512e6a70f84941927094096179",
+        "report": "artifacts/scenarios/sidestep-push/headless/b186b2dc88474cc69f6121197642c824/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sidestep-blocked.json",
+        "input_sha256": "8d653fbf53a2edad2dfba6adea1e46370813202a255888bbaac45be1bc5dd2b1",
+        "report": "artifacts/scenarios/sidestep-blocked/headless/7c8017ddb91b43569dab402ba1c788e8/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/mighty-counter.json",
+        "input_sha256": "65b18851b2d9110e0b0a1d5d4899b94cd83e5ba79ef49c58ee88f3939440fea1",
+        "report": "artifacts/scenarios/mighty-counter/headless/c54f9555a177424b80eda4bcbb7d97f8/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine24-sidestep-move-scenario.json",
+        "input_sha256": "03eb453f0f89ed835ef5f8d971cdcd2d8c07e1adeb02f4591716ed4a1326632e",
+        "report": "artifacts/scenarios/engine24-sidestep-move-scenario/headless/1d2a902ea36b4297b33b9560868bf0f9/report.json",
+        "steps": 12,
+        "passed": true
+      }
+    ],
+    "scenarios": 6,
+    "steps": 78
+  },
+  "manual_presets": [
+    "sidestep",
+    "sidestep-push"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/sidestep-ui/layout.ui.json",
+    "revision": 12,
+    "seat": 1,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false,
+    "choice_label_visible": true,
+    "skip_button_visible": true,
+    "skip_button_enabled": true,
+    "attacker_view_report": "artifacts/sidestep-attacker-ui/layout.ui.json",
+    "attacker_stage_visible": true
+  }
+}

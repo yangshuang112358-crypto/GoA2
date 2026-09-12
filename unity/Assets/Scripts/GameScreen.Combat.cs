@@ -89,13 +89,14 @@ namespace Goa2.Presentation
             if (choice.Kind == "effect_move")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择牌文移动。","section-title"));
-                RenderCardDetail(parent,catalog.Card(choice.Source));
                 if(choice.ChooserSeat!=seat) { parent.Add(Text("等待对应角色选择移动或跳过。","body"));return true; }
                 bool beforeAttack=choice.ResumeAt=="before_attack";
-                parent.Add(Text((beforeAttack ? "攻击前移动。移动或跳过后再选择攻击目标。" : "攻击已结算。")+"点击高亮格后确认，或选择不移动。","body"));
+                bool defenseMove=choice.ResumeAt=="defense_response_move";
+                var instruction=Text((defenseMove ? "攻击及后续已结算。从当前位置沿直线移动2格，或不移动。" : beforeAttack ? "攻击前移动。移动或跳过后再选择攻击目标。" : "攻击已结算。")+"点击高亮格后确认。","body");instruction.name="effect-move-choice";parent.Add(instruction);
                 if(chosenCell.HasValue && view.EffectMoves.Any(m=>m.Destination==chosenCell.Value))
                     Confirm(parent,"确认牌文移动至 "+chosenCell.Value,()=>Submit(CommandKind.ChooseEffectMove,destination:chosenCell!.Value));
                 parent.Add(Button(beforeAttack ? "不移动，继续攻击" : "不移动，继续结算",()=>Submit(CommandKind.ChooseEffectMove,"skip"),"quiet-button","effect-move-skip"));
+                if(choice.Source!="")RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
             }
             if (choice.Kind == "optional_discard")

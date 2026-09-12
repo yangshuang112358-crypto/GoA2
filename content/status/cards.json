@@ -944,11 +944,24 @@
     },
     {
       "card_id": "tigerclaw-15-侧步",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-15-侧步.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/SidestepTests.cs",
+        "tests/scenarios/sidestep-move.json",
+        "tests/scenarios/sidestep-skip.json",
+        "tests/scenarios/sidestep-push.json",
+        "tests/scenarios/sidestep-blocked.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-16-暗影步",

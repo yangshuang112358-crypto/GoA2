@@ -198,6 +198,15 @@
       "input": "tests/fixtures/engine23-mighty-defense-scenario.json",
       "input_sha256": "3208a6c90eb8a5c0c06a2a97723c48d3d00169fce73572825127763add124128",
       "provenance": "tests/fixtures/engine23-mighty-defense.md"
+    },
+    {
+      "engine_version": 24,
+      "accepted_commands": 12,
+      "save": "tests/fixtures/engine24-sidestep-move.json",
+      "save_sha256": "1fdc90147be293c2098c73aa2fd80dd2d00d9c6bd550575634aa9cfd480e4358",
+      "input": "tests/fixtures/engine24-sidestep-move-scenario.json",
+      "input_sha256": "03eb453f0f89ed835ef5f8d971cdcd2d8c07e1adeb02f4591716ed4a1326632e",
+      "provenance": "tests/fixtures/engine24-sidestep-move.md"
     }
   ]
 }
