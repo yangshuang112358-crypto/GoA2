@@ -153,6 +153,15 @@
       "input": "tests/fixtures/engine18-boomerang-target-scenario.json",
       "input_sha256": "7d60a7772e5a4a146658af51fa6cfb3f6472db921719b7e3e5413dd9ddde00bd",
       "provenance": "tests/fixtures/engine18-boomerang-target.md"
+    },
+    {
+      "engine_version": 19,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine19-thunder-repeat.json",
+      "save_sha256": "e226addff95b8b6947ae64f46bdfbd21653e7426fd3a83127e8b505bec41698b",
+      "input": "tests/fixtures/engine19-thunder-repeat-scenario.json",
+      "input_sha256": "225a5db457e2cfc5acba093c994155098a6c16c3cb26f2862accdd42d41504d9",
+      "provenance": "tests/fixtures/engine19-thunder-repeat.md"
     }
   ]
 }

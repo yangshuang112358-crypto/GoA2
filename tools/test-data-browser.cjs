@@ -2,6 +2,7 @@
 const fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('node:url'),crypto=require('node:crypto');
 let playwright;try{playwright=require('playwright');}catch{playwright=require(path.join(process.env.USERPROFILE||'','.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'));}
 const root=path.resolve(__dirname,'..'),input=path.join(root,'artifacts/reference/Goa2V1-资料浏览器.html'),output=path.join(root,'artifacts/reference-tests',crypto.randomUUID().replaceAll('-',''));
+const implemented=JSON.parse(fs.readFileSync(path.join(root,'content/status/cards.json'),'utf8').replace(/^\uFEFF/,'')).cards.filter(card=>card.status==='implemented').length;
 const report={startedUtc:new Date().toISOString(),finishedUtc:null,visual:process.argv.includes('--visual'),inputSha256:crypto.createHash('sha256').update(fs.readFileSync(input)).digest('hex'),passed:false,checks:[],errors:[]};
 fs.mkdirSync(output,{recursive:true});
 function check(value,name){report.checks.push({check:name,passed:!!value});if(!value)throw new Error(name);process.stdout.write('PASS '+name+'\n');}
@@ -15,7 +16,7 @@ function check(value,name){report.checks.push({check:name,passed:!!value});if(!v
   await page.goto(pathToFileURL(input).href);await page.waitForSelector('.card');
   check(await page.locator('.card').count()===108,'The offline page lists all 108 cards');
   await page.selectOption('#hero-filter','wasp');check(await page.locator('.card').count()===18,'Hero filtering preserves all 18 formal cards');
-  await page.selectOption('#hero-filter','');await page.selectOption('#status-filter','implemented');check(await page.locator('.card').count()===23,'Implementation status is separate from the full catalog');
+  await page.selectOption('#hero-filter','');await page.selectOption('#status-filter','implemented');check(await page.locator('.card').count()===implemented,'Implementation status matches the current independent status file');
   await page.selectOption('#status-filter','');await page.selectOption('#color-filter','purple');check(await page.locator('.card').count()===6,'All six purple cards remain searchable');
   await page.locator('.card').first().click();check((await page.locator('#card-detail').innerText()).includes('英雄8级'),'Purple card rank and hero unlock level are not confused');await page.keyboard.press('Escape');
   await page.selectOption('#color-filter','');await page.fill('#card-search','投掷飞斧');check(await page.locator('.card').count()===1,'Chinese name search finds the exact throwing axe');

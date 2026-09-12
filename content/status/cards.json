@@ -55,11 +55,22 @@
     },
     {
       "card_id": "wasp-04-雷霆回旋镖",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-04-雷霆回旋镖.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ThunderBoomerangTests.cs",
+        "tests/scenarios/thunder-chain.json",
+        "tests/scenarios/thunder-stop.json",
+        "tests/scenarios/thunder-defense.json",
+        "tests/scenarios/thunder-victory.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs"
+      ]
     },
     {
       "card_id": "wasp-05-电能爆炸",

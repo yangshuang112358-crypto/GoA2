@@ -520,6 +520,10 @@ namespace Goa2.Presentation
                 case "MatchWon": return (entry.Detail.StartsWith("Blue:") ? "蓝队" : "红队") + "获胜";
                 case "PrimaryActionStarted": return actor + "开始主要行动";
                 case "AttackTargetChoiceRequired": return actor + "选择攻击目标";
+                case "AttackRepeatChoiceRequired": return actor + "击败英雄，可选择再次攻击或停止";
+                case "AttackRepeated": return actor + "继续本牌的下一次攻击";
+                case "AttackRepeatSkipped": return actor + "选择不再重复攻击";
+                case "AttackRepeatUnavailable": return actor + "没有可重复攻击的目标";
                 case "OptionalDiscardRequired": return actor + "选择攻击前是否弃牌";
                 case "OptionalDiscardSkipped": return actor + (entry.Detail=="empty_hand" ? "没有手牌，继续攻击" : "选择不弃牌，继续攻击");
                 case "OptionalDiscardCompleted": return actor + "完成攻击前弃牌";

@@ -143,16 +143,18 @@ namespace Goa2.Presentation
             }
             if (choice.Kind == "attack_target")
             {
-                parent.Add(Text(PlayerName(choice.ChooserSeat) + "选择攻击目标。", "body"));
+                var heading=Text(PlayerName(choice.ChooserSeat)+(choice.Optional ? "已击败英雄，可再次攻击或停止。" : "选择攻击目标。"),"body");
+                if(choice.Optional) heading.name="attack-repeat-choice";parent.Add(heading);
                 if (view.AttackRange.HasValue)
                 {
                     var range=Text("本次攻击距离 " + view.AttackRange.Value,"body"); range.name="attack-range"; parent.Add(range);
                 }
-                RenderCardDetail(parent, catalog.Card(choice.Source));
-                if (choice.ChooserSeat != seat) return true;
+                if (choice.ChooserSeat != seat) {RenderCardDetail(parent,catalog.Card(choice.Source));return true;}
                 var target = chosenCell.HasValue ? view.Units.SingleOrDefault(u => u.Position == chosenCell.Value && view.AttackTargets.Contains(u.Id)) : null;
                 if (target != null) Confirm(parent, "确认攻击 " + (target.Seat.HasValue ? PlayerName(target.Seat.Value) : MinionName(target)), () => Submit(CommandKind.ChooseAttackTarget, target.Id));
                 else parent.Add(Text("点击高亮敌方单位后确认。", "body"));
+                if(choice.Optional) parent.Add(Button("不再重复，结束本牌",()=>Submit(CommandKind.ChooseAttackTarget,"skip"),"quiet-button","attack-repeat-skip"));
+                RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
             }
             if (choice.Kind != "defense") return false;

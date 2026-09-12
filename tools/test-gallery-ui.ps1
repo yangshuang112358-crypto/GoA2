@@ -3,6 +3,8 @@ $ErrorActionPreference='Stop'
 $goaRoot=Split-Path -Parent $PSScriptRoot
 $goaChecks=[Collections.Generic.List[object]]::new()
 $goaStarted=[DateTime]::UtcNow
+$goaBuild=Get-Content -LiteralPath (Join-Path $goaRoot 'artifacts/player/build-info.json') -Raw | ConvertFrom-Json
+$goaExpectedSupported=@(@($goaBuild.PrimaryCards)+@($goaBuild.DefenseCards) | Sort-Object -Unique).Count
 . "$PSScriptRoot/ui-qa-common.ps1"
 function Gallery-Count { [int]((Read-Ui).Labels | Where-Object Name -eq 'gallery-count').Text.Split(' ')[1] }
 function Type-Gallery([string]$Query) {
@@ -24,7 +26,7 @@ try {
     Click -Element 'gallery-all'
     Check ((Gallery-Count) -eq 108) 'All heroes can be searched together'
     Click -Element 'gallery-supported'
-    Check ((Gallery-Count) -eq 23) 'The current engine exposes exactly its twenty-three supported cards'
+    Check ((Gallery-Count) -eq $goaExpectedSupported) 'The current engine exposes the supported cards recorded in this Player build'
     Click -Element 'gallery-supported'
     Type-Gallery '飞斧'
     Check ((Gallery-Count) -eq 1 -and @((Read-Ui).Labels | Where-Object { $_.Name -like 'gallery-card-name-*' -and $_.Visible -and $_.Text -eq '投掷飞斧' }).Count -eq 1) 'Real Unicode keyboard input finds the throwing axe without truncating its name'

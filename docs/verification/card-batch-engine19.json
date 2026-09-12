@@ -1,0 +1,88 @@
+{
+  "engine": 19,
+  "implemented_cards": 30,
+  "data_only_cards": 78,
+  "build_utc": "2026-09-12T19:48:14.0010573Z",
+  "assemblies": {
+    "Goa2.Application.dll": "48c88093b1ee4ed2987e79a1bea6219fb3dcca571670e5900d3bb314dd770c2f",
+    "Goa2.Domain.dll": "11cacdd08fd81fd7f8b8ff107dbd59ccec08fba605473c897b581b0802fa7e95",
+    "Goa2.Infrastructure.dll": "1128d35d73d0007f4601d6af8d2d248a8e65e52f20c33e3e7b4242f33c5766cb",
+    "Goa2.Presentation.dll": "7f03751cfca44c7ba1c6bf45b056756a1c5f79a6fb5a6f9e48b28e84fc08c39a",
+    "Goa2.Rules.dll": "fa565536d2fa89ab0f5edca2739545a592b21ef25ee77f478debd7efac07b89a"
+  },
+  "core": {
+    "passed": 635,
+    "failed": 0,
+    "report": "artifacts/tests/thunder-core.trx",
+    "card_specific": 14
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/thunder-chain.json",
+        "input_sha256": "8ea486c04844360610ba23e57757132f4dbab2e9e02ea508d1d9674c8059fa44",
+        "report": "artifacts/scenarios/thunder-chain/headless/ac7492f9932b41e5b54fdbb480e75476/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/thunder-stop.json",
+        "input_sha256": "3be5cc6d6e6c1714ea320a764bc92340e0ef220d77881272ecbe56e7228cff00",
+        "report": "artifacts/scenarios/thunder-stop/headless/656581cba3e841ed8270f612885df743/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/thunder-defense.json",
+        "input_sha256": "0194911846c56296339d658ebed23d3ebc4f9ba733e49bd7974a0fcf71233e83",
+        "report": "artifacts/scenarios/thunder-defense/headless/bde8e07c54c341b3ad586ff164da4320/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/thunder-victory.json",
+        "input_sha256": "90ec7436eacd70ce669eddbb3db0aa6f225adf5f67f91df2cab026e179ba9aea",
+        "report": "artifacts/scenarios/thunder-victory/headless/a219a92012be4473997534cd941f666d/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/boomerang-block.json",
+        "input_sha256": "8ef70bd056a4c3b5d2c40146393dfe5c04bdb57a0bba560ff41e3ae34353bfce",
+        "report": "artifacts/scenarios/boomerang-block/headless/87f9b525ff724456b0aaa4522df095f7/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/raid-both.json",
+        "input_sha256": "cd7d08dd4279e49c083f9ddfa5fb838f93a30f82c1c374acb3ba473f5927f7f8",
+        "report": "artifacts/scenarios/raid-both/headless/72c6b6d069084fa1a7ca165d15550d9c/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine19-thunder-repeat-scenario.json",
+        "input_sha256": "225a5db457e2cfc5acba093c994155098a6c16c3cb26f2862accdd42d41504d9",
+        "report": "artifacts/scenarios/engine19-thunder-repeat-scenario/headless/61c28b55f1fb4433bbd1baabe88a6804/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 113
+  },
+  "manual_presets": [
+    "thunder-repeat"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/thunder-ui/layout.ui.json",
+    "revision": 15,
+    "seat": 0,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false,
+    "repeat_label_visible": true,
+    "skip_button_visible": true,
+    "skip_button_enabled": true
+  }
+}

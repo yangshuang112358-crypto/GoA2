@@ -61,6 +61,10 @@ namespace Goa2.Rules
                     case InstructionKind.Attack:
                         StartAttack(catalog, state, command, program);
                         return;
+                    case InstructionKind.OptionalRepeatAttackAfterHeroDefeat:
+                        if(BeginAttackRepeat(catalog,state,command,execution,card,program)) return;
+                        execution.Cursor++;
+                        break;
                     case InstructionKind.End:
                         EndCardExecution(catalog, state, command);
                         return;
@@ -92,9 +96,19 @@ namespace Goa2.Rules
         }
         private static void ChooseAttackTarget(ContentCatalog catalog, GameState state, Command command)
         {
-            Require(state.Pending?.Kind == "attack_target" && state.Pending.ChooserSeat == command.ActorSeat && state.Execution != null &&
-                CombatRules.AttackTargets(catalog, state, command.ActorSeat).Contains(command.Value), "invalid_attack_target", "请选择当前合法敌方目标。");
-            state.Execution!.TargetUnitId = command.Value; state.Execution.Cursor++;
+            Require(state.Pending?.Kind == "attack_target" && state.Pending.ChooserSeat == command.ActorSeat && state.Execution != null,
+                "invalid_attack_target", "请选择当前合法敌方目标。");
+            bool repeat=state.Pending!.Optional && state.Pending.ResumeAt=="repeat_attack";
+            if(command.Value=="skip")
+            {
+                Require(repeat,"invalid_attack_target","首次攻击必须选择合法目标。");
+                Emit(state,command,"AttackRepeatSkipped",command.ActorSeat,state.Execution!.CardId);
+                state.Execution.Cursor++;state.Pending=null;state.Phase=Phase.Action;
+                ContinueCard(catalog,state,command);return;
+            }
+            Require(CombatRules.AttackTargets(catalog,state,command.ActorSeat).Contains(command.Value),"invalid_attack_target","请选择当前合法敌方目标。");
+            if(repeat) RestartAttack(catalog,state,command); else state.Execution!.Cursor++;
+            state.Execution!.TargetUnitId = command.Value;
             state.Pending = null; state.Phase = Phase.Action;
             Emit(state, command, "AttackTargetChosen", command.ActorSeat, state.Execution.CardId, detail: command.Value);
             ContinueCard(catalog, state, command);
