@@ -243,6 +243,15 @@
       "input": "tests/fixtures/engine28-onward-move-scenario.json",
       "input_sha256": "c047d929334567616631b1c3de53d56ff2913a394cce2ed077bf70772108187c",
       "provenance": "tests/fixtures/engine28-onward-move.md"
+    },
+    {
+      "engine_version": 29,
+      "accepted_commands": 12,
+      "save": "tests/fixtures/engine29-blink-defense.json",
+      "save_sha256": "59c59600dc790b94b7bab4973e8743fe62817d40116c024ad639422335b3f322",
+      "input": "tests/fixtures/engine29-blink-defense-scenario.json",
+      "input_sha256": "e169a138fa93fac35ae7877e58c85f4788c590fb0057c68d0f858959bc94b030",
+      "provenance": "tests/fixtures/engine29-blink-defense.md"
     }
   ]
 }

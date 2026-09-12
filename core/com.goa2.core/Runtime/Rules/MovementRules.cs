@@ -48,7 +48,7 @@ namespace Goa2.Rules
             }
             return result.OrderBy(o => o.Destination.X).ThenBy(o => o.Destination.Y).ToList();
         }
-        internal static List<MoveOption> StraightExact(ContentCatalog catalog,GameState state,UnitState unit,int distance)
+        internal static List<MoveOption> StraightExact(ContentCatalog catalog,GameState state,UnitState unit,int distance,string? passThroughUnitId=null)
         {
             var result=new List<MoveOption>();if(distance<1)return result;
             var occupied=new HashSet<Hex>(state.Units.Select(u=>u.Position));
@@ -58,7 +58,9 @@ namespace Goa2.Rules
                 for(int i=0;i<distance;i++)
                 {
                     var next=new Hex(current.X+delta.X,current.Y+delta.Y);
-                    if(catalog.Cell(next)?.Obstacle!=false || occupied.Contains(next) || !EffectRules.CanMoveAcross(catalog,state,unit,current,next))break;
+                    bool occupiedBlocking=occupied.Contains(next) && (i==distance-1 || passThroughUnitId==null ||
+                        !state.Units.Any(u=>u.Id==passThroughUnitId && u.Position==next));
+                    if(catalog.Cell(next)?.Obstacle!=false || occupiedBlocking || !EffectRules.CanMoveAcross(catalog,state,unit,current,next))break;
                     path.Add(next);current=next;
                 }
                 if(path.Count==distance+1)result.Add(new MoveOption{Destination=current,Path=path});

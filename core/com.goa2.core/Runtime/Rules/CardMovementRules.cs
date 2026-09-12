@@ -8,8 +8,22 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
+        private static bool PassesThroughTarget(GameState state,PrimaryProgram program) => program.Instructions[state.Execution!.Cursor]==InstructionKind.RequiredStraightMoveThroughEnemy;
+        private static List<MoveOption> StrikeThroughMoves(ContentCatalog catalog,GameState state,UnitState source,PrimaryProgram program)
+        {
+            var result=new List<MoveOption>();var card=catalog.Card(state.Execution!.CardId);
+            foreach(var target in state.Units.Where(u=>u.Team!=source.Team && u.Position.Distance(source.Position)==1))
+                foreach(var option in MovementRules.StraightExact(catalog,state,source,program.TextMoveDistance,target.Id))
+                {
+                    if(option.Path[1]!=target.Position)continue;
+                    var projected=new UnitState{Id=source.Id,Kind=source.Kind,Team=source.Team,Seat=source.Seat,Position=option.Destination};
+                    if(CombatRules.Targets(catalog,state,projected,card,program).Contains(target.Id))result.Add(option);
+                }
+            return result.OrderBy(o=>o.Destination.X).ThenBy(o=>o.Destination.Y).ToList();
+        }
         private static List<MoveOption> ChargeMoves(ContentCatalog catalog,GameState state,UnitState source,PrimaryProgram program)
         {
+            if(PassesThroughTarget(state,program))return StrikeThroughMoves(catalog,state,source,program);
             var card=catalog.Card(state.Execution!.CardId);
             var paths=Enumerable.Range(program.TextMoveMinimum,program.TextMoveDistance-program.TextMoveMinimum+1)
                 .SelectMany(distance=>MovementRules.StraightExact(catalog,state,source,distance));
@@ -29,7 +43,7 @@ namespace Goa2.Rules
             state.Pending=new PendingChoice
             {
                 Id="effect-move:"+(state.Events.Count+1),Kind="effect_move",ChooserSeat=execution.ControllerSeat,
-                Source=execution.CardId,UnitId=source!.Id,ResumeAt="charge_before_attack",Optional=false,
+                Source=execution.CardId,UnitId=source!.Id,ResumeAt=PassesThroughTarget(state,program)?"strike_through_enemy":"charge_before_attack",Optional=false,
                 CandidateCells=options.Select(o=>o.Destination).ToList()
             };
             Emit(state,command,"EffectMoveChoiceRequired",execution.ControllerSeat,execution.CardId,detail:program.TextMoveDistance.ToString());return true;
@@ -59,7 +73,8 @@ namespace Goa2.Rules
                 (program.Instructions[execution.Cursor]==InstructionKind.OptionalTextMove ||
                  program.Instructions[execution.Cursor]==InstructionKind.OptionalPreAttackTextMove ||
                  program.Instructions[execution.Cursor]==InstructionKind.OptionalTextMoveIfNoPreMove ||
-                 program.Instructions[execution.Cursor]==InstructionKind.RequiredStraightMoveToAttack) ? program : null;
+                 program.Instructions[execution.Cursor]==InstructionKind.RequiredStraightMoveToAttack ||
+                 program.Instructions[execution.Cursor]==InstructionKind.RequiredStraightMoveThroughEnemy) ? program : null;
         }
         public static List<MoveOption> LegalEffectMoves(ContentCatalog catalog,GameState state,int seat)
         {
@@ -69,7 +84,7 @@ namespace Goa2.Rules
             var program=TextMoveProgram(catalog,state);
             var source=state.Units.SingleOrDefault(u=>u.Seat==seat && u.Id==state.Pending.UnitId);
             if(program==null || source==null)return new List<MoveOption>();
-            return program.Instructions[state.Execution!.Cursor]==InstructionKind.RequiredStraightMoveToAttack
+            return program.Instructions[state.Execution!.Cursor]==InstructionKind.RequiredStraightMoveToAttack || PassesThroughTarget(state,program)
                 ? ChargeMoves(catalog,state,source,program) : MovementRules.Reachable(catalog,state,source,program.TextMoveDistance);
         }
         private static bool BeginTextMove(ContentCatalog catalog,GameState state,Command command,CardExecution execution,PrimaryProgram program)
@@ -111,11 +126,14 @@ namespace Goa2.Rules
             {
                 var option=LegalEffectMoves(catalog,state,command.ActorSeat).SingleOrDefault(o=>o.Destination==command.Destination);
                 Require(option!=null,"invalid_effect_move","该格不是当前牌文移动的合法落点。");
+                bool through=PassesThroughTarget(state,TextMoveProgram(catalog,state)!);
+                if(through)execution.TargetUnitId=state.Units.Single(u=>u.Position==option!.Path[1]).Id;
                 var unit=state.Units.Single(u=>u.Seat==command.ActorSeat);
                 var origin=unit.Position;unit.Position=command.Destination;
                 if(TextMoveProgram(catalog,state)!.Instructions[execution.Cursor]==InstructionKind.OptionalPreAttackTextMove) execution.PreAttackMoved=true;
                 Emit(state,command,"UnitMoved",command.ActorSeat,execution.CardId,detail:"CardText");
                 var moved=state.Events.Last();moved.From=origin;moved.To=unit.Position;moved.Path=option!.Path;
+                if(through)Emit(state,command,"AttackTargetChosen",command.ActorSeat,execution.CardId,detail:execution.TargetUnitId);
             }
             execution.Cursor++;state.Pending=null;state.Phase=Phase.Action;
             ContinueCard(catalog,state,command);

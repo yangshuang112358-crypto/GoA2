@@ -1115,7 +1115,7 @@
         "conditional",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/tigerclaw-00-瞬闪打击.md",
       "question_candidates": [
         "U-011"

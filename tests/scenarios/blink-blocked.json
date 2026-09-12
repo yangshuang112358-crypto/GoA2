@@ -1,0 +1,81 @@
+{
+  "SchemaVersion": 1,
+  "Id": "blink-blocked",
+  "Name": "瞬闪打击：落点被友军占用",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "tigerclaw,sabina,brogan,wasp"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "sabina-08-带头冲锋",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-16-暗影步",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 8,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-00-瞬闪打击",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-00-近身射击",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-07-抵挡屏障",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p2",
+        "EventCounts": {
+          "CardEffectStopped": 1,
+          "UnitMoved": 0,
+          "AttackDeclared": 0
+        }
+      }
+    }
+  ]
+}

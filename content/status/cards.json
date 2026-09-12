@@ -806,11 +806,26 @@
     },
     {
       "card_id": "tigerclaw-00-瞬闪打击",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-00-瞬闪打击.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/BlinkStrikeTests.cs",
+        "tests/scenarios/blink-hero.json",
+        "tests/scenarios/blink-numeric.json",
+        "tests/scenarios/blink-minion.json",
+        "tests/scenarios/blink-block.json",
+        "tests/scenarios/blink-blocked.json",
+        "tests/scenarios/blink-frontline.json",
+        "tests/scenarios/blink-shadowstep.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-02-偷袭",

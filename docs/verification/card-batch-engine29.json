@@ -1,0 +1,93 @@
+{
+  "engine": 29,
+  "implemented_cards": 40,
+  "data_only_cards": 68,
+  "build_utc": "2026-09-12T21:10:18.9610985Z",
+  "assemblies": {
+    "Goa2.Application.dll": "3b0a788faa469dcf22a8038f0d5fcf42767a75658ae6bdd35f3532508dae3cef",
+    "Goa2.Domain.dll": "62f8a80a97f42ae490ed07d8bdf5fdc31868de320a87ea378224c2b1d2a7030b",
+    "Goa2.Infrastructure.dll": "8bc605a324f107272083e226b1689f8f18049cf7033bec7a5f77adef0db8c419",
+    "Goa2.Presentation.dll": "f388c80318618608e357e9e1bd45ceceffc54dca04b819f28bb65336b7a1d980",
+    "Goa2.Rules.dll": "b4de8b13c9f6bc1d208ecc3c6c23677135860da95da4f17c4e1067427d71854f"
+  },
+  "core": {
+    "passed": 851,
+    "failed": 0,
+    "report": "artifacts/tests/blink-core.trx",
+    "card_specific": 18
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/blink-hero.json",
+        "input_sha256": "35bf42dc79529100098ba9d2dddfc850ac8e5c96a5d12aab4397d35b1cba45b7",
+        "report": "artifacts/scenarios/blink-hero/headless/a77fa4f0a4fb467d916338d11f7c86d4/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/blink-numeric.json",
+        "input_sha256": "01a8f64165be35461d9b0d8a9b2db9a2459d87964ca7d148d8522f0ea52bf20c",
+        "report": "artifacts/scenarios/blink-numeric/headless/243a604dda0e4b4a9cbaa7388ac66544/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/blink-minion.json",
+        "input_sha256": "70b7da8ab8021e20c7d623dd9d6cd6d3b947c77a369faddc81a6de5ea2305b2c",
+        "report": "artifacts/scenarios/blink-minion/headless/913b1d74575d4bf495a1b920d12bb94f/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/blink-block.json",
+        "input_sha256": "abde11c18eac3ef2274cbd6a5a5bf32d5d60779c2e98eb1c84a3cbdb7c1dfeaa",
+        "report": "artifacts/scenarios/blink-block/headless/f933e7525ea54e30aa889e3bd8d01d2e/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/blink-blocked.json",
+        "input_sha256": "0e5d9b7eb0860952302e7d4bad53e7120f80c1751a398dc5cabe999f22864fa2",
+        "report": "artifacts/scenarios/blink-blocked/headless/71f79b5190e542958b3144f5113c4819/report.json",
+        "steps": 11,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/blink-frontline.json",
+        "input_sha256": "fb7495a7019fc94e051fa870493d2c7e81fe98906b46494fee392d6b724cf579",
+        "report": "artifacts/scenarios/blink-frontline/headless/07c081acbc1b491bae5bc7d1d0fe64ed/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/blink-shadowstep.json",
+        "input_sha256": "0dd69f6f7710edaff64d3ecb71180123bfd08b57dcb04345e233cfbd63b146d4",
+        "report": "artifacts/scenarios/blink-shadowstep/headless/911ddfce5d8947789d29c2119ff40265/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine29-blink-defense-scenario.json",
+        "input_sha256": "e169a138fa93fac35ae7877e58c85f4788c590fb0057c68d0f858959bc94b030",
+        "report": "artifacts/scenarios/engine29-blink-defense-scenario/headless/77372a3ac15b4b28be16b8366e22c54e/report.json",
+        "steps": 12,
+        "passed": true
+      }
+    ],
+    "scenarios": 8,
+    "steps": 111
+  },
+  "manual_presets": [
+    "blink-strike",
+    "blink-block"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/blink-move-ui/layout.ui.json",
+    "revision": 11,
+    "seat": 0,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false
+  }
+}

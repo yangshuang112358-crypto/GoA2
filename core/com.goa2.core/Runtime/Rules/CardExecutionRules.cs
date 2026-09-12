@@ -81,6 +81,7 @@ namespace Goa2.Rules
                         EndCardExecution(catalog, state, command);
                         return;
                     case InstructionKind.RequiredStraightMoveToAttack:
+                    case InstructionKind.RequiredStraightMoveThroughEnemy:
                         if(BeginRequiredCharge(catalog,state,command,execution,program)) return;
                         StopCard(catalog,state,command,"no_charge_route");
                         return;
