@@ -14,14 +14,15 @@ namespace Goa2.Tests
     {
         internal const string Charge="brogan-01-冲撞";
         internal static readonly Hex Start=new Hex(3,-8), End=new Hex(5,-8);
-        internal static GameSession Setup(ContentCatalog catalog,bool minion=true,bool counter=false)
+        internal static GameSession Setup(ContentCatalog catalog,bool minion=true,bool counter=false,string card=Charge)
         {
             var game=LocalGameFactory.Create(catalog,"charge",new[]{"A","B","C","D"},42,true);
             Apply(game,0,CommandKind.DebugPrepare,"brogan,tigerclaw,sabina,arien");
+            if(card!=Charge)Apply(game,0,CommandKind.DebugEquipCard,card,target:0);
             if(counter)Apply(game,0,CommandKind.DebugEquipCard,"tigerclaw-14-近身格挡",target:1);
             Apply(game,0,CommandKind.DebugTeleport,"hero:0",cell:Start);Apply(game,0,CommandKind.DebugTeleport,"hero:1",cell:new Hex(6,-8));
             if(minion)Apply(game,0,CommandKind.DebugTeleport,"minion:-1,-3",cell:new Hex(5,-9));
-            string[] cards={Charge,"tigerclaw-07-伺机待发","sabina-07-指挥","arien-07-潮水"};
+            string[] cards={card,"tigerclaw-07-伺机待发","sabina-07-指挥","arien-07-潮水"};
             for(int seat=0;seat<4;seat++)Apply(game,seat,CommandKind.SelectCard,cards[seat]);return game;
         }
         internal static GameSession Restore(ContentCatalog catalog,GameSession game)

@@ -469,11 +469,22 @@
     },
     {
       "card_id": "brogan-03-奋勇冲锋",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-03-奋勇冲锋.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/BraveChargeTests.cs",
+        "tests/scenarios/bravecharge-two.json",
+        "tests/scenarios/bravecharge-three.json",
+        "tests/scenarios/bravecharge-counter.json",
+        "tests/scenarios/bravecharge-blocked.json",
+        "tests/scenarios/bravecharge-frontline.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs"
+      ]
     },
     {
       "card_id": "brogan-04-投掷长矛",

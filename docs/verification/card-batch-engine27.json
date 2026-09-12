@@ -1,0 +1,85 @@
+{
+  "engine": 27,
+  "implemented_cards": 38,
+  "data_only_cards": 70,
+  "build_utc": "2026-09-12T20:59:14.1912640Z",
+  "assemblies": {
+    "Goa2.Application.dll": "8b57d8fee2600b4d9861cb130b293c79654b5f9a3069f8881f07df5022041f6b",
+    "Goa2.Domain.dll": "3640191b507457fe3385109151e0a039f65389435ba55dc7cf76ee0489949654",
+    "Goa2.Infrastructure.dll": "75127c9b177d51b9ee3db658462b11fb58efd6bfaccf63a3066e6477168f1d11",
+    "Goa2.Presentation.dll": "0866bbb5097d603d30d94351b230ab0ce1fbb0e7ae7907372531696d3a48f4c1",
+    "Goa2.Rules.dll": "789296a53ddc584a125ba1a5fe89bfc43af40ce0d0f3ce76d8965055098b83ec"
+  },
+  "core": {
+    "passed": 808,
+    "failed": 0,
+    "report": "artifacts/tests/bravecharge-core.trx",
+    "card_specific": 10
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/bravecharge-two.json",
+        "input_sha256": "3ba881f238880e3defc6320acf0c5725fbbb378b4e5c2e064e89a5c89b1c5282",
+        "report": "artifacts/scenarios/bravecharge-two/headless/7559fccee98f4e82879eae026471aea0/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/bravecharge-three.json",
+        "input_sha256": "08f8fafbc1663ece3c869c38a8d47d049a4bdbfc5238c436b83f65b171ab69ec",
+        "report": "artifacts/scenarios/bravecharge-three/headless/aa3ff57e1fff43c89315af9ae2a57048/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/bravecharge-counter.json",
+        "input_sha256": "c490e2a8c5d5cfbd91981f406edac9ffe645d5a6d950e9e7fb06cb8b220268aa",
+        "report": "artifacts/scenarios/bravecharge-counter/headless/6da363e024d84f6c90259027348cb28d/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/bravecharge-blocked.json",
+        "input_sha256": "7e970a44516a2c693153448f5369e9c893b3443f570e358e4c499ffe5e146726",
+        "report": "artifacts/scenarios/bravecharge-blocked/headless/0581da3bc3c6448186ca8b320c6d91f2/report.json",
+        "steps": 11,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/bravecharge-frontline.json",
+        "input_sha256": "c68835b4f20b6dc8d3b022b1e2caf75ecabf8215ad60d2afa4b9e37acfd90e94",
+        "report": "artifacts/scenarios/bravecharge-frontline/headless/90042a15af6944edaad667bc86736ea9/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine27-bravecharge-move-scenario.json",
+        "input_sha256": "33e1f90a195d468c107c942766971c8eb5239a988638d1c17cfba4f47bc1aeb2",
+        "report": "artifacts/scenarios/engine27-bravecharge-move-scenario/headless/627b2ddd1dc848158cc0b0ce8501e954/report.json",
+        "steps": 11,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/charge-counter.json",
+        "input_sha256": "3da4db3065df8f124bd68f6cc1352b3a84ecb4740790b1a0efeda70fb4867a49",
+        "report": "artifacts/scenarios/charge-counter/headless/a55b9141827f406e9d245ed3bbc1ad3c/report.json",
+        "steps": 14,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 98
+  },
+  "manual_presets": [
+    "brave-charge"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/bravecharge-ui/layout.ui.json",
+    "revision": 11,
+    "seat": 0,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false
+  }
+}

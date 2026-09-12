@@ -106,7 +106,7 @@ namespace Goa2.Presentation
                 bool beforeAttack=choice.ResumeAt=="before_attack";
                 bool defenseMove=choice.ResumeAt=="defense_response_move";
                 bool charge=choice.ResumeAt=="charge_before_attack";
-                var instruction=Text((charge ? "必须沿直线移动2格，终点须邻接合法敌方目标。完成移动后选择攻击目标。" : defenseMove ? "攻击及后续已结算。从当前位置沿直线移动2格，或不移动。" : beforeAttack ? "攻击前移动。移动或跳过后再选择攻击目标。" : "攻击已结算。")+"点击高亮格后确认。","body");instruction.name="effect-move-choice";parent.Add(instruction);
+                var instruction=Text((charge ? "必须按卡牌指定距离沿直线移动，终点须邻接合法敌方目标。完成移动后选择攻击目标。" : defenseMove ? "攻击及后续已结算。从当前位置沿直线移动2格，或不移动。" : beforeAttack ? "攻击前移动。移动或跳过后再选择攻击目标。" : "攻击已结算。")+"点击高亮格后确认。","body");instruction.name="effect-move-choice";parent.Add(instruction);
                 if(chosenCell.HasValue && view.EffectMoves.Any(m=>m.Destination==chosenCell.Value))
                     Confirm(parent,"确认牌文移动至 "+chosenCell.Value,()=>Submit(CommandKind.ChooseEffectMove,destination:chosenCell!.Value));
                 if(choice.Optional)parent.Add(Button(beforeAttack ? "不移动，继续攻击" : "不移动，继续结算",()=>Submit(CommandKind.ChooseEffectMove,"skip"),"quiet-button","effect-move-skip"));

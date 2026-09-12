@@ -39,7 +39,7 @@ namespace Goa2.Rules.Cards
         public readonly int AttackBonusValue;
         public readonly AttackRangeBonusKind RangeBonusKind;
         public readonly int RangeBonusValue;
-        public readonly int TextMoveDistance;
+        public readonly int TextMoveDistance, TextMoveMinimum;
         public readonly bool RecoveryRequiresAdjacentMinion;
         public readonly HeroTargetKind HeroTarget;
         public readonly bool RecoverResolved;
@@ -49,13 +49,14 @@ namespace Goa2.Rules.Cards
         public readonly int TextPushDistance;
         public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
             EffectAreaKind areaKind=EffectAreaKind.SkillRange, AttackBonusKind bonus=AttackBonusKind.None, int bonusValue=0,
-            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,bool extraRemovalUsesAttackRange=false,int textPushDistance=0,params InstructionKind[] instructions)
+            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,bool extraRemovalUsesAttackRange=false,int textPushDistance=0,int textMoveMinimum=0,params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
             AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=EffectDuration.ThisTurn;
             AttackBonusKind=bonus; AttackBonusValue=bonusValue;
             RangeBonusKind=rangeBonus; RangeBonusValue=rangeBonusValue;
             TextMoveDistance=textMoveDistance;
+            TextMoveMinimum=textMoveMinimum>0 ? textMoveMinimum : textMoveDistance;
             RecoveryRequiresAdjacentMinion=recoveryRequiresAdjacentMinion;
             HeroTarget=heroTarget;
             RecoverResolved=recoverResolved;
@@ -82,6 +83,9 @@ namespace Goa2.Rules.Cards
         // Binding IDs is confined to this registry. Shared execution never branches on a card ID.
         private static readonly Dictionary<string,(string text,int minimumEngine,PrimaryProgram program)> Attacks = new Dictionary<string,(string,int,PrimaryProgram)>
         {
+            ["brogan-03-奋勇冲锋"] = ("攻击前：沿直线移动2或3格到与敌方单位相邻的位置，然后以该单位为目标。",27,
+                new PrimaryProgram("required_straight_two_or_three_before_adjacent_attack",1,adjacent:true,textMoveMinimum:2,textMoveDistance:3,
+                    instructions:new[]{InstructionKind.RequiredStraightMoveToAttack,InstructionKind.ChooseAttackTarget,InstructionKind.Attack,InstructionKind.End})),
             ["brogan-01-冲撞"] = ("攻击前：沿直线移动2格到与敌方单位相邻的位置，然后以该单位为目标。（如果你无法完成此移动，就不能攻击。）",26,
                 new PrimaryProgram("required_straight_two_before_adjacent_attack",1,adjacent:true,textMoveDistance:2,
                     instructions:new[]{InstructionKind.RequiredStraightMoveToAttack,InstructionKind.ChooseAttackTarget,InstructionKind.Attack,InstructionKind.End})),

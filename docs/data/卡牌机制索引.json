@@ -598,7 +598,7 @@
         "move",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/brogan-03-奋勇冲锋.md",
       "question_candidates": [
         "U-011"

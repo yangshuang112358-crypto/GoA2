@@ -11,12 +11,14 @@ namespace Goa2.Rules
         private static List<MoveOption> ChargeMoves(ContentCatalog catalog,GameState state,UnitState source,PrimaryProgram program)
         {
             var card=catalog.Card(state.Execution!.CardId);
-            return MovementRules.StraightExact(catalog,state,source,program.TextMoveDistance).Where(option=>
+            var paths=Enumerable.Range(program.TextMoveMinimum,program.TextMoveDistance-program.TextMoveMinimum+1)
+                .SelectMany(distance=>MovementRules.StraightExact(catalog,state,source,distance));
+            return paths.Where(option=>
             {
                 // Check the attack from a prospective endpoint without moving the live unit during a query.
                 var projected=new UnitState{Id=source.Id,Kind=source.Kind,Team=source.Team,Seat=source.Seat,Position=option.Destination};
                 return CombatRules.Targets(catalog,state,projected,card,program).Count>0;
-            }).ToList();
+            }).OrderBy(o=>o.Destination.X).ThenBy(o=>o.Destination.Y).ToList();
         }
         private static bool BeginRequiredCharge(ContentCatalog catalog,GameState state,Command command,CardExecution execution,PrimaryProgram program)
         {
