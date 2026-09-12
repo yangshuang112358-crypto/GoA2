@@ -16,7 +16,9 @@ namespace Goa2.Rules
             // Presence is independent of whether that enemy hero can currently be attacked.
             if(state.Units.Any(u=>u.Kind=="hero" && u.Team!=source.Team && u.Position.Distance(source.Position)<=range)) return new List<string>();
             var removable=new HashSet<string>(LegalMinionRemovals(state));
-            return state.Units.Where(u=>u.Team!=source.Team && u.Kind!="heavy" && removable.Contains(u.Id) && u.Position.Distance(source.Position)==1)
+            int removalRange=program.ExtraRemovalUsesAttackRange ? range : 1;
+            return state.Units.Where(u=>u.Team!=source.Team && u.Kind!="heavy" && removable.Contains(u.Id) &&
+                u.Position.Distance(source.Position)>=1 && u.Position.Distance(source.Position)<=removalRange)
                 .Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
         }
         private static PrimaryProgram? EffectMinionRemovalProgram(ContentCatalog catalog,GameState state,int seat)
@@ -26,7 +28,7 @@ namespace Goa2.Rules
                 execution==null || execution.ControllerSeat!=seat || state.ActiveSeat!=seat) return null;
             var program=CardPrograms.Primary(catalog.Card(execution.CardId),state.EngineVersion);
             return program!=null && program.Id==execution.ProgramId && program.Version==execution.ProgramVersion && execution.Cursor>=0 &&
-                execution.Cursor<program.Instructions.Count && program.Instructions[execution.Cursor]==InstructionKind.OptionalAdjacentMinionRemovalAfterDefeat ? program : null;
+                execution.Cursor<program.Instructions.Count && program.Instructions[execution.Cursor]==InstructionKind.OptionalMinionRemovalAfterDefeat ? program : null;
         }
         private static List<string> LegalEffectMinionRemovals(ContentCatalog catalog,GameState state,int seat)
         {

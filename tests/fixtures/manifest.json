@@ -171,6 +171,15 @@
       "input": "tests/fixtures/engine20-crossfire-removal-scenario.json",
       "input_sha256": "717801fb9a8fe3833397a343bad7a1c483c2772852e8d5874189cd0cd79fc066",
       "provenance": "tests/fixtures/engine20-crossfire-removal.md"
+    },
+    {
+      "engine_version": 21,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine21-storm-removal.json",
+      "save_sha256": "ed38ea98776d8b73c9e4f0a7e4b4f2545eedd5ad8ace56b69e29f7c018be9b0c",
+      "input": "tests/fixtures/engine21-storm-removal-scenario.json",
+      "input_sha256": "75e0beb02832cc8f40fabfc8233076ffc2b4276cbd11866066edabc856a93784",
+      "provenance": "tests/fixtures/engine21-storm-removal.md"
     }
   ]
 }

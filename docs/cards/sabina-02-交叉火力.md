@@ -17,3 +17,5 @@ PendingChoice.Kind=effect_minion，Source为本牌，Chooser为萨彼娜，Optio
 手工起点均在萨彼娜完整Action开始；第一近战兵为攻击目标，第二相邻远程兵为额外移除分支，远处英雄可用调试瞬移移入射程比较条件。加载后右侧最近记录显示操作方法，不预先进入攻击中途。
 
 证据：15项专用（实现前14失败1通过），完整656 C#与32 Python；7份相关原生场景122步，含重型推进与占位出生后续。真实Player布局中额外移除说明与跳过按钮可见。未做物理点击或视觉截图验收；状态保持implemented。
+
+引擎21仅把内部指令名改为OptionalMinionRemovalAfterDefeat，枚举序号保持；交叉火力的ExtraRemovalUsesAttackRange仍为false，历史和当前均只移除相邻目标。

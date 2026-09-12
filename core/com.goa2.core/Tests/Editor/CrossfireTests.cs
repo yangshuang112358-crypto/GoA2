@@ -14,14 +14,14 @@ namespace Goa2.Tests
     {
         internal const string Crossfire="sabina-02-交叉火力",First="minion:-1,-3";
         internal static string Extra(GameSession game)=>game.View(0).Units.Single(u=>u.Kind=="ranged" && u.Team==Team.Red).Id;
-        internal static GameSession Setup(ContentCatalog catalog)
+        internal static GameSession Setup(ContentCatalog catalog,string card=Crossfire)
         {
             var game=LocalGameFactory.Create(catalog,"crossfire",new[]{"A","B","C","D"},42,true);
-            Apply(game,0,CommandKind.DebugPrepare,"sabina,tigerclaw,brogan,arien");Apply(game,0,CommandKind.DebugEquipCard,Crossfire,target:0);Apply(game,0,CommandKind.DebugEquipCard,"tigerclaw-18-躲闪",target:1);
+            Apply(game,0,CommandKind.DebugPrepare,"sabina,tigerclaw,brogan,arien");Apply(game,0,CommandKind.DebugEquipCard,card,target:0);Apply(game,0,CommandKind.DebugEquipCard,"tigerclaw-18-躲闪",target:1);
             Apply(game,0,CommandKind.DebugTeleport,"hero:0",cell:new Hex(5,-8));Apply(game,0,CommandKind.DebugTeleport,"hero:1",cell:new Hex(8,-8));
             Apply(game,0,CommandKind.DebugTeleport,"hero:2",cell:new Hex(4,-8));Apply(game,0,CommandKind.DebugTeleport,"hero:3",cell:new Hex(8,-7));
             Apply(game,0,CommandKind.DebugTeleport,First,cell:new Hex(6,-8));Apply(game,0,CommandKind.DebugTeleport,Extra(game),cell:new Hex(5,-7));
-            string[] cards={Crossfire,"tigerclaw-07-伺机待发","brogan-06-铜墙铁壁","arien-07-潮水"};for(int seat=0;seat<4;seat++)Apply(game,seat,CommandKind.SelectCard,cards[seat]);
+            string[] cards={card,"tigerclaw-07-伺机待发","brogan-06-铜墙铁壁","arien-07-潮水"};for(int seat=0;seat<4;seat++)Apply(game,seat,CommandKind.SelectCard,cards[seat]);
             Assert.That(game.View(0).ActiveSeat,Is.EqualTo(0));return game;
         }
         private static GameSession Restore(ContentCatalog catalog,GameSession game)

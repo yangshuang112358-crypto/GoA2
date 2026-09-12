@@ -1043,11 +1043,21 @@
     },
     {
       "card_id": "sabina-04-枪林弹雨",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-04-枪林弹雨.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/BulletStormTests.cs",
+        "tests/scenarios/storm-remove.json",
+        "tests/scenarios/storm-skip.json",
+        "tests/scenarios/storm-hero.json",
+        "tests/scenarios/storm-frontline.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs"
+      ]
     },
     {
       "card_id": "sabina-05-一枪爆头",

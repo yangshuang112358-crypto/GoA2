@@ -1,0 +1,180 @@
+{
+  "SchemaVersion": 1,
+  "Id": "storm-frontline",
+  "Name": "枪林弹雨：重型击败推进与占位出生后再移除",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "sabina,tigerclaw,brogan,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "sabina-04-枪林弹雨",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-18-躲闪",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 8,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 4,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 8,
+        "Y": -7
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-1,-3",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:1,-1",
+      "Destination": {
+        "X": 6,
+        "Y": -7
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-04-枪林弹雨",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-07-伺机待发",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Value": "minion:-1,-3"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Value": "minion:1,-1"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Value": "minion:4,-1"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Value": "minion:3,0"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Value": "minion:-1,1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-3,0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 2,
+        "Y": -7
+      }
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "minion:-3,0",
+      "Expect": {
+        "PendingKind": "minion_spawn",
+        "PendingChooser": "p2",
+        "Gold": {
+          "p1": 4
+        },
+        "EventCounts": {
+          "FrontlineAdvanced": 1,
+          "EffectMinionChoiceRequired": 0
+        }
+      }
+    },
+    {
+      "Command": "ChooseMinionSpawn",
+      "Value": "minion:1:2,-7",
+      "Actor": "p2",
+      "Destination": {
+        "X": 2,
+        "Y": -8
+      },
+      "Expect": {
+        "PendingKind": "effect_minion",
+        "PendingChooser": "p1",
+        "EventCounts": {
+          "AttackResolved": 1,
+          "EffectMinionChoiceRequired": 1
+        }
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "minion:1:4,-6",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p3",
+        "Gold": {
+          "p1": 4
+        },
+        "EventCounts": {
+          "MinionRemoved": 1,
+          "GoldAwarded": 0,
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

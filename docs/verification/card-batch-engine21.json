@@ -1,0 +1,88 @@
+{
+  "engine": 21,
+  "implemented_cards": 32,
+  "data_only_cards": 76,
+  "build_utc": "2026-09-12T20:02:42.7491557Z",
+  "assemblies": {
+    "Goa2.Application.dll": "0279124a1b066e6b1b5622eb13361b3a9a20459f93bfa34ef066020790dac4ca",
+    "Goa2.Domain.dll": "c96f662f31c13fb0d6ddd1e3fd7c1f6de5f6e04e7b5f773b757e7f54604a9698",
+    "Goa2.Infrastructure.dll": "5d58ead774021b3edbb17d0c90d29e60b033a5875aef23a4396f63665cb7cd6d",
+    "Goa2.Presentation.dll": "1e3f1ba7c82aa32fee10c70525ffa7ea635a124b1947838620510f7516d5a615",
+    "Goa2.Rules.dll": "f5c1b7129281edd786c3d755436984c7bf0ac02ee3448d253d6fb5094b197970"
+  },
+  "core": {
+    "passed": 675,
+    "failed": 0,
+    "report": "artifacts/tests/storm-core.trx",
+    "card_specific": 14
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/storm-remove.json",
+        "input_sha256": "188f5945be4468a3d713610f203edd6967ef841bd3e70ec1a5758dee35e392f6",
+        "report": "artifacts/scenarios/storm-remove/headless/9f75c76c5717452b8ea3f5c97d014a0d/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/storm-skip.json",
+        "input_sha256": "f97f5c6c9333f26ff34f0b10228b890772abf2d773d7c80e7704d04519d34d51",
+        "report": "artifacts/scenarios/storm-skip/headless/ed559a48365f4ee2ab1d30fba7855518/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/storm-hero.json",
+        "input_sha256": "37fe073d2194a14592c6ee7c4923a9458ecb753fdcba13f61e5d6c0e32e8739f",
+        "report": "artifacts/scenarios/storm-hero/headless/292f503d4b9646528f19fe94552d56fb/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/storm-frontline.json",
+        "input_sha256": "c258b0e948d7e1cea286d2c96ed1dc01a281cff8d929c2cceb00234eb70aef81",
+        "report": "artifacts/scenarios/storm-frontline/headless/424fe5d67898477f93f4f50fdeaf4af0/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/crossfire-remove.json",
+        "input_sha256": "863fc2581377428525cab9d66b78ba1ef705e3b9c5797fd4d4c74e3bd0a1ed4b",
+        "report": "artifacts/scenarios/crossfire-remove/headless/3e3722f073b44aad9f646b56748d39bb/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/thunder-chain.json",
+        "input_sha256": "8ea486c04844360610ba23e57757132f4dbab2e9e02ea508d1d9674c8059fa44",
+        "report": "artifacts/scenarios/thunder-chain/headless/14185271770c499ea79b93cd6f5a10e7/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine21-storm-removal-scenario.json",
+        "input_sha256": "75e0beb02832cc8f40fabfc8233076ffc2b4276cbd11866066edabc856a93784",
+        "report": "artifacts/scenarios/engine21-storm-removal-scenario/headless/38bee414a45b4bfab6cedc548ee944d3/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 122
+  },
+  "manual_presets": [
+    "storm-ranged"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/storm-ui/layout.ui.json",
+    "revision": 15,
+    "seat": 0,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false,
+    "removal_label_visible": true,
+    "skip_button_visible": true,
+    "skip_button_enabled": true
+  }
+}

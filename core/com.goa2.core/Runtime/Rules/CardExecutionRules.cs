@@ -65,7 +65,7 @@ namespace Goa2.Rules
                         if(BeginAttackRepeat(catalog,state,command,execution,card,program)) return;
                         execution.Cursor++;
                         break;
-                    case InstructionKind.OptionalAdjacentMinionRemovalAfterDefeat:
+                    case InstructionKind.OptionalMinionRemovalAfterDefeat:
                         if(BeginEffectMinionRemoval(catalog,state,command,execution,program)) return;
                         execution.Cursor++;
                         break;
