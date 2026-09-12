@@ -270,6 +270,15 @@
       "input": "tests/fixtures/engine31-battledrill-defense-scenario.json",
       "input_sha256": "603bc7622d307f755004ff441a187b32ed6628c894e25bd109bb21a61f19c2b7",
       "provenance": "tests/fixtures/engine31-battledrill-defense.md"
+    },
+    {
+      "engine_version": 32,
+      "accepted_commands": 27,
+      "save": "tests/fixtures/engine32-battlearms-defense.json",
+      "save_sha256": "7a7ef21b9df7ba015db23bd8d6eb6f4163ec5632aeb5b982f72085e7c5847b2f",
+      "input": "tests/fixtures/engine32-battlearms-defense-scenario.json",
+      "input_sha256": "ae869af991803c9afd19805241e69bdd90901ba264dfbc4405fc407e47e8ec2c",
+      "provenance": "tests/fixtures/engine32-battlearms-defense.md"
     }
   ]
 }

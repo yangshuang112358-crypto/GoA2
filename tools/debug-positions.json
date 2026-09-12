@@ -448,5 +448,32 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：战斗演练已生效，从3号布罗根整个行动开始。开始投掷飞斧→选择不弃牌→攻击(7,-8)虎爪，观察两名距离2的小兵都计入支援，基础值加2。分支：先把萨彼娜移至(1,-8)则加成消失；以演练测试用例对比，普通攻击不获该低阶牌加成。"
+  },
+  {
+    "id": "battlearms",
+    "title": "战斗武装：主要移动及双身份支援",
+    "scenario": "battlearms-basic",
+    "through_step": 13,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号开始战斗武装，移动到(4,-8)或留在原地，再观察右侧本轮效果。分支：后续将来源放(5,-7)，近战兵放(6,-7)，友方3号攻击(7,-8)虎爪时近战兵贡献2、距离2的重型贡献1；实际兵种不改变。"
+  },
+  {
+    "id": "battlearms-support",
+    "title": "战斗武装联动：双份加单份支援攻击起点",
+    "scenario": "battlearms-ordinary",
+    "through_step": 24,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：从3号布罗根完整行动开始。投掷飞斧→不弃牌→攻击(7,-8)虎爪，得到基础值加3。分支：攻击前把重型兵移到(7,-9)，两名小兵均相邻，共加4；把萨彼娜移到(1,-8)，则只有实际近战兵保留一份普通支援。"
+  },
+  {
+    "id": "battlearms-challenger",
+    "title": "战斗武装×挑战者：防御忽略双份修正",
+    "scenario": "battlearms-challenger",
+    "through_step": 23,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：从3号布罗根整个行动开始。开始猛攻→攻击(7,-9)艾瑞恩→切换4号，以挑战者防御。攻击基础3，小兵贡献3；挑战者忽略小兵修正后按3比较。分支：换普通数值防御或放弃防御，可对比双份支援影响。"
   }
 ]

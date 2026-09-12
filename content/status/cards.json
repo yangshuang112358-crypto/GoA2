@@ -1285,11 +1285,27 @@
     },
     {
       "card_id": "sabina-16-战斗武装",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-16-战斗武装.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/BattleArmsTests.cs",
+        "tests/scenarios/battlearms-basic.json",
+        "tests/scenarios/battlearms-ordinary.json",
+        "tests/scenarios/battlearms-both-adjacent.json",
+        "tests/scenarios/battlearms-source-moved.json",
+        "tests/scenarios/battlearms-retrieve.json",
+        "tests/scenarios/battlearms-defeat.json",
+        "tests/scenarios/battlearms-roundend.json",
+        "tests/scenarios/battlearms-challenger.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatMath.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "unity/Assets/Scripts/GameScreen.Effects.cs"
+      ]
     },
     {
       "card_id": "sabina-17-演练",

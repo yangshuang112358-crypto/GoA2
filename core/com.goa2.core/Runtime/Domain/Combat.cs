@@ -14,6 +14,7 @@ namespace Goa2.Domain
         public int CardTextBonus;
         public string CardTextReason = "";
         public List<string> CardTextSourceUnits = new List<string>();
+        // One entry per point of support: a dual-kind adjacent minion contributes its ID twice.
         public List<string> EnemySupportSources = new List<string>();
         public List<string> FriendlyGuardSources = new List<string>();
     }

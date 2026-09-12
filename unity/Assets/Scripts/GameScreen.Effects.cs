@@ -30,7 +30,7 @@ namespace Goa2.Presentation
                 else if (!view.Units.Any(u => u.Id==effect.SourceUnitId)) box.Add(Text("来源英雄离场，当前没有覆盖区域。", "tiny"));
                 else
                 {
-                    string meaning=effect.Kind==EffectKind.FriendlyAttackMinionsRanged ? "本队攻击时，范围内友方小兵视为远程" : effect.Kind==EffectKind.FriendlyBasicMinionsRanged ? "本队基础攻击时，范围内友方小兵视为远程" : effect.Kind==EffectKind.NonAdjacentRangedImmunity ? "自身免疫非相邻英雄的远程攻击" : effect.Kind==EffectKind.MovementBoundary ? "敌方移动不能跨越范围边界" : effect.AreaKind==EffectAreaKind.Adjacent ? "相邻敌方英雄不能执行技能" : "范围内敌方英雄不能执行技能";
+                    string meaning=effect.Kind==EffectKind.FriendlyAttackMinionsDual ? "本队攻击时，范围内友方小兵同时视为近战与远程" : effect.Kind==EffectKind.FriendlyAttackMinionsRanged ? "本队攻击时，范围内友方小兵视为远程" : effect.Kind==EffectKind.FriendlyBasicMinionsRanged ? "本队基础攻击时，范围内友方小兵视为远程" : effect.Kind==EffectKind.NonAdjacentRangedImmunity ? "自身免疫非相邻英雄的远程攻击" : effect.Kind==EffectKind.MovementBoundary ? "敌方移动不能跨越范围边界" : effect.AreaKind==EffectAreaKind.Adjacent ? "相邻敌方英雄不能执行技能" : "范围内敌方英雄不能执行技能";
                     box.Add(Text(meaning,"tiny"));
                 }
                 if (effect.AreaKind==EffectAreaKind.None) continue;

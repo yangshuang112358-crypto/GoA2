@@ -1,0 +1,101 @@
+{
+  "engine": 32,
+  "implemented_cards": 43,
+  "data_only_cards": 65,
+  "build_utc": "2026-09-12T21:40:42.6331341Z",
+  "assemblies": {
+    "Goa2.Application.dll": "18db27206135540cb1d76112e65f76fc30f1f5ba211f1fcbb64ae11f44dd715c",
+    "Goa2.Domain.dll": "d4aa4f37bc93664a7ff70ce0ae91b857bec9f7cffacc880bac7b1e0411500e33",
+    "Goa2.Infrastructure.dll": "dbdaf49360e4ddeaa1eca5ff0b229bd7170510f9f255433df346c88d187d4833",
+    "Goa2.Presentation.dll": "cbcca4a92103e6b9a3623d5be118d11a25bc3e1919578a6ccecefb62c7821fcb",
+    "Goa2.Rules.dll": "9c5f05ec03c66cf4a64b0ee7e042241d5923b4418eecb682d0cad369b4fb2158"
+  },
+  "core": {
+    "passed": 938,
+    "failed": 0,
+    "report": "artifacts/tests/battlearms-core.trx",
+    "card_specific": 22
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/battlearms-basic.json",
+        "input_sha256": "b28f34705306edc37610eb9f44544f93090882719ce095a9feb52c014e1c0bb3",
+        "report": "artifacts/scenarios/battlearms-basic/headless/228bd2ba746a4b029c8cd1b6caf6270e/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battlearms-ordinary.json",
+        "input_sha256": "172d763f402e6143c76216303ea96e4b757be77f6377c49d07351903c344b96e",
+        "report": "artifacts/scenarios/battlearms-ordinary/headless/9b28a26d804f463da35f5f33ac0104b0/report.json",
+        "steps": 27,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battlearms-both-adjacent.json",
+        "input_sha256": "5fab4e69efbfcd25fa7079304e0b7ac5fc01a453c27e6375b005caefd6a33ea6",
+        "report": "artifacts/scenarios/battlearms-both-adjacent/headless/0232f345bf8b4e64ae1d49ce76785352/report.json",
+        "steps": 28,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battlearms-source-moved.json",
+        "input_sha256": "7d0839d8147f254108489ef4ac9bb8a6b78cbda19c90bb72952a66abb57c0334",
+        "report": "artifacts/scenarios/battlearms-source-moved/headless/f8fe8b32b54540878f2bfc2c1e172972/report.json",
+        "steps": 28,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battlearms-retrieve.json",
+        "input_sha256": "e8e2f0b67497f4c8418b829674016382409a4afb6bb6a019573bfdc7487ba8b6",
+        "report": "artifacts/scenarios/battlearms-retrieve/headless/724b416c76ae4112a1afaf5e892c20f5/report.json",
+        "steps": 28,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battlearms-defeat.json",
+        "input_sha256": "0636cd0d78f06b5e6b24a271dba2d7c6967834a5988ddd826e021041a551cddc",
+        "report": "artifacts/scenarios/battlearms-defeat/headless/cbacc64e258849fd9ee13593e58fb31e/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battlearms-roundend.json",
+        "input_sha256": "18f54dd5d34fd93ee2450a2a40940de17075c09fd0712ac48a1d9d7cdcf4b512",
+        "report": "artifacts/scenarios/battlearms-roundend/headless/c67fcf9d5d7f4642bbbc5e5c7f2ba061/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battlearms-challenger.json",
+        "input_sha256": "d45256f4ab9115a787cf0da6369a6720000596cd9f24f198919a158b4898eed8",
+        "report": "artifacts/scenarios/battlearms-challenger/headless/95e4478220174707b9952978d1722fb9/report.json",
+        "steps": 26,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine32-battlearms-defense-scenario.json",
+        "input_sha256": "ae869af991803c9afd19805241e69bdd90901ba264dfbc4405fc407e47e8ec2c",
+        "report": "artifacts/scenarios/engine32-battlearms-defense-scenario/headless/f1bd5e1d53854028bb1dd7d4ebdd19e4/report.json",
+        "steps": 27,
+        "passed": true
+      }
+    ],
+    "scenarios": 9,
+    "steps": 221
+  },
+  "manual_presets": [
+    "battlearms",
+    "battlearms-support",
+    "battlearms-challenger"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/battlearms-move-ui/layout.ui.json",
+    "revision": 14,
+    "seat": 0,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false
+  }
+}

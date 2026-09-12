@@ -14,13 +14,14 @@ namespace Goa2.Rules
             var team=state.Players[attackerSeat].Team;
             var effects=Current(state,EffectKind.FriendlyBasicMinionsRanged).Where(e=>attack.PrimaryCategory=="基础攻击");
             if(state.EngineVersion>=31)effects=effects.Concat(Current(state,EffectKind.FriendlyAttackMinionsRanged));
+            if(state.EngineVersion>=32)effects=effects.Concat(Current(state,EffectKind.FriendlyAttackMinionsDual));
             foreach(var effect in effects)
             {
                 var source=Source(state,effect);
                 if(source==null || state.Players[effect.ControllerSeat].Team!=team)continue;
                 int radius=Radius(catalog,state,effect);
                 foreach(var minion in state.Units.Where(u=>u.Team==team && (u.Kind=="melee" || u.Kind=="ranged" || u.Kind=="heavy") && u.Position.Distance(source.Position)<=radius))
-                    result[minion.Id]="ranged";
+                    result[minion.Id]=effect.Kind==EffectKind.FriendlyAttackMinionsDual ? "melee_ranged" : "ranged";
             }
             return result;
         }
