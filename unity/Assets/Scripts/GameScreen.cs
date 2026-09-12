@@ -159,6 +159,7 @@ namespace Goa2.Presentation
                     case "forced_discard": return "反制选择";
                     case "optional_discard": return "攻击前弃牌";
                     case "effect_move": return "牌文移动";
+                    case "card_swap": return "防御后换牌";
                     case "recover_discard": return "取回卡牌";
                     case "hero_respawn": return "英雄复活";
                     case "round_minion_removal": return "轮末小兵战斗";
@@ -497,6 +498,10 @@ namespace Goa2.Presentation
                 case "PushStopped": return actor + "推动停止：" + (entry.Detail=="obstacle" ? "前方地形阻挡" : entry.Detail=="occupied" ? "前方有单位" : "已到地图边缘");
                 case "EffectMoveChoiceRequired": return actor+"可按牌文移动"+entry.Detail+"格";
                 case "DefenseMoveResolved": return actor+"已完成防御后的直线移动";
+                case "CardSwapChoiceRequired": return actor+"可选择手牌交换本次防御牌";
+                case "CardSwapSkipped": return actor+(entry.Detail=="declined"?"选择不交换卡牌":"没有可交换的手牌");
+                case "CardsSwapped": return actor+"用 "+catalog.Card(entry.Detail).Name+" 换回 "+catalog.Card(entry.CardId!).Name;
+                case "CardSwapColorsShown": return actor+"交换了手牌与防御牌的状态";
                 case "RecoverDiscardRequired": return actor+"可按牌文取回一张卡牌";
                 case "EffectTargetChoiceRequired": return actor+"选择牌文作用的英雄";
                 case "EffectTargetChosen": return actor+"选定牌文目标 · "+entry.Detail;

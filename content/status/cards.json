@@ -965,11 +965,25 @@
     },
     {
       "card_id": "tigerclaw-16-暗影步",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-16-暗影步.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ShadowStepTests.cs",
+        "tests/scenarios/shadowstep-swap.json",
+        "tests/scenarios/shadowstep-no-move.json",
+        "tests/scenarios/shadowstep-no-swap.json",
+        "tests/scenarios/shadowstep-reuse.json",
+        "tests/scenarios/shadowstep-empty.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Application/GameSession.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-17-近身还击",

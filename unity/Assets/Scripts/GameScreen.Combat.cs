@@ -86,6 +86,19 @@ namespace Goa2.Presentation
                 RenderCardDetail(parent,catalog.Card(view.RecoverableCards.Contains(discardCardId)?discardCardId:choice.Source));
                 return true;
             }
+            if(choice.Kind=="card_swap")
+            {
+                var instruction=Text(PlayerName(choice.ChooserSeat)+"可以选择一张手牌交换；换回本次防御牌，所选手牌进入弃牌区。","body");instruction.name="card-swap-choice";parent.Add(instruction);
+                if(choice.ChooserSeat!=seat){parent.Add(Text("等待防御者选择交换或跳过。","body"));return true;}
+                foreach(string id in view.CardSwapOptions)
+                {
+                    string selected=id;var button=Button(catalog.Card(id).Name,()=>{discardCardId=selected;Render();},"choice-button","card-swap-"+catalog.Card(id).Color);
+                    if(discardCardId==id)button.AddToClassList("chosen");parent.Add(button);
+                }
+                if(view.CardSwapOptions.Contains(discardCardId))Confirm(parent,"确认交换 "+catalog.Card(discardCardId).Name,()=>Submit(CommandKind.ChooseCardSwap,discardCardId));
+                parent.Add(Button("不交换，继续结算",()=>Submit(CommandKind.ChooseCardSwap,"skip"),"quiet-button","card-swap-skip"));
+                if(choice.Source!="")RenderCardDetail(parent,catalog.Card(choice.Source));return true;
+            }
             if (choice.Kind == "effect_move")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择牌文移动。","section-title"));

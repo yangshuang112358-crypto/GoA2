@@ -1,0 +1,96 @@
+{
+  "engine": 25,
+  "implemented_cards": 36,
+  "data_only_cards": 72,
+  "build_utc": "2026-09-12T20:44:05.3118523Z",
+  "assemblies": {
+    "Goa2.Application.dll": "dc0fde27769fe80408b033cf1f1323087a8fa7e256cc129e9b293d3f82a9eb1b",
+    "Goa2.Domain.dll": "78224406b1bc0ef4c4d72758c47273796438c43fafde72092615c8e6252bf0d9",
+    "Goa2.Infrastructure.dll": "2c648b351cc6b984a6237a396484ec154b5eea0fbb3eae15646afbd4f5d6bd6b",
+    "Goa2.Presentation.dll": "348d073d7b5bc33f8192e4c62b1531c0f842cd532d4bbd8b78eb386330160f1b",
+    "Goa2.Rules.dll": "937e08462709b195fb99a3547b8fce3ba26b9c3b5185edb2d4df83cd42734b9c"
+  },
+  "core": {
+    "passed": 767,
+    "failed": 0,
+    "report": "artifacts/tests/shadowstep-unity-0.xml",
+    "card_specific": 14,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/shadowstep-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET test assembly; core.trx preserves the failed attempt.",
+    "focused_report": "artifacts/unity/tests/shadowstep-focused.xml",
+    "focused_with_sidestep": 31
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/shadowstep-swap.json",
+        "input_sha256": "7d5c970a4e65305bec9f384d79c172dd14e0d5deb04fbadab067674b27ca17ce",
+        "report": "artifacts/scenarios/shadowstep-swap/headless/761f41b0de584ce191f3e7e44440752c/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shadowstep-no-move.json",
+        "input_sha256": "8e54b56b745e512d848f76fd0685b41516fde59b579859e948327004d5747b57",
+        "report": "artifacts/scenarios/shadowstep-no-move/headless/c572bfbf88514adc8f10e5ef1fa072d2/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shadowstep-no-swap.json",
+        "input_sha256": "0923dc1f2d24cddf800297c2ca935a5cdf7f2a98012245696654421d27173797",
+        "report": "artifacts/scenarios/shadowstep-no-swap/headless/1255726bd7514785b040b6f7a31f596a/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shadowstep-reuse.json",
+        "input_sha256": "98b71917e052916bd161c823d8c6db6b422f79538d7696bee52860ae62428023",
+        "report": "artifacts/scenarios/shadowstep-reuse/headless/c4721b3fd19e42b4a8f32df84b02969c/report.json",
+        "steps": 22,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shadowstep-empty.json",
+        "input_sha256": "83d893f99e624bdb9b17c38709a90a6b95e56fdd775b03e3b6997c293dd55ed6",
+        "report": "artifacts/scenarios/shadowstep-empty/headless/6ed0186d3915403bb02211b568d93545/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sidestep-push.json",
+        "input_sha256": "7384719d2f576e9cc4c3dd53c9480465f805b2512e6a70f84941927094096179",
+        "report": "artifacts/scenarios/sidestep-push/headless/c1975f44ff71424c9eb73f40df0a3afa/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine25-shadowstep-swap-scenario.json",
+        "input_sha256": "d3c2c30b8f8aa2ebe40f4c5de038a8670d24c231c6b46caa7dafff188939a7c9",
+        "report": "artifacts/scenarios/engine25-shadowstep-swap-scenario/headless/7bf0bba1217a4069ad953874145e9a13/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 116
+  },
+  "manual_presets": [
+    "shadowstep",
+    "shadowstep-empty"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/shadowstep-ui/layout.ui.json",
+    "revision": 15,
+    "seat": 1,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false,
+    "choice_label_visible": true,
+    "skip_button_visible": true,
+    "skip_button_enabled": true
+  }
+}

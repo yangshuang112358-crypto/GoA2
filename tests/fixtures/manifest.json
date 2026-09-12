@@ -207,6 +207,15 @@
       "input": "tests/fixtures/engine24-sidestep-move-scenario.json",
       "input_sha256": "03eb453f0f89ed835ef5f8d971cdcd2d8c07e1adeb02f4591716ed4a1326632e",
       "provenance": "tests/fixtures/engine24-sidestep-move.md"
+    },
+    {
+      "engine_version": 25,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine25-shadowstep-swap.json",
+      "save_sha256": "a34e267ca30f2ff17527edf8a40a851407289d0dcc711921b901d01edea6073a",
+      "input": "tests/fixtures/engine25-shadowstep-swap-scenario.json",
+      "input_sha256": "d3c2c30b8f8aa2ebe40f4c5de038a8670d24c231c6b46caa7dafff188939a7c9",
+      "provenance": "tests/fixtures/engine25-shadowstep-swap.md"
     }
   ]
 }

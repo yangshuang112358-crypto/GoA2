@@ -14,15 +14,16 @@ namespace Goa2.Rules.Cards
     {
         public readonly string Id;
         public readonly int Version = 1, MinimumDistance, TextMoveDistance;
-        public readonly bool Block, IgnoresMinions, RequiresAdjacentFriendlyMinion;
+        public readonly bool Block, IgnoresMinions, RequiresAdjacentFriendlyMinion, SwapAfterMove;
         public readonly DefenseAttackKind AttackKind;
         public readonly DefenseFollowup Followup;
         public DefenseProgram(string id, bool block, int minimumDistance=1, DefenseFollowup followup=DefenseFollowup.None,
-            DefenseAttackKind attackKind=DefenseAttackKind.Ranged, bool adjacentFriendlyMinion=false,int textMoveDistance=0)
+            DefenseAttackKind attackKind=DefenseAttackKind.Ranged, bool adjacentFriendlyMinion=false,int textMoveDistance=0,bool swapAfterMove=false)
         {
             Id=id; Block=block; AttackKind=block ? attackKind : DefenseAttackKind.Any; IgnoresMinions=!block;
             MinimumDistance=minimumDistance; Followup=followup; RequiresAdjacentFriendlyMinion=adjacentFriendlyMinion;
             TextMoveDistance=textMoveDistance;
+            SwapAfterMove=swapAfterMove;
         }
     }
     internal sealed class PrimaryProgram
@@ -122,6 +123,7 @@ namespace Goa2.Rules.Cards
         };
         private static readonly Dictionary<string,(string text, int minimumEngine, DefenseProgram program)> Defenses = new Dictionary<string,(string, int, DefenseProgram)>
         {
+            ["tigerclaw-16-暗影步"] = ("抵挡一次远程攻击。若如此做，你可以沿直线移动2格，且可以将此卡与你手中的一张卡牌交换。",25,new DefenseProgram("block_ranged_optional_move_and_card_swap",true,followup:DefenseFollowup.OptionalStraightMove,textMoveDistance:2,swapAfterMove:true)),
             ["tigerclaw-15-侧步"] = ("抵挡一次远程攻击。若如此做，你可以沿直线移动2格。",24,new DefenseProgram("block_ranged_optional_straight_move",true,followup:DefenseFollowup.OptionalStraightMove,textMoveDistance:2)),
             ["wasp-07-抵挡屏障"] = ("如果攻击者不与你相邻，抵挡一次远程攻击。", 0, new DefenseProgram("block_non_adjacent_ranged",true,2)),
             ["tigerclaw-18-躲闪"] = ("抵挡一次远程攻击", 0, new DefenseProgram("block_ranged",true)),

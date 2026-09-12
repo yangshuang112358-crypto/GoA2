@@ -44,6 +44,7 @@ namespace Goa2.Rules
                 case CommandKind.ChooseEffectMove: ChooseEffectMove(catalog,state,command); break;
                 case CommandKind.ChooseRecoveredCard: ChooseRecoveredCard(catalog,state,command); break;
                 case CommandKind.ChooseEffectTarget: ChooseEffectTarget(catalog,state,command); break;
+                case CommandKind.ChooseCardSwap: ChooseCardSwap(catalog,state,command); break;
                 case CommandKind.RespawnHero: RespawnHero(catalog, state, command); break;
                 case CommandKind.ResolveRoundEnd: ResolveRoundEnd(catalog, state, command); break;
                 case CommandKind.ChooseRoundMinionRemoval: ChooseRoundMinionRemoval(catalog, state, command); break;

@@ -41,7 +41,7 @@ namespace Goa2.Rules
             var program=CardPrograms.Defense(catalog.Card(response.SourceCardId),state.EngineVersion);
             Require(program != null && program.Id==response.ProgramId && program.Version==response.ProgramVersion,
                 "incompatible_program", "防御后处理程序版本不兼容。");
-            Require(response.Cursor>=0 && response.Cursor<=1, "invalid_program_cursor", "防御后处理步骤无效。");
+            Require(response.Cursor>=0 && response.Cursor<=(program!.SwapAfterMove?2:1), "invalid_program_cursor", "防御后处理步骤无效。");
             if(response.Cursor==0 && program!.Followup==DefenseFollowup.OptionalStraightMove)
             {
                 if(BeginDefenseMove(catalog,state,command,response,program))return false;
@@ -69,7 +69,12 @@ namespace Goa2.Rules
                     if (state.Phase==Phase.Finished) return false;
                 }
             }
-            if (program!.Followup==DefenseFollowup.DiscardAttackerThenImmunity)
+            if(program!.SwapAfterMove && response.Cursor==1)
+            {
+                if(BeginCardSwap(state,command,response))return false;
+                response.Cursor++;
+            }
+            if (program.Followup==DefenseFollowup.DiscardAttackerThenImmunity)
                 ApplyDefenseImmunity(catalog,state,command,response);
             Emit(state,command,"DefenseResponseCompleted",response.ControllerSeat,response.SourceCardId,response.ControllerSeat);
             state.Execution.DefenseResponse=null;
