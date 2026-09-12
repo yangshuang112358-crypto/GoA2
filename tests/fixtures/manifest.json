@@ -180,6 +180,15 @@
       "input": "tests/fixtures/engine21-storm-removal-scenario.json",
       "input_sha256": "75e0beb02832cc8f40fabfc8233076ffc2b4276cbd11866066edabc856a93784",
       "provenance": "tests/fixtures/engine21-storm-removal.md"
+    },
+    {
+      "engine_version": 22,
+      "accepted_commands": 11,
+      "save": "tests/fixtures/engine22-pointblank-defense.json",
+      "save_sha256": "af09ad83680dd9e5f79d81e0fa4c9bbd98e601f9b305bc79837797cf557708fd",
+      "input": "tests/fixtures/engine22-pointblank-defense-scenario.json",
+      "input_sha256": "0cdaf1c2a2f5d776d343aaee8ff24ff8c14e6dbdb46a2f7c1f0c1e88bf03d15f",
+      "provenance": "tests/fixtures/engine22-pointblank-defense.md"
     }
   ]
 }

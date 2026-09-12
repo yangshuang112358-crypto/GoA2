@@ -1,0 +1,85 @@
+{
+  "engine": 22,
+  "implemented_cards": 33,
+  "data_only_cards": 75,
+  "build_utc": "2026-09-12T20:11:56.3572176Z",
+  "assemblies": {
+    "Goa2.Application.dll": "02aaab19f439e5cb4345b1fd3e9c5d070d13652e3f82e5278f6f3eaa9342b115",
+    "Goa2.Domain.dll": "7022275af60f1963baab8a33b09a20c7b8d71e057aab01b354a457796eeae2f0",
+    "Goa2.Infrastructure.dll": "31315a220cb8797f9cb631cb4c1b6911c0a81f5bad0aead54de2f7225b06a787",
+    "Goa2.Presentation.dll": "d7d7c17e0c51fa5763ee61572044532caebe5ec65362dfb53cdf2d544f403d04",
+    "Goa2.Rules.dll": "a6bedfee94dbdd38957b968880250d1cc25cb3daf159853e9326f82567e27202"
+  },
+  "core": {
+    "passed": 700,
+    "failed": 0,
+    "report": "artifacts/tests/pointblank-unity-0.xml",
+    "card_specific": 19,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/pointblank-unity-0.xml",
+      "artifacts/tests/pointblank-unity-1.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET test assembly; core.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/pointblank-push.json",
+        "input_sha256": "b6a428f34694508fff1929ed46b6ef7f3f3e6123071e4d76bc625eec80adc606",
+        "report": "artifacts/scenarios/pointblank-push/headless/b1a936891a3943de950701f8be864090/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pointblank-blocked.json",
+        "input_sha256": "d076d88363736c23723baeacc738eb379f99c5b26b8563e476d394d3d7fb59f4",
+        "report": "artifacts/scenarios/pointblank-blocked/headless/6adabb4b3cd54d7184ca968585b29b25/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pointblank-minion.json",
+        "input_sha256": "010d8c95ade42c9e3ddd3efd80d2738b5fd1f92e9112d806c120f048123ccf23",
+        "report": "artifacts/scenarios/pointblank-minion/headless/3abc74625b5f434f84a884def3dcb655/report.json",
+        "steps": 11,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pointblank-defeat.json",
+        "input_sha256": "2605c37f1afc1762a19da29ceb915a16556c0733bf4690a39a1780068ef4c5c9",
+        "report": "artifacts/scenarios/pointblank-defeat/headless/9b85fe8b757745849693895d9227e6dd/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/storm-remove.json",
+        "input_sha256": "188f5945be4468a3d713610f203edd6967ef841bd3e70ec1a5758dee35e392f6",
+        "report": "artifacts/scenarios/storm-remove/headless/a234c06ee1624ffd807eda1eacba965c/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/raid-both.json",
+        "input_sha256": "cd7d08dd4279e49c083f9ddfa5fb838f93a30f82c1c374acb3ba473f5927f7f8",
+        "report": "artifacts/scenarios/raid-both/headless/498ac57291fe4b81a18605a68c75a248/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine22-pointblank-defense-scenario.json",
+        "input_sha256": "0cdaf1c2a2f5d776d343aaee8ff24ff8c14e6dbdb46a2f7c1f0c1e88bf03d15f",
+        "report": "artifacts/scenarios/engine22-pointblank-defense-scenario/headless/76597946ed98479f9ffefdf5cfc7c9be/report.json",
+        "steps": 11,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 89
+  },
+  "manual_presets": [
+    "pointblank-push",
+    "pointblank-blocked"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented."
+}

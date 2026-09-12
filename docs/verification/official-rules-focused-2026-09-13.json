@@ -7,13 +7,15 @@
   "checked_printed_pages": [
     10,
     17,
+    18,
     19
   ],
   "scope": [
     "retrieve card",
     "active effects cancelled when source card changes state",
     "friendly excludes source hero",
-    "straight line including adjacent hexes"
+    "straight line including adjacent hexes",
+    "single target push direction and obstacle-limited distance including zero"
   ],
   "full_rulebook_audit": false
 }

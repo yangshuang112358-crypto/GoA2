@@ -69,6 +69,10 @@ namespace Goa2.Rules
                         if(BeginEffectMinionRemoval(catalog,state,command,execution,program)) return;
                         execution.Cursor++;
                         break;
+                    case InstructionKind.PushAttackTargetIfAdjacent:
+                        PushAttackTargetIfAdjacent(catalog,state,command,execution,program);
+                        execution.Cursor++;
+                        break;
                     case InstructionKind.End:
                         EndCardExecution(catalog, state, command);
                         return;

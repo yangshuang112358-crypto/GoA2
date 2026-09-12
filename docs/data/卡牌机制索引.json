@@ -1395,7 +1395,7 @@
         "conditional",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/sabina-00-近身射击.md",
       "question_candidates": [
         "U-011"

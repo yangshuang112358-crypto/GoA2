@@ -493,6 +493,8 @@ namespace Goa2.Presentation
                 case "SelectionConfirmed": return actor + "已确认";
                 case "CardRevealed": return actor + "揭示 " + catalog.Card(entry.CardId!).Name;
                 case "UnitMoved": return actor + "移动至 " + entry.To;
+                case "UnitPushed": return actor + "被推动 " + (entry.Path.Count-1) + " 格，位置 " + entry.To;
+                case "PushStopped": return actor + "推动停止：" + (entry.Detail=="obstacle" ? "前方地形阻挡" : entry.Detail=="occupied" ? "前方有单位" : "已到地图边缘");
                 case "EffectMoveChoiceRequired": return actor+"可按牌文移动"+entry.Detail+"格";
                 case "RecoverDiscardRequired": return actor+"可按牌文取回一张卡牌";
                 case "EffectTargetChoiceRequired": return actor+"选择牌文作用的英雄";

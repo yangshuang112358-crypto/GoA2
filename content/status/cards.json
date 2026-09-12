@@ -983,11 +983,23 @@
     },
     {
       "card_id": "sabina-00-近身射击",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-00-近身射击.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/PointBlankShotTests.cs",
+        "tests/scenarios/pointblank-push.json",
+        "tests/scenarios/pointblank-blocked.json",
+        "tests/scenarios/pointblank-minion.json",
+        "tests/scenarios/pointblank-defeat.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Domain/Displacement.cs",
+        "core/com.goa2.core/Runtime/Rules/PushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "sabina-01-拔枪",

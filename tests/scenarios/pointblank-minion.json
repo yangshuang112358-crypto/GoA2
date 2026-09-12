@@ -1,0 +1,82 @@
+{
+  "SchemaVersion": 1,
+  "Id": "pointblank-minion",
+  "Name": "近身射击：小兵已击败，不能再被推动",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "sabina,tigerclaw,brogan,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-18-躲闪",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-1,-3",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-00-近身射击",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-07-伺机待发",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "minion:-1,-3",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p3",
+        "Gold": {
+          "p1": 2
+        },
+        "EventCounts": {
+          "MinionDefeated": 1,
+          "UnitPushed": 0
+        }
+      }
+    }
+  ]
+}

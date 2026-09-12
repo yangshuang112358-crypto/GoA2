@@ -5,7 +5,7 @@ param(
 )
 $ErrorActionPreference = "Stop"
 $goaRoot = Split-Path -Parent $PSScriptRoot
-if ($Runner -eq 'Unity') { & "$PSScriptRoot/test-unity.ps1" -UnityExe $UnityExe; return }
+if ($Runner -eq 'Unity') { & "$PSScriptRoot/test-unity.ps1" -UnityExe $UnityExe -Assemblies 'Goa2.Core.Tests;Goa2.Presentation.Tests'; return }
 if (-not (Get-Command $DotnetExe -ErrorAction SilentlyContinue)) {
     $goaLocalSdk = Join-Path $env:LOCALAPPDATA "Goa2V1Toolchain\dotnet\dotnet.exe"
     if (Test-Path -LiteralPath $goaLocalSdk) { $DotnetExe = $goaLocalSdk }
@@ -29,6 +29,6 @@ try {
         }
         if (-not $goaAppControlOnly) { throw 'Core tests failed. Inspect artifacts/tests/core.trx.' }
         Write-Warning 'Windows application control blocked the .NET test host. Running the identical test sources with Unity EditMode; the .NET environment failure remains in core.trx.'
-        & "$PSScriptRoot/test-unity.ps1" -UnityExe $UnityExe
+        & "$PSScriptRoot/test-unity.ps1" -UnityExe $UnityExe -Assemblies 'Goa2.Core.Tests;Goa2.Presentation.Tests'
     }
 } finally { Pop-Location }

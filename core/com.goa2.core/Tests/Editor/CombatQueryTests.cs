@@ -36,6 +36,8 @@ namespace Goa2.Tests
             var catalog = BattlefieldTests.Catalog();
             Assert.That(CombatRules.HasPrimaryProgram(catalog.Card("sabina-01-拔枪")), Is.True);
             Assert.That(CombatRules.HasPrimaryProgram(catalog.Card("shargatha-02-快速突刺")), Is.True);
+            Assert.That(CombatRules.HasPrimaryProgram(catalog.Card("sabina-00-近身射击")), Is.True);
+            catalog.Card("sabina-00-近身射击").Text += "然后再攻击一次。";
             Assert.That(CombatRules.HasPrimaryProgram(catalog.Card("sabina-00-近身射击")), Is.False);
             catalog.Card("sabina-01-拔枪").Text += "攻击后：移动1格。";
             Assert.That(CombatRules.HasPrimaryProgram(catalog.Card("sabina-01-拔枪")), Is.False);
