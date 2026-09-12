@@ -74,6 +74,7 @@ namespace Goa2.Domain
         public bool CanDeclineRetaliationDiscard;
         public List<string> OptionalDiscardCards = new List<string>();
         public List<string> RecoverableCards = new List<string>();
+        public List<string> EffectTargets = new List<string>();
         public int? AttackRange;
         public List<string> UnimplementedDefenseCards = new List<string>();
         public AttackBreakdown? Attack;

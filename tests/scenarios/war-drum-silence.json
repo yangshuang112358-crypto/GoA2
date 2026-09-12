@@ -1,0 +1,121 @@
+{
+  "Id": "war-drum-silence",
+  "SchemaVersion": 1,
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "brogan,sabina,tigerclaw,arien"
+    },
+    {
+      "Value": "brogan-08-战鼓",
+      "Command": "DebugEquipCard",
+      "Target": "p1"
+    },
+    {
+      "Value": "brogan-02-投掷飞斧",
+      "Command": "DebugEquipCard",
+      "Target": "p1"
+    },
+    {
+      "Value": "tigerclaw-18-躲闪",
+      "Command": "DebugEquipCard",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugSetCoin",
+      "Value": "blue"
+    },
+    {
+      "Value": "hero:0",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Value": "hero:1",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Value": "hero:2",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 8,
+        "Y": -9
+      }
+    },
+    {
+      "Value": "hero:3",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      }
+    },
+    {
+      "Value": "brogan-02-投掷飞斧",
+      "Command": "DebugDiscard",
+      "Target": "p1"
+    },
+    {
+      "Value": "tigerclaw-18-躲闪",
+      "Command": "DebugDiscard",
+      "Target": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-08-战鼓"
+    },
+    {
+      "Value": "sabina-00-近身射击",
+      "Command": "SelectCard",
+      "Actor": "p2"
+    },
+    {
+      "Value": "tigerclaw-02-偷袭",
+      "Command": "SelectCard",
+      "Actor": "p3"
+    },
+    {
+      "Value": "arien-06-打断施法",
+      "Command": "SelectCard",
+      "Actor": "p4"
+    },
+    {
+      "Command": "ChooseInitiative",
+      "Target": "p4",
+      "Actor": "p2"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2"
+    },
+    {
+      "Command": "Pass",
+      "Expect": {
+        "Active": "p1",
+        "PrimaryRestrictions": {
+          "p1": "arien-06-打断施法"
+        },
+        "Phase": "Action"
+      },
+      "Actor": "p3"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Expect": {
+        "Code": "primary_restricted"
+      }
+    }
+  ],
+  "Name": "战鼓：来源受到打断施法时不能替队友取回"
+}

@@ -117,6 +117,15 @@
       "input": "tests/fixtures/engine14-raid-after-scenario.json",
       "input_sha256": "873cac223b82acb936add89d995c5bd197ba8eead15f75758c47cb3ce09b401e",
       "provenance": "tests/fixtures/engine14-raid-after.md"
+    },
+    {
+      "engine_version": 15,
+      "accepted_commands": 19,
+      "save": "tests/fixtures/engine15-war-drum-recovery.json",
+      "save_sha256": "b9f9d94baf08fcaaa4ec894868d7a84b438e3c80bd2bc7e4da79bc5e4a0222c4",
+      "input": "tests/fixtures/engine15-war-drum-recovery-scenario.json",
+      "input_sha256": "ff625a68f0327a2ec6ad49f8bbcdbed3e9f7fd5443bcebae12a67fe85cdf2f00",
+      "provenance": "tests/fixtures/engine15-war-drum-recovery.md"
     }
   ]
 }

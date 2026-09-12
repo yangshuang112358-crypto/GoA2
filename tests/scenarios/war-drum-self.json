@@ -1,0 +1,129 @@
+{
+  "Id": "war-drum-self",
+  "SchemaVersion": 1,
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "brogan,sabina,tigerclaw,arien"
+    },
+    {
+      "Value": "brogan-08-战鼓",
+      "Command": "DebugEquipCard",
+      "Target": "p1"
+    },
+    {
+      "Value": "brogan-02-投掷飞斧",
+      "Command": "DebugEquipCard",
+      "Target": "p1"
+    },
+    {
+      "Value": "tigerclaw-18-躲闪",
+      "Command": "DebugEquipCard",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugSetCoin",
+      "Value": "blue"
+    },
+    {
+      "Value": "hero:0",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Value": "hero:1",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Value": "hero:2",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 8,
+        "Y": -9
+      }
+    },
+    {
+      "Value": "hero:3",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      }
+    },
+    {
+      "Value": "brogan-02-投掷飞斧",
+      "Command": "DebugDiscard",
+      "Target": "p1"
+    },
+    {
+      "Value": "tigerclaw-18-躲闪",
+      "Command": "DebugDiscard",
+      "Target": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-08-战鼓"
+    },
+    {
+      "Value": "sabina-00-近身射击",
+      "Command": "SelectCard",
+      "Actor": "p2"
+    },
+    {
+      "Value": "tigerclaw-02-偷袭",
+      "Command": "SelectCard",
+      "Actor": "p3"
+    },
+    {
+      "Value": "arien-07-潮水",
+      "Command": "SelectCard",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2"
+    },
+    {
+      "Command": "Pass",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      },
+      "Actor": "p3"
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Value": "hero:0",
+      "Command": "ChooseEffectTarget",
+      "Expect": {
+        "PendingKind": "recover_discard",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Value": "brogan-02-投掷飞斧",
+      "Command": "ChooseRecoveredCard",
+      "Expect": {
+        "EventCounts": {
+          "CardRecovered": 1,
+          "CardResolved": 1
+        },
+        "DiscardCounts": {
+          "p1": 0,
+          "p3": 1
+        },
+        "Active": "p4"
+      }
+    }
+  ],
+  "Name": "战鼓：来源本人也可受益"
+}

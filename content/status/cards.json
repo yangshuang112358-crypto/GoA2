@@ -474,11 +474,21 @@
     },
     {
       "card_id": "brogan-08-战鼓",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-08-战鼓.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/WarDrumTests.cs",
+        "tests/scenarios/war-drum-ally.json",
+        "tests/scenarios/war-drum-self.json",
+        "tests/scenarios/war-drum-silence.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs"
+      ]
     },
     {
       "card_id": "brogan-09-持盾",

@@ -1,0 +1,95 @@
+{
+  "engine": 15,
+  "implemented_cards": 26,
+  "data_only_cards": 82,
+  "build_utc": "2026-09-12T19:10:30.4348749Z",
+  "assemblies": {
+    "Goa2.Domain.dll": "4a89f3a2e57f53d1a51bc9371a5bce823bc230dbd9a7b3db2d2d6a9aef667c1d",
+    "Goa2.Rules.dll": "fbd0e958f22f261369e3130baa6f3f9e8fe70d94ba26cdba15df1223dbf3c06b",
+    "Goa2.Application.dll": "7504961c77d77b2a0bfbdd704fd79d3bcfdd415c81235263ea617414d0571e16",
+    "Goa2.Infrastructure.dll": "73e0ed8edbb19525b312be776261c4678a4defc2fc3b3bca04cc39d0b1900c05",
+    "Goa2.Presentation.dll": "0314efb5dfbde151dec452d04469cd9265b263b01a55122d60cdf30046cffab8"
+  },
+  "core": {
+    "passed": 548,
+    "failed": 0,
+    "report": "artifacts/tests/war-drum-core.trx",
+    "card_specific": 18
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/war-drum-ally.json",
+        "input_sha256": "8082143b37e9462c63af9c8bde648487bba35c380d9d154d7496e19e327a8c61",
+        "report": "artifacts/scenarios/war-drum-ally/headless/0a80efd0f8ad46358d35455a3dd66952/report.json",
+        "steps": 32,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/war-drum-self.json",
+        "input_sha256": "ef879a3e605586bbc0017cbc18179117bb0a28e8bbdaa50094628a7f1df0ee6e",
+        "report": "artifacts/scenarios/war-drum-self/headless/199eb7d170d14faeae7817f3f70a47dd/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/war-drum-silence.json",
+        "input_sha256": "8cddfeb11544cfa16c58bb5ba12a738412d393df3128f219b554690a1d221ec1",
+        "report": "artifacts/scenarios/war-drum-silence/headless/53b35234a5c84aa68a15b14007d77123/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/loyal-recover.json",
+        "input_sha256": "d89a907aa9087e4fcd99424120868eec98d85338dae2b4d4dbb1123d1f2f66fe",
+        "report": "artifacts/scenarios/loyal-recover/headless/efb1e608a07e4f9f9fe2125ed94fa060/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/loyal-silence.json",
+        "input_sha256": "4feb9ab7222793b9426b900ea490a12d33ebcfa25011225c831a5bd69c3369ba",
+        "report": "artifacts/scenarios/loyal-silence/headless/e30d2ef7414041838916f5ef93835b75/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/loyal-skip.json",
+        "input_sha256": "e1f33f33274c98e8fc84d04987f9ddbe30056f68361784d8ec934b97d2b13ddc",
+        "report": "artifacts/scenarios/loyal-skip/headless/292709185d2f4c7397b9bf22e887f84f/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/raid-both.json",
+        "input_sha256": "cd7d08dd4279e49c083f9ddfa5fb838f93a30f82c1c374acb3ba473f5927f7f8",
+        "report": "artifacts/scenarios/raid-both/headless/5cb735a73c174c109579f49f741d5bc4/report.json",
+        "steps": 14,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 128
+  },
+  "manual_presets": [
+    "war-drum",
+    "war-drum-silence"
+  ],
+  "ui": {
+    "report": "artifacts/war-drum-ui/layout.ui.json",
+    "revision": 18,
+    "phase": "EffectChoice",
+    "effect_target_cells": [
+      [
+        7,
+        -10
+      ],
+      [
+        8,
+        -9
+      ]
+    ],
+    "physical_input_tested": false
+  },
+  "note": "Native coverage is seven relevant scenarios; current full C# suite includes all canonical scenarios. UI layout capture verifies legal target projection; physical clicking was not executed."
+}

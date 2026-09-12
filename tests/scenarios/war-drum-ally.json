@@ -1,0 +1,211 @@
+{
+  "Id": "war-drum-ally",
+  "SchemaVersion": 1,
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "brogan,sabina,tigerclaw,arien"
+    },
+    {
+      "Value": "brogan-08-战鼓",
+      "Command": "DebugEquipCard",
+      "Target": "p1"
+    },
+    {
+      "Value": "brogan-02-投掷飞斧",
+      "Command": "DebugEquipCard",
+      "Target": "p1"
+    },
+    {
+      "Value": "tigerclaw-18-躲闪",
+      "Command": "DebugEquipCard",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugSetCoin",
+      "Value": "blue"
+    },
+    {
+      "Value": "hero:0",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Value": "hero:1",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Value": "hero:2",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 8,
+        "Y": -9
+      }
+    },
+    {
+      "Value": "hero:3",
+      "Command": "DebugTeleport",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      }
+    },
+    {
+      "Value": "brogan-02-投掷飞斧",
+      "Command": "DebugDiscard",
+      "Target": "p1"
+    },
+    {
+      "Value": "tigerclaw-18-躲闪",
+      "Command": "DebugDiscard",
+      "Target": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-08-战鼓"
+    },
+    {
+      "Value": "sabina-00-近身射击",
+      "Command": "SelectCard",
+      "Actor": "p2"
+    },
+    {
+      "Value": "tigerclaw-02-偷袭",
+      "Command": "SelectCard",
+      "Actor": "p3"
+    },
+    {
+      "Value": "arien-07-潮水",
+      "Command": "SelectCard",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2"
+    },
+    {
+      "Command": "Pass",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      },
+      "Actor": "p3"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Expect": {
+        "PendingKind": "effect_target",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Value": "hero:2",
+      "Command": "ChooseEffectTarget",
+      "Expect": {
+        "Code": "invalid_effect_target"
+      },
+      "Actor": "p3"
+    },
+    {
+      "Value": "hero:2",
+      "Command": "ChooseEffectTarget",
+      "Expect": {
+        "PendingKind": "recover_discard",
+        "Active": "p1",
+        "PendingChooser": "p3"
+      }
+    },
+    {
+      "Value": "tigerclaw-18-躲闪",
+      "Command": "ChooseRecoveredCard",
+      "Expect": {
+        "Code": "invalid_recovery_choice"
+      }
+    },
+    {
+      "Value": "tigerclaw-18-躲闪",
+      "Command": "ChooseRecoveredCard",
+      "Expect": {
+        "EventCounts": {
+          "CardRecovered": 1,
+          "CardResolved": 1
+        },
+        "DiscardCounts": {
+          "p3": 0
+        },
+        "Active": "p4"
+      },
+      "Actor": "p3"
+    },
+    {
+      "Value": "turn",
+      "Command": "DebugAdvance",
+      "Expect": {
+        "Phase": "Planning",
+        "Turn": 2
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-13-冲拳"
+    },
+    {
+      "Value": "sabina-01-拔枪",
+      "Command": "SelectCard",
+      "Actor": "p2"
+    },
+    {
+      "Value": "tigerclaw-07-伺机待发",
+      "Command": "SelectCard",
+      "Actor": "p3"
+    },
+    {
+      "Value": "arien-01-汹涌",
+      "Command": "SelectCard",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass"
+    },
+    {
+      "Command": "ChooseInitiative",
+      "Target": "p2",
+      "Actor": "p2"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p2"
+    },
+    {
+      "Value": "hero:2",
+      "Command": "ChooseAttackTarget",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p3"
+      },
+      "Actor": "p2"
+    },
+    {
+      "Value": "tigerclaw-18-躲闪",
+      "Command": "Defend",
+      "Expect": {
+        "EventCounts": {
+          "AttackResolved": 1
+        },
+        "BlueCrystal": 7,
+        "DiscardCounts": {
+          "p3": 1
+        }
+      },
+      "Actor": "p3"
+    }
+  ],
+  "Name": "战鼓：队友本人取回，下一回合用躲闪抵挡拔枪"
+}

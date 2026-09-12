@@ -4,7 +4,8 @@ using Goa2.Domain;
 
 namespace Goa2.Rules.Cards
 {
-    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove }
+    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget }
+    internal enum HeroTargetKind { None, AlliedNearEnemy }
     internal enum AttackBonusKind { None, TargetUsedAttack, AdjacentEnemies, OtherFriendlySupport }
     internal enum AttackRangeBonusKind { None, DiscardedBeforeAttack, OwnDiscardPile }
     internal enum DefenseFollowup { None, DiscardAttacker, DiscardAttackerThenImmunity, DiscardAttackerOrDefeat }
@@ -38,9 +39,10 @@ namespace Goa2.Rules.Cards
         public readonly int RangeBonusValue;
         public readonly int TextMoveDistance;
         public readonly bool RecoveryRequiresAdjacentMinion;
+        public readonly HeroTargetKind HeroTarget;
         public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
             EffectAreaKind areaKind=EffectAreaKind.SkillRange, AttackBonusKind bonus=AttackBonusKind.None, int bonusValue=0,
-            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,params InstructionKind[] instructions)
+            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
             AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=EffectDuration.ThisTurn;
@@ -48,6 +50,7 @@ namespace Goa2.Rules.Cards
             RangeBonusKind=rangeBonus; RangeBonusValue=rangeBonusValue;
             TextMoveDistance=textMoveDistance;
             RecoveryRequiresAdjacentMinion=recoveryRequiresAdjacentMinion;
+            HeroTarget=heroTarget;
             Instructions = System.Array.AsReadOnly(instructions.Length>0 ? instructions : new[] { InstructionKind.ChooseAttackTarget, InstructionKind.Attack, InstructionKind.End });
         }
         public PrimaryProgram(string id, EffectKind effect, EffectDuration duration)
@@ -100,6 +103,9 @@ namespace Goa2.Rules.Cards
         };
         private static readonly Dictionary<string,(string text, int minimumEngine, string? subtype, PrimaryProgram program)> Skills = new Dictionary<string,(string, int, string?, PrimaryProgram)>
         {
+            ["brogan-08-战鼓"] = ("如果你或攻击距离内的一个友方英雄与敌方单位相邻，则该友方英雄可以拿回一张已丢弃的卡牌。",15,"远程",
+                new PrimaryProgram("ally_near_enemy_optional_discard_recovery",0,heroTarget:HeroTargetKind.AlliedNearEnemy,
+                    instructions:new[]{InstructionKind.ChooseHeroTarget,InstructionKind.OptionalRecoverDiscard,InstructionKind.End})),
             ["wasp-06-静电封锁"] = ("此回合：技能范围内的敌方单位无法移动或快速移动来脱离技能范围。技能范围外的敌方单位无法移动或快速移动进入技能范围。",2,"范围",new PrimaryProgram("movement_boundary_aura",EffectKind.MovementBoundary,EffectDuration.ThisTurn)),
             ["arien-06-打断施法"] = ("此回合：在技能范围内的敌方英雄不能执行技能。（打断施法不会阻止攻击行动。）",2,"范围",new PrimaryProgram("skill_suppression_aura",EffectKind.SkillSuppression,EffectDuration.ThisTurn)),
             ["shargatha-15-忠实信徒"] = ("如果你与一个小兵相邻，你可以拿回一张已丢弃的卡牌。",12,null,new PrimaryProgram("optional_discard_recovery_near_minion",0,recoveryRequiresAdjacentMinion:true,

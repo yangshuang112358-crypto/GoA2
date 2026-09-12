@@ -42,6 +42,16 @@ namespace Goa2.Presentation
         {
             var choice = view.Pending;
             if (choice == null) return false;
+            if(choice.Kind=="effect_target")
+            {
+                parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择牌文作用的英雄。","section-title"));
+                RenderCardDetail(parent,catalog.Card(choice.Source));
+                if(choice.ChooserSeat!=seat) {parent.Add(Text("等待来源英雄选择目标。","body"));return true;}
+                var target=chosenCell.HasValue ? view.Units.SingleOrDefault(u=>u.Position==chosenCell.Value && view.EffectTargets.Contains(u.Id)) : null;
+                if(target!=null) Confirm(parent,"确认选择 "+PlayerName(target.Seat!.Value),()=>Submit(CommandKind.ChooseEffectTarget,target.Id));
+                else parent.Add(Text("点击高亮英雄后确认；后续取回由受益英雄本人选择。","body"));
+                return true;
+            }
             if (choice.Kind == "recover_discard")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择取回一张弃牌。","section-title"));

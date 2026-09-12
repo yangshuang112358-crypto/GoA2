@@ -151,6 +151,7 @@ namespace Goa2.Tests
                     case "initiative": return Step(CommandKind.ChooseInitiative,seat,target:Pick(view.Pending.CandidateSeats));
                     case "hero_respawn": return Step(CommandKind.RespawnHero,seat,at:Pick(own.RespawnCells));
                     case "attack_target": return Step(CommandKind.ChooseAttackTarget,seat,Pick(own.AttackTargets));
+                    case "effect_target": return Step(CommandKind.ChooseEffectTarget,seat,Pick(own.EffectTargets));
                     case "defense":
                         var successful=own.DefenseOptions.Where(d=>d.Assessment.Successful).ToList();
                         var defenses=successful.Count>0 && Next(4)!=0 ? successful : own.DefenseOptions;

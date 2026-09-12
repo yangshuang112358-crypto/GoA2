@@ -71,9 +71,13 @@ namespace Goa2.Rules
                         execution.Cursor++;
                         break;
                     case InstructionKind.OptionalRecoverDiscard:
-                        if (BeginRecovery(state,command,execution,program)) return;
+                        if (BeginRecovery(catalog,state,command,execution,program)) return;
                         execution.Cursor++;
                         break;
+                    case InstructionKind.ChooseHeroTarget:
+                        if(BeginHeroTarget(catalog,state,command,execution,program)) return;
+                        StopCard(catalog,state,command,"no_targets");
+                        return;
                     case InstructionKind.ApplyEffect:
                         ApplyTimedEffect(catalog,state,command,execution,program);
                         execution.Cursor++;

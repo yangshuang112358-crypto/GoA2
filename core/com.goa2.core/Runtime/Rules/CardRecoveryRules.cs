@@ -8,36 +8,40 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
-        private static bool RecoveryCondition(GameState state,int seat,PrimaryProgram program)
+        private static int? RecoveryRecipient(GameState state,CardExecution execution,PrimaryProgram program) => program.HeroTarget==HeroTargetKind.None ?
+            execution.ControllerSeat : state.Units.SingleOrDefault(u=>u.Id==execution.TargetUnitId && u.Kind=="hero")?.Seat;
+        private static bool RecoveryCondition(ContentCatalog catalog,GameState state,int seat,CardExecution execution,PrimaryProgram program)
         {
             var source=state.Units.SingleOrDefault(u=>u.Seat==seat);
-            return source!=null && (!program.RecoveryRequiresAdjacentMinion || state.Units.Any(u=>
+            return source!=null && (program.HeroTarget==HeroTargetKind.None || HeroTargets(catalog,state,execution,program).Contains(source.Id)) &&
+                (!program.RecoveryRequiresAdjacentMinion || state.Units.Any(u=>
                 (u.Kind=="melee" || u.Kind=="ranged" || u.Kind=="heavy") && u.Position.Distance(source.Position)==1));
         }
         private static PrimaryProgram? RecoveryProgram(ContentCatalog catalog,GameState state,int seat)
         {
             var execution=state.Execution;
             if(state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="recover_discard" || state.Pending.ChooserSeat!=seat ||
-                !state.Pending.Optional || execution==null || execution.ControllerSeat!=seat || state.ActiveSeat!=seat) return null;
+                !state.Pending.Optional || execution==null || state.ActiveSeat!=execution.ControllerSeat) return null;
             var program=CardPrograms.Primary(catalog.Card(execution.CardId),state.EngineVersion);
-            return program!=null && program.Id==execution.ProgramId && program.Version==execution.ProgramVersion && execution.Cursor>=0 &&
+            return program!=null && RecoveryRecipient(state,execution,program)==seat && program.Id==execution.ProgramId && program.Version==execution.ProgramVersion && execution.Cursor>=0 &&
                 execution.Cursor<program.Instructions.Count && program.Instructions[execution.Cursor]==InstructionKind.OptionalRecoverDiscard ? program : null;
         }
         public static List<string> LegalRecoveries(ContentCatalog catalog,GameState state,int seat)
         {
             var program=RecoveryProgram(catalog,state,seat);
-            return program!=null && RecoveryCondition(state,seat,program) ? state.Players[seat].Cards.Where(c=>c.Zone==CardZone.Discarded).Select(c=>c.CardId).ToList() : new List<string>();
+            return program!=null && RecoveryCondition(catalog,state,seat,state.Execution!,program) ? state.Players[seat].Cards.Where(c=>c.Zone==CardZone.Discarded).Select(c=>c.CardId).ToList() : new List<string>();
         }
-        private static bool BeginRecovery(GameState state,Command command,CardExecution execution,PrimaryProgram program)
+        private static bool BeginRecovery(ContentCatalog catalog,GameState state,Command command,CardExecution execution,PrimaryProgram program)
         {
-            if(!RecoveryCondition(state,execution.ControllerSeat,program) || !state.Players[execution.ControllerSeat].Cards.Any(c=>c.Zone==CardZone.Discarded))
+            int? recipient=RecoveryRecipient(state,execution,program);
+            if(!recipient.HasValue || !RecoveryCondition(catalog,state,recipient.Value,execution,program) || !state.Players[recipient.Value].Cards.Any(c=>c.Zone==CardZone.Discarded))
             {
                 Emit(state,command,"RecoverDiscardSkipped",execution.ControllerSeat,execution.CardId,detail:"no_candidates");return false;
             }
             state.Phase=Phase.EffectChoice;
-            state.Pending=new PendingChoice { Id="recover-discard:"+(state.Events.Count+1),Kind="recover_discard",ChooserSeat=execution.ControllerSeat,
-                Source=execution.CardId,UnitId="hero:"+execution.ControllerSeat,ResumeAt="card_recovery",Optional=true };
-            Emit(state,command,"RecoverDiscardRequired",execution.ControllerSeat,execution.CardId);return true;
+            state.Pending=new PendingChoice { Id="recover-discard:"+(state.Events.Count+1),Kind="recover_discard",ChooserSeat=recipient.Value,
+                Source=execution.CardId,UnitId="hero:"+recipient.Value,ResumeAt="card_recovery",Optional=true };
+            Emit(state,command,"RecoverDiscardRequired",recipient.Value,execution.CardId);return true;
         }
         private static void ChooseRecoveredCard(ContentCatalog catalog,GameState state,Command command)
         {

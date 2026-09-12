@@ -164,6 +164,7 @@ namespace Goa2.Application
                 view.CanDeclineRetaliationDiscard = GameRules.CanDeclineRetaliationDiscard(catalog,snapshot,seat.Value);
                 view.OptionalDiscardCards = GameRules.LegalOptionalDiscards(catalog,snapshot,seat.Value);
                 view.RecoverableCards = GameRules.LegalRecoveries(catalog,snapshot,seat.Value);
+                view.EffectTargets = GameRules.LegalEffectTargets(catalog,snapshot,seat.Value);
                 view.UnimplementedDefenseCards = CombatRules.UnimplementedDefenses(catalog, snapshot, seat.Value);
                 view.RespawnCells = GameRules.LegalRespawns(catalog, snapshot, seat.Value);
                 view.CanResolveRoundEnd = GameRules.CanResolveRoundEnd(snapshot);
