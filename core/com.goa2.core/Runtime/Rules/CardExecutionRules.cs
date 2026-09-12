@@ -80,6 +80,10 @@ namespace Goa2.Rules
                     case InstructionKind.End:
                         EndCardExecution(catalog, state, command);
                         return;
+                    case InstructionKind.RequiredStraightMoveToAttack:
+                        if(BeginRequiredCharge(catalog,state,command,execution,program)) return;
+                        StopCard(catalog,state,command,"no_charge_route");
+                        return;
                     case InstructionKind.OptionalTextMove:
                     case InstructionKind.OptionalPreAttackTextMove:
                     case InstructionKind.OptionalTextMoveIfNoPreMove:

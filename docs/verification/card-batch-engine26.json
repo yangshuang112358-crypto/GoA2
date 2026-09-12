@@ -1,0 +1,89 @@
+{
+  "engine": 26,
+  "implemented_cards": 37,
+  "data_only_cards": 71,
+  "build_utc": "2026-09-12T20:54:56.5318551Z",
+  "assemblies": {
+    "Goa2.Application.dll": "58acd640a8ced1593142c531e6ea02953a5b689c581b8ddb0ebee11c5d8f3368",
+    "Goa2.Domain.dll": "8ac207b999f68f92a2a67ef6c40b0aae2bce5c71f7573d6b488c07449101c657",
+    "Goa2.Infrastructure.dll": "e616fef5b309ed330927b112822bbfca6c9a184fb4d247b651781cf1196c47d5",
+    "Goa2.Presentation.dll": "d86a3d990912739dca14d177f38201fd2febea879538a6610e2c95bbf70c6305",
+    "Goa2.Rules.dll": "c9b3b9bf6ade8a40a5cfc4b8c9de6552e296abe0ee62c79ee5f638713779befc"
+  },
+  "core": {
+    "passed": 792,
+    "failed": 0,
+    "report": "artifacts/tests/charge-core.trx",
+    "card_specific": 18,
+    "first_failure_report": "artifacts/tests/charge-before.trx"
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/charge-hero.json",
+        "input_sha256": "8f01cb379f31b13bcf8a7cb0bc6802810a19c578a8a3acf1f440fbbd76cbce71",
+        "report": "artifacts/scenarios/charge-hero/headless/70c5c5a52e064233b3b3745afe1198c0/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/charge-minion.json",
+        "input_sha256": "fd7b3cc0e8ddb5aaa075ece2241de04c2537ae98167a9946afee083f18800e61",
+        "report": "artifacts/scenarios/charge-minion/headless/d7c30aa939424d4faf1837ae87736071/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/charge-counter.json",
+        "input_sha256": "3da4db3065df8f124bd68f6cc1352b3a84ecb4740790b1a0efeda70fb4867a49",
+        "report": "artifacts/scenarios/charge-counter/headless/3031213b5d73436087371e753f32dc7a/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/charge-blocked.json",
+        "input_sha256": "a1ac50f39abd1a2e79335410bf30196424187eff2b0718cfbf073042b9051187",
+        "report": "artifacts/scenarios/charge-blocked/headless/8556296e2b094a789ee001b29e2dd0a7/report.json",
+        "steps": 10,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/charge-frontline.json",
+        "input_sha256": "b1bea4ce26284f5ec2b97d0bb65d0c7e6d36cccc04141b07c84c081f226e3335",
+        "report": "artifacts/scenarios/charge-frontline/headless/30836fe7b1fd4d558e11445d89d62e02/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine26-charge-move-scenario.json",
+        "input_sha256": "d3748db7b99fac775b53d0bbb71126708c862db9e9b9d907c463c19c981816b9",
+        "report": "artifacts/scenarios/engine26-charge-move-scenario/headless/8df7e1fb581d4c1fba59de202a396349/report.json",
+        "steps": 10,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shadowstep-reuse.json",
+        "input_sha256": "98b71917e052916bd161c823d8c6db6b422f79538d7696bee52860ae62428023",
+        "report": "artifacts/scenarios/shadowstep-reuse/headless/b5b2a8547d654aa39f06aa0dfa63a705/report.json",
+        "steps": 22,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 100
+  },
+  "manual_presets": [
+    "charge",
+    "charge-frontline"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/charge-ui/layout.ui.json",
+    "revision": 10,
+    "seat": 0,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false,
+    "choice_label_visible": true,
+    "skip_button_absent": true
+  }
+}

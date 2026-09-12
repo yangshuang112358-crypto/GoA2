@@ -568,7 +568,7 @@
         "conditional",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/brogan-01-冲撞.md",
       "question_candidates": [
         "U-011"

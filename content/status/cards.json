@@ -431,11 +431,23 @@
     },
     {
       "card_id": "brogan-01-冲撞",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-01-冲撞.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ChargeTests.cs",
+        "tests/scenarios/charge-hero.json",
+        "tests/scenarios/charge-minion.json",
+        "tests/scenarios/charge-counter.json",
+        "tests/scenarios/charge-blocked.json",
+        "tests/scenarios/charge-frontline.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs"
+      ]
     },
     {
       "card_id": "brogan-02-投掷飞斧",

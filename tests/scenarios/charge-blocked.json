@@ -1,0 +1,82 @@
+{
+  "SchemaVersion": 1,
+  "Id": "charge-blocked",
+  "Name": "冲撞：唯一路径被友军阻挡",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "brogan,tigerclaw,sabina,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-14-近身格挡",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 3,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 4,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-01-冲撞",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-07-伺机待发",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-07-指挥",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p3",
+        "Positions": {
+          "hero:0": {
+            "X": 3,
+            "Y": -8
+          }
+        },
+        "EventCounts": {
+          "CardEffectStopped": 1,
+          "UnitMoved": 0,
+          "AttackDeclared": 0
+        }
+      }
+    }
+  ]
+}

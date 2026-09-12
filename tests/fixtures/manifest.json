@@ -216,6 +216,15 @@
       "input": "tests/fixtures/engine25-shadowstep-swap-scenario.json",
       "input_sha256": "d3c2c30b8f8aa2ebe40f4c5de038a8670d24c231c6b46caa7dafff188939a7c9",
       "provenance": "tests/fixtures/engine25-shadowstep-swap.md"
+    },
+    {
+      "engine_version": 26,
+      "accepted_commands": 10,
+      "save": "tests/fixtures/engine26-charge-move.json",
+      "save_sha256": "060e3b145a5b748ecc952ffb63bfa3f2e370e2f631a8ac2a4729ed7fefade41e",
+      "input": "tests/fixtures/engine26-charge-move-scenario.json",
+      "input_sha256": "d3748db7b99fac775b53d0bbb71126708c862db9e9b9d907c463c19c981816b9",
+      "provenance": "tests/fixtures/engine26-charge-move.md"
     }
   ]
 }
