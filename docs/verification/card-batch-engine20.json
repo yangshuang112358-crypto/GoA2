@@ -1,0 +1,89 @@
+{
+  "engine": 20,
+  "implemented_cards": 31,
+  "data_only_cards": 77,
+  "build_utc": "2026-09-12T19:56:35.0178278Z",
+  "assemblies": {
+    "Goa2.Application.dll": "97121c778d44fce768b12fca3cc276779372c94e3ffaee5d7ddca8d8096de125",
+    "Goa2.Domain.dll": "40901d5bb4877ce661e1370437c32da125424409975c28f343d6f4395eb4ca75",
+    "Goa2.Infrastructure.dll": "52843470115e341767196e9a83c4d15aaa2d6c1c78d9e2019dabd0842f275238",
+    "Goa2.Presentation.dll": "88adf99b2e4a12c4479739c122a1d083dd6a6db1d9a30f265f428e217e9182f6",
+    "Goa2.Rules.dll": "2860de97b2e34859197bde3e6587a7917b0fedc412f1df3d384b10a874f16118"
+  },
+  "core": {
+    "passed": 656,
+    "failed": 0,
+    "report": "artifacts/tests/crossfire-core.trx",
+    "card_specific": 15
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/crossfire-remove.json",
+        "input_sha256": "863fc2581377428525cab9d66b78ba1ef705e3b9c5797fd4d4c74e3bd0a1ed4b",
+        "report": "artifacts/scenarios/crossfire-remove/headless/63692247ef4e491b9099b4fb11a97094/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/crossfire-skip.json",
+        "input_sha256": "238b1c38ef4bdd95c31a5693ed0eed9657771a66b9ddee52e000101efc3a7a68",
+        "report": "artifacts/scenarios/crossfire-skip/headless/872fa6e2bd084fc9a5ff5fc7981ebbe1/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/crossfire-hero.json",
+        "input_sha256": "752faa31fc8962e2a79db80affea695f9ef3d7b47b92242b48ba0c7b912ceb6f",
+        "report": "artifacts/scenarios/crossfire-hero/headless/677168b8439145bfb85ffff89e8812c5/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/crossfire-frontline.json",
+        "input_sha256": "08fd9f09400a40c5a1455d2f370cae387277cfaa9d506f34b3392af66797fd21",
+        "report": "artifacts/scenarios/crossfire-frontline/headless/62c18d1cdeb748b18c0d75ff7cdae9b1/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/thunder-chain.json",
+        "input_sha256": "8ea486c04844360610ba23e57757132f4dbab2e9e02ea508d1d9674c8059fa44",
+        "report": "artifacts/scenarios/thunder-chain/headless/858282627dd54e4b94a865aa9f24403f/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/minstrel-aura.json",
+        "input_sha256": "91677bc533b9c1b85de5632d67a2a8cf026c270593f97e5aecb568077e48c0f9",
+        "report": "artifacts/scenarios/minstrel-aura/headless/8caaa9807a824eecb61a72aea6e8119d/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine20-crossfire-removal-scenario.json",
+        "input_sha256": "717801fb9a8fe3833397a343bad7a1c483c2772852e8d5874189cd0cd79fc066",
+        "report": "artifacts/scenarios/engine20-crossfire-removal-scenario/headless/c9e6f8f89d7743af843cc7dc7cfe3db3/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 122
+  },
+  "manual_presets": [
+    "crossfire",
+    "crossfire-frontline"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/crossfire-ui/layout.ui.json",
+    "revision": 15,
+    "seat": 0,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false,
+    "removal_label_visible": true,
+    "skip_button_visible": true,
+    "skip_button_enabled": true
+  }
+}

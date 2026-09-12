@@ -1006,11 +1006,23 @@
     },
     {
       "card_id": "sabina-02-交叉火力",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-02-交叉火力.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CrossfireTests.cs",
+        "tests/scenarios/crossfire-remove.json",
+        "tests/scenarios/crossfire-skip.json",
+        "tests/scenarios/crossfire-hero.json",
+        "tests/scenarios/crossfire-frontline.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs"
+      ]
     },
     {
       "card_id": "sabina-03-神枪手",

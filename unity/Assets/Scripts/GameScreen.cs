@@ -154,6 +154,7 @@ namespace Goa2.Presentation
                 {
                     case "attack_target": return "选择攻击目标";
                     case "effect_target": return "选择牌文目标";
+                    case "effect_minion": return "选择额外移除的小兵";
                     case "defense": return "选择防御";
                     case "forced_discard": return "反制选择";
                     case "optional_discard": return "攻击前弃牌";
@@ -315,7 +316,7 @@ namespace Goa2.Presentation
             if (debugTeleport && view.DebugTeleports.TryGetValue(debugUnitId, out var teleportTargets)) return teleportTargets;
             if (view.Pending?.Kind == "attack_target" && view.Pending.ChooserSeat == seat)
                 return view.Units.Where(u => view.AttackTargets.Contains(u.Id)).Select(u => u.Position).ToList();
-            if (view.Pending?.Kind == "effect_target" && view.Pending.ChooserSeat == seat)
+            if ((view.Pending?.Kind == "effect_target" || view.Pending?.Kind=="effect_minion") && view.Pending.ChooserSeat == seat)
                 return view.Units.Where(u => view.EffectTargets.Contains(u.Id)).Select(u => u.Position).ToList();
             if (view.Pending?.Kind == "hero_respawn") return view.RespawnCells;
             if (view.Pending?.Kind == "effect_move") return view.EffectMoves.Select(m=>m.Destination).ToList();
@@ -520,6 +521,9 @@ namespace Goa2.Presentation
                 case "MatchWon": return (entry.Detail.StartsWith("Blue:") ? "蓝队" : "红队") + "获胜";
                 case "PrimaryActionStarted": return actor + "开始主要行动";
                 case "AttackTargetChoiceRequired": return actor + "选择攻击目标";
+                case "EffectMinionChoiceRequired": return actor + "可额外移除小兵，不获得金币";
+                case "EffectMinionRemovalSkipped": return actor + "选择不额外移除小兵";
+                case "EffectMinionRemoved": return actor + "完成牌文移除，不获得金币";
                 case "AttackRepeatChoiceRequired": return actor + "击败英雄，可选择再次攻击或停止";
                 case "AttackRepeated": return actor + "继续本牌的下一次攻击";
                 case "AttackRepeatSkipped": return actor + "选择不再重复攻击";

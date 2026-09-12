@@ -21,6 +21,7 @@ namespace Goa2.Rules
         }
         public static List<string> LegalEffectTargets(ContentCatalog catalog,GameState state,int seat)
         {
+            if(state.Pending?.Kind=="effect_minion") return LegalEffectMinionRemovals(catalog,state,seat);
             var execution=state.Execution;
             if(state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="effect_target" || state.Pending.ChooserSeat!=seat ||
                 execution==null || execution.ControllerSeat!=seat || state.ActiveSeat!=seat) return new List<string>();
@@ -40,6 +41,7 @@ namespace Goa2.Rules
         }
         private static void ChooseEffectTarget(ContentCatalog catalog,GameState state,Command command)
         {
+            if(state.Pending?.Kind=="effect_minion") {ChooseEffectMinionRemoval(catalog,state,command);return;}
             Require(LegalEffectTargets(catalog,state,command.ActorSeat).Contains(command.Value),"invalid_effect_target","请由来源英雄选择当前合法的牌文目标。");
             var execution=state.Execution!;execution.TargetUnitId=command.Value;execution.Cursor++;
             state.Pending=null;state.Phase=Phase.Action;

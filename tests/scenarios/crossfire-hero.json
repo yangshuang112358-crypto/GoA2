@@ -1,0 +1,119 @@
+{
+  "SchemaVersion": 1,
+  "Id": "crossfire-hero",
+  "Name": "交叉火力：射程内敌方英雄阻止额外移除",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "sabina,tigerclaw,brogan,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "sabina-02-交叉火力",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-18-躲闪",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 8,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 4,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 8,
+        "Y": -7
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-1,-3",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:1,-1",
+      "Destination": {
+        "X": 5,
+        "Y": -7
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-02-交叉火力",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-07-伺机待发",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "minion:-1,-3",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p3",
+        "Gold": {
+          "p1": 2
+        },
+        "EventCounts": {
+          "EffectMinionChoiceRequired": 0,
+          "MinionDefeated": 1
+        }
+      }
+    }
+  ]
+}

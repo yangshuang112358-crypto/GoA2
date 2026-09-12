@@ -42,7 +42,7 @@ namespace Goa2.Rules
                 program.RangeBonusKind==AttackRangeBonusKind.OwnDiscardPile && player.Cards.Any(c=>c.Zone==CardZone.Discarded);
             return enabled ? program.RangeBonusValue : 0;
         }
-        private static int AttackDistance(GameState state,CardDefinition card,PrimaryProgram program,int seat)
+        internal static int AttackDistance(GameState state,CardDefinition card,PrimaryProgram program,int seat)
         {
             if(program.AdjacentAttack) return 1;
             var execution=state.Execution;

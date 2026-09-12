@@ -1422,7 +1422,7 @@
         "choice_wording",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/sabina-02-交叉火力.md",
       "question_candidates": [
         "U-011",

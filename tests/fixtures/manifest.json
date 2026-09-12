@@ -162,6 +162,15 @@
       "input": "tests/fixtures/engine19-thunder-repeat-scenario.json",
       "input_sha256": "225a5db457e2cfc5acba093c994155098a6c16c3cb26f2862accdd42d41504d9",
       "provenance": "tests/fixtures/engine19-thunder-repeat.md"
+    },
+    {
+      "engine_version": 20,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine20-crossfire-removal.json",
+      "save_sha256": "2cf30714a1c6efe22aa4e59fa7b2ac0d8510b8cf0dbb28c34a519f50be39f5db",
+      "input": "tests/fixtures/engine20-crossfire-removal-scenario.json",
+      "input_sha256": "717801fb9a8fe3833397a343bad7a1c483c2772852e8d5874189cd0cd79fc066",
+      "provenance": "tests/fixtures/engine20-crossfire-removal.md"
     }
   ]
 }

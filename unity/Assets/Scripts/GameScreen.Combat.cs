@@ -42,6 +42,19 @@ namespace Goa2.Presentation
         {
             var choice = view.Pending;
             if (choice == null) return false;
+            if(choice.Kind=="effect_minion")
+            {
+                var heading=Text(PlayerName(choice.ChooserSeat)+"可额外移除一个小兵；这次移除不获得金币。","body");heading.name="effect-minion-choice";parent.Add(heading);
+                if(choice.ChooserSeat==seat)
+                {
+                    var target=chosenCell.HasValue ? view.Units.SingleOrDefault(u=>u.Position==chosenCell.Value && view.EffectTargets.Contains(u.Id)) : null;
+                    if(target!=null) Confirm(parent,"确认移除 "+MinionName(target),()=>Submit(CommandKind.ChooseEffectTarget,target.Id));
+                    else parent.Add(Text("点击高亮的敌方小兵后确认。","body"));
+                    parent.Add(Button("不移除，结束本牌",()=>Submit(CommandKind.ChooseEffectTarget,"skip"),"quiet-button","effect-minion-skip"));
+                }
+                else parent.Add(Text("等待行动英雄选择小兵或跳过。","body"));
+                RenderCardDetail(parent,catalog.Card(choice.Source));return true;
+            }
             if(choice.Kind=="effect_target")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择牌文作用的英雄。","section-title"));
