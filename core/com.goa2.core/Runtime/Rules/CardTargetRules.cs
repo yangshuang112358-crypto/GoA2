@@ -12,6 +12,12 @@ namespace Goa2.Rules
         {
             var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
             if(source==null)return new List<string>();
+            if(program.HeroTarget==HeroTargetKind.EnemyInSkillRangeNearFriendlyMinion)
+            {
+                if(!state.Units.Any(u=>u.Team==source.Team && (u.Kind=="melee" || u.Kind=="ranged" || u.Kind=="heavy") && u.Position.Distance(source.Position)==1))return new List<string>();
+                int radius=(catalog.Card(execution.CardId).SubtypeValue??0)+state.Players[execution.ControllerSeat].RangeBonus;
+                return state.Units.Where(t=>t.Kind=="hero" && t.Team!=source.Team && t.Position.Distance(source.Position)<=radius).Select(t=>t.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
+            }
             if(program.HeroTarget==HeroTargetKind.AdjacentEnemyUsedAttack)
                 return state.Units.Where(t=>t.Kind=="hero" && t.Seat.HasValue && t.Team!=source.Team && t.Position.Distance(source.Position)==1 &&
                     state.Players[t.Seat!.Value].Cards.Any(c=>c.PlayedRound==state.Round && c.PlayedTurn==state.Turn && catalog.Card(c.CardId).PrimaryFamily=="attack"))

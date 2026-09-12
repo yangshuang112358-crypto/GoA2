@@ -1,0 +1,71 @@
+{
+  "engine": 34,
+  "implemented_cards": 45,
+  "data_only_cards": 63,
+  "build_utc": "2026-09-12T21:52:04.6746450Z",
+  "assemblies": {
+    "Goa2.Application.dll": "3d6b604f572f32ef9bd96c702e857760673ba5b60b0ec4774466f6d6a5175b0e",
+    "Goa2.Domain.dll": "44a8427312314051c314b5dcda0868b08043ea7b44e3e14a43b0283e4efaaaf1",
+    "Goa2.Infrastructure.dll": "2e9e79bc1dbe549ab31bd90ea3648ff5907bb2cb3919752a9ed4229e632ef021",
+    "Goa2.Presentation.dll": "512c5e2c153dc61a60836853ada082da6c49e92a9b28c44429cba70e784e1a84",
+    "Goa2.Rules.dll": "57929e1d7ae58108de97dc9b56a0ac402094a29295072e1b612c285dc5406e69"
+  },
+  "core": {
+    "passed": 963,
+    "failed": 0,
+    "report": "artifacts/tests/closesupport-core.trx",
+    "card_specific": 8
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/closesupport-basic.json",
+        "input_sha256": "b9ab3bb040dcf6d8a1b600c5bcfebd6e1ae5709aef5f6b021ab8ff3974237d41",
+        "report": "artifacts/scenarios/closesupport-basic/headless/46208f63b9234deab64fbd57f8218a61/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/closesupport-no-minion.json",
+        "input_sha256": "6b8d52872cdb8ba0bef7f39c4434d468b255cbc8e1330d051b9a4b6960cff3ef",
+        "report": "artifacts/scenarios/closesupport-no-minion/headless/133e337bffcc4b2d9f37cd3c862bb003/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/closesupport-heavy.json",
+        "input_sha256": "ec5444b6745a03d87c3b6aaa13d337d7aefeebbf98089726fcd3d789e9ab7005",
+        "report": "artifacts/scenarios/closesupport-heavy/headless/8955e47333e54da688d3afe7d10d5514/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/closesupport-outside.json",
+        "input_sha256": "bfba3c0668379dd0a2b3b0e767c22e3ae76902e0f6b0782dbfbb1be8b8840ed3",
+        "report": "artifacts/scenarios/closesupport-outside/headless/c404d1dfd4d94b57a40de356968485d9/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine34-closesupport-discard-scenario.json",
+        "input_sha256": "46ff1f92644f0b040d39242ebcdde8e441a2bef714945f995a1575d7b53271a1",
+        "report": "artifacts/scenarios/engine34-closesupport-discard-scenario/headless/9304de7702724ffc92d47d1a75ca08c8/report.json",
+        "steps": 18,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 91
+  },
+  "manual_presets": [
+    "close-support"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/closesupport-discard-ui/layout.ui.json",
+    "revision": 18,
+    "seat": 1,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false
+  }
+}

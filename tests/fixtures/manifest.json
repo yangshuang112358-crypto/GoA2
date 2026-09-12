@@ -288,6 +288,15 @@
       "input": "tests/fixtures/engine33-bash-discard-scenario.json",
       "input_sha256": "782048a929ca81f8a28b87901c4f1007873548f30c72b373f7d850f344c43c48",
       "provenance": "tests/fixtures/engine33-bash-discard.md"
+    },
+    {
+      "engine_version": 34,
+      "accepted_commands": 18,
+      "save": "tests/fixtures/engine34-closesupport-discard.json",
+      "save_sha256": "00009b75777849c70fa870be94d92fece79c5d93f0f52328efac9380f3d706fe",
+      "input": "tests/fixtures/engine34-closesupport-discard-scenario.json",
+      "input_sha256": "46ff1f92644f0b040d39242ebcdde8e441a2bef714945f995a1575d7b53271a1",
+      "provenance": "tests/fixtures/engine34-closesupport-discard.md"
     }
   ]
 }

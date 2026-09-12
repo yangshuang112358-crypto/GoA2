@@ -1590,7 +1590,7 @@
         "discard",
         "conditional"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/sabina-13-近身支援.md",
       "question_candidates": [
         "U-011"

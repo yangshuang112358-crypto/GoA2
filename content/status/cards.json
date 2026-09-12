@@ -1257,11 +1257,21 @@
     },
     {
       "card_id": "sabina-13-近身支援",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-13-近身支援.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CloseSupportTests.cs",
+        "tests/scenarios/closesupport-basic.json",
+        "tests/scenarios/closesupport-no-minion.json",
+        "tests/scenarios/closesupport-heavy.json",
+        "tests/scenarios/closesupport-outside.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "sabina-14-战斗演练",
