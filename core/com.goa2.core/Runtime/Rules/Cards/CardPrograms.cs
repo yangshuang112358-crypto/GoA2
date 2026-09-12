@@ -83,6 +83,9 @@ namespace Goa2.Rules.Cards
         // Binding IDs is confined to this registry. Shared execution never branches on a card ID.
         private static readonly Dictionary<string,(string text,int minimumEngine,PrimaryProgram program)> Attacks = new Dictionary<string,(string,int,PrimaryProgram)>
         {
+            ["brogan-05-勇往直前"] = ("攻击前：沿直线移动2、3或4格到与敌方单位相邻的位置，然后以该单位为目标。",28,
+                new PrimaryProgram("required_straight_two_to_four_before_adjacent_attack",1,adjacent:true,textMoveMinimum:2,textMoveDistance:4,
+                    instructions:new[]{InstructionKind.RequiredStraightMoveToAttack,InstructionKind.ChooseAttackTarget,InstructionKind.Attack,InstructionKind.End})),
             ["brogan-03-奋勇冲锋"] = ("攻击前：沿直线移动2或3格到与敌方单位相邻的位置，然后以该单位为目标。",27,
                 new PrimaryProgram("required_straight_two_or_three_before_adjacent_attack",1,adjacent:true,textMoveMinimum:2,textMoveDistance:3,
                     instructions:new[]{InstructionKind.RequiredStraightMoveToAttack,InstructionKind.ChooseAttackTarget,InstructionKind.Attack,InstructionKind.End})),

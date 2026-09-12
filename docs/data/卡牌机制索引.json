@@ -629,7 +629,7 @@
         "move",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/brogan-05-勇往直前.md",
       "question_candidates": [
         "U-011"

@@ -1,0 +1,115 @@
+{
+  "SchemaVersion": 1,
+  "Id": "onward-two",
+  "Name": "勇往直前：两格小兵",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "brogan,tigerclaw,sabina,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "brogan-05-勇往直前",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-14-近身格挡",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 1,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-1,-3",
+      "Destination": {
+        "X": 3,
+        "Y": -7
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-05-勇往直前",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-07-伺机待发",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-07-指挥",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p1",
+        "EventCounts": {
+          "UnitMoved": 0,
+          "AttackDeclared": 0
+        }
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Destination": {
+        "X": 3,
+        "Y": -8
+      },
+      "Expect": {
+        "PendingKind": "attack_target",
+        "Positions": {
+          "hero:0": {
+            "X": 3,
+            "Y": -8
+          }
+        },
+        "EventCounts": {
+          "UnitMoved": 1,
+          "AttackDeclared": 0
+        }
+      }
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "minion:-1,-3",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p3",
+        "Gold": {
+          "p1": 2
+        },
+        "EventCounts": {
+          "MinionDefeated": 1,
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

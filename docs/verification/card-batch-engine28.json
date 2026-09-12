@@ -1,0 +1,92 @@
+{
+  "engine": 28,
+  "implemented_cards": 39,
+  "data_only_cards": 69,
+  "build_utc": "2026-09-12T21:03:21.6140549Z",
+  "assemblies": {
+    "Goa2.Application.dll": "baa2136197b1cd918ef17c1e75151f575ddc2d99a78b414563e83b34ea128b11",
+    "Goa2.Domain.dll": "366a5e94496b1867159b18cc676e7269231db8277b61512b8a41b5172d84e6a4",
+    "Goa2.Infrastructure.dll": "1273c060a969634c292e0d1f3eeab090c0edf3b27c883cdbb5f47ac66210d7a5",
+    "Goa2.Presentation.dll": "b0c59b2e0a6b4ba049383d8b200d10b816300a3f1aa888dd6f59c7ae7d37a4d7",
+    "Goa2.Rules.dll": "8c7ae80e4522f1475614dc223d54dd61d22df29141fd18276db55808e11b4b1c"
+  },
+  "core": {
+    "passed": 824,
+    "failed": 0,
+    "report": "artifacts/tests/onward-core.trx",
+    "card_specific": 9
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/onward-two.json",
+        "input_sha256": "3797230a0ad1c325e59e0558817e014d630ee6fbd7180c5b4aa0fd3b6ae86618",
+        "report": "artifacts/scenarios/onward-two/headless/aadc2d0d52ed4ea193078cb1fdaf4dce/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/onward-three.json",
+        "input_sha256": "82b68b7b3246c9dc3544079fda7c5576d5bbdefd4f655049cbb51c971841499a",
+        "report": "artifacts/scenarios/onward-three/headless/c29597d66b93481eb91bfd192bd48a7e/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/onward-four.json",
+        "input_sha256": "172720d8a3b3f0006b48d615be4e02b00ff1e296a5f693025caad85121027e66",
+        "report": "artifacts/scenarios/onward-four/headless/240080990d3a471f8b332ab63429af99/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/onward-counter.json",
+        "input_sha256": "9de5f3918d33ec388df76730b9492686217303771c68b6232c138b47bf7966e4",
+        "report": "artifacts/scenarios/onward-counter/headless/49e0a9a2d21b4db682a54412bfe62b8d/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/onward-blocked.json",
+        "input_sha256": "e6c886bd6bf842138cd23373ca79f3ea376525d8e13b8cc60499f2e0c97723ab",
+        "report": "artifacts/scenarios/onward-blocked/headless/6700483b66f144fa8039400b61edbe78/report.json",
+        "steps": 11,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/onward-frontline.json",
+        "input_sha256": "01165aa91eb2b0d1189ef539a4a7474f366a5400fcd5a77848720f7235b4e376",
+        "report": "artifacts/scenarios/onward-frontline/headless/a856d586a46c49a4877c143055dc0d72/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine28-onward-move-scenario.json",
+        "input_sha256": "c047d929334567616631b1c3de53d56ff2913a394cce2ed077bf70772108187c",
+        "report": "artifacts/scenarios/engine28-onward-move-scenario/headless/4e628277179249b5920b8607cbf4c3ed/report.json",
+        "steps": 11,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shadowstep-reuse.json",
+        "input_sha256": "98b71917e052916bd161c823d8c6db6b422f79538d7696bee52860ae62428023",
+        "report": "artifacts/scenarios/shadowstep-reuse/headless/95dd01815d6a47a88954170429ea468b/report.json",
+        "steps": 22,
+        "passed": true
+      }
+    ],
+    "scenarios": 8,
+    "steps": 119
+  },
+  "manual_presets": [
+    "onward"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/onward-ui/layout.ui.json",
+    "revision": 11,
+    "seat": 0,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false
+  }
+}

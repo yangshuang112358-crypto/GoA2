@@ -234,6 +234,15 @@
       "input": "tests/fixtures/engine27-bravecharge-move-scenario.json",
       "input_sha256": "33e1f90a195d468c107c942766971c8eb5239a988638d1c17cfba4f47bc1aeb2",
       "provenance": "tests/fixtures/engine27-bravecharge-move.md"
+    },
+    {
+      "engine_version": 28,
+      "accepted_commands": 11,
+      "save": "tests/fixtures/engine28-onward-move.json",
+      "save_sha256": "758f4a5f5ed8264d181d2fa1f33fd886c8796abc354058129251e8e902846750",
+      "input": "tests/fixtures/engine28-onward-move-scenario.json",
+      "input_sha256": "c047d929334567616631b1c3de53d56ff2913a394cce2ed077bf70772108187c",
+      "provenance": "tests/fixtures/engine28-onward-move.md"
     }
   ]
 }

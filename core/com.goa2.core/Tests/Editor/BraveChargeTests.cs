@@ -13,9 +13,9 @@ namespace Goa2.Tests
     public sealed class BraveChargeTests
     {
         internal const string Brave="brogan-03-奋勇冲锋";
-        internal static GameSession Setup(ContentCatalog catalog,bool minion=true)
+        internal static GameSession Setup(ContentCatalog catalog,bool minion=true,string card=Brave)
         {
-            var game=ChargeTests.Setup(catalog,minion:false,counter:true,card:Brave);
+            var game=ChargeTests.Setup(catalog,minion:false,counter:true,card:card);
             Apply(game,0,CommandKind.DebugTeleport,"hero:0",cell:new Hex(2,-8));
             if(minion)Apply(game,0,CommandKind.DebugTeleport,"minion:-1,-3",cell:new Hex(4,-7));return game;
         }
