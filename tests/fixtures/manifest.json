@@ -135,6 +135,15 @@
       "input": "tests/fixtures/engine16-minstrel-aura-scenario.json",
       "input_sha256": "c146cddc5ae5c64194b7a54cd815e32c2b4dacf5f0e58ee7bc51e27c275e56ce",
       "provenance": "tests/fixtures/engine16-minstrel-aura.md"
+    },
+    {
+      "engine_version": 17,
+      "accepted_commands": 16,
+      "save": "tests/fixtures/engine17-pincer-defense.json",
+      "save_sha256": "e935e9dc2e85a75c25d1cbdae13124e19aebcff336cabd97c9793bc1a6c63d2b",
+      "input": "tests/fixtures/engine17-pincer-defense-scenario.json",
+      "input_sha256": "e7e1fbd93089f942c77da8d7abe4daa042f2681c53710dce3188bbf7f85fae23",
+      "provenance": "tests/fixtures/engine17-pincer-defense.md"
     }
   ]
 }

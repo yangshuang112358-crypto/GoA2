@@ -31,6 +31,7 @@ namespace Goa2.Rules
                 result.Reason="target_adjacent_other_allies";
                 result.UnitSources=state.Units.Where(u => u.Id!=source.Id && u.Team==source.Team && IsCombatUnit(u) && u.Position.Distance(target.Position)==1).Select(u => u.Id).OrderBy(id => id,System.StringComparer.Ordinal).ToList();
                 result.Amount=result.UnitSources.Count>0 ? program.AttackBonusValue : 0;
+                result.Unblockable=result.UnitSources.Count>0 && program.SupportMakesUnblockable;
             }
             return result;
         }

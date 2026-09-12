@@ -1,0 +1,82 @@
+{
+  "engine": 17,
+  "implemented_cards": 28,
+  "data_only_cards": 80,
+  "build_utc": "2026-09-12T19:30:40.9574259Z",
+  "assemblies": {
+    "Goa2.Domain.dll": "9dfbcea45ece2732e15db9fb91c0224817dc21505e3427e9491f5236ba6c2ee3",
+    "Goa2.Rules.dll": "0dab21d132d41d8fa7c42ae9327d36e62628bf13e444c357821ea171442c4a80",
+    "Goa2.Application.dll": "741ccc97e0af723a13d17796d96a69d30bc62115697fed18dc147f6a6831a311",
+    "Goa2.Infrastructure.dll": "fb07d10c970e176df8378bd25c8d6336a718875760fbab580774685015b6b438",
+    "Goa2.Presentation.dll": "a5cc222ac0bf2ec90a3f8f6433d476e0f8d7729584b3b43f232a056586dd1f20"
+  },
+  "core": {
+    "passed": 594,
+    "failed": 0,
+    "report": "artifacts/tests/pincer-core.trx",
+    "card_specific": 18
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/pincer-numeric.json",
+        "input_sha256": "5b7b11aae900f7136204c59ef4fcf909ba3c8c3e6ab27056ac6871fbd1a70359",
+        "report": "artifacts/scenarios/pincer-numeric/headless/a960655887a248428f3b4863701f198d/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pincer-block.json",
+        "input_sha256": "8cdd5b61a077fd3fcbf0a5c38d7244b3c1138cd5bd09130f4cd6816dfea788cf",
+        "report": "artifacts/scenarios/pincer-block/headless/1e42a20c4aed4cef8c25e5b84df0be7a/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pincer-minion.json",
+        "input_sha256": "8d8ce9806116d26f7b4eaab8f853d225ca9eaff956ff706d086dca93f69b3dbc",
+        "report": "artifacts/scenarios/pincer-minion/headless/6a5ddbbb03f6485895abccbfc493591d/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pincer-victory.json",
+        "input_sha256": "754319f7c2c3b952352ac59ed62da4d3834ce9ccf39317f6c4e6589483e7a9c4",
+        "report": "artifacts/scenarios/pincer-victory/headless/d29fc28df32c4cf0bd4ecebf03d75a97/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/backstab.json",
+        "input_sha256": "3f833a8c422902c913f0bef6297d36cca6128f1f2c87a4c60e75202bc1f6138b",
+        "report": "artifacts/scenarios/backstab/headless/94e7f7d27a8643bba04073d99e4520b7/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/minstrel-aura.json",
+        "input_sha256": "91677bc533b9c1b85de5632d67a2a8cf026c270593f97e5aecb568077e48c0f9",
+        "report": "artifacts/scenarios/minstrel-aura/headless/f2b247ca8a7e4b02968aec50a87ede76/report.json",
+        "steps": 16,
+        "passed": true
+      }
+    ],
+    "scenarios": 6,
+    "steps": 99
+  },
+  "manual_presets": [
+    "pincer-support",
+    "pincer-alone"
+  ],
+  "ui": {
+    "report": "artifacts/pincer-ui/layout.ui.json",
+    "seat": 1,
+    "revision": 16,
+    "unblockable_label_visible": true,
+    "numeric_defense_button_present": true,
+    "numeric_button_requires_action_panel_scroll": true,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false
+  },
+  "note": "Actual hidden Player layout evidence only; no physical clicks. Native coverage is six relevant scenarios; full current C# suite includes all canonical scenarios."
+}

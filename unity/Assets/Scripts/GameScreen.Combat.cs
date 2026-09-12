@@ -162,6 +162,10 @@ namespace Goa2.Presentation
                 parent.Add(Text(AttackFormula(view.Attack), "body"));
                 RenderAttackSources(parent,view,view.Attack);
                 parent.Add(Text(view.Attack.Ranged ? "本次是远程攻击" : "本次是非远程攻击", "muted"));
+                if(view.Attack.Unblockable)
+                {
+                    var label=Text("本次攻击不可抵挡；仍可用数值防御。","body");label.name="attack-unblockable";parent.Add(label);
+                }
             }
             if (choice.ChooserSeat != seat) { parent.Add(Text("切换至对应角色选择防御。", "body")); return true; }
             parent.Add(Text("使用手牌防御；也可选择不防御并被击败。", "body"));

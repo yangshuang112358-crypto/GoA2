@@ -1,0 +1,107 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine17-pincer-defense",
+  "Name": "引擎17两面夹攻不可抵挡防御窗口",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "tigerclaw,sabina,brogan,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-05-两面夹攻",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "sabina-08-带头冲锋",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "sabina-05-一枪爆头",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "sabina-13-近身支援",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugSetCoin",
+      "Value": "blue"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 8,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-1,-3",
+      "Destination": {
+        "X": 7,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-05-两面夹攻"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "sabina-13-近身支援"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Expect": {
+        "PendingKind": "attack_target"
+      }
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2",
+        "AttackBase": 4,
+        "CardTextBonus": 3,
+        "AttackFinal": 6
+      }
+    }
+  ]
+}

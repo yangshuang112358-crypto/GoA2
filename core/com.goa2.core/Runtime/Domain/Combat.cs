@@ -25,6 +25,7 @@ namespace Goa2.Domain
     public sealed class CardAttackModifier
     {
         public int Amount;
+        public bool Unblockable;
         public string Reason = "";
         public List<string> UnitSources = new List<string>();
     }

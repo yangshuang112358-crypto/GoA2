@@ -800,11 +800,22 @@
     },
     {
       "card_id": "tigerclaw-05-两面夹攻",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-05-两面夹攻.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/PincerAttackTests.cs",
+        "tests/scenarios/pincer-numeric.json",
+        "tests/scenarios/pincer-block.json",
+        "tests/scenarios/pincer-minion.json",
+        "tests/scenarios/pincer-victory.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatMath.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-06-暗影奇袭",

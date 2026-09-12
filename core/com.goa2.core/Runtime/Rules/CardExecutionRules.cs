@@ -118,7 +118,7 @@ namespace Goa2.Rules
                 return;
             }
             var modifier=CombatRules.CardTextModifier(catalog,state,card,source,target);
-            execution.Attack = CombatMath.Attack(state, card, execution.ControllerSeat, target.Id,modifier.Amount);
+            execution.Attack = CombatMath.Attack(state, card, execution.ControllerSeat, target.Id,modifier.Amount,modifier.Unblockable);
             execution.Attack.CardTextReason=modifier.Reason; execution.Attack.CardTextSourceUnits=modifier.UnitSources;
             Emit(state, command, "AttackCalculated", execution.ControllerSeat, card.Id);
             state.Events.Last().AttackValues = execution.Attack;
