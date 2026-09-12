@@ -26,6 +26,15 @@ try {
     Check (@($goaSkipped.Players[0].Cards | Where-Object Zone -eq 4).Count -eq 1 -and $null -eq $goaSkipped.Execution) 'Restored recovery can be skipped without changing the discard pile'
     Click '^调试$';Click -Element 'open-debug-presets';Click -Element 'debug-preset-loyal-defense';Click -Element 'debug-presets-confirm'
     Start-Sleep -Milliseconds 500
+    Check ((Read-Ui).Phase -eq 'Action' -and (Read-Ui).Seat -eq 0) 'The interaction preset starts before the recovery skill'
+    Click -Element 'begin-primary';Click -Element 'recover-card-red'
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key Space | Out-Null
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 2 | Out-Null
+    Click -Element 'begin-primary'
+    if((Read-Ui).TopExpanded) { Click -Element 'toggle-top' }
+    Click -Element 'focus-hero';Select-Cell 7 -10
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key Space | Out-Null
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 1 | Out-Null
     Click '^劈砍 · 防御'
     & "$PSScriptRoot/qa-player.ps1" -Action Key -Key Space | Out-Null
     $goaDefended=Save-State

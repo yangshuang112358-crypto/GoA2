@@ -1,0 +1,7 @@
+# 引擎12忠实信徒中途存档
+
+在修改引擎13及攻击前移动状态前，用引擎12 Windows Player执行同目录scenario前11步并捕获原始save，未手写或重排存档。行动停在忠实信徒recover_discard，原操作者仍待选择取回劈砍/跳过；11条已接受命令。
+
+原生证据：artifacts/scenarios/engine12-loyal-choice-scenario/headless/49f9557cd7e140e898aa6a0024316078/report.json。11步通过，状态哈希616667fdae55897278b91a92cbb98ec6abf64ef692991c449767ca5c6646128d。文件字节哈希登记manifest.json；.gitattributes禁止Git改写捕获JSON换行。
+
+后续引擎必须可恢复、继续取回并抵挡拔枪，不能由新字段改变旧档的重放字节。

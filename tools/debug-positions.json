@@ -5,39 +5,44 @@
     "scenario": "throwing-axe-reflection",
     "through_step": 10,
     "phase": "Action",
-    "pending": ""
+    "pending": "",
+    "instructions": "操作：1号布洛根使用投掷飞斧，先选择是否弃一张手牌，再选目标。2号黄蜂位于(6,-5)，与布洛根相距3格。分支：不弃牌不能攻击黄蜂；弃牌扩距后可攻击，切2号选择反射屏障，最后切回1号处理反制弃牌。"
   },
   {
     "id": "axe-cost",
-    "title": "飞斧：选择可选弃牌",
+    "title": "飞斧：亲自选择攻击前弃牌",
     "scenario": "throwing-axe-reflection",
-    "through_step": 11,
-    "phase": "EffectChoice",
-    "pending": "optional_discard"
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号布洛根开始投掷飞斧，再自行选择前置弃牌。分支：跳过弃牌检查基础范围；弃置猛攻后检查3格的黄蜂(6,-5)可选。前置弃牌与反射屏障造成的弃牌是两次独立选择。"
   },
   {
     "id": "axe-reflection",
-    "title": "飞斧：反射屏障后的强制弃牌",
+    "title": "飞斧×反射屏障：完整攻击与双次弃牌",
     "scenario": "throwing-axe-reflection",
-    "through_step": 17,
-    "phase": "EffectChoice",
-    "pending": "forced_discard"
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号布洛根开始投掷飞斧→弃猛攻扩距→攻击(6,-5)的黄蜂→切2号用反射屏障防御→切1号弃铜墙铁壁。分支：黄蜂可改用其他防御或不防御；不弃前置牌时不能选3格外黄蜂。用例加载时尚未发起攻击。"
   },
   {
     "id": "spear-existing",
     "title": "长矛：已有弃牌的攻击前窗口",
     "scenario": "throwing-spear-existing-discard",
-    "through_step": 10,
-    "phase": "EffectChoice",
-    "pending": "optional_discard"
+    "through_step": 9,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号布洛根开始投掷长矛，查看攻击前的可选弃牌，再选地图上的敌方目标。分支：已有弃牌可以影响长矛范围，分别尝试跳过本次弃牌与再弃一张，比较可选目标。"
   },
   {
     "id": "riposte",
     "title": "近身还击：有牌选弃牌或被击败",
     "scenario": "riposte-hand",
-    "through_step": 11,
-    "phase": "EffectChoice",
-    "pending": "forced_discard"
+    "through_step": 8,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号黄蜂开始闪耀之刃→攻击(8,-10)的虎爪→切2号用近身还击防御→切1号选择弃一张牌或直接被击败。分支：先点取消验证选择预览不会结算；重新加载可比较弃牌与被击败。"
   },
   {
     "id": "upgrades",
@@ -45,7 +50,8 @@
     "scenario": "round-upgrades",
     "through_step": 5,
     "phase": "RoundEnd",
-    "pending": ""
+    "pending": "",
+    "instructions": "操作：在升级窗口选择卡牌，处理两名角色待完成的升级。分支：不同颜色候选会产生不同手牌配置；用此公共规则用例检查候选列表与升级轮次。"
   },
   {
     "id": "respawn",
@@ -53,7 +59,8 @@
     "scenario": "combat-defense",
     "through_step": 12,
     "phase": "EffectChoice",
-    "pending": "hero_respawn"
+    "pending": "hero_respawn",
+    "instructions": "操作：为待复活英雄选择可用出生点，再继续该英雄原先揭示的卡牌。分支：尝试已占用格与合法格；此用例专门检查公共复活流程。"
   },
   {
     "id": "occupied-spawn",
@@ -61,55 +68,62 @@
     "scenario": "spawn-order",
     "through_step": 4,
     "phase": "EffectChoice",
-    "pending": "minion_spawn"
+    "pending": "minion_spawn",
+    "instructions": "操作：由当前队长选择被占用出生点周围的合法格，继续小兵推进。分支：检查已占用格不能选、合法邻格可以选；这是公共推进规则用例。"
   },
   {
     "id": "riposte-empty",
-    "title": "近身还击：空手攻击者，虎爪待防御",
+    "title": "近身还击：空手攻击者开始行动",
     "scenario": "riposte-empty",
-    "through_step": 14,
-    "phase": "EffectChoice",
-    "pending": "defense"
+    "through_step": 12,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号黄蜂已无手牌，开始闪耀之刃并攻击(8,-10)虎爪→切2号用近身还击防御。预期：攻击者没有可弃牌，按反制规则被击败。分支：虎爪改用其他防御可比较是否发生反制。"
   },
   {
     "id": "riposte-victory",
     "title": "近身还击：有牌但水晶仅1，可主动选择被击败",
     "scenario": "riposte-decline-victory",
-    "through_step": 12,
-    "phase": "EffectChoice",
-    "pending": "forced_discard"
+    "through_step": 9,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：蓝队仅剩1水晶。1号黄蜂开始闪耀之刃→攻击(8,-10)虎爪→切2号用近身还击防御→切1号选择不弃牌并被击败。预期：红队获胜，停止后续结算。分支：改为弃一张手牌则继续对局。"
   },
   {
     "id": "sneak-move",
     "title": "偷袭：击败后选择1格或不移动",
     "scenario": "sneak-move",
-    "through_step": 10,
-    "phase": "EffectChoice",
-    "pending": "effect_move"
+    "through_step": 7,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号虎爪开始偷袭→攻击(8,-10)的敌方英雄→切2号选择防御或不防御→切1号选择攻击后移动1格，或不移动。分支：击败目标后可移入其空出的格；防御成功后该格仍被占用。"
   },
   {
     "id": "sneak-static",
     "title": "偷袭×静电封锁：范围内攻击后不能越界",
     "scenario": "sneak-static",
-    "through_step": 12,
-    "phase": "EffectChoice",
-    "pending": "effect_move"
+    "through_step": 9,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：静电封锁已生效，轮到2号虎爪完整行动。使用偷袭→攻击(8,-10)的3号布洛根→切3号防御或不防御→切2号选择移动。分支：(8,-8)位于封锁外，不可移动出去；目标被击败后可移入(8,-10)，也可不移动。"
   },
   {
     "id": "loyal-recover",
     "title": "忠实信徒：取回弃牌或跳过",
     "scenario": "loyal-recover",
-    "through_step": 11,
-    "phase": "EffectChoice",
-    "pending": "recover_discard"
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号沙加萨使用忠实信徒→从弃牌取回劈砍，或跳过。相邻小兵满足条件且不会被移除。分支：取回后切2号萨彼娜使用拔枪攻击沙加萨，再切1号用刚取回的劈砍防御。"
   },
   {
     "id": "loyal-defense",
     "title": "忠实信徒×拔枪：刚取回的劈砍可以防御",
     "scenario": "loyal-recover",
-    "through_step": 15,
-    "phase": "EffectChoice",
-    "pending": "defense"
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：从完整技能开始：1号沙加萨使用忠实信徒→取回劈砍→切2号萨彼娜使用拔枪并攻击(7,-10)沙加萨→切1号用劈砍防御。分支：重新加载后跳过取回，比较后续防御列表中没有劈砍。"
   },
   {
     "id": "loyal-silence",
@@ -117,6 +131,7 @@
     "scenario": "loyal-silence",
     "through_step": 11,
     "phase": "Action",
-    "pending": ""
+    "pending": "",
+    "instructions": "操作：打断施法已经生效，轮到1号沙加萨行动。检查忠实信徒的主技能被限制，不能取回弃牌。分支：可改做允许的次要行动或跳过，比较技能封锁与其他行动的区别。"
   }
 ]

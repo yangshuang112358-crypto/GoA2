@@ -90,6 +90,15 @@
       "input": "tests/fixtures/engine11-sneak-choice-scenario.json",
       "input_sha256": "f249ac9c9213a821bf6dc7c5eca43ea7079426e4e5e56fcd4fb221ca8e3d011e",
       "provenance": "tests/fixtures/engine11-sneak-choice.md"
+    },
+    {
+      "engine_version": 12,
+      "accepted_commands": 11,
+      "save": "tests/fixtures/engine12-loyal-choice.json",
+      "save_sha256": "616667fdae55897278b91a92cbb98ec6abf64ef692991c449767ca5c6646128d",
+      "input": "tests/fixtures/engine12-loyal-choice-scenario.json",
+      "input_sha256": "d2377122503faefd449a38b2ef09e30205983f6a04182c086c6e6f497c66f0b6",
+      "provenance": "tests/fixtures/engine12-loyal-choice.md"
     }
   ]
 }

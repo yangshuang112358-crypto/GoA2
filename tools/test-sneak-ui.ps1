@@ -34,6 +34,13 @@ try {
     Check (@($goaSkipped.Events | Where-Object Kind -eq 'UnitMoved').Count -eq 0 -and $null -eq $goaSkipped.Execution) 'Restored optional movement can be skipped without changing position'
     Click '^调试$';Click -Element 'open-debug-presets';Click -Element 'debug-preset-sneak-static';Click -Element 'debug-presets-confirm'
     Start-Sleep -Milliseconds 500
+    Check ((Read-Ui).Phase -eq 'Action' -and (Read-Ui).Seat -eq 1) 'The static-field preset starts before Tigerclaw attacks'
+    Click -Element 'begin-primary';Click -Element 'focus-hero';Select-Cell 8 -10
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key Space | Out-Null
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 3 | Out-Null
+    Click '^不防御$'
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key Space | Out-Null
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 2 | Out-Null
     $goaStatic=Save-State
     Check ($goaStatic.Pending.Kind -eq 'effect_move' -and $goaStatic.Pending.ChooserSeat -eq 1) 'The static-field interaction preset opens at the correct choice'
     Check (@((Read-Ui).Cells | Where-Object { $_.X -eq 8 -and $_.Y -eq -8 -and $_.Legal }).Count -eq 0) 'The outside cell is not highlighted as a legal card-text move'

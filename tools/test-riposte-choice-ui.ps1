@@ -57,9 +57,15 @@ try {
     do {
         Start-Sleep -Milliseconds 150
         $goaLoaded=Read-Ui
-        if($goaLoaded.Phase -eq 'EffectChoice' -and $goaLoaded.Seat -eq 0 -and @($goaLoaded.Buttons | Where-Object Name -eq 'debug-presets-confirm').Count -eq 0) { break }
+        if($goaLoaded.Phase -eq 'Action' -and $goaLoaded.Seat -eq 0 -and @($goaLoaded.Buttons | Where-Object Name -eq 'debug-presets-confirm').Count -eq 0) { break }
     } while([DateTime]::UtcNow -lt $goaDeadline)
-    Check ((Read-Ui).Phase -eq 'EffectChoice' -and (Read-Ui).Seat -eq 0) 'Loading the critical-crystal preset selects the original attacker'
+    Check ((Read-Ui).Phase -eq 'Action' -and (Read-Ui).Seat -eq 0) 'Loading the critical-crystal preset starts before the original attack'
+    Click -Element 'begin-primary';Click -Element 'focus-hero';Select-Cell 8 -10
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key Space | Out-Null
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 2 | Out-Null
+    Click '^近身还击 · 抵挡$'
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key Space | Out-Null
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 1 | Out-Null
     Click -Element 'retaliation-decline'
     & "$PSScriptRoot/qa-player.ps1" -Action Key -Key Space | Out-Null
     $goaVictory=Save-State

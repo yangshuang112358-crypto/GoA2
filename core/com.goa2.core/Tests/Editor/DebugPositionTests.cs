@@ -23,7 +23,19 @@ namespace Goa2.Tests
             Assert.That(view.Sandbox,Is.True); Assert.That(view.Revision,Is.GreaterThan(0));
             Assert.That(view.Phase,Is.EqualTo(position.Phase)); Assert.That(view.Pending?.Kind ?? "",Is.EqualTo(position.Pending));
             Assert.That(LocalGameFactory.Restore(catalog,session.ExportSave()).ExportSave(),Is.EqualTo(session.ExportSave()));
-            if(id=="axe-reflection") Assert.That(view.Revision,Is.EqualTo(14),"Rejected and duplicate steps do not add accepted revisions.");
+            if(id=="axe-reflection") Assert.That(view.Revision,Is.EqualTo(10),"Manual defense tests begin before the attack, not at the response.");
+        }
+        [Test]
+        public void ManualCardPositionsStartBeforeTheirActionAndExplainHowToPlayThem()
+        {
+            var catalog=BattlefieldTests.Catalog();var metadata=JArray.Parse(File.ReadAllText(Path.Combine(Root,"tools","debug-positions.json")));
+            foreach(var position in DebugPositions.Read(Prepared()).Where(p=>!new[]{"upgrades","respawn","occupied-spawn"}.Contains(p.Id)))
+            {
+                var session=DebugPositions.Open(catalog,position);var state=new JsonStateCodec().Read(session.ExportSave());
+                Assert.That(state.Phase,Is.EqualTo(Goa2.Domain.Phase.Action),position.Id);Assert.That(state.Pending,Is.Null,position.Id);
+                Assert.That(state.Execution,Is.Null,position.Id);Assert.That(state.ActiveSeat,Is.Not.Null,position.Id);
+                Assert.That(metadata.Single(m=>m["id"]!.Value<string>()==position.Id)["instructions"]?.Value<string>(),Does.Contain("操作"),position.Id);
+            }
         }
         [Test]
         public void OpeningTheSamePreparedPositionCreatesIndependentMatches()

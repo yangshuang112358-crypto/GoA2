@@ -77,6 +77,7 @@ namespace Goa2.Presentation
             var previous=Button("上一轮",()=>{historyRound=rounds[index-1];Render();},"quiet-button","history-previous");previous.SetEnabled(index>0);nav.Add(previous);
             var next=Button("下一轮",()=>{historyRound=rounds[index+1];Render();},"quiet-button","history-next");next.SetEnabled(index<rounds.Count-1);nav.Add(next);
             var scroll=new ScrollView {name="goa-scroll-history-"+historyRound};scroll.AddToClassList("gallery-scroll");overlay.Add(scroll);
+            RenderDebugGuide(scroll,view);
             foreach(var item in pages[historyRound])
             { var label=Text("#"+item.entry.Sequence+" · 回合 "+item.turn+" · "+EventText(item.entry),"body");label.name="history-event-"+item.entry.Sequence;scroll.Add(label); }
         }

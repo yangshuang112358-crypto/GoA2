@@ -19,9 +19,10 @@ namespace Goa2.Infrastructure
         public string Title { get; }
         public Phase Phase { get; }
         public string Pending { get; }
+        public string Instructions { get; }
         internal string ScenarioJson { get; }
-        internal DebugPosition(string id,string title,Phase phase,string pending,string scenarioJson)
-        { Id=id;Title=title;Phase=phase;Pending=pending;ScenarioJson=scenarioJson; }
+        internal DebugPosition(string id,string title,Phase phase,string pending,string scenarioJson,string instructions="")
+        { Id=id;Title=title;Phase=phase;Pending=pending;ScenarioJson=scenarioJson;Instructions=instructions; }
     }
     public static class DebugPositions
     {
@@ -40,6 +41,11 @@ namespace Goa2.Infrastructure
             Require(text.Length<=maximum && (empty || !string.IsNullOrWhiteSpace(text)),"调试局面字段长度无效："+name);
             return text;
         }
+        private static JObject WithInstructions(JToken token,string key,params string[] fields)
+        {
+            Require(token is JObject,"调试局面需要对象。");
+            return Object(token,((JObject)token).Property(key)==null ? fields : fields.Concat(new[]{key}).ToArray());
+        }
         private static string Id(JObject value,string name)
         {
             string id=Text(value,name,40);
@@ -53,7 +59,7 @@ namespace Goa2.Infrastructure
         }
         private static JArray Array(JToken token)
         {
-            Require(token is JArray && ((JArray)token).Count>0 && ((JArray)token).Count<=32,"需要1至32个调试局面。");
+            Require(token is JArray && ((JArray)token).Count>0 && ((JArray)token).Count<=256,"需要1至256个调试局面。");
             return (JArray)token;
         }
         public static string Prepare(string root)
@@ -62,7 +68,7 @@ namespace Goa2.Infrastructure
             var prepared=new JArray(); var ids=new HashSet<string>(StringComparer.Ordinal);
             foreach(var token in source)
             {
-                var entry=Object(token,"id","title","scenario","through_step","phase","pending");
+                var entry=WithInstructions(token,"instructions","id","title","scenario","through_step","phase","pending");
                 string id=Id(entry,"id"); Require(ids.Add(id),"调试局面ID重复。");
                 string title=Text(entry,"title",160),scenario=Id(entry,"scenario"),pending=Text(entry,"pending",80,true);
                 var phase=ReadPhase(entry,"phase");
@@ -74,7 +80,8 @@ namespace Goa2.Infrastructure
                 Require(through>0 && through<=definition.Steps.Count,"调试局面截取步数越界。");
                 definition.Id="debug-"+id; definition.Name=title; definition.Steps=definition.Steps.Take(through).ToList();
                 definition.VerifyReplayAfterEachStep=true;
-                prepared.Add(new JObject { ["Id"]=id,["Title"]=title,["Phase"]=phase.ToString(),["Pending"]=pending,["Scenario"]=JObject.FromObject(definition) });
+                prepared.Add(new JObject { ["Id"]=id,["Title"]=title,["Phase"]=phase.ToString(),["Pending"]=pending,["Scenario"]=JObject.FromObject(definition),
+                    ["Instructions"]=entry.Property("instructions")==null ? "" : Text(entry,"instructions",2400,true) });
             }
             string json=new JObject { ["SchemaVersion"]=1,["Presets"]=prepared }.ToString(Formatting.Indented);
             _=Read(json); return json;
@@ -87,13 +94,13 @@ namespace Goa2.Infrastructure
             var positions=new List<DebugPosition>(); var ids=new HashSet<string>(StringComparer.Ordinal);
             foreach(var token in Array(document["Presets"]!))
             {
-                var entry=Object(token,"Id","Title","Phase","Pending","Scenario");
+                var entry=WithInstructions(token,"Instructions","Id","Title","Phase","Pending","Scenario");
                 string id=Id(entry,"Id"); Require(ids.Add(id),"调试局面ID重复。");
                 string title=Text(entry,"Title",160),pending=Text(entry,"Pending",80,true); var phase=ReadPhase(entry,"Phase");
                 string scenarioJson=entry["Scenario"]!.ToString(Formatting.None);
                 var definition=ScenarioRunner.Load(scenarioJson);
                 Require(definition.Sandbox && definition.VerifyReplayAfterEachStep,"调试局面需要测试权限和逐步恢复验证。");
-                positions.Add(new DebugPosition(id,title,phase,pending,scenarioJson));
+                positions.Add(new DebugPosition(id,title,phase,pending,scenarioJson,entry.Property("Instructions")==null ? "" : Text(entry,"Instructions",2400,true)));
             }
             return positions.AsReadOnly();
         }

@@ -47,9 +47,9 @@ try {
     $goaAfterCancel=Save-State
     Check ((Get-Content -LiteralPath (Join-Path $goaRoot 'artifacts/unity/qa-save.json') -Raw) -ceq $goaBeforeJson) 'Cancelling preserves the entire current match'
 
-    Open-PresetMenu; Click -Element 'debug-preset-axe-reflection'; Confirm-Preset 'EffectChoice'
+    Open-PresetMenu; Click -Element 'debug-preset-axe-reflection'; Confirm-Preset 'Action'
     $goaUi=Read-Ui
-    Check ($goaUi.Phase -eq 'EffectChoice' -and $goaUi.Revision -eq 14 -and $goaUi.Seat -eq 0) 'The native launcher restores the actual accepted revision and attacker seat'
+    Check ($goaUi.Phase -eq 'Action' -and $goaUi.Revision -eq 10 -and $goaUi.Seat -eq 0) 'The native launcher starts before the attack at the original attacker seat'
     Check ((Get-Content -LiteralPath (Join-Path $goaRoot 'artifacts/unity/qa-save.json') -Raw) -ceq $goaBeforeJson) 'Loading the new position first saves the previous match'
     & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 4 | Out-Null
     $goaFourth=Read-Ui
@@ -58,9 +58,18 @@ try {
     $goaFirst=Read-Ui
     $goaSameMap=$goaFirst.Zoom -eq $goaUi.Zoom -and $goaFirst.Focus.x -eq $goaUi.Focus.x -and $goaFirst.Focus.y -eq $goaUi.Focus.y
     Check ($goaFirst.Seat -eq 0 -and $goaSameMap -and @($goaFirst.Buttons | Where-Object { $_.Name -eq 'seat-1' -and $_.Visible }).Count -eq 1) 'Switching back reveals the first character without changing the map'
-    Click -Element 'hand-silver'; Click '^确认弃置 铜墙铁壁$'
+    Click -Element 'begin-primary';Click -Element 'optional-discard-gold'
+    Click '^确认弃置 猛攻$'
+    if((Read-Ui).TopExpanded) { Click -Element 'toggle-top' }
+    Click -Element 'focus-hero';Select-Cell 6 -5
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key Space | Out-Null
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 2 | Out-Null
+    Click '^反射屏障 · 抵挡$'
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key Space | Out-Null
+    & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 1 | Out-Null
+    Click -Element 'forced-discard-silver'; Click '^确认弃置 铜墙铁壁$'
     $goaContinued=Save-State
-    Check (@($goaContinued.Events | Where-Object Kind -eq 'AttackResolved').Count -eq 1 -and @($goaContinued.Events | Where-Object Kind -eq 'OptionalDiscardCompleted').Count -eq 1) 'The loaded counter can continue manually without replaying the paid cost or original attack'
+    Check (@($goaContinued.Events | Where-Object Kind -eq 'AttackResolved').Count -eq 1 -and @($goaContinued.Events | Where-Object Kind -eq 'OptionalDiscardCompleted').Count -eq 1) 'The entire manual interaction completes each attack and cost once'
     & "$PSScriptRoot/qa-player.ps1" -Action Capture -Name 'native-preset-reflection' | Out-Null
 
     foreach ($goaPreset in $goaPresets | Where-Object id -ne 'axe-reflection') {

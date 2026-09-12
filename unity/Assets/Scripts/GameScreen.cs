@@ -345,6 +345,7 @@ namespace Goa2.Presentation
         {
             sidebar.Add(Text("当前席位 " + (seat + 1), "eyebrow"));
             sidebar.Add(Text(PhaseName(view), "panel-title"));
+            RenderDebugGuideShortcut(sidebar,view);
             switch (view.Phase)
             {
                 case Phase.HeroSelection:
@@ -470,6 +471,7 @@ namespace Goa2.Presentation
             var box = Box("event-box");box.name="recent-event-log";
             var heading=Box("panel-heading");box.Add(heading);heading.Add(Text("最近记录","eyebrow"));
             heading.Add(Button("展开",()=>{historyOpen=true;historyRound=view.Round;Render();},"compact-button","history-open"));
+            RenderDebugGuide(box,view);
             foreach (var entry in view.Events.TakeLast(12))
                 box.Add(Text(EventText(entry), "tiny"));
             parent.Add(box);
