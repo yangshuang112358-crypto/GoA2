@@ -1,0 +1,472 @@
+{
+  "schemaVersion": 1,
+  "reportDate": "2026-09-13",
+  "timezone": "Asia/Shanghai",
+  "collectedUtc": "2026-09-12T16:18:09.206810+00:00",
+  "implementationCommit": "2896af9308607ed1104c6423d8c8721953ed5958",
+  "scope": "Current runtime evidence plus explicitly labelled earlier verification; no network implementation or new card effect in this reporting task.",
+  "engineVersion": 10,
+  "contentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+  "unityVersion": "6000.3.23f1",
+  "cardCounts": {
+    "implemented": 21,
+    "data_only": 87
+  },
+  "totalCards": 108,
+  "heroes": 6,
+  "mapCells": 254,
+  "obstacles": 44,
+  "primaryAttacks": 11,
+  "primarySkills": 2,
+  "defenseCards": 8,
+  "purpleEffectsImplemented": 0,
+  "commonRules": "Normal four-seat loop implemented; generic effect primitives and edge cases incomplete. No measured completion percentage.",
+  "network": "Design only: no server executable, rooms, independent clients or reconnection implementation.",
+  "build": {
+    "report": {
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "bytes": 107865719
+    },
+    "builtUtc": "2026-09-12T05:43:13.0837565Z",
+    "inventory": "artifacts/player/build-info.json",
+    "inventorySha256": "ef9137bb349dc0b25a0c1963ab53c1cd794a19c37c9ac9185915324f2f46a0ba",
+    "payloadFiles": 156,
+    "payloadBytes": 107865719,
+    "assemblies": {
+      "Goa2.Domain.dll": "0633e23809552945f7ba04563ad75c1b7f7ed8dbfb8abcb49270b0463f458f3f",
+      "Goa2.Rules.dll": "274dba54b01bd5ba221618272a357d3d50901d27b83717c9f836853aa6146dac",
+      "Goa2.Application.dll": "39bd46cd1e88959bd26e31ba207197b715b94a6fe633c845e257d0e49cb231b4",
+      "Goa2.Infrastructure.dll": "b50f0a7cdb61fe7666ecee4d61542c5a333638a3ffb50af5498e20d690b6a0b1",
+      "Goa2.Presentation.dll": "ca0a7d97516c33dfb5687fee4c2acca65ce1647a66c63a5c82d1b0ec74d373ad"
+    }
+  },
+  "coreTests": {
+    "report": "artifacts/tests/core.trx",
+    "sha256": "4116e9658626063d52bb557f8bd5a811aeb5275833375ebac73b386c8710abfe",
+    "runner": "dotnet",
+    "total": 435,
+    "executed": 435,
+    "passed": 435,
+    "failed": 0,
+    "notExecuted": 0
+  },
+  "pythonTests": {
+    "passed": 32,
+    "note": "Previously executed for the unchanged tool code in BATCH-04; documentation validation rerun for this report."
+  },
+  "nativeScenarios": {
+    "total": 32,
+    "steps": 477,
+    "passed": true,
+    "runs": [
+      {
+        "input": "tests/scenarios/backstab.json",
+        "inputSha256": "3f833a8c422902c913f0bef6297d36cca6128f1f2c87a4c60e75202bc1f6138b",
+        "report": "artifacts/scenarios/backstab/headless/ae7286030c8a4d4b9d99f623055d92db/report.json",
+        "reportSha256": "c4ec72d7009c93153a0093255c3835c4a803d2a9564fef24a0692c5298f5af17",
+        "steps": 14,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:10.5363727Z",
+        "finishedUtc": "2026-09-12T16:09:14.3770538Z",
+        "finalStateHash": "a9fe27e39aa62805833232bcacbdb74d01505ec06e4df21437bf098a3c40e5f3"
+      },
+      {
+        "input": "tests/scenarios/cleave.json",
+        "inputSha256": "a9baece1679601f8488909c8f937088a07bf665d20b72cf8cf7320fbc357d55c",
+        "report": "artifacts/scenarios/cleave/headless/4c82960effba430db354f7f6433f3149/report.json",
+        "reportSha256": "52856da8a87a507dea50f5eeae3386de30bee83ef89563c76f16eedcfe8d98ed",
+        "steps": 17,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:14.4242233Z",
+        "finishedUtc": "2026-09-12T16:09:18.0451729Z",
+        "finalStateHash": "cd171dba649e46fe4fc87b50e9725205268e8cc5de864e7a8308128675774886"
+      },
+      {
+        "input": "tests/scenarios/combat-defense.json",
+        "inputSha256": "fcd54223a180a860434f8896a57412f501c3375fe6384da64e4403ccc98fe243",
+        "report": "artifacts/scenarios/combat-defense/headless/246216d511574072ab074736c1b0b536/report.json",
+        "reportSha256": "eba8032116f0bd07555ab3c4a500c67e4a98d174c3f1011c29b806876f32a2bb",
+        "steps": 17,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:18.0882857Z",
+        "finishedUtc": "2026-09-12T16:09:21.5372089Z",
+        "finalStateHash": "c56f49f6802414e995ea7124e136b8c1d64804c5040a3854c0784e88911c498f"
+      },
+      {
+        "input": "tests/scenarios/deadly-sweep.json",
+        "inputSha256": "c04b71b89d96f4429353cbc3f2345240de756153e686f1d2ff39d42cc0df6ce2",
+        "report": "artifacts/scenarios/deadly-sweep/headless/37760705ceb9409fa77289f17f2b3515/report.json",
+        "reportSha256": "a1288a14933842fde4816c927942e4f34f71d1fefd4b48f0073e6877739b4049",
+        "steps": 17,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:21.5670547Z",
+        "finishedUtc": "2026-09-12T16:09:24.8847681Z",
+        "finalStateHash": "f812eb19b8918d81675b16b205add27ee9d0d98d85347b46e08d7dc355da3f7e"
+      },
+      {
+        "input": "tests/scenarios/death-spin.json",
+        "inputSha256": "2a684cef78a2782f26831c0c7d7b5379a7a04f59383ca3d339507b5ca1a0aa62",
+        "report": "artifacts/scenarios/death-spin/headless/e8f5a1c0dd684659a92870c4ed96788b/report.json",
+        "reportSha256": "fe796910e19603b4cb7effc8e76deeae5f2eda1ea8313048435df550fee7f046",
+        "steps": 17,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:24.9255482Z",
+        "finishedUtc": "2026-09-12T16:09:28.2074069Z",
+        "finalStateHash": "53fde8c00e7024f678b6d78a9cac5ea411d534281ef89d658654eeae00da447f"
+      },
+      {
+        "input": "tests/scenarios/debug-attack.json",
+        "inputSha256": "8280f07e81b76a6d8a5d6b757d7cf37fcaed0268b173e5049c0e4b0806778a23",
+        "report": "artifacts/scenarios/debug-attack/headless/53651cf844094dcda7971183024b2402/report.json",
+        "reportSha256": "e1efe3c73cb7763dee0036ba5c61941cb08aaf8b16d36533460f354b2266d1ad",
+        "steps": 5,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:28.240396Z",
+        "finishedUtc": "2026-09-12T16:09:31.0644943Z",
+        "finalStateHash": "40d0685ef06303070bb52fb63e1ac7cfa0b7acb2c5693395e00ba5f1989cd9fc"
+      },
+      {
+        "input": "tests/scenarios/deflection-barrier.json",
+        "inputSha256": "4a4da6f080a0464d3f5f44db8ac1f712cecaaf34e0ce488acacf1054a29c4357",
+        "report": "artifacts/scenarios/deflection-barrier/headless/400caf0b66864fac86018c24a9fb8009/report.json",
+        "reportSha256": "0e4a59ea13e725960270bf2c4d977ad92f9528e178c2a86d7ff43ee77399e292",
+        "steps": 19,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:31.0931731Z",
+        "finishedUtc": "2026-09-12T16:09:34.5358979Z",
+        "finalStateHash": "8c5b80ba2ecc1f43a0d7966bfc53faa293b24e52aa280256d44f48144bcdd2a6"
+      },
+      {
+        "input": "tests/scenarios/formal-turn.json",
+        "inputSha256": "36d0e6882381781b7259051e9dd28450df2c9d64260cddb7622843dc4596cb94",
+        "report": "artifacts/scenarios/formal-turn/headless/1ced51f87f3d4805827f3855b602817c/report.json",
+        "reportSha256": "cdc7390a4fd4531508bf2b832be4ff85d05f9a0e4a73165c2c1f4a1e1d099442",
+        "steps": 23,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:34.562401Z",
+        "finishedUtc": "2026-09-12T16:09:37.8534993Z",
+        "finalStateHash": "eb6bf2f8097282d4715ff4ace903524d4dc67500979ae5529b90fbd0f9440065"
+      },
+      {
+        "input": "tests/scenarios/frontline.json",
+        "inputSha256": "10933c41c9687d798ea487c1acaf3cca862147776281bc6a1875d5050f6922e3",
+        "report": "artifacts/scenarios/frontline/headless/235ebd38281b4257a06b0e41a6c5f87e/report.json",
+        "reportSha256": "ee186641301cb27e2d68c500dc94215a382b540eb509ce615f35b4722c79ea19",
+        "steps": 7,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:37.8842021Z",
+        "finishedUtc": "2026-09-12T16:09:40.8660164Z",
+        "finalStateHash": "64ce1816769d1bf60612056308aa7cae82ce6b82c78281b131a9cedb10cce450"
+      },
+      {
+        "input": "tests/scenarios/headshot.json",
+        "inputSha256": "b08e5bde1852ada0dc4431686990dacb1f75eec9e75e24609b24bca6f0615d56",
+        "report": "artifacts/scenarios/headshot/headless/99e135ef8edf4987b254641620c40491/report.json",
+        "reportSha256": "58c0d9356ec388c4cff107f8ae4ea72738112e548e1f9dcd2d380b71c5b6fcbb",
+        "steps": 14,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:40.8940099Z",
+        "finishedUtc": "2026-09-12T16:09:44.0354636Z",
+        "finalStateHash": "50feef9a374e93de33f2b9c1217fb8bfda2ef6fbfd45e0e8c06f4482daa937df"
+      },
+      {
+        "input": "tests/scenarios/lead-charge-unavailable.json",
+        "inputSha256": "07fbc8e21ca4183c9e94bac185c3efa8577115ef1b28bd037ab79666816a4928",
+        "report": "artifacts/scenarios/lead-charge-unavailable/headless/229ab8f9951b4acd949f69de9576f5ee/report.json",
+        "reportSha256": "4e8ad2de6a83dc9fbb8817f2eb88149e1cba3b722434a8cf2502319fc9b89e16",
+        "steps": 14,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:44.0678745Z",
+        "finishedUtc": "2026-09-12T16:09:47.5186935Z",
+        "finalStateHash": "d7368ee21cec723ed86dfc4cb7ae0a94c9ff564a45953f773de28c766c620ac6"
+      },
+      {
+        "input": "tests/scenarios/lead-charge.json",
+        "inputSha256": "a05104b65e01ba1ee5521bbd23b244087424e1669cae490ad6500c3edac4f480",
+        "report": "artifacts/scenarios/lead-charge/headless/d749173baf7449e8a63f907d3b03fd43/report.json",
+        "reportSha256": "6003218bee980ce8ea225199145fa33640fe8261d2463908f23ade1c32721b96",
+        "steps": 13,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:47.5484189Z",
+        "finishedUtc": "2026-09-12T16:09:50.8523616Z",
+        "finalStateHash": "a77ce3199a0e83c510100a8310d0b082424a1b7c5ffc54648a01c4f1177e9e5b"
+      },
+      {
+        "input": "tests/scenarios/marksman.json",
+        "inputSha256": "2dc882a1d232fe82aacf4151f445424c901e8e0eb1136a9ed70bf6793ceb99fb",
+        "report": "artifacts/scenarios/marksman/headless/a14e030caf3843e79f110913bfe29c16/report.json",
+        "reportSha256": "df80f7b1a2bef32b5fc4459bcec51c6f5465ccc85795cd9cc7676038a5b4bc4f",
+        "steps": 13,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:50.8841546Z",
+        "finishedUtc": "2026-09-12T16:09:54.1763084Z",
+        "finalStateHash": "0a345a46c21bd0c1b18a171e96756340a43476ce8aa75ed40eb5d72c04f5124f"
+      },
+      {
+        "input": "tests/scenarios/melee-block.json",
+        "inputSha256": "1f6778c4e8f5f14fa4ec55ca78d0ff9acc49d038cfd33e40f33f1c59af0d99c9",
+        "report": "artifacts/scenarios/melee-block/headless/c8ca8510448941b9937d65b6c7abaf15/report.json",
+        "reportSha256": "6a4f94b5841748064cfdeee25a6fc3ed046ab680cca17803222605bdda9badca",
+        "steps": 14,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:54.2073746Z",
+        "finishedUtc": "2026-09-12T16:09:57.4974517Z",
+        "finalStateHash": "52da3b55c229f06b105906e1dd6ddfd7948c390cfe370e718b2f22bc768e54a0"
+      },
+      {
+        "input": "tests/scenarios/permissions.json",
+        "inputSha256": "d6d68f9eb69263fa516307e1cdd43273a08010a817b386c7f1ad2d6e8fa496ae",
+        "report": "artifacts/scenarios/permissions/headless/bfe8ac637bea419ea9bb8455237003c0/report.json",
+        "reportSha256": "6444faa38843e6eb190b0c2e1bdc009bd6fb26f551f49a7be2048aa9a2e10686",
+        "steps": 7,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:09:57.5277267Z",
+        "finishedUtc": "2026-09-12T16:10:00.3557391Z",
+        "finalStateHash": "d32f214aa40c888357d230e69686cbee95117e09e2d8b388f3852b48c8c67128"
+      },
+      {
+        "input": "tests/scenarios/reflection-barrier.json",
+        "inputSha256": "584a868eb59c58af26c7c4e81f8f9b6fdaf50fb9a5c30e4f6d0aaafebeb34568",
+        "report": "artifacts/scenarios/reflection-barrier/headless/c24c4084778641489156b14ec404eda7/report.json",
+        "reportSha256": "69ff7bb3f2d2c11bbf07afe7298f3db668913afa521a593738161561e643cde2",
+        "steps": 22,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:00.3903848Z",
+        "finishedUtc": "2026-09-12T16:10:04.1516899Z",
+        "finalStateHash": "b032b0ff88395ae75e2d072a8ee545eb0086a355c3c0e73c2ea0df92b10665b6"
+      },
+      {
+        "input": "tests/scenarios/riposte-decline-victory.json",
+        "inputSha256": "f9bf6394242a4383f54489b7a10e114fc2248d00b93209caf3b41770448af80f",
+        "report": "artifacts/scenarios/riposte-decline-victory/headless/8e1449f1dd75493391cde1248a2fefc4/report.json",
+        "reportSha256": "040104f08e4ed27ac9861215669b3cc73d13a9a03a5060d51f96e858b4d7616b",
+        "steps": 13,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:04.1853627Z",
+        "finishedUtc": "2026-09-12T16:10:07.3317528Z",
+        "finalStateHash": "07919c58b9139b680059e46f6a0a36c786c166b11f4f2f9c230f72546b17dd7a"
+      },
+      {
+        "input": "tests/scenarios/riposte-decline.json",
+        "inputSha256": "c679a1e3ff0b366b30c17206d3ada0faeb6387454dd5ce0b5f61b011d039e70e",
+        "report": "artifacts/scenarios/riposte-decline/headless/17de1c35bc1c49a98917121779c99da6/report.json",
+        "reportSha256": "f8cc0ec2e356523f08bee005b5f5ebfd93c23952165762e0fcfdd76329183c2e",
+        "steps": 16,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:07.3596877Z",
+        "finishedUtc": "2026-09-12T16:10:10.8020248Z",
+        "finalStateHash": "4cd27f0499e7df220d413c3bcabe49235e3d188caa302bc9e603593746dd6bdc"
+      },
+      {
+        "input": "tests/scenarios/riposte-empty.json",
+        "inputSha256": "f0013cd69808aa9988fd8f0fd54b16f7d72d113cb4d37a53510480036ba4840a",
+        "report": "artifacts/scenarios/riposte-empty/headless/b0502c7fbc7d43589a92d27c023b8a46/report.json",
+        "reportSha256": "c9591a2f959dc7c9336aebef74d5c19c619cc4d82cd32a98355a6e79f5d4b0dd",
+        "steps": 26,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:10.8345415Z",
+        "finishedUtc": "2026-09-12T16:10:14.9207261Z",
+        "finalStateHash": "25fe00de20f7fbec6c3ac8ee2a03b111117a80a484a029424702ebc69cd6fd37"
+      },
+      {
+        "input": "tests/scenarios/riposte-hand.json",
+        "inputSha256": "63592f23757b8c90f4df6a839d3655cdc652381a84f4db6b3d3ca21b8c187fba",
+        "report": "artifacts/scenarios/riposte-hand/headless/d281681baa17488d82ee8e1b29fd50a2/report.json",
+        "reportSha256": "e679e208aafc84675d61b21b9ba18661a943ec0879d35198eddc2c943b601428",
+        "steps": 14,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:14.9589795Z",
+        "finishedUtc": "2026-09-12T16:10:18.2381824Z",
+        "finalStateHash": "1ad5d87e1d38c5445498894625d25fd7a8d5aaf4261f7659e1b07f8149aeeb45"
+      },
+      {
+        "input": "tests/scenarios/riposte-ranged.json",
+        "inputSha256": "426d23cc9588373153cf6d4ee110fdc8defd68091421747ea0389b9cd083670b",
+        "report": "artifacts/scenarios/riposte-ranged/headless/80ec4194a7994ede915c63ea2bb01a15/report.json",
+        "reportSha256": "83d341d93ff4bfab7cd5887aced9f346694a50a0b790f808d1048aaa38db0e58",
+        "steps": 13,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:18.272599Z",
+        "finishedUtc": "2026-09-12T16:10:21.4187713Z",
+        "finalStateHash": "7d5d8766ebca0d51077ba042e36fd3c248549065605a628dab9204a8eae81f1b"
+      },
+      {
+        "input": "tests/scenarios/riposte-victory.json",
+        "inputSha256": "1e32d0b79f7c9edd8eb4590d3d41ace76253174dc6a9b2e91bb2aed16d563806",
+        "report": "artifacts/scenarios/riposte-victory/headless/27992350868a4ed5a666aee73f9f137e/report.json",
+        "reportSha256": "54335cd8f3cee59078852c3263c904e0c8f4a25284860b94374dbf17e2c36605",
+        "steps": 16,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:21.468834Z",
+        "finishedUtc": "2026-09-12T16:10:24.7579114Z",
+        "finalStateHash": "e9c0b4846a0efe007fc3b3515cc1ab50917d273cee6a9d40237ae0abda15096a"
+      },
+      {
+        "input": "tests/scenarios/round-frontline.json",
+        "inputSha256": "44c70b986231c2aa997c35a8f2abe1ed1e478862501d5c2e5df68d031f3f5291",
+        "report": "artifacts/scenarios/round-frontline/headless/bb0604ef96fc4d2ab573d922db6a3cb9/report.json",
+        "reportSha256": "59f5e713aa4888bfe3e1e4e3fc15f453bc85d852021a69c73b8f61b4ccef0e61",
+        "steps": 17,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:24.7877811Z",
+        "finishedUtc": "2026-09-12T16:10:28.7221762Z",
+        "finalStateHash": "8bfe1ca460bc3d94b8f356969e4c3fb9d0464d5181ce1082cc6fe206a248d096"
+      },
+      {
+        "input": "tests/scenarios/round-upgrades.json",
+        "inputSha256": "a96d6c47f1afa6c79adaadd529180dd9d1447f03143646b8414d2e2c469e1019",
+        "report": "artifacts/scenarios/round-upgrades/headless/9bc0dd9d6fa7472ea836e58d7c4e325c/report.json",
+        "reportSha256": "d55163bc2ea2f36a9c8a01f81f077bc4809f6c7527375307b8fa0a8151aca7da",
+        "steps": 26,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:28.7514792Z",
+        "finishedUtc": "2026-09-12T16:10:34.5619278Z",
+        "finalStateHash": "ad662d030d0a3f21237ba2f35df7d303f3d9fc1eb96025c5346a4972e8ce1a55"
+      },
+      {
+        "input": "tests/scenarios/sandbox-smoke.json",
+        "inputSha256": "21bc5e51ed0639ce82802308c08c7e8f0aea351da624719c4ce3867e750e19a4",
+        "report": "artifacts/scenarios/sandbox-smoke/headless/c8e60329d28b4fa7800075c1f66ad352/report.json",
+        "reportSha256": "3cc33718f41515ff5d859c80cc94445cd803e3875f371340e6f7632545393dd9",
+        "steps": 9,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:34.6058037Z",
+        "finishedUtc": "2026-09-12T16:10:37.5714655Z",
+        "finalStateHash": "009c398fe427ad241801c2d46b58c76d4084a46c50b1ab6cb41148be8a37bd3e"
+      },
+      {
+        "input": "tests/scenarios/shining-blade.json",
+        "inputSha256": "53298deae2d420e37fe48b8d94a36dc098749fffe62f37f863397ee2b1c11a9a",
+        "report": "artifacts/scenarios/shining-blade/headless/8ab9b4f92f3749b2ad023f4f36627798/report.json",
+        "reportSha256": "b601742559e167116b57054cf0dfed4e43dc98566e736901702c2db9e25dcb9a",
+        "steps": 15,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:37.6013892Z",
+        "finishedUtc": "2026-09-12T16:10:40.9100043Z",
+        "finalStateHash": "99fedd45effef02d0bdeff01b7cde23af516426254c06d906da633d575b6bef3"
+      },
+      {
+        "input": "tests/scenarios/skill-suppression.json",
+        "inputSha256": "c39797b64320fa61a69a3221f236624f524071ba61a2700c8113f20b92ffdad1",
+        "report": "artifacts/scenarios/skill-suppression/headless/8579b83a6f8b476b93b2e13b43b57d9c/report.json",
+        "reportSha256": "ad65c394abd344c0a316971aa655254a43a0e2322b13e324d351101d995f6205",
+        "steps": 12,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:40.9412027Z",
+        "finishedUtc": "2026-09-12T16:10:44.2239756Z",
+        "finalStateHash": "912b7389a26c347af6608f517f11b88325200539f1b6a176fc4ab90ac4490260"
+      },
+      {
+        "input": "tests/scenarios/spawn-order.json",
+        "inputSha256": "1a7528bac504e389cca73a085e50cf99a8631000f1d194345f30fbf72d9da820",
+        "report": "artifacts/scenarios/spawn-order/headless/f6c6b3ea53c7469d8555375ead6a9478/report.json",
+        "reportSha256": "aff7d07e74a3f859aa7f95dad038e7a78371166c2e5824bd48559b7ef9e596b5",
+        "steps": 7,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:44.2531487Z",
+        "finishedUtc": "2026-09-12T16:10:47.4006005Z",
+        "finalStateHash": "68d6b7008ca12aba8344fff45fdf896d26b097c890ac9d6aee0f3423803788e5"
+      },
+      {
+        "input": "tests/scenarios/static-field.json",
+        "inputSha256": "fb9c248dea047134dfddbb80bb62f509cadba2c4c8cacabf0e25eded6e1d0abd",
+        "report": "artifacts/scenarios/static-field/headless/45dbd47dd3d04813b2e85f098d57681b/report.json",
+        "reportSha256": "d7cea53f68b41dedc33248591699402b9753b7cbe19ee779cbf562a4ddf903ab",
+        "steps": 13,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:47.4293303Z",
+        "finishedUtc": "2026-09-12T16:10:50.5899935Z",
+        "finalStateHash": "96f65a4ccf10b9c0e380b53c29338166e5bd2fa73d039a5000aa2f5a63208104"
+      },
+      {
+        "input": "tests/scenarios/throwing-axe-reflection.json",
+        "inputSha256": "6f247c8e98990869535c40dfefaf067531af89b53cf8d0eeb9a507b7be03eb37",
+        "report": "artifacts/scenarios/throwing-axe-reflection/headless/d7ae637c8d9048f39249546e23d62138/report.json",
+        "reportSha256": "d57ced088210830f0d5c9b4d7bed04fe0a7a48adbbf6b336b43a20a501c5869a",
+        "steps": 20,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:50.6707138Z",
+        "finishedUtc": "2026-09-12T16:10:54.1313025Z",
+        "finalStateHash": "3c6eb4babeee136a85a0442bf4e2371adc09d3ddbc9c17af09e13da09a4a2839"
+      },
+      {
+        "input": "tests/scenarios/throwing-axe-skip.json",
+        "inputSha256": "ff9bb2304f9beaaa2e3cf6809adc11e3b351cb0b02b1d3dec7cf6a2c07bf30cf",
+        "report": "artifacts/scenarios/throwing-axe-skip/headless/54abc3f0cdb14fb4a0be443a52bd0ffb/report.json",
+        "reportSha256": "65f8af9ea93eacd96112f8fdd76288fb159856d49e79f66172ccca88e35f1f85",
+        "steps": 13,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:54.1632613Z",
+        "finishedUtc": "2026-09-12T16:10:57.3099667Z",
+        "finalStateHash": "7c133cb2c5e96192012d017452c11da167fbc419366aa6f7e706af558932cc99"
+      },
+      {
+        "input": "tests/scenarios/throwing-spear-existing-discard.json",
+        "inputSha256": "d7f42bee8710c10e7d26f1a7e84d01ff01622c87bfaa83145c3bbc7dd233231c",
+        "report": "artifacts/scenarios/throwing-spear-existing-discard/headless/2a322da2afbc46938b46f492d377e624/report.json",
+        "reportSha256": "42fa2dd8e658c009e45bc591f6a00db39c10b2ef825394abadca454bc84cf88d",
+        "steps": 14,
+        "passed": true,
+        "startedUtc": "2026-09-12T16:10:57.3496976Z",
+        "finishedUtc": "2026-09-12T16:11:00.6370200Z",
+        "finalStateHash": "b39fe706604269785944f363ce48f067212b1fb659a2738b6e9f956f28e94555"
+      }
+    ]
+  },
+  "physicalInput": {
+    "report": "docs/verification/riposte-choice-ui-evidence.json",
+    "sha256": "cc98abecacc6f4c026b491158d45eb07708b4d1f9b7b370e2b2a51782a991d92",
+    "checks": 21,
+    "passed": true,
+    "width": 1280,
+    "height": 800,
+    "note": "Riposte-specific suite, not all 15 UI modules; earlier BATCH-04 runtime input evidence."
+  },
+  "keywordLayout": {
+    "report": "docs/verification/keyword-layout-evidence.json",
+    "cards": 108,
+    "modes": [
+      "Visible Player 1280x800",
+      "Editor Play Mode 1600x1000"
+    ],
+    "note": "Real layout with synthetic pointer events; not physical mouse."
+  },
+  "release": {
+    "archive": "artifacts/releases/Goa2V1-e10-status-20260913-20260912-161112-18b555a6.zip",
+    "sha256": "46ca6c42d836627c96ae271d83bbb6cc9a4883e21176e282779cf2faff62a46c",
+    "bytes": 47263110,
+    "extractedSmoke": "artifacts/release-smoke/89a03c2696d64a13b4b4530b42fd8edf/smoke.json",
+    "smokeSha256": "a6e9330edf2481db56c09972756840b61d0c699460c2ff3d7e4941210598a511",
+    "passed": true,
+    "steps": 16,
+    "finalStateHash": "4cd27f0499e7df220d413c3bcabe49235e3d188caa302bc9e603593746dd6bdc"
+  },
+  "offlineBrowser": {
+    "report": "artifacts/reference-tests/dcd4a3ef0ff84b21aa6129bc58095dd4/report.json",
+    "reportSha256": "0f9ab2a7be01f68d0f9d5886e95d4ed85766dfa843c592e4147a393f5869fc29",
+    "checks": 23,
+    "passed": true,
+    "html": "artifacts/reference/Goa2V1-资料浏览器.html",
+    "htmlSha256": "62d7f9de4666cb091953941d2a1c66fe6c6263411c415c9ff8c295187528e42e"
+  },
+  "remoteCI": {
+    "commit": "2896af9308607ed1104c6423d8c8721953ed5958",
+    "conclusion": "success",
+    "url": "https://github.com/yangshuang112358-crypto/GoA2/actions/runs/34704433784",
+    "scope": "Content, Python, dotnet core and Unity content staging; no Unity Player build or UI input."
+  },
+  "commandInventory": {
+    "scriptFiles": 45,
+    "allNamedInManual": true,
+    "note": "Read script parameters; listing does not claim every entry was freshly run."
+  },
+  "limitations": [
+    "No measured line coverage",
+    "No full current-engine 15-module UI rerun",
+    "No current-engine four-network-client long game",
+    "87 data_only cards including six purple effects",
+    "Estimate ranges are engineering judgement, not performance measurements"
+  ]
+}
