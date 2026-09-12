@@ -13,14 +13,14 @@ namespace Goa2.Presentation
     {
         private bool debugPresetsOpen;
         private IReadOnlyList<DebugPosition>? debugPositions;
-        private string selectedDebugPosition="",debugPositionError="";
+        private string selectedDebugPosition="",debugPositionError="",debugPresetFilter="";
         private void OpenDebugPositions()
         {
             if(!renderedView.Sandbox || ScenarioRunning) return;
             try
             {
                 debugPositions=DebugPositions.Read(File.ReadAllText(Path.Combine(UnityEngine.Application.streamingAssetsPath,"Goa2Debug","presets.json")));
-                selectedDebugPosition=""; debugPositionError=""; debugPresetsOpen=true;
+                selectedDebugPosition="";debugPositionError="";debugPresetFilter="";debugPresetsOpen=true;
             }
             catch(Exception error) { notice="调试局面不可用："+error.Message; Debug.LogWarning(error.Message); }
             Render();
@@ -29,15 +29,25 @@ namespace Goa2.Presentation
         {
             var overlay=Box("dialog-overlay"); root.Add(overlay);
             var dialog=Box("dialog"); dialog.AddToClassList("debug-preset-dialog"); overlay.Add(dialog);
+            dialog.style.maxHeight=Screen.height-32;
             dialog.Add(Text("选择手工测试局面","panel-title"));
             dialog.Add(Text("选择一个局面后，点击“保存并加载”。当前对局会先保存，新局面从指定步骤继续操作。","body"));
-            foreach(var position in debugPositions!)
+            var filter=new TextField("查找卡牌 / 局面") {name="debug-presets-filter"};
+            filter.SetValueWithoutNotify(debugPresetFilter);dialog.Add(filter);
+            var list=new ScrollView {name="goa-scroll-debug-presets"};list.AddToClassList("debug-preset-list");dialog.Add(list);
+            void RefreshOptions()
             {
-                string id=position.Id;
-                var option=Button(position.Title,()=> { selectedDebugPosition=id;debugPositionError="";Render(); },"choice-button","debug-preset-"+id);
-                if(selectedDebugPosition==id) option.AddToClassList("chosen");
-                dialog.Add(option);
+                list.Clear();
+                foreach(var position in debugPositions!.Where(p=>(p.Title+" "+p.Id).IndexOf(debugPresetFilter.Trim(),StringComparison.OrdinalIgnoreCase)>=0))
+                {
+                    string id=position.Id;
+                    var option=Button(position.Title,()=> { selectedDebugPosition=id;debugPositionError="";Render(); },"choice-button","debug-preset-"+id);
+                    if(selectedDebugPosition==id) option.AddToClassList("chosen");list.Add(option);
+                }
+                if(list.childCount==0) list.Add(Text("没有匹配的局面。","body"));
+                RequestCapture();
             }
+            RefreshOptions();filter.RegisterValueChangedCallback(e=> { debugPresetFilter=e.newValue;RefreshOptions(); });
             if(debugPositionError!="") dialog.Add(Text(debugPositionError,"restriction-text"));
             var confirm=Button("保存并加载",LoadDebugPosition,"primary-button","debug-presets-confirm");
             confirm.SetEnabled(debugPositions!.Any(p=>p.Id==selectedDebugPosition)); dialog.Add(confirm);

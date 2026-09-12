@@ -1,0 +1,91 @@
+{
+  "startedUtc": "2026-09-12T05:41:16.1279976Z",
+  "finishedUtc": "2026-09-12T05:42:08.3349194Z",
+  "method": "Real foreground mouse and keyboard with isolated saves",
+  "checks": [
+    {
+      "check": "Save restores at Action revision 8",
+      "passed": true
+    },
+    {
+      "check": "Physical Space confirms the chosen attack target",
+      "passed": true
+    },
+    {
+      "check": "The defender confirms riposte using the available defense option",
+      "passed": true
+    },
+    {
+      "check": "The defender cannot choose the attacker defeat branch",
+      "passed": true
+    },
+    {
+      "check": "The original attacker owns the restored counter choice",
+      "passed": true
+    },
+    {
+      "check": "Discard and explicit defeat are both available with cards in hand",
+      "passed": true
+    },
+    {
+      "check": "Physical F1 opens the glossary",
+      "passed": true
+    },
+    {
+      "check": "Space and seat keys do not act behind the glossary",
+      "passed": true
+    },
+    {
+      "check": "Physical Escape closes the glossary",
+      "passed": true
+    },
+    {
+      "check": "Cancelling the defeat preview leaves the counter pending",
+      "passed": true
+    },
+    {
+      "check": "Choosing a hand card clears the defeat preview",
+      "passed": true
+    },
+    {
+      "check": "The card-discard route keeps the hero alive and discards exactly one card",
+      "passed": true
+    },
+    {
+      "check": "Save restores at EffectChoice revision 11",
+      "passed": true
+    },
+    {
+      "check": "Space confirms defeat without discarding any attacker hand card",
+      "passed": true
+    },
+    {
+      "check": "Rewards and the original attack complete once after restoring",
+      "passed": true
+    },
+    {
+      "check": "Typing filters the scrollable preset list to three riposte situations",
+      "passed": true
+    },
+    {
+      "check": "Loading the critical-crystal preset selects the original attacker",
+      "passed": true
+    },
+    {
+      "check": "Choosing defeat at one crystal ends the match immediately",
+      "passed": true
+    },
+    {
+      "check": "Save restores at EffectChoice revision 11",
+      "passed": true
+    },
+    {
+      "check": "A real engine nine save retains mandatory discard with no new defeat option",
+      "passed": true
+    },
+    {
+      "check": "The original engine nine choice still completes without defeat",
+      "passed": true
+    }
+  ]
+}

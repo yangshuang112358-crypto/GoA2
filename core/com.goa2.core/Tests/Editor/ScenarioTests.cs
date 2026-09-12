@@ -50,36 +50,8 @@ namespace Goa2.Tests
             Assert.That(result.Accepted, Is.True); Assert.That(result.Passed, Is.False);
             Assert.That(result.Errors.Count, Is.EqualTo(6));
         }
-        [TestCase("sandbox-smoke.json")]
-        [TestCase("permissions.json")]
-        [TestCase("formal-turn.json")]
-        [TestCase("frontline.json")]
-        [TestCase("spawn-order.json")]
-        [TestCase("combat-defense.json")]
-        [TestCase("round-upgrades.json")]
-        [TestCase("debug-attack.json")]
-        [TestCase("round-frontline.json")]
-        [TestCase("static-field.json")]
-        [TestCase("skill-suppression.json")]
-        [TestCase("shining-blade.json")]
-        [TestCase("deflection-barrier.json")]
-        [TestCase("reflection-barrier.json")]
-        [TestCase("marksman.json")]
-        [TestCase("headshot.json")]
-        [TestCase("cleave.json")]
-        [TestCase("deadly-sweep.json")]
-        [TestCase("death-spin.json")]
-        [TestCase("backstab.json")]
-        [TestCase("melee-block.json")]
-        [TestCase("riposte-hand.json")]
-        [TestCase("riposte-empty.json")]
-        [TestCase("riposte-victory.json")]
-        [TestCase("riposte-ranged.json")]
-        [TestCase("lead-charge.json")]
-        [TestCase("lead-charge-unavailable.json")]
-        [TestCase("throwing-axe-reflection.json")]
-        [TestCase("throwing-spear-existing-discard.json")]
-        [TestCase("throwing-axe-skip.json")]
+        private static string[] PublishedScenarioFiles() => Directory.GetFiles(Path.Combine(ContentTests.Root(),"tests","scenarios"),"*.json").Select(path=>Path.GetFileName(path)).OrderBy(path=>path,StringComparer.Ordinal).ToArray();
+        [TestCaseSource(nameof(PublishedScenarioFiles))]
         public void PublishedScenarioPassesAgainstTheFormalCatalog(string file)
         {
             string root = ContentTests.Root();

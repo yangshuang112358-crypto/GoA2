@@ -864,7 +864,9 @@
         "core/com.goa2.core/Tests/Editor/ConditionalDefenseTests.cs",
         "core/com.goa2.core/Tests/Editor/LegacySaveTests.cs",
         "core/com.goa2.core/Tests/Editor/ScenarioTests.cs",
-        "tools/test-conditional-defenses-ui.ps1"
+        "tools/test-conditional-defenses-ui.ps1",
+        "core/com.goa2.core/Tests/Editor/RiposteChoiceTests.cs",
+        "tools/test-riposte-choice-ui.ps1"
       ],
       "known_questions": [],
       "implementation_files": [

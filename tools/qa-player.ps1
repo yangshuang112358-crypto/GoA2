@@ -4,7 +4,7 @@ param(
     [string]$Caption,
     [string]$Element,
     [switch]$AutoScroll,
-    [ValidateSet("1","2","3","4","Home","Escape","Tab","Enter","Space")][string]$Key = "1",
+    [ValidateSet("1","2","3","4","Home","Escape","Tab","Enter","Space","F1")][string]$Key = "1",
     [int]$ToX = 0, [int]$ToY = 0,
     [ValidateRange(-6000,6000)][int]$WheelDelta = -960,
     [ValidatePattern("^[a-zA-Z0-9_-]+$")][string]$Name = "player"
@@ -40,7 +40,7 @@ $goaPoint = [Goa2PlayerWindow+POINT]::new()
 [Goa2PlayerWindow]::ClientToScreen($goaHandle,[ref]$goaPoint) | Out-Null
 if ($Action -eq "Key") {
     if ([Goa2PlayerWindow]::GetForegroundWindow() -ne $goaHandle) { throw "Player is not foreground; no input sent." }
-    $goaKeyCodes = @{ '1'=0x31; '2'=0x32; '3'=0x33; '4'=0x34; Home=0x24; Escape=0x1B; Tab=0x09; Enter=0x0D; Space=0x20 }
+    $goaKeyCodes = @{ '1'=0x31; '2'=0x32; '3'=0x33; '4'=0x34; Home=0x24; Escape=0x1B; Tab=0x09; Enter=0x0D; Space=0x20; F1=0x70 }
     # Home is an extended navigation key; without its scan code/flag Unity may see Keypad7.
     $goaExtended = if ($Key -eq 'Home') { 1 } else { 0 }
     $goaScan = if ($Key -eq 'Home') { 0x47 } else { 0 }

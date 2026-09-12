@@ -39,7 +39,7 @@ try {
     $goaBeforeJson=Get-Content -LiteralPath (Join-Path $goaRoot 'artifacts/unity/qa-save.json') -Raw
     Click -Element 'open-debug-presets'
     $goaPresets=Get-Content -LiteralPath (Join-Path $goaRoot 'tools/debug-positions.json') -Raw | ConvertFrom-Json
-    Check (@((Read-Ui).Buttons | Where-Object { $_.Name -like 'debug-preset-*' -and $_.Enabled }).Count -eq $goaPresets.Count) 'All eight prepared positions are available inside the Player'
+    Check (@((Read-Ui).Buttons | Where-Object { $_.Name -like 'debug-preset-*' -and $_.Enabled }).Count -eq $goaPresets.Count) 'All prepared positions are available inside the Player'
     Click -Element 'debug-preset-axe-reflection'
     & "$PSScriptRoot/qa-player.ps1" -Action Key -Key 4 | Out-Null
     Check ((Read-Ui).Seat -eq 0 -and (Read-Ui).Revision -eq $goaBefore.Revision) 'Selecting a preset and pressing a seat shortcut does not alter the current match behind the dialog'

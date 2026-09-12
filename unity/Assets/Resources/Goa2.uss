@@ -77,6 +77,7 @@
 .dialog-overlay { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0,0,0,.7); justify-content: center; align-items: center; }
 .dialog { width: 420px; padding: 28px; background-color: #23343e; border-width: 1px; border-color: #d4b789; border-radius: 8px; }
 .debug-preset-dialog { width: 760px; max-width: 90%; max-height: 94%; padding: 22px; }
+.debug-preset-list { min-height: 0; flex-grow: 1; flex-shrink: 1; }
 .startup-dialog { width: 620px; max-width: 90%; max-height: 90%; }
 .startup-details { max-height: 180px; margin-top: 8px; margin-bottom: 15px; }
 .unity-scroller--vertical { width: 9px; min-width: 9px; }

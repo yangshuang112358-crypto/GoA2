@@ -219,7 +219,7 @@ namespace Goa2.Presentation
                 {
                     if (view.Pending?.Kind == "defense" && view.Pending.ChooserSeat == seat && view.DefenseOptions.Any(o => o.CardId == card.Id))
                     { defenseCardId = card.Id; declineDefensePending = false; showDebug = false; Render(); }
-                    else if (view.ForcedDiscardCards.Contains(card.Id) || view.OptionalDiscardCards.Contains(card.Id)) { discardCardId=card.Id; showDebug=false; Render(); }
+                    else if (view.ForcedDiscardCards.Contains(card.Id) || view.OptionalDiscardCards.Contains(card.Id)) { discardCardId=card.Id;declineRetaliationPending=false;showDebug=false;Render(); }
                     else if (view.Phase == Phase.Planning && !view.Players[seat].Confirmed && (instance.Zone == CardZone.InHand || instance.Zone == CardZone.Selected)) Submit(CommandKind.SelectCard, card.Id);
                     else { galleryHero = card.HeroId; galleryOpen = true; Render(); }
                 }, "hand-card");

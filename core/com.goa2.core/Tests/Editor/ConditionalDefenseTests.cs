@@ -24,7 +24,7 @@ namespace Goa2.Tests
         }
         [TestCase(MeleeBlock)]
         [TestCase(Riposte)]
-        public void NonRangedBlockRunsAfterTheOriginalAttackTextAndRequiresAttackerDiscard(string card)
+        public void NonRangedBlockRunsAfterTheOriginalAttackTextAndAcceptsAttackerDiscard(string card)
         {
             var catalog=BattlefieldTests.Catalog(); var game=Ready(catalog,card); BarrierResponseTests.Attack(game);
             Assert.That(game.View(1).DefenseOptions.Any(o => o.CardId==card && o.Block && o.Assessment.Successful), Is.True);
@@ -135,7 +135,7 @@ namespace Goa2.Tests
         }
         [TestCase(MeleeBlock)]
         [TestCase(Riposte)]
-        public void ForcedDiscardIsOwnedMandatoryAtomicAndIdempotent(string card)
+        public void ForcedDiscardRequiresAnOwnedCardAndIsAtomicAndIdempotent(string card)
         {
             var catalog=BattlefieldTests.Catalog(); var game=Ready(catalog,card); BarrierResponseTests.Attack(game);
             var defense=Cmd(game,1,CommandKind.Defend,card); Assert.That(game.Execute(1,defense).Accepted, Is.True); Assert.That(game.Execute(1,defense).Duplicate, Is.True);
@@ -230,21 +230,24 @@ namespace Goa2.Tests
             Assert.That(game.View(0).Players[0].PermanentBonuses[bonus], Is.EqualTo((prior.TryGetValue(bonus,out int count) ? count : 0)+1));
             Assert.That(LocalGameFactory.Restore(catalog,game.ExportSave()).ExportSave(), Is.EqualTo(game.ExportSave()));
         }
-        [Test]
-        public void FourthTurnFinalAttackCanBeCounterDefeatedThenReachUpgradesAndRespawnNextRound()
+        [TestCase(false)]
+        [TestCase(true)]
+        public void FourthTurnFinalAttackCanBeCounterDefeatedThenReachUpgradesAndRespawnNextRound(bool voluntary)
         {
             var catalog=BattlefieldTests.Catalog(); var game=LocalGameFactory.Create(catalog,"last-turn-riposte",new[] {"A","B","C","D"},42,true);
             Apply(game,0,CommandKind.DebugPrepare,"shargatha,tigerclaw,brogan,arien");
             for(int turn=1;turn<4;turn++) Apply(game,0,CommandKind.DebugAdvance,"turn");
             Apply(game,0,CommandKind.DebugEquipCard,"shargatha-01-劈砍",target:0); Apply(game,0,CommandKind.DebugEquipCard,Riposte,target:1);
+            if(voluntary) Apply(game,0,CommandKind.DebugEquipCard,catalog.Cards.Single(c=>c.HeroId=="shargatha" && c.Color=="silver").Id,target:0);
             for(int seat=1;seat<4;seat++) Apply(game,0,CommandKind.DebugEquipCard,game.View(seat).OwnCards.Single(c => catalog.Card(c.CardId).Color=="gold").CardId,target:seat);
             Apply(game,0,CommandKind.DebugTeleport,"hero:0",cell:new Hex(7,-10)); Apply(game,0,CommandKind.DebugTeleport,"hero:1",cell:new Hex(8,-10));
             Apply(game,0,CommandKind.SelectCard,"shargatha-01-劈砍");
             for(int seat=1;seat<4;seat++) Apply(game,seat,CommandKind.SelectCard,game.View(seat).OwnCards.Single(c => catalog.Card(c.CardId).Color=="gold").CardId);
             AdvanceUntilSeat(game,0);
             Assert.That(game.View(null).Players.Skip(1).All(p => p.Revealed.All(c => c.Zone==CardZone.PlayedResolved)), Is.True);
-            foreach(var hand in game.View(0).OwnCards.Where(c => c.Zone==CardZone.InHand).ToList()) Apply(game,0,CommandKind.DebugDiscard,hand.CardId,target:0);
+            if(!voluntary) foreach(var hand in game.View(0).OwnCards.Where(c => c.Zone==CardZone.InHand).ToList()) Apply(game,0,CommandKind.DebugDiscard,hand.CardId,target:0);
             BarrierResponseTests.Attack(game); Apply(game,1,CommandKind.Defend,Riposte);
+            if(voluntary) { game=LocalGameFactory.Restore(catalog,game.ExportSave());Apply(game,0,CommandKind.DeclineRetaliationDiscard); }
             var view=game.View(null); Assert.That(view.Phase, Is.EqualTo(Phase.RoundEnd)); Assert.That(view.Turn, Is.EqualTo(4)); Assert.That(view.Players[0].AwaitingRespawn, Is.True);
             Assert.That(view.Events.FindLastIndex(e => e.Kind=="HeroDefeated"), Is.LessThan(view.Events.FindLastIndex(e => e.Kind=="CardResolved")));
             Assert.That(view.Events.FindLastIndex(e => e.Kind=="CardResolved"), Is.LessThan(view.Events.FindLastIndex(e => e.Kind=="RoundEndReached")));

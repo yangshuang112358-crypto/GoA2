@@ -1,0 +1,165 @@
+{
+  "SchemaVersion": 1,
+  "Id": "riposte-decline",
+  "Name": "近身还击：有牌主动被击败、拒绝越权与重复、原攻击后文收尾",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "wasp,tigerclaw,brogan,arien"
+    },
+    {
+      "Target": "p2",
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-17-近身还击"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 7
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:0"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 8
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:1"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "wasp-00-闪耀之刃"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "tigerclaw-08-偷天妙手"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2"
+      }
+    },
+    {
+      "Command": "Defend",
+      "Actor": "p2",
+      "Value": "tigerclaw-17-近身还击",
+      "Expect": {
+        "PendingChooser": "p1",
+        "EventOrder": [
+          "DefenseResolved",
+          "AttackResolved",
+          "EffectActivated",
+          "ForcedDiscardRequired"
+        ],
+        "EffectCounts": {
+          "wasp-00-闪耀之刃": 1
+        },
+        "PendingKind": "forced_discard",
+        "EventCounts": {
+          "AttackResolved": 1
+        }
+      }
+    },
+    {
+      "Name": "虎爪不能代原攻击者选择被击败",
+      "Actor": "p2",
+      "Command": "DeclineRetaliationDiscard",
+      "Expect": {
+        "Code": "invalid_retaliation_choice"
+      }
+    },
+    {
+      "Name": "原攻击者保留手牌并接受反制击败",
+      "Command": "DeclineRetaliationDiscard",
+      "Expect": {
+        "HandCounts": {
+          "p1": 4
+        },
+        "EventOrder": [
+          "RetaliationDiscardDeclined",
+          "HeroDefeated",
+          "DefenseResponseCompleted",
+          "CardResolved"
+        ],
+        "Active": "p3",
+        "EventCounts": {
+          "DiscardColorShown": 0,
+          "AttackResolved": 0,
+          "HeroDefeated": 1,
+          "CardResolved": 1
+        },
+        "BlueCrystal": 6,
+        "DiscardCounts": {
+          "p1": 0,
+          "p2": 1
+        },
+        "Gold": {
+          "p2": 1,
+          "p4": 1
+        },
+        "Phase": "Action",
+        "RedCrystal": 7
+      }
+    },
+    {
+      "Name": "重复同一选择不能重复奖励",
+      "ReplayStep": 13,
+      "Expect": {
+        "EventCounts": {
+          "CardResolved": 0,
+          "HeroDefeated": 0
+        },
+        "HandCounts": {
+          "p1": 4
+        },
+        "BlueCrystal": 6,
+        "Gold": {
+          "p2": 1,
+          "p4": 1
+        },
+        "Code": "duplicate"
+      }
+    },
+    {
+      "Command": "DeclineRetaliationDiscard",
+      "Expect": {
+        "Code": "invalid_retaliation_choice"
+      }
+    },
+    {
+      "Command": "DebugAdvance",
+      "Value": "turn",
+      "Expect": {
+        "Turn": 2,
+        "Phase": "Planning",
+        "EffectCounts": {
+          "wasp-00-闪耀之刃": 0
+        }
+      }
+    }
+  ]
+}

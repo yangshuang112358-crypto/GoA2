@@ -10,6 +10,7 @@ namespace Goa2.Presentation
         private string defenseCardId = "";
         private string discardCardId = "";
         private bool declineDefensePending;
+        private bool declineRetaliationPending;
         private static string DefenseRestrictionText(string reason) => reason switch
         {
             "unblockable" => "此攻击不可抵挡",
@@ -63,18 +64,25 @@ namespace Goa2.Presentation
             }
             if (choice.Kind == "forced_discard")
             {
-                parent.Add(Text(PlayerName(choice.ChooserSeat) + "选择一张手牌弃置。", "section-title"));
+                parent.Add(Text(PlayerName(choice.ChooserSeat) + "处理反制选择。", "section-title"));
                 parent.Add(Text("本次攻击已结算，完成反制后继续下一次行动。", "body"));
                 if (choice.Source!="") RenderCardDetail(parent,catalog.Card(choice.Source));
                 if (choice.ChooserSeat != seat) { parent.Add(Text("切换至对应角色选择弃牌。", "body")); return true; }
-                parent.Add(Text("点击下方手牌或以下选项，再确认弃置。此选择不能跳过。", "body"));
+                parent.Add(Text(view.CanDeclineRetaliationDiscard ? "选择一张手牌弃置，或不弃牌、直接被击败。" : "点击下方手牌或以下选项，再确认弃置。此选择不能跳过。", "body"));
                 foreach (string id in view.ForcedDiscardCards)
                 {
                     string selected=id;
-                    var button=Button(catalog.Card(id).Name,() => { discardCardId=selected; Render(); },"choice-button","forced-discard-"+catalog.Card(id).Color);
+                    var button=Button(catalog.Card(id).Name,() => { discardCardId=selected;declineRetaliationPending=false;Render(); },"choice-button","forced-discard-"+catalog.Card(id).Color);
                     if (discardCardId==id) button.AddToClassList("chosen"); parent.Add(button);
                 }
-                if (view.ForcedDiscardCards.Contains(discardCardId))
+                if(view.CanDeclineRetaliationDiscard)
+                {
+                    var defeat=Button("不弃牌，直接被击败",()=> { discardCardId="";declineRetaliationPending=true;Render(); },"choice-button","retaliation-decline");
+                    if(declineRetaliationPending) defeat.AddToClassList("chosen");parent.Add(defeat);
+                }
+                if(declineRetaliationPending && view.CanDeclineRetaliationDiscard)
+                    Confirm(parent,"确认不弃牌并被击败",()=>Submit(CommandKind.DeclineRetaliationDiscard));
+                else if (view.ForcedDiscardCards.Contains(discardCardId))
                 {
                     RenderCardDetail(parent,catalog.Card(discardCardId));
                     Confirm(parent,"确认弃置 "+catalog.Card(discardCardId).Name,() => Submit(CommandKind.ForcedDiscard,discardCardId));

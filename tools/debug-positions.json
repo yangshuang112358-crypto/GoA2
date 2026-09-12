@@ -1,10 +1,82 @@
 [
-  {"id":"axe-ready","title":"飞斧：准备攻击","scenario":"throwing-axe-reflection","through_step":10,"phase":"Action","pending":""},
-  {"id":"axe-cost","title":"飞斧：选择可选弃牌","scenario":"throwing-axe-reflection","through_step":11,"phase":"EffectChoice","pending":"optional_discard"},
-  {"id":"axe-reflection","title":"飞斧：反射屏障后的强制弃牌","scenario":"throwing-axe-reflection","through_step":17,"phase":"EffectChoice","pending":"forced_discard"},
-  {"id":"spear-existing","title":"长矛：已有弃牌的攻击前窗口","scenario":"throwing-spear-existing-discard","through_step":10,"phase":"EffectChoice","pending":"optional_discard"},
-  {"id":"riposte","title":"近身还击：原攻击者选择弃牌","scenario":"riposte-hand","through_step":11,"phase":"EffectChoice","pending":"forced_discard"},
-  {"id":"upgrades","title":"轮末：两名角色同步升级","scenario":"round-upgrades","through_step":5,"phase":"RoundEnd","pending":""},
-  {"id":"respawn","title":"英雄复活：选择出生点并继续原牌","scenario":"combat-defense","through_step":12,"phase":"EffectChoice","pending":"hero_respawn"},
-  {"id":"occupied-spawn","title":"推进：队长选择被占出生点的邻格","scenario":"spawn-order","through_step":4,"phase":"EffectChoice","pending":"minion_spawn"}
+  {
+    "id": "axe-ready",
+    "title": "飞斧：准备攻击",
+    "scenario": "throwing-axe-reflection",
+    "through_step": 10,
+    "phase": "Action",
+    "pending": ""
+  },
+  {
+    "id": "axe-cost",
+    "title": "飞斧：选择可选弃牌",
+    "scenario": "throwing-axe-reflection",
+    "through_step": 11,
+    "phase": "EffectChoice",
+    "pending": "optional_discard"
+  },
+  {
+    "id": "axe-reflection",
+    "title": "飞斧：反射屏障后的强制弃牌",
+    "scenario": "throwing-axe-reflection",
+    "through_step": 17,
+    "phase": "EffectChoice",
+    "pending": "forced_discard"
+  },
+  {
+    "id": "spear-existing",
+    "title": "长矛：已有弃牌的攻击前窗口",
+    "scenario": "throwing-spear-existing-discard",
+    "through_step": 10,
+    "phase": "EffectChoice",
+    "pending": "optional_discard"
+  },
+  {
+    "id": "riposte",
+    "title": "近身还击：有牌选弃牌或被击败",
+    "scenario": "riposte-hand",
+    "through_step": 11,
+    "phase": "EffectChoice",
+    "pending": "forced_discard"
+  },
+  {
+    "id": "upgrades",
+    "title": "轮末：两名角色同步升级",
+    "scenario": "round-upgrades",
+    "through_step": 5,
+    "phase": "RoundEnd",
+    "pending": ""
+  },
+  {
+    "id": "respawn",
+    "title": "英雄复活：选择出生点并继续原牌",
+    "scenario": "combat-defense",
+    "through_step": 12,
+    "phase": "EffectChoice",
+    "pending": "hero_respawn"
+  },
+  {
+    "id": "occupied-spawn",
+    "title": "推进：队长选择被占出生点的邻格",
+    "scenario": "spawn-order",
+    "through_step": 4,
+    "phase": "EffectChoice",
+    "pending": "minion_spawn"
+  },
+  {
+    "id": "riposte-empty",
+    "title": "近身还击：空手攻击者，虎爪待防御",
+    "scenario": "riposte-empty",
+    "through_step": 14,
+    "phase": "EffectChoice",
+    "pending": "defense"
+  },
+  {
+    "id": "riposte-victory",
+    "title": "近身还击：有牌但水晶仅1，可主动选择被击败",
+    "scenario": "riposte-decline-victory",
+    "through_step": 12,
+    "phase": "EffectChoice",
+    "pending": "forced_discard"
+  }
 ]

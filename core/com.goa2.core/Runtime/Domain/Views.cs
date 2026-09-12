@@ -71,6 +71,7 @@ namespace Goa2.Domain
         public List<DefenseOption> DefenseOptions = new List<DefenseOption>();
         public Dictionary<string,string> DefenseRestrictions = new Dictionary<string,string>();
         public List<string> ForcedDiscardCards = new List<string>();
+        public bool CanDeclineRetaliationDiscard;
         public List<string> OptionalDiscardCards = new List<string>();
         public int? AttackRange;
         public List<string> UnimplementedDefenseCards = new List<string>();

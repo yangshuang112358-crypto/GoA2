@@ -13,18 +13,12 @@ namespace Goa2.Tests
     {
         private static string Root => ContentTests.Root();
         private static string Prepared() => DebugPositions.Prepare(Root);
-        [TestCase("axe-ready")]
-        [TestCase("axe-cost")]
-        [TestCase("axe-reflection")]
-        [TestCase("spear-existing")]
-        [TestCase("riposte")]
-        [TestCase("upgrades")]
-        [TestCase("respawn")]
-        [TestCase("occupied-spawn")]
+        private static string[] PositionIds() => JArray.Parse(File.ReadAllText(Path.Combine(Root,"tools","debug-positions.json"))).Select(p=>p["id"]!.Value<string>()!).ToArray();
+        [TestCaseSource(nameof(PositionIds))]
         public void PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(string id)
         {
             var catalog=BattlefieldTests.Catalog(); var positions=DebugPositions.Read(Prepared());
-            Assert.That(positions.Count,Is.EqualTo(8)); var position=positions.Single(p=>p.Id==id);
+            var position=positions.Single(p=>p.Id==id);
             var session=DebugPositions.Open(catalog,position); var view=session.View(null);
             Assert.That(view.Sandbox,Is.True); Assert.That(view.Revision,Is.GreaterThan(0));
             Assert.That(view.Phase,Is.EqualTo(position.Phase)); Assert.That(view.Pending?.Kind ?? "",Is.EqualTo(position.Pending));

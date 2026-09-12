@@ -115,7 +115,7 @@ namespace Goa2.Presentation
         private void ClearPending()
         {
             chosenHero = null; chosenCell = null; moveMode = null; initiativeSeat = null; passPending = false; deploymentSeat = -1;
-            defenseCardId = ""; discardCardId = ""; declineDefensePending = false;
+            defenseCardId = ""; discardCardId = ""; declineDefensePending = false;declineRetaliationPending=false;
             upgradeCardId = ""; upgradeColor = "";
             debugAttack = false;
         }
@@ -154,7 +154,7 @@ namespace Goa2.Presentation
                 {
                     case "attack_target": return "选择攻击目标";
                     case "defense": return "选择防御";
-                    case "forced_discard": return "选择弃牌";
+                    case "forced_discard": return "反制选择";
                     case "optional_discard": return "攻击前弃牌";
                     case "hero_respawn": return "英雄复活";
                     case "round_minion_removal": return "轮末小兵战斗";
@@ -517,7 +517,8 @@ namespace Goa2.Presentation
                 case "DefenseDeclined": return actor + "选择不防御";
                 case "DefenseCalculated": return actor + "防御计算 " + entry.Detail;
                 case "DefenseResolved": return actor + (entry.Detail == "success" ? "防御成功" : "防御失败");
-                case "ForcedDiscardRequired": return actor + "需要选择一张手牌弃置";
+                case "ForcedDiscardRequired": return actor + "需要处理反制弃牌";
+                case "RetaliationDiscardDeclined": return actor + "选择不弃牌并被击败";
                 case "ForcedDiscardSkipped": return actor + "没有手牌，继续反制后续步骤";
                 case "ForcedDiscardCompleted": return actor + "完成强制弃牌";
                 case "DefenseResponseCompleted": return actor + "的防御后处理完成";

@@ -8,6 +8,26 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
+        public static bool CanDeclineRetaliationDiscard(ContentCatalog catalog,GameState state,int seat)
+        {
+            // The saved engine version owns this ruling; old response windows keep their options.
+            if(state.EngineVersion<10 || LegalForcedDiscards(state,seat).Count==0) return false;
+            var response=state.Execution!.DefenseResponse!;
+            var program=CardPrograms.Defense(catalog.Card(response.SourceCardId),state.EngineVersion);
+            return program!=null && program.Id==response.ProgramId && program.Version==response.ProgramVersion &&
+                program.Followup==DefenseFollowup.DiscardAttackerOrDefeat &&
+                state.Units.Any(u=>u.Id==response.AttackerUnitId && u.Kind=="hero" && u.Seat==seat);
+        }
+        private static void DeclineRetaliationDiscard(ContentCatalog catalog,GameState state,Command command)
+        {
+            Require(CanDeclineRetaliationDiscard(catalog,state,command.ActorSeat),"invalid_retaliation_choice","当前不能选择不弃牌而被击败；请由对应反制的原攻击者本人选择。");
+            var response=state.Execution!.DefenseResponse!;
+            Emit(state,command,"RetaliationDiscardDeclined",command.ActorSeat);
+            response.Cursor++;
+            state.Pending=null;state.Phase=Phase.Action;
+            DefeatHero(state,command,response.AttackerUnitId,response.ControllerSeat,response.SourceCardId,response.ControllerSeat);
+            if(state.Phase!=Phase.Finished) EndCardExecution(catalog,state,command);
+        }
         public static List<string> LegalForcedDiscards(GameState state,int seat)
         {
             var response=state.Execution?.DefenseResponse;

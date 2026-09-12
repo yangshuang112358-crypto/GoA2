@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('all','smoke','presets','recovery','gallery','battlefield','combat','upgrade','round-minion','auras','barriers','marksman','adjacent-attacks','conditional-defenses','optional-discard')]
+    [ValidateSet('all','smoke','presets','recovery','gallery','battlefield','combat','upgrade','round-minion','auras','barriers','marksman','adjacent-attacks','conditional-defenses','optional-discard','riposte-choice')]
     [string[]]$Case = @('all'),
     [ValidateRange(1152,3840)][int]$Width = 1280,
     [ValidateRange(768,2160)][int]$Height = 800,
@@ -22,6 +22,7 @@ $goaCases = [ordered]@{
     'adjacent-attacks' = @('test-adjacent-attacks-ui.ps1','adjacent-attacks-ui')
     'conditional-defenses' = @('test-conditional-defenses-ui.ps1','conditional-defenses-ui')
     'optional-discard' = @('test-optional-discard-ui.ps1','optional-discard-ui')
+    'riposte-choice' = @('test-riposte-choice-ui.ps1','riposte-choice-ui')
 }
 if ($Case -contains 'all' -and $Case.Count -ne 1) { throw 'Use all by itself, or select individual cases.' }
 $goaSelected = if ($Case -contains 'all') { @($goaCases.Keys) } else { @($Case | Select-Object -Unique) }
