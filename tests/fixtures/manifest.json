@@ -72,6 +72,15 @@
       "input": "tests/fixtures/engine9-riposte-empty-defense-scenario.json",
       "input_sha256": "86eb6e1b9a5df8917312763c36bf63a711ed7446d47d89fa53ccc8f29a2a8a59",
       "provenance": "tests/fixtures/engine9-riposte-empty-defense.md"
+    },
+    {
+      "engine_version": 10,
+      "accepted_commands": 11,
+      "save": "tests/fixtures/engine10-riposte-choice.json",
+      "save_sha256": "31b66c305eecf01d9e5cc67aa5e993a320db35eac89e43223db624b79be9ea46",
+      "input": "tests/fixtures/engine10-riposte-choice-scenario.json",
+      "input_sha256": "06e072c7d01d9c1847d4c7844f97f8db97ce3b5a6384f7f56acb67d8a7632af3",
+      "provenance": "tests/fixtures/engine10-riposte-choice.md"
     }
   ]
 }

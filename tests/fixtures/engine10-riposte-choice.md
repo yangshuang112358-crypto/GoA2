@@ -1,0 +1,16 @@
+# 引擎10真实反制窗口
+
+2026-09-13在修改任何引擎11核心代码之前，用已构建的引擎10原生Player运行本目录的输入11步。
+代码基线eb7e2e6；Player构建UTC 2026-09-12T05:43:13.0837565Z；完整构建清单SHA-256 ef9137bb349dc0b25a0c1963ab53c1cd794a19c37c9ac9185915324f2f46a0ba。
+
+结果为原攻击者等待近身还击弃牌/自主被击败选择，11条接受命令，引擎10。原生报告Complete/Passed，退出0。
+输入及保存原始字节由manifest登记；不是手工合成状态，不从新引擎回写旧版本号。
+原始报告路径：artifacts/scenarios/engine10-riposte-choice-scenario/headless/1fedc5b066f4477d87db70a7c8de2eeb/report.json。
+保存SHA-256：31b66c305eecf01d9e5cc67aa5e993a320db35eac89e43223db624b79be9ea46。输入SHA-256：06e072c7d01d9c1847d4c7844f97f8db97ce3b5a6384f7f56acb67d8a7632af3。
+
+程序集SHA-256：
+- Goa2.Infrastructure.dll: b50f0a7cdb61fe7666ecee4d61542c5a333638a3ffb50af5498e20d690b6a0b1
+- Goa2.Presentation.dll: ca0a7d97516c33dfb5687fee4c2acca65ce1647a66c63a5c82d1b0ec74d373ad
+- Goa2.Rules.dll: 274dba54b01bd5ba221618272a357d3d50901d27b83717c9f836853aa6146dac
+- Goa2.Application.dll: 39bd46cd1e88959bd26e31ba207197b715b94a6fe633c845e257d0e49cb231b4
+- Goa2.Domain.dll: 0633e23809552945f7ba04563ad75c1b7f7ed8dbfb8abcb49270b0463f458f3f
