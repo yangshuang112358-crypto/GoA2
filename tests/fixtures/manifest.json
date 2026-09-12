@@ -144,6 +144,15 @@
       "input": "tests/fixtures/engine17-pincer-defense-scenario.json",
       "input_sha256": "e7e1fbd93089f942c77da8d7abe4daa042f2681c53710dce3188bbf7f85fae23",
       "provenance": "tests/fixtures/engine17-pincer-defense.md"
+    },
+    {
+      "engine_version": 18,
+      "accepted_commands": 12,
+      "save": "tests/fixtures/engine18-boomerang-target.json",
+      "save_sha256": "b13ab72d773f940256f2e51589c0fe3da24a17f40be6531b06d026f8f52a8144",
+      "input": "tests/fixtures/engine18-boomerang-target-scenario.json",
+      "input_sha256": "7d60a7772e5a4a146658af51fa6cfb3f6472db921719b7e3e5413dd9ddde00bd",
+      "provenance": "tests/fixtures/engine18-boomerang-target.md"
     }
   ]
 }

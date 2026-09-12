@@ -28,6 +28,7 @@ namespace Goa2.Domain
         public int Y;
         public Hex(int x, int y) { X = x; Y = y; }
         public int Distance(Hex other) => Math.Max(Math.Abs(X - other.X), Math.Max(Math.Abs(Y - other.Y), Math.Abs((X - other.X) + (Y - other.Y))));
+        public bool IsInStraightLineWith(Hex other) => X == other.X || Y == other.Y || X + Y == other.X + other.Y;
         public IEnumerable<Hex> Neighbors()
         {
             yield return new Hex(X + 1, Y); yield return new Hex(X, Y + 1);
@@ -211,7 +212,7 @@ namespace Goa2.Domain
     public sealed class GameState
     {
         public const string CurrentProtocol = "1.0.0";
-        public const int CurrentEngineVersion = 17;
+        public const int CurrentEngineVersion = 18;
         public int InitialEngineVersion;
         public int EngineVersion;
         public string ProtocolVersion = CurrentProtocol;

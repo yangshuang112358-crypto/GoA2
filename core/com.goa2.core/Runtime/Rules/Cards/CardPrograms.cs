@@ -42,9 +42,10 @@ namespace Goa2.Rules.Cards
         public readonly HeroTargetKind HeroTarget;
         public readonly bool RecoverResolved;
         public readonly bool SupportMakesUnblockable;
+        public readonly bool ExcludeStraightLine;
         public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
             EffectAreaKind areaKind=EffectAreaKind.SkillRange, AttackBonusKind bonus=AttackBonusKind.None, int bonusValue=0,
-            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,params InstructionKind[] instructions)
+            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
             AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=EffectDuration.ThisTurn;
@@ -54,6 +55,7 @@ namespace Goa2.Rules.Cards
             RecoveryRequiresAdjacentMinion=recoveryRequiresAdjacentMinion;
             HeroTarget=heroTarget;
             RecoverResolved=recoverResolved;
+            ExcludeStraightLine=excludeStraightLine;
             SupportMakesUnblockable=supportMakesUnblockable;
             Instructions = System.Array.AsReadOnly(instructions.Length>0 ? instructions : new[] { InstructionKind.ChooseAttackTarget, InstructionKind.Attack, InstructionKind.End });
         }
@@ -74,6 +76,8 @@ namespace Goa2.Rules.Cards
         // Binding IDs is confined to this registry. Shared execution never branches on a card ID.
         private static readonly Dictionary<string,(string text,int minimumEngine,PrimaryProgram program)> Attacks = new Dictionary<string,(string,int,PrimaryProgram)>
         {
+            ["wasp-02-回旋镖"] = ("选择攻击距离内与你不在同一直线上的一个单位为目标。（相邻单位也被视为在直线上）",18,
+                new PrimaryProgram("ranged_excluding_straight_line",1,excludeStraightLine:true)),
             ["tigerclaw-05-两面夹攻"] = ("选择攻击距离内的一个单位为目标。如果有友方单位与目标相邻，则+3攻击且此攻击无法被抵挡。（抵挡是一个关键词-目标英雄仍可以进行防御）",17,
                 new PrimaryProgram("ranged_attack_supported_unblockable",1,bonus:AttackBonusKind.OtherFriendlySupport,bonusValue:3,supportMakesUnblockable:true)),
             ["tigerclaw-06-暗影奇袭"] = ("攻击前：你可以移动1格。选择与你相邻的一个单位为目标。攻击后：你可以移动1格。",14,

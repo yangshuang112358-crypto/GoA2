@@ -6,12 +6,14 @@
   "pdf_pages": 24,
   "checked_printed_pages": [
     10,
-    17
+    17,
+    19
   ],
   "scope": [
     "retrieve card",
     "active effects cancelled when source card changes state",
-    "friendly excludes source hero"
+    "friendly excludes source hero",
+    "straight line including adjacent hexes"
   ],
   "full_rulebook_audit": false
 }

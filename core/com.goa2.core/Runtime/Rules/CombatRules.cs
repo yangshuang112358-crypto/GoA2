@@ -78,6 +78,7 @@ namespace Goa2.Rules
             var removable = new HashSet<string>(GameRules.LegalMinionRemovals(state));
             return state.Units.Where(u => u.Team != source.Team && u.Position.Distance(source.Position) >= program.MinimumDistance &&
                     u.Position.Distance(source.Position) <= distance && (u.Kind == "hero" || !program.OnlyHeroes && removable.Contains(u.Id)) &&
+                    (!program.ExcludeStraightLine || !source.Position.IsInStraightLineWith(u.Position)) &&
                     EffectRules.CanBeAttacked(state,source,u,card.Subtype=="远程"))
                 .Select(u => u.Id).OrderBy(id => id, System.StringComparer.Ordinal).ToList();
         }

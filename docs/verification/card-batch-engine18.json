@@ -1,0 +1,72 @@
+{
+  "engine": 18,
+  "implemented_cards": 29,
+  "data_only_cards": 79,
+  "build_utc": "2026-09-12T19:41:00.6550460Z",
+  "assemblies": {
+    "Goa2.Application.dll": "6a555ef80cc9796cc3b058403fc3c8d2036233ae89150222f1de4ad4b5f88888",
+    "Goa2.Domain.dll": "9131c3750ddc0ab2b40444c0b632270ab19a39c11e4063473d60261c0c43d39d",
+    "Goa2.Infrastructure.dll": "0bae6b1e89f9d884cff60128fc22dee6dad17d59db48bffb753cd710b9a73251",
+    "Goa2.Presentation.dll": "757b49ea0dea3e0b3670a089a8dc42557ba8bcf2f9c35b9f0b3d0b55aa54e2bd",
+    "Goa2.Rules.dll": "ee662ab3b415e29b0c7b1151c55ab96ed84d77ca8fb14e3b80c31686a3bf9b30"
+  },
+  "core": {
+    "passed": 616,
+    "failed": 0,
+    "report": "artifacts/tests/boomerang-core.trx",
+    "card_specific": 17
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/boomerang-block.json",
+        "input_sha256": "8ef70bd056a4c3b5d2c40146393dfe5c04bdb57a0bba560ff41e3ae34353bfce",
+        "report": "artifacts/scenarios/boomerang-block/headless/df24560195e0404bbf66cf55dbbcf9c9/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/boomerang-minion.json",
+        "input_sha256": "42c758a94afa536bac2817264a1e00c22e2c0eb5164ea679082a0b657ba7dfee",
+        "report": "artifacts/scenarios/boomerang-minion/headless/778b0cab76924eaaa24b1e0c97237d78/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/boomerang-no-target.json",
+        "input_sha256": "1dd39f16adca4dd33b058741cf508e5cd6099b7bb8cff342d95cd0b4522706a0",
+        "report": "artifacts/scenarios/boomerang-no-target/headless/15f39776eef54417a7434eb83e08dcbe/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pincer-numeric.json",
+        "input_sha256": "5b7b11aae900f7136204c59ef4fcf909ba3c8c3e6ab27056ac6871fbd1a70359",
+        "report": "artifacts/scenarios/pincer-numeric/headless/5723484670f24ba29b6c3d7464406460/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/minstrel-aura.json",
+        "input_sha256": "91677bc533b9c1b85de5632d67a2a8cf026c270593f97e5aecb568077e48c0f9",
+        "report": "artifacts/scenarios/minstrel-aura/headless/fd78d53d6b6240c09531847ea2ae6855/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine18-boomerang-target-scenario.json",
+        "input_sha256": "7d60a7772e5a4a146658af51fa6cfb3f6472db921719b7e3e5413dd9ddde00bd",
+        "report": "artifacts/scenarios/engine18-boomerang-target-scenario/headless/ca8b44c47cec4743853160f0b66f39f9/report.json",
+        "steps": 12,
+        "passed": true
+      }
+    ],
+    "scenarios": 6,
+    "steps": 89
+  },
+  "manual_presets": [
+    "boomerang",
+    "boomerang-no-target"
+  ],
+  "note": "Native Player commands verified. No UI code changed; physical clicks and visual screenshots not tested this card. Frozen E18 is included as one native scenario."
+}

@@ -30,11 +30,20 @@
     },
     {
       "card_id": "wasp-02-回旋镖",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-02-回旋镖.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/BoomerangTests.cs",
+        "tests/scenarios/boomerang-block.json",
+        "tests/scenarios/boomerang-minion.json",
+        "tests/scenarios/boomerang-no-target.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Domain/Model.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs"
+      ]
     },
     {
       "card_id": "wasp-03-电能波",
