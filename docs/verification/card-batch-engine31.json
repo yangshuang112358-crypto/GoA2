@@ -1,0 +1,93 @@
+{
+  "engine": 31,
+  "implemented_cards": 42,
+  "data_only_cards": 66,
+  "build_utc": "2026-09-12T21:34:05.0590163Z",
+  "assemblies": {
+    "Goa2.Application.dll": "63a728a16971d8f662ed9b112f0173d79bc493e7a580673b43f88e14516731fa",
+    "Goa2.Domain.dll": "ad615ed5a62b883bdf1e54da7966a12c3c652503977141d51e6f368770ed1da4",
+    "Goa2.Infrastructure.dll": "51b6837e603fc475787fac9b5991fc9cc766099b9a4bb11bf6c0bb613813bcaf",
+    "Goa2.Presentation.dll": "62f9ec010df2eb3ea4dd68f2f3cb0edd2c6e34d09507999db0799fa37a5c7cb6",
+    "Goa2.Rules.dll": "410d8297330f271e656869d1df8e81134cfda6e94bf672cbe49a5e6577182ac7"
+  },
+  "core": {
+    "passed": 905,
+    "failed": 0,
+    "report": "artifacts/tests/battledrill-core.trx",
+    "card_specific": 13
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/battledrill-basic.json",
+        "input_sha256": "dc9b890d77572d66aabd173f0b2bc799f4d07cc49168c20b8a18518213492e64",
+        "report": "artifacts/scenarios/battledrill-basic/headless/57b43fc4bdf047d2816bb7e4ef74838d/report.json",
+        "steps": 23,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battledrill-stay.json",
+        "input_sha256": "3184435b65a5d92c9bc743e2e07867437ff0710b3d15399f5daaacdc3f5fb57a",
+        "report": "artifacts/scenarios/battledrill-stay/headless/14d1c657779a4340b11421de33bdbcfe/report.json",
+        "steps": 23,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battledrill-source-moved.json",
+        "input_sha256": "b1021e23580d416e294bee645a069fd3b31566fbf5ca4591351edc2e8089b359",
+        "report": "artifacts/scenarios/battledrill-source-moved/headless/70a6f907b6934c37aad7d709a0769432/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battledrill-ordinary.json",
+        "input_sha256": "7b77759d21615129e7b25925dc10e9b8c20a84d53abc2635961cafc6fd74f9c3",
+        "report": "artifacts/scenarios/battledrill-ordinary/headless/4a0c599e5a384600a3e48390c48f40bf/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battledrill-retrieve.json",
+        "input_sha256": "2ed7e0967930ed24a5e2a4e88e6263453c2451a827ed5d0f98d878b64fe15bb6",
+        "report": "artifacts/scenarios/battledrill-retrieve/headless/4d8bf24f4e12439d835207a670c4081c/report.json",
+        "steps": 28,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battledrill-defeat.json",
+        "input_sha256": "3e35834abfa6ba778d29ea8904a37f3cc2949dbbb7ec9fa6b3fca6f7e096e602",
+        "report": "artifacts/scenarios/battledrill-defeat/headless/c1d93e92e003452a96f168edb34efeef/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/battledrill-roundend.json",
+        "input_sha256": "628893a113702e064078e9de0bac083b7a29f738186323348ab1f2b89c1fac87",
+        "report": "artifacts/scenarios/battledrill-roundend/headless/37de6168468841cc8e912f9574c040e8/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine31-battledrill-defense-scenario.json",
+        "input_sha256": "603bc7622d307f755004ff441a187b32ed6628c894e25bd109bb21a61f19c2b7",
+        "report": "artifacts/scenarios/engine31-battledrill-defense-scenario/headless/e5bc6f8982024356ac7d9eff62dfb319/report.json",
+        "steps": 25,
+        "passed": true
+      }
+    ],
+    "scenarios": 8,
+    "steps": 180
+  },
+  "manual_presets": [
+    "battledrill",
+    "battledrill-support"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/battledrill-move-ui/layout.ui.json",
+    "revision": 14,
+    "seat": 0,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false
+  }
+}

@@ -162,6 +162,8 @@ namespace Goa2.Rules.Cards
         };
         private static readonly Dictionary<string,(string text,int minimumEngine,PrimaryProgram program)> Movements = new Dictionary<string,(string,int,PrimaryProgram)>
         {
+            ["sabina-14-战斗演练"] = ("本轮：当你或一名友方英雄执行攻击时，将技能范围内的所有友方小兵（包括免疫的）视为远程单位。",31,
+                new PrimaryProgram("primary_move_round_attack_minions_ranged",EffectKind.FriendlyAttackMinionsRanged,EffectDuration.ThisRound,primaryMovement:true)),
             ["sabina-17-演练"] = ("本轮：当你或一名友方英雄执行基础攻击时，将技能范围内的所有友方小兵（包括免疫的）视为远程单位。",30,
                 new PrimaryProgram("primary_move_round_basic_minions_ranged",EffectKind.FriendlyBasicMinionsRanged,EffectDuration.ThisRound,primaryMovement:true))
         };

@@ -1254,11 +1254,26 @@
     },
     {
       "card_id": "sabina-14-战斗演练",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-14-战斗演练.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/BattleDrillTests.cs",
+        "tests/scenarios/battledrill-basic.json",
+        "tests/scenarios/battledrill-stay.json",
+        "tests/scenarios/battledrill-source-moved.json",
+        "tests/scenarios/battledrill-ordinary.json",
+        "tests/scenarios/battledrill-retrieve.json",
+        "tests/scenarios/battledrill-defeat.json",
+        "tests/scenarios/battledrill-roundend.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatMath.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "unity/Assets/Scripts/GameScreen.Effects.cs"
+      ]
     },
     {
       "card_id": "sabina-15-火力掩护",

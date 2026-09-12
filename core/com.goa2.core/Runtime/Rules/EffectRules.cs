@@ -10,9 +10,11 @@ namespace Goa2.Rules
         public static Dictionary<string,string> MinionCombatKinds(ContentCatalog catalog,GameState state,CardDefinition attack,int attackerSeat)
         {
             var result=new Dictionary<string,string>();
-            if(state.EngineVersion<30 || attack.PrimaryCategory!="基础攻击")return result;
+            if(state.EngineVersion<30 || attack.PrimaryFamily!="attack")return result;
             var team=state.Players[attackerSeat].Team;
-            foreach(var effect in Current(state,EffectKind.FriendlyBasicMinionsRanged))
+            var effects=Current(state,EffectKind.FriendlyBasicMinionsRanged).Where(e=>attack.PrimaryCategory=="基础攻击");
+            if(state.EngineVersion>=31)effects=effects.Concat(Current(state,EffectKind.FriendlyAttackMinionsRanged));
+            foreach(var effect in effects)
             {
                 var source=Source(state,effect);
                 if(source==null || state.Players[effect.ControllerSeat].Team!=team)continue;

@@ -13,13 +13,13 @@ namespace Goa2.Tests
     public sealed class DrillTests
     {
         internal const string Drill="sabina-17-演练",Melee="minion:1,0",Heavy="minion:3,1";
-        internal static GameSession Setup(ContentCatalog catalog,string interference="",int engine=GameState.CurrentEngineVersion)
+        internal static GameSession Setup(ContentCatalog catalog,string interference="",int engine=GameState.CurrentEngineVersion,string card=Drill)
         {
             bool silence=interference=="silence";
-            var game=LocalGameFactory.Create(catalog,"drill",new[]{"A","B","C","D"},42,true,engine);Apply(game,0,CommandKind.DebugPrepare,"sabina,tigerclaw,brogan,"+(silence?"arien":"wasp"));Apply(game,0,CommandKind.DebugEquipCard,Drill,target:0);Apply(game,0,CommandKind.DebugEquipCard,"brogan-02-投掷飞斧",target:2);Apply(game,0,CommandKind.DebugEquipCard,"brogan-10-吟游诗人",target:2);
+            var game=LocalGameFactory.Create(catalog,"drill",new[]{"A","B","C","D"},42,true,engine);Apply(game,0,CommandKind.DebugPrepare,"sabina,tigerclaw,brogan,"+(silence?"arien":"wasp"));Apply(game,0,CommandKind.DebugEquipCard,card,target:0);Apply(game,0,CommandKind.DebugEquipCard,"brogan-02-投掷飞斧",target:2);Apply(game,0,CommandKind.DebugEquipCard,"brogan-10-吟游诗人",target:2);
             Apply(game,0,CommandKind.DebugTeleport,"hero:0",cell:new Hex(3,-8));Apply(game,0,CommandKind.DebugTeleport,"hero:1",cell:new Hex(7,-8));Apply(game,0,CommandKind.DebugTeleport,"hero:2",cell:new Hex(6,-8));Apply(game,0,CommandKind.DebugTeleport,Melee,cell:new Hex(5,-8));Apply(game,0,CommandKind.DebugTeleport,Heavy,cell:new Hex(6,-9));
             if(interference!="")Apply(game,0,CommandKind.DebugTeleport,"hero:3",cell:new Hex(2,-7));
-            string[] cards={Drill,"tigerclaw-07-伺机待发","brogan-06-铜墙铁壁",silence?"arien-06-打断施法":interference=="static"?"wasp-06-静电封锁":"wasp-07-抵挡屏障"};for(int seat=0;seat<4;seat++)Apply(game,seat,CommandKind.SelectCard,cards[seat]);return game;
+            string[] cards={card,"tigerclaw-07-伺机待发","brogan-06-铜墙铁壁",silence?"arien-06-打断施法":interference=="static"?"wasp-06-静电封锁":"wasp-07-抵挡屏障"};for(int seat=0;seat<4;seat++)Apply(game,seat,CommandKind.SelectCard,cards[seat]);return game;
         }
         internal static void Activate(GameSession game,bool stay=false)
         {Apply(game,0,CommandKind.BeginPrimary);Apply(game,0,CommandKind.ChooseEffectMove,stay?"skip":"",cell:new Hex(4,-8));}

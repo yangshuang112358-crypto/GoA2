@@ -261,6 +261,15 @@
       "input": "tests/fixtures/engine30-drill-attack-scenario.json",
       "input_sha256": "5af3ef528d205b7598b2642f10e23be2fda21f76e36fce2c9d38928a49d5d840",
       "provenance": "tests/fixtures/engine30-drill-attack.md"
+    },
+    {
+      "engine_version": 31,
+      "accepted_commands": 25,
+      "save": "tests/fixtures/engine31-battledrill-defense.json",
+      "save_sha256": "1fa74e32e914c9809dc24e8ca6b26218069f09af656e80844f630bbee5a5cdce",
+      "input": "tests/fixtures/engine31-battledrill-defense-scenario.json",
+      "input_sha256": "603bc7622d307f755004ff441a187b32ed6628c894e25bd109bb21a61f19c2b7",
+      "provenance": "tests/fixtures/engine31-battledrill-defense.md"
     }
   ]
 }
