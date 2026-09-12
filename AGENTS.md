@@ -1,5 +1,7 @@
 # Goa2V1 开发约定
 
+2026-09-12当前任务为[ BATCH-04 ](docs/planning/BATCH-04.md)：关键词实施、先清牌效调整清单，再连续逐张新卡与调试交互场景。中断后先读docs/verification/BATCH-04工作记录.md及Git状态；每张验收提交后直接继续，不需再次询问用户。
+
 项目当前阶段、入口与校验命令见README；当前BATCH-03十项界面与测试改进见docs/verification/BATCH-03验收.md，范围见docs/planning/BATCH-03.md。BATCH-02约12小时开发保留为历史验收。继续工作时以用户最新指令和docs/planning/下一批开发计划.md确定范围，不重新搭建已完成部分。
 先检查Git状态及当前任务范围。用户最新明确指令优先，不覆盖用户已有修改。
 

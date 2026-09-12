@@ -44,7 +44,7 @@ namespace Goa2.Presentation
                 preview=Box("purple-preview"); preview.name="purple-preview";
                 preview.pickingMode=PickingMode.Ignore;
                 preview.Add(Text(card.Name,"panel-title"));preview.Add(Text("紫卡 · 英雄8级 · 持续被动","tiny"));
-                var rules=Text(card.Text,"body");rules.name="purple-preview-text";preview.Add(rules);
+                var rules=RulesText(card.Text,"body");rules.name="purple-preview-text";preview.Add(rules);
                 preview.Add(Text("持续文字待实施","tiny"));
                 preview.style.left=Mathf.Clamp(dot.worldBound.xMax+12,12,Mathf.Max(12,root.worldBound.width-520));
                 preview.RegisterCallback<GeometryChangedEvent>(_=> { if(preview!=null) preview.style.top=Mathf.Clamp(dot.worldBound.y,12,Mathf.Max(12,root.worldBound.height-preview.worldBound.height-12)); });

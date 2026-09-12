@@ -54,6 +54,24 @@
       "input": "tests/fixtures/engine7-riposte-scenario.json",
       "input_sha256": "53c1af0b8aff8c3e426794c41912b349b4f6ae025509e134fa40f27686944802",
       "provenance": "tests/fixtures/engine7-riposte-pending.md"
+    },
+    {
+      "engine_version": 9,
+      "accepted_commands": 11,
+      "save": "tests/fixtures/engine9-riposte-hand.json",
+      "save_sha256": "ea8e30517a6919abf99db41e50e210989c14293c03b6cb472a10006b5c6a464b",
+      "input": "tests/fixtures/engine9-riposte-hand-scenario.json",
+      "input_sha256": "b543fb0ce2002ff90eaa3e751c266b3e4bb34f642deb48117344a220f6c963d4",
+      "provenance": "tests/fixtures/engine9-riposte-hand.md"
+    },
+    {
+      "engine_version": 9,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine9-riposte-empty-defense.json",
+      "save_sha256": "49cde87c82b89e2efb622aec16fc83917dd33b4cdca6c989bb12828f819cb77a",
+      "input": "tests/fixtures/engine9-riposte-empty-defense-scenario.json",
+      "input_sha256": "86eb6e1b9a5df8917312763c36bf63a711ed7446d47d89fa53ccc8f29a2a8a59",
+      "provenance": "tests/fixtures/engine9-riposte-empty-defense.md"
     }
   ]
 }

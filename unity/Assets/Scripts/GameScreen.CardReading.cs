@@ -10,12 +10,14 @@ namespace Goa2.Presentation
     public sealed partial class GameScreen
     {
         private VisualElement? cardPreview;
+        private CardDefinition? previewCard;
         private IVisualElementScheduledItem? cardPreviewDelay;
 
         private void HideCardPreview()
         {
             cardPreviewDelay?.Pause(); cardPreviewDelay=null;
             cardPreview?.RemoveFromHierarchy(); cardPreview=null;
+            previewCard=null;
             RequestCapture();
         }
         private void AttachCardReading(VisualElement source,CardDefinition card,PlayerView? player=null)
@@ -26,7 +28,7 @@ namespace Goa2.Presentation
                 HideCardPreview();
                 cardPreviewDelay=source.schedule.Execute(()=>
                 {
-                    if(source.panel==null || newMatchPending || debugPresetsOpen) return;
+                    if(source.panel==null || newMatchPending || debugPresetsOpen || keywordGlossaryOpen) return;
                     ShowCardPreview(source,card,player);
                 }).StartingIn(180);
             });
@@ -35,12 +37,13 @@ namespace Goa2.Presentation
         private void ShowCardPreview(VisualElement source,CardDefinition card,PlayerView? player)
         {
             cardPreview?.RemoveFromHierarchy();
+            previewCard=card;
             var preview=Box("card-preview"); preview.name="card-preview";cardPreview=preview;
             preview.style.width=Mathf.Min(700,root.worldBound.width-32);
             preview.style.borderTopColor=CardColor(card.Color);
             preview.Add(Text(card.Name,"panel-title"));
             preview.Add(Text(HeroName(card.HeroId)+" · "+ColorName(card.Color)+"色 · "+(card.Color=="purple" ? "英雄8级" : card.Level.HasValue ? "卡牌"+card.Level+"级" : "基础牌"),"tiny"));
-            var rules=Text(card.Text,"card-preview-rules");rules.name="card-preview-rules";preview.Add(rules);
+            var rules=RulesText(card.Text,"card-preview-rules");rules.name="card-preview-rules";preview.Add(rules);
             if(player!=null) CompactCardNumbers(preview,card,player,true,"card-preview");
             else
             {
@@ -51,7 +54,7 @@ namespace Goa2.Presentation
             preview.Add(Text(renderedView.SupportedPrimaryCards.Contains(card.Id) ? "主要行动已开放" : renderedView.SupportedDefenseCards.Contains(card.Id) ? "防御响应已开放" : "牌文效果待实施","card-zone"));
             if(player?.Seat==seat && renderedView.DefenseRestrictions.TryGetValue(card.Id,out string restriction))
                 preview.Add(Text(DefenseRestrictionText(restriction),"restriction-text"));
-            preview.Add(Text("移开鼠标或按 Esc 收起","tiny"));
+            preview.Add(Text("F1 查看本牌术语 · 移开鼠标或 Esc 收起","tiny"));
             // The reading layer must never intercept the click that selects a card or a map cell.
             preview.Query<VisualElement>().ForEach(e=>e.pickingMode=PickingMode.Ignore);
             preview.pickingMode=PickingMode.Ignore;
@@ -69,26 +72,13 @@ namespace Goa2.Presentation
         private void CardRulesPreview(VisualElement parent,CardDefinition card,string name)
         {
             // Keep the formal text as the source. Two lines are an overview; hover reads every word.
-            var label=Text(card.Text,"card-rules-preview");label.name=name;
+            var label=RulesText(card.Text,"card-rules-preview");label.name=name;
             // UI Toolkit's single-line ellipsis would hide the second line. Build a measured
             // two-line excerpt instead, so no half-height glyphs are clipped at the bottom.
             label.RegisterCallback<GeometryChangedEvent>(_=>
             {
                 float width=label.contentRect.width;if(width<=0) return;
-                string remaining=card.Text.Replace("\r","").Replace("\n"," ");
-                string TakeLine(bool last)
-                {
-                    int count=0;
-                    while(count<remaining.Length)
-                    {
-                        string candidate=remaining.Substring(0,count+1)+(last && count+1<remaining.Length ? "…" : "");
-                        if(label.MeasureTextSize(candidate,0,VisualElement.MeasureMode.Undefined,0,VisualElement.MeasureMode.Undefined).x>width) break;
-                        count++;
-                    }
-                    count=Math.Max(1,count);string line=remaining.Substring(0,Math.Min(count,remaining.Length));remaining=remaining.Substring(Math.Min(count,remaining.Length));
-                    return line+(last && remaining.Length>0 ? "…" : "");
-                }
-                string first=TakeLine(false);label.text=first+(remaining.Length==0 ? "" : "\n"+TakeLine(true));
+                label.text=CardTextMarkup.Preview(card.Text,width,candidate=>label.MeasureTextSize(candidate,0,VisualElement.MeasureMode.Undefined,0,VisualElement.MeasureMode.Undefined).x);
             });
             parent.Add(label);
         }

@@ -1,0 +1,36 @@
+[
+  {
+    "mode": "Real Player layout and synthetic pointer events; no physical input",
+    "size": [
+      1280,
+      800
+    ],
+    "passed": true,
+    "cards": 108,
+    "failedCards": [],
+    "glossaryOpens": true,
+    "glossaryFits": true,
+    "glossaryNoCommand": true,
+    "glossaryCloses": true,
+    "reportSha256": "acfa2434951417737ba3098a23ade0cd1e1ed9f6ebc02a98f929d23dc51f0989",
+    "startedUtc": "2026-09-12T05:26:45.1128184Z",
+    "finishedUtc": "2026-09-12T05:27:22.9022054Z"
+  },
+  {
+    "mode": "Unity Editor Play Mode layout and synthetic pointer events; no standalone Player or physical input",
+    "size": [
+      1600,
+      1000
+    ],
+    "passed": true,
+    "cards": 108,
+    "failedCards": [],
+    "glossaryOpens": true,
+    "glossaryFits": true,
+    "glossaryNoCommand": true,
+    "glossaryCloses": true,
+    "reportSha256": "f3c5a936694d467964d4515e47653db81baceb48370f24b73a3dbf68abef29df",
+    "startedUtc": "2026-09-12T05:27:37.1473842Z",
+    "finishedUtc": "2026-09-12T05:28:07.425663Z"
+  }
+]

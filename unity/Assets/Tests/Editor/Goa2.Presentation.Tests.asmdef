@@ -1,0 +1,9 @@
+{
+  "name": "Goa2.Presentation.Tests",
+  "references": ["Goa2.Presentation"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "includePlatforms": ["Editor"],
+  "overrideReferences": true,
+  "precompiledReferences": ["nunit.framework.dll"],
+  "autoReferenced": false
+}

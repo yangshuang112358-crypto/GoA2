@@ -1,0 +1,87 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine9-riposte-empty-defense",
+  "Name": "真实引擎9：近身还击 empty-defense",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "wasp,tigerclaw,brogan,arien"
+    },
+    {
+      "Target": "p2",
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-17-近身还击"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 7
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:0"
+    },
+    {
+      "Destination": {
+        "Y": -10,
+        "X": 8
+      },
+      "Command": "DebugTeleport",
+      "Value": "hero:1"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "wasp-00-闪耀之刃"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "tigerclaw-08-偷天妙手"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugDiscard",
+      "Value": "wasp-01-电击"
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugDiscard",
+      "Value": "wasp-06-静电封锁"
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugDiscard",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Target": "p1",
+      "Command": "DebugDiscard",
+      "Value": "wasp-13-控物"
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2"
+      }
+    }
+  ]
+}

@@ -15,7 +15,9 @@ namespace Goa2.Presentation
         private HexBoard? board;
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Escape)) HideCardPreview();
+            if(Input.GetKeyDown(KeyCode.Escape)) { if(keywordGlossaryOpen) CloseKeywordGlossary();else HideCardPreview();return; }
+            if(keywordGlossaryOpen) return;
+            if(Input.GetKeyDown(KeyCode.F1) && session!=null && !startupFailed && !newMatchPending && !debugPresetsOpen && !IsEditingText()) { OpenKeywordGlossary(previewCard);return; }
             if (session == null || startupFailed || galleryOpen || publicCardsOpen || historyOpen || newMatchPending || debugPresetsOpen || IsEditingText()) return;
             if (Input.GetKeyDown(KeyCode.Space) && !ScenarioRunning && confirmButton!=null && confirmButton.enabledInHierarchy)
             { var action=confirmAction;confirmAction=null;action?.Invoke();return; }
@@ -69,6 +71,7 @@ namespace Goa2.Presentation
             var controls = Box("header-controls"); header.Add(controls);
             controls.Add(Button(view.Sandbox ? (view.QuickSelection ? "测试 · 选完揭示" : "测试 · 手动确认") : "正式确认", () => { rightExpanded = true; showDebug = true; Render(); }, "mode-button"));
             controls.Add(Button("图鉴 108", () => { galleryOpen = true; galleryHero = catalog.Heroes[0].Id; Render(); }, "quiet-button"));
+            controls.Add(Button("术语",()=>OpenKeywordGlossary(),"quiet-button","keyword-open"));
             controls.Add(Button("保存", Save, "quiet-button"));
             var load = Button("读取", Load, "quiet-button"); load.SetEnabled(!ScenarioRunning); controls.Add(load);
             var newGame = Button("新对局", () => { newMatchPending = true; Render(); }, "quiet-button"); newGame.SetEnabled(!ScenarioRunning); controls.Add(newGame);

@@ -37,7 +37,7 @@ def validate_fixtures(root):
     require(manifest['schema_version'] == '1.0.0', 'unsupported fixture manifest version')
     entries = manifest['fixtures']
     require(type(entries) is list and len(entries) > 0, 'empty fixture manifest')
-    versions, covered = set(), set()
+    covered = set()
 
     def fixture_path(relative, suffix):
         require(type(relative) is str and re.fullmatch(r'tests/fixtures/[^/\\]+\.' + suffix, relative), 'invalid fixture path: ' + str(relative))
@@ -57,9 +57,10 @@ def validate_fixtures(root):
     for entry in entries:
         require(type(entry) is dict and set(entry) == fields, 'invalid fixture entry fields')
         version, count = entry['engine_version'], entry['accepted_commands']
-        require(type(version) is int and version >= 0 and version not in versions, 'invalid or duplicate fixture engine version')
+        # One engine may have several independently captured pending windows.
+        # captured_file still rejects duplicate inputs/saves and verifies every byte.
+        require(type(version) is int and version >= 0, 'invalid fixture engine version')
         require(type(count) is int and 0 < count <= 10000, 'invalid fixture command count')
-        versions.add(version)
         state = captured_file(entry['save'], entry['save_sha256'])
         require(type(state) is dict, 'fixture state must be an object')
         require(all(type(state.get(key, 0)) is int and state.get(key, 0) == version for key in ('InitialEngineVersion', 'EngineVersion')), 'fixture engine metadata mismatch')

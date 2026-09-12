@@ -258,3 +258,6 @@ Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
 .card-stat-chip .passive-plus { margin-left: 4px; }
 .hand-card .card-zone { height: 34px; min-height: 34px; padding: 0; }
 .revealed-card .public-card-name { height: 40px; min-height: 40px; overflow: hidden; }
+.keyword-dialog { flex-shrink: 1; }
+.keyword-list { min-height: 0; flex-grow: 1; flex-shrink: 1; }
+.keyword-entry { margin-bottom: 16px; padding-bottom: 12px; border-bottom-width: 1px; border-bottom-color: #395560; }

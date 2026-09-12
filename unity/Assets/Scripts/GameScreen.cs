@@ -192,6 +192,7 @@ namespace Goa2.Presentation
             if (historyOpen) RenderHistory(renderedView);
             if (newMatchPending) RenderNewMatchDialog();
             if (debugPresetsOpen) RenderDebugPositions();
+            if (keywordGlossaryOpen) RenderKeywordGlossary();
             root.Query<ScrollView>().ForEach(scroll =>
             {
                 if (scrollPositions.TryGetValue(scroll.name, out var offset)) scroll.schedule.Execute(() => scroll.scrollOffset = offset);
@@ -232,7 +233,7 @@ namespace Goa2.Presentation
                 PrimaryRestriction=renderedView.PrimaryRestriction,
                 AttackSourceSummary=root.Q<Label>("attack-card-text-sources")?.text ?? "" };
             root.Query<Button>().ForEach(button => layout.Buttons.Add(new QaButton { Name = button.name, Text = button.text, Bounds = button.worldBound, Enabled = button.enabledInHierarchy, Visible = VisibleCenter(button), Viewports=ScrollViewports(button) }));
-            root.Query<Label>().ForEach(label => { if(!string.IsNullOrEmpty(label.name)) layout.Labels.Add(new QaLabel {Name=label.name,Text=label.text,Bounds=label.worldBound,Visible=VisibleCenter(label),FontSize=label.resolvedStyle.fontSize,Color=label.resolvedStyle.color}); });
+            root.Query<Label>().ForEach(label => { if(!string.IsNullOrEmpty(label.name)) layout.Labels.Add(new QaLabel {Name=label.name,Text=label.ClassListContains("keyword-rules") ? CardTextMarkup.PlainText(label.text) : label.text,RichText=label.text,Bounds=label.worldBound,Visible=VisibleCenter(label),FontSize=label.resolvedStyle.fontSize,Color=label.resolvedStyle.color}); });
             layout.MinimumFontSize=root.Query<TextElement>().ToList().Where(e=>!string.IsNullOrEmpty(e.text) && VisibleCenter(e)).Select(e=>e.resolvedStyle.fontSize).DefaultIfEmpty(26).Min();
             layout.CardPreviewScrollCount=cardPreview?.Query<ScrollView>().ToList().Count ?? 0;
             layout.NestedCardScrollCount=root.Query<ScrollView>().ToList().Count(e=>e.ClassListContains("detail-text") || e.ClassListContains("public-card-text"));
@@ -302,7 +303,7 @@ namespace Goa2.Presentation
         [Serializable] private sealed class QaCell { public int X, Y; public Vector2 Center; public bool Legal; }
         [Serializable] private sealed class QaField { public string Name = ""; public Rect Bounds; public int Value; public bool Enabled,Visible;public List<Rect> Viewports=new List<Rect>(); }
         [Serializable] private sealed class QaTextField { public string Name="",Value=""; public Rect Bounds;public bool Enabled,Visible;public List<Rect> Viewports=new List<Rect>(); }
-        [Serializable] private sealed class QaLabel { public string Name="", Text=""; public Rect Bounds; public bool Visible; public float FontSize; public Color Color; }
+        [Serializable] private sealed class QaLabel { public string Name="", Text="",RichText=""; public Rect Bounds; public bool Visible; public float FontSize; public Color Color; }
         [Serializable] private sealed class QaElement {public string Name="";public Rect Bounds; public bool Visible; public Color Background;public float BorderTop;}
         [Serializable] private sealed class QaScroll {public string Name="";public Rect Viewport,Track,Thumb;public float Value,Maximum;}
         private List<Hex> LegalCells(GameView view)
@@ -454,7 +455,8 @@ namespace Goa2.Presentation
         {
             var box = Box("card-detail");
             box.Add(Text(card.Name + "    先攻 " + card.Initiative, "section-title"));
-            box.Add(Text(card.Text, "card-rules"));
+            box.Add(RulesText(card.Text, "card-rules"));
+            box.Add(Button("本牌术语",()=>OpenKeywordGlossary(card),"quiet-button","card-keywords"));
             box.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "muted"));
             box.Add(Text("移 " + Number(card.SecondaryMovement) + "    防 " + Number(card.SecondaryDefense), "tiny"));
             parent.Add(box);
@@ -644,7 +646,7 @@ namespace Goa2.Presentation
                 tile.Add(Text((card.Color=="purple" ? "紫卡 · 英雄8级获得" : card.Level.HasValue ? "卡牌等级 " + card.Level : "基础牌") + "    先攻 " + card.Initiative, "muted"));
                 if(galleryHero=="") tile.Add(Text(HeroName(card.HeroId),"tiny"));
                 tile.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "body"));
-                tile.Add(Text(card.Text, "card-rules"));
+                tile.Add(RulesText(card.Text, "card-rules"));
                 tile.Add(Text("次要移动 " + Number(card.SecondaryMovement) + "    次要防御 " + Number(card.SecondaryDefense), "tiny"));
                 tile.Add(Text("底部被动 " + (card.Passive ?? "无"), "tiny"));
                 tile.Add(Text(renderedView.SupportedPrimaryCards.Contains(card.Id) ? "主要行动 · 已开放" : renderedView.SupportedDefenseCards.Contains(card.Id) ? "防御响应 · 已开放" : "牌文效果 · 待实施", "status-badge")); colorRows[card.Color].Add(tile);
@@ -670,7 +672,7 @@ namespace Goa2.Presentation
                 tile.Add(Text(card.Name + " · 先攻 " + card.Initiative, "card-name"));
                 tile.Add(Text("第 " + play.Round + " 轮 · 第 " + play.Turn + " 回合", "muted"));
                 tile.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "body"));
-                tile.Add(Text(card.Text, "card-rules"));
+                tile.Add(RulesText(card.Text, "card-rules"));
                 tile.Add(Text("次要移动 " + Number(card.SecondaryMovement) + " · 次要防御 " + Number(card.SecondaryDefense), "tiny"));
                 tile.Add(Text("底部被动 " + (card.Passive ?? "无"), "tiny")); scroll.Add(tile);
                 AttachCardReading(tile,card,player);
