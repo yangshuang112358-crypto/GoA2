@@ -1,0 +1,114 @@
+{
+  "SchemaVersion": 1,
+  "Id": "raid-skip",
+  "Name": "暗影奇袭：前后都跳过移动",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "tigerclaw,wasp,brogan,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Target": "p1",
+      "Value": "tigerclaw-06-暗影奇袭"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 8,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-06-暗影奇袭"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Value": "skip",
+      "Expect": {
+        "PendingKind": "attack_target",
+        "EventCounts": {
+          "UnitMoved": 0
+        }
+      }
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "defense"
+      }
+    },
+    {
+      "Command": "DeclineDefense",
+      "Actor": "p2",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "EventOrder": [
+          "AttackResolved",
+          "EffectMoveChoiceRequired"
+        ]
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Expect": {
+        "Positions": {
+          "hero:0": {
+            "X": 7,
+            "Y": -10
+          }
+        },
+        "EventCounts": {
+          "UnitMoved": 0,
+          "CardResolved": 1
+        }
+      },
+      "Value": "skip"
+    }
+  ]
+}

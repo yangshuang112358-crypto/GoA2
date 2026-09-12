@@ -1,0 +1,72 @@
+{
+  "engine": 14,
+  "implemented_cards": 25,
+  "data_only_cards": 83,
+  "build_utc": "2026-09-12T18:57:03.5382056Z",
+  "assemblies": {
+    "Goa2.Domain.dll": "22899ce6f07c371c82e2076794a73cb93c85178fc4f5fcad08075036aab44544",
+    "Goa2.Rules.dll": "52fd74e1e0899284ec375c8cc2fb780e3d25ba8b6ffae169b3aad2ad2de024df",
+    "Goa2.Application.dll": "bdf979d2c9da33a7cfac150475c9c87ca41b8a45b95b4cd4cf44dc0c65c5576e",
+    "Goa2.Infrastructure.dll": "b0c2300af037766f23b2197ffe807cf33863b6232cfe711b9ed8fd7b3eb1dc92",
+    "Goa2.Presentation.dll": "f1a87a0f33550130b70327b2b927131e0640b083cd9cf7569a16b76aecb4a329"
+  },
+  "core": {
+    "passed": 525,
+    "report": "artifacts/tests/raid-core.trx",
+    "failed": 0,
+    "raid_specific": 11
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/raid-both.json",
+        "input_sha256": "cd7d08dd4279e49c083f9ddfa5fb838f93a30f82c1c374acb3ba473f5927f7f8",
+        "report": "artifacts/scenarios/raid-both/headless/e1bfea48db3744adbe5291dbe7e64d0e/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/raid-skip.json",
+        "input_sha256": "f749db11ca36b7690f612687b8230ec006efa72bed66735c5fcbf8716017fad5",
+        "report": "artifacts/scenarios/raid-skip/headless/78c73edf6c1d40b3874f9d1356544073/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/raid-static.json",
+        "input_sha256": "adbd9929d925157cc17e6b8b070d8bc38f5532c2892739d60df37e317863c4a2",
+        "report": "artifacts/scenarios/raid-static/headless/a542147f6dac4eaf81059c2f402cd2be/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shadow-before.json",
+        "input_sha256": "12d28a5d0e7f71633c5733a898086c8bba8ee53bbdf77807e556f0cb826c0f0d",
+        "report": "artifacts/scenarios/shadow-before/headless/4d64fe1d06e24021b075e9096ab0f466/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shadow-after.json",
+        "input_sha256": "86664e721f70abbf1280eaf2eb2cce51459b2f3790ae113ad77d5d03c1d6c684",
+        "report": "artifacts/scenarios/shadow-after/headless/c25006da02ae4f888586c21c97af80d5/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shadow-static.json",
+        "input_sha256": "f50e6ecd5cca7f2c746fec358d057571d63dd3b2da48ec74ea09ccc0ba05f16f",
+        "report": "artifacts/scenarios/shadow-static/headless/27344c2418d848f79e1b010a6f4afb34/report.json",
+        "steps": 17,
+        "passed": true
+      }
+    ],
+    "scenarios": 6,
+    "steps": 91.0
+  },
+  "manual_presets": [
+    "raid-combo",
+    "raid-static"
+  ],
+  "note": "Engine14 native coverage is six card scenarios. Full 41-scenario native sweep is recorded separately at engine13; full current C# suite includes all canonical scenarios. Physical input suite not run."
+}

@@ -1,0 +1,5 @@
+# 引擎14暗影奇袭第二次移动窗口
+
+在引擎15修改前，由引擎14 Windows Player执行13步后原样捕获。虎爪已前移并击败黄蜂，PreAttackMoved=true，仍等待合法的第二次牌文移动。引擎13的影袭前移窗口另有独立冻结档，不能混淆两张牌的条件。
+
+报告：artifacts/scenarios/engine14-raid-after-scenario/headless/121566cc8ade442da218313f3d00768a/report.json。13步通过；状态哈希32f91b4d241899dc8f44a25a778880ff771fad061268f33927ea10ac84a804f2。输入与原始保存字节哈希见manifest.json，未手写版本/结果。

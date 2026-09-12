@@ -108,6 +108,15 @@
       "input": "tests/fixtures/engine13-shadow-target-scenario.json",
       "input_sha256": "513eff80d272f167eab804634b31aaa6d9319968a8427ffd0551be5bbf708120",
       "provenance": "tests/fixtures/engine13-shadow-target.md"
+    },
+    {
+      "engine_version": 14,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine14-raid-after.json",
+      "save_sha256": "32f91b4d241899dc8f44a25a778880ff771fad061268f33927ea10ac84a804f2",
+      "input": "tests/fixtures/engine14-raid-after-scenario.json",
+      "input_sha256": "873cac223b82acb936add89d995c5bd197ba8eead15f75758c47cb3ce09b401e",
+      "provenance": "tests/fixtures/engine14-raid-after.md"
     }
   ]
 }

@@ -787,11 +787,20 @@
     },
     {
       "card_id": "tigerclaw-06-暗影奇袭",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-06-暗影奇袭.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ShadowRaidTests.cs",
+        "tests/scenarios/raid-both.json",
+        "tests/scenarios/raid-skip.json",
+        "tests/scenarios/raid-static.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-07-伺机待发",
