@@ -252,6 +252,15 @@
       "input": "tests/fixtures/engine29-blink-defense-scenario.json",
       "input_sha256": "e169a138fa93fac35ae7877e58c85f4788c590fb0057c68d0f858959bc94b030",
       "provenance": "tests/fixtures/engine29-blink-defense.md"
+    },
+    {
+      "engine_version": 30,
+      "accepted_commands": 22,
+      "save": "tests/fixtures/engine30-drill-attack.json",
+      "save_sha256": "59fce27604f35c626cc499f72f2a74b9cb5d45bbcc624b27a4a4f67d6579126f",
+      "input": "tests/fixtures/engine30-drill-attack-scenario.json",
+      "input_sha256": "5af3ef528d205b7598b2642f10e23be2fda21f76e36fce2c9d38928a49d5d840",
+      "provenance": "tests/fixtures/engine30-drill-attack.md"
     }
   ]
 }

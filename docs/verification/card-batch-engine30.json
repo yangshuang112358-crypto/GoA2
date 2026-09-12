@@ -1,0 +1,93 @@
+{
+  "engine": 30,
+  "implemented_cards": 41,
+  "data_only_cards": 67,
+  "build_utc": "2026-09-12T21:29:07.0201881Z",
+  "assemblies": {
+    "Goa2.Application.dll": "f265fe4b673a7fc9ae377805ffd1eacd5a4db12c12f1b28831903f0acf97d091",
+    "Goa2.Domain.dll": "69ecff8e98563fbd138889d39ba81f2c6a287fba2065f656c9a90054057f7536",
+    "Goa2.Infrastructure.dll": "c4cb025935861f9b18ae3b41c1f737b8fc1575930cf35a9b8ed36643ab933126",
+    "Goa2.Presentation.dll": "ae7107da4191536b0a3452b034a73202fd8f3fb78e1227d1e9c3691f069f2518",
+    "Goa2.Rules.dll": "60c92316d17572f1fb51be8692621df40f8c27947b32346540a38abf2c5df740"
+  },
+  "core": {
+    "passed": 883,
+    "failed": 0,
+    "report": "artifacts/tests/drill-core.trx",
+    "card_specific": 22
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/drill-basic.json",
+        "input_sha256": "645cf8c3877d175aed72f02f87fb488d4832b6584dae184dd0f0c6cb297d4a77",
+        "report": "artifacts/scenarios/drill-basic/headless/ce86e44eda834485b3c792761f7892db/report.json",
+        "steps": 23,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/drill-stay.json",
+        "input_sha256": "85d82b2d5d2b4c531bae1050cdc8d537f1257a7f97113b976a458a6290cba2b6",
+        "report": "artifacts/scenarios/drill-stay/headless/0865d351ae1a4b4ca18ed6fcd080eed3/report.json",
+        "steps": 23,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/drill-source-moved.json",
+        "input_sha256": "e57f3ee091a4762b1351456ea4187a419354151e9b832ff55b750a208ca9b9ef",
+        "report": "artifacts/scenarios/drill-source-moved/headless/f111e90d6b2b4eb7a2c99d6f7db257c1/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/drill-ordinary.json",
+        "input_sha256": "5cb67fc703c636b9eb9a08458fcdaa9e19dd043d17af65baac4595ea4543ca0b",
+        "report": "artifacts/scenarios/drill-ordinary/headless/26828b6eb8e4434d98a4289a72b85a42/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/drill-retrieve.json",
+        "input_sha256": "e44fe1b0e0dd6b2060d443eeea2032b81bea5c1171d45cbacb51cabaff7de712",
+        "report": "artifacts/scenarios/drill-retrieve/headless/e7853914d69743ebb914c395e46ed4ce/report.json",
+        "steps": 28,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/drill-defeat.json",
+        "input_sha256": "4e2243a1a1065a7ecb703bf794269c40012303cf3a1c56cda671728a9faf6709",
+        "report": "artifacts/scenarios/drill-defeat/headless/608108e4b2e0484d9e4cb11b65894d77/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/drill-roundend.json",
+        "input_sha256": "18f169ef51e7f6138a050849be173c32403adaeb457f5cacef70ea6ed9fe436c",
+        "report": "artifacts/scenarios/drill-roundend/headless/9a7fb29aee744814b0833b541158ab1c/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine30-drill-attack-scenario.json",
+        "input_sha256": "5af3ef528d205b7598b2642f10e23be2fda21f76e36fce2c9d38928a49d5d840",
+        "report": "artifacts/scenarios/engine30-drill-attack-scenario/headless/d6e411b6df9d4c7fa6984c7987b6dc35/report.json",
+        "steps": 22,
+        "passed": true
+      }
+    ],
+    "scenarios": 8,
+    "steps": 177
+  },
+  "manual_presets": [
+    "drill",
+    "drill-support"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented.",
+  "ui": {
+    "report": "artifacts/drill-move-ui/layout.ui.json",
+    "revision": 14,
+    "seat": 0,
+    "physical_input_tested": false,
+    "visual_screenshot_verified": false
+  }
+}

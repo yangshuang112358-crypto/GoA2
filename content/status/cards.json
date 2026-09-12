@@ -1278,11 +1278,29 @@
     },
     {
       "card_id": "sabina-17-演练",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-17-演练.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/DrillTests.cs",
+        "tests/scenarios/drill-basic.json",
+        "tests/scenarios/drill-stay.json",
+        "tests/scenarios/drill-source-moved.json",
+        "tests/scenarios/drill-ordinary.json",
+        "tests/scenarios/drill-retrieve.json",
+        "tests/scenarios/drill-defeat.json",
+        "tests/scenarios/drill-roundend.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatMath.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs",
+        "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs",
+        "unity/Assets/Scripts/GameScreen.Effects.cs"
+      ]
     }
   ]
 }

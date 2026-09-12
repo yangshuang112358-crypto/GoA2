@@ -4,7 +4,7 @@ using System;
 namespace Goa2.Domain
 {
     public enum EffectDuration { ThisTurn, NextTurn, ThisRound }
-    public enum EffectKind { MovementBoundary, SkillSuppression, NonAdjacentRangedImmunity }
+    public enum EffectKind { MovementBoundary, SkillSuppression, NonAdjacentRangedImmunity, FriendlyBasicMinionsRanged }
     public enum EffectAreaKind { SkillRange, Adjacent, None }
     [Serializable]
     public sealed class EffectWindow

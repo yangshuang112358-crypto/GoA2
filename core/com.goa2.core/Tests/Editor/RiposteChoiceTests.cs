@@ -49,7 +49,8 @@ namespace Goa2.Tests
             Assert.That(view.Events.Count(e=>e.Kind=="HeroDefeated"),Is.EqualTo(defeat ? 1 : 0));
             Assert.That(view.Events.Count(e=>e.Kind=="CardResolved" && e.Seat==0),Is.EqualTo(1));
             Assert.That(view.Players[0].Revealed.Single().Zone,Is.EqualTo(CardZone.PlayedResolved));
-            Assert.That(view.Effects.Single().SourceCardId,Is.EqualTo("wasp-00-闪耀之刃"));
+            if(defeat) Assert.That(view.Effects,Is.Empty);
+            else Assert.That(view.Effects.Single().SourceCardId,Is.EqualTo("wasp-00-闪耀之刃"));
             if(defeat)
             {
                 Assert.That(view.Events.Skip(beforeEvents).Any(e=>e.Kind=="DiscardColorShown"),Is.False);

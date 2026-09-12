@@ -1651,7 +1651,7 @@
         "continuous",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/sabina-17-演练.md",
       "question_candidates": [
         "U-011"

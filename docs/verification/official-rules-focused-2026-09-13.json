@@ -6,6 +6,7 @@
   "pdf_pages": 24,
   "checked_printed_pages": [
     10,
+    11,
     17,
     18,
     19
@@ -15,7 +16,9 @@
     "active effects cancelled when source card changes state",
     "friendly excludes source hero",
     "straight line including adjacent hexes",
-    "single target push direction and obstacle-limited distance including zero"
+    "single target push direction and obstacle-limited distance including zero",
+    "primary movement permits up to its icon value including zero; Fast Travel replacement skips card text",
+    "source hero defeat cancels active effects"
   ],
   "full_rulebook_audit": false
 }

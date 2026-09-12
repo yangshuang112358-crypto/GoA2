@@ -168,7 +168,8 @@ namespace Goa2.Tests
             var owner=game.View(1); Assert.That(owner.Events.Single(e => e.Kind=="HeroDefeatSource").CardId, Is.EqualTo(Riposte));
             Assert.That(owner.Events.FindIndex(e => e.Kind=="EffectActivated"), Is.LessThan(owner.Events.FindIndex(e => e.Kind=="HeroDefeated")));
             Assert.That(owner.Events.Count(e => e.Kind=="AttackCalculated"), Is.EqualTo(1)); Assert.That(owner.Events.Count(e => e.Kind=="DefenseChoiceRequired"), Is.EqualTo(1));
-            Assert.That(owner.Effects.Single().SourceCardId, Is.EqualTo("wasp-00-闪耀之刃")); Assert.That(owner.EffectAreas.Values.Single(), Is.Empty);
+            Assert.That(owner.Effects, Is.Empty); Assert.That(owner.EffectAreas, Is.Empty);
+            Assert.That(owner.Events.Single(e=>e.Kind=="EffectCancelled").CardId, Is.EqualTo("wasp-00-闪耀之刃"));
         }
         [TestCase(MeleeBlock)]
         [TestCase(Riposte)]

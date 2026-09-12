@@ -67,14 +67,14 @@ namespace Goa2.Tests
             Assert.That(game.View(null).Effects, Is.Empty); Assert.That(game.View(null).Turn, Is.EqualTo(2));
         }
         [Test]
-        public void ADefeatedSourceIsNoLongerAdjacentWhenAfterAttackCancellationRuns()
+        public void DefeatCancelsTheVictimsAuraBeforeTheAttackersLaterEffectIsCreated()
         {
             var catalog=BattlefieldTests.Catalog(); var game=Setup(catalog);
             Apply(game,0,CommandKind.BeginPrimary); Apply(game,0,CommandKind.ChooseAttackTarget,"hero:1"); Apply(game,1,CommandKind.DeclineDefense);
-            Assert.That(game.View(null).Effects.Count, Is.EqualTo(2));
-            Assert.That(game.View(null).Effects.Any(e => e.SourceCardId=="arien-06-打断施法"), Is.True);
-            Assert.That(game.View(null).EffectAreas["effect:1"], Is.Empty);
-            Assert.That(game.View(null).Events.Any(e => e.Kind=="EffectCancelled"), Is.False);
+            Assert.That(game.View(null).Effects.Single().SourceCardId, Is.EqualTo("wasp-00-闪耀之刃"));
+            Assert.That(game.View(null).EffectAreas.ContainsKey("effect:1"), Is.False);
+            var cancelled=game.View(null).Events.Single(e=>e.Kind=="EffectCancelled");
+            Assert.That(cancelled.CardId, Is.EqualTo("arien-06-打断施法")); Assert.That(cancelled.Detail,Does.StartWith("hero_defeated|"));
             Assert.That(game.View(null).Players[1].AwaitingRespawn, Is.True); Assert.That(game.View(null).Players[0].Gold, Is.EqualTo(1));
             Assert.That(LocalGameFactory.Restore(catalog,game.ExportSave()).ExportSave(), Is.EqualTo(game.ExportSave()));
         }

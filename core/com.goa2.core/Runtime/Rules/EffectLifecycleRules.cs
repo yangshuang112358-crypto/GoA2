@@ -7,6 +7,16 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
+        private static void CancelDefeatedHeroEffects(GameState state,Command command,int seat)
+        {
+            if(state.EngineVersion<30)return;
+            foreach(var effect in state.Effects.Where(e=>e.ControllerSeat==seat).OrderBy(e=>e.CreationOrder).ToList())
+            {
+                state.Effects.Remove(effect);
+                Emit(state,command,"EffectCancelled",seat,effect.SourceCardId,effect.SourcePrivateTo,detail:"hero_defeated|"+effect.Id);
+                if(effect.SourcePrivateTo.HasValue)Emit(state,command,"ProtectionExpired",seat,detail:effect.Kind+":"+effect.Id);
+            }
+        }
         private static void CancelRetrievedCardEffects(GameState state,Command command,int owner,string cardId)
             => CancelCardStateEffects(state,command,owner,cardId,"card_retrieved");
         private static void CancelCardStateEffects(GameState state,Command command,int owner,string cardId,string reason)

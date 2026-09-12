@@ -8,6 +8,9 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
+        private static int MovementStepBudget(ContentCatalog catalog,GameState state,PrimaryProgram program) =>
+            program.Instructions[state.Execution!.Cursor]==InstructionKind.PrimaryMovement
+                ? catalog.Card(state.Execution.CardId).PrimaryValue+state.Players[state.Execution.ControllerSeat].MovementBonus : program.TextMoveDistance;
         private static bool PassesThroughTarget(GameState state,PrimaryProgram program) => program.Instructions[state.Execution!.Cursor]==InstructionKind.RequiredStraightMoveThroughEnemy;
         private static List<MoveOption> StrikeThroughMoves(ContentCatalog catalog,GameState state,UnitState source,PrimaryProgram program)
         {
@@ -74,7 +77,8 @@ namespace Goa2.Rules
                  program.Instructions[execution.Cursor]==InstructionKind.OptionalPreAttackTextMove ||
                  program.Instructions[execution.Cursor]==InstructionKind.OptionalTextMoveIfNoPreMove ||
                  program.Instructions[execution.Cursor]==InstructionKind.RequiredStraightMoveToAttack ||
-                 program.Instructions[execution.Cursor]==InstructionKind.RequiredStraightMoveThroughEnemy) ? program : null;
+                 program.Instructions[execution.Cursor]==InstructionKind.RequiredStraightMoveThroughEnemy ||
+                 program.Instructions[execution.Cursor]==InstructionKind.PrimaryMovement) ? program : null;
         }
         public static List<MoveOption> LegalEffectMoves(ContentCatalog catalog,GameState state,int seat)
         {
@@ -85,7 +89,7 @@ namespace Goa2.Rules
             var source=state.Units.SingleOrDefault(u=>u.Seat==seat && u.Id==state.Pending.UnitId);
             if(program==null || source==null)return new List<MoveOption>();
             return program.Instructions[state.Execution!.Cursor]==InstructionKind.RequiredStraightMoveToAttack || PassesThroughTarget(state,program)
-                ? ChargeMoves(catalog,state,source,program) : MovementRules.Reachable(catalog,state,source,program.TextMoveDistance);
+                ? ChargeMoves(catalog,state,source,program) : MovementRules.Reachable(catalog,state,source,MovementStepBudget(catalog,state,program));
         }
         private static bool BeginTextMove(ContentCatalog catalog,GameState state,Command command,CardExecution execution,PrimaryProgram program)
         {
@@ -95,9 +99,10 @@ namespace Goa2.Rules
                 Emit(state,command,"EffectMoveSkipped",execution.ControllerSeat,execution.CardId,detail:"pre_attack_move_used");
                 return false;
             }
-            // A card-text step continues the original action, without movement-icon bonuses or Fast Travel.
+            // Only a primary Movement icon receives the movement bonus; fixed card text does not.
             var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
-            var options=source==null ? new List<MoveOption>() : MovementRules.Reachable(catalog,state,source,program.TextMoveDistance);
+            int budget=MovementStepBudget(catalog,state,program);
+            var options=source==null ? new List<MoveOption>() : MovementRules.Reachable(catalog,state,source,budget);
             if(options.Count==0)
             {
                 Emit(state,command,"EffectMoveSkipped",execution.ControllerSeat,execution.CardId,detail:source==null ? "source_absent" : "no_destinations");
@@ -107,10 +112,10 @@ namespace Goa2.Rules
             state.Pending=new PendingChoice
             {
                 Id="effect-move:"+(state.Events.Count+1),Kind="effect_move",ChooserSeat=execution.ControllerSeat,
-                Source=execution.CardId,UnitId=source!.Id,ResumeAt=instruction==InstructionKind.OptionalPreAttackTextMove ? "before_attack" : "card_text_move",Optional=true,
+                Source=execution.CardId,UnitId=source!.Id,ResumeAt=instruction==InstructionKind.PrimaryMovement ? "primary_movement" : instruction==InstructionKind.OptionalPreAttackTextMove ? "before_attack" : "card_text_move",Optional=true,
                 CandidateCells=options.Select(o=>o.Destination).ToList()
             };
-            Emit(state,command,"EffectMoveChoiceRequired",execution.ControllerSeat,execution.CardId,detail:program.TextMoveDistance.ToString());
+            Emit(state,command,"EffectMoveChoiceRequired",execution.ControllerSeat,execution.CardId,detail:budget.ToString());
             return true;
         }
         private static void ChooseEffectMove(ContentCatalog catalog,GameState state,Command command)
@@ -131,7 +136,7 @@ namespace Goa2.Rules
                 var unit=state.Units.Single(u=>u.Seat==command.ActorSeat);
                 var origin=unit.Position;unit.Position=command.Destination;
                 if(TextMoveProgram(catalog,state)!.Instructions[execution.Cursor]==InstructionKind.OptionalPreAttackTextMove) execution.PreAttackMoved=true;
-                Emit(state,command,"UnitMoved",command.ActorSeat,execution.CardId,detail:"CardText");
+                Emit(state,command,"UnitMoved",command.ActorSeat,execution.CardId,detail:TextMoveProgram(catalog,state)!.Instructions[execution.Cursor]==InstructionKind.PrimaryMovement ? "Primary" : "CardText");
                 var moved=state.Events.Last();moved.From=origin;moved.To=unit.Position;moved.Path=option!.Path;
                 if(through)Emit(state,command,"AttackTargetChosen",command.ActorSeat,execution.CardId,detail:execution.TargetUnitId);
             }

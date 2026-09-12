@@ -1,0 +1,169 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine30-drill-attack-scenario",
+  "Name": "引擎30演练跨回合后的基础攻击防御窗口",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "sabina,tigerclaw,brogan,wasp"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "sabina-17-演练",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "brogan-02-投掷飞斧",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "brogan-10-吟游诗人",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 3,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:1,0",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:3,1",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-17-演练",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-07-伺机待发",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-07-抵挡屏障",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p1",
+        "EventCounts": {
+          "EffectCreated": 0,
+          "UnitMoved": 0
+        }
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Destination": {
+        "X": 4,
+        "Y": -8
+      },
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p3",
+        "Positions": {
+          "hero:0": {
+            "X": 4,
+            "Y": -8
+          }
+        },
+        "EventCounts": {
+          "EffectCreated": 1,
+          "EffectActivated": 1,
+          "UnitMoved": 1,
+          "CardResolved": 1
+        }
+      }
+    },
+    {
+      "Command": "DebugAdvance",
+      "Value": "turn",
+      "Expect": {
+        "Phase": "Planning",
+        "Turn": 2,
+        "EventCounts": {
+          "EffectExpired": 0
+        }
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-07-指挥",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-02-偷袭",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-00-猛攻",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-01-电击",
+      "Actor": "p4"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p3"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Actor": "p3",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2",
+        "AttackFinal": 5
+      }
+    }
+  ]
+}

@@ -24,18 +24,20 @@ namespace Goa2.Tests
             Assert.That(game.View(null).ActiveSeat, Is.EqualTo(0));
             return game;
         }
-        [Test]
-        public void PublicAreaProjectionTracksTheSourceAndCannotMutateAuthority()
+        [TestCase(29)] [TestCase(30)]
+        public void PublicAreaProjectionTracksTheSourceAndCannotMutateAuthority(int engine)
         {
-            var catalog=BattlefieldTests.Catalog(); var game=Setup(catalog); Apply(game,0,CommandKind.BeginPrimary);
+            var catalog=BattlefieldTests.Catalog(); var game=Setup(catalog,engineVersion:engine); Apply(game,0,CommandKind.BeginPrimary);
             var view=game.View(null); var effect=view.Effects.Single(); var source=view.Units.Single(u => u.Id==effect.SourceUnitId);
             Assert.That(view.EffectAreas.ContainsKey(effect.Id), Is.True);
             Assert.That(view.EffectAreas[effect.Id], Is.EquivalentTo(catalog.Cells.Where(c => c.Position.Distance(source.Position)<=2).Select(c => c.Position)));
             view.EffectAreas[effect.Id].Clear(); view.Effects[0].Window.EndTurn=4;
             Assert.That(game.View(null).EffectAreas[effect.Id], Is.Not.Empty); Assert.That(game.View(null).Effects[0].Window.EndTurn, Is.EqualTo(1));
             Apply(game,0,CommandKind.DebugDefeatHero,effect.SourceUnitId,target:1);
-            Assert.That(game.View(null).Effects.Count, Is.EqualTo(1)); Assert.That(game.View(null).EffectAreas[effect.Id], Is.Empty);
-            Assert.That(LocalGameFactory.Restore(catalog,game.ExportSave()).View(null).EffectAreas[effect.Id], Is.Empty);
+            Assert.That(game.View(null).Effects.Count, Is.EqualTo(engine<30 ? 1 : 0));
+            foreach(var checkedGame in new[]{game,LocalGameFactory.Restore(catalog,game.ExportSave())})
+                if(engine<30) Assert.That(checkedGame.View(null).EffectAreas[effect.Id], Is.Empty);
+                else Assert.That(checkedGame.View(null).EffectAreas.ContainsKey(effect.Id), Is.False);
         }
         [Test]
         public void StaticFieldStartsOnMainActionHasSourcesAndExpiresAtTheTurnBoundary()

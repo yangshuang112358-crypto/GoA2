@@ -86,6 +86,7 @@ namespace Goa2.Rules
                         StopCard(catalog,state,command,"no_charge_route");
                         return;
                     case InstructionKind.OptionalTextMove:
+                    case InstructionKind.PrimaryMovement:
                     case InstructionKind.OptionalPreAttackTextMove:
                     case InstructionKind.OptionalTextMoveIfNoPreMove:
                         if (BeginTextMove(catalog,state,command,execution,program)) return;
@@ -150,7 +151,8 @@ namespace Goa2.Rules
                 return;
             }
             var modifier=CombatRules.CardTextModifier(catalog,state,card,source,target);
-            execution.Attack = CombatMath.Attack(state, card, execution.ControllerSeat, target.Id,modifier.Amount,modifier.Unblockable);
+            execution.Attack = CombatMath.Attack(state, card, execution.ControllerSeat, target.Id,modifier.Amount,modifier.Unblockable,
+                EffectRules.MinionCombatKinds(catalog,state,card,execution.ControllerSeat));
             execution.Attack.CardTextReason=modifier.Reason; execution.Attack.CardTextSourceUnits=modifier.UnitSources;
             Emit(state, command, "AttackCalculated", execution.ControllerSeat, card.Id);
             state.Events.Last().AttackValues = execution.Attack;

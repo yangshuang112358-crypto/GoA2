@@ -4,7 +4,7 @@ using Goa2.Domain;
 
 namespace Goa2.Rules.Cards
 {
-    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget, OptionalRepeatAttackAfterHeroDefeat, OptionalMinionRemovalAfterDefeat, PushAttackTargetIfAdjacent, MoveIntoAttackTargetCell, RequiredStraightMoveToAttack, RequiredStraightMoveThroughEnemy }
+    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget, OptionalRepeatAttackAfterHeroDefeat, OptionalMinionRemovalAfterDefeat, PushAttackTargetIfAdjacent, MoveIntoAttackTargetCell, RequiredStraightMoveToAttack, RequiredStraightMoveThroughEnemy, PrimaryMovement }
     internal enum HeroTargetKind { None, AlliedNearEnemy }
     internal enum AttackBonusKind { None, TargetUsedAttack, AdjacentEnemies, OtherFriendlySupport }
     internal enum AttackRangeBonusKind { None, DiscardedBeforeAttack, OwnDiscardPile }
@@ -66,10 +66,10 @@ namespace Goa2.Rules.Cards
             SupportMakesUnblockable=supportMakesUnblockable;
             Instructions = System.Array.AsReadOnly(instructions.Length>0 ? instructions : new[] { InstructionKind.ChooseAttackTarget, InstructionKind.Attack, InstructionKind.End });
         }
-        public PrimaryProgram(string id, EffectKind effect, EffectDuration duration)
+        public PrimaryProgram(string id, EffectKind effect, EffectDuration duration,bool primaryMovement=false)
         {
             Id = id; Effect = effect; Duration = duration;
-            Instructions = System.Array.AsReadOnly(new[] { InstructionKind.ApplyEffect, InstructionKind.End });
+            Instructions = System.Array.AsReadOnly(primaryMovement ? new[] {InstructionKind.PrimaryMovement,InstructionKind.ApplyEffect,InstructionKind.End} : new[] { InstructionKind.ApplyEffect, InstructionKind.End });
         }
     }
     internal static class CardPrograms
@@ -160,11 +160,17 @@ namespace Goa2.Rules.Cards
             ["shargatha-15-忠实信徒"] = ("如果你与一个小兵相邻，你可以拿回一张已丢弃的卡牌。",12,null,new PrimaryProgram("optional_discard_recovery_near_minion",0,recoveryRequiresAdjacentMinion:true,
                 instructions:new[]{InstructionKind.OptionalRecoverDiscard,InstructionKind.End}))
         };
+        private static readonly Dictionary<string,(string text,int minimumEngine,PrimaryProgram program)> Movements = new Dictionary<string,(string,int,PrimaryProgram)>
+        {
+            ["sabina-17-演练"] = ("本轮：当你或一名友方英雄执行基础攻击时，将技能范围内的所有友方小兵（包括免疫的）视为远程单位。",30,
+                new PrimaryProgram("primary_move_round_basic_minions_ranged",EffectKind.FriendlyBasicMinionsRanged,EffectDuration.ThisRound,primaryMovement:true))
+        };
         public static PrimaryProgram? Primary(CardDefinition card, int engineVersion)
         {
             if (card.PrimaryFamily == "attack" && Attacks.TryGetValue(card.Id,out var attack) && card.Text == attack.text && engineVersion>=attack.minimumEngine &&
                 (attack.program.AdjacentAttack ? string.IsNullOrEmpty(card.Subtype) : card.Subtype=="远程")) return attack.program;
             if (card.PrimaryFamily == "skill" && Skills.TryGetValue(card.Id,out var skill) && engineVersion>=skill.minimumEngine && card.Subtype==skill.subtype && card.Text==skill.text) return skill.program;
+            if (card.PrimaryFamily == "movement" && Movements.TryGetValue(card.Id,out var movement) && engineVersion>=movement.minimumEngine && card.Subtype=="范围" && card.Text==movement.text) return movement.program;
             if (engineVersion >= 3 && card.Id=="wasp-00-闪耀之刃" && card.PrimaryCategory=="基础攻击" && string.IsNullOrEmpty(card.Subtype) &&
                 card.Text=="选择与你相邻的一个英雄为目标。攻击后：取消与你相邻的敌方英雄技能卡上的激活效果。此回合：与你相邻的敌方英雄无法执行技能行动。") return ShiningBlade;
             return null;

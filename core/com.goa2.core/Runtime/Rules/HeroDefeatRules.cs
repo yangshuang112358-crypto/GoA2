@@ -16,6 +16,7 @@ namespace Goa2.Rules
             state.Units.Remove(unit); victim.AwaitingRespawn = true;
             Emit(state, command, "HeroDefeated", victim.Seat, source == "debug" || sourcePrivateTo.HasValue ? null : source, detail: "by:" + killerSeat);
             state.Events.Last().From = unit.Position;
+            CancelDefeatedHeroEffects(state,command,victim.Seat);
             if(sourcePrivateTo.HasValue) Emit(state,command,"HeroDefeatSource",killerSeat,source,sourcePrivateTo,detail:targetId);
             state.Players[killerSeat].Gold += victim.Level;
             Emit(state, command, "GoldAwarded", killerSeat, detail: victim.Level.ToString());

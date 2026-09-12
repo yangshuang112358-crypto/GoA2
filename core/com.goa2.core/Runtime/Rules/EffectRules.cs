@@ -7,6 +7,21 @@ namespace Goa2.Rules
 {
     public static class EffectRules
     {
+        public static Dictionary<string,string> MinionCombatKinds(ContentCatalog catalog,GameState state,CardDefinition attack,int attackerSeat)
+        {
+            var result=new Dictionary<string,string>();
+            if(state.EngineVersion<30 || attack.PrimaryCategory!="基础攻击")return result;
+            var team=state.Players[attackerSeat].Team;
+            foreach(var effect in Current(state,EffectKind.FriendlyBasicMinionsRanged))
+            {
+                var source=Source(state,effect);
+                if(source==null || state.Players[effect.ControllerSeat].Team!=team)continue;
+                int radius=Radius(catalog,state,effect);
+                foreach(var minion in state.Units.Where(u=>u.Team==team && (u.Kind=="melee" || u.Kind=="ranged" || u.Kind=="heavy") && u.Position.Distance(source.Position)<=radius))
+                    result[minion.Id]="ranged";
+            }
+            return result;
+        }
         private static IEnumerable<ActiveEffect> Current(GameState state, EffectKind kind) => state.Effects.Where(e => e.Kind == kind && EffectTimeline.Active(e.Window,state.Round,state.Turn));
         private static UnitState? Source(GameState state, ActiveEffect effect) => state.Units.SingleOrDefault(u => u.Id == effect.SourceUnitId);
         private static int Radius(ContentCatalog catalog, GameState state, ActiveEffect effect) => effect.AreaKind==EffectAreaKind.Adjacent ? 1 :
