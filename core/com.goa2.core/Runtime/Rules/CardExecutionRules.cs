@@ -65,6 +65,8 @@ namespace Goa2.Rules
                         EndCardExecution(catalog, state, command);
                         return;
                     case InstructionKind.OptionalTextMove:
+                    case InstructionKind.OptionalPreAttackTextMove:
+                    case InstructionKind.OptionalTextMoveIfNoPreMove:
                         if (BeginTextMove(catalog,state,command,execution,program)) return;
                         execution.Cursor++;
                         break;

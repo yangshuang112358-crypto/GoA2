@@ -39,6 +39,7 @@ namespace Goa2.Domain
         public DefenseResponse? DefenseResponse;
         public bool PreAttackDiscarded, AttackRangeLocked;
         public int AttackRangeBonus;
+        public bool PreAttackMoved;
     }
     [Serializable]
     public sealed class DefenseResponse

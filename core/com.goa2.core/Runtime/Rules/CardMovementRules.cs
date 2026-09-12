@@ -15,7 +15,9 @@ namespace Goa2.Rules
             var program=CardPrograms.Primary(catalog.Card(execution.CardId),state.EngineVersion);
             return program!=null && program.Id==execution.ProgramId && program.Version==execution.ProgramVersion &&
                 execution.Cursor>=0 && execution.Cursor<program.Instructions.Count &&
-                program.Instructions[execution.Cursor]==InstructionKind.OptionalTextMove ? program : null;
+                (program.Instructions[execution.Cursor]==InstructionKind.OptionalTextMove ||
+                 program.Instructions[execution.Cursor]==InstructionKind.OptionalPreAttackTextMove ||
+                 program.Instructions[execution.Cursor]==InstructionKind.OptionalTextMoveIfNoPreMove) ? program : null;
         }
         public static List<MoveOption> LegalEffectMoves(ContentCatalog catalog,GameState state,int seat)
         {
@@ -27,6 +29,12 @@ namespace Goa2.Rules
         }
         private static bool BeginTextMove(ContentCatalog catalog,GameState state,Command command,CardExecution execution,PrimaryProgram program)
         {
+            var instruction=program.Instructions[execution.Cursor];
+            if(instruction==InstructionKind.OptionalTextMoveIfNoPreMove && execution.PreAttackMoved)
+            {
+                Emit(state,command,"EffectMoveSkipped",execution.ControllerSeat,execution.CardId,detail:"pre_attack_move_used");
+                return false;
+            }
             // A card-text step continues the original action, without movement-icon bonuses or Fast Travel.
             var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
             var options=source==null ? new List<MoveOption>() : MovementRules.Reachable(catalog,state,source,program.TextMoveDistance);
@@ -39,7 +47,7 @@ namespace Goa2.Rules
             state.Pending=new PendingChoice
             {
                 Id="effect-move:"+(state.Events.Count+1),Kind="effect_move",ChooserSeat=execution.ControllerSeat,
-                Source=execution.CardId,UnitId=source!.Id,ResumeAt="card_text_move",Optional=true,
+                Source=execution.CardId,UnitId=source!.Id,ResumeAt=instruction==InstructionKind.OptionalPreAttackTextMove ? "before_attack" : "card_text_move",Optional=true,
                 CandidateCells=options.Select(o=>o.Destination).ToList()
             };
             Emit(state,command,"EffectMoveChoiceRequired",execution.ControllerSeat,execution.CardId,detail:program.TextMoveDistance.ToString());
@@ -59,6 +67,7 @@ namespace Goa2.Rules
                 Require(option!=null,"invalid_effect_move","该格不是当前牌文移动的合法落点。");
                 var unit=state.Units.Single(u=>u.Seat==command.ActorSeat);
                 var origin=unit.Position;unit.Position=command.Destination;
+                if(TextMoveProgram(catalog,state)!.Instructions[execution.Cursor]==InstructionKind.OptionalPreAttackTextMove) execution.PreAttackMoved=true;
                 Emit(state,command,"UnitMoved",command.ActorSeat,execution.CardId,detail:"CardText");
                 var moved=state.Events.Last();moved.From=origin;moved.To=unit.Position;moved.Path=option!.Path;
             }

@@ -195,7 +195,8 @@ namespace Goa2.Tests
                 int seat=view.ActiveSeat.Value; var own=session.View(seat);
                 var active=own.OwnCards.Single(c=>c.Zone==CardZone.PlayedUnresolved);
                 bool attack=catalog.Card(active.CardId).PrimaryFamily=="attack";
-                if(own.CanBeginPrimary && (!attack || own.AttackTargets.Count>0) && Next(5)!=0) return Step(CommandKind.BeginPrimary,seat);
+                // An attack can gain targets after its optional movement or discard step.
+                if(own.CanBeginPrimary && (!attack || own.AttackTargets.Count>0 || Next(5)==0) && Next(5)!=0) return Step(CommandKind.BeginPrimary,seat);
                 if(!own.PrimarySupported && !Report.UnimplementedPrimaryCards.Contains(active.CardId)) Report.UnimplementedPrimaryCards.Add(active.CardId);
                 var moves=own.SecondaryMoves.Select(m=>(option:m,mode:MoveMode.Secondary)).Concat(own.FastMoves.Select(m=>(option:m,mode:MoveMode.Fast))).ToList();
                 if(moves.Count>0 && Next(7)!=0)

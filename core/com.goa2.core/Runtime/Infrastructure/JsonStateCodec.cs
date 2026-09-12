@@ -1,16 +1,31 @@
 #nullable enable
 using System;
 using System.IO;
+using System.Reflection;
 using Goa2.Domain;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace Goa2.Infrastructure
 {
     public sealed class JsonStateCodec : IStateCodec
     {
+        private sealed class StateContractResolver : DefaultContractResolver
+        {
+            protected override JsonProperty CreateProperty(MemberInfo member,MemberSerialization serialization)
+            {
+                var property=base.CreateProperty(member,serialization);
+                // New execution facts must not add default fields to historical captures.
+                if(member.DeclaringType==typeof(CardExecution) && member.Name==nameof(CardExecution.PreAttackMoved))
+                    property.DefaultValueHandling=DefaultValueHandling.Ignore;
+                return property;
+            }
+        }
+        private static readonly IContractResolver Contract=new StateContractResolver();
         private static JsonSerializerSettings Settings() => new JsonSerializerSettings
         {
+            ContractResolver=Contract,
             TypeNameHandling = TypeNameHandling.None, MissingMemberHandling = MissingMemberHandling.Error,
             MaxDepth = 64, DateParseHandling = DateParseHandling.None, Formatting = Formatting.None
         };

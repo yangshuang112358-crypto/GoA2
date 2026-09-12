@@ -4,7 +4,7 @@ using Goa2.Domain;
 
 namespace Goa2.Rules.Cards
 {
-    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard }
+    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove }
     internal enum AttackBonusKind { None, TargetUsedAttack, AdjacentEnemies, OtherFriendlySupport }
     internal enum AttackRangeBonusKind { None, DiscardedBeforeAttack, OwnDiscardPile }
     internal enum DefenseFollowup { None, DiscardAttacker, DiscardAttackerThenImmunity, DiscardAttackerOrDefeat }
@@ -67,6 +67,9 @@ namespace Goa2.Rules.Cards
         // Binding IDs is confined to this registry. Shared execution never branches on a card ID.
         private static readonly Dictionary<string,(string text,int minimumEngine,PrimaryProgram program)> Attacks = new Dictionary<string,(string,int,PrimaryProgram)>
         {
+            ["tigerclaw-04-影袭"] = ("攻击前：你可以移动1格。选择与你相邻的一个单位为目标。攻击后：如果你在攻击前没有移动，你可以移动1格。",13,
+                new PrimaryProgram("adjacent_attack_move_before_or_after",1,adjacent:true,textMoveDistance:1,
+                    instructions:new[]{InstructionKind.OptionalPreAttackTextMove,InstructionKind.ChooseAttackTarget,InstructionKind.Attack,InstructionKind.OptionalTextMoveIfNoPreMove,InstructionKind.End})),
             ["tigerclaw-02-偷袭"] = ("选择与你相邻的一个单位为目标。攻击后：你可以移动1格。",11,
                 new PrimaryProgram("adjacent_attack_optional_text_move",1,adjacent:true,textMoveDistance:1,
                     instructions:new[]{InstructionKind.ChooseAttackTarget,InstructionKind.Attack,InstructionKind.OptionalTextMove,InstructionKind.End})),

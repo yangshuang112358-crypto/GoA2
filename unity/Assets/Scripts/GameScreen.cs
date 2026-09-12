@@ -493,7 +493,7 @@ namespace Goa2.Presentation
                 case "RecoverDiscardRequired": return actor+"可取回一张弃牌";
                 case "RecoverDiscardSkipped": return actor+(entry.Detail=="declined" ? "选择不取回弃牌" : "不满足取回条件或没有弃牌");
                 case "RecoverDiscardCompleted": return actor+"完成牌文取回";
-                case "EffectMoveSkipped": return actor+(entry.Detail=="declined" ? "选择不进行牌文移动" : "没有可用的牌文移动落点");
+                case "EffectMoveSkipped": return actor+(entry.Detail=="declined" ? "选择不进行牌文移动" : entry.Detail=="pre_attack_move_used" ? "攻击前已移动，略过攻击后移动" : "没有可用的牌文移动落点");
                 case "ActionStarted": return actor + "开始行动";
                 case "CardResolved": return actor + "的牌已结算";
                 case "PlanningStarted": return "进入暗选 " + entry.Detail;

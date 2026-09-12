@@ -1,0 +1,81 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine13-shadow-target",
+  "Name": "引擎13实际前移后等待攻击目标",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "tigerclaw,wasp,brogan,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Target": "p1",
+      "Value": "tigerclaw-04-影袭"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 7,
+        "Y": -10
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 8,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-04-影袭"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p1",
+        "EventCounts": {
+          "AttackDeclared": 0
+        }
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Destination": {
+        "X": 8,
+        "Y": -10
+      },
+      "Expect": {
+        "PendingKind": "attack_target",
+        "Positions": {
+          "hero:0": {
+            "X": 8,
+            "Y": -10
+          }
+        }
+      }
+    }
+  ]
+}

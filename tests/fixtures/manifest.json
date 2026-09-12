@@ -99,6 +99,15 @@
       "input": "tests/fixtures/engine12-loyal-choice-scenario.json",
       "input_sha256": "d2377122503faefd449a38b2ef09e30205983f6a04182c086c6e6f497c66f0b6",
       "provenance": "tests/fixtures/engine12-loyal-choice.md"
+    },
+    {
+      "engine_version": 13,
+      "accepted_commands": 10,
+      "save": "tests/fixtures/engine13-shadow-target.json",
+      "save_sha256": "1b20fffd98bc16eaf4a336ad867fe4bd69907f268de68b9d99af3aaa38e56abe",
+      "input": "tests/fixtures/engine13-shadow-target-scenario.json",
+      "input_sha256": "513eff80d272f167eab804634b31aaa6d9319968a8427ffd0551be5bbf708120",
+      "provenance": "tests/fixtures/engine13-shadow-target.md"
     }
   ]
 }

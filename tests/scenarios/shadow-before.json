@@ -1,0 +1,21 @@
+{
+  "SchemaVersion": 1,
+  "Id": "shadow-before",
+  "Name": "影袭：前移接近目标后攻击，不能再次后移",
+  "Steps": [
+    {"Command":"DebugPrepare","Value":"tigerclaw,wasp,brogan,arien"},
+    {"Command":"DebugEquipCard","Target":"p1","Value":"tigerclaw-04-影袭"},
+    {"Command":"DebugTeleport","Value":"hero:0","Destination":{"X":7,"Y":-10}},
+    {"Command":"DebugTeleport","Value":"hero:1","Destination":{"X":8,"Y":-9}},
+    {"Command":"SelectCard","Value":"tigerclaw-04-影袭"},
+    {"Command":"SelectCard","Actor":"p2","Value":"wasp-07-抵挡屏障"},
+    {"Command":"SelectCard","Actor":"p3","Value":"brogan-06-铜墙铁壁"},
+    {"Command":"SelectCard","Actor":"p4","Value":"arien-07-潮水","Expect":{"Phase":"Action","Active":"p1"}},
+    {"Command":"BeginPrimary","Expect":{"PendingKind":"effect_move","PendingChooser":"p1","EventCounts":{"AttackDeclared":0}}},
+    {"Command":"ChooseEffectMove","Destination":{"X":8,"Y":-10},"Expect":{"PendingKind":"attack_target","Positions":{"hero:0":{"X":8,"Y":-10}}}},
+    {"Command":"ChooseAttackTarget","Value":"hero:2","Expect":{"Code":"invalid_attack_target"}},
+    {"Command":"ChooseAttackTarget","Value":"hero:1","Expect":{"PendingKind":"defense","PendingChooser":"p2","AttackBase":4}},
+    {"Command":"DeclineDefense","Actor":"p2","Expect":{"Phase":"Action","EventCounts":{"EffectMoveChoiceRequired":0,"EffectMoveSkipped":1,"AttackResolved":1,"CardResolved":1}}},
+    {"Command":"ChooseEffectMove","Value":"skip","Expect":{"Code":"invalid_effect_move"}}
+  ]
+}
