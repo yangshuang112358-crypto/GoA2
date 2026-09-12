@@ -41,6 +41,7 @@ namespace Goa2.Domain
         public bool PreAttackDiscarded, AttackRangeLocked;
         public int AttackRangeBonus;
         public bool PreAttackMoved;
+        public Hex? AttackTargetCell;
     }
     [Serializable]
     public sealed class DefenseResponse

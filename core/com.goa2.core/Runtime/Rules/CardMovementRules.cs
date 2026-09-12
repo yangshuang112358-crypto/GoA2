@@ -8,6 +8,21 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
+        private static void MoveIntoAttackTargetCell(ContentCatalog catalog,GameState state,Command command,CardExecution execution,PrimaryProgram program)
+        {
+            var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
+            Require(execution.AttackTargetCell.HasValue,"missing_attack_position","攻击目标的位置记录缺失。");
+            var destination=execution.AttackTargetCell!.Value;
+            var option=source==null ? null : MovementRules.Reachable(catalog,state,source,program.TextMoveDistance).SingleOrDefault(o=>o.Destination==destination);
+            if(option==null)
+            {
+                string reason=source==null ? "source_absent" : state.Units.Any(u=>u.Position==destination) ? "target_position_occupied" : "target_position_unreachable";
+                Emit(state,command,"EffectMoveSkipped",execution.ControllerSeat,execution.CardId,detail:reason);return;
+            }
+            var origin=source!.Position;source.Position=destination;
+            Emit(state,command,"UnitMoved",execution.ControllerSeat,execution.CardId,detail:"CardText");
+            var moved=state.Events.Last();moved.From=origin;moved.To=destination;moved.Path=option.Path;
+        }
         private static PrimaryProgram? TextMoveProgram(ContentCatalog catalog,GameState state)
         {
             var execution=state.Execution;

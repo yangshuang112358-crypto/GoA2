@@ -1,0 +1,153 @@
+{
+  "SchemaVersion": 1,
+  "Id": "mighty-frontline",
+  "Name": "猛攻：完成推进和占位出生后再移动",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "brogan,tigerclaw,sabina,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-14-近身格挡",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-1,-3",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-00-猛攻",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-07-伺机待发",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-07-指挥",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Value": "minion:-1,-3"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Value": "minion:1,-1"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Value": "minion:4,-1"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Value": "minion:3,0"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Value": "minion:-1,1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-3,0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 2,
+        "Y": -7
+      }
+    },
+    {
+      "Command": "BeginPrimary"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "minion:-3,0",
+      "Expect": {
+        "PendingKind": "minion_spawn",
+        "PendingChooser": "p2",
+        "Gold": {
+          "p1": 4
+        },
+        "EventCounts": {
+          "UnitMoved": 0
+        }
+      }
+    },
+    {
+      "Command": "ChooseMinionSpawn",
+      "Value": "minion:1:2,-7",
+      "Actor": "p2",
+      "Destination": {
+        "X": 2,
+        "Y": -8
+      },
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p3",
+        "Positions": {
+          "hero:0": {
+            "X": 6,
+            "Y": -8
+          }
+        },
+        "Gold": {
+          "p1": 4
+        },
+        "BlueMarks": 1,
+        "EventCounts": {
+          "AttackResolved": 1,
+          "UnitMoved": 1,
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

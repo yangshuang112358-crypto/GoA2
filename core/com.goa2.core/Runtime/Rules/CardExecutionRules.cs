@@ -73,6 +73,10 @@ namespace Goa2.Rules
                         PushAttackTargetIfAdjacent(catalog,state,command,execution,program);
                         execution.Cursor++;
                         break;
+                    case InstructionKind.MoveIntoAttackTargetCell:
+                        MoveIntoAttackTargetCell(catalog,state,command,execution,program);
+                        execution.Cursor++;
+                        break;
                     case InstructionKind.End:
                         EndCardExecution(catalog, state, command);
                         return;
@@ -128,6 +132,7 @@ namespace Goa2.Rules
             if (source == null || !CombatRules.Targets(catalog, state, source, card, program).Contains(execution.TargetUnitId))
             { StopCard(catalog, state, command, "target_invalid"); return; }
             var target = state.Units.Single(u => u.Id == execution.TargetUnitId);
+            if(program.Instructions.Contains(InstructionKind.MoveIntoAttackTargetCell)) execution.AttackTargetCell=target.Position;
             execution.Cursor++; execution.AwaitingAttackCompletion = true;
             Emit(state, command, "AttackDeclared", execution.ControllerSeat, card.Id, detail: target.Id);
             if (target.Kind != "hero")

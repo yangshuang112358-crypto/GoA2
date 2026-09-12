@@ -189,6 +189,15 @@
       "input": "tests/fixtures/engine22-pointblank-defense-scenario.json",
       "input_sha256": "0cdaf1c2a2f5d776d343aaee8ff24ff8c14e6dbdb46a2f7c1f0c1e88bf03d15f",
       "provenance": "tests/fixtures/engine22-pointblank-defense.md"
+    },
+    {
+      "engine_version": 23,
+      "accepted_commands": 11,
+      "save": "tests/fixtures/engine23-mighty-defense.json",
+      "save_sha256": "517e22c19ec449aeebe99f5a5c02f9877c1984c10d29af49d8c232d2422a7f06",
+      "input": "tests/fixtures/engine23-mighty-defense-scenario.json",
+      "input_sha256": "3208a6c90eb8a5c0c06a2a97723c48d3d00169fce73572825127763add124128",
+      "provenance": "tests/fixtures/engine23-mighty-defense.md"
     }
   ]
 }

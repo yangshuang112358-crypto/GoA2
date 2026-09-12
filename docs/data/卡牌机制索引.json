@@ -553,7 +553,7 @@
         "move",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/brogan-00-猛攻.md",
       "question_candidates": [
         "U-011"

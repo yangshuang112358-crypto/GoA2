@@ -1,0 +1,79 @@
+{
+  "engine": 23,
+  "implemented_cards": 34,
+  "data_only_cards": 74,
+  "build_utc": "2026-09-12T20:24:43.5997516Z",
+  "assemblies": {
+    "Goa2.Application.dll": "00b9e863ee0a42134b6ac6a2902909c354267921276339238ddf3643b61fa4d2",
+    "Goa2.Domain.dll": "e733b527d7802f219f34d9daf9a84345bd79a7db8675f46b07af38b5d6e38e20",
+    "Goa2.Infrastructure.dll": "8d4a31fd3df00bec26e115984d82be8bc206f76c67b756ab02b53da1ab8d50f9",
+    "Goa2.Presentation.dll": "3953174297a565f8623f505765ab39cc886a0f60b190863d5dcc59ec1ef42aa4",
+    "Goa2.Rules.dll": "fa12174ff0a846607e564dc5095c4daf66d53a3478a2cdc2ee9a87b3f1974ea8"
+  },
+  "core": {
+    "passed": 723,
+    "failed": 0,
+    "report": "artifacts/tests/mighty-core.trx",
+    "card_specific": 16
+  },
+  "native": {
+    "results": [
+      {
+        "input": "tests/scenarios/mighty-defeat.json",
+        "input_sha256": "b479f06a362454ff9d1d48118dfe1e1ca6fc95792930563a0bd6611e84b2db5a",
+        "report": "artifacts/scenarios/mighty-defeat/headless/97714e0b33034b688fc2baa249b7cfe4/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/mighty-minion.json",
+        "input_sha256": "c2efcc52419cd228410254685c8ee506227707ef7ed4fab0e66a2fe5f27b1953",
+        "report": "artifacts/scenarios/mighty-minion/headless/8afccdadf2624552a40efd1c20648da1/report.json",
+        "steps": 11,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/mighty-counter.json",
+        "input_sha256": "65b18851b2d9110e0b0a1d5d4899b94cd83e5ba79ef49c58ee88f3939440fea1",
+        "report": "artifacts/scenarios/mighty-counter/headless/f98aec3743cd427d996fae62a9e5487a/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/mighty-frontline.json",
+        "input_sha256": "1c9a6e1fb6de26b2db536b86d6155c5fd6b6821c844ad0699a402f2018c4a4da",
+        "report": "artifacts/scenarios/mighty-frontline/headless/33bacdbd367b4e9c8bb16643405e9a7b/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/mighty-occupied.json",
+        "input_sha256": "be668944e2460570441e267abae0faa0d553d7f1b387d9ebe930ddcd75790014",
+        "report": "artifacts/scenarios/mighty-occupied/headless/05e835e5de574cfa8bee00359d7c29f4/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pointblank-push.json",
+        "input_sha256": "b6a428f34694508fff1929ed46b6ef7f3f3e6123071e4d76bc625eec80adc606",
+        "report": "artifacts/scenarios/pointblank-push/headless/0403d0c4055e475b89222873a5cddb6d/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine23-mighty-defense-scenario.json",
+        "input_sha256": "3208a6c90eb8a5c0c06a2a97723c48d3d00169fce73572825127763add124128",
+        "report": "artifacts/scenarios/engine23-mighty-defense-scenario/headless/2f954d2e4ed24c94827668f58833ce51/report.json",
+        "steps": 11,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 99
+  },
+  "manual_presets": [
+    "mighty-blow",
+    "mighty-frontline"
+  ],
+  "note": "Native Player commands and frozen original save verified. Physical input not tested; card status remains implemented."
+}

@@ -410,11 +410,24 @@
     },
     {
       "card_id": "brogan-00-猛攻",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-00-猛攻.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/MightyBlowTests.cs",
+        "tests/scenarios/mighty-defeat.json",
+        "tests/scenarios/mighty-minion.json",
+        "tests/scenarios/mighty-counter.json",
+        "tests/scenarios/mighty-frontline.json",
+        "tests/scenarios/mighty-occupied.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Domain/Combat.cs",
+        "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "brogan-01-冲撞",
