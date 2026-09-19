@@ -1,0 +1,89 @@
+{
+  "engine": 48,
+  "implemented_cards": 59,
+  "data_only_cards": 49,
+  "build_utc": "2026-09-19T19:59:21.0171545Z",
+  "assemblies": {
+    "Goa2.Application.dll": "04ecbfe13600700faf2bc3592f16797e1fa5a8be67742e3a27d09903554a4c41",
+    "Goa2.Domain.dll": "256e8cdaac1c3c56f161998bd85e0e55df9159b5a5db193340be6dcde68a56bf",
+    "Goa2.Editor.dll": "c8116651a3a816c37d0ecd1310f64ed8a412a1fbca7dbaf4ab40e1802a384176",
+    "Goa2.Infrastructure.dll": "c11058ea9dec40c684427bb980cfef6f1c98baf5e84668204548ee81a97eda5f",
+    "Goa2.Rules.dll": "ccb8557815dbb3103ac9a31615e265576f5884fe11044cb7b2648fccba394e0f"
+  },
+  "core": {
+    "passed": 1230,
+    "failed": 0,
+    "report": "artifacts/tests/boost-unity-0.xml",
+    "card_specific": 14,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/boost-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/boost-order.json",
+        "input_sha256": "4a4eec6bc7debd8c59617180e7a6454e1fd5d59925cd2a2506c4b49fc2969f07",
+        "report": "artifacts/editor-scenarios/boost-order/0d4c3d73a2f040838d92543aa0c93369/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/boost-reverse.json",
+        "input_sha256": "3ed7f259752ea56f926fbc2a2ce94eda609deaa9e55fc97f98aea84582e98f6b",
+        "report": "artifacts/editor-scenarios/boost-reverse/c071f8e94ce046ed8fe4ee0e45f9edac/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/boost-multiple.json",
+        "input_sha256": "4576a7edafec59967a144043b263657d41ef4df64e4cb9e4c791716ca2fc9dd5",
+        "report": "artifacts/editor-scenarios/boost-multiple/f1783e1b94e74a569444dd710d66a1fd/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/boost-invalid.json",
+        "input_sha256": "e5a4d561352a603d5b93c424d9c73d2411668cf0ed895b9de3474a363bc47af7",
+        "report": "artifacts/editor-scenarios/boost-invalid/55075bd76f394903a320e1a95bf32c3e/report.json",
+        "steps": 22,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/boost-none.json",
+        "input_sha256": "05befa85d0d0d001046e90b30e36458899dd64b34c6a0d3a72bc58f428ff9ba5",
+        "report": "artifacts/editor-scenarios/boost-none/6e169bce6e6f4d10af15aca8f29e11dc/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/boost-return.json",
+        "input_sha256": "aa419414d386bb078d51b1304c24dd674df4207a067c3c8b1e358eeab75816a0",
+        "report": "artifacts/editor-scenarios/boost-return/f617b7c272e64aab94c9f47bfa31bc48/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine48-boost-discard-scenario.json",
+        "input_sha256": "6d65bab02e1b9b99a7a7dd9bffc01bd6501300aeba30ce316e4d1c2caa348be0",
+        "report": "artifacts/editor-scenarios/engine48-boost-discard-scenario/3dd7c979eead46238907258450213ca0/report.json",
+        "steps": 16,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 125
+  },
+  "manual_presets": [
+    "power-boost"
+  ],
+  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

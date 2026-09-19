@@ -519,7 +519,8 @@ namespace Goa2.Presentation
                 case "UnitsSwapped": return actor+"与 "+EventUnitName(entry.Detail)+"交换位置："+entry.From+" ↔ "+entry.To;
                 case "PlacementChoiceRequired": return actor + "选择放置落点";
                 case "UnitMoved": return actor + "移动至 " + entry.To;
-                case "UnitPushed": return actor + "被推动 " + (entry.Path.Count-1) + " 格，位置 " + entry.To;
+                case "PushGroupCompleted": return actor+"已完成全部推动，继续处理受阻英雄";
+                case "UnitPushed": return (entry.Detail.Contains("|unit:")?EventUnitName(entry.Detail.Substring(entry.Detail.IndexOf("|unit:",System.StringComparison.Ordinal)+6)):actor) + "被推动 " + (entry.Path.Count-1) + " 格，位置 " + entry.To;
                 case "PushStopped": return actor + "推动停止：" + (entry.Detail=="obstacle" ? "前方地形阻挡" : entry.Detail=="occupied" ? "前方有单位" : "已到地图边缘");
                 case "EffectMoveChoiceRequired": return actor+"可按牌文移动"+entry.Detail+"格";
                 case "DefenseMoveResolved": return actor+"已完成防御后的直线移动";
@@ -528,7 +529,7 @@ namespace Goa2.Presentation
                 case "CardsSwapped": return actor+"用 "+catalog.Card(entry.Detail).Name+" 换回 "+catalog.Card(entry.CardId!).Name;
                 case "CardSwapColorsShown": return actor+"交换了手牌与防御牌的状态";
                 case "RecoverDiscardRequired": return actor+"可按牌文取回一张卡牌";
-                case "EffectTargetChoiceRequired": return actor+"选择牌文作用的英雄";
+                case "EffectTargetChoiceRequired": return actor+(entry.Detail=="push_all_adjacent"?"选择下一个推动目标":entry.Detail=="blocked_push_discard_target"?"选择下一位受阻英雄":"选择牌文作用的英雄");
                 case "EffectTargetChosen": return actor+"选定牌文目标 · "+EventUnitName(entry.Detail);
                 case "GoldTransferChoiceRequired": return actor+"选择是否拿取金币";
                 case "GoldTransferred": return actor+"拿取金币";

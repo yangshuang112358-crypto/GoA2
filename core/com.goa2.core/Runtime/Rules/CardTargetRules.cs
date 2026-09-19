@@ -39,14 +39,14 @@ namespace Goa2.Rules
                     (enemy.Kind=="hero" || enemy.Kind=="melee" || enemy.Kind=="ranged" || enemy.Kind=="heavy") && enemy.Position.Distance(target.Position)==1))
                 .Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
         }
-        private static bool BeginTargetDiscard(GameState state,Command command,CardExecution execution,string? otherTarget=null)
+        private static bool BeginTargetDiscard(GameState state,Command command,CardExecution execution,string? otherTarget=null,string? resume=null)
         {
             var target=state.Units.SingleOrDefault(u=>u.Id==(otherTarget??execution.TargetUnitId) && u.Kind=="hero" && u.Seat.HasValue);
             if(target==null)return false;
             int seat=target.Seat!.Value;
             if(!state.Players[seat].Cards.Any(c=>c.Zone==CardZone.InHand)){Emit(state,command,"ForcedDiscardSkipped",seat,execution.CardId,detail:"empty_hand");return false;}
             state.Phase=Phase.EffectChoice;
-            state.Pending=new PendingChoice{Id="forced-discard:"+(state.Events.Count+1),Kind="forced_discard",ChooserSeat=seat,Source=execution.CardId,UnitId=target.Id,ResumeAt=otherTarget==null ? "primary_discard" : "attack_before_discard",Optional=false};
+            state.Pending=new PendingChoice{Id="forced-discard:"+(state.Events.Count+1),Kind="forced_discard",ChooserSeat=seat,Source=execution.CardId,UnitId=target.Id,ResumeAt=resume??(otherTarget==null ? "primary_discard" : "attack_before_discard"),Optional=false};
             Emit(state,command,"ForcedDiscardRequired",seat,execution.CardId);return true;
         }
         public static List<string> LegalEffectTargets(ContentCatalog catalog,GameState state,int seat)
@@ -55,6 +55,7 @@ namespace Goa2.Rules
             var execution=state.Execution;
             if(state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="effect_target" || state.Pending.ChooserSeat!=seat ||
                 execution==null || execution.ControllerSeat!=seat || state.ActiveSeat!=seat) return new List<string>();
+            if(state.Pending.ResumeAt=="push_all_adjacent" || state.Pending.ResumeAt=="blocked_push_discard_target")return GroupPushTargets(catalog,state);
             if(state.Pending.ResumeAt=="unit_swap")return UnitSwapTargets(catalog,state);
             if(state.Pending.ResumeAt=="friendly_minion_move" || state.Pending.ResumeAt=="friendly_minion_repeat")return FriendlyMinionTargets(catalog,state);
             if(state.Pending.ResumeAt=="before_attack_other_move")return OtherMoveTargets(catalog,state);
@@ -75,6 +76,7 @@ namespace Goa2.Rules
         }
         private static void ChooseEffectTarget(ContentCatalog catalog,GameState state,Command command)
         {
+            if(state.Pending?.ResumeAt=="push_all_adjacent" || state.Pending?.ResumeAt=="blocked_push_discard_target"){ChooseGroupPushTarget(catalog,state,command);return;}
             if(state.Pending?.ResumeAt=="unit_swap" && command.Value=="skip")
             {
                 Require(state.Phase==Phase.EffectChoice && state.Pending.Kind=="effect_target" && state.Pending.Optional && state.Pending.ChooserSeat==command.ActorSeat &&

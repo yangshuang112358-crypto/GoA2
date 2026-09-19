@@ -1,0 +1,109 @@
+{
+  "SchemaVersion": 1,
+  "Id": "boost-none",
+  "Name": "动力助推：没有合法邻敌",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "wasp,sabina,brogan,arien",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "wasp-14-动力助推",
+      "Actor": "p1",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": -1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": -1,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-1,-3",
+      "Actor": "p1",
+      "Destination": {
+        "X": -1,
+        "Y": -1
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-14-动力助推",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-07-指挥",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p3",
+        "EventCounts": {
+          "UnitPushed": 0,
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

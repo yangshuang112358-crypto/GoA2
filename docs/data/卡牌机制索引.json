@@ -225,7 +225,7 @@
         "conditional",
         "choice_wording"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/wasp-14-动力助推.md",
       "question_candidates": [
         "U-011",

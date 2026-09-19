@@ -76,6 +76,12 @@ namespace Goa2.Rules
                         if(BeginEffectMinionRemoval(catalog,state,command,execution,program)) return;
                         execution.Cursor++;
                         break;
+                    case InstructionKind.PushAllAdjacentEnemies:
+                        if(BeginGroupPush(catalog,state,command))return;
+                        execution.Cursor++;break;
+                    case InstructionKind.DiscardBlockedPushHeroesIfAble:
+                        if(BeginBlockedPushDiscard(catalog,state,command))return;
+                        execution.Cursor++;break;
                     case InstructionKind.PushAttackTargetIfAdjacent:
                         PushAttackTargetIfAdjacent(catalog,state,command,execution,program);
                         execution.Cursor++;

@@ -214,11 +214,25 @@
     },
     {
       "card_id": "wasp-14-动力助推",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-14-动力助推.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/PowerBoostTests.cs",
+        "tests/scenarios/boost-order.json",
+        "tests/scenarios/boost-reverse.json",
+        "tests/scenarios/boost-multiple.json",
+        "tests/scenarios/boost-invalid.json",
+        "tests/scenarios/boost-none.json",
+        "tests/scenarios/boost-return.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "wasp-15-引力控制",

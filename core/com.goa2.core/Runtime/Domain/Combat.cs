@@ -44,6 +44,7 @@ namespace Goa2.Domain
         public bool PreAttackMoved;
         public Hex? AttackTargetCell;
         public List<string>? DisplacedMinions;
+        public List<string>? RemainingUnitTargets, AffectedHeroTargets;
         public string? ReturningMinionId;
     }
     [Serializable]

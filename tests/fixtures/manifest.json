@@ -414,6 +414,15 @@
       "input": "tests/fixtures/engine47-side-defense-scenario.json",
       "input_sha256": "2a749844f98e9b079f8b8a13c3943d5ec18527477a4580355611240b11901ffb",
       "provenance": "tests/fixtures/engine47-side-defense.md"
+    },
+    {
+      "engine_version": 48,
+      "accepted_commands": 16,
+      "save": "tests/fixtures/engine48-boost-discard.json",
+      "save_sha256": "7c4bd524edce7d8513f0c1d90cb98adf380b364eeec1477addaf2e11bf9ee691",
+      "input": "tests/fixtures/engine48-boost-discard-scenario.json",
+      "input_sha256": "6d65bab02e1b9b99a7a7dd9bffc01bd6501300aeba30ce316e4d1c2caa348be0",
+      "provenance": "tests/fixtures/engine48-boost-discard.md"
     }
   ]
 }

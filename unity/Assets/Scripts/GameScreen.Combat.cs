@@ -95,14 +95,15 @@ namespace Goa2.Presentation
             if(choice.Kind=="effect_target")
             {
                 bool otherMove=choice.ResumeAt=="before_attack_other_move";
+                bool groupPush=choice.ResumeAt=="push_all_adjacent",blockedPush=choice.ResumeAt=="blocked_push_discard_target";
                 bool unitSwap=choice.ResumeAt=="unit_swap";
                 bool minionRepeat=choice.ResumeAt=="friendly_minion_repeat";
                 bool minionMove=choice.ResumeAt=="friendly_minion_move" || minionRepeat;
-                var targetTitle=Text(PlayerName(choice.ChooserSeat)+(unitSwap ? (choice.Optional?"可与相邻友方小兵换位，也可不换位并继续此牌。":"选择攻击距离内的小兵或友方英雄，与其换位。") : minionRepeat ? "可再选择一个合法友方小兵移动一次，也可不重复。" : minionMove ? "选择技能范围内的一个友方小兵。" : otherMove ? "选择原攻击目标旁的另一个单位移动，或跳过。" : choice.Optional ? "选择另一名敌方英雄，或跳过。" : "选择牌文作用的英雄。"),"section-title");targetTitle.name="effect-target-choice";parent.Add(targetTitle);
+                var targetTitle=Text(PlayerName(choice.ChooserSeat)+(groupPush ? "选择下一个要推动的敌方单位；全部推动后再处理弃牌。" : blockedPush ? "选择下一名受阻英雄，由该英雄本人弃牌。" : unitSwap ? (choice.Optional?"可与相邻友方小兵换位，也可不换位并继续此牌。":"选择攻击距离内的小兵或友方英雄，与其换位。") : minionRepeat ? "可再选择一个合法友方小兵移动一次，也可不重复。" : minionMove ? "选择技能范围内的一个友方小兵。" : otherMove ? "选择原攻击目标旁的另一个单位移动，或跳过。" : choice.Optional ? "选择另一名敌方英雄，或跳过。" : "选择牌文作用的英雄。"),"section-title");targetTitle.name="effect-target-choice";parent.Add(targetTitle);
                 if(choice.ChooserSeat!=seat) {parent.Add(Text("等待来源英雄选择目标。","body"));RenderCardDetail(parent,catalog.Card(choice.Source));return true;}
                 var target=chosenCell.HasValue ? view.Units.SingleOrDefault(u=>u.Position==chosenCell.Value && view.EffectTargets.Contains(u.Id)) : null;
                 if(target!=null) Confirm(parent,"确认选择 "+(target.Seat.HasValue?PlayerName(target.Seat.Value):MinionName(target)),()=>Submit(CommandKind.ChooseEffectTarget,target.Id));
-                else parent.Add(Text(unitSwap?"点击高亮单位后确认换位；换位不算移动，小兵离开战区后仍需回归。":minionMove?"点击高亮小兵后确认；再由你选择移动落点，也可不移动。":otherMove?"点击高亮单位后确认，再由你选择该单位的一格落点。":"点击高亮英雄后确认；后续选牌由目标英雄本人决定。","body"));
+                else parent.Add(Text(groupPush?"点击高亮敌方单位后确认推动；已处理目标不会再次推动。":blockedPush?"点击受阻英雄后确认，再切至该英雄选弃牌。":unitSwap?"点击高亮单位后确认换位；换位不算移动，小兵离开战区后仍需回归。":minionMove?"点击高亮小兵后确认；再由你选择移动落点，也可不移动。":otherMove?"点击高亮单位后确认，再由你选择该单位的一格落点。":"点击高亮英雄后确认；后续选牌由目标英雄本人决定。","body"));
                 if(choice.Optional)parent.Add(Button(unitSwap?"不换位，继续此牌":minionRepeat?"不重复，结束此牌":otherMove?"不移动，继续原攻击":"跳过额外弃牌，继续原攻击",()=>Submit(CommandKind.ChooseEffectTarget,"skip"),"quiet-button","effect-target-skip"));
                 RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
@@ -193,9 +194,9 @@ namespace Goa2.Presentation
             }
             if (choice.Kind == "forced_discard")
             {
-                var title=Text(PlayerName(choice.ChooserSeat) + ((choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard") ? "按牌文丢弃一张手牌。" : "处理反制选择。"), "section-title");title.name="forced-discard-choice";parent.Add(title);
-                parent.Add(Text((choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard") ? (choice.ResumeAt=="attack_before_discard" ? "完成弃牌后，来源英雄继续攻击原先选定的目标。" : "完成弃牌后继续来源卡牌；这不是攻击或防御。") : "本次攻击已结算，完成反制后继续下一次行动。", "body"));
-                if (choice.Source!="" && (choice.ResumeAt!="primary_discard" && choice.ResumeAt!="attack_before_discard")) RenderCardDetail(parent,catalog.Card(choice.Source));
+                var title=Text(PlayerName(choice.ChooserSeat) + ((choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard" || choice.ResumeAt=="push_blocked_discard") ? "按牌文丢弃一张手牌。" : "处理反制选择。"), "section-title");title.name="forced-discard-choice";parent.Add(title);
+                parent.Add(Text((choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard" || choice.ResumeAt=="push_blocked_discard") ? (choice.ResumeAt=="attack_before_discard" ? "完成弃牌后，来源英雄继续攻击原先选定的目标。" : "完成弃牌后继续来源卡牌；这不是攻击或防御。") : "本次攻击已结算，完成反制后继续下一次行动。", "body"));
+                if (choice.Source!="" && (choice.ResumeAt!="primary_discard" && choice.ResumeAt!="attack_before_discard" && choice.ResumeAt!="push_blocked_discard")) RenderCardDetail(parent,catalog.Card(choice.Source));
                 if (choice.ChooserSeat != seat) { parent.Add(Text("切换至对应角色选择弃牌。", "body")); return true; }
                 parent.Add(Text(view.CanDeclineRetaliationDiscard ? "选择一张手牌弃置，或不弃牌、直接被击败。" : "点击下方手牌或以下选项，再确认弃置。此选择不能跳过。", "body"));
                 foreach (string id in view.ForcedDiscardCards)
@@ -216,7 +217,7 @@ namespace Goa2.Presentation
                     RenderCardDetail(parent,catalog.Card(discardCardId));
                     Confirm(parent,"确认弃置 "+catalog.Card(discardCardId).Name,() => Submit(CommandKind.ForcedDiscard,discardCardId));
                 }
-                if(choice.Source!="" && (choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard")) RenderCardDetail(parent,catalog.Card(choice.Source));
+                if(choice.Source!="" && (choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard" || choice.ResumeAt=="push_blocked_discard")) RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
             }
             if (choice.Kind == "hero_respawn")
