@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "Newtonsoft.Json": {
+        "type": "Transitive",
+        "resolved": "13.0.2",
+        "contentHash": "R2pZ3B0UjeyHShm9vG+Tu0EBb2lC8b0dFzV9gVn50ofHXh9Smjk6kTn7A/FdAsC8B5cKib1OnGYOXxRBz5XQDg=="
+      },
+      "goa2.application": {
+        "type": "Project",
+        "dependencies": {
+          "Goa2.Rules": "[1.0.0, )"
+        }
+      },
+      "goa2.domain": {
+        "type": "Project"
+      },
+      "goa2.infrastructure": {
+        "type": "Project",
+        "dependencies": {
+          "Goa2.Application": "[1.0.0, )",
+          "Newtonsoft.Json": "[13.0.2, )"
+        }
+      },
+      "goa2.rules": {
+        "type": "Project",
+        "dependencies": {
+          "Goa2.Domain": "[1.0.0, )"
+        }
+      }
+    }
+  }
+}

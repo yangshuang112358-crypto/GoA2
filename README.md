@@ -80,6 +80,8 @@ python -B tools/prepare_unity.py
 ~~~
 
 test-core.ps1支持-DotnetExe；build-unity.ps1支持-UnityExe指定本机编辑器。Unity许可须通过官方Hub正常激活。
+
+无需Unity也可运行实际核心场景：`./tools/run-core-scenarios.ps1 -Scenario tests/scenarios/closesupport-basic.json`；[执行方式与证据边界](docs/development/无Unity核心场景执行.md)。此入口不替代Unity画面验收。
 在Hub中添加unity文件夹；首次打开后使用菜单Goa2/Prepare project建立场景并同步内容，再进入Play。
 构建成功后运行artifacts/player/Goa2V1.exe；构建与存档不提交Git。
 
