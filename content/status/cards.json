@@ -307,11 +307,24 @@
     },
     {
       "card_id": "shargatha-04-横枪跃马",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-04-横枪跃马.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/PikeTests.cs",
+        "tests/scenarios/pike-defense.json",
+        "tests/scenarios/pike-defeat.json",
+        "tests/scenarios/pike-stop.json",
+        "tests/scenarios/pike-minion-first.json",
+        "tests/scenarios/pike-noadjacent.json",
+        "tests/scenarios/pike-sidestep.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs"
+      ]
     },
     {
       "card_id": "shargatha-05-死亡回旋",

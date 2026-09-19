@@ -65,6 +65,11 @@ namespace Goa2.Rules
                         if(BeginAttackRepeat(catalog,state,command,execution,card,program)) return;
                         execution.Cursor++;
                         break;
+                    case InstructionKind.OptionalDifferentAttackIfAdjacentEnemy:
+                        if(execution.DefenseResponse!=null && !ContinueDefenseResponse(catalog,state,command)) return;
+                        if(BeginDifferentAttackRepeat(catalog,state,command,execution,card,program)) return;
+                        execution.Cursor+=2;
+                        break;
                     case InstructionKind.OptionalMinionRemovalAfterDefeat:
                         if(BeginEffectMinionRemoval(catalog,state,command,execution,program)) return;
                         execution.Cursor++;
@@ -130,15 +135,21 @@ namespace Goa2.Rules
             Require(state.Pending?.Kind == "attack_target" && state.Pending.ChooserSeat == command.ActorSeat && state.Execution != null,
                 "invalid_attack_target", "请选择当前合法敌方目标。");
             bool repeat=state.Pending!.Optional && state.Pending.ResumeAt=="repeat_attack";
+            bool once=state.Pending.Optional && state.Pending.ResumeAt=="repeat_once_different";
             if(command.Value=="skip")
             {
-                Require(repeat,"invalid_attack_target","首次攻击必须选择合法目标。");
+                Require(repeat || once,"invalid_attack_target","首次攻击必须选择合法目标。");
                 Emit(state,command,"AttackRepeatSkipped",command.ActorSeat,state.Execution!.CardId);
-                state.Execution.Cursor++;state.Pending=null;state.Phase=Phase.Action;
+                state.Execution.Cursor+=once?2:1;state.Pending=null;state.Phase=Phase.Action;
                 ContinueCard(catalog,state,command);return;
             }
             Require(CombatRules.AttackTargets(catalog,state,command.ActorSeat).Contains(command.Value),"invalid_attack_target","请选择当前合法敌方目标。");
             if(repeat) RestartAttack(catalog,state,command); else state.Execution!.Cursor++;
+            if(once)
+            {
+                state.Execution!.Attack=null;state.Execution.AttackOutcome="";
+                Emit(state,command,"AttackRepeated",state.Execution.ControllerSeat,state.Execution.CardId,detail:command.Value);
+            }
             state.Execution!.TargetUnitId = command.Value;
             state.Pending = null; state.Phase = Phase.Action;
             Emit(state, command, "AttackTargetChosen", command.ActorSeat, state.Execution.CardId, detail: command.Value);
@@ -236,6 +247,12 @@ namespace Goa2.Rules
             {
                 Emit(state,command,"DebugAttackCompleted",state.Execution.ControllerSeat,detail:state.Execution.AttackOutcome);
                 state.Execution=null; state.Pending=null; state.ActiveSeat=null; state.Phase=Phase.Planning;
+                return;
+            }
+            var program=CardPrograms.Primary(catalog.Card(state.Execution.CardId),state.EngineVersion);
+            if(program!=null && program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalDifferentAttackIfAdjacentEnemy)
+            {
+                ContinueCard(catalog,state,command);
                 return;
             }
             state.ActiveSeat = state.Execution!.ControllerSeat; state.Execution = null; state.Pending = null; state.Phase = Phase.Action;

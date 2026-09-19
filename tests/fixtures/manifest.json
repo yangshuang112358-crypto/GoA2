@@ -342,6 +342,15 @@
       "input": "tests/fixtures/engine39-master-gold-scenario.json",
       "input_sha256": "ae36bc16fde34c9978d39620b93c3982a1cb3383202092838f261120a496e121",
       "provenance": "tests/fixtures/engine39-master-gold.md"
+    },
+    {
+      "engine_version": 40,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine40-pike-repeat.json",
+      "save_sha256": "639cfe59055d0cc0e1c5b8d6c1e696d8ca5acf5833947cc14cba5c0ef8854de0",
+      "input": "tests/fixtures/engine40-pike-repeat-scenario.json",
+      "input_sha256": "0bb371405079f60dcd8dde8fc3f5812f2856a94da2e3fd0be9b2c12915ff5104",
+      "provenance": "tests/fixtures/engine40-pike-repeat.md"
     }
   ]
 }

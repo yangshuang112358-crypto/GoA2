@@ -193,7 +193,7 @@ namespace Goa2.Presentation
             }
             if (choice.Kind == "attack_target")
             {
-                var heading=Text(PlayerName(choice.ChooserSeat)+(choice.Optional ? "已击败英雄，可再次攻击或停止。" : "选择攻击目标。"),"body");
+                var heading=Text(PlayerName(choice.ChooserSeat)+(choice.Optional ? (choice.ResumeAt=="repeat_once_different" ? "与敌方英雄相邻，可换一个目标再攻击一次，或停止。" : "已击败英雄，可再次攻击或停止。") : "选择攻击目标。"),"body");
                 if(choice.Optional) heading.name="attack-repeat-choice";parent.Add(heading);
                 if (view.AttackRange.HasValue)
                 {

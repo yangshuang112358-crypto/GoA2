@@ -1,0 +1,84 @@
+{
+  "engine": 40,
+  "implemented_cards": 51,
+  "data_only_cards": 57,
+  "build_utc": "2026-09-19T18:26:43.1597976Z",
+  "assemblies": {
+    "Goa2.Application.dll": "0ee69de82b253fc54e714bed99127abf5e6fd6b83eed64e08c60c26f75c1dd9f",
+    "Goa2.Domain.dll": "ee3cfa5a37d05da08c8e3fa94e608241c77055433c13be55b62186e043754824",
+    "Goa2.Infrastructure.dll": "c3bd7dff11ec83eea9532e231c4ab0c46ccc76d9e6307c16fd261863b2bd630b",
+    "Goa2.Rules.dll": "e2e565ebbb139642ba5a2f6890cff10d2d54a8de1428848e4aec7979d95f92c8",
+    "Goa2.ScenarioCli.dll": "bb886ae58982e2c4e366f73c10a501800e1fa0d55a8d4a673b5d25c23436f5b5"
+  },
+  "core": {
+    "passed": 1068,
+    "failed": 0,
+    "report": "artifacts/tests/pike-core.trx",
+    "card_specific": 14
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "core_cli": {
+    "results": [
+      {
+        "input": "tests/scenarios/pike-defense.json",
+        "input_sha256": "3c1370a5f666ffda8264d3652363c6a4d2cbf547555b519ad397ccda6e50584a",
+        "report": "artifacts/core-scenarios/pike-defense/b8201713d693451683e92bdd91f20f50/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pike-defeat.json",
+        "input_sha256": "c43f0a2c54294e1a62d7b0a32df6859555b5adcd40823dddfaeb926c695940ae",
+        "report": "artifacts/core-scenarios/pike-defeat/c85d8bab053747a3b344557841900bb8/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pike-stop.json",
+        "input_sha256": "95a6d79de68715fbd5f171c7414b778446f04bf29c264c14b259ca7e6fc2aad2",
+        "report": "artifacts/core-scenarios/pike-stop/1c780d8934bf465da6608efd38e8116b/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pike-minion-first.json",
+        "input_sha256": "4e78d243d6ba96d2cf3f24e617418193cbfb962286f383191ca838f4cc418193",
+        "report": "artifacts/core-scenarios/pike-minion-first/701ce58e924247bcac6497e65964cbaa/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pike-noadjacent.json",
+        "input_sha256": "2ae6b4eb352e43e02e4d9bb782159fb8597dd39dc73fa2ba51627aba14332979",
+        "report": "artifacts/core-scenarios/pike-noadjacent/164c9e043b704319bb9653c39c737c69/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/pike-sidestep.json",
+        "input_sha256": "22aa9d1dc7aee1735aa9910b4043465257004f1e8a2bb20291ed8379737c7aae",
+        "report": "artifacts/core-scenarios/pike-sidestep/1f7fe2bd1fbb46d4ba6b09c0dae7ac94/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine40-pike-repeat-scenario.json",
+        "input_sha256": "0bb371405079f60dcd8dde8fc3f5812f2856a94da2e3fd0be9b2c12915ff5104",
+        "report": "artifacts/core-scenarios/engine40-pike-repeat-scenario/32076f5bb5474d6888d8378d24dc1022/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 111
+  },
+  "manual_presets": [
+    "pike"
+  ],
+  "note": "Core CLI commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

@@ -70,7 +70,14 @@ namespace Goa2.Rules
             if (instance == null || source == null) return result;
             var card = catalog.Card(instance.CardId); var program = CardPrograms.Primary(card,state.EngineVersion);
             if (program == null || !program.Instructions.Contains(InstructionKind.ChooseAttackTarget)) return result;
-            return Targets(catalog, state, source, card, program);
+            return state.Pending?.ResumeAt=="repeat_once_different"
+                ? DifferentRepeatTargets(catalog,state,source,card,program)
+                : Targets(catalog, state, source, card, program);
+        }
+        internal static List<string> DifferentRepeatTargets(ContentCatalog catalog,GameState state,UnitState source,CardDefinition card,PrimaryProgram program)
+        {
+            if(!state.Units.Any(u=>u.Kind=="hero" && u.Team!=source.Team && u.Position.Distance(source.Position)==1)) return new List<string>();
+            return Targets(catalog,state,source,card,program).Where(id=>id!=state.Execution!.TargetUnitId).ToList();
         }
         internal static List<string> Targets(ContentCatalog catalog, GameState state, UnitState source, CardDefinition card, PrimaryProgram program)
         {

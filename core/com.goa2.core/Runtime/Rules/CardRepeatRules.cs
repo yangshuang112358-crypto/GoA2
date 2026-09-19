@@ -7,6 +7,21 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
+        private static bool BeginDifferentAttackRepeat(ContentCatalog catalog,GameState state,Command command,CardExecution execution,CardDefinition card,PrimaryProgram program)
+        {
+            var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
+            var targets=source==null ? new System.Collections.Generic.List<string>() : CombatRules.DifferentRepeatTargets(catalog,state,source,card,program);
+            if(targets.Count==0) return false;
+            execution.Attack=null;
+            state.Phase=Phase.EffectChoice;
+            state.Pending=new PendingChoice
+            {
+                Id="attack-repeat:"+(state.Events.Count+1),Kind="attack_target",ChooserSeat=execution.ControllerSeat,
+                CandidateUnits=targets,Source=execution.CardId,ResumeAt="repeat_once_different",Optional=true
+            };
+            Emit(state,command,"AttackRepeatChoiceRequired",execution.ControllerSeat,execution.CardId);
+            return true;
+        }
         private static bool BeginAttackRepeat(ContentCatalog catalog,GameState state,Command command,CardExecution execution,CardDefinition card,PrimaryProgram program)
         {
             if(execution.AttackOutcome!="hero_defeated") return false;

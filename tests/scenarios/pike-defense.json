@@ -1,0 +1,133 @@
+{
+  "SchemaVersion": 1,
+  "Id": "pike-defense",
+  "Name": "横枪跃马：首攻被防住仍可改攻小兵",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "shargatha,tigerclaw,brogan,wasp",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "shargatha-04-横枪跃马",
+      "Actor": "p1",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-18-躲闪",
+      "Actor": "p1",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": 8,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-1,-3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -6
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "shargatha-04-横枪跃马",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-07-伺机待发",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-07-抵挡屏障",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "attack_target"
+      }
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2"
+      }
+    },
+    {
+      "Command": "Defend",
+      "Value": "tigerclaw-18-躲闪",
+      "Actor": "p2",
+      "Expect": {
+        "PendingKind": "attack_target",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "minion:-1,-3",
+      "Actor": "p1",
+      "Expect": {
+        "Active": "p3",
+        "EventCounts": {
+          "AttackDeclared": 1,
+          "AttackResolved": 1,
+          "AttackRepeated": 1,
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}
