@@ -116,6 +116,22 @@ namespace Goa2.Rules
             state.Pending=null; state.Phase=Phase.Action;
             EndCardExecution(catalog,state,command);
         }
+        private static void ApplyOtherEnemyImmunity(ContentCatalog catalog,GameState state,Command command,string cardId,AttackBreakdown attack)
+        {
+            state.EffectSequence++;
+            var effect=new ActiveEffect
+            {
+                Id="effect:"+state.EffectSequence,SourceCardId=cardId,SourceUnitId=attack.TargetUnitId,
+                ProtectedUnitId=attack.TargetUnitId,SourcePrivateTo=attack.DefenderSeat,ControllerSeat=attack.DefenderSeat,
+                ExemptControllerSeat=attack.AttackerSeat,CreatedRound=state.Round,CreatedTurn=state.Turn,CreationOrder=state.EffectSequence,
+                Kind=EffectKind.OtherEnemyActionImmunity,Duration=EffectDuration.ThisTurn,AreaKind=EffectAreaKind.None,
+                Window=EffectTimeline.Create(state.Round,state.Turn,catalog.Rules.TurnsPerRound,EffectDuration.ThisTurn)!
+            };
+            state.Effects.Add(effect);
+            Emit(state,command,"EffectCreated",effect.ControllerSeat,effect.SourceCardId,effect.SourcePrivateTo,detail:effect.Id);
+            Emit(state,command,"EffectActivated",effect.ControllerSeat,effect.SourceCardId,effect.SourcePrivateTo,detail:effect.Id);
+            Emit(state,command,"ProtectionActivated",effect.ControllerSeat,detail:effect.Kind+":"+effect.Id);
+        }
         private static void ApplyDefenseImmunity(ContentCatalog catalog,GameState state,Command command,DefenseResponse response)
         {
             state.EffectSequence++;

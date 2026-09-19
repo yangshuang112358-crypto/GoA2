@@ -1,0 +1,90 @@
+{
+  "engine": 52,
+  "implemented_cards": 63,
+  "data_only_cards": 45,
+  "build_utc": "2026-09-19T20:56:27.3745856Z",
+  "assemblies": {
+    "Goa2.Application.dll": "c0fd0d965bca84b752cf409e95a129e3989e8813deeca28b5c629205aebb9a7f",
+    "Goa2.Domain.dll": "6246bc40ae5a93de7c6a75e6f81e3bd0133b57b6b7f01f591e83544f04eb4912",
+    "Goa2.Editor.dll": "caf031f1b5df08cd3a6818b852f6f3bf225b60701b1436511e58a4044f3fc601",
+    "Goa2.Infrastructure.dll": "a26f09ebd35736c285d2a2e13db2dc5696ce6a2652c7afcf70effb0bc85fa3bb",
+    "Goa2.Rules.dll": "0317ae44b7eeef09b581620f6d71de2093964b9238071ca01578bd1c823a3697"
+  },
+  "core": {
+    "passed": 1335,
+    "failed": 0,
+    "report": "artifacts/tests/conspiracy-unity-0.xml",
+    "card_specific": 22,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/conspiracy-unity-0.xml",
+      "artifacts/tests/conspiracy-unity-1.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/conspiracy-block.json",
+        "input_sha256": "ac2126d88ec7a11bd758dd55410aa63bd5b12515d8131b17c937039ac987b1bc",
+        "report": "artifacts/editor-scenarios/conspiracy-block/470fc615d59243ec8a164d9547758f06/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/conspiracy-bard.json",
+        "input_sha256": "ed9d5b17d79b2376deac3557612589980ed9780830fbb06ba374989bd106f1c0",
+        "report": "artifacts/editor-scenarios/conspiracy-bard/fc9cff6fe7e04ba8bd283134e5818617/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/conspiracy-expiry.json",
+        "input_sha256": "83ca490085bce6d7f61abbc1682e8c6b1e962f36ecddc180c5bd96001872edae",
+        "report": "artifacts/editor-scenarios/conspiracy-expiry/25bca05fd047442d99235c0cf9373eaa/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/conspiracy-no-support.json",
+        "input_sha256": "a1d1dfb1763a7812c31672f5e90273fc94ea405d16cd6bffbb8f2773b0ace849",
+        "report": "artifacts/editor-scenarios/conspiracy-no-support/8a00f8cba0a34edd976fb009cdb78345/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/conspiracy-defeat.json",
+        "input_sha256": "7fa9c3861b52a2496cbe421f16f7b9c44c5561eb5dfa3dfcda07f940a52f172a",
+        "report": "artifacts/editor-scenarios/conspiracy-defeat/be23244702f24844a56a3504c9ffe826/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/conspiracy-attacker-defeat.json",
+        "input_sha256": "67b60870cb2dbc20ecb2967d80d0f81730bb11a7fca34ab1fedfd6975d9b777c",
+        "report": "artifacts/editor-scenarios/conspiracy-attacker-defeat/f03349df7c6a405a9beb04c36f6b2c41/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine52-conspiracy-recovery-scenario.json",
+        "input_sha256": "da80307d6016e33576e6d298c1e8e69ccbf61dce2491010fe47d1822b36722ce",
+        "report": "artifacts/editor-scenarios/engine52-conspiracy-recovery-scenario/32d7f9e7971246caa67f51d373b87c75/report.json",
+        "steps": 19,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 117
+  },
+  "manual_presets": [
+    "armed-conspiracy"
+  ],
+  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

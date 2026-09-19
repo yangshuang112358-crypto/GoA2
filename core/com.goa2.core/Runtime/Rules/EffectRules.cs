@@ -57,8 +57,13 @@ namespace Goa2.Rules
             }
             return "";
         }
-        public static bool CanAffect(GameState state,int controllerSeat,UnitState target) =>
-            state.EngineVersion<51 || target.Seat==controllerSeat || !Current(state,EffectKind.ImmunityAndUnitTraversal).Any(e=>e.SourceUnitId==target.Id);
+        public static bool CanAffect(GameState state,int controllerSeat,UnitState target)
+        {
+            if(state.EngineVersion<51 || target.Seat==controllerSeat)return true;
+            if(Current(state,EffectKind.ImmunityAndUnitTraversal).Any(e=>e.SourceUnitId==target.Id))return false;
+            if(state.EngineVersion<52 || controllerSeat<0 || controllerSeat>=state.Players.Count || state.Players[controllerSeat].Team==target.Team)return true;
+            return !Current(state,EffectKind.OtherEnemyActionImmunity).Any(e=>e.ProtectedUnitId==target.Id && e.ExemptControllerSeat!=controllerSeat);
+        }
         public static bool CanTraverseUnits(GameState state,UnitState unit) =>
             state.EngineVersion>=51 && Current(state,EffectKind.ImmunityAndUnitTraversal).Any(e=>e.SourceUnitId==unit.Id);
         public static bool CanDisplace(ContentCatalog catalog,GameState state,int controllerSeat,UnitState target)

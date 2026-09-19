@@ -450,6 +450,15 @@
       "input": "tests/fixtures/engine51-moment-move-scenario.json",
       "input_sha256": "2f302ea1411e80a74b122e877bbbe7c8cff53ed74f607842e4002b8667598fa1",
       "provenance": "tests/fixtures/engine51-moment-move.md"
+    },
+    {
+      "engine_version": 52,
+      "accepted_commands": 19,
+      "save": "tests/fixtures/engine52-conspiracy-recovery.json",
+      "save_sha256": "5b414532e112bb723dcb07bbf03cf2409b2539e547c8d9824d7ae29c04154927",
+      "input": "tests/fixtures/engine52-conspiracy-recovery-scenario.json",
+      "input_sha256": "da80307d6016e33576e6d298c1e8e69ccbf61dce2491010fe47d1822b36722ce",
+      "provenance": "tests/fixtures/engine52-conspiracy-recovery.md"
     }
   ]
 }

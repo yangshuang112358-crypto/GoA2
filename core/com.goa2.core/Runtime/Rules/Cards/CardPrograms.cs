@@ -16,16 +16,16 @@ namespace Goa2.Rules.Cards
     {
         public readonly string Id;
         public readonly int Version = 1, MinimumDistance, TextMoveDistance;
-        public readonly bool Block, IgnoresMinions, RequiresAdjacentFriendlyMinion, SwapAfterMove;
+        public readonly bool Block, IgnoresMinions, RequiresAdjacentFriendlyMinion, SwapAfterMove, ProtectFromOtherEnemies;
         public readonly DefenseAttackKind AttackKind;
         public readonly DefenseFollowup Followup;
         public DefenseProgram(string id, bool block, int minimumDistance=1, DefenseFollowup followup=DefenseFollowup.None,
-            DefenseAttackKind attackKind=DefenseAttackKind.Ranged, bool adjacentFriendlyMinion=false,int textMoveDistance=0,bool swapAfterMove=false)
+            DefenseAttackKind attackKind=DefenseAttackKind.Ranged, bool adjacentFriendlyMinion=false,int textMoveDistance=0,bool swapAfterMove=false,bool protectFromOtherEnemies=false)
         {
             Id=id; Block=block; AttackKind=block ? attackKind : DefenseAttackKind.Any; IgnoresMinions=!block;
             MinimumDistance=minimumDistance; Followup=followup; RequiresAdjacentFriendlyMinion=adjacentFriendlyMinion;
             TextMoveDistance=textMoveDistance;
-            SwapAfterMove=swapAfterMove;
+            SwapAfterMove=swapAfterMove; ProtectFromOtherEnemies=protectFromOtherEnemies;
         }
     }
     internal sealed class PrimaryProgram
@@ -158,6 +158,7 @@ namespace Goa2.Rules.Cards
             ["wasp-10-反射屏障"] = ("如果攻击者不与你相邻，抵挡一次远程攻击。若如此做，攻击者丢弃一张卡牌（如果可行），此回合：你免疫不与你相邻的英雄的远程攻击。", 4, new DefenseProgram("block_ranged_discard_attacker_then_immunity",true,2,DefenseFollowup.DiscardAttackerThenImmunity)),
             ["tigerclaw-14-近身格挡"] = ("抵挡一次非远程攻击。攻击者丢弃一张卡牌（如果可行）。",7,new DefenseProgram("block_non_ranged_discard_attacker",true,followup:DefenseFollowup.DiscardAttacker,attackKind:DefenseAttackKind.NonRanged)),
             ["tigerclaw-17-近身还击"] = ("抵挡一次非远程攻击。攻击者丢弃一张卡牌，否则被击败。",7,new DefenseProgram("block_non_ranged_discard_or_defeat_attacker",true,followup:DefenseFollowup.DiscardAttackerOrDefeat,attackKind:DefenseAttackKind.NonRanged)),
+            ["sabina-10-武装密谋"] = ("如果你与一个友方小兵相邻，抵挡此次攻击且此回合你对其他敌方的所有行动免疫。",52,new DefenseProgram("block_with_minion_then_other_enemy_immunity",true,attackKind:DefenseAttackKind.Any,adjacentFriendlyMinion:true,protectFromOtherEnemies:true)),
             ["sabina-08-带头冲锋"] = ("如果你与一个友方小兵相邻，抵挡此次攻击。",7,new DefenseProgram("block_with_adjacent_friendly_minion",true,attackKind:DefenseAttackKind.Any,adjacentFriendlyMinion:true))
         };
         private static readonly Dictionary<string,(string text, int minimumEngine, string? subtype, PrimaryProgram program)> Skills = new Dictionary<string,(string, int, string?, PrimaryProgram)>
