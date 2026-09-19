@@ -181,6 +181,7 @@ namespace Goa2.Application
                 view.FastMoves = MovementRules.LegalMoves(catalog, snapshot, seat.Value, MoveMode.Fast);
                 view.EffectMoves = GameRules.LegalEffectMoves(catalog,snapshot,seat.Value);
                 view.Placements = GameRules.LegalPlacements(catalog,snapshot,seat.Value);
+                view.MinionReturns = GameRules.LegalMinionReturns(catalog,snapshot,seat.Value);
                 if (snapshot.Sandbox)
                     foreach (var unit in snapshot.Units) view.DebugTeleports.Add(unit.Id, GameRules.LegalDebugTeleports(catalog, snapshot, unit.Id));
             }

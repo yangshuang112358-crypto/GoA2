@@ -1,0 +1,89 @@
+{
+  "engine": 42,
+  "implemented_cards": 53,
+  "data_only_cards": 55,
+  "build_utc": "2026-09-19T19:03:04.0327322Z",
+  "assemblies": {
+    "Goa2.Application.dll": "8bf0a99489533e56cb5b1941686c7267c7880860035b3f75840ec826f0310466",
+    "Goa2.Domain.dll": "b1eeb7703c3d8f417acff740fd1530ea70265501e3011bd95377bcef15a60806",
+    "Goa2.Editor.dll": "e6b5c1449e112afe4b13c500c2dceefd9a377805634128da8ab3c7af106ae15e",
+    "Goa2.Infrastructure.dll": "f64da82211c98d8a77b16a07ae9bee2f0873c4ed8ad01c47e327d0302d83a720",
+    "Goa2.Rules.dll": "16a4900a981b9ee73dc7a0c03b4ae641789e63cd2caaf72aeb834089eec019a2"
+  },
+  "core": {
+    "passed": 1114,
+    "failed": 0,
+    "report": "artifacts/tests/flashing-unity-0.xml",
+    "card_specific": 22,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/flashing-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/flashing-return.json",
+        "input_sha256": "fa2f4feebc44e6e8b6b40e07fabbfe41c4d87a25e0f71350863be7f3c3a2017e",
+        "report": "artifacts/editor-scenarios/flashing-return/8dca127fa88845a89658dd5847d3ef7f/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/flashing-skip.json",
+        "input_sha256": "04dafa08f824c365603b8723113a0b113ef91e4651c84a4b4af325b58db0892b",
+        "report": "artifacts/editor-scenarios/flashing-skip/8178d065eebf47a4901f23363ba76201/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/flashing-friendly.json",
+        "input_sha256": "ce6f297d26ba586523cdba5c3c5bfa46fd526bbaf18212664598d93f9d452d34",
+        "report": "artifacts/editor-scenarios/flashing-friendly/30ed6142cd6d45709b07fa8b5a0b2983/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/flashing-enemy.json",
+        "input_sha256": "c22653ecc5cd4b4b1ba37836e04f38661885c0b90107af4d4e326bffdd3c1a7a",
+        "report": "artifacts/editor-scenarios/flashing-enemy/5d26fda4ad7c470a9635e16e99bf9eac/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/flashing-invalid.json",
+        "input_sha256": "cdb2925b25a0c5d2fc73d049e5626bf241c8de4348d24350fe2035ad8ef7d14a",
+        "report": "artifacts/editor-scenarios/flashing-invalid/e4494ddd16b0488fbd445402e96e77b8/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/flashing-boundary.json",
+        "input_sha256": "7a2ae1b0894d1d9679f56dfa2e94b16d0b873b08b8efe59c0a62c526ffd9585a",
+        "report": "artifacts/editor-scenarios/flashing-boundary/805db4e2b38f4142874eb667d0c21629/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine42-flashing-return-scenario.json",
+        "input_sha256": "3f427c87f2a49243628b22c3b8c335866bd779770dcedb72670c5e5441a958b4",
+        "report": "artifacts/editor-scenarios/engine42-flashing-return-scenario/f472d70334bf40d9aa40dbe30a5ccf2e/report.json",
+        "steps": 16,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 109
+  },
+  "manual_presets": [
+    "flashing-blade"
+  ],
+  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

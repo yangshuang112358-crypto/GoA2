@@ -843,7 +843,7 @@
         "choice_wording",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/arien-00-华丽刀锋.md",
       "question_candidates": [
         "U-011",

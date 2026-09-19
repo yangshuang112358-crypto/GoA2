@@ -161,6 +161,7 @@ namespace Goa2.Presentation
                     case "optional_discard": return "攻击前弃牌";
                     case "effect_move": return "牌文移动";
                     case "placement": return "放置落点";
+                    case "minion_return": return "安排小兵回归";
                     case "card_swap": return "防御后换牌";
                     case "recover_discard": return "取回卡牌";
                     case "gold_transfer": return "选择拿取金币";
@@ -324,6 +325,8 @@ namespace Goa2.Presentation
                 return view.Units.Where(u => view.EffectTargets.Contains(u.Id)).Select(u => u.Position).ToList();
             if (view.Pending?.Kind == "hero_respawn") return view.RespawnCells;
             if (view.Pending?.Kind == "placement") return view.Placements;
+            if(view.Pending?.Kind=="minion_return")
+            {PrepareReturnSelection(view);return view.MinionReturns.Where(o=>o.UnitId==returnUnitId).Select(o=>o.Destination).ToList();}
             if (view.Pending?.Kind == "effect_move") return view.EffectMoves.Select(m=>m.Destination).ToList();
             if (view.Pending?.Kind == "round_minion_removal") return view.Units.Where(u => view.RoundMinionRemovals.Contains(u.Id)).Select(u => u.Position).ToList();
             if (view.Pending?.Kind == "minion_spawn" && view.Pending.ChooserSeat == seat)
@@ -498,6 +501,12 @@ namespace Goa2.Presentation
                 case "SelectionConfirmed": return actor + "已确认";
                 case "CardRevealed": return actor + "揭示 " + catalog.Card(entry.CardId!).Name;
                 case "UnitPlaced": return actor + "放置到 " + entry.To;
+                case "MinionReturnChoiceRequired": return actor+"需安排小兵回归战区";
+                case "MinionReturnMoved": return "小兵 "+entry.Detail+"回归一步至 "+entry.To;
+                case "MinionReturnPlaced": return "小兵 "+entry.Detail+"无路可回，就近放置到 "+entry.To;
+                case "MinionReturnCompleted": return "小兵 "+entry.Detail+"已回到战区";
+                case "OtherMoveTargetChoiceRequired": return actor+"可选择另一个单位移动";
+                case "OtherMoveTargetChosen": return actor+"选择移动 "+entry.Detail;
                 case "PlacementChoiceRequired": return actor + "选择放置落点";
                 case "UnitMoved": return actor + "移动至 " + entry.To;
                 case "UnitPushed": return actor + "被推动 " + (entry.Path.Count-1) + " 格，位置 " + entry.To;

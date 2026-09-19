@@ -694,11 +694,27 @@
     },
     {
       "card_id": "arien-00-华丽刀锋",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-00-华丽刀锋.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/FlashingBladeTests.cs",
+        "core/com.goa2.core/Tests/Editor/MinionReturnTests.cs",
+        "tests/scenarios/flashing-return.json",
+        "tests/scenarios/flashing-skip.json",
+        "tests/scenarios/flashing-friendly.json",
+        "tests/scenarios/flashing-enemy.json",
+        "tests/scenarios/flashing-invalid.json",
+        "tests/scenarios/flashing-boundary.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs",
+        "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs"
+      ]
     },
     {
       "card_id": "arien-01-汹涌",

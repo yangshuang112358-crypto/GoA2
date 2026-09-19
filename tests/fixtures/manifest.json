@@ -360,6 +360,15 @@
       "input": "tests/fixtures/engine41-tidal-placement-scenario.json",
       "input_sha256": "e30f4511cfe6d56bfc9349fb1446149ef11d38fbf3d51549aea05ee0e3ca40ef",
       "provenance": "tests/fixtures/engine41-tidal-placement.md"
+    },
+    {
+      "engine_version": 42,
+      "accepted_commands": 16,
+      "save": "tests/fixtures/engine42-flashing-return.json",
+      "save_sha256": "732a457267282aff37b27075ea036ae128529d0fc4da4cab7c930d8c606a91b0",
+      "input": "tests/fixtures/engine42-flashing-return-scenario.json",
+      "input_sha256": "3f427c87f2a49243628b22c3b8c335866bd779770dcedb72670c5e5441a958b4",
+      "provenance": "tests/fixtures/engine42-flashing-return.md"
     }
   ]
 }

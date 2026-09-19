@@ -62,11 +62,13 @@ namespace Goa2.Rules
                         StartAttack(catalog, state, command, program);
                         return;
                     case InstructionKind.OptionalRepeatAttackAfterHeroDefeat:
+                        if(BeginMinionReturns(catalog,state,command))return;
                         if(BeginAttackRepeat(catalog,state,command,execution,card,program)) return;
                         execution.Cursor++;
                         break;
                     case InstructionKind.OptionalDifferentAttackIfAdjacentEnemy:
                         if(execution.DefenseResponse!=null && !ContinueDefenseResponse(catalog,state,command)) return;
+                        if(BeginMinionReturns(catalog,state,command))return;
                         if(BeginDifferentAttackRepeat(catalog,state,command,execution,card,program)) return;
                         execution.Cursor+=2;
                         break;
@@ -106,6 +108,9 @@ namespace Goa2.Rules
                         if(BeginHeroTarget(catalog,state,command,execution,program)) return;
                         StopCard(catalog,state,command,"no_targets");
                         return;
+                    case InstructionKind.OptionalMoveOtherAdjacentToTarget:
+                        if(BeginOtherMove(catalog,state,command))return;
+                        execution.Cursor++;break;
                     case InstructionKind.OptionalOtherHeroDiscard:
                         if(BeginHeroTarget(catalog,state,command,execution,program))return;
                         execution.Cursor++;
@@ -252,8 +257,10 @@ namespace Goa2.Rules
                 state.Execution=null; state.Pending=null; state.ActiveSeat=null; state.Phase=Phase.Planning;
                 return;
             }
+            if(BeginMinionReturns(catalog,state,command))return;
             var program=CardPrograms.Primary(catalog.Card(state.Execution.CardId),state.EngineVersion);
-            if(program!=null && program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalDifferentAttackIfAdjacentEnemy)
+            if(program!=null && (program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalDifferentAttackIfAdjacentEnemy ||
+                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatAttackAfterHeroDefeat))
             {
                 ContinueCard(catalog,state,command);
                 return;

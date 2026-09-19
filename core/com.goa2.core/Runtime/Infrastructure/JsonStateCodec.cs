@@ -17,7 +17,7 @@ namespace Goa2.Infrastructure
             {
                 var property=base.CreateProperty(member,serialization);
                 // New execution facts must not add default fields to historical captures.
-                if(member.DeclaringType==typeof(CardExecution) && (member.Name==nameof(CardExecution.PreAttackMoved) || member.Name==nameof(CardExecution.AttackTargetCell)))
+                if(member.DeclaringType==typeof(CardExecution) && (member.Name==nameof(CardExecution.PreAttackMoved) || member.Name==nameof(CardExecution.AttackTargetCell) || member.Name==nameof(CardExecution.DisplacedMinions) || member.Name==nameof(CardExecution.ReturningMinionId)))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 return property;
             }

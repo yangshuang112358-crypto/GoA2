@@ -1,0 +1,134 @@
+{
+  "SchemaVersion": 1,
+  "Id": "flashing-boundary",
+  "Name": "华丽刀锋：普通移动遵守已激活静电边界",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "arien,wasp,brogan,sabina",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": 0,
+        "Y": -2
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": 0,
+        "Y": -3
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": -2
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": -1,
+        "Y": -2
+      }
+    },
+    {
+      "Command": "DebugSetCoin",
+      "Value": "red",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-00-华丽刀锋",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-06-静电封锁",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-07-指挥",
+      "Actor": "p4",
+      "Expect": {
+        "Active": "p2"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p2",
+      "Expect": {
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:3",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "hero:2",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Value": "",
+      "Actor": "p1",
+      "Destination": {
+        "X": -3,
+        "Y": -2
+      },
+      "Expect": {
+        "Code": "invalid_effect_move"
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Value": "",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": -1
+      },
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p4"
+      }
+    },
+    {
+      "Command": "Defend",
+      "Value": "sabina-17-演练",
+      "Actor": "p4",
+      "Expect": {
+        "EventCounts": {
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

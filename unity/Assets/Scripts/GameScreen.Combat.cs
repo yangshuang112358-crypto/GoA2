@@ -12,6 +12,9 @@ namespace Goa2.Presentation
         private int goldTransferTarget = -1, goldTransferAmount = -1;
         private bool declineDefensePending;
         private bool declineRetaliationPending;
+        private string returnUnitId="";
+        private void PrepareReturnSelection(GameView view)
+        {if(!view.MinionReturns.Any(o=>o.UnitId==returnUnitId))returnUnitId=view.MinionReturns.FirstOrDefault()?.UnitId??"";}
         private static string DefenseRestrictionText(string reason) => reason switch
         {
             "unblockable" => "此攻击不可抵挡",
@@ -43,6 +46,23 @@ namespace Goa2.Presentation
         {
             var choice = view.Pending;
             if (choice == null) return false;
+            if(choice.Kind=="minion_return")
+            {
+                parent.Add(Text(PlayerName(choice.ChooserSeat)+"安排小兵回归战区。","section-title"));
+                if(choice.ChooserSeat!=seat){parent.Add(Text("等待该队队长选择小兵回归。","body"));return true;}
+                PrepareReturnSelection(view);
+                foreach(var id in view.MinionReturns.Select(o=>o.UnitId).Distinct())
+                {
+                    string selected=id;var unit=view.Units.Single(u=>u.Id==id);
+                    var button=Button(MinionName(unit)+" · "+unit.Position,()=>{returnUnitId=selected;chosenCell=null;Render();},"choice-button");
+                    if(id==returnUnitId)button.AddToClassList("chosen");parent.Add(button);
+                }
+                bool place=view.MinionReturns.Any(o=>o.UnitId==returnUnitId && o.Place);
+                parent.Add(Text(place?"没有可行回归路线：选择战区内最近的空格放置。":"选择最短回归路线的下一格；到达战区前由同一队长继续选择。","body"));
+                if(chosenCell.HasValue && view.MinionReturns.Any(o=>o.UnitId==returnUnitId && o.Destination==chosenCell.Value))
+                    Confirm(parent,(place?"确认就近放置到 ":"确认回归一步到 ")+chosenCell.Value,()=>Submit(CommandKind.ChooseMinionReturn,returnUnitId,destination:chosenCell!.Value));
+                return true;
+            }
             if(choice.Kind=="effect_minion")
             {
                 var heading=Text(PlayerName(choice.ChooserSeat)+"可额外移除一个小兵；这次移除不获得金币。","body");heading.name="effect-minion-choice";parent.Add(heading);
@@ -74,12 +94,13 @@ namespace Goa2.Presentation
             }
             if(choice.Kind=="effect_target")
             {
-                var targetTitle=Text(PlayerName(choice.ChooserSeat)+(choice.Optional ? "选择另一名敌方英雄，或跳过。" : "选择牌文作用的英雄。"),"section-title");targetTitle.name="effect-target-choice";parent.Add(targetTitle);
+                bool otherMove=choice.ResumeAt=="before_attack_other_move";
+                var targetTitle=Text(PlayerName(choice.ChooserSeat)+(otherMove ? "选择原攻击目标旁的另一个单位移动，或跳过。" : choice.Optional ? "选择另一名敌方英雄，或跳过。" : "选择牌文作用的英雄。"),"section-title");targetTitle.name="effect-target-choice";parent.Add(targetTitle);
                 if(choice.ChooserSeat!=seat) {parent.Add(Text("等待来源英雄选择目标。","body"));RenderCardDetail(parent,catalog.Card(choice.Source));return true;}
                 var target=chosenCell.HasValue ? view.Units.SingleOrDefault(u=>u.Position==chosenCell.Value && view.EffectTargets.Contains(u.Id)) : null;
-                if(target!=null) Confirm(parent,"确认选择 "+PlayerName(target.Seat!.Value),()=>Submit(CommandKind.ChooseEffectTarget,target.Id));
-                else parent.Add(Text("点击高亮英雄后确认；后续选牌由目标英雄本人决定。","body"));
-                if(choice.Optional)parent.Add(Button("跳过额外弃牌，继续原攻击",()=>Submit(CommandKind.ChooseEffectTarget,"skip"),"quiet-button","effect-target-skip"));
+                if(target!=null) Confirm(parent,"确认选择 "+(target.Seat.HasValue?PlayerName(target.Seat.Value):MinionName(target)),()=>Submit(CommandKind.ChooseEffectTarget,target.Id));
+                else parent.Add(Text(otherMove?"点击高亮单位后确认，再由你选择该单位的一格落点。":"点击高亮英雄后确认；后续选牌由目标英雄本人决定。","body"));
+                if(choice.Optional)parent.Add(Button(otherMove?"不移动，继续原攻击":"跳过额外弃牌，继续原攻击",()=>Submit(CommandKind.ChooseEffectTarget,"skip"),"quiet-button","effect-target-skip"));
                 RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
             }
@@ -135,6 +156,11 @@ namespace Goa2.Presentation
                 bool through=choice.ResumeAt=="strike_through_enemy";
                 bool primaryMove=choice.ResumeAt=="primary_movement";
                 bool requiredStraight=choice.ResumeAt=="required_straight_if_able";
+                if(choice.ResumeAt=="other_unit_before_attack")
+                {
+                    var moved=view.Units.SingleOrDefault(u=>u.Id==choice.UnitId);
+                    if(moved!=null)parent.Add(Text("移动对象："+(moved.Seat.HasValue?PlayerName(moved.Seat.Value):MinionName(moved))+"。移动一格后继续原目标的攻击。","body"));
+                }
                 var instruction=Text((primaryMove ? "主要移动使用卡面移动数值加被动。完成移动或留在原地后，执行本牌后续效果。" : requiredStraight ? "必须沿直线完整移动2格。没有合法路线时自动继续；当前有路线，不能跳过。" : through ? "沿直线穿过一个敌方单位移动2格。确认落点后，自动攻击途中那个敌人。" : charge ? "必须按卡牌指定距离沿直线移动，终点须邻接合法敌方目标。完成移动后选择攻击目标。" : defenseMove ? "攻击及后续已结算。从当前位置沿直线移动2格，或不移动。" : beforeAttack ? "攻击前移动。移动或跳过后再选择攻击目标。" : "完成本次牌文移动后继续卡牌效果。")+"点击高亮格后确认。","body");instruction.name="effect-move-choice";parent.Add(instruction);
                 if(chosenCell.HasValue && view.EffectMoves.Any(m=>m.Destination==chosenCell.Value))
                     Confirm(parent,"确认牌文移动至 "+chosenCell.Value,()=>Submit(CommandKind.ChooseEffectMove,destination:chosenCell!.Value));

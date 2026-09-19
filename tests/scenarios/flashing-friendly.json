@@ -1,0 +1,121 @@
+{
+  "SchemaVersion": 1,
+  "Id": "flashing-friendly",
+  "Name": "华丽刀锋：来源操控额外友方英雄",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "arien,wasp,brogan,sabina",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": 0,
+        "Y": -2
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": 0,
+        "Y": -3
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": -1,
+        "Y": -2
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 0,
+        "Y": -4
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-00-华丽刀锋",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-07-抵挡屏障",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-07-指挥",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "effect_target",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "hero:2",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Value": "",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": -2
+      },
+      "Expect": {
+        "PendingKind": "defense",
+        "Positions": {
+          "hero:2": {
+            "X": -2,
+            "Y": -2
+          }
+        }
+      }
+    },
+    {
+      "Command": "Defend",
+      "Value": "wasp-13-控物",
+      "Actor": "p2",
+      "Expect": {
+        "Active": "p3",
+        "EventCounts": {
+          "CardResolved": 1,
+          "MinionReturnChoiceRequired": 0
+        }
+      }
+    }
+  ]
+}

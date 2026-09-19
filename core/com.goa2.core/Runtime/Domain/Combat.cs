@@ -43,6 +43,8 @@ namespace Goa2.Domain
         public int AttackRangeBonus;
         public bool PreAttackMoved;
         public Hex? AttackTargetCell;
+        public List<string>? DisplacedMinions;
+        public string? ReturningMinionId;
     }
     [Serializable]
     public sealed class DefenseResponse

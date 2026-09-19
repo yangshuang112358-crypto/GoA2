@@ -102,9 +102,17 @@ namespace Goa2.Domain
         public List<MoveOption> FastMoves = new List<MoveOption>();
         public List<MoveOption> EffectMoves = new List<MoveOption>();
         public List<Hex> Placements = new List<Hex>();
+        public List<MinionReturnOption> MinionReturns = new List<MinionReturnOption>();
         public Dictionary<string, List<Hex>> DebugTeleports = new Dictionary<string, List<Hex>>();
         public bool CanPass;
         public List<GameEvent> Events = new List<GameEvent>();
+    }
+    public sealed class MinionReturnOption
+    {
+        public string UnitId="";
+        public Hex Destination;
+        public bool Place;
+        public int RemainingDistance;
     }
     public sealed class CommandResult
     {

@@ -42,6 +42,7 @@ namespace Goa2.Rules
                 case CommandKind.DeclineRetaliationDiscard: DeclineRetaliationDiscard(catalog,state,command); break;
                 case CommandKind.ChooseOptionalDiscard: ChooseOptionalDiscard(catalog,state,command); break;
                 case CommandKind.ChooseEffectMove: ChooseEffectMove(catalog,state,command); break;
+                case CommandKind.ChooseMinionReturn: ChooseMinionReturn(catalog,state,command); break;
                 case CommandKind.ChoosePlacement: ChoosePlacement(catalog,state,command); break;
                 case CommandKind.ChooseRecoveredCard: ChooseRecoveredCard(catalog,state,command); break;
                 case CommandKind.ChooseEffectTarget: ChooseEffectTarget(catalog,state,command); break;

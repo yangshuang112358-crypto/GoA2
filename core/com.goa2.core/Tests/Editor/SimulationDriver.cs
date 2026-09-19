@@ -160,6 +160,8 @@ namespace Goa2.Tests
                     case "optional_discard": return Step(CommandKind.ChooseOptionalDiscard,seat,Next(3)==0 ? "skip" : Pick(own.OptionalDiscardCards));
                     case "effect_move": return view.Pending.Optional && Next(3)==0 ? Step(CommandKind.ChooseEffectMove,seat,"skip") : Step(CommandKind.ChooseEffectMove,seat,at:Pick(own.EffectMoves).Destination);
                     case "placement": return Step(CommandKind.ChoosePlacement,seat,at:Pick(own.Placements));
+                    case "minion_return":
+                        var returning=Pick(own.MinionReturns);return Step(CommandKind.ChooseMinionReturn,seat,returning.UnitId,at:returning.Destination);
                     case "gold_transfer":
                         if(Next(3)==0)return Step(CommandKind.ChooseGoldTransfer,seat,"0");
                         var gold=Pick(own.GoldTransfers);return Step(CommandKind.ChooseGoldTransfer,seat,gold.Amount.ToString(System.Globalization.CultureInfo.InvariantCulture),target:gold.TargetSeat);

@@ -15,6 +15,7 @@ namespace Goa2.Rules
             var result=PushRules.AwayFromAdjacent(catalog,state,source,target,program.TextPushDistance);
             if(result==null)return;
             target.Position=result.Path.Last();
+            if(result.Path.Count>1)RecordDisplacedMinion(state,target);
             Emit(state,command,"UnitPushed",target.Seat,execution.CardId,detail:"by:"+execution.ControllerSeat);
             var pushed=state.Events.Last();pushed.From=result.Path.First();pushed.To=target.Position;pushed.Path=result.Path;
             if(result.StopReason!="")Emit(state,command,"PushStopped",target.Seat,execution.CardId,detail:result.StopReason);
