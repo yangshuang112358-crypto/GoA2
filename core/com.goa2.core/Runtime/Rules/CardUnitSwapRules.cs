@@ -10,18 +10,19 @@ namespace Goa2.Rules
   private static bool IsUnitSwapStep(ContentCatalog catalog,GameState state)
   {
    var e=state.Execution;if(state.EngineVersion<46 || e==null)return false;var p=CardPrograms.Primary(catalog.Card(e.CardId),state.EngineVersion);
-   return p!=null && p.Id==e.ProgramId && p.Version==e.ProgramVersion && e.Cursor>=0 && e.Cursor<p.Instructions.Count && (p.Instructions[e.Cursor]==InstructionKind.ChooseUnitSwapTarget || p.Instructions[e.Cursor]==InstructionKind.SwapTargetUnits);
+   return p!=null && p.Id==e.ProgramId && p.Version==e.ProgramVersion && e.Cursor>=0 && e.Cursor<p.Instructions.Count && (p.Instructions[e.Cursor]==InstructionKind.ChooseUnitSwapTarget || p.Instructions[e.Cursor]==InstructionKind.SwapTargetUnits || p.Instructions[e.Cursor]==InstructionKind.ChooseOptionalUnitSwapTarget);
   }
   private static List<string> UnitSwapTargets(ContentCatalog catalog,GameState state)
   {
    if(!IsUnitSwapStep(catalog,state))return new List<string>();var e=state.Execution!;var source=state.Units.SingleOrDefault(u=>u.Seat==e.ControllerSeat);if(source==null)return new List<string>();
-   int range=(catalog.Card(e.CardId).SubtypeValue??0)+state.Players[e.ControllerSeat].RangedBonus;var minions=new HashSet<string>(LegalMinionRemovals(state));
-   return state.Units.Where(u=>u.Id!=source.Id && u.Position.Distance(source.Position)<=range && (u.Kind=="hero" && u.Team==source.Team || minions.Contains(u.Id))).Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
+   bool adjacent=CardPrograms.Primary(catalog.Card(e.CardId),state.EngineVersion)!.UnitSwapTarget==UnitSwapTargetKind.AdjacentFriendlyMinion;
+   int range=adjacent?1:(catalog.Card(e.CardId).SubtypeValue??0)+state.Players[e.ControllerSeat].RangedBonus;var minions=new HashSet<string>(LegalMinionRemovals(state));
+   return state.Units.Where(u=>u.Id!=source.Id && u.Position.Distance(source.Position)<=range && (adjacent ? u.Team==source.Team && minions.Contains(u.Id) : u.Kind=="hero" && u.Team==source.Team || minions.Contains(u.Id))).Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
   }
   private static bool BeginUnitSwapTarget(ContentCatalog catalog,GameState state,Command command)
   {
    var targets=UnitSwapTargets(catalog,state);if(targets.Count==0)return false;var e=state.Execution!;
-   state.Phase=Phase.EffectChoice;state.Pending=new PendingChoice{Id="unit-swap-target:"+(state.Events.Count+1),Kind="effect_target",ChooserSeat=e.ControllerSeat,Source=e.CardId,ResumeAt="unit_swap",CandidateUnits=targets};
+   state.Phase=Phase.EffectChoice;state.Pending=new PendingChoice{Id="unit-swap-target:"+(state.Events.Count+1),Kind="effect_target",ChooserSeat=e.ControllerSeat,Source=e.CardId,ResumeAt="unit_swap",Optional=CardPrograms.Primary(catalog.Card(e.CardId),state.EngineVersion)!.Instructions[e.Cursor]==InstructionKind.ChooseOptionalUnitSwapTarget,CandidateUnits=targets};
    Emit(state,command,"UnitSwapChoiceRequired",e.ControllerSeat,e.CardId);return true;
   }
   private static void SwapTargetUnits(ContentCatalog catalog,GameState state,Command command)

@@ -405,6 +405,15 @@
       "input": "tests/fixtures/engine46-swap-return-scenario.json",
       "input_sha256": "e01cbc9f4f6230be5a198063e837e063da51ec67753df690227273785053746c",
       "provenance": "tests/fixtures/engine46-swap-return.md"
+    },
+    {
+      "engine_version": 47,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine47-side-defense.json",
+      "save_sha256": "b4c673868f5aa59f23a44d1e0af8f7d633a9431d3b467292cf1bb3fc35f0d220",
+      "input": "tests/fixtures/engine47-side-defense-scenario.json",
+      "input_sha256": "2a749844f98e9b079f8b8a13c3943d5ec18527477a4580355611240b11901ffb",
+      "provenance": "tests/fixtures/engine47-side-defense.md"
     }
   ]
 }

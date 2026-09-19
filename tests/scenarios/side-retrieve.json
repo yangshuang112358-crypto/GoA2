@@ -1,0 +1,116 @@
+{
+  "SchemaVersion": 1,
+  "Id": "side-retrieve",
+  "Name": "并肩作战：吟游诗人取回来源牌取消光环",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "sabina,wasp,brogan,arien",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "brogan-10-吟游诗人",
+      "Actor": "p1",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": -3,
+        "Y": 2
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-06-并肩作战",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-00-闪耀之刃",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-10-吟游诗人",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Actor": "p4",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "skip",
+      "Actor": "p1"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p2"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p3"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "hero:0",
+      "Actor": "p3"
+    },
+    {
+      "Command": "ChooseRecoveredCard",
+      "Value": "sabina-06-并肩作战",
+      "Actor": "p1",
+      "Expect": {
+        "EffectCounts": {
+          "sabina-06-并肩作战": 0
+        },
+        "EventCounts": {
+          "EffectCancelled": 1
+        }
+      }
+    }
+  ]
+}

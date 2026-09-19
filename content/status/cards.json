@@ -1316,11 +1316,27 @@
     },
     {
       "card_id": "sabina-06-并肩作战",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-06-并肩作战.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/SideBySideTests.cs",
+        "tests/scenarios/side-skip.json",
+        "tests/scenarios/side-swap.json",
+        "tests/scenarios/side-cancel.json",
+        "tests/scenarios/side-expiry.json",
+        "tests/scenarios/side-invalid.json",
+        "tests/scenarios/side-return.json",
+        "tests/scenarios/side-retrieve.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs"
+      ]
     },
     {
       "card_id": "sabina-07-指挥",

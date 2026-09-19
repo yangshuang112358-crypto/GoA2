@@ -1,0 +1,96 @@
+{
+  "engine": 47,
+  "implemented_cards": 58,
+  "data_only_cards": 50,
+  "build_utc": "2026-09-19T19:46:02.5830231Z",
+  "assemblies": {
+    "Goa2.Application.dll": "6bcd52993f8db561c4919c7c02f6d52719b261872c3f6b545ba8e802396d1568",
+    "Goa2.Domain.dll": "2953104da33ff6b28723ef072db81b661fddb8271c9571755d234eeb44a6cdc9",
+    "Goa2.Editor.dll": "580fefc29332642c7968645f4905c319aac6f1861380f5e2e645844c2cc1e7aa",
+    "Goa2.Infrastructure.dll": "ba933a5d7f4150e60410c686c0d1607cebbc8cd1572fc29b81c20207cca79296",
+    "Goa2.Rules.dll": "f8efb89c56f56f5d8098fb30a37b05490ab4a6497f505f498a4fef26b4f5fa61"
+  },
+  "core": {
+    "passed": 1209,
+    "failed": 0,
+    "report": "artifacts/tests/side-unity-0.xml",
+    "card_specific": 16,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/side-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/side-skip.json",
+        "input_sha256": "7834d641e489912c10ff079f8375a91c26759e9ff169f7604d9fa3a72d955189",
+        "report": "artifacts/editor-scenarios/side-skip/3a787ab2d2564b8cb5cef274582a4043/report.json",
+        "steps": 11,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/side-swap.json",
+        "input_sha256": "99c941fd3b2f83e809f001052dee85f03b3bd3657ad45c6571777efa6293ab04",
+        "report": "artifacts/editor-scenarios/side-swap/a045e11ded144a3f80e0a837e2bf76b2/report.json",
+        "steps": 11,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/side-cancel.json",
+        "input_sha256": "5a481464c9810a64dbacda467ad87be0ad55d9821bd305618208b889cd2d1b34",
+        "report": "artifacts/editor-scenarios/side-cancel/a1270c4e3fbe447192e9acf67637399a/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/side-expiry.json",
+        "input_sha256": "ca639c37c1d83632fab988724c2e0df885c8fa72463971160a481a9c6b822345",
+        "report": "artifacts/editor-scenarios/side-expiry/b7e57d1da43245fab36928da6bf7df97/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/side-invalid.json",
+        "input_sha256": "d76685236c926acb5735a5ae84b6d7220b341cc9c7bdf71691fbb981c036a5d3",
+        "report": "artifacts/editor-scenarios/side-invalid/eb09aebd2ae54583937f5407ce802a6d/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/side-return.json",
+        "input_sha256": "b5e4a6c8aa41aa6e054e3cbfb1abe9cf8b3ed6522ede59e1d13a2601524ce907",
+        "report": "artifacts/editor-scenarios/side-return/93b564c8fec04e93bb139a92f3a1aea5/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/side-retrieve.json",
+        "input_sha256": "9a1f7871d18d126b6a9432c1b0b9570f819540aa3b4ec7db33566d852431c78b",
+        "report": "artifacts/editor-scenarios/side-retrieve/eb9db6bcc6244826855d7674d3c71960/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine47-side-defense-scenario.json",
+        "input_sha256": "2a749844f98e9b079f8b8a13c3943d5ec18527477a4580355611240b11901ffb",
+        "report": "artifacts/editor-scenarios/engine47-side-defense-scenario/9af1f87f82fa4c1c96fd25fcb8db5a2c/report.json",
+        "steps": 13,
+        "passed": true
+      }
+    ],
+    "scenarios": 8,
+    "steps": 111
+  },
+  "manual_presets": [
+    "side-by-side"
+  ],
+  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

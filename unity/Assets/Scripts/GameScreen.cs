@@ -515,6 +515,7 @@ namespace Goa2.Presentation
                 case "OtherMoveTargetChoiceRequired": return actor+"可选择另一个单位移动";
                 case "OtherMoveTargetChosen": return actor+"选择移动 "+EventUnitName(entry.Detail);
                 case "UnitSwapChoiceRequired": return actor+"选择换位目标";
+                case "UnitSwapSkipped": return actor+(entry.Detail=="no_targets"?"没有合法换位目标，继续后续效果":"选择不换位，继续后续效果");
                 case "UnitsSwapped": return actor+"与 "+EventUnitName(entry.Detail)+"交换位置："+entry.From+" ↔ "+entry.To;
                 case "PlacementChoiceRequired": return actor + "选择放置落点";
                 case "UnitMoved": return actor + "移动至 " + entry.To;

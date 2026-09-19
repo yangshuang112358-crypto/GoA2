@@ -62,6 +62,18 @@ namespace Goa2.Rules
             if (source.Kind!="hero" || !ranged || source.Position.Distance(target.Position)<=1) return true;
             return !Current(state,EffectKind.NonAdjacentRangedImmunity).Any(e => e.ProtectedUnitId==target.Id);
         }
+        public static int DefenseBonus(ContentCatalog catalog,GameState state,int defenderSeat)
+        {
+            if(state.EngineVersion<47)return 0;
+            var defender=state.Units.SingleOrDefault(u=>u.Kind=="hero" && u.Seat==defenderSeat);if(defender==null)return 0;
+            if(!state.Units.Any(u=>u.Team==defender.Team && (u.Kind=="melee" || u.Kind=="ranged" || u.Kind=="heavy") && u.Position.Distance(defender.Position)==1))return 0;
+            return Current(state,EffectKind.FriendlyNearMinionDefense).Count(effect=>
+            {
+                var source=Source(state,effect);
+                return source!=null && state.Players[effect.ControllerSeat].Team==defender.Team &&
+                    (source.Id==defender.Id || source.Position.Distance(defender.Position)<=Radius(catalog,state,effect));
+            });
+        }
         public static bool CanMoveAcross(ContentCatalog catalog, GameState state, UnitState unit, Hex from, Hex to)
         {
             // A card ignoring heavy immunity does not remove immunity against other sources.

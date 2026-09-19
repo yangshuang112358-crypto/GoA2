@@ -1,0 +1,136 @@
+{
+  "SchemaVersion": 1,
+  "Id": "side-invalid",
+  "Name": "并肩作战：换位对象与权限",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "sabina,wasp,arien,brogan",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": -3,
+        "Y": 2
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-06-并肩作战",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-00-闪耀之刃",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p4",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:3,1",
+      "Actor": "p1",
+      "Destination": {
+        "X": -1,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Expect": {
+        "Code": "invalid_effect_target"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Expect": {
+        "Code": "invalid_effect_target"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "minion:3,1",
+      "Actor": "p1",
+      "Expect": {
+        "Code": "invalid_effect_target"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "minion:-1,2",
+      "Actor": "p1",
+      "Expect": {
+        "Code": "invalid_effect_target"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "minion:-3,1",
+      "Actor": "p3",
+      "Expect": {
+        "Code": "invalid_effect_target"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "skip",
+      "Actor": "p1",
+      "Expect": {
+        "EffectCounts": {
+          "sabina-06-并肩作战": 1
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "SchemaVersion": 1,
+  "Id": "side-expiry",
+  "Name": "并肩作战：本回合结束失效",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "sabina,wasp,arien,brogan",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": -3,
+        "Y": 2
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-06-并肩作战",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-00-闪耀之刃",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p4",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "skip",
+      "Actor": "p1",
+      "Expect": {
+        "Active": "p2",
+        "EffectCounts": {
+          "sabina-06-并肩作战": 1
+        },
+        "EventCounts": {
+          "UnitsSwapped": 0,
+          "EffectCreated": 1
+        }
+      }
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p2"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p3",
+      "Expect": {
+        "Phase": "Planning",
+        "Turn": 2,
+        "EffectCounts": {
+          "sabina-06-并肩作战": 0
+        }
+      }
+    }
+  ]
+}

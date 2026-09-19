@@ -75,6 +75,15 @@ namespace Goa2.Rules
         }
         private static void ChooseEffectTarget(ContentCatalog catalog,GameState state,Command command)
         {
+            if(state.Pending?.ResumeAt=="unit_swap" && command.Value=="skip")
+            {
+                Require(state.Phase==Phase.EffectChoice && state.Pending.Kind=="effect_target" && state.Pending.Optional && state.Pending.ChooserSeat==command.ActorSeat &&
+                    state.Execution?.ControllerSeat==command.ActorSeat && IsUnitSwapStep(catalog,state) &&
+                    CardPrograms.Primary(catalog.Card(state.Execution.CardId),state.EngineVersion)!.Instructions[state.Execution.Cursor]==InstructionKind.ChooseOptionalUnitSwapTarget,
+                    "invalid_effect_target","当前换位不能由你跳过。");
+                var swap=state.Execution!;swap.Cursor+=2;Emit(state,command,"UnitSwapSkipped",command.ActorSeat,swap.CardId,detail:"declined");
+                state.Pending=null;state.Phase=Phase.Action;ContinueCard(catalog,state,command);return;
+            }
             if(state.Pending?.ResumeAt=="friendly_minion_repeat")
             {
                 Require(state.Phase==Phase.EffectChoice && state.Pending.Kind=="effect_target" && state.Pending.ChooserSeat==command.ActorSeat &&

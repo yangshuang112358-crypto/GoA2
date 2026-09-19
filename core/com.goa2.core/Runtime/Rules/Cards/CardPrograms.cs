@@ -4,7 +4,8 @@ using Goa2.Domain;
 
 namespace Goa2.Rules.Cards
 {
-    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget, OptionalRepeatAttackAfterHeroDefeat, OptionalMinionRemovalAfterDefeat, PushAttackTargetIfAdjacent, MoveIntoAttackTargetCell, RequiredStraightMoveToAttack, RequiredStraightMoveThroughEnemy, PrimaryMovement, TargetDiscardIfAble, OptionalOtherHeroDiscard, OptionalGoldTransfer, RequiredStraightMoveIfAble, OptionalDifferentAttackIfAdjacentEnemy, ChooseSelfPlacement, OptionalMoveOtherAdjacentToTarget, ChooseFriendlyMinionTarget, OptionalTargetUnitMove, OptionalRepeatFriendlyMinionMove, ChooseUnitSwapTarget, SwapTargetUnits }
+    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget, OptionalRepeatAttackAfterHeroDefeat, OptionalMinionRemovalAfterDefeat, PushAttackTargetIfAdjacent, MoveIntoAttackTargetCell, RequiredStraightMoveToAttack, RequiredStraightMoveThroughEnemy, PrimaryMovement, TargetDiscardIfAble, OptionalOtherHeroDiscard, OptionalGoldTransfer, RequiredStraightMoveIfAble, OptionalDifferentAttackIfAdjacentEnemy, ChooseSelfPlacement, OptionalMoveOtherAdjacentToTarget, ChooseFriendlyMinionTarget, OptionalTargetUnitMove, OptionalRepeatFriendlyMinionMove, ChooseUnitSwapTarget, SwapTargetUnits, ChooseOptionalUnitSwapTarget }
+    internal enum UnitSwapTargetKind { MinionOrFriendlyHeroInAttackRange, AdjacentFriendlyMinion }
     internal enum HeroTargetKind { None, AlliedNearEnemy, AdjacentEnemyUsedAttack, EnemyInSkillRangeNearFriendlyMinion, OtherAdjacentEnemy, OtherEnemyInSkillRange }
     internal enum AttackBonusKind { None, TargetUsedAttack, AdjacentEnemies, OtherFriendlySupport }
     internal enum AttackRangeBonusKind { None, DiscardedBeforeAttack, OwnDiscardPile }
@@ -32,6 +33,7 @@ namespace Goa2.Rules.Cards
         public readonly string AttackSubtype = "";
         public readonly int GoldMaximum;
         public readonly bool IgnoreHeavyImmunity;
+        public readonly UnitSwapTargetKind UnitSwapTarget;
         public readonly int Version = 1, MinimumDistance;
         public readonly IReadOnlyList<InstructionKind> Instructions;
         public readonly EffectKind? Effect;
@@ -52,12 +54,12 @@ namespace Goa2.Rules.Cards
         public readonly int TextPushDistance;
         public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
             EffectAreaKind areaKind=EffectAreaKind.SkillRange, AttackBonusKind bonus=AttackBonusKind.None, int bonusValue=0,
-            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,bool extraRemovalUsesAttackRange=false,int textPushDistance=0,int textMoveMinimum=0,string? attackSubtype=null,int goldMaximum=0,bool ignoreHeavyImmunity=false,params InstructionKind[] instructions)
+            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,bool extraRemovalUsesAttackRange=false,int textPushDistance=0,int textMoveMinimum=0,string? attackSubtype=null,int goldMaximum=0,bool ignoreHeavyImmunity=false,UnitSwapTargetKind unitSwapTarget=UnitSwapTargetKind.MinionOrFriendlyHeroInAttackRange,params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
             AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=EffectDuration.ThisTurn;
             AttackSubtype=attackSubtype ?? (adjacent ? "" : "远程");
-            GoldMaximum=goldMaximum; IgnoreHeavyImmunity=ignoreHeavyImmunity;
+            GoldMaximum=goldMaximum; IgnoreHeavyImmunity=ignoreHeavyImmunity; UnitSwapTarget=unitSwapTarget;
             AttackBonusKind=bonus; AttackBonusValue=bonusValue;
             RangeBonusKind=rangeBonus; RangeBonusValue=rangeBonusValue;
             TextMoveDistance=textMoveDistance;
@@ -158,6 +160,7 @@ namespace Goa2.Rules.Cards
         };
         private static readonly Dictionary<string,(string text, int minimumEngine, string? subtype, PrimaryProgram program)> Skills = new Dictionary<string,(string, int, string?, PrimaryProgram)>
         {
+            ["sabina-06-并肩作战"] = ("你可以和与你相邻的一个友方小兵换位。此回合：你和技能范围内的友方英雄如果与一个或多个友方小兵相邻，则+1防御。",47,"范围",new PrimaryProgram("optional_friendly_minion_swap_near_minion_defense_aura",0,effect:EffectKind.FriendlyNearMinionDefense,unitSwapTarget:UnitSwapTargetKind.AdjacentFriendlyMinion,instructions:new[]{InstructionKind.ChooseOptionalUnitSwapTarget,InstructionKind.SwapTargetUnits,InstructionKind.ApplyEffect,InstructionKind.End})),
             ["sabina-11-战略优势"] = ("将技能范围内的任意1个友方小兵移动最多3格；无视重型小兵免疫。可以重复一次。",45,"范围",new PrimaryProgram("friendly_minion_move_three_repeat_once",0,textMoveDistance:3,ignoreHeavyImmunity:true,instructions:new[]{InstructionKind.ChooseFriendlyMinionTarget,InstructionKind.OptionalTargetUnitMove,InstructionKind.OptionalRepeatFriendlyMinionMove,InstructionKind.OptionalTargetUnitMove,InstructionKind.End})),
             ["sabina-09-战略控制"] = ("将技能范围内的任意1个友方小兵移动最多3格；无视重型小兵免疫。",44,"范围",new PrimaryProgram("friendly_minion_move_three_ignore_heavy",0,textMoveDistance:3,ignoreHeavyImmunity:true,instructions:new[]{InstructionKind.ChooseFriendlyMinionTarget,InstructionKind.OptionalTargetUnitMove,InstructionKind.End})),
             ["sabina-07-指挥"] = ("将技能范围内的任意1个友方小兵移动最多2格；无视重型小兵免疫。",43,"范围",new PrimaryProgram("friendly_minion_move_two_ignore_heavy",0,textMoveDistance:2,ignoreHeavyImmunity:true,instructions:new[]{InstructionKind.ChooseFriendlyMinionTarget,InstructionKind.OptionalTargetUnitMove,InstructionKind.End})),

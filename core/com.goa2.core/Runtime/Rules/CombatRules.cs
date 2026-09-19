@@ -96,6 +96,7 @@ namespace Goa2.Rules
             var defender = state.Units.SingleOrDefault(u => u.Seat == seat);
             var attacker = state.Units.SingleOrDefault(u => u.Seat == attack.AttackerSeat);
             if (defender == null || attacker == null) return result;
+            int defenseBonus=state.Players[seat].DefenseBonus+EffectRules.DefenseBonus(catalog,state,seat);
             foreach (var instance in state.Players[seat].Cards.Where(c => c.Zone == CardZone.InHand))
             {
                 var card = catalog.Card(instance.CardId); var primary = CardPrograms.Defense(card,state.EngineVersion);
@@ -104,10 +105,10 @@ namespace Goa2.Rules
                     if (primary == null) continue;
                     if (DefenseRestriction(state,primary,attack,attacker,defender)!="") continue;
                     result.Add(new DefenseOption { CardId = card.Id, Primary = true, Block = primary.Block, IgnoresMinions = primary.IgnoresMinions,
-                        Assessment = CombatMath.Defense(attack, card.PrimaryValue, state.Players[seat].DefenseBonus, primary.IgnoresMinions, primary.Block) });
+                        Assessment = CombatMath.Defense(attack, card.PrimaryValue, defenseBonus, primary.IgnoresMinions, primary.Block) });
                 }
                 else if (card.SecondaryDefense.HasValue)
-                    result.Add(new DefenseOption { CardId = card.Id, Assessment = CombatMath.Defense(attack, card.SecondaryDefense.Value, state.Players[seat].DefenseBonus) });
+                    result.Add(new DefenseOption { CardId = card.Id, Assessment = CombatMath.Defense(attack, card.SecondaryDefense.Value, defenseBonus) });
             }
             return result;
         }
