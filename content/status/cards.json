@@ -996,11 +996,26 @@
     },
     {
       "card_id": "tigerclaw-10-探囊取物",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-10-探囊取物.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/SleightOfHandTests.cs",
+        "core/com.goa2.core/Tests/Editor/PickpocketTests.cs",
+        "tests/scenarios/sleight-one.json",
+        "tests/scenarios/sleight-two.json",
+        "tests/scenarios/sleight-limited.json",
+        "tests/scenarios/sleight-skip.json",
+        "tests/scenarios/sleight-empty.json",
+        "tests/scenarios/sleight-boundary.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-11-盗贼大师",

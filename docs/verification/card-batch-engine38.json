@@ -1,0 +1,84 @@
+{
+  "engine": 38,
+  "implemented_cards": 49,
+  "data_only_cards": 59,
+  "build_utc": "2026-09-19T18:07:59.5187343Z",
+  "assemblies": {
+    "Goa2.Application.dll": "8cd00fa8a5740ef6d8dfb95066d4a28b00487efd79d85ca5c0fadadbca830bb2",
+    "Goa2.Domain.dll": "1d900eb26eea20b1c0fa683cfb98d5d70018740fe6eff5ca8c0359a8a5c3b62d",
+    "Goa2.Infrastructure.dll": "f7fd1950f88be49be641ce0d753b0d3e4cd7e59bbaf7934e51449753ab1bfff9",
+    "Goa2.Rules.dll": "ee2d545e12df59d2f412a049c989763ad16e940297a5082e832e95f4ad0176f5",
+    "Goa2.ScenarioCli.dll": "6a8e24f1780fe73d4a0f77166891b70121db8a3aa29f62051aa1da59077ac654"
+  },
+  "core": {
+    "passed": 1028,
+    "failed": 0,
+    "report": "artifacts/tests/sleight-core.trx",
+    "card_specific": 8
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "core_cli": {
+    "results": [
+      {
+        "input": "tests/scenarios/sleight-one.json",
+        "input_sha256": "e26bd62079e1f6bb1f2e89bd8b84718acaefa453116b4fc66cc2a9561260f001",
+        "report": "artifacts/core-scenarios/sleight-one/e84ef94649fe41be854130a28f942522/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sleight-two.json",
+        "input_sha256": "6c5b9827ec7393d314ff15f70778d65fe200e226ad1857d093eb79e1abb45f0e",
+        "report": "artifacts/core-scenarios/sleight-two/7bf17f1efa524787887134d072446c91/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sleight-limited.json",
+        "input_sha256": "fcd629a72867b0144e13bfa174d13f896f84acbbc10ce6dc3ab3e618341729d0",
+        "report": "artifacts/core-scenarios/sleight-limited/48922e6f4f4f4c4ba14d4cccc8f13cdb/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sleight-skip.json",
+        "input_sha256": "a8870ee9f47ca05dd7124112a28498d30506bca91251a0cf3921cd9c94cf55f6",
+        "report": "artifacts/core-scenarios/sleight-skip/1efbc34ff7244234a928fd37a1f4afe5/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sleight-empty.json",
+        "input_sha256": "8a8d6c54af5aa92e067a6fe7661ace2ae024d04ba246db2fc125ac270c5f99ac",
+        "report": "artifacts/core-scenarios/sleight-empty/fe494f57d55e4854916e28223a3a0603/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/sleight-boundary.json",
+        "input_sha256": "6b56d15bcbe4623e2d7390ff91133ad98b9a419f63ef55e67f5d08826e456fae",
+        "report": "artifacts/core-scenarios/sleight-boundary/92078eaeda2441aeb06f50b44086d047/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine38-sleight-gold-scenario.json",
+        "input_sha256": "1c1338395ed52560cd5e4f7bc0ad1b52e00a219681eedcd47b91851ca640e4f9",
+        "report": "artifacts/core-scenarios/engine38-sleight-gold-scenario/00e39143141349a082c2675d6d15ca69/report.json",
+        "steps": 17,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 129
+  },
+  "manual_presets": [
+    "sleight"
+  ],
+  "note": "Core CLI commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

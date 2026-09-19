@@ -324,6 +324,15 @@
       "input": "tests/fixtures/engine37-pick-gold-scenario.json",
       "input_sha256": "45ea378ce2cf81464413142f92798ba33866739b4139330f04d252e8c226c7b2",
       "provenance": "tests/fixtures/engine37-pick-gold.md"
+    },
+    {
+      "engine_version": 38,
+      "accepted_commands": 17,
+      "save": "tests/fixtures/engine38-sleight-gold.json",
+      "save_sha256": "6abb06c201e1674a15c4068b8297c240588b8722b4e1b96f2157c0d418cef94e",
+      "input": "tests/fixtures/engine38-sleight-gold-scenario.json",
+      "input_sha256": "1c1338395ed52560cd5e4f7bc0ad1b52e00a219681eedcd47b91851ca640e4f9",
+      "provenance": "tests/fixtures/engine38-sleight-gold.md"
     }
   ]
 }

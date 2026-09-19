@@ -12,12 +12,12 @@ namespace Goa2.Tests
  public sealed class PickpocketTests
  {
   internal const string Pick="tigerclaw-08-偷天妙手";
-  internal static GameSession Setup(ContentCatalog cat,bool boundary=false,bool suppression=false)
+  internal static GameSession Setup(ContentCatalog cat,bool boundary=false,bool suppression=false,string card=Pick)
   {
-   var g=LocalGameFactory.Create(cat,"pick",new[]{"A","B","C","D"},42,true);Apply(g,0,CommandKind.DebugPrepare,suppression ? "tigerclaw,arien,brogan,sabina" : "tigerclaw,wasp,brogan,sabina");Apply(g,0,CommandKind.DebugEquipCard,Pick,target:0);
+   var g=LocalGameFactory.Create(cat,"pick",new[]{"A","B","C","D"},42,true);Apply(g,0,CommandKind.DebugPrepare,suppression ? "tigerclaw,arien,brogan,sabina" : "tigerclaw,wasp,brogan,sabina");Apply(g,0,CommandKind.DebugEquipCard,card,target:0);
    foreach(var p in new[]{(0,new Hex(6,-8)),(1,new Hex(7,-8)),(2,new Hex(5,-8)),(3,new Hex(6,-9))})Apply(g,0,CommandKind.DebugTeleport,"hero:"+p.Item1,cell:p.Item2);
    Apply(g,0,CommandKind.DebugSetGold,"3",target:1);
-   string[] cards={Pick,suppression ? "arien-06-打断施法" : "wasp-06-静电封锁","brogan-06-铜墙铁壁","sabina-07-指挥"};for(int i=0;i<4;i++)Apply(g,i,CommandKind.SelectCard,cards[i]);
+   string[] cards={card,suppression ? "arien-06-打断施法" : "wasp-06-静电封锁","brogan-06-铜墙铁壁","sabina-07-指挥"};for(int i=0;i<4;i++)Apply(g,i,CommandKind.SelectCard,cards[i]);
    while(g.View(0).ActiveSeat!=0){var v=g.View(0);if(v.Phase==Phase.InitiativeChoice)Apply(g,v.Pending!.ChooserSeat,CommandKind.ChooseInitiative,target:0);else Apply(g,v.ActiveSeat!.Value,(boundary || suppression) && v.ActiveSeat==1 ? CommandKind.BeginPrimary : CommandKind.Pass);}return g;
   }
   internal static void GoldStep(GameSession g){Apply(g,0,CommandKind.BeginPrimary);Apply(g,0,CommandKind.ChooseEffectMove,"skip");}
