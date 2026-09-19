@@ -1,0 +1,89 @@
+{
+  "engine": 46,
+  "implemented_cards": 57,
+  "data_only_cards": 51,
+  "build_utc": "2026-09-19T19:34:42.8392690Z",
+  "assemblies": {
+    "Goa2.Application.dll": "0ce8db3ef77bc59e150f6ee54e4edfe1b9a5c7357c40ad24a5583de538896fcc",
+    "Goa2.Domain.dll": "7ca46cdeff8f3186159ed092a5ad7f50700cbf680ab9202fb87083988ee69937",
+    "Goa2.Editor.dll": "6c89e946a294a82cfa20af20331ce3a1ce6c46ccecae13fa870786e600997cb9",
+    "Goa2.Infrastructure.dll": "0d794613c0200d7238fca2ef3282ce8168a5f2c04315d07f9852bd0b2eae9e11",
+    "Goa2.Rules.dll": "b543a4054b2ca63264e485a6c67cbdf0b65f44fefe7bff1e9eed58c96b5dd403"
+  },
+  "core": {
+    "passed": 1185,
+    "failed": 0,
+    "report": "artifacts/tests/swap-unity-0.xml",
+    "card_specific": 11,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/swap-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/swap-hero.json",
+        "input_sha256": "01df687b76698ba4f959d69a233a9fa5e9dc8efc7f4f74d8da3bd02e524b798d",
+        "report": "artifacts/editor-scenarios/swap-hero/0c24deb7a26147329e41d3298d9e0026/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/swap-friendly.json",
+        "input_sha256": "1ba94638f1a83c2d98155580b98cb575ba9058bf60bea3dad50fe6451524eb91",
+        "report": "artifacts/editor-scenarios/swap-friendly/8a8dbd5e8c0e40a1b13f55b4129d289e/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/swap-enemy.json",
+        "input_sha256": "4967aedd183647b55458a2987df41af8c965f3b65e11823cb3a4a49863c912f8",
+        "report": "artifacts/editor-scenarios/swap-enemy/d048efb046bd4dc99dce3c939cf074d9/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/swap-invalid.json",
+        "input_sha256": "57223252ace0dfc56c9fa0b47453096fcd747889d5e9a9ff977f28b0c9daeef5",
+        "report": "artifacts/editor-scenarios/swap-invalid/8438fda1a21d496ba8b6584a7d44ef8e/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/swap-suppressed.json",
+        "input_sha256": "4c8a036fd983d10a50fab738b311c422d37d42cc7b3ea6912ad8d0d14b3ae4d2",
+        "report": "artifacts/editor-scenarios/swap-suppressed/7faf62cb1741448098597b08e9a6ab9c/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/swap-return.json",
+        "input_sha256": "18563106c28af89a6013b526294a19e4a2418f6fe98350142b19181f5370fcc7",
+        "report": "artifacts/editor-scenarios/swap-return/0fe1fba9cfb44a859b1f39d7e36ab8ba/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine46-swap-return-scenario.json",
+        "input_sha256": "e01cbc9f4f6230be5a198063e837e063da51ec67753df690227273785053746c",
+        "report": "artifacts/editor-scenarios/engine46-swap-return-scenario/b5424018e081440a9b2c99cf50e45ffc/report.json",
+        "steps": 17,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 113
+  },
+  "manual_presets": [
+    "arcane-swap"
+  ],
+  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

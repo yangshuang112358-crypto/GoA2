@@ -1,0 +1,103 @@
+{
+  "SchemaVersion": 1,
+  "Id": "swap-suppressed",
+  "Name": "奥术换位：闪耀之刃禁止技能",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "arien,wasp,brogan,sabina",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "arien-08-奥术换位",
+      "Actor": "p1",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": -1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": -3,
+        "Y": 2
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-08-奥术换位",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-00-闪耀之刃",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-07-指挥",
+      "Actor": "p4"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p2"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:0",
+      "Actor": "p2"
+    },
+    {
+      "Command": "Defend",
+      "Value": "arien-13-挑战者",
+      "Actor": "p1"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p3"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1",
+      "Expect": {
+        "Code": "primary_restricted",
+        "Active": "p1"
+      }
+    }
+  ]
+}

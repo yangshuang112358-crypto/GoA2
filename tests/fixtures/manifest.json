@@ -396,6 +396,15 @@
       "input": "tests/fixtures/engine45-advantage-repeat-scenario.json",
       "input_sha256": "c45a262d63cdee359cac7998fce6c8d49f091551b5275a53987b47a7b7f21c60",
       "provenance": "tests/fixtures/engine45-advantage-repeat.md"
+    },
+    {
+      "engine_version": 46,
+      "accepted_commands": 17,
+      "save": "tests/fixtures/engine46-swap-return.json",
+      "save_sha256": "0d18f5fa80af58e0c333fbe808715a22c432b65c204b293f5a75806a9ea3d7ba",
+      "input": "tests/fixtures/engine46-swap-return-scenario.json",
+      "input_sha256": "e01cbc9f4f6230be5a198063e837e063da51ec67753df690227273785053746c",
+      "provenance": "tests/fixtures/engine46-swap-return.md"
     }
   ]
 }

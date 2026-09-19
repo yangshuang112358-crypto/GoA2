@@ -55,6 +55,7 @@ namespace Goa2.Rules
             var execution=state.Execution;
             if(state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="effect_target" || state.Pending.ChooserSeat!=seat ||
                 execution==null || execution.ControllerSeat!=seat || state.ActiveSeat!=seat) return new List<string>();
+            if(state.Pending.ResumeAt=="unit_swap")return UnitSwapTargets(catalog,state);
             if(state.Pending.ResumeAt=="friendly_minion_move" || state.Pending.ResumeAt=="friendly_minion_repeat")return FriendlyMinionTargets(catalog,state);
             if(state.Pending.ResumeAt=="before_attack_other_move")return OtherMoveTargets(catalog,state);
             var program=CardPrograms.Primary(catalog.Card(execution.CardId),state.EngineVersion);

@@ -787,11 +787,24 @@
     },
     {
       "card_id": "arien-08-奥术换位",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-08-奥术换位.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ArcaneSwapTests.cs",
+        "tests/scenarios/swap-hero.json",
+        "tests/scenarios/swap-friendly.json",
+        "tests/scenarios/swap-enemy.json",
+        "tests/scenarios/swap-invalid.json",
+        "tests/scenarios/swap-suppressed.json",
+        "tests/scenarios/swap-return.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs"
+      ]
     },
     {
       "card_id": "arien-09-魔法水流",

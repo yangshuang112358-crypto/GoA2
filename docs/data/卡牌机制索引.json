@@ -973,7 +973,7 @@
         "move",
         "swap"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/arien-08-奥术换位.md",
       "question_candidates": [
         "U-011"

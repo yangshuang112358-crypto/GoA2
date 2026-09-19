@@ -488,6 +488,13 @@ namespace Goa2.Presentation
                 box.Add(Text(EventText(entry), "tiny"));
             parent.Add(box);
         }
+        private string EventUnitName(string id)
+        {
+            var unit=renderedView.Units.SingleOrDefault(u=>u.Id==id);
+            if(unit!=null)return unit.Seat.HasValue?PlayerName(unit.Seat.Value):MinionName(unit);
+            if(id.StartsWith("hero:",StringComparison.Ordinal) && int.TryParse(id.Substring(5),out int number) && number>=0 && number<renderedView.Players.Count)return PlayerName(number);
+            return "小兵";
+        }
         private string EventText(GameEvent entry)
         {
             string actor = entry.Seat.HasValue ? "席位 " + (entry.Seat.Value + 1) : "";
@@ -502,11 +509,13 @@ namespace Goa2.Presentation
                 case "CardRevealed": return actor + "揭示 " + catalog.Card(entry.CardId!).Name;
                 case "UnitPlaced": return actor + "放置到 " + entry.To;
                 case "MinionReturnChoiceRequired": return actor+"需安排小兵回归战区";
-                case "MinionReturnMoved": return "小兵 "+entry.Detail+"回归一步至 "+entry.To;
-                case "MinionReturnPlaced": return "小兵 "+entry.Detail+"无路可回，就近放置到 "+entry.To;
-                case "MinionReturnCompleted": return "小兵 "+entry.Detail+"已回到战区";
+                case "MinionReturnMoved": return EventUnitName(entry.Detail)+"回归一步至 "+entry.To;
+                case "MinionReturnPlaced": return EventUnitName(entry.Detail)+"无路可回，就近放置到 "+entry.To;
+                case "MinionReturnCompleted": return EventUnitName(entry.Detail)+"已回到战区";
                 case "OtherMoveTargetChoiceRequired": return actor+"可选择另一个单位移动";
-                case "OtherMoveTargetChosen": return actor+"选择移动 "+entry.Detail;
+                case "OtherMoveTargetChosen": return actor+"选择移动 "+EventUnitName(entry.Detail);
+                case "UnitSwapChoiceRequired": return actor+"选择换位目标";
+                case "UnitsSwapped": return actor+"与 "+EventUnitName(entry.Detail)+"交换位置："+entry.From+" ↔ "+entry.To;
                 case "PlacementChoiceRequired": return actor + "选择放置落点";
                 case "UnitMoved": return actor + "移动至 " + entry.To;
                 case "UnitPushed": return actor + "被推动 " + (entry.Path.Count-1) + " 格，位置 " + entry.To;
@@ -519,7 +528,7 @@ namespace Goa2.Presentation
                 case "CardSwapColorsShown": return actor+"交换了手牌与防御牌的状态";
                 case "RecoverDiscardRequired": return actor+"可按牌文取回一张卡牌";
                 case "EffectTargetChoiceRequired": return actor+"选择牌文作用的英雄";
-                case "EffectTargetChosen": return actor+"选定牌文目标 · "+entry.Detail;
+                case "EffectTargetChosen": return actor+"选定牌文目标 · "+EventUnitName(entry.Detail);
                 case "GoldTransferChoiceRequired": return actor+"选择是否拿取金币";
                 case "GoldTransferred": return actor+"拿取金币";
                 case "GoldTransferSkipped": return actor+"未拿取金币，继续后续效果";

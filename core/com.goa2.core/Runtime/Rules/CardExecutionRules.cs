@@ -129,6 +129,11 @@ namespace Goa2.Rules
                         if(BeginGoldTransfer(state,command,execution,program))return;
                         execution.Cursor++;
                         break;
+                    case InstructionKind.ChooseUnitSwapTarget:
+                        if(BeginUnitSwapTarget(catalog,state,command))return;
+                        StopCard(catalog,state,command,"no_targets");return;
+                    case InstructionKind.SwapTargetUnits:
+                        SwapTargetUnits(catalog,state,command);execution.Cursor++;break;
                     case InstructionKind.ChooseSelfPlacement:
                         if(BeginSelfPlacement(catalog,state,command,execution))return;
                         StopCard(catalog,state,command,"no_destinations");return;
