@@ -333,6 +333,15 @@
       "input": "tests/fixtures/engine38-sleight-gold-scenario.json",
       "input_sha256": "1c1338395ed52560cd5e4f7bc0ad1b52e00a219681eedcd47b91851ca640e4f9",
       "provenance": "tests/fixtures/engine38-sleight-gold.md"
+    },
+    {
+      "engine_version": 39,
+      "accepted_commands": 17,
+      "save": "tests/fixtures/engine39-master-gold.json",
+      "save_sha256": "b0add1d38f848af6b08d0dc09c388b5df3b8e8cdcfb19887ec2d85657d6219cb",
+      "input": "tests/fixtures/engine39-master-gold-scenario.json",
+      "input_sha256": "ae36bc16fde34c9978d39620b93c3982a1cb3383202092838f261120a496e121",
+      "provenance": "tests/fixtures/engine39-master-gold.md"
     }
   ]
 }

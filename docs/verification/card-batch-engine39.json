@@ -1,0 +1,91 @@
+{
+  "engine": 39,
+  "implemented_cards": 50,
+  "data_only_cards": 58,
+  "build_utc": "2026-09-19T18:12:22.6916892Z",
+  "assemblies": {
+    "Goa2.Application.dll": "43c72b9aec74d3f5d07b3d2a72694800046a03fa0c4f9ae89243561a02661375",
+    "Goa2.Domain.dll": "08f91a524eabb11da9bccdbe2994994850b071510b4ab8444a65a1ba1a937740",
+    "Goa2.Infrastructure.dll": "f2d662818bbdb9fd092a9b708e42dd9d520e66ebfa4d41a097592b2c7572cf51",
+    "Goa2.Rules.dll": "b071036a05fac3c0031042eab2a67eea4b970a191f70ce2f85042685955f1e94",
+    "Goa2.ScenarioCli.dll": "58b960e29dc42f516145fa4fc64116450806d4f98a964e57a6fc10747720648b"
+  },
+  "core": {
+    "passed": 1047,
+    "failed": 0,
+    "report": "artifacts/tests/master-core.trx",
+    "card_specific": 11
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "core_cli": {
+    "results": [
+      {
+        "input": "tests/scenarios/master-one.json",
+        "input_sha256": "054b40fea9c88c29a00ac2752bdd0996f15a55ff456a356af4cc6e38862ebefa",
+        "report": "artifacts/core-scenarios/master-one/bbe5c031a9bb404aaf4769f6c17975e3/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/master-two.json",
+        "input_sha256": "d2b91745e6029106fbe3b2fbac676cc3a3c9b12f25e480d5f19bdd99fdcd3076",
+        "report": "artifacts/core-scenarios/master-two/d19ec9f435964f399ca454ba6fe7f577/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/master-three.json",
+        "input_sha256": "95d2ceae86eea0f699323c81c940c0022a96f7658a4cf61e0f673a953e729a10",
+        "report": "artifacts/core-scenarios/master-three/b2c5309dbcf14fa79e821657ec747872/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/master-limited.json",
+        "input_sha256": "cdb2047701bd4382d4975e66869474fd84524bc764ba492b9cd6e9bc735f7b3a",
+        "report": "artifacts/core-scenarios/master-limited/239dc395249149e6a42dee109d241cf8/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/master-skip.json",
+        "input_sha256": "db6cb3f4760f5fa3c68c0e42408d0fc55398b08d6ba4892f66d26ee6b690abda",
+        "report": "artifacts/core-scenarios/master-skip/741b34af16994f51827888b92807453c/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/master-empty.json",
+        "input_sha256": "a2cf59f0933e1589d732034578c8069b2c1318a1ff5a97d7d88c9b9daffc1b46",
+        "report": "artifacts/core-scenarios/master-empty/9fddff23eb434244a64ef3961cbff058/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/master-boundary.json",
+        "input_sha256": "6aa6bf1988b9f50a37d03a9f2a64b164ad0e84408ed6a1e2f54e398ad45b7a4a",
+        "report": "artifacts/core-scenarios/master-boundary/01f2c70f1afe40ed9a4b9388aa9a490e/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine39-master-gold-scenario.json",
+        "input_sha256": "ae36bc16fde34c9978d39620b93c3982a1cb3383202092838f261120a496e121",
+        "report": "artifacts/core-scenarios/engine39-master-gold-scenario/fdb469f465b94bdbbb2c9518adb95cc5/report.json",
+        "steps": 17,
+        "passed": true
+      }
+    ],
+    "scenarios": 8,
+    "steps": 148
+  },
+  "manual_presets": [
+    "master-thief"
+  ],
+  "note": "Core CLI commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

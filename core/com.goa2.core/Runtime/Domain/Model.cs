@@ -212,7 +212,7 @@ namespace Goa2.Domain
     public sealed class GameState
     {
         public const string CurrentProtocol = "1.0.0";
-        public const int CurrentEngineVersion = 38;
+        public const int CurrentEngineVersion = 39;
         public int InitialEngineVersion;
         public int EngineVersion;
         public string ProtocolVersion = CurrentProtocol;

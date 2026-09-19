@@ -1,0 +1,149 @@
+{
+  "SchemaVersion": 1,
+  "Id": "master-skip",
+  "Name": "盗贼大师：不取金币仍须后移",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "tigerclaw,wasp,brogan,sabina",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-11-盗贼大师",
+      "Actor": "p1",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugSetGold",
+      "Value": "4",
+      "Actor": "p1",
+      "Target": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-11-盗贼大师",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-06-静电封锁",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-07-指挥",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p2"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p3"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Value": "skip",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "gold_transfer",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseGoldTransfer",
+      "Value": "0",
+      "Actor": "p1",
+      "Expect": {
+        "Gold": {
+          "p1": 0,
+          "p2": 4
+        },
+        "PendingKind": "effect_move"
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Value": "",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -6
+      },
+      "Expect": {
+        "EventCounts": {
+          "CardResolved": 1
+        },
+        "Positions": {
+          "hero:0": {
+            "X": 6,
+            "Y": -6
+          }
+        }
+      }
+    }
+  ]
+}
