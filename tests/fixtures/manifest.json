@@ -423,6 +423,15 @@
       "input": "tests/fixtures/engine48-boost-discard-scenario.json",
       "input_sha256": "6d65bab02e1b9b99a7a7dd9bffc01bd6501300aeba30ce316e4d1c2caa348be0",
       "provenance": "tests/fixtures/engine48-boost-discard.md"
+    },
+    {
+      "engine_version": 49,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine49-burst-push.json",
+      "save_sha256": "f16e89dc77069832070ef2cb777adf4dd2b96be40139373c190ecff87fbab704",
+      "input": "tests/fixtures/engine49-burst-push-scenario.json",
+      "input_sha256": "05dc80fceb6114474fe47b25ccc30e9537abfd0939e01e5d6a0464aa97e3cde1",
+      "provenance": "tests/fixtures/engine49-burst-push.md"
     }
   ]
 }

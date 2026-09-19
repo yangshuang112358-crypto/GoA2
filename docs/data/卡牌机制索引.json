@@ -259,7 +259,7 @@
         "discard",
         "conditional"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/wasp-16-动能震爆.md",
       "question_candidates": [
         "U-011"

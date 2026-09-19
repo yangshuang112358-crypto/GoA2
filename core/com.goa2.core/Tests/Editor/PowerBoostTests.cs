@@ -11,12 +11,12 @@ namespace Goa2.Tests
  public sealed class PowerBoostTests
  {
   internal const string Card="wasp-14-动力助推", Minion="minion:-1,-3";
-  internal static GameSession Setup(ContentCatalog cat)
+  internal static GameSession Setup(ContentCatalog cat,string card=Card)
   {
    var g=LocalGameFactory.Create(cat,"power-boost",new[]{"A","B","C","D"},42,true);
-   Apply(g,0,CommandKind.DebugPrepare,"wasp,sabina,brogan,arien");Apply(g,0,CommandKind.DebugEquipCard,Card,target:0);
+   Apply(g,0,CommandKind.DebugPrepare,"wasp,sabina,brogan,arien");Apply(g,0,CommandKind.DebugEquipCard,card,target:0);
    Apply(g,0,CommandKind.DebugTeleport,"hero:0",cell:new Hex(-2,0));Apply(g,0,CommandKind.DebugTeleport,"hero:1",cell:new Hex(-2,-1));Apply(g,0,CommandKind.DebugTeleport,"hero:2",cell:new Hex(-2,1));Apply(g,0,CommandKind.DebugTeleport,"hero:3",cell:new Hex(-1,0));Apply(g,0,CommandKind.DebugTeleport,Minion,cell:new Hex(-1,-1));
-   string[] cards={Card,"sabina-07-指挥","brogan-06-铜墙铁壁","arien-07-潮水"};for(int i=0;i<4;i++)Apply(g,i,CommandKind.SelectCard,cards[i]);Assert.That(g.View(0).ActiveSeat,Is.EqualTo(0));return g;
+   string[] cards={card,"sabina-07-指挥","brogan-06-铜墙铁壁","arien-07-潮水"};for(int i=0;i<4;i++)Apply(g,i,CommandKind.SelectCard,cards[i]);Assert.That(g.View(0).ActiveSeat,Is.EqualTo(0));return g;
   }
   private static GameState State(GameSession g)=>new JsonStateCodec().Read(g.ExportSave());
   private static void Push(GameSession g,string id)=>Apply(g,0,CommandKind.ChooseEffectTarget,id);
