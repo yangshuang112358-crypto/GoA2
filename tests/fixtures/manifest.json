@@ -459,6 +459,15 @@
       "input": "tests/fixtures/engine52-conspiracy-recovery-scenario.json",
       "input_sha256": "da80307d6016e33576e6d298c1e8e69ccbf61dce2491010fe47d1822b36722ce",
       "provenance": "tests/fixtures/engine52-conspiracy-recovery.md"
+    },
+    {
+      "engine_version": 53,
+      "accepted_commands": 22,
+      "save": "tests/fixtures/engine53-guard-payment.json",
+      "save_sha256": "e5b57dfde8b679d1a7908ac498de0e892d964d3ff58c44f3d23764ef09522619",
+      "input": "tests/fixtures/engine53-guard-payment-scenario.json",
+      "input_sha256": "8415b80d552720abfcbb95bb78d577649b0f14e001d06da562e05fd98748ea9e",
+      "provenance": "tests/fixtures/engine53-guard-payment.md"
     }
   ]
 }

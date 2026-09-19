@@ -14,6 +14,7 @@ namespace Goa2.Rules
         private static void ApplyDebug(ContentCatalog catalog, GameState state, Command command)
         {
             Require(state.Sandbox, "debug_disabled", "普通对局不能使用调试命令。");
+            Require(state.MinionDefeat==null,"pending_minion_defeat","请先完成小兵保护选择再调试局面。");
             bool structural = command.Kind == CommandKind.DebugTeleport || command.Kind == CommandKind.DebugRemoveMinion || command.Kind == CommandKind.DebugDefeatMinion ||
                 command.Kind == CommandKind.DebugDefeatHero || command.Kind == CommandKind.DebugDiscard || command.Kind == CommandKind.DebugRecover || command.Kind == CommandKind.DebugEquipCard;
             Require(state.RoundEnd == null || !structural || command.Kind == CommandKind.DebugTeleport && state.Frontline != null,
@@ -220,6 +221,7 @@ namespace Goa2.Rules
             Require(state.Phase == Phase.Planning && !player.Confirmed, "wrong_phase", "请在未确认的选牌阶段装配测试牌。");
             var existing = player.Cards.SingleOrDefault(c => catalog.Card(c.CardId).Color == definition!.Color);
             Require(existing != null && existing.Zone != CardZone.PlayedUnresolved && existing.Zone != CardZone.Selected, "invalid_equipment", "该颜色当前不可替换。");
+            if(state.EngineVersion>=53)CancelCardStateEffects(state,command,player.Seat,existing!.CardId,"debug_equipment_changed");
             existing!.CardId = definition!.Id; existing.Zone = CardZone.InHand; existing.PlayedRound = null; existing.PlayedTurn = null;
             Emit(state, command, "DebugCardEquipped", player.Seat, definition.Id, player.Seat);
         }

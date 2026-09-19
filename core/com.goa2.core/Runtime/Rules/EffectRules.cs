@@ -64,6 +64,15 @@ namespace Goa2.Rules
             if(state.EngineVersion<52 || controllerSeat<0 || controllerSeat>=state.Players.Count || state.Players[controllerSeat].Team==target.Team)return true;
             return !Current(state,EffectKind.OtherEnemyActionImmunity).Any(e=>e.ProtectedUnitId==target.Id && e.ExemptControllerSeat!=controllerSeat);
         }
+        public static List<ActiveEffect> MinionDefeatProtectors(ContentCatalog catalog,GameState state,UnitState unit)
+        {
+            if(state.EngineVersion<53 || unit.Kind!="melee")return new List<ActiveEffect>();
+            return Current(state,EffectKind.FriendlyMeleeDefeatPrevention).Where(e=>
+            {
+                var source=Source(state,e);
+                return source!=null && source.Team==unit.Team && CanAffect(state,e.ControllerSeat,unit) && source.Position.Distance(unit.Position)<=Radius(catalog,state,e);
+            }).ToList();
+        }
         public static bool CanTraverseUnits(GameState state,UnitState unit) =>
             state.EngineVersion>=51 && Current(state,EffectKind.ImmunityAndUnitTraversal).Any(e=>e.SourceUnitId==unit.Id);
         public static bool CanDisplace(ContentCatalog catalog,GameState state,int controllerSeat,UnitState target)

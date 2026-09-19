@@ -36,13 +36,14 @@ namespace Goa2.Rules
                 .OrderBy(h => h.X).ThenBy(h => h.Y).ToList();
         }
         private static void RemoveMinion(ContentCatalog catalog, GameState state, Command command, string unitId,
-            string source, int? rewardSeat = null, bool bypassProtection = false, bool finishActionOnResume = false, bool resumeCardExecution = false, bool resumeRoundEnd = false)
+            string source, int? rewardSeat = null, bool bypassProtection = false, bool finishActionOnResume = false, bool resumeCardExecution = false, bool resumeRoundEnd = false, bool preventionResolved = false)
         {
             Require(state.Frontline == null, "pending_choice", "请先完成当前推进出生。");
             Require(LegalMinionRemovals(state, bypassProtection).Contains(unitId), "invalid_minion", "小兵不存在或重型仍受友军保护。");
             var unit = state.Units.Single(u => u.Id == unitId);
             if (rewardSeat.HasValue)
                 Require(rewardSeat >= 0 && rewardSeat < 4 && state.Players[rewardSeat.Value].Team != unit.Team, "invalid_attacker", "击败奖励只能归于敌方玩家。");
+            if(!preventionResolved && rewardSeat.HasValue && BeginMinionProtection(catalog,state,command,unit,source,rewardSeat.Value,bypassProtection,finishActionOnResume,resumeCardExecution,resumeRoundEnd))return;
             state.Units.Remove(unit);
             Emit(state, command, rewardSeat.HasValue ? "MinionDefeated" : "MinionRemoved", rewardSeat, detail: unit.Id);
             state.Events.Last().From = unit.Position;
@@ -145,7 +146,7 @@ namespace Goa2.Rules
         private static void DeclareVictory(GameState state, Command command, Team winner, string reason)
         {
             state.Winner = winner; state.VictoryReason = reason; state.Phase = Phase.Finished;
-            state.ActiveSeat = null; state.Pending = null; state.Frontline = null; state.Execution = null; state.RoundEnd = null;
+            state.ActiveSeat = null; state.Pending = null; state.Frontline = null; state.Execution = null; state.RoundEnd = null; state.MinionDefeat = null;
             Emit(state, command, "MatchWon", detail: winner + ":" + reason);
         }
     }

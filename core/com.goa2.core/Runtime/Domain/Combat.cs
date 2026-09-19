@@ -49,6 +49,16 @@ namespace Goa2.Domain
         public string? ReturningMinionId;
     }
     [Serializable]
+    public sealed class PendingMinionDefeat
+    {
+        public string UnitId="", Source="", ProtectionCardId="";
+        public int RewardSeat, ProtectorSeat;
+        public bool BypassProtection, FinishActionOnResume, ResumeCardExecution, ResumeRoundEnd;
+        public Phase ResumePhase;
+        public int? ResumeActiveSeat;
+        public PendingChoice? ResumePending;
+    }
+    [Serializable]
     public sealed class DefenseResponse
     {
         public string SourceCardId = "", SourceUnitId = "", AttackerUnitId = "", ProgramId = "";

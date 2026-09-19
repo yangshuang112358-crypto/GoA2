@@ -619,11 +619,31 @@
     },
     {
       "card_id": "brogan-07-保卫",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-07-保卫.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/GuardMinionTests.cs",
+        "tests/scenarios/guard-pay.json",
+        "tests/scenarios/guard-decline.json",
+        "tests/scenarios/guard-cost-chain.json",
+        "tests/scenarios/guard-empty.json",
+        "tests/scenarios/guard-remove.json",
+        "tests/scenarios/guard-range.json",
+        "tests/scenarios/guard-repeat.json",
+        "tests/scenarios/guard-cancel.json",
+        "tests/scenarios/guard-cross-pay.json",
+        "tests/scenarios/guard-cross-decline.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Domain/Combat.cs",
+        "core/com.goa2.core/Runtime/Domain/Model.cs",
+        "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DebugRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "brogan-08-战鼓",

@@ -1,0 +1,141 @@
+{
+  "SchemaVersion": 1,
+  "Id": "guard-repeat",
+  "Name": "保卫：本轮持续，可对不同击败分别付费",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "brogan,wasp,sabina,arien"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": -2,
+        "Y": 1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 7,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "brogan-07-保卫"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-06-静电封锁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "sabina-06-并肩作战"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p3",
+      "Value": ""
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2",
+      "Value": ""
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1",
+      "Value": "",
+      "Expect": {
+        "EffectCounts": {
+          "brogan-07-保卫": 1
+        }
+      }
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p4",
+      "Value": "",
+      "Expect": {
+        "Phase": "Planning",
+        "Turn": 2
+      }
+    },
+    {
+      "Command": "DebugAttack",
+      "Actor": "p2",
+      "Value": "minion:-3,1|0"
+    },
+    {
+      "Command": "ChooseMinionProtection",
+      "Actor": "p1",
+      "Value": "brogan-13-冲拳",
+      "Expect": {
+        "Phase": "Planning",
+        "Gold": {
+          "p2": 0
+        },
+        "EffectCounts": {
+          "brogan-07-保卫": 1
+        },
+        "EventCounts": {
+          "MinionDefeatPrevented": 1
+        }
+      }
+    },
+    {
+      "Command": "DebugAttack",
+      "Actor": "p2",
+      "Value": "minion:-3,1|0"
+    },
+    {
+      "Command": "ChooseMinionProtection",
+      "Actor": "p1",
+      "Value": "brogan-01-冲撞",
+      "Expect": {
+        "Phase": "Planning",
+        "Gold": {
+          "p2": 0
+        },
+        "EffectCounts": {
+          "brogan-07-保卫": 1
+        },
+        "EventCounts": {
+          "MinionDefeatPrevented": 1
+        }
+      }
+    }
+  ]
+}

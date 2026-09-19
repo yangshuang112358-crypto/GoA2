@@ -206,6 +206,24 @@ namespace Goa2.Presentation
                 parent.Add(Button("不弃牌，继续攻击",() => Submit(CommandKind.ChooseOptionalDiscard,"skip"),"quiet-button","optional-discard-skip"));
                 return true;
             }
+            if(choice.Kind=="minion_protection")
+            {
+                parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择是否保护小兵", "section-title"));
+                parent.Add(Text("弃置一张手牌可防止此次击败；也可以不保护。完成后原行动继续。", "body"));
+                if(choice.ChooserSeat!=seat){parent.Add(Text("切换至保护者选择。","body"));return true;}
+                foreach(string id in view.MinionProtectionCards)
+                {
+                    string selected=id;var button=Button(catalog.Card(id).Name,()=>{discardCardId=selected;Render();},"choice-button","minion-protection-"+catalog.Card(id).Color);
+                    if(discardCardId==id)button.AddToClassList("chosen");parent.Add(button);
+                }
+                if(view.MinionProtectionCards.Contains(discardCardId))
+                {
+                    RenderCardDetail(parent,catalog.Card(discardCardId));
+                    Confirm(parent,"确认弃牌并保护小兵",()=>Submit(CommandKind.ChooseMinionProtection,discardCardId));
+                }
+                parent.Add(Button("不保护，继续结算击败",()=>Submit(CommandKind.ChooseMinionProtection,"skip"),"quiet-button","minion-protection-skip"));
+                return true;
+            }
             if (choice.Kind == "forced_discard")
             {
                 var title=Text(PlayerName(choice.ChooserSeat) + ((choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard" || choice.ResumeAt=="push_blocked_discard") ? "按牌文丢弃一张手牌。" : "处理反制选择。"), "section-title");title.name="forced-discard-choice";parent.Add(title);

@@ -1,0 +1,117 @@
+{
+  "engine": 53,
+  "implemented_cards": 64,
+  "data_only_cards": 44,
+  "build_utc": "2026-09-19T21:10:28.9524841Z",
+  "assemblies": {
+    "Goa2.Application.dll": "5843ba3f95e8795e2e68e4a68eff4e630627adde3b9681975406a8c44c57dd70",
+    "Goa2.Domain.dll": "ddd326b637fb8e98d387edf857f0379a96e22add28697b844bfdc11b754ff551",
+    "Goa2.Editor.dll": "71978fa46549b88616129c6a77e49b069dc14e3eeb569d661673cb8e56d49150",
+    "Goa2.Infrastructure.dll": "dd90b7c2c3c67c7d15967c06164c10871f597b9aeffa50b4d45602f48126f772",
+    "Goa2.Rules.dll": "08d96032d98d8b795d9d7ae047dd012330f201147f469110073dd2f1651d1a4b"
+  },
+  "core": {
+    "passed": 1374,
+    "failed": 0,
+    "report": "artifacts/tests/guard-unity-0.xml",
+    "card_specific": 28,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/guard-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/guard-pay.json",
+        "input_sha256": "635cf0cfddd8ea92cec6b9fab7f705a44871bb3f6fe96744deef03ce1fc07f64",
+        "report": "artifacts/editor-scenarios/guard-pay/a4faecdd17944c3293202076b8b24058/report.json",
+        "steps": 23,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/guard-decline.json",
+        "input_sha256": "40986c7634cbba90ee53660c81b676a025dcbe9e6b4750308790c84d6d2378b0",
+        "report": "artifacts/editor-scenarios/guard-decline/319b8b2cd78641739a395e3d9c19b1ba/report.json",
+        "steps": 23,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/guard-cost-chain.json",
+        "input_sha256": "c6d00885f44a9840fe61b636c663c3d86b16e2faa9c1be0599ed4b5655bf3797",
+        "report": "artifacts/editor-scenarios/guard-cost-chain/4e5be68f5db74ff2b29bd31d1186c07f/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/guard-empty.json",
+        "input_sha256": "c26c86b3d33e49c2e7d4e4cce0ae06091eae2ab162b57746ec8e1d000e17b4e3",
+        "report": "artifacts/editor-scenarios/guard-empty/2c8043047afe404fbad89ed9d9f4925c/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/guard-remove.json",
+        "input_sha256": "625f11ca7fe279ef5983a6a2b8492b05406c3549d6b5faf341266e45882dc991",
+        "report": "artifacts/editor-scenarios/guard-remove/f43f39f310534dcf9d32bfcf11c37f9d/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/guard-range.json",
+        "input_sha256": "a43f26737ccc83d455d34d35391dc4deb29bcc8d8be8a2d48d54423806c0d53c",
+        "report": "artifacts/editor-scenarios/guard-range/95a34067fe8b41feb98fa4c7cae793d3/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/guard-repeat.json",
+        "input_sha256": "a99beba1d145bd02362f67e02fd36b3c3d1dbd28378fe02e99520df601be10f8",
+        "report": "artifacts/editor-scenarios/guard-repeat/24005490c6704e38af672fea1fb610b8/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/guard-cancel.json",
+        "input_sha256": "069608ba4c3641b048ff72cdb8f49f4bd1768394c1955b835eee5ada6ec08b07",
+        "report": "artifacts/editor-scenarios/guard-cancel/c2084946ed534778b293dbaaf776bd26/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/guard-cross-pay.json",
+        "input_sha256": "c49f9dcd1c40b267512243554b2d68dad118c7f463024fbbe74c4933249ddd93",
+        "report": "artifacts/editor-scenarios/guard-cross-pay/0ed5ea2746c144a6ada967684f9b4fbd/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/guard-cross-decline.json",
+        "input_sha256": "6a775b9d05c33407c62fd1f9607d75edf5b01e5ecbabf4f121df6a987f0081d4",
+        "report": "artifacts/editor-scenarios/guard-cross-decline/abe00b5b3f9548a7bc53dd5dfb5217a4/report.json",
+        "steps": 26,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine53-guard-payment-scenario.json",
+        "input_sha256": "8415b80d552720abfcbb95bb78d577649b0f14e001d06da562e05fd98748ea9e",
+        "report": "artifacts/editor-scenarios/engine53-guard-payment-scenario/32237e3909ee45498b4381a5ed41d1fe/report.json",
+        "steps": 22,
+        "passed": true
+      }
+    ],
+    "scenarios": 11,
+    "steps": 231
+  },
+  "manual_presets": [
+    "guard-minion"
+  ],
+  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

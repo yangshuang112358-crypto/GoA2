@@ -158,6 +158,7 @@ namespace Goa2.Presentation
                     case "effect_minion": return "选择额外移除的小兵";
                     case "defense": return "选择防御";
                     case "primary_option": return "卡牌效果选择";
+                    case "minion_protection": return "小兵保护";
                     case "forced_discard": return "反制选择";
                     case "optional_discard": return "攻击前弃牌";
                     case "effect_move": return "牌文移动";
@@ -549,6 +550,9 @@ namespace Goa2.Presentation
                 case "InitiativeChoiceRequired": return actor + "需要选择先行动者";
                 case "RoundEndReached": return "到达轮末";
                 case "MinionRemoved": return "小兵已移除 · " + entry.From;
+                case "MinionProtectionChoiceRequired": return actor+"选择是否弃牌保护小兵";
+                case "MinionDefeatPrevented": return actor+"弃牌保护小兵，防止此次击败";
+                case "MinionProtectionDeclined": return actor+"选择不保护，继续结算小兵击败";
                 case "MinionDefeated": return actor + "击败小兵 · " + entry.From;
                 case "GoldAwarded": return actor + "获得 " + entry.Detail + " 金";
                 case "MinionsCleared": return "清除旧战区小兵 " + entry.Detail + " 名";

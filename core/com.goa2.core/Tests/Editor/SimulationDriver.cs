@@ -151,6 +151,7 @@ namespace Goa2.Tests
                     case "initiative": return Step(CommandKind.ChooseInitiative,seat,target:Pick(view.Pending.CandidateSeats));
                     case "hero_respawn": return Step(CommandKind.RespawnHero,seat,at:Pick(own.RespawnCells));
                     case "attack_target": return Step(CommandKind.ChooseAttackTarget,seat,Pick(own.AttackTargets));
+                    case "minion_protection": return Step(CommandKind.ChooseMinionProtection,seat,Next(3)==0 ? "skip" : Pick(own.MinionProtectionCards));
                     case "primary_option": return Step(CommandKind.ChoosePrimaryOption,seat,Pick(own.PrimaryOptions));
                     case "effect_target": return Step(CommandKind.ChooseEffectTarget,seat,Pick(own.EffectTargets));
                     case "defense":
@@ -284,7 +285,7 @@ namespace Goa2.Tests
         }
         private static void CheckProjection(GameView view)
         {
-            Guard(view.OwnCards.Count==0 && view.DefenseOptions.Count==0 && view.ForcedDiscardCards.Count==0 && view.OptionalDiscardCards.Count==0,"Public view exposes private choices.");
+            Guard(view.OwnCards.Count==0 && view.DefenseOptions.Count==0 && view.ForcedDiscardCards.Count==0 && view.OptionalDiscardCards.Count==0 && view.MinionProtectionCards.Count==0,"Public view exposes private choices.");
             Guard(view.Events.All(e=>e.PrivateTo==null),"Public view exposes private events.");
             Guard(view.Pending?.SourcePrivateTo==null || view.Pending.Source=="","Public view exposes private pending source.");
             Guard(view.Effects.All(e=>!e.SourcePrivateTo.HasValue || e.SourceCardId==""),"Public view exposes private effect source.");

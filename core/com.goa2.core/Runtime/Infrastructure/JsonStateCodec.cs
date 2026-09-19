@@ -21,6 +21,8 @@ namespace Goa2.Infrastructure
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 if(member.DeclaringType==typeof(ActiveEffect) && member.Name==nameof(ActiveEffect.ExemptControllerSeat))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
+                if(member.DeclaringType==typeof(GameState) && member.Name==nameof(GameState.MinionDefeat))
+                    property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 return property;
             }
         }
