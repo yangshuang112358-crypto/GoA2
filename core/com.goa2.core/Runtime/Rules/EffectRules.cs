@@ -40,7 +40,7 @@ namespace Goa2.Rules
         {
             var controller=state.Units.SingleOrDefault(u => u.Seat==controllerSeat);
             if (controller==null) return new List<string>();
-            var enemies=new HashSet<int>(state.Units.Where(u => u.Kind=="hero" && u.Seat.HasValue && u.Team!=controller.Team && u.Position.Distance(controller.Position)==1).Select(u => u.Seat!.Value));
+            var enemies=new HashSet<int>(state.Units.Where(u => u.Kind=="hero" && u.Seat.HasValue && u.Team!=controller.Team && CanAffect(state,controllerSeat,u) && u.Position.Distance(controller.Position)==1).Select(u => u.Seat!.Value));
             return state.Effects.Where(e => enemies.Contains(e.ControllerSeat) && catalog.Card(e.SourceCardId).PrimaryFamily=="skill" && EffectTimeline.Active(e.Window,state.Round,state.Turn))
                 .OrderBy(e => e.CreationOrder).Select(e => e.Id).ToList();
         }
@@ -52,13 +52,18 @@ namespace Goa2.Rules
             foreach (var effect in Current(state,EffectKind.SkillSuppression))
             {
                 var source = Source(state,effect);
-                if (source != null && state.Players[effect.ControllerSeat].Team != target.Team && source.Position.Distance(target.Position) <= Radius(catalog,state,effect))
+                if (source != null && CanAffect(state,effect.ControllerSeat,target) && state.Players[effect.ControllerSeat].Team != target.Team && source.Position.Distance(target.Position) <= Radius(catalog,state,effect))
                     return effect.SourceCardId;
             }
             return "";
         }
+        public static bool CanAffect(GameState state,int controllerSeat,UnitState target) =>
+            state.EngineVersion<51 || target.Seat==controllerSeat || !Current(state,EffectKind.ImmunityAndUnitTraversal).Any(e=>e.SourceUnitId==target.Id);
+        public static bool CanTraverseUnits(GameState state,UnitState unit) =>
+            state.EngineVersion>=51 && Current(state,EffectKind.ImmunityAndUnitTraversal).Any(e=>e.SourceUnitId==unit.Id);
         public static bool CanDisplace(ContentCatalog catalog,GameState state,int controllerSeat,UnitState target)
         {
+            if(!CanAffect(state,controllerSeat,target))return false;
             if(state.EngineVersion<50 || state.Players[controllerSeat].Team==target.Team)return true;
             return !Current(state,EffectKind.FriendlyDisplacementProtection).Any(effect=>
             {
@@ -68,6 +73,7 @@ namespace Goa2.Rules
         }
         public static bool CanBeAttacked(GameState state, UnitState source, UnitState target, bool ranged)
         {
+            if(!CanAffect(state,source.Seat??-1,target))return false;
             if (source.Kind!="hero" || !ranged || source.Position.Distance(target.Position)<=1) return true;
             return !Current(state,EffectKind.NonAdjacentRangedImmunity).Any(e => e.ProtectedUnitId==target.Id);
         }
@@ -79,7 +85,7 @@ namespace Goa2.Rules
             return Current(state,EffectKind.FriendlyNearMinionDefense).Count(effect=>
             {
                 var source=Source(state,effect);
-                return source!=null && state.Players[effect.ControllerSeat].Team==defender.Team &&
+                return source!=null && CanAffect(state,effect.ControllerSeat,defender) && state.Players[effect.ControllerSeat].Team==defender.Team &&
                     (source.Id==defender.Id || source.Position.Distance(defender.Position)<=Radius(catalog,state,effect));
             });
         }
@@ -90,7 +96,7 @@ namespace Goa2.Rules
             foreach (var effect in Current(state,EffectKind.MovementBoundary))
             {
                 var source = Source(state,effect);
-                if (source == null || state.Players[effect.ControllerSeat].Team == unit.Team) continue;
+                if (source == null || !CanAffect(state,effect.ControllerSeat,unit) || state.Players[effect.ControllerSeat].Team == unit.Team) continue;
                 int radius = Radius(catalog,state,effect);
                 if ((from.Distance(source.Position) <= radius) != (to.Distance(source.Position) <= radius)) return false;
             }

@@ -11,9 +11,11 @@ namespace Goa2.Rules
         {
             var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
             if(source==null)return new List<Hex>();
-            int distance=(catalog.Card(execution.CardId).SubtypeValue??0)+state.Players[execution.ControllerSeat].RangedBonus;
+            bool safe=CardPrograms.Primary(catalog.Card(execution.CardId),state.EngineVersion)!.PlacementTarget==PlacementTargetKind.SafeInSkillRangeNearObstacle;
+            if(safe && !catalog.Cells.Any(c=>c.Obstacle && c.Position.Distance(source.Position)==1) && !state.Units.Any(u=>u.Id!=source.Id && u.Position.Distance(source.Position)==1))return new List<Hex>();
+            int distance=(catalog.Card(execution.CardId).SubtypeValue??0)+(safe?state.Players[execution.ControllerSeat].RangeBonus:state.Players[execution.ControllerSeat].RangedBonus);
             // Placement has no traversal path; movement boundaries do not constrain its destination.
-            return catalog.Cells.Where(c=>!c.Obstacle && c.Spawn=="empty" && c.Position.Distance(source.Position)>0 &&
+            return catalog.Cells.Where(c=>!c.Obstacle && (safe?!state.Units.Any(u=>u.Team!=source.Team && u.Position.Distance(c.Position)==1):c.Spawn=="empty") && c.Position.Distance(source.Position)>0 &&
                 c.Position.Distance(source.Position)<=distance && !state.Units.Any(u=>u.Position==c.Position))
                 .Select(c=>c.Position).OrderBy(p=>p.X).ThenBy(p=>p.Y).ToList();
         }

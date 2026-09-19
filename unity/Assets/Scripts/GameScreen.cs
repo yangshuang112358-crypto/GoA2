@@ -586,7 +586,7 @@ namespace Goa2.Presentation
                 case "DefenseResolved": return actor + (entry.Detail == "success" ? "防御成功" : "防御失败");
                 case "ForcedDiscardRequired": return actor + "需要处理反制弃牌";
                 case "RetaliationDiscardDeclined": return actor + "选择不弃牌并被击败";
-                case "ForcedDiscardSkipped": return actor + "没有手牌，继续反制后续步骤";
+                case "ForcedDiscardSkipped": return actor + (entry.Detail=="immune"?"处于免疫，本次弃牌效果不影响该英雄":"没有手牌，跳过本次弃牌");
                 case "ForcedDiscardCompleted": return actor + "完成强制弃牌";
                 case "DefenseResponseCompleted": return actor + "的防御后处理完成";
                 case "ProtectionActivated": return actor + "本回合免疫非相邻英雄的远程攻击";

@@ -1,0 +1,212 @@
+{
+  "SchemaVersion": 1,
+  "Id": "moment-shock",
+  "Name": "伺机待发：电击不能额外要求免疫英雄弃牌",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "tigerclaw,wasp,arien,brogan",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "arien-11-潮汐之力",
+      "Actor": "p1",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 7,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-1,1",
+      "Actor": "p1",
+      "Destination": {
+        "X": 8,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-07-伺机待发",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-06-静电封锁",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-11-潮汐之力",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p2"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p4"
+    },
+    {
+      "Command": "ChooseInitiative",
+      "Value": "",
+      "Actor": "p1",
+      "Target": "p1",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChoosePlacement",
+      "Value": "",
+      "Actor": "p1",
+      "Destination": {
+        "X": -1,
+        "Y": 1
+      },
+      "Expect": {
+        "Active": "p3",
+        "EventCounts": {
+          "UnitPlaced": 1,
+          "EffectScheduled": 1
+        },
+        "Positions": {
+          "hero:0": {
+            "X": -1,
+            "Y": 1
+          }
+        }
+      }
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p3",
+      "Expect": {
+        "Phase": "Planning",
+        "Turn": 2,
+        "EventCounts": {
+          "EffectActivated": 1
+        }
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": -1,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-08-偷天妙手",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-01-电击",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-00-华丽刀锋",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-13-冲拳",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p3"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p4"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p2"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:2",
+      "Actor": "p2",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p3",
+        "EventCounts": {
+          "ForcedDiscardRequired": 0
+        }
+      }
+    },
+    {
+      "Command": "Defend",
+      "Value": "arien-13-挑战者",
+      "Actor": "p3"
+    }
+  ]
+}

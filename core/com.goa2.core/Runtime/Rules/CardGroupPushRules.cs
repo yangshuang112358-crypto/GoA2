@@ -17,7 +17,7 @@ namespace Goa2.Rules
   {
    var e=state.Execution;if(e==null)return new List<string>();
    if(GroupPushProgram(catalog,state,InstructionKind.DiscardBlockedPushHeroesIfAble)!=null)
-    return (e.AffectedHeroTargets??new List<string>()).Where(id=>state.Units.Any(u=>u.Id==id && u.Kind=="hero" && u.Seat.HasValue)).ToList();
+    return (e.AffectedHeroTargets??new List<string>()).Where(id=>state.Units.Any(u=>u.Id==id && u.Kind=="hero" && u.Seat.HasValue && EffectRules.CanAffect(state,e.ControllerSeat,u))).ToList();
    if(GroupPushProgram(catalog,state,InstructionKind.PushAllAdjacentEnemies)==null)return new List<string>();
    var source=state.Units.SingleOrDefault(u=>u.Seat==e.ControllerSeat);if(source==null)return new List<string>();
    var minions=new HashSet<string>(LegalMinionRemovals(state));

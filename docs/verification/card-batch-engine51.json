@@ -1,0 +1,103 @@
+{
+  "engine": 51,
+  "implemented_cards": 62,
+  "data_only_cards": 46,
+  "build_utc": "2026-09-19T20:36:39.5387844Z",
+  "assemblies": {
+    "Goa2.Application.dll": "8f8e7b40a49be3287ba23812cfb4a5cb8cfe66bbcdee9a6d949ada77a527ece4",
+    "Goa2.Domain.dll": "e2a0e2707a17a56a4291a9b180007cefc537e4aa2de431a45d7b9a06cb4ef423",
+    "Goa2.Editor.dll": "fed708c221edb61b1dcf2c5feeccdd5955ac32d6a57d51446cb38d79d4f2e45b",
+    "Goa2.Infrastructure.dll": "b5b300a4720e4467d0e3d0da5b17338c67185cbdea73dfbf25e70ac5590d681a",
+    "Goa2.Rules.dll": "c81a12eff7f43622424dab9fc7d97ca13ea7041be383d165bddf4488cbed23ef"
+  },
+  "core": {
+    "passed": 1306,
+    "failed": 0,
+    "report": "artifacts/tests/moment-unity-0.xml",
+    "card_specific": 23,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/moment-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/moment-placement.json",
+        "input_sha256": "b2350200c89964b9790bd5f88333c68b0d6940bc61177f9810fd5f6a724bb68b",
+        "report": "artifacts/editor-scenarios/moment-placement/056c222161c54b028c56a78d72923570/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/moment-move.json",
+        "input_sha256": "ce8b00015b04153ad56f3e805d633f3f2c8c1b086db874cec8d14a3d6ec14aa8",
+        "report": "artifacts/editor-scenarios/moment-move/72f719fa17e94d28adba73b75abf9a27/report.json",
+        "steps": 26,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/moment-immune.json",
+        "input_sha256": "86d3a8bc6fedd4d146060d272e7e71d188fa06c0ec17f341428330406e8c64fd",
+        "report": "artifacts/editor-scenarios/moment-immune/61b99afd2b6945d9ab48e2d8383dffdd/report.json",
+        "steps": 32,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/moment-static.json",
+        "input_sha256": "b89bbbcff8b0b5ed1ee020a4ac43bda49d0dc5d48302dee82bfc6d7f48352181",
+        "report": "artifacts/editor-scenarios/moment-static/11b71cad49a344559e891e8c6c2db306/report.json",
+        "steps": 26,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/moment-shock.json",
+        "input_sha256": "9abfcc65ed4dd9f8334c6851a1e4fd6582c87bd7a8f77c32f7565455abfc15fe",
+        "report": "artifacts/editor-scenarios/moment-shock/a4dcd98201884fb1bb7ef88692fd9c1a/report.json",
+        "steps": 28,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/moment-bard.json",
+        "input_sha256": "85a18bb435fa756f4c8463443df4fa3263fe60d5f39c0d40cf4f3acfaa8fa5f0",
+        "report": "artifacts/editor-scenarios/moment-bard/41edadaa8a9d488a83a864f9efc497d6/report.json",
+        "steps": 30,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/moment-no-safe.json",
+        "input_sha256": "c6c7cd1789f3c0f6caec21d011635da062569906ccf2c5ffd863ab415f299bff",
+        "report": "artifacts/editor-scenarios/moment-no-safe/4ac088e3c88e409ca2c36d655199f3d1/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/moment-suppressed.json",
+        "input_sha256": "df905cc560aa9e3b1b4362ab66827471ff725812d8b5183e3543d5c6edc508ad",
+        "report": "artifacts/editor-scenarios/moment-suppressed/7060fd3c14114b5eb1cb41f5f1ebfd6f/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine51-moment-move-scenario.json",
+        "input_sha256": "2f302ea1411e80a74b122e877bbbe7c8cff53ed74f607842e4002b8667598fa1",
+        "report": "artifacts/editor-scenarios/engine51-moment-move-scenario/71c9f279cc054c6fb19918167215f75e/report.json",
+        "steps": 30,
+        "passed": true
+      }
+    ],
+    "scenarios": 9,
+    "steps": 225
+  },
+  "manual_presets": [
+    "opportune-moment"
+  ],
+  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

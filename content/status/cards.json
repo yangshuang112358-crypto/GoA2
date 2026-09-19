@@ -1054,11 +1054,30 @@
     },
     {
       "card_id": "tigerclaw-07-伺机待发",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-07-伺机待发.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/OpportuneMomentTests.cs",
+        "tests/scenarios/moment-placement.json",
+        "tests/scenarios/moment-move.json",
+        "tests/scenarios/moment-immune.json",
+        "tests/scenarios/moment-static.json",
+        "tests/scenarios/moment-shock.json",
+        "tests/scenarios/moment-bard.json",
+        "tests/scenarios/moment-no-safe.json",
+        "tests/scenarios/moment-suppressed.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-08-偷天妙手",

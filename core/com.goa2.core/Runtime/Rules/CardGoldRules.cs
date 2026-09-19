@@ -15,7 +15,7 @@ namespace Goa2.Rules
             var result=new List<GoldTransferOption>();
             var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
             if(source==null)return result;
-            foreach(var unit in state.Units.Where(u=>u.Kind=="hero" && u.Seat.HasValue && u.Team!=source.Team && u.Position.Distance(source.Position)==1).OrderBy(u=>u.Seat))
+            foreach(var unit in state.Units.Where(u=>u.Kind=="hero" && u.Seat.HasValue && u.Team!=source.Team && EffectRules.CanAffect(state,execution.ControllerSeat,u) && u.Position.Distance(source.Position)==1).OrderBy(u=>u.Seat))
             {
                 int maximum=Math.Min(program.GoldMaximum,Math.Min(state.Players[unit.Seat!.Value].Gold,int.MaxValue-state.Players[execution.ControllerSeat].Gold));
                 for(int amount=1;amount<=maximum;amount++)result.Add(new GoldTransferOption{TargetSeat=unit.Seat.Value,Amount=amount});

@@ -5,6 +5,7 @@ using Goa2.Domain;
 namespace Goa2.Rules.Cards
 {
     internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget, OptionalRepeatAttackAfterHeroDefeat, OptionalMinionRemovalAfterDefeat, PushAttackTargetIfAdjacent, MoveIntoAttackTargetCell, RequiredStraightMoveToAttack, RequiredStraightMoveThroughEnemy, PrimaryMovement, TargetDiscardIfAble, OptionalOtherHeroDiscard, OptionalGoldTransfer, RequiredStraightMoveIfAble, OptionalDifferentAttackIfAdjacentEnemy, ChooseSelfPlacement, OptionalMoveOtherAdjacentToTarget, ChooseFriendlyMinionTarget, OptionalTargetUnitMove, OptionalRepeatFriendlyMinionMove, ChooseUnitSwapTarget, SwapTargetUnits, ChooseOptionalUnitSwapTarget, PushAllAdjacentEnemies, DiscardBlockedPushHeroesIfAble, ChooseProtectionOrSelfRecovery }
+    internal enum PlacementTargetKind { EmptyNoSpawnInAttackRange, SafeInSkillRangeNearObstacle }
     internal enum UnitSwapTargetKind { MinionOrFriendlyHeroInAttackRange, AdjacentFriendlyMinion }
     internal enum HeroTargetKind { None, AlliedNearEnemy, AdjacentEnemyUsedAttack, EnemyInSkillRangeNearFriendlyMinion, OtherAdjacentEnemy, OtherEnemyInSkillRange }
     internal enum AttackBonusKind { None, TargetUsedAttack, AdjacentEnemies, OtherFriendlySupport }
@@ -34,6 +35,7 @@ namespace Goa2.Rules.Cards
         public readonly int GoldMaximum;
         public readonly bool IgnoreHeavyImmunity;
         public readonly UnitSwapTargetKind UnitSwapTarget;
+        public readonly PlacementTargetKind PlacementTarget;
         public readonly int Version = 1, MinimumDistance;
         public readonly IReadOnlyList<InstructionKind> Instructions;
         public readonly EffectKind? Effect;
@@ -54,12 +56,12 @@ namespace Goa2.Rules.Cards
         public readonly int TextPushDistance;
         public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
             EffectAreaKind areaKind=EffectAreaKind.SkillRange, AttackBonusKind bonus=AttackBonusKind.None, int bonusValue=0,
-            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,bool extraRemovalUsesAttackRange=false,int textPushDistance=0,int textMoveMinimum=0,string? attackSubtype=null,int goldMaximum=0,bool ignoreHeavyImmunity=false,UnitSwapTargetKind unitSwapTarget=UnitSwapTargetKind.MinionOrFriendlyHeroInAttackRange,EffectDuration duration=EffectDuration.ThisTurn,params InstructionKind[] instructions)
+            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,bool extraRemovalUsesAttackRange=false,int textPushDistance=0,int textMoveMinimum=0,string? attackSubtype=null,int goldMaximum=0,bool ignoreHeavyImmunity=false,UnitSwapTargetKind unitSwapTarget=UnitSwapTargetKind.MinionOrFriendlyHeroInAttackRange,EffectDuration duration=EffectDuration.ThisTurn,PlacementTargetKind placementTarget=PlacementTargetKind.EmptyNoSpawnInAttackRange,params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
             AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=duration;
             AttackSubtype=attackSubtype ?? (adjacent ? "" : "远程");
-            GoldMaximum=goldMaximum; IgnoreHeavyImmunity=ignoreHeavyImmunity; UnitSwapTarget=unitSwapTarget;
+            GoldMaximum=goldMaximum; IgnoreHeavyImmunity=ignoreHeavyImmunity; UnitSwapTarget=unitSwapTarget; PlacementTarget=placementTarget;
             AttackBonusKind=bonus; AttackBonusValue=bonusValue;
             RangeBonusKind=rangeBonus; RangeBonusValue=rangeBonusValue;
             TextMoveDistance=textMoveDistance;
@@ -160,6 +162,7 @@ namespace Goa2.Rules.Cards
         };
         private static readonly Dictionary<string,(string text, int minimumEngine, string? subtype, PrimaryProgram program)> Skills = new Dictionary<string,(string, int, string?, PrimaryProgram)>
         {
+            ["tigerclaw-07-伺机待发"] = ("如果你与一个障碍物相邻，将自己放置到技能范围内不与敌方单位相邻的一格。若如此做，下回合：你获得免疫，且移动时可以穿过单位。",51,"范围",new PrimaryProgram("safe_placement_next_turn_immunity_and_unit_traversal",0,effect:EffectKind.ImmunityAndUnitTraversal,areaKind:EffectAreaKind.None,duration:EffectDuration.NextTurn,placementTarget:PlacementTargetKind.SafeInSkillRangeNearObstacle,instructions:new[]{InstructionKind.ChooseSelfPlacement,InstructionKind.ApplyEffect,InstructionKind.End})),
             ["brogan-06-铜墙铁壁"] = ("选择一项：本轮，你和技能范围内的友方单位不能被敌方英雄移动、推动、换位或强制移动；或如果你的弃牌堆为空，取回此卡牌。",50,"范围",new PrimaryProgram("choose_round_displacement_protection_or_self_recovery",0,effect:EffectKind.FriendlyDisplacementProtection,duration:EffectDuration.ThisRound,instructions:new[]{InstructionKind.ChooseProtectionOrSelfRecovery,InstructionKind.End})),
             ["wasp-16-动能震爆"] = ("将所有与你相邻的敌方单位推动3格；每个被障碍物阻挡的敌方英雄丢弃一张牌（如果可行）。",49,null,new PrimaryProgram("push_all_adjacent_enemies_three_then_blocked_heroes_discard",0,textPushDistance:3,instructions:new[]{InstructionKind.PushAllAdjacentEnemies,InstructionKind.DiscardBlockedPushHeroesIfAble,InstructionKind.End})),
             ["wasp-14-动力助推"] = ("将所有与你相邻的敌方单位推动2格；每个被障碍物阻挡的敌方英雄丢弃一张牌（如果可能）。",48,null,new PrimaryProgram("push_all_adjacent_enemies_then_blocked_heroes_discard",0,textPushDistance:2,instructions:new[]{InstructionKind.PushAllAdjacentEnemies,InstructionKind.DiscardBlockedPushHeroesIfAble,InstructionKind.End})),

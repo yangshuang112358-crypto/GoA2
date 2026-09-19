@@ -441,6 +441,15 @@
       "input": "tests/fixtures/engine50-wall-choice-scenario.json",
       "input_sha256": "e587e29de5785e15948c4a5faf66c97499e5c28ecd0b4ee01cdaaf5c6200a3e4",
       "provenance": "tests/fixtures/engine50-wall-choice.md"
+    },
+    {
+      "engine_version": 51,
+      "accepted_commands": 29,
+      "save": "tests/fixtures/engine51-moment-move.json",
+      "save_sha256": "f528e987ce6386cf9e11b5707bc6b4a00e941e9def81270311a2f262745bfd9f",
+      "input": "tests/fixtures/engine51-moment-move-scenario.json",
+      "input_sha256": "2f302ea1411e80a74b122e877bbbe7c8cff53ed74f607842e4002b8667598fa1",
+      "provenance": "tests/fixtures/engine51-moment-move.md"
     }
   ]
 }

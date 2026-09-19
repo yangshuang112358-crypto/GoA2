@@ -8,7 +8,9 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
-        private static List<string> HeroTargets(ContentCatalog catalog,GameState state,CardExecution execution,PrimaryProgram program)
+        private static List<string> HeroTargets(ContentCatalog catalog,GameState state,CardExecution execution,PrimaryProgram program) =>
+            HeroTargetsUnfiltered(catalog,state,execution,program).Where(id=>state.Units.Any(u=>u.Id==id && EffectRules.CanAffect(state,execution.ControllerSeat,u))).ToList();
+        private static List<string> HeroTargetsUnfiltered(ContentCatalog catalog,GameState state,CardExecution execution,PrimaryProgram program)
         {
             var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
             if(source==null)return new List<string>();
@@ -42,7 +44,7 @@ namespace Goa2.Rules
         private static bool BeginTargetDiscard(GameState state,Command command,CardExecution execution,string? otherTarget=null,string? resume=null)
         {
             var target=state.Units.SingleOrDefault(u=>u.Id==(otherTarget??execution.TargetUnitId) && u.Kind=="hero" && u.Seat.HasValue);
-            if(target==null)return false;
+            if(target==null || !EffectRules.CanAffect(state,execution.ControllerSeat,target))return false;
             int seat=target.Seat!.Value;
             if(!state.Players[seat].Cards.Any(c=>c.Zone==CardZone.InHand)){Emit(state,command,"ForcedDiscardSkipped",seat,execution.CardId,detail:"empty_hand");return false;}
             state.Phase=Phase.EffectChoice;

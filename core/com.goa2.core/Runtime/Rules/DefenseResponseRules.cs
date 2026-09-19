@@ -43,6 +43,7 @@ namespace Goa2.Rules
                 state.Execution.TargetUnitId==state.Pending.UnitId)
                 return state.Players[seat].Cards.Where(c=>c.Zone==CardZone.InHand).Select(c=>c.CardId).ToList();
             var response=state.Execution?.DefenseResponse;
+            if(response!=null && state.Units.Any(u=>u.Id==response.AttackerUnitId && !EffectRules.CanAffect(state,response.ControllerSeat,u)))return new List<string>();
             if (state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="forced_discard" || state.Pending.ChooserSeat!=seat ||
                 response==null || response.AttackerSeat!=seat || response.Cursor!=0) return new List<string>();
             return state.Players[seat].Cards.Where(c => c.Zone==CardZone.InHand).Select(c => c.CardId).ToList();
@@ -61,7 +62,9 @@ namespace Goa2.Rules
             }
             else if (response.Cursor==0)
             {
-                if (state.Players[response.AttackerSeat].Cards.Any(c => c.Zone==CardZone.InHand))
+                if(state.Units.Any(u=>u.Id==response.AttackerUnitId && !EffectRules.CanAffect(state,response.ControllerSeat,u)))
+                {Emit(state,command,"ForcedDiscardSkipped",response.AttackerSeat,detail:"immune");response.Cursor++;}
+                else if (state.Players[response.AttackerSeat].Cards.Any(c => c.Zone==CardZone.InHand))
                 {
                     state.Phase=Phase.EffectChoice;
                     state.Pending=new PendingChoice
@@ -73,12 +76,15 @@ namespace Goa2.Rules
                     Emit(state,command,"ForcedDiscardRequired",response.AttackerSeat);
                     return false;
                 }
-                Emit(state,command,"ForcedDiscardSkipped",response.AttackerSeat,detail:"empty_hand");
-                response.Cursor++;
-                if (program!.Followup==DefenseFollowup.DiscardAttackerOrDefeat)
+                else
                 {
-                    DefeatHero(state,command,response.AttackerUnitId,response.ControllerSeat,response.SourceCardId,response.ControllerSeat);
-                    if (state.Phase==Phase.Finished) return false;
+                    Emit(state,command,"ForcedDiscardSkipped",response.AttackerSeat,detail:"empty_hand");
+                    response.Cursor++;
+                    if (program!.Followup==DefenseFollowup.DiscardAttackerOrDefeat)
+                    {
+                        DefeatHero(state,command,response.AttackerUnitId,response.ControllerSeat,response.SourceCardId,response.ControllerSeat);
+                        if (state.Phase==Phase.Finished) return false;
+                    }
                 }
             }
             if(program!.SwapAfterMove && response.Cursor==1)

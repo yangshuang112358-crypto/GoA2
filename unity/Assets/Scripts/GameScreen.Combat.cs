@@ -160,7 +160,7 @@ namespace Goa2.Presentation
             {
                 var heading=Text(PlayerName(choice.ChooserSeat)+"选择放置落点。","section-title");heading.name="placement-choice";parent.Add(heading);
                 if(choice.ChooserSeat!=seat){parent.Add(Text("等待行动英雄选择落点。","body"));return true;}
-                parent.Add(Text("点击高亮空格后确认；落点不能有出生点。放置无需移动路径。","body"));
+                parent.Add(Text("点击本牌允许的高亮空格后确认。放置无需移动路径，具体落点限制见卡牌描述。","body"));
                 if(chosenCell.HasValue && view.Placements.Contains(chosenCell.Value))Confirm(parent,"确认放置到 "+chosenCell.Value,()=>Submit(CommandKind.ChoosePlacement,destination:chosenCell!.Value));
                 RenderCardDetail(parent,catalog.Card(choice.Source));return true;
             }
