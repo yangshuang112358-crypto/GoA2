@@ -166,6 +166,7 @@ namespace Goa2.Application
                 view.RecoverableCards = GameRules.LegalRecoveries(catalog,snapshot,seat.Value);
                 view.CardSwapOptions = GameRules.LegalCardSwaps(catalog,snapshot,seat.Value);
                 view.EffectTargets = GameRules.LegalEffectTargets(catalog,snapshot,seat.Value);
+                view.GoldTransfers = GameRules.LegalGoldTransfers(catalog,snapshot,seat.Value);
                 view.UnimplementedDefenseCards = CombatRules.UnimplementedDefenses(catalog, snapshot, seat.Value);
                 view.RespawnCells = GameRules.LegalRespawns(catalog, snapshot, seat.Value);
                 view.CanResolveRoundEnd = GameRules.CanResolveRoundEnd(snapshot);

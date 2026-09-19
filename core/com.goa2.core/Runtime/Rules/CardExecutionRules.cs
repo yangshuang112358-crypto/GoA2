@@ -86,6 +86,7 @@ namespace Goa2.Rules
                         StopCard(catalog,state,command,"no_charge_route");
                         return;
                     case InstructionKind.OptionalTextMove:
+                    case InstructionKind.RequiredStraightMoveIfAble:
                     case InstructionKind.PrimaryMovement:
                     case InstructionKind.OptionalPreAttackTextMove:
                     case InstructionKind.OptionalTextMoveIfNoPreMove:
@@ -102,6 +103,10 @@ namespace Goa2.Rules
                         return;
                     case InstructionKind.OptionalOtherHeroDiscard:
                         if(BeginHeroTarget(catalog,state,command,execution,program))return;
+                        execution.Cursor++;
+                        break;
+                    case InstructionKind.OptionalGoldTransfer:
+                        if(BeginGoldTransfer(state,command,execution,program))return;
                         execution.Cursor++;
                         break;
                     case InstructionKind.ApplyEffect:

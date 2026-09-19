@@ -315,6 +315,15 @@
       "input": "tests/fixtures/engine36-wave-discard-scenario.json",
       "input_sha256": "8ddb50e293b08c0fbbd1ec67e3bfde0d2303b097588d295968a8c0aae2062bd6",
       "provenance": "tests/fixtures/engine36-wave-discard.md"
+    },
+    {
+      "engine_version": 37,
+      "accepted_commands": 16,
+      "save": "tests/fixtures/engine37-pick-gold.json",
+      "save_sha256": "cd5d6ab9c3649bee1c648f6d0329e941b162ddda3950a30bfefd73f67c6e453a",
+      "input": "tests/fixtures/engine37-pick-gold-scenario.json",
+      "input_sha256": "45ea378ce2cf81464413142f92798ba33866739b4139330f04d252e8c226c7b2",
+      "provenance": "tests/fixtures/engine37-pick-gold.md"
     }
   ]
 }

@@ -965,11 +965,26 @@
     },
     {
       "card_id": "tigerclaw-08-偷天妙手",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-08-偷天妙手.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/PickpocketTests.cs",
+        "tests/scenarios/pick-take.json",
+        "tests/scenarios/pick-skip.json",
+        "tests/scenarios/pick-empty.json",
+        "tests/scenarios/pick-move.json",
+        "tests/scenarios/pick-invalid.json",
+        "tests/scenarios/pick-boundary.json",
+        "tests/scenarios/pick-noexit.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-09-淬毒匕首",

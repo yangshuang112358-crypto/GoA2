@@ -9,6 +9,7 @@ namespace Goa2.Presentation
     {
         private string defenseCardId = "";
         private string discardCardId = "";
+        private int goldTransferTarget = -1, goldTransferAmount = -1;
         private bool declineDefensePending;
         private bool declineRetaliationPending;
         private static string DefenseRestrictionText(string reason) => reason switch
@@ -53,6 +54,22 @@ namespace Goa2.Presentation
                     parent.Add(Button("不移除，结束本牌",()=>Submit(CommandKind.ChooseEffectTarget,"skip"),"quiet-button","effect-minion-skip"));
                 }
                 else parent.Add(Text("等待行动英雄选择小兵或跳过。","body"));
+                RenderCardDetail(parent,catalog.Card(choice.Source));return true;
+            }
+            if(choice.Kind=="gold_transfer")
+            {
+                var title=Text(PlayerName(choice.ChooserSeat)+"选择拿取金币。","section-title");title.name="gold-transfer-choice";parent.Add(title);
+                if(choice.ChooserSeat!=seat){parent.Add(Text("等待来源英雄选择金币。","body"));return true;}
+                foreach(var option in view.GoldTransfers)
+                {
+                    int targetSeat=option.TargetSeat,amount=option.Amount;
+                    var button=Button("从"+PlayerName(targetSeat)+"拿取"+amount+"枚金币",()=>{goldTransferTarget=targetSeat;goldTransferAmount=amount;Render();},"choice-button","gold-transfer-p"+(targetSeat+1)+"-"+amount);
+                    if(goldTransferTarget==targetSeat && goldTransferAmount==amount)button.AddToClassList("chosen");parent.Add(button);
+                }
+                var skip=Button("不拿取金币，继续后续移动",()=>{goldTransferTarget=-1;goldTransferAmount=0;Render();},"choice-button","gold-transfer-skip");
+                if(goldTransferAmount==0)skip.AddToClassList("chosen");parent.Add(skip);
+                if(goldTransferAmount==0 || view.GoldTransfers.Any(o=>o.TargetSeat==goldTransferTarget && o.Amount==goldTransferAmount))
+                    Confirm(parent,goldTransferAmount==0 ? "确认不拿取金币" : "确认从"+PlayerName(goldTransferTarget)+"拿取"+goldTransferAmount+"枚金币",()=>Submit(CommandKind.ChooseGoldTransfer,goldTransferAmount.ToString(System.Globalization.CultureInfo.InvariantCulture),target:goldTransferTarget));
                 RenderCardDetail(parent,catalog.Card(choice.Source));return true;
             }
             if(choice.Kind=="effect_target")
@@ -109,7 +126,8 @@ namespace Goa2.Presentation
                 bool charge=choice.ResumeAt=="charge_before_attack";
                 bool through=choice.ResumeAt=="strike_through_enemy";
                 bool primaryMove=choice.ResumeAt=="primary_movement";
-                var instruction=Text((primaryMove ? "主要移动使用卡面移动数值加被动。完成移动或留在原地后，执行本牌后续效果。" : through ? "沿直线穿过一个敌方单位移动2格。确认落点后，自动攻击途中那个敌人。" : charge ? "必须按卡牌指定距离沿直线移动，终点须邻接合法敌方目标。完成移动后选择攻击目标。" : defenseMove ? "攻击及后续已结算。从当前位置沿直线移动2格，或不移动。" : beforeAttack ? "攻击前移动。移动或跳过后再选择攻击目标。" : "攻击已结算。")+"点击高亮格后确认。","body");instruction.name="effect-move-choice";parent.Add(instruction);
+                bool requiredStraight=choice.ResumeAt=="required_straight_if_able";
+                var instruction=Text((primaryMove ? "主要移动使用卡面移动数值加被动。完成移动或留在原地后，执行本牌后续效果。" : requiredStraight ? "必须沿直线完整移动2格。没有合法路线时自动继续；当前有路线，不能跳过。" : through ? "沿直线穿过一个敌方单位移动2格。确认落点后，自动攻击途中那个敌人。" : charge ? "必须按卡牌指定距离沿直线移动，终点须邻接合法敌方目标。完成移动后选择攻击目标。" : defenseMove ? "攻击及后续已结算。从当前位置沿直线移动2格，或不移动。" : beforeAttack ? "攻击前移动。移动或跳过后再选择攻击目标。" : "完成本次牌文移动后继续卡牌效果。")+"点击高亮格后确认。","body");instruction.name="effect-move-choice";parent.Add(instruction);
                 if(chosenCell.HasValue && view.EffectMoves.Any(m=>m.Destination==chosenCell.Value))
                     Confirm(parent,"确认牌文移动至 "+chosenCell.Value,()=>Submit(CommandKind.ChooseEffectMove,destination:chosenCell!.Value));
                 if(choice.Optional)parent.Add(Button(primaryMove ? "留在原地，执行后续效果" : beforeAttack ? "不移动，继续攻击" : "不移动，继续结算",()=>Submit(CommandKind.ChooseEffectMove,"skip"),"quiet-button","effect-move-skip"));

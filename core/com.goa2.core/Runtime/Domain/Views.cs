@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace Goa2.Domain
 {
+    public sealed class GoldTransferOption
+    {
+        public int TargetSeat, Amount;
+    }
     public sealed class PlayerView
     {
         public int Seat;
@@ -76,6 +80,7 @@ namespace Goa2.Domain
         public List<string> RecoverableCards = new List<string>();
         public List<string> CardSwapOptions = new List<string>();
         public List<string> EffectTargets = new List<string>();
+        public List<GoldTransferOption> GoldTransfers = new List<GoldTransferOption>();
         public int? AttackRange;
         public List<string> UnimplementedDefenseCards = new List<string>();
         public AttackBreakdown? Attack;

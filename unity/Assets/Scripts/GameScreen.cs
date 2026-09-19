@@ -116,6 +116,7 @@ namespace Goa2.Presentation
         {
             chosenHero = null; chosenCell = null; moveMode = null; initiativeSeat = null; passPending = false; deploymentSeat = -1;
             defenseCardId = ""; discardCardId = ""; declineDefensePending = false;declineRetaliationPending=false;
+            goldTransferTarget=-1;goldTransferAmount=-1;
             upgradeCardId = ""; upgradeColor = "";
             debugAttack = false;
         }
@@ -161,6 +162,7 @@ namespace Goa2.Presentation
                     case "effect_move": return "牌文移动";
                     case "card_swap": return "防御后换牌";
                     case "recover_discard": return "取回卡牌";
+                    case "gold_transfer": return "选择拿取金币";
                     case "hero_respawn": return "英雄复活";
                     case "round_minion_removal": return "轮末小兵战斗";
                     case "minion_spawn": return "安排小兵出生";
@@ -505,6 +507,9 @@ namespace Goa2.Presentation
                 case "RecoverDiscardRequired": return actor+"可按牌文取回一张卡牌";
                 case "EffectTargetChoiceRequired": return actor+"选择牌文作用的英雄";
                 case "EffectTargetChosen": return actor+"选定牌文目标 · "+entry.Detail;
+                case "GoldTransferChoiceRequired": return actor+"选择是否拿取金币";
+                case "GoldTransferred": return actor+"拿取金币";
+                case "GoldTransferSkipped": return actor+"未拿取金币，继续后续效果";
                 case "RecoverDiscardSkipped": return actor+(entry.Detail=="declined" ? "选择不取回卡牌" : "不满足取回条件或没有可取回的卡牌");
                 case "RecoverDiscardCompleted": return actor+"完成牌文取回";
                 case "EffectMoveSkipped": return actor+(entry.Detail=="declined" ? "选择不进行牌文移动" : entry.Detail=="pre_attack_move_used" ? "攻击前已移动，略过攻击后移动" : entry.Detail=="target_position_occupied" ? "无法进入攻击目标原格：该格仍有单位" : entry.Detail=="target_position_unreachable" ? "无法进入攻击目标原格：移动受阻" : "没有可用的牌文移动落点");
