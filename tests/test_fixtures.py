@@ -24,7 +24,7 @@ class HistoricalFixtureTests(unittest.TestCase):
 
     def test_current_captured_files_and_versions_match_the_manifest(self):
         report = validate_fixtures(self.root)
-        self.assertEqual(report, {'frozen_fixtures': 48, 'frozen_files': 95})
+        self.assertEqual(report, {'frozen_fixtures': 49, 'frozen_files': 97})
         self.assertEqual(sum(entry['engine_version'] == 9 for entry in self.manifest['fixtures']), 2)
 
     def test_semantically_equivalent_save_whitespace_still_changes_captured_bytes(self):

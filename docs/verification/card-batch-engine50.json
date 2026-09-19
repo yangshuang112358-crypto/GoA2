@@ -1,0 +1,110 @@
+{
+  "engine": 50,
+  "implemented_cards": 61,
+  "data_only_cards": 47,
+  "build_utc": "2026-09-19T20:18:12.5658097Z",
+  "assemblies": {
+    "Goa2.Application.dll": "dcf3c76c09745bcf5be417fd8e65c2249cbb8a7a596322e8000206136e702c1f",
+    "Goa2.Domain.dll": "49b629c3e8e24905af5b475ef210f062c7eaa465e35b9c0ca3e7fe97a32d09af",
+    "Goa2.Editor.dll": "8be1afd22fe02b3237c28772c7c1fcf1f33be9bcda2442d0a6bb504302e7dd53",
+    "Goa2.Infrastructure.dll": "3d5b385189fd4efd00127aed959df1f1e8586b7f7c77a51b8ce24ad74350beaf",
+    "Goa2.Rules.dll": "0275b9e2967ba0612e1e4fb6ea07fe7f72775a8a53bb10686702d29cbd830043"
+  },
+  "core": {
+    "passed": 1274,
+    "failed": 0,
+    "report": "artifacts/tests/wall-unity-0.xml",
+    "card_specific": 20,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/wall-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/wall-protect.json",
+        "input_sha256": "f4453a4648081d3e75a36b3dd733aa0ccb4e1accbd53b225a2ceea55567435fb",
+        "report": "artifacts/editor-scenarios/wall-protect/4882a3f136b7411b973a8003bf64a2b7/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wall-recover.json",
+        "input_sha256": "a8bd168e6cc20da07273d3855927432e4e3e479b8317668f2da95b6a71ae5bbb",
+        "report": "artifacts/editor-scenarios/wall-recover/2ef96c32999c41a38d6d9e2018fc508c/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wall-invalid.json",
+        "input_sha256": "5ec2669546766580eda13c05eec2553ee0eb3c3bd0a407402fd45f1b301e45b4",
+        "report": "artifacts/editor-scenarios/wall-invalid/c56680e4731140eab20947cb106237b3/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wall-enemy-swap.json",
+        "input_sha256": "810ea9426c23ef00a6366b8b7dcbb336de82d61c7c2e4809ee3d3389171a4663",
+        "report": "artifacts/editor-scenarios/wall-enemy-swap/7e971d95db5641d19fdbd06a6b11bc62/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wall-friendly-swap.json",
+        "input_sha256": "798d6e26b8a606f41a4e0f61ae3f672eec06a521079c97c97bf6c104fd09d1c2",
+        "report": "artifacts/editor-scenarios/wall-friendly-swap/08be7fdd2d024d94a8d930fec56f4d6d/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wall-push.json",
+        "input_sha256": "ed922ea358be3ee64333304ed7f83516f8f63590c80a909fd54deecf7660936f",
+        "report": "artifacts/editor-scenarios/wall-push/b59704eef1f044918245ed2fcfab4f62/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wall-outside.json",
+        "input_sha256": "3fe032e581504ab6e3874d32f7a7d9554d5a5baf4f84c4aac19ed2bec923f919",
+        "report": "artifacts/editor-scenarios/wall-outside/6c335647082549d4a76b4a260223a338/report.json",
+        "steps": 26,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wall-nearshot.json",
+        "input_sha256": "a640dd1c0a045c60018a1fb04ce6c0052f57bac4ddf9be2e5fc248e25acfe96a",
+        "report": "artifacts/editor-scenarios/wall-nearshot/2e028e194a2d45fabf4cd21726d190b0/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wall-bard.json",
+        "input_sha256": "8fac4ddf90f052dd8683ca085cc9cd88d41badb9cdcc9a29a48af1173e79895f",
+        "report": "artifacts/editor-scenarios/wall-bard/2dabe2ae9e634deb9dbe7c952b3ab442/report.json",
+        "steps": 27,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine50-wall-choice-scenario.json",
+        "input_sha256": "e587e29de5785e15948c4a5faf66c97499e5c28ecd0b4ee01cdaaf5c6200a3e4",
+        "report": "artifacts/editor-scenarios/engine50-wall-choice-scenario/27a06cf8c99e427c93d2e0cf261ff006/report.json",
+        "steps": 13,
+        "passed": true
+      }
+    ],
+    "scenarios": 10,
+    "steps": 199
+  },
+  "manual_presets": [
+    "iron-wall"
+  ],
+  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

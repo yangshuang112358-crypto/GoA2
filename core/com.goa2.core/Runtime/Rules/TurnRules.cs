@@ -134,10 +134,16 @@ namespace Goa2.Rules
             Emit(state, command, "ActionStarted", seat, ActiveCard(state).CardId);
         }
         private static CardInstance ActiveCard(GameState state) => state.Players[state.ActiveSeat!.Value].Cards.Single(c => c.Zone == CardZone.PlayedUnresolved);
-        private static void FinishAction(ContentCatalog catalog, GameState state, Command command)
+        private static void FinishAction(ContentCatalog catalog, GameState state, Command command,bool returnSource=false)
         {
             var card = ActiveCard(state);
-            card.Zone = CardZone.PlayedResolved;
+            card.Zone = returnSource ? CardZone.InHand : CardZone.PlayedResolved;
+            if(returnSource)
+            {
+                int owner=state.ActiveSeat!.Value;CancelRetrievedCardEffects(state,command,owner,card.CardId);
+                Emit(state,command,"CardRecovered",owner,card.CardId,owner);
+                Emit(state,command,"RecoveredColorShown",owner,detail:catalog.Card(card.CardId).Color);
+            }
             Emit(state, command, "CardResolved", state.ActiveSeat, card.CardId);
             AdvanceInitiative(catalog, state, command);
         }

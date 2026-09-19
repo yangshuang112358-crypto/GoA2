@@ -1,0 +1,125 @@
+{
+  "SchemaVersion": 1,
+  "Id": "wall-protect",
+  "Name": "铜墙铁壁：本轮保护跨回合",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "brogan,wasp,sabina,arien",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "wasp-14-动力助推",
+      "Actor": "p1",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "arien-08-奥术换位",
+      "Actor": "p1",
+      "Target": "p4"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": -1,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": -1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-06-静电封锁",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-07-指挥",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-08-奥术换位",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p2",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChoosePrimaryOption",
+      "Value": "protect",
+      "Actor": "p1",
+      "Expect": {
+        "EffectCounts": {
+          "brogan-06-铜墙铁壁": 1
+        },
+        "EventCounts": {
+          "EffectCreated": 1,
+          "CardResolved": 1
+        }
+      }
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p3"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Planning",
+        "Turn": 2,
+        "EffectCounts": {
+          "brogan-06-铜墙铁壁": 1
+        }
+      }
+    }
+  ]
+}

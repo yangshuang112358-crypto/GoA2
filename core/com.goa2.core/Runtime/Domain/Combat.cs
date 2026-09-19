@@ -42,6 +42,7 @@ namespace Goa2.Domain
         public bool PreAttackDiscarded, AttackRangeLocked;
         public int AttackRangeBonus;
         public bool PreAttackMoved;
+        public bool ReturnSourceAtEnd;
         public Hex? AttackTargetCell;
         public List<string>? DisplacedMinions;
         public List<string>? RemainingUnitTargets, AffectedHeroTargets;

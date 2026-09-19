@@ -76,6 +76,8 @@ namespace Goa2.Rules
                         if(BeginEffectMinionRemoval(catalog,state,command,execution,program)) return;
                         execution.Cursor++;
                         break;
+                    case InstructionKind.ChooseProtectionOrSelfRecovery:
+                        BeginPrimaryOption(catalog,state,command);return;
                     case InstructionKind.PushAllAdjacentEnemies:
                         if(BeginGroupPush(catalog,state,command))return;
                         execution.Cursor++;break;
@@ -291,8 +293,9 @@ namespace Goa2.Rules
                 ContinueCard(catalog,state,command);
                 return;
             }
+            bool returnSource=state.EngineVersion>=50 && state.Execution.ReturnSourceAtEnd;
             state.ActiveSeat = state.Execution!.ControllerSeat; state.Execution = null; state.Pending = null; state.Phase = Phase.Action;
-            FinishAction(catalog, state, command);
+            FinishAction(catalog, state, command,returnSource);
         }
     }
 }

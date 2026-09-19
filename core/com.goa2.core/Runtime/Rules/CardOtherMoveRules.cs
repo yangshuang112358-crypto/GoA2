@@ -23,7 +23,7 @@ namespace Goa2.Rules
             var target=state.Units.SingleOrDefault(u=>u.Id==execution.TargetUnitId);
             if(source==null || target==null)return new List<string>();
             var movableMinions=new HashSet<string>(LegalMinionRemovals(state));
-            return state.Units.Where(u=>u.Id!=source.Id && u.Id!=target.Id && u.Position.Distance(target.Position)==1 &&
+            return state.Units.Where(u=>u.Id!=source.Id && u.Id!=target.Id && EffectRules.CanDisplace(catalog,state,execution.ControllerSeat,u) && u.Position.Distance(target.Position)==1 &&
                 (u.Kind=="hero" || movableMinions.Contains(u.Id)) && EffectRules.CanBeAttacked(state,source,u,catalog.Card(execution.CardId).Subtype=="远程") &&
                 OtherMoveOptions(catalog,state,u).Count>0).Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
         }

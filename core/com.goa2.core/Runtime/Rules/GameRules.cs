@@ -34,6 +34,7 @@ namespace Goa2.Rules
                 case CommandKind.ConfirmCard: ConfirmCard(catalog, state, command); break;
                 case CommandKind.ChooseInitiative: ChooseInitiative(catalog, state, command); break;
                 case CommandKind.ChooseMinionSpawn: ChooseMinionSpawn(catalog, state, command); break;
+                case CommandKind.ChoosePrimaryOption: ChoosePrimaryOption(catalog,state,command); break;
                 case CommandKind.BeginPrimary: BeginPrimary(catalog, state, command); break;
                 case CommandKind.ChooseAttackTarget: ChooseAttackTarget(catalog, state, command); break;
                 case CommandKind.Defend: Defend(catalog, state, command); break;

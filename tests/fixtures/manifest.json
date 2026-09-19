@@ -432,6 +432,15 @@
       "input": "tests/fixtures/engine49-burst-push-scenario.json",
       "input_sha256": "05dc80fceb6114474fe47b25ccc30e9537abfd0939e01e5d6a0464aa97e3cde1",
       "provenance": "tests/fixtures/engine49-burst-push.md"
+    },
+    {
+      "engine_version": 50,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine50-wall-choice.json",
+      "save_sha256": "1ee7a36662f96e00a99690aec6b141aad7873670552e4c2410f66064aad282ca",
+      "input": "tests/fixtures/engine50-wall-choice-scenario.json",
+      "input_sha256": "e587e29de5785e15948c4a5faf66c97499e5c28ecd0b4ee01cdaaf5c6200a3e4",
+      "provenance": "tests/fixtures/engine50-wall-choice.md"
     }
   ]
 }

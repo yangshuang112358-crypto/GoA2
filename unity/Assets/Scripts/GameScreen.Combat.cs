@@ -7,6 +7,7 @@ namespace Goa2.Presentation
 {
     public sealed partial class GameScreen
     {
+        private string primaryOptionChoice="protect";
         private string defenseCardId = "";
         private string discardCardId = "";
         private int goldTransferTarget = -1, goldTransferAmount = -1;
@@ -90,6 +91,19 @@ namespace Goa2.Presentation
                 if(goldTransferAmount==0)skip.AddToClassList("chosen");parent.Add(skip);
                 if(goldTransferAmount==0 || view.GoldTransfers.Any(o=>o.TargetSeat==goldTransferTarget && o.Amount==goldTransferAmount))
                     Confirm(parent,goldTransferAmount==0 ? "确认不拿取金币" : "确认从"+PlayerName(goldTransferTarget)+"拿取"+goldTransferAmount+"枚金币",()=>Submit(CommandKind.ChooseGoldTransfer,goldTransferAmount.ToString(System.Globalization.CultureInfo.InvariantCulture),target:goldTransferTarget));
+                RenderCardDetail(parent,catalog.Card(choice.Source));return true;
+            }
+            if(choice.Kind=="primary_option")
+            {
+                parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择一项卡牌效果。","section-title"));
+                if(choice.ChooserSeat!=seat){parent.Add(Text("等待来源英雄选择。","body"));RenderCardDetail(parent,catalog.Card(choice.Source));return true;}
+                foreach(string option in view.PrimaryOptions)
+                {
+                    string selected=option;
+                    parent.Add(Button(option=="protect"?"本轮保护本人和范围内友方单位":"取回此牌（弃牌堆为空）",()=>{primaryOptionChoice=selected;Render();},"quiet-button","primary-option-"+option));
+                }
+                if(!view.PrimaryOptions.Contains("recover"))parent.Add(Text("弃牌堆非空，本次不能取回此牌。","body"));
+                if(view.PrimaryOptions.Contains(primaryOptionChoice))Confirm(parent,primaryOptionChoice=="protect"?"确认本轮位移保护":"确认取回此牌",()=>Submit(CommandKind.ChoosePrimaryOption,primaryOptionChoice));
                 RenderCardDetail(parent,catalog.Card(choice.Source));return true;
             }
             if(choice.Kind=="effect_target")

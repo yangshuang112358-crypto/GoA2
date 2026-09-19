@@ -590,11 +590,32 @@
     },
     {
       "card_id": "brogan-06-铜墙铁壁",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-06-铜墙铁壁.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/IronWallTests.cs",
+        "tests/scenarios/wall-protect.json",
+        "tests/scenarios/wall-recover.json",
+        "tests/scenarios/wall-invalid.json",
+        "tests/scenarios/wall-enemy-swap.json",
+        "tests/scenarios/wall-friendly-swap.json",
+        "tests/scenarios/wall-push.json",
+        "tests/scenarios/wall-outside.json",
+        "tests/scenarios/wall-nearshot.json",
+        "tests/scenarios/wall-bard.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/TurnRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardPushRules.cs"
+      ]
     },
     {
       "card_id": "brogan-07-保卫",

@@ -12,6 +12,8 @@ namespace Goa2.Rules
             var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
             var target=state.Units.SingleOrDefault(u=>u.Id==execution.TargetUnitId);
             if(source==null || target==null)return;
+            if(!EffectRules.CanDisplace(catalog,state,execution.ControllerSeat,target))
+            {Emit(state,command,"UnitDisplacementPrevented",target.Seat,execution.CardId,detail:target.Id);return;}
             var result=PushRules.AwayFromAdjacent(catalog,state,source,target,program.TextPushDistance);
             if(result==null)return;
             target.Position=result.Path.Last();

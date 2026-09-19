@@ -157,6 +157,7 @@ namespace Goa2.Presentation
                     case "effect_target": return "选择牌文目标";
                     case "effect_minion": return "选择额外移除的小兵";
                     case "defense": return "选择防御";
+                    case "primary_option": return "卡牌效果选择";
                     case "forced_discard": return "反制选择";
                     case "optional_discard": return "攻击前弃牌";
                     case "effect_move": return "牌文移动";
@@ -519,6 +520,9 @@ namespace Goa2.Presentation
                 case "UnitsSwapped": return actor+"与 "+EventUnitName(entry.Detail)+"交换位置："+entry.From+" ↔ "+entry.To;
                 case "PlacementChoiceRequired": return actor + "选择放置落点";
                 case "UnitMoved": return actor + "移动至 " + entry.To;
+                case "PrimaryOptionRequired": return actor+"选择卡牌的一项效果";
+                case "PrimaryOptionChosen": return actor+(entry.Detail=="protect"?"选择本轮位移保护":"选择取回自身卡牌");
+                case "UnitDisplacementPrevented": return EventUnitName(entry.Detail)+"受到位移保护，本次位移未发生";
                 case "PushGroupCompleted": return actor+"已完成全部推动，继续处理受阻英雄";
                 case "UnitPushed": return (entry.Detail.Contains("|unit:")?EventUnitName(entry.Detail.Substring(entry.Detail.IndexOf("|unit:",System.StringComparison.Ordinal)+6)):actor) + "被推动 " + (entry.Path.Count-1) + " 格，位置 " + entry.To;
                 case "PushStopped": return actor + "推动停止：" + (entry.Detail=="obstacle" ? "前方地形阻挡" : entry.Detail=="occupied" ? "前方有单位" : "已到地图边缘");

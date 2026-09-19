@@ -57,6 +57,15 @@ namespace Goa2.Rules
             }
             return "";
         }
+        public static bool CanDisplace(ContentCatalog catalog,GameState state,int controllerSeat,UnitState target)
+        {
+            if(state.EngineVersion<50 || state.Players[controllerSeat].Team==target.Team)return true;
+            return !Current(state,EffectKind.FriendlyDisplacementProtection).Any(effect=>
+            {
+                var source=Source(state,effect);
+                return source!=null && source.Team==target.Team && (source.Id==target.Id || source.Position.Distance(target.Position)<=Radius(catalog,state,effect));
+            });
+        }
         public static bool CanBeAttacked(GameState state, UnitState source, UnitState target, bool ranged)
         {
             if (source.Kind!="hero" || !ranged || source.Position.Distance(target.Position)<=1) return true;

@@ -79,6 +79,7 @@ namespace Goa2.Domain
         public List<string> OptionalDiscardCards = new List<string>();
         public List<string> RecoverableCards = new List<string>();
         public List<string> CardSwapOptions = new List<string>();
+        public List<string> PrimaryOptions = new List<string>();
         public List<string> EffectTargets = new List<string>();
         public List<GoldTransferOption> GoldTransfers = new List<GoldTransferOption>();
         public int? AttackRange;

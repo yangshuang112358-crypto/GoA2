@@ -21,7 +21,7 @@ namespace Goa2.Rules
    if(GroupPushProgram(catalog,state,InstructionKind.PushAllAdjacentEnemies)==null)return new List<string>();
    var source=state.Units.SingleOrDefault(u=>u.Seat==e.ControllerSeat);if(source==null)return new List<string>();
    var minions=new HashSet<string>(LegalMinionRemovals(state));
-   return state.Units.Where(u=>u.Team!=source.Team && u.Position.Distance(source.Position)==1 && (u.Kind=="hero" || minions.Contains(u.Id)) && (e.RemainingUnitTargets==null || e.RemainingUnitTargets.Contains(u.Id))).Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
+   return state.Units.Where(u=>u.Team!=source.Team && EffectRules.CanDisplace(catalog,state,e.ControllerSeat,u) && u.Position.Distance(source.Position)==1 && (u.Kind=="hero" || minions.Contains(u.Id)) && (e.RemainingUnitTargets==null || e.RemainingUnitTargets.Contains(u.Id))).Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
   }
   private static bool BeginGroupPush(ContentCatalog catalog,GameState state,Command command)
   {
