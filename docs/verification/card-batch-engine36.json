@@ -1,0 +1,84 @@
+{
+  "engine": 36,
+  "implemented_cards": 47,
+  "data_only_cards": 61,
+  "build_utc": "2026-09-19T17:55:30.6009540Z",
+  "assemblies": {
+    "Goa2.Application.dll": "76ed2caa18e11f027686984ecee96046b1447cbd2654e48b48922136beb5c3b7",
+    "Goa2.Domain.dll": "1a9a59d77517e38a22c1b7f299ad074fc22736ad343f779f713f70175bf6d9d0",
+    "Goa2.Infrastructure.dll": "b8b4f9859df28916d537e1e89d1c7f8d13eb20700196edcb62caa8deeeb81e30",
+    "Goa2.Rules.dll": "191e96ebd0a21999b14b333b47afd1d489fe7a4689d2c0b8a665de2bb8d94a71",
+    "Goa2.ScenarioCli.dll": "02dad884d9f9c0f687d2259db6cbb6a8710dd5d2673a74fe3c755a570721bc4f"
+  },
+  "core": {
+    "passed": 995,
+    "failed": 0,
+    "report": "artifacts/tests/wave-core.trx",
+    "card_specific": 8
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "core_cli": {
+    "results": [
+      {
+        "input": "tests/scenarios/wave-extra.json",
+        "input_sha256": "85ecb3084c48f9b3d7f00e1fe034543b5231cb882f084cfcc1e6c9acb610e319",
+        "report": "artifacts/core-scenarios/wave-extra/5dbb345a6af943b0a9eabef6fdc700ce/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wave-skip.json",
+        "input_sha256": "6471dbe4b047f242d785fe91e39dd97b9a4f82f3259afd885c2bcc9500d3d19a",
+        "report": "artifacts/core-scenarios/wave-skip/3d96965ca6ae42a98cde55b6d7415f1d/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wave-noextra.json",
+        "input_sha256": "3281c16a1caf743b5451f084e01253e2cab786661b331c24c8b74ecfb1e0fcd5",
+        "report": "artifacts/core-scenarios/wave-noextra/3d5401a6757943cfbf2c6d84060ea93b/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wave-empty.json",
+        "input_sha256": "285ba94d87bbac80ca513acbfc9aad2022286b4ab77d4080b2da1150d88ac458",
+        "report": "artifacts/core-scenarios/wave-empty/d2a9b660c00946a0a7f5be1e67215273/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wave-riposte.json",
+        "input_sha256": "5acc55afde1029c613c663235d66824a71d8109b8ff31cf0a98767baf1b476ba",
+        "report": "artifacts/core-scenarios/wave-riposte/1e61f726b14f444ba7f889b0e3dba8d3/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/wave-minion.json",
+        "input_sha256": "bdfcce86632047421e8cad47fa69bff5ca3b2f9b801fd89cf6108b2f5b709f77",
+        "report": "artifacts/core-scenarios/wave-minion/f6558dd538244d3491e0e3b266fc1602/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine36-wave-discard-scenario.json",
+        "input_sha256": "8ddb50e293b08c0fbbd1ec67e3bfde0d2303b097588d295968a8c0aae2062bd6",
+        "report": "artifacts/core-scenarios/engine36-wave-discard-scenario/d0ae76290d914ba7bc14ab582f95d915/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 118
+  },
+  "manual_presets": [
+    "wave"
+  ],
+  "note": "Core CLI commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

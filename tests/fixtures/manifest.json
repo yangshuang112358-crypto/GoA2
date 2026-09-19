@@ -306,6 +306,15 @@
       "input": "tests/fixtures/engine35-shock-discard-scenario.json",
       "input_sha256": "f2d99865f0ea80850dd4e22090355efec8474dfd5aea509c069cf3d4c438fc30",
       "provenance": "tests/fixtures/engine35-shock-discard.md"
+    },
+    {
+      "engine_version": 36,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine36-wave-discard.json",
+      "save_sha256": "f36cba80888ecccd403158d085ce6c6989d45ce080ae0e9b7af71f45fd4df4c9",
+      "input": "tests/fixtures/engine36-wave-discard-scenario.json",
+      "input_sha256": "8ddb50e293b08c0fbbd1ec67e3bfde0d2303b097588d295968a8c0aae2062bd6",
+      "provenance": "tests/fixtures/engine36-wave-discard.md"
     }
   ]
 }

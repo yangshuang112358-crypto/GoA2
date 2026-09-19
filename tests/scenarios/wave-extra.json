@@ -1,0 +1,144 @@
+{
+  "SchemaVersion": 1,
+  "Id": "wave-extra",
+  "Name": "电能波：额外英雄弃牌后攻击原目标",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "wasp,tigerclaw,brogan,sabina",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "tigerclaw-17-近身还击",
+      "Actor": "p1",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "wasp-03-电能波",
+      "Actor": "p1",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -6
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-1,-3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -7
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-03-电能波",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-07-伺机待发",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-07-指挥",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "effect_target",
+        "PendingChooser": "p1",
+        "EventCounts": {
+          "AttackCalculated": 0
+        }
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "forced_discard",
+        "PendingChooser": "p4",
+        "EventCounts": {
+          "AttackCalculated": 0
+        }
+      }
+    },
+    {
+      "Command": "ForcedDiscard",
+      "Value": "sabina-01-拔枪",
+      "Actor": "p4",
+      "Expect": {
+        "PendingKind": "defense",
+        "PendingChooser": "p2",
+        "AttackFinal": 4
+      }
+    },
+    {
+      "Command": "DeclineDefense",
+      "Value": "",
+      "Actor": "p2",
+      "Expect": {
+        "EventCounts": {
+          "HeroDefeated": 1,
+          "AttackResolved": 1,
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

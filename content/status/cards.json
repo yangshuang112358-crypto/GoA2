@@ -61,11 +61,25 @@
     },
     {
       "card_id": "wasp-03-电能波",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-03-电能波.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ElectricWaveTests.cs",
+        "tests/scenarios/wave-extra.json",
+        "tests/scenarios/wave-skip.json",
+        "tests/scenarios/wave-noextra.json",
+        "tests/scenarios/wave-empty.json",
+        "tests/scenarios/wave-riposte.json",
+        "tests/scenarios/wave-minion.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs"
+      ]
     },
     {
       "card_id": "wasp-04-雷霆回旋镖",

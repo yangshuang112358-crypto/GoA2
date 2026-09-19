@@ -5,7 +5,7 @@ using Goa2.Domain;
 namespace Goa2.Rules.Cards
 {
     internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget, OptionalRepeatAttackAfterHeroDefeat, OptionalMinionRemovalAfterDefeat, PushAttackTargetIfAdjacent, MoveIntoAttackTargetCell, RequiredStraightMoveToAttack, RequiredStraightMoveThroughEnemy, PrimaryMovement, TargetDiscardIfAble, OptionalOtherHeroDiscard }
-    internal enum HeroTargetKind { None, AlliedNearEnemy, AdjacentEnemyUsedAttack, EnemyInSkillRangeNearFriendlyMinion, OtherAdjacentEnemy }
+    internal enum HeroTargetKind { None, AlliedNearEnemy, AdjacentEnemyUsedAttack, EnemyInSkillRangeNearFriendlyMinion, OtherAdjacentEnemy, OtherEnemyInSkillRange }
     internal enum AttackBonusKind { None, TargetUsedAttack, AdjacentEnemies, OtherFriendlySupport }
     internal enum AttackRangeBonusKind { None, DiscardedBeforeAttack, OwnDiscardPile }
     internal enum DefenseFollowup { None, DiscardAttacker, DiscardAttackerThenImmunity, DiscardAttackerOrDefeat, OptionalStraightMove }
@@ -29,6 +29,7 @@ namespace Goa2.Rules.Cards
     internal sealed class PrimaryProgram
     {
         public readonly string Id;
+        public readonly string AttackSubtype = "";
         public readonly int Version = 1, MinimumDistance;
         public readonly IReadOnlyList<InstructionKind> Instructions;
         public readonly EffectKind? Effect;
@@ -49,10 +50,11 @@ namespace Goa2.Rules.Cards
         public readonly int TextPushDistance;
         public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
             EffectAreaKind areaKind=EffectAreaKind.SkillRange, AttackBonusKind bonus=AttackBonusKind.None, int bonusValue=0,
-            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,bool extraRemovalUsesAttackRange=false,int textPushDistance=0,int textMoveMinimum=0,params InstructionKind[] instructions)
+            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,bool extraRemovalUsesAttackRange=false,int textPushDistance=0,int textMoveMinimum=0,string? attackSubtype=null,params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
             AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=EffectDuration.ThisTurn;
+            AttackSubtype=attackSubtype ?? (adjacent ? "" : "远程");
             AttackBonusKind=bonus; AttackBonusValue=bonusValue;
             RangeBonusKind=rangeBonus; RangeBonusValue=rangeBonusValue;
             TextMoveDistance=textMoveDistance;
@@ -84,6 +86,7 @@ namespace Goa2.Rules.Cards
         private static readonly Dictionary<string,(string text,int minimumEngine,PrimaryProgram program)> Attacks = new Dictionary<string,(string,int,PrimaryProgram)>
         {
             ["wasp-01-电击"] = ("选择与你相邻的一个单位为目标。攻击前：最多一个与你相邻的敌方英雄（除攻击目标外）丢弃一张牌（如果可能）。",35,new PrimaryProgram("adjacent_attack_optional_other_hero_discard",1,adjacent:true,heroTarget:HeroTargetKind.OtherAdjacentEnemy,instructions:new[]{InstructionKind.ChooseAttackTarget,InstructionKind.OptionalOtherHeroDiscard,InstructionKind.Attack,InstructionKind.End})),
+            ["wasp-03-电能波"] = ("选择与你相邻的一个单位为目标。攻击前：技能范围内最多一个敌方英雄（除攻击目标外）丢弃一张牌（如果可能）。（虽然此卡有技能范围图标，但这不是远程攻击，选中的攻击目标必须与你相邻。）",36,new PrimaryProgram("adjacent_attack_optional_other_hero_discard_in_skill_range",1,adjacent:true,heroTarget:HeroTargetKind.OtherEnemyInSkillRange,attackSubtype:"范围",instructions:new[]{InstructionKind.ChooseAttackTarget,InstructionKind.OptionalOtherHeroDiscard,InstructionKind.Attack,InstructionKind.End})),
             ["tigerclaw-00-瞬闪打击"] = ("攻击前：沿直线移动2格且穿过一个敌方单位；选择该单位为目标。（如果你无法完成此移动，就不能攻击。）",29,
                 new PrimaryProgram("required_straight_move_through_attack_target",1,adjacent:true,textMoveDistance:2,
                     instructions:new[]{InstructionKind.RequiredStraightMoveThroughEnemy,InstructionKind.Attack,InstructionKind.End})),
@@ -175,7 +178,7 @@ namespace Goa2.Rules.Cards
         public static PrimaryProgram? Primary(CardDefinition card, int engineVersion)
         {
             if (card.PrimaryFamily == "attack" && Attacks.TryGetValue(card.Id,out var attack) && card.Text == attack.text && engineVersion>=attack.minimumEngine &&
-                (attack.program.AdjacentAttack ? string.IsNullOrEmpty(card.Subtype) : card.Subtype=="远程")) return attack.program;
+                (card.Subtype ?? "")==attack.program.AttackSubtype) return attack.program;
             if (card.PrimaryFamily == "skill" && Skills.TryGetValue(card.Id,out var skill) && engineVersion>=skill.minimumEngine && card.Subtype==skill.subtype && card.Text==skill.text) return skill.program;
             if (card.PrimaryFamily == "movement" && Movements.TryGetValue(card.Id,out var movement) && engineVersion>=movement.minimumEngine && card.Subtype=="范围" && card.Text==movement.text) return movement.program;
             if (engineVersion >= 3 && card.Id=="wasp-00-闪耀之刃" && card.PrimaryCategory=="基础攻击" && string.IsNullOrEmpty(card.Subtype) &&
