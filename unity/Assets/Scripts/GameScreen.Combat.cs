@@ -57,11 +57,12 @@ namespace Goa2.Presentation
             }
             if(choice.Kind=="effect_target")
             {
-                parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择牌文作用的英雄。","section-title"));
+                var targetTitle=Text(PlayerName(choice.ChooserSeat)+(choice.Optional ? "选择另一名敌方英雄，或跳过。" : "选择牌文作用的英雄。"),"section-title");targetTitle.name="effect-target-choice";parent.Add(targetTitle);
                 if(choice.ChooserSeat!=seat) {parent.Add(Text("等待来源英雄选择目标。","body"));RenderCardDetail(parent,catalog.Card(choice.Source));return true;}
                 var target=chosenCell.HasValue ? view.Units.SingleOrDefault(u=>u.Position==chosenCell.Value && view.EffectTargets.Contains(u.Id)) : null;
                 if(target!=null) Confirm(parent,"确认选择 "+PlayerName(target.Seat!.Value),()=>Submit(CommandKind.ChooseEffectTarget,target.Id));
                 else parent.Add(Text("点击高亮英雄后确认；后续选牌由目标英雄本人决定。","body"));
+                if(choice.Optional)parent.Add(Button("跳过额外弃牌，继续原攻击",()=>Submit(CommandKind.ChooseEffectTarget,"skip"),"quiet-button","effect-target-skip"));
                 RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
             }
@@ -137,9 +138,9 @@ namespace Goa2.Presentation
             }
             if (choice.Kind == "forced_discard")
             {
-                var title=Text(PlayerName(choice.ChooserSeat) + (choice.ResumeAt=="primary_discard" ? "按牌文丢弃一张手牌。" : "处理反制选择。"), "section-title");title.name="forced-discard-choice";parent.Add(title);
-                parent.Add(Text(choice.ResumeAt=="primary_discard" ? "完成弃牌后继续来源卡牌；这不是攻击或防御。" : "本次攻击已结算，完成反制后继续下一次行动。", "body"));
-                if (choice.Source!="" && choice.ResumeAt!="primary_discard") RenderCardDetail(parent,catalog.Card(choice.Source));
+                var title=Text(PlayerName(choice.ChooserSeat) + ((choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard") ? "按牌文丢弃一张手牌。" : "处理反制选择。"), "section-title");title.name="forced-discard-choice";parent.Add(title);
+                parent.Add(Text((choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard") ? (choice.ResumeAt=="attack_before_discard" ? "完成弃牌后，来源英雄继续攻击原先选定的目标。" : "完成弃牌后继续来源卡牌；这不是攻击或防御。") : "本次攻击已结算，完成反制后继续下一次行动。", "body"));
+                if (choice.Source!="" && (choice.ResumeAt!="primary_discard" && choice.ResumeAt!="attack_before_discard")) RenderCardDetail(parent,catalog.Card(choice.Source));
                 if (choice.ChooserSeat != seat) { parent.Add(Text("切换至对应角色选择弃牌。", "body")); return true; }
                 parent.Add(Text(view.CanDeclineRetaliationDiscard ? "选择一张手牌弃置，或不弃牌、直接被击败。" : "点击下方手牌或以下选项，再确认弃置。此选择不能跳过。", "body"));
                 foreach (string id in view.ForcedDiscardCards)
@@ -160,7 +161,7 @@ namespace Goa2.Presentation
                     RenderCardDetail(parent,catalog.Card(discardCardId));
                     Confirm(parent,"确认弃置 "+catalog.Card(discardCardId).Name,() => Submit(CommandKind.ForcedDiscard,discardCardId));
                 }
-                if(choice.Source!="" && choice.ResumeAt=="primary_discard") RenderCardDetail(parent,catalog.Card(choice.Source));
+                if(choice.Source!="" && (choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard")) RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
             }
             if (choice.Kind == "hero_respawn")

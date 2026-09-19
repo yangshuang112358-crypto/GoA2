@@ -25,7 +25,7 @@
         "choice_wording",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/wasp-01-电击.md",
       "question_candidates": [
         "U-011",

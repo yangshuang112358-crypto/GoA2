@@ -30,6 +30,10 @@ namespace Goa2.Rules
         }
         public static List<string> LegalForcedDiscards(GameState state,int seat)
         {
+            if(state.EngineVersion>=35 && state.Phase==Phase.EffectChoice && state.Pending?.Kind=="forced_discard" &&
+                state.Pending.ResumeAt=="attack_before_discard" && state.Pending.ChooserSeat==seat && state.Execution!=null &&
+                state.Execution.TargetUnitId!=state.Pending.UnitId && state.Units.Any(u=>u.Id==state.Pending.UnitId && u.Seat==seat))
+                return state.Players[seat].Cards.Where(c=>c.Zone==CardZone.InHand).Select(c=>c.CardId).ToList();
             if(state.EngineVersion>=33 && state.Phase==Phase.EffectChoice && state.Pending?.Kind=="forced_discard" &&
                 state.Pending.ResumeAt=="primary_discard" && state.Pending.ChooserSeat==seat && state.Execution!=null &&
                 state.Execution.TargetUnitId==state.Pending.UnitId)
@@ -92,7 +96,7 @@ namespace Goa2.Rules
             Emit(state,command,"CardDiscarded",command.ActorSeat,instance.CardId,command.ActorSeat);
             Emit(state,command,"DiscardColorShown",command.ActorSeat,detail:catalog.Card(instance.CardId).Color);
             Emit(state,command,"ForcedDiscardCompleted",command.ActorSeat);
-            if(state.EngineVersion>=33 && state.Pending!.ResumeAt=="primary_discard")
+            if(state.EngineVersion>=33 && (state.Pending!.ResumeAt=="primary_discard" || state.EngineVersion>=35 && state.Pending.ResumeAt=="attack_before_discard"))
             {
                 state.Execution!.Cursor++;state.Pending=null;state.Phase=Phase.Action;ContinueCard(catalog,state,command);return;
             }

@@ -22,11 +22,25 @@
     },
     {
       "card_id": "wasp-01-电击",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-01-电击.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ShockTests.cs",
+        "tests/scenarios/shock-extra.json",
+        "tests/scenarios/shock-skip.json",
+        "tests/scenarios/shock-noextra.json",
+        "tests/scenarios/shock-empty.json",
+        "tests/scenarios/shock-riposte.json",
+        "tests/scenarios/shock-minion.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs"
+      ]
     },
     {
       "card_id": "wasp-02-回旋镖",

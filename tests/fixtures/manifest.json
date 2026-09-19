@@ -297,6 +297,15 @@
       "input": "tests/fixtures/engine34-closesupport-discard-scenario.json",
       "input_sha256": "46ff1f92644f0b040d39242ebcdde8e441a2bef714945f995a1575d7b53271a1",
       "provenance": "tests/fixtures/engine34-closesupport-discard.md"
+    },
+    {
+      "engine_version": 35,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine35-shock-discard.json",
+      "save_sha256": "8f7783ba4dc5e06c016d6fb4ef12e8d4bd8950f7a2853d95dc1d6341d898618a",
+      "input": "tests/fixtures/engine35-shock-discard-scenario.json",
+      "input_sha256": "f2d99865f0ea80850dd4e22090355efec8474dfd5aea509c069cf3d4c438fc30",
+      "provenance": "tests/fixtures/engine35-shock-discard.md"
     }
   ]
 }

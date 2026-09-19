@@ -1,0 +1,84 @@
+{
+  "engine": 35,
+  "implemented_cards": 46,
+  "data_only_cards": 62,
+  "build_utc": "2026-09-19T17:49:30.7928861Z",
+  "assemblies": {
+    "Goa2.Application.dll": "b8732b20cb2978f841131cdc2ba49cca3fd1e0f1a57abd34518788d54105aff2",
+    "Goa2.Domain.dll": "44b6d656b81ff129b85b3dd1db78c9a3968dcfa44907670cd8f2bbea3a5a189d",
+    "Goa2.Infrastructure.dll": "9c370131d268834db72c59890e804b0f66b6537a80350270241cb9612b3cabe3",
+    "Goa2.Rules.dll": "f3b357c3077e8fe6ea98785e3234c6e466cc4aa0640ef320154f441399b945fa",
+    "Goa2.ScenarioCli.dll": "8b5b3b50c59deb31b50530d11ddb45342ff1eb395eca811cbd6ff3fb25a3f81e"
+  },
+  "core": {
+    "passed": 980,
+    "failed": 0,
+    "report": "artifacts/tests/shock-core.trx",
+    "card_specific": 10
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "core_cli": {
+    "results": [
+      {
+        "input": "tests/scenarios/shock-extra.json",
+        "input_sha256": "8f86d16faa34762c0ea24e9329f42846be2decc81c6b0dda52c1c43631054f09",
+        "report": "artifacts/core-scenarios/shock-extra/43d88319781f490bb4d2651ef3a7785a/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shock-skip.json",
+        "input_sha256": "90cb6c6bde91da54bf1a85a928138f479b711a5d6dcfa1b970ef0ecbda62d833",
+        "report": "artifacts/core-scenarios/shock-skip/c4ed459cf2d847db85791f51198cf0f9/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shock-noextra.json",
+        "input_sha256": "0513af7cfe465f52fd021589066a6c4f70a88641cc0ac3038d47efb64def54a2",
+        "report": "artifacts/core-scenarios/shock-noextra/ebee7f67b1754ef9a8bd109b91136195/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shock-empty.json",
+        "input_sha256": "d4ff556a14ccd3098185c6931e8f6c20e2722a0b0c7dd5a064b4e18f82bd83a0",
+        "report": "artifacts/core-scenarios/shock-empty/e212f01da6064b54bffd6a4942946da7/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shock-riposte.json",
+        "input_sha256": "822ca13b6f4de8d5307fc254efb48872bb09ef11476e7fc944fc1f90313716a0",
+        "report": "artifacts/core-scenarios/shock-riposte/3c11a82ed45441c38279cfa441da5c39/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shock-minion.json",
+        "input_sha256": "cd6f3b3054b30821b9faa494b5fce4c3a2ab1172d8e4f9c5b39c2a18dabe34c3",
+        "report": "artifacts/core-scenarios/shock-minion/a3b5836a0edc432d8fbb0d736e401549/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine35-shock-discard-scenario.json",
+        "input_sha256": "f2d99865f0ea80850dd4e22090355efec8474dfd5aea509c069cf3d4c438fc30",
+        "report": "artifacts/core-scenarios/engine35-shock-discard-scenario/fd9016dd9c6644f391a8fc96cfd33bc2/report.json",
+        "steps": 14,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 111
+  },
+  "manual_presets": [
+    "shock"
+  ],
+  "note": "Core CLI commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

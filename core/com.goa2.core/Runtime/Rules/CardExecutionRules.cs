@@ -100,6 +100,10 @@ namespace Goa2.Rules
                         if(BeginHeroTarget(catalog,state,command,execution,program)) return;
                         StopCard(catalog,state,command,"no_targets");
                         return;
+                    case InstructionKind.OptionalOtherHeroDiscard:
+                        if(BeginHeroTarget(catalog,state,command,execution,program))return;
+                        execution.Cursor++;
+                        break;
                     case InstructionKind.ApplyEffect:
                         ApplyTimedEffect(catalog,state,command,execution,program);
                         execution.Cursor++;
