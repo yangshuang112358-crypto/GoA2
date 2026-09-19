@@ -378,6 +378,15 @@
       "input": "tests/fixtures/engine43-command-heavy-scenario.json",
       "input_sha256": "b4b73d75949006b70f02d4364e3894a1245ab687037831eee78864bd7211a46b",
       "provenance": "tests/fixtures/engine43-command-heavy.md"
+    },
+    {
+      "engine_version": 44,
+      "accepted_commands": 17,
+      "save": "tests/fixtures/engine44-control-move.json",
+      "save_sha256": "1b14e166a98c6ba45a5fe57b246149b5ccb20f11cc71d00a21da7c64726fc218",
+      "input": "tests/fixtures/engine44-control-move-scenario.json",
+      "input_sha256": "b625f581453ac68a065c87aa0ea159fdd73e4204c59187b0ae3960559480a465",
+      "provenance": "tests/fixtures/engine44-control-move.md"
     }
   ]
 }

@@ -12,13 +12,13 @@ namespace Goa2.Tests
  public sealed class CommandMinionTests
  {
   internal const string Card="sabina-07-指挥",Melee="minion:-3,1",Ranged="minion:-1,2",Heavy="minion:3,1";
-  internal static GameSession Setup(ContentCatalog cat,bool boundary=false,bool suppression=false)
+  internal static GameSession Setup(ContentCatalog cat,bool boundary=false,bool suppression=false,string card=Card)
   {
-   var g=LocalGameFactory.Create(cat,"command-minion",new[]{"A","B","C","D"},42,true);Apply(g,0,CommandKind.DebugPrepare,"sabina,wasp,brogan,arien");
+   var g=LocalGameFactory.Create(cat,"command-minion",new[]{"A","B","C","D"},42,true);Apply(g,0,CommandKind.DebugPrepare,"sabina,wasp,brogan,arien");if(card!=Card)Apply(g,0,CommandKind.DebugEquipCard,card,target:0);
    Apply(g,0,CommandKind.DebugTeleport,"hero:0",cell:new Hex(-2,0));Apply(g,0,CommandKind.DebugTeleport,"hero:1",cell:new Hex(-2,-1));Apply(g,0,CommandKind.DebugTeleport,"hero:2",cell:new Hex(6,-8));Apply(g,0,CommandKind.DebugTeleport,"hero:3",cell:suppression?new Hex(-1,-1):new Hex(7,-8));
    Apply(g,0,CommandKind.DebugTeleport,Ranged,cell:new Hex(-2,1));Apply(g,0,CommandKind.DebugTeleport,Heavy,cell:new Hex(-1,0));
-   string[] cards={Card,"wasp-06-静电封锁","brogan-06-铜墙铁壁",suppression?"arien-06-打断施法":"arien-07-潮水"};for(int s=0;s<4;s++)Apply(g,s,CommandKind.SelectCard,cards[s]);
-   if(suppression)Apply(g,3,CommandKind.BeginPrimary);Apply(g,1,boundary?CommandKind.BeginPrimary:CommandKind.Pass);Apply(g,2,CommandKind.Pass);Assert.That(g.View(0).ActiveSeat,Is.EqualTo(0));return g;
+   string[] cards={card,"wasp-06-静电封锁","brogan-06-铜墙铁壁",suppression?"arien-06-打断施法":"arien-07-潮水"};for(int s=0;s<4;s++)Apply(g,s,CommandKind.SelectCard,cards[s]);
+   if(suppression)Apply(g,3,CommandKind.BeginPrimary);Apply(g,1,boundary?CommandKind.BeginPrimary:CommandKind.Pass);Apply(g,2,CommandKind.Pass);if(g.View(0).ActiveSeat==3)Apply(g,3,CommandKind.Pass);Assert.That(g.View(0).ActiveSeat,Is.EqualTo(0));return g;
   }
   [Test] public void ContractAndOldEngineGate()
   {var c=BattlefieldTests.Catalog().Card(Card);Assert.That(c.Initiative,Is.EqualTo(4));Assert.That(c.SubtypeValue,Is.EqualTo(2));Assert.That(c.SecondaryMovement,Is.EqualTo(2));Assert.That(c.SecondaryDefense,Is.EqualTo(2));Assert.That(CombatRules.HasPrimaryProgram(c),Is.True);Assert.That(CombatRules.HasPrimaryProgram(c,42),Is.False);c.Text+="同时";Assert.That(CombatRules.HasPrimaryProgram(c),Is.False);}

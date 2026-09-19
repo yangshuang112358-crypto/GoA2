@@ -1,0 +1,75 @@
+{
+  "engine": 44,
+  "implemented_cards": 55,
+  "data_only_cards": 53,
+  "build_utc": "2026-09-19T19:17:49.1658757Z",
+  "assemblies": {
+    "Goa2.Application.dll": "8379387c2b3af9ab006d6b833b32af08739ca66893458eca4b72fa3ba0bc3103",
+    "Goa2.Domain.dll": "a3b24a4b237a9ceebb18ceed83fac1cb646811dbdd1ee84e7790f40d74b2d1a6",
+    "Goa2.Editor.dll": "2c6a198287442cc20be47f0b235ed6d465b2fd30d24979ef1afdc5d05d83ee34",
+    "Goa2.Infrastructure.dll": "93126d3ad6eb9ca5c8b6d4a1a82bd06d8007ef2446439027bbc591b60134c164",
+    "Goa2.Rules.dll": "3845f6ea41e8137dffd45e0fa4512dbfa80cc02361e2b62b078027428831b809"
+  },
+  "core": {
+    "passed": 1149,
+    "failed": 0,
+    "report": "artifacts/tests/control-unity-0.xml",
+    "card_specific": 8,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/control-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/control-move.json",
+        "input_sha256": "48f90a8cd8583c58d1d69e315b3c00ac1906db0c8ee16878d6cc618835acfba9",
+        "report": "artifacts/editor-scenarios/control-move/d06d96f4712e48ffb88b821df8ccaba9/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/control-skip.json",
+        "input_sha256": "75f5f1bf27ce2037a2142c1dbcc18f0b49384c731ac50c33dda9700d1075957c",
+        "report": "artifacts/editor-scenarios/control-skip/4943cf614c1c4b1b9517d73a1704b68b/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/control-heavy.json",
+        "input_sha256": "3777f1302a7b5fb49cad8acc0960a6b0f775a907099953a50fa1e56bd5fee0e6",
+        "report": "artifacts/editor-scenarios/control-heavy/7193ac6c49a042489a4d17a265635e70/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/control-invalid.json",
+        "input_sha256": "21bab234aa8f47451430dab32b734022c4dabe130e7ba53ff84589a3061f5754",
+        "report": "artifacts/editor-scenarios/control-invalid/8596421872414b799492b837ebff9138/report.json",
+        "steps": 22,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine44-control-move-scenario.json",
+        "input_sha256": "b625f581453ac68a065c87aa0ea159fdd73e4204c59187b0ae3960559480a465",
+        "report": "artifacts/editor-scenarios/engine44-control-move-scenario/e1086b91c7b0411faf9a4888b74e4151/report.json",
+        "steps": 17,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 93
+  },
+  "manual_presets": [
+    "strategic-control"
+  ],
+  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}
