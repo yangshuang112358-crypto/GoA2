@@ -795,11 +795,21 @@
     },
     {
       "card_id": "arien-11-潮汐之力",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-11-潮汐之力.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/TidalPowerTests.cs",
+        "tests/scenarios/tidal-place.json",
+        "tests/scenarios/tidal-boundary.json",
+        "tests/scenarios/tidal-invalid.json",
+        "tests/scenarios/tidal-secondary.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs"
+      ]
     },
     {
       "card_id": "arien-12-潮汐之主",

@@ -351,6 +351,15 @@
       "input": "tests/fixtures/engine40-pike-repeat-scenario.json",
       "input_sha256": "0bb371405079f60dcd8dde8fc3f5812f2856a94da2e3fd0be9b2c12915ff5104",
       "provenance": "tests/fixtures/engine40-pike-repeat.md"
+    },
+    {
+      "engine_version": 41,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine41-tidal-placement.json",
+      "save_sha256": "e607be4f4098864ed6128cf30371cee94e00490a8d0e167b3c90d2f862948024",
+      "input": "tests/fixtures/engine41-tidal-placement-scenario.json",
+      "input_sha256": "e30f4511cfe6d56bfc9349fb1446149ef11d38fbf3d51549aea05ee0e3ca40ef",
+      "provenance": "tests/fixtures/engine41-tidal-placement.md"
     }
   ]
 }

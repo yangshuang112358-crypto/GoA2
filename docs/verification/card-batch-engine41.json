@@ -1,0 +1,75 @@
+{
+  "engine": 41,
+  "implemented_cards": 52,
+  "data_only_cards": 56,
+  "build_utc": "2026-09-19T18:40:59.9385271Z",
+  "assemblies": {
+    "Goa2.Application.dll": "2c3e4606875160e9e2d30707712cdce90ed8bbf2a058e434bb2156b3a1941629",
+    "Goa2.Domain.dll": "6fc04df8d81d1128bfbdc7d9dd46a0a50ab3b0ad42c469617712248096809f06",
+    "Goa2.Editor.dll": "f597e441e95b51a8a5fe3691eb9787e10b66c366e043bfdd5f6f8ed7a2d29dcc",
+    "Goa2.Infrastructure.dll": "5f183fb162ab101b1ab040d1a4badc72a9d027bd0c30a9b41f6fccb28a727706",
+    "Goa2.Rules.dll": "4b8e8f27429d6468104aff7bdea2a6aff6b079dfa6c426a927560325b84f6d13"
+  },
+  "core": {
+    "passed": 1085,
+    "failed": 0,
+    "report": "artifacts/tests/tidal-unity-0.xml",
+    "card_specific": 12,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/tidal-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/tidal-place.json",
+        "input_sha256": "599d5c39ebe5c3738e6d9d593a4d6481e9f72ab537cade78a1129f7c9e1bb625",
+        "report": "artifacts/editor-scenarios/tidal-place/dff019b36420459d8f07f4766acbacb7/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/tidal-boundary.json",
+        "input_sha256": "b6f5e18ae801a61736bf64cf147d514da2b23d34041fde256215c1187ddf0c36",
+        "report": "artifacts/editor-scenarios/tidal-boundary/43e2be4264db4c7b9ae5ff6453f6a229/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/tidal-invalid.json",
+        "input_sha256": "ce9bb0b775c44f368a5eb59c32f0229f86dd282f75a2b85e5ab2410a06a35294",
+        "report": "artifacts/editor-scenarios/tidal-invalid/d64e79833fab49bda808e067e3c3ded3/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/tidal-secondary.json",
+        "input_sha256": "437273a4542da4d07a6f1a1e15d2cf10d761d705761eb597fa5f058a484fdd99",
+        "report": "artifacts/editor-scenarios/tidal-secondary/e32e5fe8e99f42ffa988b3481415e96f/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine41-tidal-placement-scenario.json",
+        "input_sha256": "e30f4511cfe6d56bfc9349fb1446149ef11d38fbf3d51549aea05ee0e3ca40ef",
+        "report": "artifacts/editor-scenarios/engine41-tidal-placement-scenario/bcd91502989d438888fb0d79afc7c789/report.json",
+        "steps": 14,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 77
+  },
+  "manual_presets": [
+    "tidal-power"
+  ],
+  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

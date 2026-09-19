@@ -160,6 +160,7 @@ namespace Goa2.Presentation
                     case "forced_discard": return "反制选择";
                     case "optional_discard": return "攻击前弃牌";
                     case "effect_move": return "牌文移动";
+                    case "placement": return "放置落点";
                     case "card_swap": return "防御后换牌";
                     case "recover_discard": return "取回卡牌";
                     case "gold_transfer": return "选择拿取金币";
@@ -322,6 +323,7 @@ namespace Goa2.Presentation
             if ((view.Pending?.Kind == "effect_target" || view.Pending?.Kind=="effect_minion") && view.Pending.ChooserSeat == seat)
                 return view.Units.Where(u => view.EffectTargets.Contains(u.Id)).Select(u => u.Position).ToList();
             if (view.Pending?.Kind == "hero_respawn") return view.RespawnCells;
+            if (view.Pending?.Kind == "placement") return view.Placements;
             if (view.Pending?.Kind == "effect_move") return view.EffectMoves.Select(m=>m.Destination).ToList();
             if (view.Pending?.Kind == "round_minion_removal") return view.Units.Where(u => view.RoundMinionRemovals.Contains(u.Id)).Select(u => u.Position).ToList();
             if (view.Pending?.Kind == "minion_spawn" && view.Pending.ChooserSeat == seat)
@@ -495,6 +497,8 @@ namespace Goa2.Presentation
                 case "CardSelected": return actor + "更新了暗选";
                 case "SelectionConfirmed": return actor + "已确认";
                 case "CardRevealed": return actor + "揭示 " + catalog.Card(entry.CardId!).Name;
+                case "UnitPlaced": return actor + "放置到 " + entry.To;
+                case "PlacementChoiceRequired": return actor + "选择放置落点";
                 case "UnitMoved": return actor + "移动至 " + entry.To;
                 case "UnitPushed": return actor + "被推动 " + (entry.Path.Count-1) + " 格，位置 " + entry.To;
                 case "PushStopped": return actor + "推动停止：" + (entry.Detail=="obstacle" ? "前方地形阻挡" : entry.Detail=="occupied" ? "前方有单位" : "已到地图边缘");

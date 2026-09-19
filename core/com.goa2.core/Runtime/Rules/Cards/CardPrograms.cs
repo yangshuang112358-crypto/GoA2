@@ -4,7 +4,7 @@ using Goa2.Domain;
 
 namespace Goa2.Rules.Cards
 {
-    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget, OptionalRepeatAttackAfterHeroDefeat, OptionalMinionRemovalAfterDefeat, PushAttackTargetIfAdjacent, MoveIntoAttackTargetCell, RequiredStraightMoveToAttack, RequiredStraightMoveThroughEnemy, PrimaryMovement, TargetDiscardIfAble, OptionalOtherHeroDiscard, OptionalGoldTransfer, RequiredStraightMoveIfAble, OptionalDifferentAttackIfAdjacentEnemy }
+    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget, OptionalRepeatAttackAfterHeroDefeat, OptionalMinionRemovalAfterDefeat, PushAttackTargetIfAdjacent, MoveIntoAttackTargetCell, RequiredStraightMoveToAttack, RequiredStraightMoveThroughEnemy, PrimaryMovement, TargetDiscardIfAble, OptionalOtherHeroDiscard, OptionalGoldTransfer, RequiredStraightMoveIfAble, OptionalDifferentAttackIfAdjacentEnemy, ChooseSelfPlacement }
     internal enum HeroTargetKind { None, AlliedNearEnemy, AdjacentEnemyUsedAttack, EnemyInSkillRangeNearFriendlyMinion, OtherAdjacentEnemy, OtherEnemyInSkillRange }
     internal enum AttackBonusKind { None, TargetUsedAttack, AdjacentEnemies, OtherFriendlySupport }
     internal enum AttackRangeBonusKind { None, DiscardedBeforeAttack, OwnDiscardPile }
@@ -156,6 +156,7 @@ namespace Goa2.Rules.Cards
         };
         private static readonly Dictionary<string,(string text, int minimumEngine, string? subtype, PrimaryProgram program)> Skills = new Dictionary<string,(string, int, string?, PrimaryProgram)>
         {
+            ["arien-11-潮汐之力"] = ("将你放置到攻击距离内没有出生点的格子内。",41,"远程",new PrimaryProgram("self_placement_no_spawn",0,instructions:new[]{InstructionKind.ChooseSelfPlacement,InstructionKind.End})),
             ["tigerclaw-08-偷天妙手"] = ("移动最多2格，再从与你相邻的一个敌方英雄处拿取最多1枚金币。然后沿直线移动2格（如果可行）。",37,null,new PrimaryProgram("move_steal_one_gold_move_straight",0,textMoveDistance:2,goldMaximum:1,instructions:new[]{InstructionKind.OptionalTextMove,InstructionKind.OptionalGoldTransfer,InstructionKind.RequiredStraightMoveIfAble,InstructionKind.End})),
             ["tigerclaw-10-探囊取物"] = ("移动最多2格，再从与你相邻的一个敌方英雄处拿取最多2枚金币。然后沿直线移动2格（如果可行）。",38,null,new PrimaryProgram("move_steal_two_gold_move_straight",0,textMoveDistance:2,goldMaximum:2,instructions:new[]{InstructionKind.OptionalTextMove,InstructionKind.OptionalGoldTransfer,InstructionKind.RequiredStraightMoveIfAble,InstructionKind.End})),
             ["tigerclaw-11-盗贼大师"] = ("移动最多2格，再从与你相邻的一个敌方英雄处拿取最多3枚金币。然后沿直线移动2格（如果可行）。",39,null,new PrimaryProgram("move_steal_three_gold_move_straight",0,textMoveDistance:2,goldMaximum:3,instructions:new[]{InstructionKind.OptionalTextMove,InstructionKind.OptionalGoldTransfer,InstructionKind.RequiredStraightMoveIfAble,InstructionKind.End})),

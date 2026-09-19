@@ -114,6 +114,9 @@ namespace Goa2.Rules
                         if(BeginGoldTransfer(state,command,execution,program))return;
                         execution.Cursor++;
                         break;
+                    case InstructionKind.ChooseSelfPlacement:
+                        if(BeginSelfPlacement(catalog,state,command,execution))return;
+                        StopCard(catalog,state,command,"no_destinations");return;
                     case InstructionKind.ApplyEffect:
                         ApplyTimedEffect(catalog,state,command,execution,program);
                         execution.Cursor++;

@@ -16,3 +16,5 @@
 2026-09-20 验证：Release 构建零警告、零错误；电击六个完整交互场景与一个弃牌窗口场景通过。另实际验证成功、断言失败、未知字段、缺失参数和拒绝覆盖五种调用结果，报告 artifacts/tests/cli-smoke-8342b6a608db4442a79ae6cf468e5ddd/verification.json。
 
 可视化播放继续使用 `tools/run-scenarios.ps1 -Visual -Paused -KeepOpen`，它需要已构建的 Unity Player。两种入口分别保存证据。
+
+若系统也阻止.NET程序集，可使用[Unity编辑器场景执行](Unity编辑器场景执行.md)。编辑器报告单独保存，不能混入Dotnet CLI结果。

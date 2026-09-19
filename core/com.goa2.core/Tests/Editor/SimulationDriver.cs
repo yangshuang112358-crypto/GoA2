@@ -158,7 +158,13 @@ namespace Goa2.Tests
                         return defenses.Count>0 && Next(5)!=0 ? Step(CommandKind.Defend,seat,Pick(defenses).CardId) : Step(CommandKind.DeclineDefense,seat);
                     case "forced_discard": return Step(CommandKind.ForcedDiscard,seat,Pick(own.ForcedDiscardCards));
                     case "optional_discard": return Step(CommandKind.ChooseOptionalDiscard,seat,Next(3)==0 ? "skip" : Pick(own.OptionalDiscardCards));
-                    case "effect_move": return Next(3)==0 ? Step(CommandKind.ChooseEffectMove,seat,"skip") : Step(CommandKind.ChooseEffectMove,seat,at:Pick(own.EffectMoves).Destination);
+                    case "effect_move": return view.Pending.Optional && Next(3)==0 ? Step(CommandKind.ChooseEffectMove,seat,"skip") : Step(CommandKind.ChooseEffectMove,seat,at:Pick(own.EffectMoves).Destination);
+                    case "placement": return Step(CommandKind.ChoosePlacement,seat,at:Pick(own.Placements));
+                    case "gold_transfer":
+                        if(Next(3)==0)return Step(CommandKind.ChooseGoldTransfer,seat,"0");
+                        var gold=Pick(own.GoldTransfers);return Step(CommandKind.ChooseGoldTransfer,seat,gold.Amount.ToString(System.Globalization.CultureInfo.InvariantCulture),target:gold.TargetSeat);
+                    case "effect_minion": return Step(CommandKind.ChooseEffectTarget,seat,Next(3)==0 ? "skip" : Pick(own.EffectTargets));
+                    case "card_swap": return Step(CommandKind.ChooseCardSwap,seat,Next(3)==0 ? "skip" : Pick(own.CardSwapOptions));
                     case "recover_discard": return Step(CommandKind.ChooseRecoveredCard,seat,Next(3)==0 ? "skip" : Pick(own.RecoverableCards));
                     case "round_minion_removal": return Step(CommandKind.ChooseRoundMinionRemoval,seat,Pick(own.RoundMinionRemovals));
                     case "minion_spawn":
