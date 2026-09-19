@@ -64,6 +64,8 @@ namespace Goa2.Rules
         }
         public static bool CanMoveAcross(ContentCatalog catalog, GameState state, UnitState unit, Hex from, Hex to)
         {
+            // A card ignoring heavy immunity does not remove immunity against other sources.
+            if(state.EngineVersion>=43 && unit.Kind=="heavy" && !GameRules.LegalMinionRemovals(state).Contains(unit.Id))return true;
             foreach (var effect in Current(state,EffectKind.MovementBoundary))
             {
                 var source = Source(state,effect);

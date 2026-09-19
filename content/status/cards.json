@@ -1311,11 +1311,26 @@
     },
     {
       "card_id": "sabina-07-指挥",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-07-指挥.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CommandMinionTests.cs",
+        "tests/scenarios/command-move.json",
+        "tests/scenarios/command-skip.json",
+        "tests/scenarios/command-boundary.json",
+        "tests/scenarios/command-invalid.json",
+        "tests/scenarios/command-suppressed.json",
+        "tests/scenarios/command-heavy.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs"
+      ]
     },
     {
       "card_id": "sabina-08-带头冲锋",

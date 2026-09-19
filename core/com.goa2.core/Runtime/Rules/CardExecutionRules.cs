@@ -104,6 +104,12 @@ namespace Goa2.Rules
                         if (BeginRecovery(catalog,state,command,execution,program)) return;
                         execution.Cursor++;
                         break;
+                    case InstructionKind.ChooseFriendlyMinionTarget:
+                        if(BeginFriendlyMinionTarget(catalog,state,command))return;
+                        StopCard(catalog,state,command,"no_targets");return;
+                    case InstructionKind.OptionalTargetUnitMove:
+                        if(BeginTargetUnitMove(catalog,state,command))return;
+                        execution.Cursor++;break;
                     case InstructionKind.ChooseHeroTarget:
                         if(BeginHeroTarget(catalog,state,command,execution,program)) return;
                         StopCard(catalog,state,command,"no_targets");
