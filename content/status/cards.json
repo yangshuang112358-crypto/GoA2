@@ -665,11 +665,24 @@
     },
     {
       "card_id": "brogan-09-持盾",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-09-持盾.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ShieldMinionTests.cs",
+        "tests/scenarios/shield-pay.json",
+        "tests/scenarios/shield-decline.json",
+        "tests/scenarios/shield-empty.json",
+        "tests/scenarios/shield-range.json",
+        "tests/scenarios/shield-both.json",
+        "tests/scenarios/shield-replace.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Domain/Effects.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs"
+      ]
     },
     {
       "card_id": "brogan-10-吟游诗人",

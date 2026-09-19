@@ -1,0 +1,89 @@
+{
+  "engine": 54,
+  "implemented_cards": 65,
+  "data_only_cards": 43,
+  "build_utc": "2026-09-19T21:18:29.7746213Z",
+  "assemblies": {
+    "Goa2.Application.dll": "6fc4788d02efeeadd8d786040149af09ec927ffda4f743f7e619cb90dace199e",
+    "Goa2.Domain.dll": "3458d8f5c2c6dfb22d03f75dd5fabd636f6ce8493fe7505be180ceebdb17c7a8",
+    "Goa2.Editor.dll": "0d1478b9d47b42b64e565317284a3917991df3aa4bbf4fa20676212114cbcfc0",
+    "Goa2.Infrastructure.dll": "ea694a787400b18140e75918d7a0c2f87371f6bc018b12f2303181f2eba69996",
+    "Goa2.Rules.dll": "5efce55e82087cf1fff25bf9eda7a932d914328f14218008458cdafd27c0287f"
+  },
+  "core": {
+    "passed": 1396,
+    "failed": 0,
+    "report": "artifacts/tests/shield-unity-0.xml",
+    "card_specific": 15,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/shield-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/shield-pay.json",
+        "input_sha256": "ae01d9e3fc6452435977c60891e23d1e7fa950c107870fe82b81046271f2ea9c",
+        "report": "artifacts/editor-scenarios/shield-pay/a20b968a262c413f99d807e285c9c16b/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shield-decline.json",
+        "input_sha256": "32833fd12e98402a158c1cbe2f9e1db61d1d1aef3274844e50e2a16a3f043052",
+        "report": "artifacts/editor-scenarios/shield-decline/d6af494aa422434db9f900ec5b2551fd/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shield-empty.json",
+        "input_sha256": "e8de019bfb6d5b5e0af80411a9e994aa8b0a5ef45223c449a9ecaefc26742d35",
+        "report": "artifacts/editor-scenarios/shield-empty/0d3e0f1a4ef6439994e94c6b053e159d/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shield-range.json",
+        "input_sha256": "d8e306e60938c0077633f63f6b3438d406f822833c1543ff2176531b03c96762",
+        "report": "artifacts/editor-scenarios/shield-range/97dc9acfdd984174b13904c9f69e1080/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shield-both.json",
+        "input_sha256": "cca7bfca9fd115de4a64dce1d0edef7475ef21fdcfb2d0aa02cd31c0b6c19b92",
+        "report": "artifacts/editor-scenarios/shield-both/9441d548a70749a08c1dc8925c65a6c0/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shield-replace.json",
+        "input_sha256": "2cf3a4808acb94ffb571c30113b7fc57993c259a3c92ab6d2840e4ad4757104b",
+        "report": "artifacts/editor-scenarios/shield-replace/c35945ccc6334e8392d47b3d35c4530b/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine54-shield-payment-scenario.json",
+        "input_sha256": "e29a25328f40c557642a6da8501588b40fe223ac37e007d4d40a169d5c913790",
+        "report": "artifacts/editor-scenarios/engine54-shield-payment-scenario/e586e0177a5c47ceabe7f776017f206c/report.json",
+        "steps": 24,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 147
+  },
+  "manual_presets": [
+    "shield-minion"
+  ],
+  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified."
+}

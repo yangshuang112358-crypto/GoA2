@@ -468,6 +468,15 @@
       "input": "tests/fixtures/engine53-guard-payment-scenario.json",
       "input_sha256": "8415b80d552720abfcbb95bb78d577649b0f14e001d06da562e05fd98748ea9e",
       "provenance": "tests/fixtures/engine53-guard-payment.md"
+    },
+    {
+      "engine_version": 54,
+      "accepted_commands": 24,
+      "save": "tests/fixtures/engine54-shield-payment.json",
+      "save_sha256": "1e3c791590509b27c8bdb9e872149867f566978c5adeca8e468341e57600ef4f",
+      "input": "tests/fixtures/engine54-shield-payment-scenario.json",
+      "input_sha256": "e29a25328f40c557642a6da8501588b40fe223ac37e007d4d40a169d5c913790",
+      "provenance": "tests/fixtures/engine54-shield-payment.md"
     }
   ]
 }

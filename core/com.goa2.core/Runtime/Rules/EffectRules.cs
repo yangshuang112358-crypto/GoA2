@@ -66,8 +66,10 @@ namespace Goa2.Rules
         }
         public static List<ActiveEffect> MinionDefeatProtectors(ContentCatalog catalog,GameState state,UnitState unit)
         {
-            if(state.EngineVersion<53 || unit.Kind!="melee")return new List<ActiveEffect>();
-            return Current(state,EffectKind.FriendlyMeleeDefeatPrevention).Where(e=>
+            if(state.EngineVersion<53 || (unit.Kind!="melee" && unit.Kind!="ranged"))return new List<ActiveEffect>();
+            var effects=Current(state,EffectKind.FriendlyMeleeDefeatPrevention).Where(e=>unit.Kind=="melee");
+            if(state.EngineVersion>=54)effects=effects.Concat(Current(state,EffectKind.FriendlyNonHeavyDefeatPrevention));
+            return effects.Where(e=>
             {
                 var source=Source(state,e);
                 return source!=null && source.Team==unit.Team && CanAffect(state,e.ControllerSeat,unit) && source.Position.Distance(unit.Position)<=Radius(catalog,state,e);

@@ -1,0 +1,134 @@
+{
+  "SchemaVersion": 1,
+  "Id": "shield-replace",
+  "Name": "持盾：调试替换来源取消旧保护",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "brogan,wasp,sabina,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "brogan-09-持盾",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": -2,
+        "Y": 1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 7,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "minion:-1,2",
+      "Destination": {
+        "X": -3,
+        "Y": 2
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "brogan-09-持盾"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-06-静电封锁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "sabina-06-并肩作战"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p3",
+      "Value": ""
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2",
+      "Value": ""
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1",
+      "Value": "",
+      "Expect": {
+        "EffectCounts": {
+          "brogan-09-持盾": 1
+        }
+      }
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p4",
+      "Value": "",
+      "Expect": {
+        "Phase": "Planning",
+        "Turn": 2
+      }
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "brogan-07-保卫",
+      "Target": "p1",
+      "Expect": {
+        "EffectCounts": {
+          "brogan-09-持盾": 0
+        }
+      }
+    },
+    {
+      "Command": "DebugAttack",
+      "Actor": "p2",
+      "Value": "minion:-1,2|0",
+      "Expect": {
+        "Gold": {
+          "p2": 2
+        },
+        "Phase": "Planning"
+      }
+    }
+  ]
+}
