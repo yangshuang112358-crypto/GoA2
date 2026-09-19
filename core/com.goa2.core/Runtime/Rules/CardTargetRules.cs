@@ -55,7 +55,7 @@ namespace Goa2.Rules
             var execution=state.Execution;
             if(state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="effect_target" || state.Pending.ChooserSeat!=seat ||
                 execution==null || execution.ControllerSeat!=seat || state.ActiveSeat!=seat) return new List<string>();
-            if(state.Pending.ResumeAt=="friendly_minion_move")return FriendlyMinionTargets(catalog,state);
+            if(state.Pending.ResumeAt=="friendly_minion_move" || state.Pending.ResumeAt=="friendly_minion_repeat")return FriendlyMinionTargets(catalog,state);
             if(state.Pending.ResumeAt=="before_attack_other_move")return OtherMoveTargets(catalog,state);
             var program=CardPrograms.Primary(catalog.Card(execution.CardId),state.EngineVersion);
             return program!=null && program.Id==execution.ProgramId && program.Version==execution.ProgramVersion && execution.Cursor>=0 &&
@@ -74,6 +74,16 @@ namespace Goa2.Rules
         }
         private static void ChooseEffectTarget(ContentCatalog catalog,GameState state,Command command)
         {
+            if(state.Pending?.ResumeAt=="friendly_minion_repeat")
+            {
+                Require(state.Phase==Phase.EffectChoice && state.Pending.Kind=="effect_target" && state.Pending.ChooserSeat==command.ActorSeat &&
+                    state.Pending.Optional && state.Execution?.ControllerSeat==command.ActorSeat && MinionMoveProgram(catalog,state,InstructionKind.OptionalRepeatFriendlyMinionMove)!=null &&
+                    (command.Value=="skip" || LegalEffectTargets(catalog,state,command.ActorSeat).Contains(command.Value)),"invalid_effect_target","请由来源英雄选择重复移动的小兵，或不重复。");
+                var repeat=state.Execution!;
+                if(command.Value=="skip"){repeat.Cursor+=2;Emit(state,command,"ActionRepeatSkipped",command.ActorSeat,repeat.CardId);}
+                else{repeat.TargetUnitId=command.Value;repeat.Cursor++;Emit(state,command,"ActionRepeated",command.ActorSeat,repeat.CardId,detail:command.Value);}
+                state.Pending=null;state.Phase=Phase.Action;ContinueCard(catalog,state,command);return;
+            }
             if(state.Pending?.ResumeAt=="before_attack_other_move"){ChooseOtherMoveTarget(catalog,state,command);return;}
             if(state.Pending?.Kind=="effect_minion") {ChooseEffectMinionRemoval(catalog,state,command);return;}
             if(state.EngineVersion>=35 && state.Pending?.Kind=="effect_target" && state.Pending.ResumeAt=="attack_before_optional_discard")

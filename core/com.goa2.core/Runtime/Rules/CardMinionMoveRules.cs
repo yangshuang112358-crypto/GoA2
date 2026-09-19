@@ -14,7 +14,7 @@ namespace Goa2.Rules
   }
   private static List<string> FriendlyMinionTargets(ContentCatalog catalog,GameState state)
   {
-   var program=MinionMoveProgram(catalog,state,InstructionKind.ChooseFriendlyMinionTarget);if(program==null)return new List<string>();
+   var program=MinionMoveProgram(catalog,state,InstructionKind.ChooseFriendlyMinionTarget) ?? MinionMoveProgram(catalog,state,InstructionKind.OptionalRepeatFriendlyMinionMove);if(program==null)return new List<string>();
    var e=state.Execution!;var source=state.Units.SingleOrDefault(u=>u.Seat==e.ControllerSeat);if(source==null)return new List<string>();
    int range=(catalog.Card(e.CardId).SubtypeValue??0)+state.Players[e.ControllerSeat].RangeBonus;var allowed=new HashSet<string>(LegalMinionRemovals(state,program.IgnoreHeavyImmunity));
    return state.Units.Where(u=>u.Team==source.Team && IsMinion(u) && allowed.Contains(u.Id) && u.Position.Distance(source.Position)<=range).Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
@@ -22,8 +22,9 @@ namespace Goa2.Rules
   private static bool BeginFriendlyMinionTarget(ContentCatalog catalog,GameState state,Command command)
   {
    var targets=FriendlyMinionTargets(catalog,state);if(targets.Count==0)return false;var e=state.Execution!;
-   state.Phase=Phase.EffectChoice;state.Pending=new PendingChoice{Id="minion-move-target:"+(state.Events.Count+1),Kind="effect_target",ChooserSeat=e.ControllerSeat,Source=e.CardId,ResumeAt="friendly_minion_move",CandidateUnits=targets};
-   Emit(state,command,"EffectTargetChoiceRequired",e.ControllerSeat,e.CardId);return true;
+   bool repeat=MinionMoveProgram(catalog,state,InstructionKind.OptionalRepeatFriendlyMinionMove)!=null;
+   state.Phase=Phase.EffectChoice;state.Pending=new PendingChoice{Id="minion-move-target:"+(state.Events.Count+1),Kind="effect_target",ChooserSeat=e.ControllerSeat,Source=e.CardId,ResumeAt=repeat?"friendly_minion_repeat":"friendly_minion_move",Optional=repeat,CandidateUnits=targets};
+   Emit(state,command,repeat?"ActionRepeatChoiceRequired":"EffectTargetChoiceRequired",e.ControllerSeat,e.CardId);return true;
   }
   private static bool BeginTargetUnitMove(ContentCatalog catalog,GameState state,Command command)
   {

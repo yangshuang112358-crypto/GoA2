@@ -1,0 +1,162 @@
+{
+  "SchemaVersion": 1,
+  "Id": "advantage-range",
+  "Name": "战略优势：第二次重新检查范围",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "sabina,wasp,brogan,arien",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "sabina-11-战略优势",
+      "Actor": "p1",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": -1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:-1,2",
+      "Actor": "p1",
+      "Destination": {
+        "X": -2,
+        "Y": 1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "minion:3,1",
+      "Actor": "p1",
+      "Destination": {
+        "X": -1,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-11-战略优势",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-06-静电封锁",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-06-铜墙铁壁",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "arien-07-潮水",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p2"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p3",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p4"
+      }
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p4",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "minion:-3,1",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Value": "",
+      "Actor": "p1",
+      "Destination": {
+        "X": -4,
+        "Y": -1
+      },
+      "Expect": {
+        "PendingKind": "effect_target",
+        "PendingChooser": "p1",
+        "EventCounts": {
+          "ActionRepeatChoiceRequired": 1,
+          "CardResolved": 0
+        }
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "minion:-3,1",
+      "Actor": "p1",
+      "Expect": {
+        "Code": "invalid_effect_target"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "minion:-1,2",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Value": "skip",
+      "Actor": "p1",
+      "Expect": {
+        "Phase": "Planning"
+      }
+    }
+  ]
+}

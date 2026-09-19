@@ -550,6 +550,9 @@ namespace Goa2.Presentation
                 case "EffectMinionChoiceRequired": return actor + "可额外移除小兵，不获得金币";
                 case "EffectMinionRemovalSkipped": return actor + "选择不额外移除小兵";
                 case "EffectMinionRemoved": return actor + "完成牌文移除，不获得金币";
+                case "ActionRepeatChoiceRequired": return actor+"可选择重复一次行动";
+                case "ActionRepeated": return actor+"开始本牌第二次行动";
+                case "ActionRepeatSkipped": return actor+"选择不重复行动";
                 case "AttackRepeatChoiceRequired": return actor + "击败英雄，可选择再次攻击或停止";
                 case "AttackRepeated": return actor + "继续本牌的下一次攻击";
                 case "AttackRepeatSkipped": return actor + "选择不再重复攻击";

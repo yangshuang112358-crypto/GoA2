@@ -1378,11 +1378,24 @@
     },
     {
       "card_id": "sabina-11-战略优势",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-11-战略优势.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/StrategicAdvantageTests.cs",
+        "tests/scenarios/advantage-same.json",
+        "tests/scenarios/advantage-different.json",
+        "tests/scenarios/advantage-skip.json",
+        "tests/scenarios/advantage-range.json",
+        "tests/scenarios/advantage-heavy.json",
+        "tests/scenarios/advantage-return.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs"
+      ]
     },
     {
       "card_id": "sabina-12-重型枪械",

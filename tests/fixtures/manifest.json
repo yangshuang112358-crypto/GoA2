@@ -387,6 +387,15 @@
       "input": "tests/fixtures/engine44-control-move-scenario.json",
       "input_sha256": "b625f581453ac68a065c87aa0ea159fdd73e4204c59187b0ae3960559480a465",
       "provenance": "tests/fixtures/engine44-control-move.md"
+    },
+    {
+      "engine_version": 45,
+      "accepted_commands": 24,
+      "save": "tests/fixtures/engine45-advantage-repeat.json",
+      "save_sha256": "6ffea79d20834b4da0e4844c304e8f70d5f3fadb8cfe217e2c2f0caa4624ef74",
+      "input": "tests/fixtures/engine45-advantage-repeat-scenario.json",
+      "input_sha256": "c45a262d63cdee359cac7998fce6c8d49f091551b5275a53987b47a7b7f21c60",
+      "provenance": "tests/fixtures/engine45-advantage-repeat.md"
     }
   ]
 }

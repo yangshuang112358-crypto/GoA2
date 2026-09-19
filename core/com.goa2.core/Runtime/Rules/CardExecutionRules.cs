@@ -104,6 +104,10 @@ namespace Goa2.Rules
                         if (BeginRecovery(catalog,state,command,execution,program)) return;
                         execution.Cursor++;
                         break;
+                    case InstructionKind.OptionalRepeatFriendlyMinionMove:
+                        if(BeginMinionReturns(catalog,state,command))return;
+                        if(BeginFriendlyMinionTarget(catalog,state,command))return;
+                        execution.Cursor+=2;break;
                     case InstructionKind.ChooseFriendlyMinionTarget:
                         if(BeginFriendlyMinionTarget(catalog,state,command))return;
                         StopCard(catalog,state,command,"no_targets");return;
@@ -266,7 +270,8 @@ namespace Goa2.Rules
             if(BeginMinionReturns(catalog,state,command))return;
             var program=CardPrograms.Primary(catalog.Card(state.Execution.CardId),state.EngineVersion);
             if(program!=null && (program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalDifferentAttackIfAdjacentEnemy ||
-                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatAttackAfterHeroDefeat))
+                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatAttackAfterHeroDefeat ||
+                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatFriendlyMinionMove))
             {
                 ContinueCard(catalog,state,command);
                 return;
