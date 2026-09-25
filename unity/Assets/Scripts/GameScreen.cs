@@ -473,7 +473,7 @@ namespace Goa2.Presentation
         {
             var box = Box("card-detail");
             box.Add(Text(card.Name + "    先攻 " + card.Initiative, "section-title"));
-            box.Add(RulesText(card.Text, "card-rules"));
+            box.Add(RulesText(CardTextMarkup.Description(card), "card-rules"));
             box.Add(Button("本牌术语",()=>OpenKeywordGlossary(card),"quiet-button","card-keywords"));
             box.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "muted"));
             box.Add(Text("移 " + Number(card.SecondaryMovement) + "    防 " + Number(card.SecondaryDefense), "tiny"));
@@ -565,6 +565,8 @@ namespace Goa2.Presentation
                 case "DebugCrystalSet": return "调试水晶生命已更新";
                 case "MatchWon": return (entry.Detail.StartsWith("Blue:") ? "蓝队" : "红队") + "获胜";
                 case "PrimaryActionStarted": return actor + "开始主要行动";
+                case "UltimateTriggered": return actor + "触发紫卡能力 · " + (catalog.Cards.FirstOrDefault(c=>c.Id==entry.CardId)?.Name ?? "紫卡");
+                case "UltimateCompleted": return actor + "完成紫卡后续" + (entry.Detail=="no_targets" ? "（无合法目标）" : entry.Detail=="empty_hand" ? "（目标空手）" : "");
                 case "AttackTargetChoiceRequired": return actor + "选择攻击目标";
                 case "EffectMinionChoiceRequired": return actor + "可额外移除小兵，不获得金币";
                 case "EffectMinionRemovalSkipped": return actor + "选择不额外移除小兵";
@@ -718,10 +720,10 @@ namespace Goa2.Presentation
                 tile.Add(Text((card.Color=="purple" ? "紫卡 · 英雄8级获得" : card.Level.HasValue ? "卡牌等级 " + card.Level : "基础牌") + "    先攻 " + card.Initiative, "muted"));
                 if(galleryHero=="") tile.Add(Text(HeroName(card.HeroId),"tiny"));
                 tile.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "body"));
-                tile.Add(RulesText(card.Text, "card-rules"));
+                tile.Add(RulesText(CardTextMarkup.Description(card), "card-rules"));
                 tile.Add(Text("次要移动 " + Number(card.SecondaryMovement) + "    次要防御 " + Number(card.SecondaryDefense), "tiny"));
                 tile.Add(Text("底部被动 " + (card.Passive ?? "无"), "tiny"));
-                tile.Add(Text(renderedView.SupportedPrimaryCards.Contains(card.Id) ? "主要行动 · 已开放" : renderedView.SupportedDefenseCards.Contains(card.Id) ? "防御响应 · 已开放" : "牌文效果 · 待实施", "status-badge")); colorRows[card.Color].Add(tile);
+                tile.Add(Text(renderedView.SupportedUltimateCards.Contains(card.Id) ? "紫卡持续能力 · 已开放" : renderedView.SupportedPrimaryCards.Contains(card.Id) ? "主要行动 · 已开放" : renderedView.SupportedDefenseCards.Contains(card.Id) ? "防御响应 · 已开放" : "牌文效果 · 待实施", "status-badge")); colorRows[card.Color].Add(tile);
                 tiles.Add((card,tile));
                 AttachCardReading(tile,card);
             }
@@ -744,7 +746,7 @@ namespace Goa2.Presentation
                 tile.Add(Text(card.Name + " · 先攻 " + card.Initiative, "card-name"));
                 tile.Add(Text("第 " + play.Round + " 轮 · 第 " + play.Turn + " 回合", "muted"));
                 tile.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "body"));
-                tile.Add(RulesText(card.Text, "card-rules"));
+                tile.Add(RulesText(CardTextMarkup.Description(card), "card-rules"));
                 tile.Add(Text("次要移动 " + Number(card.SecondaryMovement) + " · 次要防御 " + Number(card.SecondaryDefense), "tiny"));
                 tile.Add(Text("底部被动 " + (card.Passive ?? "无"), "tiny")); scroll.Add(tile);
                 AttachCardReading(tile,card,player);

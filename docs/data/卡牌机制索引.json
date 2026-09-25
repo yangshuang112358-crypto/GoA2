@@ -192,7 +192,7 @@
         "conditional",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/wasp-12-电闪雷鸣.md",
       "question_candidates": [
         "U-011"

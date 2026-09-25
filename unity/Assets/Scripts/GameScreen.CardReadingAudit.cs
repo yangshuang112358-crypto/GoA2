@@ -52,8 +52,8 @@ namespace Goa2.Presentation
                 if(preview!=null && rules!=null)
                 {
                     item.PreviewBounds=preview.worldBound;item.TextBounds=rules.worldBound;item.FontSize=rules.resolvedStyle.fontSize;
-                item.FullText=CardTextMarkup.PlainText(rules.text)==card.Text;
-                item.Highlighted=rules.enableRichText && rules.text==CardTextMarkup.Format(card.Text);
+                item.FullText=CardTextMarkup.PlainText(rules.text)==CardTextMarkup.Description(card);
+                item.Highlighted=rules.enableRichText && rules.text==CardTextMarkup.Format(CardTextMarkup.Description(card));
                     item.FitsWindow=item.PreviewBounds.x>=0 && item.PreviewBounds.y>=0 && item.PreviewBounds.xMax<=Screen.width && item.PreviewBounds.yMax<=Screen.height;
                     item.RequiredTextHeight=rules.MeasureTextSize(rules.text,rules.contentRect.width,VisualElement.MeasureMode.Exactly,0,VisualElement.MeasureMode.Undefined).y;
                     item.TextNotClipped=rules.contentRect.height+1>=item.RequiredTextHeight && item.TextBounds.y>=item.PreviewBounds.y && item.TextBounds.yMax<=item.PreviewBounds.yMax;
@@ -63,7 +63,7 @@ namespace Goa2.Presentation
                     // Measure every card's rail excerpt using the actual UI font and rich-text settings.
                     var excerpt=RulesText("","card-rules-preview");excerpt.style.width=330;source.Add(excerpt);
                     yield return null;yield return null;
-                    string previewText=CardTextMarkup.Preview(card.Text,330,candidate=>excerpt.MeasureTextSize(candidate,0,VisualElement.MeasureMode.Undefined,0,VisualElement.MeasureMode.Undefined).x);
+                    string previewText=CardTextMarkup.Preview(CardTextMarkup.Description(card),330,candidate=>excerpt.MeasureTextSize(candidate,0,VisualElement.MeasureMode.Undefined,0,VisualElement.MeasureMode.Undefined).x);
                     excerpt.text=previewText;yield return null;
                     var required=excerpt.MeasureTextSize(previewText,0,VisualElement.MeasureMode.Undefined,0,VisualElement.MeasureMode.Undefined);
                     item.PreviewFits=required.x<=331 && required.y<=excerpt.contentRect.height+1 && CardTextMarkup.PlainText(previewText).Split('\n').Length<=2;

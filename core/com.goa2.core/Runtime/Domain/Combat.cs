@@ -31,6 +31,13 @@ namespace Goa2.Domain
         public List<string> UnitSources = new List<string>();
     }
     [Serializable]
+    public sealed class ActionCompletionProgress
+    {
+        public string SourceCardId = "", ProgramId = "", TargetUnitId = "";
+        public int ProgramVersion;
+        public string Stage = "target";
+    }
+    [Serializable]
     public sealed class CardExecution
     {
         public string CardId = "", ProgramId = "", TargetUnitId = "";
@@ -47,6 +54,8 @@ namespace Goa2.Domain
         public List<string>? DisplacedMinions;
         public List<string>? RemainingUnitTargets, AffectedHeroTargets;
         public string? ReturningMinionId;
+        public bool ActionStopped;
+        public ActionCompletionProgress? Completion;
     }
     [Serializable]
     public sealed class PendingMinionDefeat

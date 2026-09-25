@@ -70,6 +70,7 @@ namespace Goa2.Domain
         public Dictionary<string, List<Hex>> EffectAreas = new Dictionary<string, List<Hex>>();
         public List<string> SupportedPrimaryCards = new List<string>();
         public List<string> SupportedDefenseCards = new List<string>();
+        public List<string> SupportedUltimateCards = new List<string>();
         public List<string> AttackTargets = new List<string>();
         public List<string> DebugAttackTargets = new List<string>();
         public List<DefenseOption> DefenseOptions = new List<DefenseOption>();

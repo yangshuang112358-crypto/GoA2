@@ -1,0 +1,141 @@
+{
+  "SchemaVersion": 1,
+  "Id": "thunderstorm-suppressed",
+  "Name": "电闪雷鸣：基础技能被封锁不触发",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "wasp,brogan,sabina,arien"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "28",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugAdvance",
+      "Actor": "p1",
+      "Value": "round"
+    },
+    {
+      "Command": "ResolveRoundEnd",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "wasp-02-回旋镖"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "wasp-08-偏转屏障"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "wasp-14-动力助推"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "wasp-04-雷霆回旋镖"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "wasp-10-反射屏障"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "wasp-16-动能震爆"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "wasp-12-电闪雷鸣"
+    },
+    {
+      "Command": "DebugSetCoin",
+      "Actor": "p1",
+      "Value": "blue"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": -2,
+        "Y": 1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": -1,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "wasp-06-静电封锁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "brogan-07-保卫"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "sabina-00-近身射击"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-06-打断施法"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p3"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p4"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1",
+      "Expect": {
+        "Code": "primary_restricted",
+        "EventCounts": {
+          "UltimateTriggered": 0
+        }
+      }
+    }
+  ]
+}

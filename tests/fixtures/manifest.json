@@ -477,6 +477,24 @@
       "input": "tests/fixtures/engine54-shield-payment-scenario.json",
       "input_sha256": "e29a25328f40c557642a6da8501588b40fe223ac37e007d4d40a169d5c913790",
       "provenance": "tests/fixtures/engine54-shield-payment.md"
+    },
+    {
+      "engine_version": 55,
+      "accepted_commands": 23,
+      "save": "tests/fixtures/engine55-thunderstorm-discard.json",
+      "save_sha256": "53c4f39c1ac9ae68412a46796530f37b9ef118529e0eb1728d8936fddc87b7a4",
+      "input": "tests/fixtures/engine55-thunderstorm-discard-scenario.json",
+      "input_sha256": "45e9f0bc48186604d05cc63f1a3f59a738fb68688d3980673907d66aea5887ee",
+      "provenance": "tests/fixtures/engine55-thunderstorm-discard.md"
+    },
+    {
+      "engine_version": 55,
+      "accepted_commands": 22,
+      "save": "tests/fixtures/engine55-thunderstorm-target.json",
+      "save_sha256": "e2c389ee754916b27af313ab1509760e8dbce8aa106c7111e3366eaf49c7bbcc",
+      "input": "tests/fixtures/engine55-thunderstorm-target-scenario.json",
+      "input_sha256": "f7b9190e1d02e155c7e07531a8d8612441affa9688fec89fffc3b3875343ed86",
+      "provenance": "tests/fixtures/engine55-thunderstorm-target.md"
     }
   ]
 }

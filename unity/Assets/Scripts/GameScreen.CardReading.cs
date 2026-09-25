@@ -43,7 +43,7 @@ namespace Goa2.Presentation
             preview.style.borderTopColor=CardColor(card.Color);
             preview.Add(Text(card.Name,"panel-title"));
             preview.Add(Text(HeroName(card.HeroId)+" · "+ColorName(card.Color)+"色 · "+(card.Color=="purple" ? "英雄8级" : card.Level.HasValue ? "卡牌"+card.Level+"级" : "基础牌"),"tiny"));
-            var rules=RulesText(card.Text,"card-preview-rules");rules.name="card-preview-rules";preview.Add(rules);
+            var rules=RulesText(CardTextMarkup.Description(card),"card-preview-rules");rules.name="card-preview-rules";preview.Add(rules);
             if(player!=null) CompactCardNumbers(preview,card,player,true,"card-preview");
             else
             {
@@ -51,7 +51,7 @@ namespace Goa2.Presentation
                 preview.Add(Text("次要移动 "+Number(card.SecondaryMovement)+" · 次要防御 "+Number(card.SecondaryDefense),"tiny"));
             }
             preview.Add(Text("卡底升级图标 · "+(card.Passive ?? "无"),"tiny"));
-            preview.Add(Text(renderedView.SupportedPrimaryCards.Contains(card.Id) ? "主要行动已开放" : renderedView.SupportedDefenseCards.Contains(card.Id) ? "防御响应已开放" : "牌文效果待实施","card-zone"));
+            preview.Add(Text(renderedView.SupportedUltimateCards.Contains(card.Id) ? "紫卡持续能力已开放" : renderedView.SupportedPrimaryCards.Contains(card.Id) ? "主要行动已开放" : renderedView.SupportedDefenseCards.Contains(card.Id) ? "防御响应已开放" : "牌文效果待实施","card-zone"));
             if(player?.Seat==seat && renderedView.DefenseRestrictions.TryGetValue(card.Id,out string restriction))
                 preview.Add(Text(DefenseRestrictionText(restriction),"restriction-text"));
             preview.Add(Text("F1 查看本牌术语 · 移开鼠标或 Esc 收起","tiny"));
@@ -72,13 +72,13 @@ namespace Goa2.Presentation
         private void CardRulesPreview(VisualElement parent,CardDefinition card,string name)
         {
             // Keep the formal text as the source. Two lines are an overview; hover reads every word.
-            var label=RulesText(card.Text,"card-rules-preview");label.name=name;
+            var label=RulesText(CardTextMarkup.Description(card),"card-rules-preview");label.name=name;
             // UI Toolkit's single-line ellipsis would hide the second line. Build a measured
             // two-line excerpt instead, so no half-height glyphs are clipped at the bottom.
             label.RegisterCallback<GeometryChangedEvent>(_=>
             {
                 float width=label.contentRect.width;if(width<=0) return;
-                label.text=CardTextMarkup.Preview(card.Text,width,candidate=>label.MeasureTextSize(candidate,0,VisualElement.MeasureMode.Undefined,0,VisualElement.MeasureMode.Undefined).x);
+                label.text=CardTextMarkup.Preview(CardTextMarkup.Description(card),width,candidate=>label.MeasureTextSize(candidate,0,VisualElement.MeasureMode.Undefined,0,VisualElement.MeasureMode.Undefined).x);
             });
             parent.Add(label);
         }

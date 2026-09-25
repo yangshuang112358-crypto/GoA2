@@ -115,6 +115,7 @@ namespace Goa2.Application
                 EffectAreas = snapshot.Effects.ToDictionary(e => e.Id, e => EffectRules.Area(catalog,snapshot,e)),
                 SupportedPrimaryCards = catalog.Cards.Where(c => CombatRules.HasPrimaryProgram(c,snapshot.EngineVersion)).Select(c => c.Id).ToList(),
                 SupportedDefenseCards = catalog.Cards.Where(c => CombatRules.HasDefenseProgram(c,snapshot.EngineVersion)).Select(c => c.Id).ToList(),
+                SupportedUltimateCards = catalog.Cards.Where(c => UltimateRules.HasProgram(c,snapshot.EngineVersion)).Select(c => c.Id).ToList(),
                 Units = snapshot.Units, Pending = snapshot.Pending,
                 Players = snapshot.Players.Select(p => new PlayerView
                 {

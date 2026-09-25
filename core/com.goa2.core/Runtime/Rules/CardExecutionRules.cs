@@ -274,6 +274,7 @@ namespace Goa2.Rules
         }
         private static void StopCard(ContentCatalog catalog, GameState state, Command command, string reason)
         {
+            if (state.EngineVersion >= 55) state.Execution!.ActionStopped = true;
             Emit(state, command, "CardEffectStopped", state.Execution!.ControllerSeat, state.Execution.CardId, detail: reason);
             EndCardExecution(catalog, state, command);
         }
@@ -296,6 +297,7 @@ namespace Goa2.Rules
                 return;
             }
             bool returnSource=state.EngineVersion>=50 && state.Execution.ReturnSourceAtEnd;
+            if (BeginPrimaryCompletion(catalog, state, command)) return;
             state.ActiveSeat = state.Execution!.ControllerSeat; state.Execution = null; state.Pending = null; state.Phase = Phase.Action;
             FinishAction(catalog, state, command,returnSource);
         }

@@ -37,15 +37,16 @@ namespace Goa2.Presentation
             if(player.PurpleCardId==null) return;
             var card=catalog.Card(player.PurpleCardId);
             var dot=Box("purple-dot"); dot.name="purple-dot-"+(player.Seat+1); rounds.Add(dot);
-            dot.tooltip=card.Name+"\n"+card.Text+"\n紫卡持续文字待实施";
+            string status=renderedView.SupportedUltimateCards.Contains(card.Id) ? "紫卡持续能力已开放" : "紫卡持续文字待实施";
+            dot.tooltip=card.Name+"\n"+CardTextMarkup.Description(card)+"\n"+status;
             VisualElement? preview=null;
             dot.RegisterCallback<PointerEnterEvent>(_=>
             {
                 preview=Box("purple-preview"); preview.name="purple-preview";
                 preview.pickingMode=PickingMode.Ignore;
                 preview.Add(Text(card.Name,"panel-title"));preview.Add(Text("紫卡 · 英雄8级 · 持续被动","tiny"));
-                var rules=RulesText(card.Text,"body");rules.name="purple-preview-text";preview.Add(rules);
-                preview.Add(Text("持续文字待实施","tiny"));
+                var rules=RulesText(CardTextMarkup.Description(card),"body");rules.name="purple-preview-text";preview.Add(rules);
+                preview.Add(Text(status,"tiny"));
                 preview.style.left=Mathf.Clamp(dot.worldBound.xMax+12,12,Mathf.Max(12,root.worldBound.width-520));
                 preview.RegisterCallback<GeometryChangedEvent>(_=> { if(preview!=null) preview.style.top=Mathf.Clamp(dot.worldBound.y,12,Mathf.Max(12,root.worldBound.height-preview.worldBound.height-12)); });
                 root.Add(preview);

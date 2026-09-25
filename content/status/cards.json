@@ -198,11 +198,22 @@
     },
     {
       "card_id": "wasp-12-电闪雷鸣",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-12-电闪雷鸣.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/ThunderstormTests.cs",
+        "tests/scenarios/thunderstorm-pay.json",
+        "tests/scenarios/thunderstorm-empty.json",
+        "tests/scenarios/thunderstorm-invalid.json",
+        "tests/scenarios/thunderstorm-suppressed.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/UltimateRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs"
+      ]
     },
     {
       "card_id": "wasp-13-控物",

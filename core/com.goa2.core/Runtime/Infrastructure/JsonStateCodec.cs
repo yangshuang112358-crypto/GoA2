@@ -17,7 +17,7 @@ namespace Goa2.Infrastructure
             {
                 var property=base.CreateProperty(member,serialization);
                 // New execution facts must not add default fields to historical captures.
-                if(member.DeclaringType==typeof(CardExecution) && (member.Name==nameof(CardExecution.PreAttackMoved) || member.Name==nameof(CardExecution.AttackTargetCell) || member.Name==nameof(CardExecution.DisplacedMinions) || member.Name==nameof(CardExecution.ReturningMinionId) || member.Name==nameof(CardExecution.RemainingUnitTargets) || member.Name==nameof(CardExecution.AffectedHeroTargets) || member.Name==nameof(CardExecution.ReturnSourceAtEnd)))
+                if(member.DeclaringType==typeof(CardExecution) && (member.Name==nameof(CardExecution.PreAttackMoved) || member.Name==nameof(CardExecution.AttackTargetCell) || member.Name==nameof(CardExecution.DisplacedMinions) || member.Name==nameof(CardExecution.ReturningMinionId) || member.Name==nameof(CardExecution.RemainingUnitTargets) || member.Name==nameof(CardExecution.AffectedHeroTargets) || member.Name==nameof(CardExecution.ReturnSourceAtEnd) || member.Name==nameof(CardExecution.ActionStopped) || member.Name==nameof(CardExecution.Completion)))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 if(member.DeclaringType==typeof(ActiveEffect) && member.Name==nameof(ActiveEffect.ExemptControllerSeat))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;

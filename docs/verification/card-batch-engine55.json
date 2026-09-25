@@ -1,0 +1,95 @@
+{
+  "engine": 55,
+  "implemented_cards": 66,
+  "data_only_cards": 42,
+  "build_utc": "2026-09-25T19:35:04.3727438Z",
+  "assemblies": {
+    "Goa2.Application.dll": "5a5a0092a7713a5328deb519300aa943173e5d1f6e2163cb52ced656d486e82f",
+    "Goa2.Domain.dll": "902366f0d2d77782a403b3c14d609a411e2d45f26ccf4c5a8bbe36a1b8c5dd51",
+    "Goa2.Editor.dll": "1fab582c0c2daa05433fb388c297f66f2b19141eb090977290a9a85f8b11d31c",
+    "Goa2.Infrastructure.dll": "d1a75160d86233871497f5d342829f21147dcb267e7a137abfeb23794d14f08e",
+    "Goa2.Rules.dll": "d885eb851ab9494991a31a65ac6697b7a83bd7d8e947d3a2b61b1d973c05a502"
+  },
+  "core": {
+    "passed": 1419,
+    "failed": 0,
+    "report": "artifacts/tests/thunderstorm-unity-0.xml",
+    "card_specific": 18,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/thunderstorm-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/thunderstorm-pay.json",
+        "input_sha256": "3541abbe42e40d245797208a19c6785cbed12f6e7d43d043501d7b609c33bb02",
+        "report": "artifacts/editor-scenarios/thunderstorm-pay/b1d001fca2ca42559519ee9b30c765ef/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/thunderstorm-empty.json",
+        "input_sha256": "91cf9b296936b62cb964527a34021fa2b6b34e218d7d1370a10ffa79d39c82bd",
+        "report": "artifacts/editor-scenarios/thunderstorm-empty/5744b3720345480ca496ff349d40bfba/report.json",
+        "steps": 27,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/thunderstorm-invalid.json",
+        "input_sha256": "f2d4ba1889a02d5f801c9a2b7eb345d96a281489d37dc4dd5e38ca0647d3b9a2",
+        "report": "artifacts/editor-scenarios/thunderstorm-invalid/79704287dbb440eaa847cd87bfa0403a/report.json",
+        "steps": 26,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/thunderstorm-suppressed.json",
+        "input_sha256": "6493da73f56222a3d4dfeb86c8fd1e8efab4feea04f8b5d19c100ed011ac9faf",
+        "report": "artifacts/editor-scenarios/thunderstorm-suppressed/2a59d36422204513ae8b856256ffa6e7/report.json",
+        "steps": 23,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine55-thunderstorm-target-scenario.json",
+        "input_sha256": "f7b9190e1d02e155c7e07531a8d8612441affa9688fec89fffc3b3875343ed86",
+        "report": "artifacts/editor-scenarios/engine55-thunderstorm-target-scenario/ec777a4cf35841a8bdadf48221fa3e51/report.json",
+        "steps": 22,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine55-thunderstorm-discard-scenario.json",
+        "input_sha256": "45e9f0bc48186604d05cc63f1a3f59a738fb68688d3980673907d66aea5887ee",
+        "report": "artifacts/editor-scenarios/engine55-thunderstorm-discard-scenario/1acc668f67b642be8436e4f587cfb52e/report.json",
+        "steps": 23,
+        "passed": true
+      }
+    ],
+    "scenarios": 6,
+    "steps": 145
+  },
+  "manual_presets": [
+    "thunderstorm"
+  ],
+  "note": "Unity Editor批处理与原始待选择存档已验证，Unity构建通过；最近已知Windows应用控制阻止新Player，本批未重新验证解除，未验收实际Player画面或输入。",
+  "presentation_followup": {
+    "passed": 10,
+    "report": "artifacts/unity/tests/thunderstorm-presentation-final.xml",
+    "note": "全量通过后仅修正紫卡圆点展示状态，重跑展示测试10/10；不叠加计数。"
+  },
+  "release": {
+    "archive": "artifacts/releases/Goa2V1-e55-thunderstorm-20260925-193633-c20d2577.zip",
+    "sha256": "13f9d28096bba0ffba672c201199bc7cc931833a65219362f664cc19982b898f"
+  },
+  "frozen_windows": [
+    "tests/fixtures/engine55-thunderstorm-target.json",
+    "tests/fixtures/engine55-thunderstorm-discard.json"
+  ]
+}
