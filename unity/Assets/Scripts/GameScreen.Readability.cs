@@ -25,12 +25,12 @@ namespace Goa2.Presentation
         private void CardNumbers(VisualElement parent,CardDefinition card,PlayerView player,bool showBonuses,string prefix)
         {
             string key=card.PrimaryFamily=="attack" ? "攻击" : card.PrimaryFamily=="defense" ? "防御" : card.PrimaryFamily=="movement" ? "移动" : "";
-            StatLine(parent,card.PrimaryCategory+" "+(card.Exclamation ? "!" : card.PrimaryValue.ToString()),showBonuses && !card.Exclamation ? Bonus(player,key) : 0,prefix+"-primary-bonus");
+            StatLine(parent,card.PrimaryCategory+" "+(card.Exclamation ? "!" : card.PrimaryValue.ToString()),showBonuses && !card.Exclamation ? (Bonus(player,key)+(card.PrimaryCategory=="基础攻击" ? player.BasicAttackBonus : 0)) : 0,prefix+"-primary-bonus");
             StatLine(parent,"先攻 "+card.Initiative,showBonuses ? Bonus(player,"先攻") : 0,prefix+"-initiative-bonus");
             var secondary=Box("stat-line"); parent.Add(secondary);
             StatLine(secondary,"移 "+Number(card.SecondaryMovement),showBonuses && card.SecondaryMovement.HasValue ? Bonus(player,"移动") : 0,prefix+"-movement-bonus");
             StatLine(secondary,"防 "+Number(card.SecondaryDefense),showBonuses && card.SecondaryDefense.HasValue ? Bonus(player,"防御") : 0,prefix+"-defense-bonus");
-            if(card.SubtypeValue.HasValue) StatLine(parent,(card.Subtype??"")+" "+card.SubtypeValue,showBonuses ? Bonus(player,card.Subtype=="远程" ? "远程" : "范围") : 0,prefix+"-range-bonus");
+            if(card.SubtypeValue.HasValue) StatLine(parent,(card.Subtype??"")+" "+card.SubtypeValue,showBonuses ? (Bonus(player,card.Subtype=="远程" ? "远程" : "范围")+(card.PrimaryCategory=="基础攻击" ? player.BasicAttackRangeBonus : 0)) : 0,prefix+"-range-bonus");
         }
         private void AddPurpleDot(VisualElement rounds,PlayerView player)
         {

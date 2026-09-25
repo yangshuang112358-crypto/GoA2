@@ -1,0 +1,180 @@
+{
+  "SchemaVersion": 1,
+  "Id": "heavy-weaponry-followup",
+  "Name": "重型枪械：先完成弃牌、再处理侧步",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "sabina,tigerclaw,brogan,arien"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "28",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugAdvance",
+      "Actor": "p1",
+      "Value": "round"
+    },
+    {
+      "Command": "ResolveRoundEnd",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "sabina-02-交叉火力"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "sabina-08-带头冲锋"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "sabina-13-近身支援"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "sabina-04-枪林弹雨"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "sabina-10-武装密谋"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "sabina-15-火力掩护"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "sabina-12-重型枪械"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "tigerclaw-15-侧步",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 4,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 6,
+        "Y": -5
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "sabina-00-近身射击"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "tigerclaw-07-伺机待发"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1",
+        "PendingKind": "none"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Expect": {
+        "AttackBase": 2,
+        "AttackBonus": 2,
+        "CardTextBonus": 0
+      }
+    },
+    {
+      "Command": "Defend",
+      "Actor": "p2",
+      "Value": "tigerclaw-15-侧步",
+      "Expect": {
+        "PendingKind": "forced_discard",
+        "PendingChooser": "p2",
+        "EventCounts": {
+          "UnitPushed": 1,
+          "UltimateTriggered": 1,
+          "CardResolved": 0
+        }
+      }
+    },
+    {
+      "Command": "ForcedDiscard",
+      "Actor": "p2",
+      "Value": "tigerclaw-00-瞬闪打击",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p2",
+        "EventCounts": {
+          "ForcedPaymentPaid": 1,
+          "CardResolved": 0
+        }
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p2",
+      "Value": "skip",
+      "Expect": {
+        "EventCounts": {
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

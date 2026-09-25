@@ -91,12 +91,12 @@ namespace Goa2.Presentation
                 if(bonus>0) {var plus=Text("+"+bonus,"passive-plus");plus.name=prefix+"-"+suffix+"-bonus";chip.Add(plus);}
             }
             string key=card.PrimaryFamily=="attack" ? "攻击" : card.PrimaryFamily=="defense" ? "防御" : card.PrimaryFamily=="movement" ? "移动" : "";
-            Add(card.PrimaryCategory+" "+(card.Exclamation ? "!" : card.PrimaryValue.ToString()),bonuses && !card.Exclamation ? Bonus(player,key) : 0,"primary");
+            Add(card.PrimaryCategory+" "+(card.Exclamation ? "!" : card.PrimaryValue.ToString()),bonuses && !card.Exclamation ? (Bonus(player,key)+(card.PrimaryCategory=="基础攻击" ? player.BasicAttackBonus : 0)) : 0,"primary");
             Add("先 "+card.Initiative,bonuses ? Bonus(player,"先攻") : 0,"initiative");
             if(overviewOnly) return;
             Add("移 "+Number(card.SecondaryMovement),bonuses && card.SecondaryMovement.HasValue ? Bonus(player,"移动") : 0,"movement");
             Add("防 "+Number(card.SecondaryDefense),bonuses && card.SecondaryDefense.HasValue ? Bonus(player,"防御") : 0,"defense");
-            if(card.SubtypeValue.HasValue) Add((card.Subtype??"")+" "+card.SubtypeValue,bonuses ? Bonus(player,card.Subtype=="远程" ? "远程" : "范围") : 0,"range");
+            if(card.SubtypeValue.HasValue) Add((card.Subtype??"")+" "+card.SubtypeValue,bonuses ? (Bonus(player,card.Subtype=="远程" ? "远程" : "范围")+(card.PrimaryCategory=="基础攻击" ? player.BasicAttackRangeBonus : 0)) : 0,"range");
         }
     }
 }

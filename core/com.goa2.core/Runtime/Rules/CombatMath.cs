@@ -8,7 +8,7 @@ namespace Goa2.Rules
 {
     public static class CombatMath
     {
-        public static AttackBreakdown Attack(GameState state, CardDefinition card, int attackerSeat, string targetUnitId, int extraAttack = 0, bool unblockable = false,IReadOnlyDictionary<string,string>? minionKinds=null)
+        public static AttackBreakdown Attack(GameState state, CardDefinition card, int attackerSeat, string targetUnitId, int extraAttack = 0, bool unblockable = false,IReadOnlyDictionary<string,string>? minionKinds=null, int ultimateAttack=0)
         {
             GameRules.Require(attackerSeat >= 0 && attackerSeat < state.Players.Count, "invalid_attacker", "攻击者不存在。");
             var target = state.Units.FirstOrDefault(u => u.Id == targetUnitId && u.Kind == "hero" && u.Seat.HasValue);
@@ -23,7 +23,8 @@ namespace Goa2.Rules
             var result = new AttackBreakdown
             {
                 SourceCardId = card.Id, TargetUnitId = targetUnitId, AttackerSeat = attackerSeat, DefenderSeat = target!.Seat!.Value,
-                BaseAttack = card.PrimaryValue, AttackBonus = state.Players[attackerSeat].AttackBonus + extraAttack,
+                BaseAttack = card.PrimaryValue, AttackBonus = state.Players[attackerSeat].AttackBonus + extraAttack + ultimateAttack,
+                UltimateBonus = ultimateAttack,
                 CardTextBonus = extraAttack,
                 Ranged = card.Subtype == "远程", Unblockable = unblockable,
                 EnemySupportSources = state.Units.Where(u => u.Team != target.Team)

@@ -87,6 +87,7 @@ namespace Goa2.Rules
                     case InstructionKind.PushAttackTargetIfAdjacent:
                         PushAttackTargetIfAdjacent(catalog,state,command,execution,program);
                         execution.Cursor++;
+                        if(state.Phase==Phase.Finished || state.Pending!=null)return;
                         break;
                     case InstructionKind.MoveIntoAttackTargetCell:
                         MoveIntoAttackTargetCell(catalog,state,command,execution,program);
@@ -211,7 +212,8 @@ namespace Goa2.Rules
             }
             var modifier=CombatRules.CardTextModifier(catalog,state,card,source,target);
             execution.Attack = CombatMath.Attack(state, card, execution.ControllerSeat, target.Id,modifier.Amount,modifier.Unblockable,
-                EffectRules.MinionCombatKinds(catalog,state,card,execution.ControllerSeat));
+                EffectRules.MinionCombatKinds(catalog,state,card,execution.ControllerSeat),
+                UltimateRules.AttackBonus(catalog,state,card,execution.ControllerSeat));
             execution.Attack.CardTextReason=modifier.Reason; execution.Attack.CardTextSourceUnits=modifier.UnitSources;
             Emit(state, command, "AttackCalculated", execution.ControllerSeat, card.Id);
             state.Events.Last().AttackValues = execution.Attack;

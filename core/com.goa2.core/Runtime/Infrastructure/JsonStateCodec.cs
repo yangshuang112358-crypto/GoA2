@@ -17,11 +17,13 @@ namespace Goa2.Infrastructure
             {
                 var property=base.CreateProperty(member,serialization);
                 // New execution facts must not add default fields to historical captures.
-                if(member.DeclaringType==typeof(CardExecution) && (member.Name==nameof(CardExecution.PreAttackMoved) || member.Name==nameof(CardExecution.AttackTargetCell) || member.Name==nameof(CardExecution.DisplacedMinions) || member.Name==nameof(CardExecution.ReturningMinionId) || member.Name==nameof(CardExecution.RemainingUnitTargets) || member.Name==nameof(CardExecution.AffectedHeroTargets) || member.Name==nameof(CardExecution.ReturnSourceAtEnd) || member.Name==nameof(CardExecution.ActionStopped) || member.Name==nameof(CardExecution.Completion)))
+                if(member.DeclaringType==typeof(CardExecution) && (member.Name==nameof(CardExecution.PreAttackMoved) || member.Name==nameof(CardExecution.AttackTargetCell) || member.Name==nameof(CardExecution.DisplacedMinions) || member.Name==nameof(CardExecution.ReturningMinionId) || member.Name==nameof(CardExecution.RemainingUnitTargets) || member.Name==nameof(CardExecution.AffectedHeroTargets) || member.Name==nameof(CardExecution.ReturnSourceAtEnd) || member.Name==nameof(CardExecution.ActionStopped) || member.Name==nameof(CardExecution.Completion) || member.Name==nameof(CardExecution.ForcedPayment)))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 if(member.DeclaringType==typeof(ActiveEffect) && member.Name==nameof(ActiveEffect.ExemptControllerSeat))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 if(member.DeclaringType==typeof(GameState) && member.Name==nameof(GameState.MinionDefeat))
+                    property.DefaultValueHandling=DefaultValueHandling.Ignore;
+                if(member.DeclaringType==typeof(AttackBreakdown) && member.Name==nameof(AttackBreakdown.UltimateBonus))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 return property;
             }

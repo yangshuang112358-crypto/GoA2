@@ -8,6 +8,17 @@ namespace Goa2.Rules
 {
     public static class UltimateRules
     {
+        internal static UltimateProgram? OwnedProgram(ContentCatalog catalog, GameState state, int seat)
+        {
+            if (seat < 0 || seat >= state.Players.Count || !state.Units.Any(u => u.Kind == "hero" && u.Seat == seat)) return null;
+            var owner = state.Players[seat];
+            var ability = catalog.Cards.FirstOrDefault(c => c.Id == owner.PurpleCardId && c.HeroId == owner.HeroId);
+            return ability == null ? null : UltimatePrograms.Find(ability, state.EngineVersion);
+        }
+        public static int BasicAttackBonus(ContentCatalog catalog, GameState state, int seat) => OwnedProgram(catalog, state, seat)?.BasicAttackBonus ?? 0;
+        public static int BasicAttackRangeBonus(ContentCatalog catalog, GameState state, int seat) => OwnedProgram(catalog, state, seat)?.BasicAttackRangeBonus ?? 0;
+        public static int AttackBonus(ContentCatalog catalog, GameState state, CardDefinition card, int seat) =>
+            card.PrimaryCategory == "基础攻击" ? BasicAttackBonus(catalog, state, seat) : 0;
         public static bool HasProgram(CardDefinition card, int engine = GameState.CurrentEngineVersion) =>
             UltimatePrograms.Find(card, engine) != null;
     }

@@ -495,6 +495,15 @@
       "input": "tests/fixtures/engine55-thunderstorm-target-scenario.json",
       "input_sha256": "f7b9190e1d02e155c7e07531a8d8612441affa9688fec89fffc3b3875343ed86",
       "provenance": "tests/fixtures/engine55-thunderstorm-target.md"
+    },
+    {
+      "engine_version": 56,
+      "accepted_commands": 23,
+      "save": "tests/fixtures/engine56-heavy-weaponry-payment.json",
+      "save_sha256": "faddb98bf4fa293bbd6a0d86246a00b3222945d184178445f8b15948eb019137",
+      "input": "tests/fixtures/engine56-heavy-weaponry-payment-scenario.json",
+      "input_sha256": "d86ce7140e5b2a884bd87299edd1bad2beb40253fd0fb187e0bd31f382959971",
+      "provenance": "tests/fixtures/engine56-heavy-weaponry-payment.md"
     }
   ]
 }

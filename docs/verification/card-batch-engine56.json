@@ -1,0 +1,94 @@
+{
+  "engine": 56,
+  "implemented_cards": 67,
+  "data_only_cards": 41,
+  "build_utc": "2026-09-25T19:58:45.1791696Z",
+  "assemblies": {
+    "Goa2.Application.dll": "93f25ae1bbb49d9092b4f57248277ea506cc8af7770c257d785c5e1d9896262d",
+    "Goa2.Domain.dll": "bdd0973b71846b6b7fa060ac29dfe07361707c009db92210a810684ebcb1e95c",
+    "Goa2.Editor.dll": "54a65e3707cd8d4422d644ae24662193c5c3708aac7dc862e87f6cde04be3b77",
+    "Goa2.Infrastructure.dll": "08bc2f706413eeeb2c480fe00d62261f56b6386cac520f5e43588494dcc480a6",
+    "Goa2.Rules.dll": "4e7dca924b39e22d7d09634f186c9576ae4a51b08b8bcae3fe5defa412c80746"
+  },
+  "core": {
+    "passed": 1446,
+    "failed": 0,
+    "report": "artifacts/tests/heavy-weaponry-unity-0.xml",
+    "card_specific": 19,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/heavy-weaponry-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/heavy-weaponry-pay.json",
+        "input_sha256": "c13c4efbe69ce73f53c46618f02b6a0f5eb024edec5d487244e83ead73c4743e",
+        "report": "artifacts/editor-scenarios/heavy-weaponry-pay/df77adcf5b5d4ca4a80da42a260f3e52/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/heavy-weaponry-defeat.json",
+        "input_sha256": "c044cf18cbdad562c4d9bd597c529b35981a2f08e79dd47ef8d92e305de3120e",
+        "report": "artifacts/editor-scenarios/heavy-weaponry-defeat/1ba27cd827224b94b7e1df9f5073a0d4/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/heavy-weaponry-blocked.json",
+        "input_sha256": "114f0d66192fd99783a238e1e7cd55b84e8bb2bc22d525b11e54b7d9c0adb762",
+        "report": "artifacts/editor-scenarios/heavy-weaponry-blocked/550c660ea1894894b0b0b55bf461dbb7/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/heavy-weaponry-empty.json",
+        "input_sha256": "2ec831a8ca69cac47825e9aef36eb8b8aaa503ae032fa8f4a2b177f4d9e58a58",
+        "report": "artifacts/editor-scenarios/heavy-weaponry-empty/71b43dc7223046048b462ba2a91abe20/report.json",
+        "steps": 27,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/heavy-weaponry-followup.json",
+        "input_sha256": "60357351388de6acc77bbacb8c4c25b0097eccd4c7982d88784ca883414da979",
+        "report": "artifacts/editor-scenarios/heavy-weaponry-followup/75e057ddc12e424592b5b88b2d1d9582/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/heavy-weaponry-invalid.json",
+        "input_sha256": "b083172407bfdd508d91c06088c45d54ae0e56b4415b851463d9a8a6200d2dea",
+        "report": "artifacts/editor-scenarios/heavy-weaponry-invalid/06d55dba312d46449a7977d8be65fa3c/report.json",
+        "steps": 26,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine56-heavy-weaponry-payment-scenario.json",
+        "input_sha256": "d86ce7140e5b2a884bd87299edd1bad2beb40253fd0fb187e0bd31f382959971",
+        "report": "artifacts/editor-scenarios/engine56-heavy-weaponry-payment-scenario/d4ff6d14193d463aa846a86626a29a06/report.json",
+        "steps": 23,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 174
+  },
+  "manual_presets": [
+    "heavy-weaponry",
+    "heavy-weaponry-blocked"
+  ],
+  "note": "Unity Editor批处理和原始支付窗口存档已验证，Unity构建及包完整性通过；最近已知Windows应用控制限制，本批未重新验证解除，未验收实际Player画面或输入。",
+  "release": {
+    "archive": "artifacts/releases/Goa2V1-e56-heavy-weaponry-20260925-195943-2c93ed74.zip",
+    "sha256": "4e3734a15c9454803c232e53aab3cf40ebc454026557549e97f70b19cd397641"
+  }
+}

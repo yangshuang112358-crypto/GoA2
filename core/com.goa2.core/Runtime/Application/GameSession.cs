@@ -122,6 +122,8 @@ namespace Goa2.Application
                     Seat = p.Seat, Team = p.Team, Name = p.Name, HeroId = p.HeroId, Level = p.Level, Gold = p.Gold, Confirmed = p.Confirmed,
                     AwaitingRespawn = p.AwaitingRespawn,
                     PurpleCardId = p.PurpleCardId,
+                    BasicAttackBonus = UltimateRules.BasicAttackBonus(catalog,snapshot,p.Seat),
+                    BasicAttackRangeBonus = UltimateRules.BasicAttackRangeBonus(catalog,snapshot,p.Seat),
                     PermanentBonuses = new System.Collections.Generic.Dictionary<string,int>
                     {
                         ["攻击"]=p.AttackBonus,["防御"]=p.DefenseBonus,["移动"]=p.MovementBonus,

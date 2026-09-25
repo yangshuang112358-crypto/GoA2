@@ -21,6 +21,7 @@ namespace Goa2.Rules
             Emit(state,command,"UnitPushed",target.Seat,execution.CardId,detail:"by:"+execution.ControllerSeat);
             var pushed=state.Events.Last();pushed.From=result.Path.First();pushed.To=target.Position;pushed.Path=result.Path;
             if(result.StopReason!="")Emit(state,command,"PushStopped",target.Seat,execution.CardId,detail:result.StopReason);
+            AfterHeroPushed(catalog,state,command,execution,target);
         }
     }
 }

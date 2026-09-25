@@ -15,6 +15,7 @@ namespace Goa2.Rules
         {
             Require(state.Sandbox, "debug_disabled", "普通对局不能使用调试命令。");
             Require(state.MinionDefeat==null,"pending_minion_defeat","请先完成小兵保护选择再调试局面。");
+            Require(state.Execution?.ForcedPayment==null,"pending_forced_payment","请先完成弃牌或被击败选择再调试局面。");
             Require(state.Execution?.Completion==null,"pending_action_completion","请先完成行动结束后的紫卡选择再调试局面。");
             bool structural = command.Kind == CommandKind.DebugTeleport || command.Kind == CommandKind.DebugRemoveMinion || command.Kind == CommandKind.DebugDefeatMinion ||
                 command.Kind == CommandKind.DebugDefeatHero || command.Kind == CommandKind.DebugDiscard || command.Kind == CommandKind.DebugRecover || command.Kind == CommandKind.DebugEquipCard;
@@ -121,7 +122,7 @@ namespace Goa2.Rules
             var sourceCard=catalog.Cards.First(c=>c.HeroId==state.Players[command.ActorSeat].HeroId && c.PrimaryFamily=="attack");
             var basic=new CardDefinition { Id=sourceCard.Id, PrimaryValue=power,PrimaryCategory="基础攻击",PrimaryFamily="attack" };
             state.Execution=new CardExecution { CardId=sourceCard.Id, ProgramId="debug-attack-v1", ProgramVersion=1, ControllerSeat=command.ActorSeat,
-                TargetUnitId=target.Id, Attack=CombatMath.Attack(state,basic,command.ActorSeat,target.Id,minionKinds:EffectRules.MinionCombatKinds(catalog,state,basic,command.ActorSeat)) };
+                TargetUnitId=target.Id, Attack=CombatMath.Attack(state,basic,command.ActorSeat,target.Id,minionKinds:EffectRules.MinionCombatKinds(catalog,state,basic,command.ActorSeat),ultimateAttack:UltimateRules.AttackBonus(catalog,state,basic,command.ActorSeat)) };
             Emit(state,command,"AttackCalculated",command.ActorSeat,sourceCard.Id);
             state.Events.Last().AttackValues=state.Execution.Attack;
             state.Phase=Phase.EffectChoice;

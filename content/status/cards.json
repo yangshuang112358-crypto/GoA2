@@ -1551,11 +1551,26 @@
     },
     {
       "card_id": "sabina-12-重型枪械",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-12-重型枪械.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/HeavyWeaponryTests.cs",
+        "tests/scenarios/heavy-weaponry-pay.json",
+        "tests/scenarios/heavy-weaponry-defeat.json",
+        "tests/scenarios/heavy-weaponry-blocked.json",
+        "tests/scenarios/heavy-weaponry-empty.json",
+        "tests/scenarios/heavy-weaponry-followup.json",
+        "tests/scenarios/heavy-weaponry-invalid.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/UltimateRules.cs",
+        "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatMath.cs",
+        "core/com.goa2.core/Runtime/Rules/CardPushRules.cs"
+      ]
     },
     {
       "card_id": "sabina-13-近身支援",

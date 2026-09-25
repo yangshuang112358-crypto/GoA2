@@ -12,7 +12,7 @@ namespace Goa2.Rules
         {
             var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
             if(source==null || execution.AttackOutcome!="minion_defeated") return new List<string>();
-            int range=CombatRules.AttackDistance(state,catalog.Card(execution.CardId),program,execution.ControllerSeat);
+            int range=CombatRules.AttackDistance(catalog,state,catalog.Card(execution.CardId),program,execution.ControllerSeat);
             // Presence is independent of whether that enemy hero can currently be attacked.
             if(state.Units.Any(u=>u.Kind=="hero" && u.Team!=source.Team && u.Position.Distance(source.Position)<=range)) return new List<string>();
             var removable=new HashSet<string>(LegalMinionRemovals(state));

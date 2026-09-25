@@ -190,7 +190,7 @@ namespace Goa2.Tests
             Assert.That(UltimateRules.HasProgram(card, 54), Is.False);
             Assert.That(CombatRules.HasPrimaryProgram(card), Is.False);
             var game = Setup(catalog);
-            Assert.That(game.View(0).SupportedUltimateCards, Is.EquivalentTo(new[] { Card }));
+            Assert.That(game.View(0).SupportedUltimateCards, Does.Contain(Card));
             Assert.That(game.View(0).OwnCards.Any(c => c.CardId == Card), Is.False);
             card.Text += "可选";
             Assert.That(UltimateRules.HasProgram(card), Is.False);

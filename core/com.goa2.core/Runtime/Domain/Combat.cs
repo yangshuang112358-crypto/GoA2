@@ -12,6 +12,7 @@ namespace Goa2.Domain
         public bool Ranged, Unblockable;
         public int BaseAttack, AttackBonus, EnemySupport, FriendlyGuard, FinalAttack;
         public int CardTextBonus;
+        public int UltimateBonus;
         public string CardTextReason = "";
         public List<string> CardTextSourceUnits = new List<string>();
         // One entry per point of support: a dual-kind adjacent minion contributes its ID twice.
@@ -38,6 +39,12 @@ namespace Goa2.Domain
         public string Stage = "target";
     }
     [Serializable]
+    public sealed class ForcedPaymentProgress
+    {
+        public string SourceCardId = "", TargetUnitId = "";
+        public int ControllerSeat;
+    }
+    [Serializable]
     public sealed class CardExecution
     {
         public string CardId = "", ProgramId = "", TargetUnitId = "";
@@ -56,6 +63,7 @@ namespace Goa2.Domain
         public string? ReturningMinionId;
         public bool ActionStopped;
         public ActionCompletionProgress? Completion;
+        public ForcedPaymentProgress? ForcedPayment;
     }
     [Serializable]
     public sealed class PendingMinionDefeat

@@ -19,6 +19,7 @@ namespace Goa2.Domain
         public bool AwaitingRespawn;
         public string? PurpleCardId;
         public int HandCount;
+        public int BasicAttackBonus, BasicAttackRangeBonus;
         public Dictionary<string, int> PermanentBonuses = new Dictionary<string, int>();
         public List<CardInstance> Revealed = new List<CardInstance>();
         public List<PublicPlay> Plays = new List<PublicPlay>();
