@@ -154,18 +154,21 @@ namespace Goa2.Rules
                     case InstructionKind.ChooseSelfPlacement:
                         if(BeginSelfPlacement(catalog,state,command,execution))return;
                         StopCard(catalog,state,command,"no_destinations");return;
+                    case InstructionKind.ApplyEffectIfRecovered:
+                        if(execution.RecoveredCard)ApplyTimedEffect(catalog,state,command,execution,program);
+                        execution.Cursor++;break;
                     case InstructionKind.ApplyEffect:
                         ApplyTimedEffect(catalog,state,command,execution,program);
                         execution.Cursor++;
                         break;
                     case InstructionKind.TargetDiscardIfAble:
-                        if(BeginTargetDiscard(state,command,execution))return;
+                        if(BeginTargetDiscard(catalog,state,command,execution))return;
                         execution.Cursor++;
                         break;
                     case InstructionKind.TargetDiscardOrDefeat:
                         execution.Cursor++;
                         var paymentTarget = state.Units.SingleOrDefault(u => u.Id == execution.TargetUnitId && u.Kind == "hero" && u.Seat.HasValue);
-                        if (paymentTarget != null && EffectRules.CanAffect(state,execution.ControllerSeat,paymentTarget))
+                        if (paymentTarget != null && EffectRules.CanAffect(state,execution.ControllerSeat,paymentTarget,attackAction:card.PrimaryFamily=="attack"))
                             BeginForcedPayment(state,command,execution.ControllerSeat,execution.CardId,paymentTarget);
                         if (state.Phase == Phase.Finished || state.Pending != null) return;
                         break;

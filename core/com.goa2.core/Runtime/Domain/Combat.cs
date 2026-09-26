@@ -51,6 +51,7 @@ namespace Goa2.Domain
         public string CardId = "", ProgramId = "", TargetUnitId = "";
         public string? ActionInstanceId;
         public bool FromDiscard;
+        public bool RecoveredCard;
         public int ControllerSeat, ProgramVersion, Cursor;
         public AttackBreakdown? Attack;
         public bool AwaitingAttackCompletion;

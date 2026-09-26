@@ -1,0 +1,79 @@
+{
+  "engine": 64,
+  "implemented_cards": 75,
+  "data_only_cards": 33,
+  "build_utc": "2026-09-26T05:53:45.5566224Z",
+  "assemblies": {
+    "Goa2.Application.dll": "98832a19677cfc6dd7f75a0f336b6f948f8cd70a0afd40d1de5f30e55dd20879",
+    "Goa2.Domain.dll": "9f23984b3bd43299d99bf9a3da2fb9fdf78c63dfd0c0ff329dd09282e7becacd",
+    "Goa2.Editor.dll": "fbc3149924792b2353c3ce72c3690e1e79416fe69d6af9633d78017a67475b8c",
+    "Goa2.Infrastructure.dll": "6c89e68e1dfa98fc470ed0cd284e8482c06e0a9a849c33d7858975e08fae3b19",
+    "Goa2.Rules.dll": "0935bd2e0a5c10d021add2d7239c8a4e1541ffa167c7b8721779163d6eb56e39"
+  },
+  "core": {
+    "passed": 1636,
+    "failed": 0,
+    "report": "artifacts/tests/undying-unity-0.xml",
+    "card_specific": 17,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/undying-unity-0.xml",
+      "artifacts/tests/undying-unity-1.xml"
+    ],
+    "replaced_failed_tests": [
+      "Goa2.Tests.ScenarioTests.PublishedScenarioPassesAgainstTheFormalCatalog(\"undying-loyalty-recover.json\")",
+      "Goa2.Tests.ScenarioTests.PublishedScenarioPassesAgainstTheFormalCatalog(\"undying-loyalty-skip.json\")"
+    ],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/undying-loyalty-recover.json",
+        "input_sha256": "436174acdd49c72389eb07f66e4a0c40797f5943713d13e1c6d1f589357cc505",
+        "report": "artifacts/editor-scenarios/undying-loyalty-recover/dd03a384beaf44e9a27e414e178f560f/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/undying-loyalty-skip.json",
+        "input_sha256": "54dfe5fccd05abf9dcfad1630c738060754792e76b2b88856b3d9d597ad3e24a",
+        "report": "artifacts/editor-scenarios/undying-loyalty-skip/575f22262a474ad09daffc7c67cf6d55/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine64-undying-recovery-scenario.json",
+        "input_sha256": "48bc85aaae795cdda408b7fc698dc543be86f7829e1e7a71101db4ec573ff1c8",
+        "report": "artifacts/editor-scenarios/engine64-undying-recovery-scenario/3ce043be7bab466b99077d155601a8b3/report.json",
+        "steps": 13,
+        "passed": true
+      }
+    ],
+    "scenarios": 3,
+    "steps": 48
+  },
+  "manual_presets": [
+    "undying-loyalty-recover"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/undying-red.xml",
+    "passed": 2,
+    "failed": 13
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e64-undying-20260926-055434-1b463fdf.zip",
+    "sha256": "563050ef6cac6708984238b114835d5193ca01136c67d8a3712ad94b775221f2"
+  }
+}

@@ -9,7 +9,7 @@ namespace Goa2.Rules
     public sealed partial class GameRules
     {
         private static List<string> HeroTargets(ContentCatalog catalog,GameState state,CardExecution execution,PrimaryProgram program) =>
-            HeroTargetsUnfiltered(catalog,state,execution,program).Where(id=>state.Units.Any(u=>u.Id==id && EffectRules.CanAffect(state,execution.ControllerSeat,u))).ToList();
+            HeroTargetsUnfiltered(catalog,state,execution,program).Where(id=>state.Units.Any(u=>u.Id==id && EffectRules.CanAffect(state,execution.ControllerSeat,u,attackAction:catalog.Card(execution.CardId).PrimaryFamily=="attack"))).ToList();
         private static List<string> HeroTargetsUnfiltered(ContentCatalog catalog,GameState state,CardExecution execution,PrimaryProgram program)
         {
             var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
@@ -41,10 +41,10 @@ namespace Goa2.Rules
                     (enemy.Kind=="hero" || enemy.Kind=="melee" || enemy.Kind=="ranged" || enemy.Kind=="heavy") && enemy.Position.Distance(target.Position)==1))
                 .Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
         }
-        private static bool BeginTargetDiscard(GameState state,Command command,CardExecution execution,string? otherTarget=null,string? resume=null)
+        private static bool BeginTargetDiscard(ContentCatalog catalog,GameState state,Command command,CardExecution execution,string? otherTarget=null,string? resume=null)
         {
             var target=state.Units.SingleOrDefault(u=>u.Id==(otherTarget??execution.TargetUnitId) && u.Kind=="hero" && u.Seat.HasValue);
-            if(target==null || !EffectRules.CanAffect(state,execution.ControllerSeat,target))return false;
+            if(target==null || !EffectRules.CanAffect(state,execution.ControllerSeat,target,attackAction:catalog.Card(execution.CardId).PrimaryFamily=="attack"))return false;
             int seat=target.Seat!.Value;
             if(!state.Players[seat].Cards.Any(c=>c.Zone==CardZone.InHand)){Emit(state,command,"ForcedDiscardSkipped",seat,execution.CardId,detail:"empty_hand");return false;}
             state.Phase=Phase.EffectChoice;
@@ -110,7 +110,7 @@ namespace Goa2.Rules
                     (command.Value=="skip" || LegalEffectTargets(catalog,state,command.ActorSeat).Contains(command.Value)),"invalid_effect_target","请选择另一名合法敌方英雄，或跳过额外弃牌。");
                 var attack=state.Execution!;state.Pending=null;state.Phase=Phase.Action;
                 Emit(state,command,command.Value=="skip" ? "EffectTargetSkipped" : "EffectTargetChosen",command.ActorSeat,attack.CardId,detail:command.Value);
-                if(command.Value!="skip" && BeginTargetDiscard(state,command,attack,command.Value))return;
+                if(command.Value!="skip" && BeginTargetDiscard(catalog,state,command,attack,command.Value))return;
                 attack.Cursor++;ContinueCard(catalog,state,command);return;
             }
             Require(LegalEffectTargets(catalog,state,command.ActorSeat).Contains(command.Value),"invalid_effect_target","请由来源英雄选择当前合法的牌文目标。");

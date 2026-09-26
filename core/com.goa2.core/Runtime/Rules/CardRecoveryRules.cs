@@ -54,6 +54,7 @@ namespace Goa2.Rules
             {
                 var card=state.Players[command.ActorSeat].Cards.Single(c=>c.CardId==command.Value);
                 card.Zone=CardZone.InHand;
+                if(state.EngineVersion>=64)execution.RecoveredCard=true;
                 CancelRetrievedCardEffects(state,command,command.ActorSeat,card.CardId);
                 Emit(state,command,"CardRecovered",command.ActorSeat,card.CardId,command.ActorSeat);
                 Emit(state,command,"RecoveredColorShown",command.ActorSeat,detail:catalog.Card(card.CardId).Color);

@@ -59,7 +59,7 @@ namespace Goa2.Rules
    }
    else e.AffectedHeroTargets!.Remove(target.Id);
    state.Pending=null;state.Phase=Phase.Action;
-   if(!push && BeginTargetDiscard(state,command,e,resume:"push_blocked_discard"))return;
+   if(!push && BeginTargetDiscard(catalog,state,command,e,resume:"push_blocked_discard"))return;
    ContinueCard(catalog,state,command);
   }
  }

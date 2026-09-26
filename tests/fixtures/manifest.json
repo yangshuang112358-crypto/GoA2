@@ -567,6 +567,15 @@
       "input": "tests/fixtures/engine63-counterattack-nested-scenario.json",
       "input_sha256": "bacbd075628a91f4f6dec50de69d51032705663daaef0eb735f40213b320f395",
       "provenance": "tests/fixtures/engine63-counterattack-nested.md"
+    },
+    {
+      "engine_version": 64,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine64-undying-recovery.json",
+      "save_sha256": "6020f86eab6653ec0be1b3caf9aa642e7ef91ec5cd4bed0ec30bf42597607350",
+      "input": "tests/fixtures/engine64-undying-recovery-scenario.json",
+      "input_sha256": "48bc85aaae795cdda408b7fc698dc543be86f7829e1e7a71101db4ec573ff1c8",
+      "provenance": "tests/fixtures/engine64-undying-recovery.md"
     }
   ]
 }

@@ -505,11 +505,20 @@
     },
     {
       "card_id": "shargatha-17-至死不渝",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-17-至死不渝.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/UndyingLoyaltyTests.cs",
+        "tests/scenarios/undying-loyalty-recover.json",
+        "tests/scenarios/undying-loyalty-skip.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs"
+      ]
     },
     {
       "card_id": "brogan-00-猛攻",

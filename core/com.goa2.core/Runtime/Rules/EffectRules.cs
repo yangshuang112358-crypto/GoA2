@@ -40,7 +40,7 @@ namespace Goa2.Rules
         {
             var controller=state.Units.SingleOrDefault(u => u.Seat==controllerSeat);
             if (controller==null) return new List<string>();
-            var enemies=new HashSet<int>(state.Units.Where(u => u.Kind=="hero" && u.Seat.HasValue && u.Team!=controller.Team && CanAffect(state,controllerSeat,u) && u.Position.Distance(controller.Position)==1).Select(u => u.Seat!.Value));
+            var enemies=new HashSet<int>(state.Units.Where(u => u.Kind=="hero" && u.Seat.HasValue && u.Team!=controller.Team && CanAffect(state,controllerSeat,u,attackAction:true) && u.Position.Distance(controller.Position)==1).Select(u => u.Seat!.Value));
             return state.Effects.Where(e => enemies.Contains(e.ControllerSeat) && catalog.Card(e.SourceCardId).PrimaryFamily=="skill" && EffectTimeline.Active(e.Window,state.Round,state.Turn))
                 .OrderBy(e => e.CreationOrder).Select(e => e.Id).ToList();
         }
@@ -52,14 +52,15 @@ namespace Goa2.Rules
             foreach (var effect in Current(state,EffectKind.SkillSuppression))
             {
                 var source = Source(state,effect);
-                if (source != null && CanAffect(state,effect.ControllerSeat,target) && state.Players[effect.ControllerSeat].Team != target.Team && source.Position.Distance(target.Position) <= Radius(catalog,state,effect))
+                if (source != null && CanAffect(state,effect.ControllerSeat,target,attackAction:catalog.Card(effect.SourceCardId).PrimaryFamily=="attack") && state.Players[effect.ControllerSeat].Team != target.Team && source.Position.Distance(target.Position) <= Radius(catalog,state,effect))
                     return effect.SourceCardId;
             }
             return "";
         }
-        public static bool CanAffect(GameState state,int controllerSeat,UnitState target)
+        public static bool CanAffect(GameState state,int controllerSeat,UnitState target,bool attackAction=false)
         {
             if(state.EngineVersion<51 || target.Seat==controllerSeat)return true;
+            if(state.EngineVersion>=64 && attackAction && Current(state,EffectKind.AttackActionImmunity).Any(e=>e.SourceUnitId==target.Id))return false;
             if(Current(state,EffectKind.ImmunityAndUnitTraversal).Any(e=>e.SourceUnitId==target.Id))return false;
             if(state.EngineVersion<52 || controllerSeat<0 || controllerSeat>=state.Players.Count || state.Players[controllerSeat].Team==target.Team)return true;
             return !Current(state,EffectKind.OtherEnemyActionImmunity).Any(e=>e.ProtectedUnitId==target.Id && e.ExemptControllerSeat!=controllerSeat);
@@ -80,9 +81,9 @@ namespace Goa2.Rules
         }
         public static bool CanTraverseUnits(GameState state,UnitState unit) =>
             state.EngineVersion>=51 && Current(state,EffectKind.ImmunityAndUnitTraversal).Any(e=>e.SourceUnitId==unit.Id);
-        public static bool CanDisplace(ContentCatalog catalog,GameState state,int controllerSeat,UnitState target)
+        public static bool CanDisplace(ContentCatalog catalog,GameState state,int controllerSeat,UnitState target,bool attackAction=false)
         {
-            if(!CanAffect(state,controllerSeat,target))return false;
+            if(!CanAffect(state,controllerSeat,target,attackAction))return false;
             if(state.EngineVersion<50 || state.Players[controllerSeat].Team==target.Team)return true;
             return !Current(state,EffectKind.FriendlyDisplacementProtection).Any(effect=>
             {
@@ -92,7 +93,7 @@ namespace Goa2.Rules
         }
         public static bool CanBeAttacked(GameState state, UnitState source, UnitState target, bool ranged)
         {
-            if(!CanAffect(state,source.Seat??-1,target))return false;
+            if(!CanAffect(state,source.Seat??-1,target,attackAction:true))return false;
             if (source.Kind!="hero" || !ranged || source.Position.Distance(target.Position)<=1) return true;
             return !Current(state,EffectKind.NonAdjacentRangedImmunity).Any(e => e.ProtectedUnitId==target.Id);
         }
