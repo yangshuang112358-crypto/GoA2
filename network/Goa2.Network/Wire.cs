@@ -29,7 +29,7 @@ public static class Wire
         ["DeclineRetaliationDiscard"] = [], ["ChooseEffectMove"] = ["Destination?", "Value?"],
         ["ChooseRecoveredCard"] = ["Value"], ["ChooseEffectTarget"] = ["Value"],
         ["ChooseCardSwap"] = ["Value"], ["ChooseGoldTransfer"] = ["TargetSeat", "Value"],
-        ["ChoosePlacement"] = ["Destination?", "Value?"], ["ChooseMinionReturn"] = ["Value", "Destination?"],
+        ["ChoosePlacement"] = ["Destination"], ["ChooseMinionReturn"] = ["Value", "Destination"],
         ["ChoosePrimaryOption"] = ["Value"], ["ChooseMinionProtection"] = ["Value"],
         ["ChooseDiscardAttack"] = ["Value"]
     };
@@ -88,7 +88,7 @@ public static class Wire
             MatchId = Text(item, "MatchId", 100), ExpectedRevision = Number(item, "ExpectedRevision", 0, long.MaxValue) };
         if (string.IsNullOrWhiteSpace(cmd.Id)) throw new WireError("invalid_command_id");
         if (item.TryGetProperty("Value", out _)) cmd.Value = Text(item, "Value");
-        if (item.TryGetProperty("TargetSeat", out _)) cmd.TargetSeat = (int)Number(item, "TargetSeat", 0, 3);
+        if (item.TryGetProperty("TargetSeat", out _)) cmd.TargetSeat = (int)Number(item, "TargetSeat", kind == "ChooseGoldTransfer" ? -1 : 0, 3);
         if (item.TryGetProperty("MoveMode", out _))
         {
             string mode = Text(item, "MoveMode");
@@ -101,6 +101,9 @@ public static class Wire
             cmd.Destination = new Hex((int)Number(dest, "X", -1000, 1000), (int)Number(dest, "Y", -1000, 1000));
         }
         if (kind == "Move" && !item.TryGetProperty("Destination", out _) && cmd.Value != "begin") throw new WireError("missing_Destination");
+        if (kind == "ChooseEffectMove" && !item.TryGetProperty("Destination", out _) && cmd.Value != "skip") throw new WireError("missing_Destination");
+        if ((kind == "Move" && cmd.Value == "begin" || kind == "ChooseEffectMove" && cmd.Value == "skip") && item.TryGetProperty("Destination", out _))
+            throw new WireError("ambiguous_destination");
         return cmd;
     }
     public static async Task<byte[]> Read(NetworkStream stream, int max, CancellationToken token)

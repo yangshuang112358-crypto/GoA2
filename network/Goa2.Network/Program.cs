@@ -74,7 +74,7 @@ public static class Program
                         await Wire.Write(stream, bytes, deadline.Token);
                     }
                 }
-                catch (Exception e) when (e is IOException or OperationCanceledException or SocketException) { peer.Dispose(); }
+                catch (Exception e) when (e is IOException or OperationCanceledException or SocketException or WireError) { peer.Dispose(); }
             });
             try
             {

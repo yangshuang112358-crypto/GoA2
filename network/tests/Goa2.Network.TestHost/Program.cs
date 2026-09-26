@@ -10,7 +10,7 @@ var runner = new ScenarioRunner(content, definition);
 int steps = int.Parse(args[3]);
 for (int i = 0; i < steps; i++)
 {
-    runner.Next();
-    if (!runner.Report.Passed) throw new InvalidOperationException("fixture prefix failed");
+    var result = runner.Next();
+    if (!result.Passed) throw new InvalidOperationException("fixture prefix failed: " + string.Join("; ", result.Errors));
 }
 return await Goa2.Network.Program.RunServer(new Room(content, runner.Session), args[0], args[1]);

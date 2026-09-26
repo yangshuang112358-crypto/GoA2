@@ -178,6 +178,10 @@ def rpc_main():
                     result = {"state": player.state}
                 elif op == "metrics":
                     result = {"max_snapshot_bytes": player.max_snapshot_bytes}
+                elif op == "state":
+                    if request.get("wait_disconnected"):
+                        player.wait(lambda: player.state == "Disconnected")
+                    result = {"state": player.state}
                 else:
                     raise ValueError("unknown RPC operation")
                 print(json.dumps({"ok": True, "result": result}, ensure_ascii=False), flush=True)

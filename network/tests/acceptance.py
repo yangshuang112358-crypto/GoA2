@@ -10,10 +10,13 @@ import sys
 import time
 import traceback
 import uuid
+from concurrent.futures import ThreadPoolExecutor
+import threading
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "network/client"))
 from player import Player
+from fault_proxy import FaultProxy
 
 
 class Run:
@@ -30,6 +33,11 @@ class Run:
                        "runner": "TCP: one .NET service and four Python client processes", "ui_tested": False,
                        "core_tests_counted": 0, "checks": self.checks, "assemblies": {
                            p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in assembly.parent.glob("*.dll")}}
+        self.report["source_files"] = {str(p.relative_to(ROOT)).replace("\\", "/"): hashlib.sha256(p.read_bytes()).hexdigest()
+            for folder in [ROOT / "network", ROOT / "core/com.goa2.core/Runtime"] for p in folder.rglob("*")
+            if p.is_file() and p.suffix in [".cs", ".py", ".csproj", ".json"] and not any(
+                part in ["bin", "obj", "__pycache__", "evidence"] for part in p.parts)}
+        self.report["started_utc"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         log = open(self.output / "server.log", "x", encoding="utf-8")
         self.logs.append(log)
         command = [str(dotnet), str(assembly), "serve", str(ROOT), str(self.output / "private")]
@@ -115,7 +123,8 @@ class Run:
                      {**base, "Kind": 0}, {**base, "ExpectedRevision": True}, {**base, "Kind": "DebugPrepare"},
                      {**base, "Value": None}, {k: v for k, v in base.items() if k != "Kind"},
                      {**base, "Kind": "SetQuickSelection"}, {**base, "Kind": "UpgradeEngine"},
-                     {**base, "Kind": "Move", "MoveMode": 1}, {**base, "Value": "x" * 257}]
+                     {**base, "Kind": "Move", "MoveMode": 1}, {**base, "Value": "x" * 257},
+                     {k: ("ChooseEffectMove" if k == "Kind" else v) for k, v in base.items() if k != "Value"}]
         for i, payload in enumerate(malformed):
             response = self.raw(payload, authenticated=True)
             self.check(f"N14 strict input {i}", response["Type"] == "Error" and "Snapshot" not in response)
@@ -138,7 +147,7 @@ class Run:
         self.check("N06 changed payload conflicts", conflict["Code"] == "command_id_conflict")
         replacement = Player(self.ticket(1))
         replacement.connect()
-        self.check("N11 old connection invalidated", self.rpc(1, "disconnect")["state"] == "Disconnected")
+        self.check("N11 old connection invalidated by service", self.rpc(1, "state", wait_disconnected=True)["state"] == "Disconnected")
         replacement.disconnect()
         self.rpc(1, "connect")
         self.command(2, "ChooseHero", Value="brogan")
@@ -185,7 +194,185 @@ class Run:
         self.check("four clients agree public state", all(public(self.view(i)) == public(self.view()) for i in range(4)))
         self.report["max_response_bytes"] = max(self.rpc(i, "metrics")["max_snapshot_bytes"] for i in range(4))
 
+    def connect_all(self):
+        for seat in range(4):
+            self.rpc(seat, "connect")
+        self.revision = self.view()["Revision"]
+
+    def reconnect_pending(self, seat, kind, candidates):
+        before = self.view(seat)
+        self.check(kind + " pending before disconnect", before["Pending"]["Kind"] == kind)
+        self.rpc(seat, "disconnect")
+        self.check("N13 disconnected state " + kind, self.rpc(seat, "state")["state"] == "Disconnected")
+        self.rpc(seat, "connect")
+        after = self.view(seat)
+        self.check("resume " + kind, after["Pending"] == before["Pending"] and after[candidates] == before[candidates] and bool(after[candidates]))
+        for other in range(4):
+            if other != seat:
+                self.check("private candidates " + kind + str(other), not self.view(other)[candidates])
+
+    def lost_result(self, seat, kind, **args):
+        # Send through a real socket then close without reading any Result. Another
+        # authenticated client observes the commit before original ID is retried.
+        ticket = self.ticket(seat)
+        self.rpc(seat, "disconnect")
+        sock = socket.create_connection((ticket["Host"], ticket["Port"]), timeout=5)
+        hello = {"Type": "Resume", "RoomId": ticket["RoomId"], "Credential": ticket["Credential"], **ticket["Capabilities"]}
+        data = json.dumps(hello).encode()
+        sock.sendall(struct.pack("!I", len(data)) + data)
+        size = struct.unpack("!I", Player.exact(sock, 4))[0]
+        welcome = json.loads(Player.exact(sock, size))
+        original = welcome["Snapshot"]["Revision"]
+        identifier = uuid.uuid4().hex
+        command = {"Type": "Intent", "CommandId": identifier, "MatchId": welcome["RoomId"],
+                   "ExpectedRevision": original, "Kind": kind, **args}
+        data = json.dumps(command, ensure_ascii=False).encode()
+        sock.sendall(struct.pack("!I", len(data)) + data)
+        # No receiver runs on this socket. Wait for another player's public snapshot.
+        observed = self.rpc((seat + 1) % 4, "view", revision=original + 1)
+        sock.close()
+        self.revision = observed["Revision"]
+        self.rpc(seat, "connect")
+        before_retry = self.view(seat)
+        result = self.rpc(seat, "submit", kind=kind, args=args, command_id=identifier, revision=original)
+        self.check("N05 lost Result retry " + kind, result["Duplicate"] and result["Snapshot"] == before_retry)
+        return result
+
+    def pending_axe(self):
+        self.connect_all()
+        self.reconnect_pending(0, "optional_discard", "OptionalDiscardCards")
+        self.command(1, "ChooseOptionalDiscard", expected="invalid_optional_discard", Value="skip")
+        self.lost_result(0, "ChooseOptionalDiscard", Value="brogan-00-猛攻")
+        self.command(0, "ChooseAttackTarget", Value="hero:1")
+        self.reconnect_pending(1, "defense", "DefenseOptions")
+        self.command(0, "Defend", expected="invalid_defender", Value="wasp-10-反射屏障")
+        self.command(1, "Defend", Value="wasp-10-反射屏障")
+        self.reconnect_pending(0, "forced_discard", "ForcedDiscardCards")
+        self.check("N08 optional cost preserved", "brogan-00-猛攻" not in self.view(0)["ForcedDiscardCards"])
+        self.lost_result(0, "ForcedDiscard", Value="brogan-06-铜墙铁壁")
+        view = self.view(0)
+        self.check("N08 two distinct discards once", sum(c["Zone"] == "Discarded" for c in view["OwnCards"]) == 2)
+        self.check("N08 parent resumes", view["Phase"] == "Action" and view["ActiveSeat"] == 3)
+
+    def pending_respawn(self):
+        self.connect_all()
+        self.reconnect_pending(1, "hero_respawn", "RespawnCells")
+        self.command(0, "RespawnHero", expected="invalid_respawn", Destination=self.view(1)["RespawnCells"][0])
+        self.lost_result(1, "RespawnHero", Destination=self.view(1)["RespawnCells"][0])
+        self.check("N10 respawn resumes parent", self.view()["Phase"] == "Action" and self.view()["ActiveSeat"] == 1)
+
+    def pending_spawn(self):
+        self.connect_all()
+        seat = self.view()["Pending"]["ChooserSeat"]
+        self.reconnect_pending(seat, "minion_spawn", "SpawnChoices")
+        unit, cells = next(iter(self.view(seat)["SpawnChoices"].items()))
+        self.lost_result(seat, "ChooseMinionSpawn", Value=unit, Destination=cells[0])
+        self.check("N10 spawn resumes round end", self.view()["RoundEndStage"] == "upgrades")
+
+    def pending_upgrade(self):
+        self.connect_all()
+        before = self.view(0)["UpgradeOptions"]
+        self.rpc(0, "disconnect")
+        options = self.view(1)["UpgradeOptions"]
+        self.check("N09 both players have own upgrades", bool(before) and bool(options) and before != options)
+        # CardId is supplied by the existing rule projection.
+        self.command(1, "ChooseUpgrade", Value=options[0]["CardId"])
+        self.check("N09 finished chooser clears options", not self.view(1)["UpgradeOptions"])
+        self.rpc(0, "connect")
+        self.check("N09 offline chooser recovers options", self.view(0)["UpgradeOptions"] == before)
+        while self.view(0)["UpgradeOptions"]:
+            self.command(0, "ChooseUpgrade", Value=self.view(0)["UpgradeOptions"][0]["CardId"])
+        self.check("N09 resumes next round", self.view()["Round"] == 2)
+
+    def pending_skip(self):
+        self.connect_all()
+        self.reconnect_pending(0, "optional_discard", "OptionalDiscardCards")
+        before = self.view(0)
+        self.lost_result(0, "ChooseOptionalDiscard", Value="skip")
+        after = self.view(0)
+        self.check("N08 optional skip preserves cards", after["OwnCards"] != [] and
+                   sum(c["Zone"] == "Discarded" for c in before["OwnCards"]) == sum(c["Zone"] == "Discarded" for c in after["OwnCards"]))
+        self.check("N08 no target after skip resumes", after["Phase"] == "Action" and after["ActiveSeat"] == 3)
+
+    def race_and_generation(self):
+        self.connect_all()
+        players = [Player(self.ticket(i)) for i in range(2)]
+        for player in players:
+            player.connect()
+        barrier = threading.Barrier(2)
+        def send(index):
+            barrier.wait(timeout=5)
+            return players[index].submit("ChooseHero", {"Value": ["wasp", "brogan"][index]}, revision=0)
+        with ThreadPoolExecutor(2) as pool:
+            results = list(pool.map(send, range(2)))
+        self.check("N04 simultaneous same revision has one winner", sorted(r["Code"] for r in results) == ["ok", "stale_revision"])
+        self.revision = 1
+        # Retain the superseded socket reference and attempt an actual stale write.
+        old_socket = players[0].sock
+        replacement = Player(self.ticket(0))
+        replacement.connect()
+        players[0].wait(lambda: players[0].state == "Disconnected")
+        payload = json.dumps({"Type": "Intent", "CommandId": "old-generation", "ExpectedRevision": 1,
+                              "MatchId": replacement.view["MatchId"], "Kind": "ChooseHero", "Value": "arien"}).encode()
+        try:
+            old_socket.sendall(struct.pack("!I", len(payload)) + payload)
+        except OSError:
+            pass
+        # Barrier through a fresh authenticated connection observes the same revision.
+        self.rpc(0, "connect")
+        self.check("N11 old socket cannot commit after replacement", self.view()["Revision"] == 1)
+        for player in players + [replacement]:
+            player.disconnect()
+
+    def gold_skip_syntax(self):
+        self.connect_all()
+        # In HeroSelection this must reach rules and reject by rule code, rather than
+        # transport rejecting the core's documented -1 sentinel for choosing zero gold.
+        self.command(0, "ChooseGoldTransfer", expected="invalid_gold_transfer", TargetSeat=-1, Value="0")
+        self.check("gold skip sentinel reaches authority", self.view()["Revision"] == self.revision)
+
+    def faults(self):
+        self.connect_all()
+        ticket = self.ticket(0)
+        proxy = FaultProxy(ticket, "drop")
+        player = Player({**ticket, "Port": proxy.port})
+        try:
+            player.connect()
+            result = player.submit("ChooseHero", {"Value": "wasp"})
+            identifier = result["CommandId"]
+            self.check("N05 lost result remains uncertain and pending", result["Type"] == "Uncertain" and identifier in player.pending)
+            player.ticket = ticket
+            player.connect()
+            before = player.view
+            result = player.retry(identifier)
+            self.check("N05 reconnect retry preserves ID and revision", result["Duplicate"] and player.view == before and not player.pending)
+            self.revision = player.view["Revision"]
+        finally:
+            player.disconnect()
+            proxy.close()
+            proxy.worker.join(3)
+        ticket = self.ticket(1)
+        proxy = FaultProxy(ticket, "delay")
+        player = Player({**ticket, "Port": proxy.port})
+        try:
+            player.connect()
+            with ThreadPoolExecutor(1) as pool:
+                future = pool.submit(player.submit, "ChooseHero", {"Value": "brogan"})
+                player.wait(lambda: player.view["Revision"] == 2)
+                self.revision = 2
+                self.command(2, "ChooseHero", Value="arien")
+                result = future.result(timeout=10)
+            self.check("N12 delayed old Result acknowledged without rollback", result["Snapshot"]["Revision"] == 2 and player.view["Revision"] == 3)
+            self.check("N12 delayed old Snapshot cannot rewind", player.view["Players"][2]["HeroId"] == "arien")
+            self.check("fault proxy succeeded", proxy.failed is None)
+        finally:
+            player.disconnect()
+            proxy.close()
+            proxy.worker.join(3)
+
     def finish(self):
+        if all(p.poll() is None for p in self.clients):
+            self.report["max_response_bytes"] = max(self.rpc(i, "metrics")["max_snapshot_bytes"] for i in range(4))
         for process in self.clients:
             process.stdin.close()
             try:
@@ -202,6 +389,7 @@ class Run:
             self.server.wait()
         self.report["server_exit"] = self.server.returncode
         self.report["restore_verified"] = (self.output / "private/restore-check.json").exists()
+        self.report["finished_utc"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         for log in self.logs:
             log.close()
         (self.output / "report.json").write_text(json.dumps(self.report, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -209,14 +397,23 @@ class Run:
 
 
 if __name__ == "__main__":
-    run = Run()
-    try:
-        run.boundaries()
-        run.full_round()
-        run.report["passed"] = True
-    except Exception:
-        run.report["passed"] = False
-        run.report["failure"] = traceback.format_exc()
-        raise
-    finally:
-        run.finish()
+    cases = [(None, 0, ["boundaries", "full_round"]), (None, 0, ["race_and_generation", "gold_skip_syntax"]),
+             (None, 0, ["faults"])]
+    if "--pending" in sys.argv:
+        cases = [("tests/scenarios/throwing-axe-reflection.json", 11, ["pending_axe"]),
+                 ("tests/scenarios/combat-defense.json", 12, ["pending_respawn"]),
+                 ("tests/scenarios/round-frontline.json", 13, ["pending_spawn"]),
+                 ("tests/scenarios/round-upgrades.json", 5, ["pending_upgrade"]),
+                 ("tests/scenarios/throwing-axe-skip.json", 11, ["pending_skip"])]
+    for fixture, steps, methods in cases:
+        run = Run(fixture, steps)
+        try:
+            for method in methods:
+                getattr(run, method)()
+            run.report["passed"] = True
+        except Exception:
+            run.report["passed"] = False
+            run.report["failure"] = traceback.format_exc()
+            raise
+        finally:
+            run.finish()
