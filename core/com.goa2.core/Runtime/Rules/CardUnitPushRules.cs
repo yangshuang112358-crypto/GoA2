@@ -40,7 +40,8 @@ namespace Goa2.Rules
         {
             if(state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="effect_move" || state.Pending.ResumeAt!="single_push_distance" || state.Pending.ChooserSeat!=seat ||
                 state.Execution?.ControllerSeat!=seat || state.ActiveSeat!=seat)return new List<MoveOption>();
-            var result=CurrentUnitPush(catalog,state);return result==null?new List<MoveOption>():result.Path.Skip(1).Select((cell,index)=>new MoveOption{Destination=cell,Path=result.Path.Take(index+2).ToList()}).ToList();
+            var result=CurrentUnitPush(catalog,state);return result==null?new List<MoveOption>():result.Path.Skip(1).Select((cell,index)=>new MoveOption{Destination=cell,Path=result.Path.Take(index+2).ToList()})
+                .Where(m=>catalog.Cell(m.Destination)?.Obstacle==false && !state.Units.Any(u=>u.Position==m.Destination)).ToList();
         }
         private static void ChooseUnitPushTarget(ContentCatalog catalog,GameState state,Command command)
         {
@@ -54,7 +55,7 @@ namespace Goa2.Rules
                 UnitId=command.Value,ResumeAt="single_push_distance",Optional=true};
             var result=CurrentUnitPush(catalog,state)!;
             if(result.Path.Count==1){CompleteUnitPush(catalog,state,command,result.Path,result.StopReason);return;}
-            state.Pending.CandidateCells=result.Path.Skip(1).ToList();Emit(state,command,"EffectMoveChoiceRequired",e.ControllerSeat,e.CardId,detail:"push_up_to:"+p!.TextPushDistance);
+            state.Pending.CandidateCells=LegalUnitPushMoves(catalog,state,e.ControllerSeat).Select(m=>m.Destination).ToList();Emit(state,command,"EffectMoveChoiceRequired",e.ControllerSeat,e.CardId,detail:"push_up_to:"+p!.TextPushDistance);
         }
         private static void ChooseUnitPushDistance(ContentCatalog catalog,GameState state,Command command)
         {

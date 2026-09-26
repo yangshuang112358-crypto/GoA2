@@ -1,0 +1,94 @@
+{
+  "engine": 74,
+  "implemented_cards": 85,
+  "data_only_cards": 23,
+  "build_utc": "2026-09-26T07:12:08.5157835Z",
+  "assemblies": {
+    "Goa2.Application.dll": "257adfcf9528e255a1bb54680df90c65d2f1f76ecb5dd4b12e2b14896fde20e5",
+    "Goa2.Domain.dll": "130180177e0678cbf99ddcb6a09c511511a82f265432785ac852287eef35f7f1",
+    "Goa2.Editor.dll": "d171eb85b36ae4352a1864a52c922df5417b8bbd51d5b26494574b81c4d52a01",
+    "Goa2.Infrastructure.dll": "0dd4f0b06b61b5b2730e285bf495114e82aa16eb616531fcd4284ad3ec019359",
+    "Goa2.Rules.dll": "3f7df1febb55c1e678047072e4309bcc90a0bf5acbd66f9a50f651dbc4d1d542"
+  },
+  "core": {
+    "passed": 129,
+    "failed": 0,
+    "report": "artifacts/tests/savage-kick-unity-0.xml",
+    "card_specific": 13,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/savage-kick-unity-0.xml",
+      "artifacts/tests/savage-kick-unity-1.xml"
+    ],
+    "replaced_failed_tests": [
+      "Goa2.Tests.PhantasmTests.TraversalDoesNotBypassStaticBoundaryOrTurnPushIntoMovement",
+      "Goa2.Tests.ScenarioTests.PublishedScenarioPassesAgainstTheFormalCatalog(\"savage-kick-phantasm.json\")"
+    ],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/savage-kick-hero.json",
+        "input_sha256": "05e0c3a8d36e11d8722aedc22d4abf387c9f646954aebcbb4a7807d036f2698b",
+        "report": "artifacts/editor-scenarios/savage-kick-hero/23a6edf5b3744019ad2f8f6bef4a8bbd/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/savage-kick-skip.json",
+        "input_sha256": "4fab7dea65155d940a63e2b4421030bb1391bdf89b8bb577497f17eae58abc1d",
+        "report": "artifacts/editor-scenarios/savage-kick-skip/8cff6782db9a41dda911ea6947441842/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/savage-kick-minion.json",
+        "input_sha256": "0379d5708a05232ce42617f88f6a8bdd5512c51fe72e3dd6d6b3c2b5d5b530b5",
+        "report": "artifacts/editor-scenarios/savage-kick-minion/9292351c40b24003b25d02498652e864/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/savage-kick-phantasm.json",
+        "input_sha256": "cc4860caa3b3b6ed91b106b0617b350bd3ca71c85751a94ba3ebdf7d36c62dd5",
+        "report": "artifacts/editor-scenarios/savage-kick-phantasm/048500ae9c8747839dd1765abb9d1171/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine74-savage-kick-phantasm-scenario.json",
+        "input_sha256": "eea7322e5d15eec81bebb5b77a760950dfb587f7a118cd3e4cf3b1203e1c4259",
+        "report": "artifacts/editor-scenarios/engine74-savage-kick-phantasm-scenario/da799b3e3c734343beed2124262b5fdc/report.json",
+        "steps": 24,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 95
+  },
+  "manual_presets": [
+    "savage-kick-hero",
+    "savage-kick-phantasm"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/savage-kick-red.xml",
+    "passed": 1,
+    "failed": 10
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e74-savage-kick-20260926-071250-ad0a4309.zip",
+    "sha256": "7f5d9b1602692e2c43ac0af6d7bb69eb5d3633f5e3682527f7b898977dd32ad5"
+  }
+}

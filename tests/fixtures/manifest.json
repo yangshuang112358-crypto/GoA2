@@ -657,6 +657,15 @@
       "input": "tests/fixtures/engine73-crushing-punch-distance-scenario.json",
       "input_sha256": "be409aba7ac6960ac121db8804b4ceb9477cb69312f244741910d0fa9c3b3d85",
       "provenance": "tests/fixtures/engine73-crushing-punch-distance.md"
+    },
+    {
+      "engine_version": 74,
+      "accepted_commands": 24,
+      "save": "tests/fixtures/engine74-savage-kick-phantasm.json",
+      "save_sha256": "349eace78ba5f74ef882ee2ef2d52841682fd5d2bb63b1a4795193417e5277fe",
+      "input": "tests/fixtures/engine74-savage-kick-phantasm-scenario.json",
+      "input_sha256": "eea7322e5d15eec81bebb5b77a760950dfb587f7a118cd3e4cf3b1203e1c4259",
+      "provenance": "tests/fixtures/engine74-savage-kick-phantasm.md"
     }
   ]
 }
