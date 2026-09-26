@@ -14,7 +14,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw "Client build failed: $goaRun" }
     & $PythonExe network/tests/test_client.py *> (Join-Path $goaRun 'client-unit.log')
     if ($LASTEXITCODE -ne 0) { throw "Client unit tests failed: $goaRun" }
-    foreach ($goaMode in @('', '--pending', '--csharp')) {
+    foreach ($goaMode in @('', '--pending', '--csharp', '--empty')) {
         $goaArguments = @('network/tests/acceptance.py')
         if ($goaMode) { $goaArguments += $goaMode }
         & $PythonExe @goaArguments | Tee-Object -FilePath (Join-Path $goaRun ('runs' + $goaMode + '.txt'))

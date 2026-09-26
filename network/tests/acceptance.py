@@ -348,6 +348,18 @@ class Run:
                    sum(c["Zone"] == "Discarded" for c in before["OwnCards"]) == sum(c["Zone"] == "Discarded" for c in after["OwnCards"]))
         self.check("N08 no target after skip resumes", after["Phase"] == "Action" and after["ActiveSeat"] == 3)
 
+    def pending_empty(self):
+        self.connect_all()
+        self.reconnect_pending(0, "optional_discard", "OptionalDiscardCards")
+        self.check("N08 last hand card is optional cost", self.view(0)["OptionalDiscardCards"] == ["brogan-00-猛攻"])
+        self.lost_result(0, "ChooseOptionalDiscard", Value="brogan-00-猛攻")
+        self.command(0, "ChooseAttackTarget", Value="hero:1")
+        self.reconnect_pending(1, "defense", "DefenseOptions")
+        self.lost_result(1, "Defend", Value="wasp-10-反射屏障")
+        view = self.view(0)
+        self.check("N08 empty forced discard has no waiting candidate", not view["ForcedDiscardCards"] and view["Pending"] is None)
+        self.check("N08 empty hand auto resumes parent", view["Phase"] == "Action" and view["ActiveSeat"] == 3 and view["Players"][0]["HandCount"] == 0)
+
     def race_and_generation(self):
         self.connect_all()
         players = [Player(self.ticket(i)) for i in range(2)]
@@ -475,6 +487,8 @@ if __name__ == "__main__":
         cases = [(None, 0, ["connect_all", "setup_heroes", "full_round"]),
                  ("tests/scenarios/throwing-axe-reflection.json", 11, ["adapter_pending"]),
                  (None, 0, ["adapter_faults"])]
+    if "--empty" in sys.argv:
+        cases = [("network/tests/fixtures/axe-empty.json", 14, ["pending_empty"])]
     for fixture, steps, methods in cases:
         run = Run(fixture, steps, csharp="--csharp" in sys.argv, faults="adapter_faults" in methods)
         try:
