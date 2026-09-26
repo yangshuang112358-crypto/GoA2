@@ -66,9 +66,12 @@ namespace Goa2.Rules
         }
         public static List<ActiveEffect> MinionDefeatProtectors(ContentCatalog catalog,GameState state,UnitState unit)
         {
-            if(state.EngineVersion<53 || (unit.Kind!="melee" && unit.Kind!="ranged"))return new List<ActiveEffect>();
+            if(state.EngineVersion<53 || (unit.Kind!="melee" && unit.Kind!="ranged" && (state.EngineVersion<61 || unit.Kind!="heavy")))return new List<ActiveEffect>();
+            // A defeat bypass for its attacking source does not remove immunity to this protection skill.
+            if(unit.Kind=="heavy" && !GameRules.LegalMinionRemovals(state).Contains(unit.Id))return new List<ActiveEffect>();
             var effects=Current(state,EffectKind.FriendlyMeleeDefeatPrevention).Where(e=>unit.Kind=="melee");
-            if(state.EngineVersion>=54)effects=effects.Concat(Current(state,EffectKind.FriendlyNonHeavyDefeatPrevention));
+            if(state.EngineVersion>=54 && unit.Kind!="heavy")effects=effects.Concat(Current(state,EffectKind.FriendlyNonHeavyDefeatPrevention));
+            if(state.EngineVersion>=61)effects=effects.Concat(Current(state,EffectKind.FriendlyMinionDefeatPrevention));
             return effects.Where(e=>
             {
                 var source=Source(state,e);

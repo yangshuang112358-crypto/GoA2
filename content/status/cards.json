@@ -731,11 +731,21 @@
     },
     {
       "card_id": "brogan-11-巩固防线",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-11-巩固防线.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/FortifyTests.cs",
+        "tests/scenarios/fortify-pay.json",
+        "tests/scenarios/fortify-decline.json",
+        "tests/scenarios/fortify-protected.json",
+        "tests/scenarios/fortify-empty.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "brogan-12-一人成军",

@@ -540,6 +540,15 @@
       "input": "tests/fixtures/engine60-lord-tides-army-scenario.json",
       "input_sha256": "8abb1f0550e7f915f6bcb82415e4cd109508640a35beee99c2dbb3ddc6581ad7",
       "provenance": "tests/fixtures/engine60-lord-tides-army.md"
+    },
+    {
+      "engine_version": 61,
+      "accepted_commands": 30,
+      "save": "tests/fixtures/engine61-fortify-heavy-payment.json",
+      "save_sha256": "bfcfa03a1d2d07c935f22c8e88e0a71fe1b48c1550c65e9b570f0bf2fdcfc464",
+      "input": "tests/fixtures/engine61-fortify-heavy-payment-scenario.json",
+      "input_sha256": "e8b8f887f85ccb6785c509a866f1c7ac7a4ef8fb490a9cb9433b0200fca2c885",
+      "provenance": "tests/fixtures/engine61-fortify-heavy-payment.md"
     }
   ]
 }

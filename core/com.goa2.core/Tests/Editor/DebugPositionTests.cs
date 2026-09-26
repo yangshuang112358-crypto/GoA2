@@ -63,7 +63,7 @@ namespace Goa2.Tests
             var document=JObject.Parse(Prepared()); var first=(JObject)document["Presets"]![0]!;
             if(failure=="final_phase") first["Phase"]="Finished";
             else first["Scenario"]!["Steps"]![0]!["Expect"]!["Gold"]=new JObject { ["p1"]=999 };
-            var position=DebugPositions.Read(document.ToString()).First(); GameSession? result=null;
+            var position=DebugPositions.Read(document.ToString(Newtonsoft.Json.Formatting.None)).First(); GameSession? result=null;
             Assert.Throws<InvalidDataException>(()=>result=DebugPositions.Open(BattlefieldTests.Catalog(),position));
             Assert.That(result,Is.Null);
         }
@@ -83,7 +83,16 @@ namespace Goa2.Tests
                 case "formal_session": presets[0]!["Scenario"]!["Sandbox"]=false; break;
                 case "unchecked_replay": presets[0]!["Scenario"]!["VerifyReplayAfterEachStep"]=false; break;
             }
-            Assert.Throws<InvalidDataException>(()=>DebugPositions.Read(document.ToString()));
+            Assert.Throws<InvalidDataException>(()=>DebugPositions.Read(document.ToString(Newtonsoft.Json.Formatting.None)));
+        }
+        [Test]
+        public void PublishedPresetPackageFitsThePayloadBudgetAndOversizedInputIsStillRejected()
+        {
+            string package=Prepared();
+            Assert.That(System.Text.Encoding.UTF8.GetByteCount(package),Is.LessThanOrEqualTo(2*1024*1024));
+            Assert.That(DebugPositions.Read(package).Count,Is.EqualTo(PositionIds().Length));
+            var error=Assert.Throws<InvalidDataException>(()=>DebugPositions.Read(package+new string(' ',2*1024*1024)));
+            Assert.That(error!.Message,Does.Contain("过大"));
         }
         [TestCase("scenario_path")]
         [TestCase("boolean_step")]

@@ -790,5 +790,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：1号阿连执行打断施法→发动兵战→切2号红队队长，自行选择高亮非重型小兵移除。阿连不能替敌方决定。分支：发动前可选跳过；受保护重型不能选。"
+  },
+  {
+    "id": "fortify-pay",
+    "title": "巩固防线：重型弃牌保护与推进分支",
+    "scenario": "fortify-pay",
+    "through_step": 27,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号黄蜂执行电击→选择(-3,2)蓝方重型兵→跳过额外英雄弃牌→切1号布罗根选一张手牌保护。分支：可不保护，黄蜂获得4金且红队推进；保护则重兵保留、无金币也不推进。可在电击的额外弃牌中测试消耗布罗根的支付资源。"
+  },
+  {
+    "id": "fortify-protected",
+    "title": "巩固防线：保护不取消重兵免疫",
+    "scenario": "fortify-protected",
+    "through_step": 22,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号黄蜂开始电击查看目标。蓝方还有其他小兵，因此重型兵不能指定；可攻击范围内普通蓝兵，再由布罗根决定是否弃牌保护。此局面用于比较孤立重兵与受保护重兵。"
   }
 ]

@@ -1,0 +1,161 @@
+{
+  "SchemaVersion": 1,
+  "Id": "fortify-protected",
+  "Name": "巩固防线：仍受友军保护的重型不能攻击",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "brogan,wasp,sabina,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "brogan-11-巩固防线",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": -2,
+        "Y": 1
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 7,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "minion:3,1",
+      "Destination": {
+        "X": -3,
+        "Y": 2
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "brogan-11-巩固防线"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-06-静电封锁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "sabina-06-并肩作战"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p3",
+      "Value": ""
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2",
+      "Value": ""
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1",
+      "Value": "",
+      "Expect": {
+        "EffectCounts": {
+          "brogan-11-巩固防线": 1
+        }
+      }
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p4",
+      "Value": "",
+      "Expect": {
+        "Phase": "Planning",
+        "Turn": 2
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "brogan-00-猛攻"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-01-电击"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "sabina-01-拔枪"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-00-华丽刀锋"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p1"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p3",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p2"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p2",
+      "Value": ""
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p2",
+      "Value": "minion:3,1",
+      "Expect": {
+        "Code": "invalid_attack_target"
+      }
+    }
+  ]
+}

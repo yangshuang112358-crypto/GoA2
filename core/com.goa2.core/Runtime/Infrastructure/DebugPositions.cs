@@ -83,7 +83,8 @@ namespace Goa2.Infrastructure
                 prepared.Add(new JObject { ["Id"]=id,["Title"]=title,["Phase"]=phase.ToString(),["Pending"]=pending,["Scenario"]=JObject.FromObject(definition),
                     ["Instructions"]=entry.Property("instructions")==null ? "" : Text(entry,"instructions",2400,true) });
             }
-            string json=new JObject { ["SchemaVersion"]=1,["Presets"]=prepared }.ToString(Formatting.Indented);
+            // This is a generated runtime package; indentation must not consume its bounded payload budget.
+            string json=new JObject { ["SchemaVersion"]=1,["Presets"]=prepared }.ToString(Formatting.None);
             _=Read(json); return json;
         }
         public static IReadOnlyList<DebugPosition> Read(string json)

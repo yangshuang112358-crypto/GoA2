@@ -31,6 +31,7 @@ namespace Goa2.Presentation
                 else
                 {
                     string meaning=effect.Kind==EffectKind.FriendlyNonHeavyDefeatPrevention ? "本轮范围内友方近战或远程小兵将被击败时，可以弃一张手牌保护；不含重型兵" : effect.Kind==EffectKind.FriendlyMeleeDefeatPrevention ? "本轮范围内友方近战小兵将被击败时，可以弃一张手牌保护" : effect.Kind==EffectKind.OtherEnemyActionImmunity ? "免疫原攻击者（席位"+(effect.ExemptControllerSeat+1)+"）以外的敌方行动；友方仍可影响本人" : effect.Kind==EffectKind.ImmunityAndUnitTraversal ? "免疫其他单位的行动；移动可以穿过单位但不能停在占用格或穿地形" : effect.Kind==EffectKind.FriendlyDisplacementProtection ? "本轮本人及范围内友方单位不能被敌方英雄移动、推动或换位" : effect.Kind==EffectKind.FriendlyNearMinionDefense ? "本人及范围内友方英雄，相邻友方小兵时+1防御（不叠加邻兵数量）" : effect.Kind==EffectKind.FriendlyAttackMinionsDual ? "本队攻击时，范围内友方小兵同时视为近战与远程" : effect.Kind==EffectKind.FriendlyAttackMinionsRanged ? "本队攻击时，范围内友方小兵视为远程" : effect.Kind==EffectKind.FriendlyBasicMinionsRanged ? "本队基础攻击时，范围内友方小兵视为远程" : effect.Kind==EffectKind.NonAdjacentRangedImmunity ? "自身免疫非相邻英雄的远程攻击" : effect.Kind==EffectKind.MovementBoundary ? "敌方移动不能跨越范围边界" : effect.AreaKind==EffectAreaKind.Adjacent ? "相邻敌方英雄不能执行技能" : "范围内敌方英雄不能执行技能";
+                    if(effect.Kind==EffectKind.FriendlyMinionDefeatPrevention)meaning="本轮范围内友方小兵将被击败时，可弃一张手牌保护；包含本来可被击败的孤立重型。兵战移除不触发。";
                     box.Add(Text(meaning,"tiny"));
                 }
                 if (effect.AreaKind==EffectAreaKind.None) continue;
