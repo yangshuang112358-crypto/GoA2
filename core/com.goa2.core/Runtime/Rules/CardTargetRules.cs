@@ -53,6 +53,7 @@ namespace Goa2.Rules
         }
         public static List<string> LegalEffectTargets(ContentCatalog catalog,GameState state,int seat)
         {
+            if(state.Pending?.ResumeAt=="unit_placement_target")return LegalUnitPlacementTargets(catalog,state,seat);
             if(state.Pending?.ResumeAt=="single_push_target")return LegalUnitPushTargets(catalog,state,seat);
             if(state.Pending?.ResumeAt=="approach_target" || state.Pending?.ResumeAt=="approach_repeat")return LegalApproachTargets(catalog,state,seat);
             if(state.Pending?.ResumeAt==BeforeActionTargetResume)return BeforeActionTargets(state,seat);
@@ -82,6 +83,7 @@ namespace Goa2.Rules
         }
         private static void ChooseEffectTarget(ContentCatalog catalog,GameState state,Command command,bool allowBeforeAction=true)
         {
+            if(state.Pending?.ResumeAt=="unit_placement_target"){ChooseUnitPlacementTarget(catalog,state,command);return;}
             if(state.Pending?.ResumeAt=="single_push_target"){ChooseUnitPushTarget(catalog,state,command);return;}
             if(state.Pending?.ResumeAt=="approach_target" || state.Pending?.ResumeAt=="approach_repeat"){ChooseApproachTarget(catalog,state,command,allowBeforeAction);return;}
             if(state.Pending?.ResumeAt==BeforeActionTargetResume){ChooseBeforeActionTarget(catalog,state,command);return;}

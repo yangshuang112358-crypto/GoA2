@@ -27,6 +27,7 @@ namespace Goa2.Rules
         }
         public static List<Hex> LegalPlacements(ContentCatalog catalog,GameState state,int seat)
         {
+            if(state.Pending?.ResumeAt=="unit_placement")return LegalUnitPlacements(catalog,state,seat);
             var execution=state.Execution;
             if(state.EngineVersion<41 || state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="placement" ||
                 state.Pending.ChooserSeat!=seat || execution?.ControllerSeat!=seat)return new List<Hex>();
@@ -50,6 +51,7 @@ namespace Goa2.Rules
         }
         private static void ChoosePlacement(ContentCatalog catalog,GameState state,Command command)
         {
+            if(state.Pending?.ResumeAt=="unit_placement"){ChooseUnitPlacement(catalog,state,command);return;}
             Require(command.Value=="" && command.MoveMode==MoveMode.Secondary && LegalPlacements(catalog,state,command.ActorSeat).Contains(command.Destination),
                 "invalid_placement","请由行动英雄选择不同的合法空格；放置不能跳过或替换为快速移动。");
             var execution=state.Execution!;var source=state.Units.Single(u=>u.Seat==command.ActorSeat);var origin=source.Position;

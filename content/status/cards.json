@@ -175,11 +175,20 @@
     },
     {
       "card_id": "wasp-09-意念操控",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-09-意念操控.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/MindControlTests.cs",
+        "tests/scenarios/mind-control-enemy.json",
+        "tests/scenarios/mind-control-friendly.json",
+        "tests/scenarios/mind-control-minion.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "wasp-10-反射屏障",

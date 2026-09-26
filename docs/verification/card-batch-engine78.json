@@ -1,0 +1,83 @@
+{
+  "engine": 78,
+  "implemented_cards": 89,
+  "data_only_cards": 19,
+  "build_utc": "2026-09-26T07:41:29.2541855Z",
+  "assemblies": {
+    "Goa2.Application.dll": "b78ddafcacf7fa3b6ba809efffcd1b24067c820883116d9db13e42cbf1afe7fe",
+    "Goa2.Domain.dll": "f3f37a2bcf587059dc9c521834a95a24f155ebdfba8e30d6f6d224fbb71521d4",
+    "Goa2.Editor.dll": "da23477c5117d1d5cab90ef24352cf59e4ebcb22cbfd953e32586d3864170e9c",
+    "Goa2.Infrastructure.dll": "938c60787c6ddd9e3806eb89fda04ea4ef2d778427b338a0e9e7a80eb842a16c",
+    "Goa2.Rules.dll": "c06e685805613256896aaa232af3658e2bd8bfc80f29587b15c89a77a229ef75"
+  },
+  "core": {
+    "passed": 82,
+    "failed": 0,
+    "report": "artifacts/tests/mind-control-unity-0.xml",
+    "card_specific": 11,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/mind-control-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/mind-control-enemy.json",
+        "input_sha256": "d07f70cb5a3645a519d4d8d323caa146f11f6aa78fb1bd4193494ff812497ee3",
+        "report": "artifacts/editor-scenarios/mind-control-enemy/1ea2e9e6596345de976214e16354c5b0/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/mind-control-friendly.json",
+        "input_sha256": "842bac81d70bdca7778404a6a69fa98fa855391579808f1f792dd10a8faadc2f",
+        "report": "artifacts/editor-scenarios/mind-control-friendly/4a758a661c924a4abe43466a34dfc848/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/mind-control-minion.json",
+        "input_sha256": "f99d6daecf681feb2186989f1b7a52dacb14c5aba0f5f191d2ba750e16181302",
+        "report": "artifacts/editor-scenarios/mind-control-minion/8ae257d3528845f581dae3f3abdb1444/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine78-mind-control-placement-scenario.json",
+        "input_sha256": "affd7d2c5aa61799529d814dc7ac64c6dceb6bb0f228ca75721ff74a7d0972f0",
+        "report": "artifacts/editor-scenarios/engine78-mind-control-placement-scenario/7d2ec09c4ce0466e875ba3d09609ce40/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 64
+  },
+  "manual_presets": [
+    "mind-control-enemy",
+    "mind-control-minion"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/mind-control-red.xml",
+    "passed": 1,
+    "failed": 10
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e78-mind-control-20260926-074220-509d9e07.zip",
+    "sha256": "c02f40973e83a612fa13d4252f8bc068716f6f6ad7661b8aaf1c782dfebecfb9"
+  }
+}

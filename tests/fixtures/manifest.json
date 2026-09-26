@@ -693,6 +693,15 @@
       "input": "tests/fixtures/engine77-tsunami-target-move-scenario.json",
       "input_sha256": "5c5fbcf0f9fb30be0c165eb3bf65363a0aa4271f6a33b9bae44991ac381fec8e",
       "provenance": "tests/fixtures/engine77-tsunami-target-move.md"
+    },
+    {
+      "engine_version": 78,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine78-mind-control-placement.json",
+      "save_sha256": "3f5351b7c531786eca0e80910bf3779717a6ba3a1bf7c5b8b370f15ec2b437d0",
+      "input": "tests/fixtures/engine78-mind-control-placement-scenario.json",
+      "input_sha256": "affd7d2c5aa61799529d814dc7ac64c6dceb6bb0f228ca75721ff74a7d0972f0",
+      "provenance": "tests/fixtures/engine78-mind-control-placement.md"
     }
   ]
 }
