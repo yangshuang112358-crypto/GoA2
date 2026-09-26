@@ -86,8 +86,15 @@ public static class Program
                 while (!life.IsCancellationRequested)
                 {
                     var body = await Wire.Read(stream, Wire.MaxRequest, life.Token);
-                    try { room.Execute(peer, Wire.Parse(body)); }
-                    catch (WireError error) { peer.Send(new { Type = "Error", Code = error.Message }); }
+                    JsonElement? parsed = null;
+                    try { parsed = Wire.Parse(body); room.Execute(peer, parsed.Value); }
+                    catch (WireError error)
+                    {
+                        string? id = null;
+                        if (parsed.HasValue && parsed.Value.TryGetProperty("CommandId", out var commandId) && commandId.ValueKind == JsonValueKind.String)
+                        { string candidate = commandId.GetString()!; if (candidate.Length <= 100) id = candidate; }
+                        peer.Send(new { Type = "Error", Code = error.Message, CommandId = id });
+                    }
                 }
             }
             catch (WireError error)

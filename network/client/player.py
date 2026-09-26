@@ -119,6 +119,10 @@ class Player:
             self.pending.pop(message["CommandId"], None)
         elif kind == "Error":
             self.errors.append(message["Code"])
+            identifier = message.get("CommandId")
+            if identifier in self.pending:
+                self.results[identifier] = {**message, "Accepted": False, "Duplicate": False, "Snapshot": self.view}
+                self.pending.pop(identifier)
 
     def wait(self, predicate, seconds=15):
         deadline = time.monotonic() + seconds

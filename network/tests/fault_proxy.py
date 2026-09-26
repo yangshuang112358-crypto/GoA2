@@ -17,6 +17,7 @@ class FaultProxy:
         self.port = self.listener.getsockname()[1]
         self.sockets = []
         self.failed = None
+        self.closed = False
         self.worker = threading.Thread(target=self.run, daemon=True)
         self.worker.start()
 
@@ -32,6 +33,10 @@ class FaultProxy:
         sock.sendall(struct.pack("!I", len(body)) + body)
 
     def run(self):
+        while not self.closed:
+            self.serve_once()
+
+    def serve_once(self):
         try:
             client, _ = self.listener.accept()
             server = socket.create_connection((self.ticket["Host"], self.ticket["Port"]), timeout=5)
@@ -42,15 +47,19 @@ class FaultProxy:
                     while True:
                         self.send(server, self.frame(client))
                 except (OSError, EOFError):
-                    pass
+                    try:
+                        server.shutdown(socket.SHUT_RDWR)
+                    except OSError:
+                        pass
             threading.Thread(target=upstream, daemon=True).start()
             delayed = None
             old_snapshot = None
             while True:
                 body = self.frame(server)
                 message = json.loads(body)
-                if message["Type"] == "Result":
+                if message["Type"] == "Result" and self.mode != "pass":
                     if self.mode == "drop":
+                        self.mode = "pass"
                         break
                     delayed = (body, message["Snapshot"]["Revision"])
                     continue
@@ -63,18 +72,23 @@ class FaultProxy:
                         if old_snapshot:
                             self.send(client, old_snapshot)
                         delayed = None
+                        self.mode = "pass"
         except (OSError, EOFError):
             pass
         except Exception as error:
             self.failed = str(error)
         finally:
-            self.close()
+            self.close_sockets()
 
-    def close(self):
+    def close_sockets(self):
         for sock in self.sockets:
             try:
                 sock.shutdown(socket.SHUT_RDWR)
             except OSError:
                 pass
             sock.close()
+
+    def close(self):
+        self.closed = True
+        self.close_sockets()
         self.listener.close()

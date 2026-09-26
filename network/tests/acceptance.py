@@ -20,12 +20,13 @@ from fault_proxy import FaultProxy
 
 
 class Run:
-    def __init__(self, fixture=None, steps=0):
+    def __init__(self, fixture=None, steps=0, csharp=False, faults=False):
         self.output = ROOT / "artifacts/network" / (time.strftime("%Y%m%d-%H%M%S-") + uuid.uuid4().hex[:8])
         self.output.mkdir(parents=True)
         self.checks = []
         self.clients = []
         self.logs = []
+        self.proxies = []
         self.revision = 0
         dotnet = Path(os.environ["LOCALAPPDATA"]) / "Goa2V1Toolchain/dotnet/dotnet.exe"
         assembly = ROOT / "network/Goa2.Network/bin/Release/net10.0/Goa2.Network.dll"
@@ -49,6 +50,7 @@ class Run:
         self.server = subprocess.Popen(command,
                                        cwd=ROOT, stdin=subprocess.PIPE, stdout=log, stderr=log, text=True)
         self.report["server_pid"] = self.server.pid
+        self.report["csharp_adapter"] = csharp
         for _ in range(200):
             if (self.output / "private/ready.json").exists():
                 break
@@ -58,8 +60,18 @@ class Run:
         for seat in range(4):
             err = open(self.output / f"client-{seat}.stderr", "x", encoding="utf-8")
             self.logs.append(err)
-            self.clients.append(subprocess.Popen([sys.executable, "-u", str(ROOT / "network/client/player.py"),
-                str(self.output / f"private/seat-{seat}.private.json"), str(self.output / f"client-{seat}.jsonl")],
+            ticket_path = self.output / f"private/seat-{seat}.private.json"
+            if faults and seat in (0, 1):
+                ticket = json.loads(ticket_path.read_text())
+                proxy = FaultProxy(ticket, "drop" if seat == 0 else "delay")
+                self.proxies.append(proxy)
+                ticket_path = self.output / f"private/proxy-{seat}.private.json"
+                ticket_path.write_text(json.dumps({**ticket, "Port": proxy.port}), encoding="utf-8")
+            client_command = [sys.executable, "-u", str(ROOT / "network/client/player.py")]
+            if csharp:
+                client_command = [str(dotnet), str(ROOT / "network/tests/Goa2.Network.ClientHarness/bin/Release/net10.0/Goa2.Network.ClientHarness.dll")]
+            self.clients.append(subprocess.Popen([*client_command,
+                str(ticket_path), str(self.output / f"client-{seat}.jsonl")],
                 stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=err, text=True, encoding="utf-8",
                 env={**os.environ, "PYTHONIOENCODING": "utf-8"}))
         self.report["client_pids"] = [p.pid for p in self.clients]
@@ -198,6 +210,39 @@ class Run:
         for seat in range(4):
             self.rpc(seat, "connect")
         self.revision = self.view()["Revision"]
+
+    def setup_heroes(self):
+        for seat, hero in enumerate(["wasp", "shargatha", "brogan", "arien"]):
+            self.command(seat, "ChooseHero", Value=hero)
+
+    def adapter_pending(self):
+        self.connect_all()
+        self.reconnect_pending(0, "optional_discard", "OptionalDiscardCards")
+        self.command(0, "ChooseOptionalDiscard", Value="brogan-00-猛攻")
+        self.command(0, "ChooseAttackTarget", Value="hero:1")
+        self.reconnect_pending(1, "defense", "DefenseOptions")
+        self.command(1, "Defend", Value="wasp-10-反射屏障")
+        self.reconnect_pending(0, "forced_discard", "ForcedDiscardCards")
+        self.command(0, "ForcedDiscard", Value="brogan-06-铜墙铁壁")
+        self.check("C# adapter resumes after defense and discard", self.view()["ActiveSeat"] == 3)
+
+    def adapter_faults(self):
+        self.connect_all()
+        result = self.rpc(0, "submit", kind="ChooseHero", args={"Value": "wasp"})
+        self.check("C# dropped reply uncertain", result["Type"] == "Uncertain")
+        self.rpc(0, "connect")
+        retried = self.rpc(0, "retry", command_id=result["CommandId"])
+        self.check("C# reconnect original-ID retry", retried["Duplicate"] and retried["CommandId"] == result["CommandId"])
+        self.revision = 1
+        with ThreadPoolExecutor(1) as pool:
+            future = pool.submit(self.rpc, 1, "submit", kind="ChooseHero", args={"Value": "brogan"})
+            self.rpc(2, "view", revision=2)
+            self.revision = 2
+            self.command(2, "ChooseHero", Value="arien")
+            response = future.result(timeout=10)
+        self.check("C# delayed result resolves without rollback", response["Accepted"] and self.view(1)["Revision"] == 3)
+        result = self.rpc(0, "submit", kind="ChooseHero", args={})
+        self.check("C# malformed intent returns correlated rejection", result["Code"] == "missing_field" and not result["Accepted"])
 
     def reconnect_pending(self, seat, kind, candidates):
         before = self.view(seat)
@@ -380,6 +425,9 @@ class Run:
             except subprocess.TimeoutExpired:
                 process.kill()
                 process.wait()
+        for proxy in self.proxies:
+            proxy.close()
+            proxy.worker.join(3)
         self.server.stdin.write("stop\n")
         self.server.stdin.flush()
         try:
@@ -405,8 +453,12 @@ if __name__ == "__main__":
                  ("tests/scenarios/round-frontline.json", 13, ["pending_spawn"]),
                  ("tests/scenarios/round-upgrades.json", 5, ["pending_upgrade"]),
                  ("tests/scenarios/throwing-axe-skip.json", 11, ["pending_skip"])]
+    if "--csharp" in sys.argv:
+        cases = [(None, 0, ["connect_all", "setup_heroes", "full_round"]),
+                 ("tests/scenarios/throwing-axe-reflection.json", 11, ["adapter_pending"]),
+                 (None, 0, ["adapter_faults"])]
     for fixture, steps, methods in cases:
-        run = Run(fixture, steps)
+        run = Run(fixture, steps, csharp="--csharp" in sys.argv, faults="adapter_faults" in methods)
         try:
             for method in methods:
                 getattr(run, method)()
