@@ -94,6 +94,17 @@ namespace Goa2.Presentation
                     Confirm(parent,goldTransferAmount==0 ? "确认不拿取金币" : "确认从"+PlayerName(goldTransferTarget)+"拿取"+goldTransferAmount+"枚金币",()=>Submit(CommandKind.ChooseGoldTransfer,goldTransferAmount.ToString(System.Globalization.CultureInfo.InvariantCulture),target:goldTransferTarget));
                 RenderCardDetail(parent,catalog.Card(choice.Source));return true;
             }
+            if(choice.Kind=="primary_option" && choice.ResumeAt=="ultimate_attack_repeat")
+            {
+                parent.Add(Text(PlayerName(choice.ChooserSeat)+"可再次执行基础攻击，目标必须不同；首次与重复合计最多两次。","section-title"));
+                if(choice.ChooserSeat==seat)
+                {
+                    Confirm(parent,"重复一次基础攻击",()=>Submit(CommandKind.ChoosePrimaryOption,"repeat"));
+                    parent.Add(Button("不重复，结束此牌",()=>Submit(CommandKind.ChoosePrimaryOption,"finish"),"quiet-button","ultimate-repeat-finish"));
+                }
+                else parent.Add(Text("等待行动者决定是否重复。","body"));
+                RenderCardDetail(parent,catalog.Card(choice.Source));return true;
+            }
             if(choice.Kind=="primary_option")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择一项卡牌效果。","section-title"));
@@ -182,7 +193,7 @@ namespace Goa2.Presentation
                     var moved=view.Units.SingleOrDefault(u=>u.Id==choice.UnitId);
                     if(moved!=null)parent.Add(Text("移动对象："+(moved.Seat.HasValue?PlayerName(moved.Seat.Value):MinionName(moved))+(choice.ResumeAt=="target_unit_move"?"。按卡牌距离选择普通移动落点，允许不移动；离开战区后由队长选择回归。":"。移动一格后继续原目标的攻击。"),"body"));
                 }
-                var instruction=Text((primaryMove ? "主要移动使用卡面移动数值加被动。完成移动或留在原地后，执行本牌后续效果。" : requiredStraight ? "必须沿直线完整移动2格。没有合法路线时自动继续；当前有路线，不能跳过。" : through ? "沿直线穿过一个敌方单位移动2格。确认落点后，自动攻击途中那个敌人。" : charge ? "必须按卡牌指定距离沿直线移动，终点须邻接合法敌方目标。完成移动后选择攻击目标。" : defenseMove ? "攻击及后续已结算。从当前位置沿直线移动2格，或不移动。" : beforeAttack ? "攻击前移动。移动或跳过后再选择攻击目标。" : "完成本次牌文移动后继续卡牌效果。")+"点击高亮格后确认。","body");instruction.name="effect-move-choice";parent.Add(instruction);
+                var instruction=Text((choice.ResumeAt=="before_action_move" ? "先执行紫卡移动，最多2格，也可不移动。之后按新位置执行原行动；若瞬闪打击无穿敌路线，已移动的位置保留。" : choice.ResumeAt=="before_action_movement_destination" ? "紫卡前置移动已完成。现在从新位置选择原行动的合法落点，也可不再移动并结束此牌。" : primaryMove ? "主要移动使用卡面移动数值加被动。完成移动或留在原地后，执行本牌后续效果。" : requiredStraight ? "必须沿直线完整移动2格。没有合法路线时自动继续；当前有路线，不能跳过。" : through ? "沿直线穿过一个敌方单位移动2格。确认落点后，自动攻击途中那个敌人。" : charge ? "必须按卡牌指定距离沿直线移动，终点须邻接合法敌方目标。完成移动后选择攻击目标。" : defenseMove ? "攻击及后续已结算。从当前位置沿直线移动2格，或不移动。" : beforeAttack ? "攻击前移动。移动或跳过后再选择攻击目标。" : "完成本次牌文移动后继续卡牌效果。")+"点击高亮格后确认。","body");instruction.name="effect-move-choice";parent.Add(instruction);
                 if(chosenCell.HasValue && view.EffectMoves.Any(m=>m.Destination==chosenCell.Value))
                     Confirm(parent,"确认牌文移动至 "+chosenCell.Value,()=>Submit(CommandKind.ChooseEffectMove,destination:chosenCell!.Value));
                 if(choice.Optional)parent.Add(Button(primaryMove ? "留在原地，执行后续效果" : beforeAttack ? "不移动，继续攻击" : "不移动，继续结算",()=>Submit(CommandKind.ChooseEffectMove,"skip"),"quiet-button","effect-move-skip"));

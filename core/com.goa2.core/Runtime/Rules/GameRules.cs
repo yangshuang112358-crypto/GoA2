@@ -84,6 +84,11 @@ namespace Goa2.Rules
         }
         private static void Move(ContentCatalog catalog, GameState state, Command command, bool allowBeforeAction = true)
         {
+            if(state.EngineVersion>=58 && command.Value=="begin")
+            {
+                Require(CanBeginMovementPrelude(catalog,state,command.ActorSeat,command.MoveMode),"invalid_move","当前不能开始行动前移动。");
+                BeginBeforeAction(catalog,state,command);return;
+            }
             var option = MovementRules.LegalMoves(catalog, state, command.ActorSeat, command.MoveMode).FirstOrDefault(o => o.Destination == command.Destination);
             Require(option != null, "invalid_move", "目标不在当前合法移动集合中。");
             if(allowBeforeAction && BeginBeforeAction(catalog,state,command))return;

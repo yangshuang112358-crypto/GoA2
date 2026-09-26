@@ -1308,7 +1308,7 @@
         "immunity",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/tigerclaw-13-斗篷与匕首.md",
       "question_candidates": [
         "U-011",

@@ -301,6 +301,7 @@ namespace Goa2.Rules
                 ContinueCard(catalog,state,command);
                 return;
             }
+            if(BeginUltimateRepeat(catalog,state,command))return;
             bool returnSource=state.EngineVersion>=50 && state.Execution.ReturnSourceAtEnd;
             if (BeginPrimaryCompletion(catalog, state, command)) return;
             state.ActiveSeat = state.Execution!.ControllerSeat; state.Execution = null; state.Pending = null; state.Phase = Phase.Action;

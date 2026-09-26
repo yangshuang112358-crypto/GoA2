@@ -64,6 +64,8 @@ namespace Goa2.Domain
         public bool ActionStopped;
         public ActionCompletionProgress? Completion;
         public ForcedPaymentProgress? ForcedPayment;
+        public bool UltimateRepeatUsed;
+        public string? UltimateRepeatExcludedTarget;
     }
     [Serializable]
     public sealed class PendingMinionDefeat

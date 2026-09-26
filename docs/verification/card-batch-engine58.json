@@ -1,0 +1,91 @@
+{
+  "engine": 58,
+  "implemented_cards": 69,
+  "data_only_cards": 39,
+  "build_utc": "2026-09-26T03:43:47.0706204Z",
+  "assemblies": {
+    "Goa2.Application.dll": "51938975d44fcc0c7022291889d6b6395f4d6cac3047f4fb42200fa39646f4b1",
+    "Goa2.Domain.dll": "428977c804ac31949e3f6ef6b5b0735214bd55534b8eb615e1f4f69f8eba7ec6",
+    "Goa2.Editor.dll": "6630b225549b1d5efee81ead1e78cee96ec700fe8b7d80f7c1958c638baa3ab6",
+    "Goa2.Infrastructure.dll": "f6148ad2864a5e335231a4f89087324fafb358abede6df4297de5a5be9ac713a",
+    "Goa2.Rules.dll": "475067326d3faaa90303f737306e8db3a27f3850cd23b6363445e49af5d6d551"
+  },
+  "core": {
+    "passed": 1501,
+    "failed": 0,
+    "report": "artifacts/tests/cloak-unity-0.xml",
+    "card_specific": 18,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/cloak-unity-0.xml"
+    ],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET or native Player attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction; actual UI/input unverified"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/cloak-repeat.json",
+        "input_sha256": "4863aab9243bf87ecbcad079d7c7a4a60361444e3b37199d958b28c1abe1799b",
+        "report": "artifacts/editor-scenarios/cloak-repeat/2c908d17a5e04873b788d733018419a3/report.json",
+        "steps": 40,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/cloak-fail.json",
+        "input_sha256": "1049a062100e9b03c59ebca4d2b914693c31a5505a547f96e15959eb96d07886",
+        "report": "artifacts/editor-scenarios/cloak-fail/14b362ba71ea4d8d9642b784f8a9d936/report.json",
+        "steps": 33,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/cloak-repeat-fail.json",
+        "input_sha256": "8a1861370396f700e215536d960d12f8c659e74435c7f99aafd1dc68a1228fb7",
+        "report": "artifacts/editor-scenarios/cloak-repeat-fail/81eb37f39b7e423abef2c15b2508e618/report.json",
+        "steps": 37,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/cloak-skip.json",
+        "input_sha256": "6055310f940b51562a39f515b28338798eaa6d18899be6590fe607d2bbbce925",
+        "report": "artifacts/editor-scenarios/cloak-skip/b8707ee5079d44169b2c54027dda08b3/report.json",
+        "steps": 36,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/cloak-move.json",
+        "input_sha256": "e428f6ff1671c1e30a65d0fe0a54b9264b21d94aaee8b0fa3433855c9fe019a7",
+        "report": "artifacts/editor-scenarios/cloak-move/81fc4449cbda4645a26485d92450d72d/report.json",
+        "steps": 34,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine58-cloak-repeat-prelude-scenario.json",
+        "input_sha256": "24f8217ce5aac0082bc780074ec25df6d167e057052c7048bfd8577cd5f309f1",
+        "report": "artifacts/editor-scenarios/engine58-cloak-repeat-prelude-scenario/74d4128b8c484bdb9a8be4487a29b501/report.json",
+        "steps": 37,
+        "passed": true
+      }
+    ],
+    "scenarios": 6,
+    "steps": 217
+  },
+  "manual_presets": [
+    "cloak-repeat",
+    "cloak-fail"
+  ],
+  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified.",
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e58-cloak-20260926-034902-7be3e24f.zip",
+    "sha256": "a0e323df805d5d035ec1ef4fb1a5df2cbee3ab28333f9e61ae01e1cccf15fae9"
+  }
+}

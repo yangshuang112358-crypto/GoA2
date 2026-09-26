@@ -1226,11 +1226,29 @@
     },
     {
       "card_id": "tigerclaw-13-斗篷与匕首",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/tigerclaw-13-斗篷与匕首.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CloakAndDaggerTests.cs",
+        "tests/scenarios/cloak-repeat.json",
+        "tests/scenarios/cloak-fail.json",
+        "tests/scenarios/cloak-repeat-fail.json",
+        "tests/scenarios/cloak-skip.json",
+        "tests/scenarios/cloak-move.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs",
+        "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs",
+        "core/com.goa2.core/Runtime/Domain/Combat.cs",
+        "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs",
+        "unity/Assets/Scripts/GameScreen.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-14-近身格挡",

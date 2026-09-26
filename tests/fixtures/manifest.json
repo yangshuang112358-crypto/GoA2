@@ -513,6 +513,15 @@
       "input": "tests/fixtures/engine57-phantasm-defense-discard-scenario.json",
       "input_sha256": "a83f5677b7060fe50c8a1f8eb351fc353de28857a594d4256dfb088893fbc3cb",
       "provenance": "tests/fixtures/engine57-phantasm-defense-discard.md"
+    },
+    {
+      "engine_version": 58,
+      "accepted_commands": 37,
+      "save": "tests/fixtures/engine58-cloak-repeat-prelude.json",
+      "save_sha256": "8e6d69a4fdf3218b10899a74b902f34e0d482e9a70586d7fd93ecad6921c87f3",
+      "input": "tests/fixtures/engine58-cloak-repeat-prelude-scenario.json",
+      "input_sha256": "24f8217ce5aac0082bc780074ec25df6d167e057052c7048bfd8577cd5f309f1",
+      "provenance": "tests/fixtures/engine58-cloak-repeat-prelude.md"
     }
   ]
 }

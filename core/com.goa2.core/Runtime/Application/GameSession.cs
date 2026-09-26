@@ -155,6 +155,8 @@ namespace Goa2.Application
                     var cells = GameRules.LegalDeployments(catalog, snapshot, seat.Value, player.Seat);
                     if (cells.Count > 0) view.Deployments.Add(player.Seat, cells);
                 }
+                view.CanStartSecondaryMoveWithPrelude = GameRules.CanBeginMovementPrelude(catalog,snapshot,seat.Value,MoveMode.Secondary);
+                view.CanStartFastMoveWithPrelude = GameRules.CanBeginMovementPrelude(catalog,snapshot,seat.Value,MoveMode.Fast);
                 view.CanPass = snapshot.Phase == Phase.Action && snapshot.ActiveSeat == seat && snapshot.Pending == null && snapshot.Execution == null;
                 var playedCard = snapshot.Players[seat.Value].Cards.SingleOrDefault(c => c.Zone == CardZone.PlayedUnresolved);
                 view.PrimarySupported = playedCard != null && CombatRules.HasPrimaryProgram(catalog.Card(playedCard.CardId),snapshot.EngineVersion);

@@ -436,10 +436,10 @@ namespace Goa2.Presentation
                         primary.SetEnabled(view.CanBeginPrimary); sidebar.Add(primary);
                         if (view.PrimaryRestriction!="") sidebar.Add(Text("受到“" + catalog.Card(view.PrimaryRestriction).Name + "”影响，当前不能执行技能。可选择其他合法行动或放弃。", "restriction-text"));
                         if (view.PrimarySupported) sidebar.Add(Text("开始后按牌文完成行动；不能再改选次要移动或放弃。", "tiny"));
-                        var normal = Button("次要移动" + (moveMode == MoveMode.Secondary ? "  ✓" : ""), () => { debugTeleport = false; moveMode = MoveMode.Secondary; chosenCell = null; passPending = false; Render(); }, "choice-button");
-                        normal.SetEnabled(view.SecondaryMoves.Count > 0); sidebar.Add(normal);
-                        var fast = Button("快速移动" + (moveMode == MoveMode.Fast ? "  ✓" : ""), () => { debugTeleport = false; moveMode = MoveMode.Fast; chosenCell = null; passPending = false; Render(); }, "choice-button");
-                        fast.SetEnabled(view.FastMoves.Count > 0); sidebar.Add(fast);
+                        var normal = Button("次要移动" + (moveMode == MoveMode.Secondary ? "  ✓" : ""), () => { debugTeleport = false; if(view.CanStartSecondaryMoveWithPrelude){Submit(CommandKind.Move,"begin",mode:MoveMode.Secondary);return;} moveMode = MoveMode.Secondary; chosenCell = null; passPending = false; Render(); }, "choice-button");
+                        normal.SetEnabled(view.CanStartSecondaryMoveWithPrelude || view.SecondaryMoves.Count > 0); sidebar.Add(normal);
+                        var fast = Button("快速移动" + (moveMode == MoveMode.Fast ? "  ✓" : ""), () => { debugTeleport = false; if(view.CanStartFastMoveWithPrelude){Submit(CommandKind.Move,"begin",mode:MoveMode.Fast);return;} moveMode = MoveMode.Fast; chosenCell = null; passPending = false; Render(); }, "choice-button");
+                        fast.SetEnabled(view.CanStartFastMoveWithPrelude || view.FastMoves.Count > 0); sidebar.Add(fast);
                         if (chosenCell.HasValue && moveMode.HasValue)
                             Confirm(sidebar, "确认移动至 " + chosenCell.Value, () => Submit(CommandKind.Move, destination: chosenCell!.Value, mode: moveMode!.Value));
                         else if (passPending) Confirm(sidebar, "确认放弃此牌行动", () => Submit(CommandKind.Pass));

@@ -13,6 +13,7 @@ namespace Goa2.Rules
         // The original action must be legal before calling this boundary. Queries never call it.
         private static bool BeginBeforeAction(ContentCatalog catalog, GameState state, Command command)
         {
+            if (UltimateRules.HasImmuneActionPrelude(catalog,state,command.ActorSeat)) return BeginCloakPrelude(catalog,state,command);
             var program = UltimateRules.OwnedProgram(catalog, state, command.ActorSeat);
             if (program?.Trigger != UltimateTrigger.BeforeActionAdjacentDiscard) return false;
             Require(state.BeforeAction == null, "pending_before_action", "请先完成当前行动前选择。");
@@ -97,7 +98,10 @@ namespace Goa2.Rules
             switch (frame.ResumeKind)
             {
                 case CommandKind.BeginPrimary: BeginPrimary(catalog, state, resume, false); break;
-                case CommandKind.Move: Move(catalog, state, resume, false); break;
+                case CommandKind.Move:
+                    if(frame.Stage == "move") BeginMovementDestination(catalog,state,resume,frame);
+                    else Move(catalog, state, resume, false); break;
+                case CommandKind.ChoosePrimaryOption: ChooseUltimateRepeat(catalog,state,resume,false); break;
                 case CommandKind.Defend: Defend(catalog, state, resume, false); break;
                 case CommandKind.ChooseAttackTarget: ChooseAttackTarget(catalog, state, resume, false); break;
                 default: throw new RuleViolation("invalid_before_action", "未知的行动恢复入口。");

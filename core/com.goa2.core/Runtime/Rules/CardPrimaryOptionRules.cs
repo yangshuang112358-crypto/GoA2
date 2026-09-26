@@ -15,6 +15,7 @@ namespace Goa2.Rules
   }
   public static List<string> LegalPrimaryOptions(ContentCatalog catalog,GameState state,int seat)
   {
+   if(state.Pending?.ResumeAt==UltimateRepeatResume)return LegalUltimateRepeat(state,seat);
    if(state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="primary_option" || state.Pending.ChooserSeat!=seat || state.Execution?.ControllerSeat!=seat || state.ActiveSeat!=seat || PrimaryOptionProgram(catalog,state)==null)return new List<string>();
    var result=new List<string>{"protect"};if(!state.Players[seat].Cards.Any(c=>c.Zone==CardZone.Discarded))result.Add("recover");return result;
   }
@@ -26,6 +27,7 @@ namespace Goa2.Rules
   }
   private static void ChoosePrimaryOption(ContentCatalog catalog,GameState state,Command command)
   {
+   if(state.Pending?.ResumeAt==UltimateRepeatResume){ChooseUltimateRepeat(catalog,state,command);return;}
    Require(LegalPrimaryOptions(catalog,state,command.ActorSeat).Contains(command.Value),"invalid_primary_option","请由来源英雄选择一项当前可用效果；弃牌堆非空时不能取回此牌。");
    var e=state.Execution!;var program=PrimaryOptionProgram(catalog,state)!;
    Emit(state,command,"PrimaryOptionChosen",command.ActorSeat,e.CardId,detail:command.Value);

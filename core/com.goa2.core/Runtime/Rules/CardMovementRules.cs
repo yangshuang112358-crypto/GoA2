@@ -83,6 +83,7 @@ namespace Goa2.Rules
         }
         public static List<MoveOption> LegalEffectMoves(ContentCatalog catalog,GameState state,int seat)
         {
+            if(IsCloakMovementWindow(state))return LegalCloakMoves(catalog,state,seat);
             if(state.Pending?.ResumeAt=="target_unit_move")return LegalTargetUnitMoves(catalog,state,seat);
             if(state.Pending?.ResumeAt=="other_unit_before_attack")return LegalOtherMoves(catalog,state,seat);
             if(state.Pending?.ResumeAt=="defense_response_move")return LegalDefenseMoves(catalog,state,seat);
@@ -125,6 +126,7 @@ namespace Goa2.Rules
         }
         private static void ChooseEffectMove(ContentCatalog catalog,GameState state,Command command)
         {
+            if(IsCloakMovementWindow(state)){ChooseCloakMove(catalog,state,command);return;}
             if(state.Pending?.ResumeAt=="target_unit_move"){ChooseTargetUnitMove(catalog,state,command);return;}
             if(state.Pending?.ResumeAt=="other_unit_before_attack"){ChooseOtherMove(catalog,state,command);return;}
             if(state.Pending?.ResumeAt=="defense_response_move"){ChooseDefenseMove(catalog,state,command);return;}

@@ -84,7 +84,7 @@ namespace Goa2.Rules
         {
             int distance = AttackDistance(catalog,state,card,program,source.Seat!.Value);
             var removable = new HashSet<string>(GameRules.LegalMinionRemovals(state));
-            return state.Units.Where(u => u.Team != source.Team && u.Position.Distance(source.Position) >= program.MinimumDistance &&
+            return state.Units.Where(u => (state.EngineVersion<58 || state.Execution?.UltimateRepeatExcludedTarget != u.Id) && u.Team != source.Team && u.Position.Distance(source.Position) >= program.MinimumDistance &&
                     u.Position.Distance(source.Position) <= distance && (u.Kind == "hero" || !program.OnlyHeroes && removable.Contains(u.Id)) &&
                     (!program.ExcludeStraightLine || !source.Position.IsInStraightLineWith(u.Position)) &&
                     EffectRules.CanBeAttacked(state,source,u,card.Subtype=="远程"))

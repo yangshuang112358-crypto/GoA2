@@ -11,6 +11,12 @@ namespace Goa2.Rules
         {
             var empty = new List<MoveOption>();
             if (state.Phase != Phase.Action || state.Pending != null || state.Execution != null || state.ActiveSeat != seat || seat < 0 || seat > 3) return empty;
+            return ActionMoves(catalog,state,seat,mode);
+        }
+        internal static List<MoveOption> ActionMoves(ContentCatalog catalog, GameState state, int seat, MoveMode mode)
+        {
+            var empty = new List<MoveOption>();
+            if(seat<0 || seat>=state.Players.Count)return empty;
             var player = state.Players[seat];
             var played = player.Cards.SingleOrDefault(c => c.Zone == CardZone.PlayedUnresolved);
             var unit = state.Units.SingleOrDefault(u => u.Seat == seat);

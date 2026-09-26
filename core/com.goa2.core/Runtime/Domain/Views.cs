@@ -65,6 +65,7 @@ namespace Goa2.Domain
         public int EngineVersion;
         public bool CanUpgradeEngine;
         public bool CanBeginPrimary;
+        public bool CanStartSecondaryMoveWithPrelude, CanStartFastMoveWithPrelude;
         public bool PrimarySupported;
         public string PrimaryRestriction = "";
         public List<ActiveEffect> Effects = new List<ActiveEffect>();
