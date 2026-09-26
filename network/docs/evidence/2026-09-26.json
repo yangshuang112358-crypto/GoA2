@@ -1,0 +1,1705 @@
+{
+  "baseline": "d0808967b1754a38f858aabab97b9891e99b349a",
+  "verified_source_commit": "936dc9737813e7d7a9ea94077654ef7d08b03de0",
+  "note": "First 11 runs verified against 936dc97; empty-hand extension verified separately against its recorded commit and source_files. Core/network runtime unchanged in the extension.",
+  "net01_complete": false,
+  "actual_unity_windows_tested": false,
+  "unity_compilation_tested": false,
+  "network_runs": 12,
+  "network_assertions": 265,
+  "client_unit_tests": 8,
+  "core_session_tests": 4,
+  "max_measured_response_bytes": 84921,
+  "suite": "artifacts/network/suite-20260926-064520-8ebe03a2",
+  "source_files": {
+    "network/client/player.py": "934efbbad971ff74657a30bddceb816ac62f332c3f38451abcfa70b9a3d01a61",
+    "network/com.goa2.network.client/package.json": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+    "network/Goa2.Network/Goa2.Network.csproj": "33b7108be48b5e51062a0986e1fc4a7509d1edcc1b37263327a1a450700ca1f7",
+    "network/Goa2.Network/packages.lock.json": "2e7a657517c7f6bce263df8d8438ea15af39246fe3f1784d1c2c8be0a50987a1",
+    "network/Goa2.Network/Program.cs": "a65efdadc85567afde37e4d7d9789212ac4b44eb6d1b61067c5c37cdfc8e90ae",
+    "network/Goa2.Network/Room.cs": "3daee3310fc69ba1cf4b09d0074a86c3d1729de0afc99beaf5530cf1dbe4dfbf",
+    "network/Goa2.Network/TestAccess.cs": "7604e86017a81c6f07b79fdf72591f2afd7c22eb6f200b2cc9f2f81665cb6210",
+    "network/Goa2.Network/Wire.cs": "a772af4de2ffa8851b5976aa331326945c8920c5fb6094187c26c6f1192e630f",
+    "network/Goa2.Network.Client/Goa2.Network.Client.csproj": "b35f8b67a5bbd3b9c91831a7b202913f99fa21291b5a154cf3ecf687e7206238",
+    "network/Goa2.Network.Client/packages.lock.json": "03702945c0027a013e029134789518782ebe2f34f7869814362791ff01027200",
+    "network/tests/acceptance.py": "fb9677c00eb25564ca0ce760e4f4495346d63fe7ba8e13f01d6080d52f4715f2",
+    "network/tests/fault_proxy.py": "2842dc2fbbd963e58cf4ded686c4373bf62c23c61d244820bced3601b12025f3",
+    "network/tests/test_client.py": "054198f3138d900aee440812ee11d6d22c3e7d683d0b75b607adc0f0dfe52593",
+    "network/com.goa2.network.client/Runtime/IPlayerSession.cs": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+    "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs": "484217bf37d956f3cef55115eecf48401de69cf11baca655163954bd465a3603",
+    "network/tests/Goa2.Network.ClientHarness/Goa2.Network.ClientHarness.csproj": "c55af18969bd32d63d7acdf063ea751bcdd29f799935abce4377e1050f105f8a",
+    "network/tests/Goa2.Network.ClientHarness/packages.lock.json": "1bdc1a1653885e57ec2b0441741233b73fb28338b3ba20e9e2418d60f264041f",
+    "network/tests/Goa2.Network.ClientHarness/Program.cs": "213adf26e36e64d4ceb021574c651e79e56e6c8bf804b5e38847d6e459c01717",
+    "network/tests/Goa2.Network.TestHost/Goa2.Network.TestHost.csproj": "b6662f8d6ad2ba9b51ab5086fb052f50da25a970859bf279fea66da019225437",
+    "network/tests/Goa2.Network.TestHost/packages.lock.json": "0dc9e108a911e6f70401185276ca4fa8f2765ef2ca1b6832f668367c4d5d596f",
+    "network/tests/Goa2.Network.TestHost/Program.cs": "cd6a6725e123d88433ab912b5a51dcd7cf3ad67246928668acfa5cf286fec862",
+    "core/com.goa2.core/Runtime/Application/GameSession.cs": "3358d6ef348cb3c824fc2814c36ecc79f90841432696cab52c9b59aba0a44924",
+    "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+    "core/com.goa2.core/Runtime/Domain/Combat.cs": "547a07bde4788974e894e262f001d393a51ddc8269e54175fd4516266b91c68d",
+    "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+    "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+    "core/com.goa2.core/Runtime/Domain/Displacement.cs": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+    "core/com.goa2.core/Runtime/Domain/Effects.cs": "8d925af7d82521ea1456d97a70b80b0293955625d3b744ccdb5a61fb333fc1f6",
+    "core/com.goa2.core/Runtime/Domain/Model.cs": "a4e58c305ce6f3e74c8c4540e1a9a8a1814eb59bda085478d0a6529e42a91d06",
+    "core/com.goa2.core/Runtime/Domain/RoundProgress.cs": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+    "core/com.goa2.core/Runtime/Domain/Views.cs": "a97dc4f781a2f288380b12daa549d992f982bf2055581b5d464851b7704fb744",
+    "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+    "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+    "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs": "8d22cd19d70c3fd0320eb252ede37b07d611eef6b752890b38f29e05b3594ddc",
+    "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+    "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+    "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs": "1077dcfa92b6feb5b85d59627600458568f6c2d4251288a930b707434ec3f627",
+    "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs": "fe2690074d2ccc35730d036399ee87e329e0b49f1d356a3a955b03327dac6cff",
+    "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs": "30619a85e2b98e7d91f2a944dbd36cc34f7a4f86b0a7f6ac944a7b9e4a383097",
+    "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs": "ab475feebf4b795d1e6b8609fee8932b26aedf8cc71ba48c2e6a16d58fabf865",
+    "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs": "755387ce537500f12b359ac9e931f679e9a9292b099126eb8f74152876d16ef6",
+    "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs": "f12e9cbb2e4fb1914ba976cea8868d6ccc30b4b639273d15ced1ddee12c1066f",
+    "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+    "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs": "b5a6c48528c8f9963780d4e1328004c0f025cb75299e7fe0350251bf15c27129",
+    "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs": "883fd24a369052f96daa24c1c5f496703f59e484ac381f53e6ccab06693c4cd6",
+    "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs": "332d2aeba88380f8cb56f4ae4094be5ed5935d9ac0b16f8b9c46b9a308ce4559",
+    "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs": "c10c9c055b7aaef08346e4907bf93c359964b004bf375a644928a790e0d811d9",
+    "core/com.goa2.core/Runtime/Rules/CardPushRules.cs": "95b0581279b7fcd5c91a8d78a100f91a3d2205778fe0a882cd7e87e5530dd885",
+    "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs": "83f05aa22cba0550efdc8fa4c73102ab41bda9756dfad6aa896d8f33f3350035",
+    "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs": "999ae1c9fc00a54efe58e2906c06e755ab1c3c1f4946181c2a8f1a92b8865d86",
+    "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+    "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs": "3c2f56e4601665dfdbdeedb0aed83313d6c921f4aba2c485644e94d25643d746",
+    "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs": "4bf282741c89d0559ba1d763d73b5eb5a1fdfe7d0ea84b8d085a7431885915b4",
+    "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs": "1d9839dbe87e9ba5135150095e3e4edd7a72de5c0ce9a7a727dbf8c7a31e4541",
+    "core/com.goa2.core/Runtime/Rules/CombatMath.cs": "547f23f0e21f562226344b112109005a8b5de069f7f961b5ff5f92fbb0a95ada",
+    "core/com.goa2.core/Runtime/Rules/CombatRules.cs": "78957a1eec61c3de5b300383ad6166643708f16cf8e86ee5ea7526ff8251cd21",
+    "core/com.goa2.core/Runtime/Rules/DebugRules.cs": "08a138ab57a11b6bc84842ee96e711235dda3ac62c77d3d7b914f6678f0593c2",
+    "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs": "21f49df5ae523d86105bd5e9b03c670260e43fbf72c8789f9362a42033d47208",
+    "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs": "cd2f8af982f5047d3a4eed38cfc484f3cd6b4a30751839c9e87c9fb1c9237614",
+    "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs": "19d72ecccbc20056f527051ee03ba2dbb95c74c42b1b745a77f4affc58cecdb4",
+    "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs": "4abd6481a220c2d64b01734c51b2e69ac005b87ef7727ddd66b6da860c6ccb1a",
+    "core/com.goa2.core/Runtime/Rules/EffectRules.cs": "23ee4e7d5b7e94f357c7fa4d9c3e480bd712f5e168b27f8a2833707a8e0d2392",
+    "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs": "7dc4faa1a0a8ec57603c6b5e8a99da1ae1719bb02ca52a53858209a8c65d610a",
+    "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs": "cb9a5dd1eef50822eb14663c88caff3d17fd6605f6a5c79f7a677b92f3172561",
+    "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+    "core/com.goa2.core/Runtime/Rules/GameRules.cs": "ba6c4bfc794334b395c20c436146c5786b25806023e2337f5c31121a7345c2ca",
+    "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+    "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+    "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs": "2d8fcddf97656934b491dacda503ef7c7f701300401a65ea86b239b140392e3a",
+    "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs": "69dd3f4656f13af4a680e09f3eb0be12c49e9ea2b251142dfb23959ac288ea21",
+    "core/com.goa2.core/Runtime/Rules/MovementRules.cs": "29e65bece723814cf05696df8261a55f875e17c79cf119891703fc95b3d410e4",
+    "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs": "334f0bd3c605939b234d64dac45b7243b4a9b7a4882dec266757b00e5a77e54e",
+    "core/com.goa2.core/Runtime/Rules/PushRules.cs": "327cb80b315d05dbff8a0fae40f17ec8582bfa27b06ce5137db1b773212a799a",
+    "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs": "236420d03602dfd0c5e7e5fb8b2da29e90c1fe542fc3b76de290516a5bfc103d",
+    "core/com.goa2.core/Runtime/Rules/TurnRules.cs": "66830a6cb5df872063f3c10e5c968a33b4471b080cb7fc47828075f93490d5b3",
+    "core/com.goa2.core/Runtime/Rules/UltimateRules.cs": "4b0a83ab369c5485db3cca7767d1c13199dc1306f8523a6cc6d599eb2c97062a",
+    "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+    "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+    "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+    "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs": "4c994af1b9525a3c1f8869b665fca9b64559a014223cb2e280a9266947acf63d",
+    "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs": "c7f2114f3d80d6d1630a377e7a98eb163a5369a24099a5d563adaebf2d9ef7ef"
+  },
+  "runs": [
+    {
+      "source_commit": "54d03447ebcc16e1859fae5e470441b7a42f3f7e",
+      "runner": "TCP: one .NET service and four Python client processes",
+      "ui_tested": false,
+      "core_tests_counted": 0,
+      "checks": [
+        {
+          "name": "N01 unique seat 0",
+          "passed": true
+        },
+        {
+          "name": "N01 unique seat 1",
+          "passed": true
+        },
+        {
+          "name": "N01 unique seat 2",
+          "passed": true
+        },
+        {
+          "name": "N01 unique seat 3",
+          "passed": true
+        },
+        {
+          "name": "N01 fifth credential rejected without snapshot",
+          "passed": true
+        },
+        {
+          "name": "N15 WireVersion",
+          "passed": true
+        },
+        {
+          "name": "N15 EngineVersion",
+          "passed": true
+        },
+        {
+          "name": "N15 ProtocolVersion",
+          "passed": true
+        },
+        {
+          "name": "N15 ContentHash",
+          "passed": true
+        },
+        {
+          "name": "N15 ContentVersion",
+          "passed": true
+        },
+        {
+          "name": "N15 RulesVersion",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 0",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 1",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 2",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 3",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 4",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 5",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 6",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 7",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 8",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 9",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 10",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 11",
+          "passed": true
+        },
+        {
+          "name": "N14 strict input 12",
+          "passed": true
+        },
+        {
+          "name": "N14 bounded frame",
+          "passed": true
+        },
+        {
+          "name": "N14 malformed input did not execute",
+          "passed": true
+        },
+        {
+          "name": "N04 stale revision rejected",
+          "passed": true
+        },
+        {
+          "name": "N02 wrong match",
+          "passed": true
+        },
+        {
+          "name": "N05 same command duplicate",
+          "passed": true
+        },
+        {
+          "name": "N06 changed payload conflicts",
+          "passed": true
+        },
+        {
+          "name": "N11 old connection invalidated by service",
+          "passed": true
+        },
+        {
+          "name": "ordinary match configuration",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 1 waits after confirmation 1",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 1 waits after confirmation 2",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 1 waits after confirmation 3",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "complete turn 1",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 2 waits after confirmation 1",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 2 waits after confirmation 2",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 2 waits after confirmation 3",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "complete turn 2",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 3 waits after confirmation 1",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 3 waits after confirmation 2",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 3 waits after confirmation 3",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "complete turn 3",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 4 waits after confirmation 1",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 4 waits after confirmation 2",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 4 waits after confirmation 3",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "complete turn 4",
+          "passed": true
+        },
+        {
+          "name": "one full round returned to planning",
+          "passed": true
+        },
+        {
+          "name": "four clients agree public state",
+          "passed": true
+        }
+      ],
+      "assemblies": {
+        "Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+        "Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+        "Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+        "Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+        "Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+        "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+      },
+      "started_utc": "2026-09-26T06:45:27Z",
+      "server_pid": 20444,
+      "csharp_adapter": false,
+      "client_pids": [
+        1364,
+        11180,
+        7940,
+        21608
+      ],
+      "max_response_bytes": 39920,
+      "passed": true,
+      "server_exit": 0,
+      "restore_verified": true,
+      "finished_utc": "2026-09-26T06:45:33Z",
+      "public_logs_privacy_checked": true,
+      "report": "artifacts/network/20260926-144527-4e3f8988/report.json",
+      "report_sha256": "170f8ed2794089e48a119c36f08425009ddd9bbd839b0bc992a29a659a16eacf"
+    },
+    {
+      "source_commit": "54d03447ebcc16e1859fae5e470441b7a42f3f7e",
+      "runner": "TCP: one .NET service and four Python client processes",
+      "ui_tested": false,
+      "core_tests_counted": 0,
+      "checks": [
+        {
+          "name": "N04 simultaneous same revision has one winner",
+          "passed": true
+        },
+        {
+          "name": "N11 old socket cannot commit after replacement",
+          "passed": true
+        },
+        {
+          "name": "gold skip sentinel reaches authority",
+          "passed": true
+        }
+      ],
+      "assemblies": {
+        "Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+        "Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+        "Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+        "Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+        "Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+        "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+      },
+      "started_utc": "2026-09-26T06:45:33Z",
+      "server_pid": 9040,
+      "csharp_adapter": false,
+      "client_pids": [
+        5272,
+        4244,
+        11368,
+        3292
+      ],
+      "passed": true,
+      "max_response_bytes": 6297,
+      "server_exit": 0,
+      "restore_verified": true,
+      "finished_utc": "2026-09-26T06:45:34Z",
+      "public_logs_privacy_checked": true,
+      "report": "artifacts/network/20260926-144533-e4d34593/report.json",
+      "report_sha256": "563c6d038b9d91256d60acf64dff3aac839f2ccc19d2ae086fd6f53c1ab596da"
+    },
+    {
+      "source_commit": "54d03447ebcc16e1859fae5e470441b7a42f3f7e",
+      "runner": "TCP: one .NET service and four Python client processes",
+      "ui_tested": false,
+      "core_tests_counted": 0,
+      "checks": [
+        {
+          "name": "N05 lost result remains uncertain and pending",
+          "passed": true
+        },
+        {
+          "name": "N05 reconnect retry preserves ID and revision",
+          "passed": true
+        },
+        {
+          "name": "N12 delayed old Result acknowledged without rollback",
+          "passed": true
+        },
+        {
+          "name": "N12 delayed old Snapshot cannot rewind",
+          "passed": true
+        },
+        {
+          "name": "fault proxy succeeded",
+          "passed": true
+        }
+      ],
+      "assemblies": {
+        "Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+        "Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+        "Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+        "Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+        "Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+        "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+      },
+      "started_utc": "2026-09-26T06:45:34Z",
+      "server_pid": 17228,
+      "csharp_adapter": false,
+      "client_pids": [
+        26172,
+        10560,
+        2228,
+        14268
+      ],
+      "passed": true,
+      "max_response_bytes": 6533,
+      "server_exit": 0,
+      "restore_verified": true,
+      "finished_utc": "2026-09-26T06:45:35Z",
+      "public_logs_privacy_checked": true,
+      "report": "artifacts/network/20260926-144534-cf603ccf/report.json",
+      "report_sha256": "265d3891c8ee046a82da182b0bf49d055cfe8e49594fb5ddfe1faefd4a966538"
+    },
+    {
+      "source_commit": "54d03447ebcc16e1859fae5e470441b7a42f3f7e",
+      "runner": "TCP: one .NET service and four Python client processes",
+      "ui_tested": false,
+      "core_tests_counted": 0,
+      "checks": [
+        {
+          "name": "optional_discard pending before disconnect",
+          "passed": true
+        },
+        {
+          "name": "N13 disconnected state optional_discard",
+          "passed": true
+        },
+        {
+          "name": "resume optional_discard",
+          "passed": true
+        },
+        {
+          "name": "private candidates optional_discard1",
+          "passed": true
+        },
+        {
+          "name": "private candidates optional_discard2",
+          "passed": true
+        },
+        {
+          "name": "private candidates optional_discard3",
+          "passed": true
+        },
+        {
+          "name": "N05 lost Result retry ChooseOptionalDiscard",
+          "passed": true
+        },
+        {
+          "name": "defense pending before disconnect",
+          "passed": true
+        },
+        {
+          "name": "N13 disconnected state defense",
+          "passed": true
+        },
+        {
+          "name": "resume defense",
+          "passed": true
+        },
+        {
+          "name": "private candidates defense0",
+          "passed": true
+        },
+        {
+          "name": "private candidates defense2",
+          "passed": true
+        },
+        {
+          "name": "private candidates defense3",
+          "passed": true
+        },
+        {
+          "name": "forced_discard pending before disconnect",
+          "passed": true
+        },
+        {
+          "name": "N13 disconnected state forced_discard",
+          "passed": true
+        },
+        {
+          "name": "resume forced_discard",
+          "passed": true
+        },
+        {
+          "name": "private candidates forced_discard1",
+          "passed": true
+        },
+        {
+          "name": "private candidates forced_discard2",
+          "passed": true
+        },
+        {
+          "name": "private candidates forced_discard3",
+          "passed": true
+        },
+        {
+          "name": "N08 optional cost preserved",
+          "passed": true
+        },
+        {
+          "name": "N05 lost Result retry ForcedDiscard",
+          "passed": true
+        },
+        {
+          "name": "N08 two distinct discards once",
+          "passed": true
+        },
+        {
+          "name": "N08 parent resumes",
+          "passed": true
+        }
+      ],
+      "assemblies": {
+        "Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+        "Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+        "Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+        "Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+        "Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+        "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+      },
+      "started_utc": "2026-09-26T06:45:35Z",
+      "fixture": {
+        "source": "tests/scenarios/throwing-axe-reflection.json",
+        "prefix_steps": 11,
+        "sandbox": true,
+        "sha256": "6f247c8e98990869535c40dfefaf067531af89b53cf8d0eeb9a507b7be03eb37"
+      },
+      "server_pid": 11400,
+      "csharp_adapter": false,
+      "client_pids": [
+        25812,
+        1012,
+        7936,
+        3664
+      ],
+      "passed": true,
+      "max_response_bytes": 66783,
+      "server_exit": 0,
+      "restore_verified": true,
+      "finished_utc": "2026-09-26T06:45:37Z",
+      "public_logs_privacy_checked": true,
+      "report": "artifacts/network/20260926-144535-3667c05a/report.json",
+      "report_sha256": "705fd8439dd6a0148a56e2fd99ecdadaf074eef46ec52f1dd99a85f9c4f9751f"
+    },
+    {
+      "source_commit": "54d03447ebcc16e1859fae5e470441b7a42f3f7e",
+      "runner": "TCP: one .NET service and four Python client processes",
+      "ui_tested": false,
+      "core_tests_counted": 0,
+      "checks": [
+        {
+          "name": "hero_respawn pending before disconnect",
+          "passed": true
+        },
+        {
+          "name": "N13 disconnected state hero_respawn",
+          "passed": true
+        },
+        {
+          "name": "resume hero_respawn",
+          "passed": true
+        },
+        {
+          "name": "private candidates hero_respawn0",
+          "passed": true
+        },
+        {
+          "name": "private candidates hero_respawn2",
+          "passed": true
+        },
+        {
+          "name": "private candidates hero_respawn3",
+          "passed": true
+        },
+        {
+          "name": "N05 lost Result retry RespawnHero",
+          "passed": true
+        },
+        {
+          "name": "N10 respawn resumes parent",
+          "passed": true
+        }
+      ],
+      "assemblies": {
+        "Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+        "Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+        "Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+        "Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+        "Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+        "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+      },
+      "started_utc": "2026-09-26T06:45:37Z",
+      "fixture": {
+        "source": "tests/scenarios/combat-defense.json",
+        "prefix_steps": 12,
+        "sandbox": true,
+        "sha256": "fcd54223a180a860434f8896a57412f501c3375fe6384da64e4403ccc98fe243"
+      },
+      "server_pid": 5664,
+      "csharp_adapter": false,
+      "client_pids": [
+        16428,
+        25136,
+        14300,
+        8824
+      ],
+      "passed": true,
+      "max_response_bytes": 66771,
+      "server_exit": 0,
+      "restore_verified": true,
+      "finished_utc": "2026-09-26T06:45:38Z",
+      "public_logs_privacy_checked": true,
+      "report": "artifacts/network/20260926-144537-ed12cfd1/report.json",
+      "report_sha256": "2e567985873851e29c3eacd41089a1820c7fab304ddfdde1198d8f48955a3381"
+    },
+    {
+      "source_commit": "54d03447ebcc16e1859fae5e470441b7a42f3f7e",
+      "runner": "TCP: one .NET service and four Python client processes",
+      "ui_tested": false,
+      "core_tests_counted": 0,
+      "checks": [
+        {
+          "name": "minion_spawn pending before disconnect",
+          "passed": true
+        },
+        {
+          "name": "N13 disconnected state minion_spawn",
+          "passed": true
+        },
+        {
+          "name": "resume minion_spawn",
+          "passed": true
+        },
+        {
+          "name": "private candidates minion_spawn0",
+          "passed": true
+        },
+        {
+          "name": "private candidates minion_spawn2",
+          "passed": true
+        },
+        {
+          "name": "private candidates minion_spawn3",
+          "passed": true
+        },
+        {
+          "name": "N05 lost Result retry ChooseMinionSpawn",
+          "passed": true
+        },
+        {
+          "name": "N10 spawn resumes round end",
+          "passed": true
+        }
+      ],
+      "assemblies": {
+        "Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+        "Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+        "Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+        "Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+        "Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+        "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+      },
+      "started_utc": "2026-09-26T06:45:38Z",
+      "fixture": {
+        "source": "tests/scenarios/round-frontline.json",
+        "prefix_steps": 13,
+        "sandbox": true,
+        "sha256": "44c70b986231c2aa997c35a8f2abe1ed1e478862501d5c2e5df68d031f3f5291"
+      },
+      "server_pid": 21388,
+      "csharp_adapter": false,
+      "client_pids": [
+        12740,
+        14128,
+        10332,
+        22664
+      ],
+      "passed": true,
+      "max_response_bytes": 80062,
+      "server_exit": 0,
+      "restore_verified": true,
+      "finished_utc": "2026-09-26T06:45:40Z",
+      "public_logs_privacy_checked": true,
+      "report": "artifacts/network/20260926-144538-34657a47/report.json",
+      "report_sha256": "c5a43da5d0b4fbc7fcb69863ee002dc8912d5146f19a4295e7aadd833abce580"
+    },
+    {
+      "source_commit": "54d03447ebcc16e1859fae5e470441b7a42f3f7e",
+      "runner": "TCP: one .NET service and four Python client processes",
+      "ui_tested": false,
+      "core_tests_counted": 0,
+      "checks": [
+        {
+          "name": "N09 both players have own upgrades",
+          "passed": true
+        },
+        {
+          "name": "N09 finished chooser clears options",
+          "passed": true
+        },
+        {
+          "name": "N09 offline chooser recovers options",
+          "passed": true
+        },
+        {
+          "name": "N09 resumes next round",
+          "passed": true
+        }
+      ],
+      "assemblies": {
+        "Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+        "Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+        "Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+        "Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+        "Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+        "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+      },
+      "started_utc": "2026-09-26T06:45:40Z",
+      "fixture": {
+        "source": "tests/scenarios/round-upgrades.json",
+        "prefix_steps": 5,
+        "sandbox": true,
+        "sha256": "a96d6c47f1afa6c79adaadd529180dd9d1447f03143646b8414d2e2c469e1019"
+      },
+      "server_pid": 25072,
+      "csharp_adapter": false,
+      "client_pids": [
+        13128,
+        21364,
+        9948,
+        3604
+      ],
+      "passed": true,
+      "max_response_bytes": 84921,
+      "server_exit": 0,
+      "restore_verified": true,
+      "finished_utc": "2026-09-26T06:45:41Z",
+      "public_logs_privacy_checked": true,
+      "report": "artifacts/network/20260926-144540-85ad7637/report.json",
+      "report_sha256": "2358f35d7d7003cf08ce58fb42c135b76c6af26f469411b01575ead0daf004ea"
+    },
+    {
+      "source_commit": "54d03447ebcc16e1859fae5e470441b7a42f3f7e",
+      "runner": "TCP: one .NET service and four Python client processes",
+      "ui_tested": false,
+      "core_tests_counted": 0,
+      "checks": [
+        {
+          "name": "optional_discard pending before disconnect",
+          "passed": true
+        },
+        {
+          "name": "N13 disconnected state optional_discard",
+          "passed": true
+        },
+        {
+          "name": "resume optional_discard",
+          "passed": true
+        },
+        {
+          "name": "private candidates optional_discard1",
+          "passed": true
+        },
+        {
+          "name": "private candidates optional_discard2",
+          "passed": true
+        },
+        {
+          "name": "private candidates optional_discard3",
+          "passed": true
+        },
+        {
+          "name": "N05 lost Result retry ChooseOptionalDiscard",
+          "passed": true
+        },
+        {
+          "name": "N08 optional skip preserves cards",
+          "passed": true
+        },
+        {
+          "name": "N08 no target after skip resumes",
+          "passed": true
+        }
+      ],
+      "assemblies": {
+        "Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+        "Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+        "Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+        "Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+        "Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+        "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+      },
+      "started_utc": "2026-09-26T06:45:41Z",
+      "fixture": {
+        "source": "tests/scenarios/throwing-axe-skip.json",
+        "prefix_steps": 11,
+        "sandbox": true,
+        "sha256": "ff9bb2304f9beaaa2e3cf6809adc11e3b351cb0b02b1d3dec7cf6a2c07bf30cf"
+      },
+      "server_pid": 23456,
+      "csharp_adapter": false,
+      "client_pids": [
+        17080,
+        10116,
+        13304,
+        4280
+      ],
+      "passed": true,
+      "max_response_bytes": 62936,
+      "server_exit": 0,
+      "restore_verified": true,
+      "finished_utc": "2026-09-26T06:45:42Z",
+      "public_logs_privacy_checked": true,
+      "report": "artifacts/network/20260926-144541-2c76e934/report.json",
+      "report_sha256": "cc17f1c4ef7d89703b149aa3b750d8f218ae65579b55c9b6c6a044927b048592"
+    },
+    {
+      "source_commit": "54d03447ebcc16e1859fae5e470441b7a42f3f7e",
+      "runner": "TCP: one .NET service and four Python client processes",
+      "ui_tested": false,
+      "core_tests_counted": 0,
+      "checks": [
+        {
+          "name": "ordinary match configuration",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 1 waits after confirmation 1",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 1 waits after confirmation 2",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 1 waits after confirmation 3",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 1 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "complete turn 1",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 2 waits after confirmation 1",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 2 waits after confirmation 2",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 2 waits after confirmation 3",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 2 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "complete turn 2",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 3 waits after confirmation 1",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 3 waits after confirmation 2",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 3 waits after confirmation 3",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 3 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "complete turn 3",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 4 waits after confirmation 1",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 4 waits after confirmation 2",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "N03 turn 4 waits after confirmation 3",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 0 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 1 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 2 own cards only",
+          "passed": true
+        },
+        {
+          "name": "privacy turn 4 seat 3 own cards only",
+          "passed": true
+        },
+        {
+          "name": "complete turn 4",
+          "passed": true
+        },
+        {
+          "name": "one full round returned to planning",
+          "passed": true
+        },
+        {
+          "name": "four clients agree public state",
+          "passed": true
+        }
+      ],
+      "assemblies": {
+        "Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+        "Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+        "Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+        "Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+        "Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+        "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+      },
+      "started_utc": "2026-09-26T06:45:42Z",
+      "server_pid": 17372,
+      "csharp_adapter": true,
+      "client_pids": [
+        14856,
+        10080,
+        9824,
+        21440
+      ],
+      "max_response_bytes": 39920,
+      "passed": true,
+      "server_exit": 0,
+      "restore_verified": true,
+      "finished_utc": "2026-09-26T06:45:48Z",
+      "public_logs_privacy_checked": true,
+      "report": "artifacts/network/20260926-144542-91468a47/report.json",
+      "report_sha256": "5785eedcfe392959150f1f02ea8077086da96c3f101bcf90d2f0962cab14b457"
+    },
+    {
+      "source_commit": "54d03447ebcc16e1859fae5e470441b7a42f3f7e",
+      "runner": "TCP: one .NET service and four Python client processes",
+      "ui_tested": false,
+      "core_tests_counted": 0,
+      "checks": [
+        {
+          "name": "optional_discard pending before disconnect",
+          "passed": true
+        },
+        {
+          "name": "N13 disconnected state optional_discard",
+          "passed": true
+        },
+        {
+          "name": "resume optional_discard",
+          "passed": true
+        },
+        {
+          "name": "private candidates optional_discard1",
+          "passed": true
+        },
+        {
+          "name": "private candidates optional_discard2",
+          "passed": true
+        },
+        {
+          "name": "private candidates optional_discard3",
+          "passed": true
+        },
+        {
+          "name": "defense pending before disconnect",
+          "passed": true
+        },
+        {
+          "name": "N13 disconnected state defense",
+          "passed": true
+        },
+        {
+          "name": "resume defense",
+          "passed": true
+        },
+        {
+          "name": "private candidates defense0",
+          "passed": true
+        },
+        {
+          "name": "private candidates defense2",
+          "passed": true
+        },
+        {
+          "name": "private candidates defense3",
+          "passed": true
+        },
+        {
+          "name": "forced_discard pending before disconnect",
+          "passed": true
+        },
+        {
+          "name": "N13 disconnected state forced_discard",
+          "passed": true
+        },
+        {
+          "name": "resume forced_discard",
+          "passed": true
+        },
+        {
+          "name": "private candidates forced_discard1",
+          "passed": true
+        },
+        {
+          "name": "private candidates forced_discard2",
+          "passed": true
+        },
+        {
+          "name": "private candidates forced_discard3",
+          "passed": true
+        },
+        {
+          "name": "C# adapter resumes after defense and discard",
+          "passed": true
+        }
+      ],
+      "assemblies": {
+        "Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+        "Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+        "Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+        "Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+        "Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+        "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+      },
+      "started_utc": "2026-09-26T06:45:48Z",
+      "fixture": {
+        "source": "tests/scenarios/throwing-axe-reflection.json",
+        "prefix_steps": 11,
+        "sandbox": true,
+        "sha256": "6f247c8e98990869535c40dfefaf067531af89b53cf8d0eeb9a507b7be03eb37"
+      },
+      "server_pid": 2300,
+      "csharp_adapter": true,
+      "client_pids": [
+        17512,
+        15100,
+        20868,
+        16312
+      ],
+      "passed": true,
+      "max_response_bytes": 66783,
+      "server_exit": 0,
+      "restore_verified": true,
+      "finished_utc": "2026-09-26T06:45:50Z",
+      "public_logs_privacy_checked": true,
+      "report": "artifacts/network/20260926-144548-d4aceace/report.json",
+      "report_sha256": "bf80496054e12d7b2cfdd0f32e2b4b56a43c190b7b15ffc15e59ccce1c78d6df"
+    },
+    {
+      "source_commit": "54d03447ebcc16e1859fae5e470441b7a42f3f7e",
+      "runner": "TCP: one .NET service and four Python client processes",
+      "ui_tested": false,
+      "core_tests_counted": 0,
+      "checks": [
+        {
+          "name": "C# dropped reply uncertain",
+          "passed": true
+        },
+        {
+          "name": "C# reconnect original-ID retry",
+          "passed": true
+        },
+        {
+          "name": "C# delayed result resolves without rollback",
+          "passed": true
+        },
+        {
+          "name": "C# malformed intent returns correlated rejection",
+          "passed": true
+        }
+      ],
+      "assemblies": {
+        "Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+        "Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+        "Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+        "Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+        "Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+        "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+      },
+      "started_utc": "2026-09-26T06:45:51Z",
+      "server_pid": 24104,
+      "csharp_adapter": true,
+      "client_pids": [
+        22520,
+        11480,
+        10332,
+        11696
+      ],
+      "passed": true,
+      "max_response_bytes": 6533,
+      "server_exit": 0,
+      "restore_verified": true,
+      "finished_utc": "2026-09-26T06:45:52Z",
+      "public_logs_privacy_checked": true,
+      "report": "artifacts/network/20260926-144550-5508e37c/report.json",
+      "report_sha256": "dd67602b5659bcc27bdd2f1ca449efb3f2e4fbbfb4b2c447f15581ac683a9a5a"
+    },
+    {
+      "source_commit": "936dc9737813e7d7a9ea94077654ef7d08b03de0",
+      "runner": "TCP: one .NET service and four Python client processes",
+      "ui_tested": false,
+      "core_tests_counted": 0,
+      "checks": [
+        {
+          "name": "optional_discard pending before disconnect",
+          "passed": true
+        },
+        {
+          "name": "N13 disconnected state optional_discard",
+          "passed": true
+        },
+        {
+          "name": "resume optional_discard",
+          "passed": true
+        },
+        {
+          "name": "private candidates optional_discard1",
+          "passed": true
+        },
+        {
+          "name": "private candidates optional_discard2",
+          "passed": true
+        },
+        {
+          "name": "private candidates optional_discard3",
+          "passed": true
+        },
+        {
+          "name": "N08 last hand card is optional cost",
+          "passed": true
+        },
+        {
+          "name": "N05 lost Result retry ChooseOptionalDiscard",
+          "passed": true
+        },
+        {
+          "name": "defense pending before disconnect",
+          "passed": true
+        },
+        {
+          "name": "N13 disconnected state defense",
+          "passed": true
+        },
+        {
+          "name": "resume defense",
+          "passed": true
+        },
+        {
+          "name": "private candidates defense0",
+          "passed": true
+        },
+        {
+          "name": "private candidates defense2",
+          "passed": true
+        },
+        {
+          "name": "private candidates defense3",
+          "passed": true
+        },
+        {
+          "name": "N05 lost Result retry Defend",
+          "passed": true
+        },
+        {
+          "name": "N08 empty forced discard has no waiting candidate",
+          "passed": true
+        },
+        {
+          "name": "N08 empty hand auto resumes parent",
+          "passed": true
+        }
+      ],
+      "assemblies": {
+        "Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+        "Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+        "Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+        "Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+        "Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+        "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+      },
+      "started_utc": "2026-09-26T06:51:58Z",
+      "fixture": {
+        "source": "network/tests/fixtures/axe-empty.json",
+        "prefix_steps": 14,
+        "sandbox": true,
+        "sha256": "fd48bc210dff850199016140824b918cbd19d024beffd9515babea666b87a176"
+      },
+      "server_pid": 22416,
+      "csharp_adapter": false,
+      "client_pids": [
+        968,
+        20848,
+        10356,
+        18008
+      ],
+      "passed": true,
+      "max_response_bytes": 67078,
+      "server_exit": 0,
+      "restore_verified": true,
+      "finished_utc": "2026-09-26T06:51:59Z",
+      "public_logs_privacy_checked": true,
+      "report": "artifacts/network/20260926-145158-73484e80/report.json",
+      "report_sha256": "50a9fff6533bfc955cb687e639296c6f499d365eeab706a4ee256edd0fc91751",
+      "verified_source_commit": "1957e860764b6450edd4fd644139669a74460c9d",
+      "source_files": {
+        "network/client/player.py": "934efbbad971ff74657a30bddceb816ac62f332c3f38451abcfa70b9a3d01a61",
+        "network/com.goa2.network.client/package.json": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+        "network/Goa2.Network/Goa2.Network.csproj": "33b7108be48b5e51062a0986e1fc4a7509d1edcc1b37263327a1a450700ca1f7",
+        "network/Goa2.Network/packages.lock.json": "2e7a657517c7f6bce263df8d8438ea15af39246fe3f1784d1c2c8be0a50987a1",
+        "network/Goa2.Network/Program.cs": "a65efdadc85567afde37e4d7d9789212ac4b44eb6d1b61067c5c37cdfc8e90ae",
+        "network/Goa2.Network/Room.cs": "3daee3310fc69ba1cf4b09d0074a86c3d1729de0afc99beaf5530cf1dbe4dfbf",
+        "network/Goa2.Network/TestAccess.cs": "7604e86017a81c6f07b79fdf72591f2afd7c22eb6f200b2cc9f2f81665cb6210",
+        "network/Goa2.Network/Wire.cs": "a772af4de2ffa8851b5976aa331326945c8920c5fb6094187c26c6f1192e630f",
+        "network/Goa2.Network.Client/Goa2.Network.Client.csproj": "b35f8b67a5bbd3b9c91831a7b202913f99fa21291b5a154cf3ecf687e7206238",
+        "network/Goa2.Network.Client/packages.lock.json": "03702945c0027a013e029134789518782ebe2f34f7869814362791ff01027200",
+        "network/tests/acceptance.py": "756b5fc58ff02982d24e757f11e4beb7a492093b0c71e6a4e01d2b7ca8b17461",
+        "network/tests/fault_proxy.py": "2842dc2fbbd963e58cf4ded686c4373bf62c23c61d244820bced3601b12025f3",
+        "network/tests/test_client.py": "054198f3138d900aee440812ee11d6d22c3e7d683d0b75b607adc0f0dfe52593",
+        "network/com.goa2.network.client/Runtime/IPlayerSession.cs": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+        "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs": "484217bf37d956f3cef55115eecf48401de69cf11baca655163954bd465a3603",
+        "network/tests/fixtures/axe-empty.json": "fd48bc210dff850199016140824b918cbd19d024beffd9515babea666b87a176",
+        "network/tests/Goa2.Network.ClientHarness/Goa2.Network.ClientHarness.csproj": "c55af18969bd32d63d7acdf063ea751bcdd29f799935abce4377e1050f105f8a",
+        "network/tests/Goa2.Network.ClientHarness/packages.lock.json": "1bdc1a1653885e57ec2b0441741233b73fb28338b3ba20e9e2418d60f264041f",
+        "network/tests/Goa2.Network.ClientHarness/Program.cs": "213adf26e36e64d4ceb021574c651e79e56e6c8bf804b5e38847d6e459c01717",
+        "network/tests/Goa2.Network.TestHost/Goa2.Network.TestHost.csproj": "b6662f8d6ad2ba9b51ab5086fb052f50da25a970859bf279fea66da019225437",
+        "network/tests/Goa2.Network.TestHost/packages.lock.json": "0dc9e108a911e6f70401185276ca4fa8f2765ef2ca1b6832f668367c4d5d596f",
+        "network/tests/Goa2.Network.TestHost/Program.cs": "cd6a6725e123d88433ab912b5a51dcd7cf3ad67246928668acfa5cf286fec862",
+        "core/com.goa2.core/Runtime/Application/GameSession.cs": "3358d6ef348cb3c824fc2814c36ecc79f90841432696cab52c9b59aba0a44924",
+        "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+        "core/com.goa2.core/Runtime/Domain/Combat.cs": "547a07bde4788974e894e262f001d393a51ddc8269e54175fd4516266b91c68d",
+        "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+        "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+        "core/com.goa2.core/Runtime/Domain/Displacement.cs": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+        "core/com.goa2.core/Runtime/Domain/Effects.cs": "8d925af7d82521ea1456d97a70b80b0293955625d3b744ccdb5a61fb333fc1f6",
+        "core/com.goa2.core/Runtime/Domain/Model.cs": "a4e58c305ce6f3e74c8c4540e1a9a8a1814eb59bda085478d0a6529e42a91d06",
+        "core/com.goa2.core/Runtime/Domain/RoundProgress.cs": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+        "core/com.goa2.core/Runtime/Domain/Views.cs": "a97dc4f781a2f288380b12daa549d992f982bf2055581b5d464851b7704fb744",
+        "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+        "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+        "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs": "8d22cd19d70c3fd0320eb252ede37b07d611eef6b752890b38f29e05b3594ddc",
+        "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+        "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+        "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs": "1077dcfa92b6feb5b85d59627600458568f6c2d4251288a930b707434ec3f627",
+        "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs": "fe2690074d2ccc35730d036399ee87e329e0b49f1d356a3a955b03327dac6cff",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs": "30619a85e2b98e7d91f2a944dbd36cc34f7a4f86b0a7f6ac944a7b9e4a383097",
+        "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs": "ab475feebf4b795d1e6b8609fee8932b26aedf8cc71ba48c2e6a16d58fabf865",
+        "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs": "755387ce537500f12b359ac9e931f679e9a9292b099126eb8f74152876d16ef6",
+        "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs": "f12e9cbb2e4fb1914ba976cea8868d6ccc30b4b639273d15ced1ddee12c1066f",
+        "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs": "b5a6c48528c8f9963780d4e1328004c0f025cb75299e7fe0350251bf15c27129",
+        "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs": "883fd24a369052f96daa24c1c5f496703f59e484ac381f53e6ccab06693c4cd6",
+        "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs": "332d2aeba88380f8cb56f4ae4094be5ed5935d9ac0b16f8b9c46b9a308ce4559",
+        "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs": "c10c9c055b7aaef08346e4907bf93c359964b004bf375a644928a790e0d811d9",
+        "core/com.goa2.core/Runtime/Rules/CardPushRules.cs": "95b0581279b7fcd5c91a8d78a100f91a3d2205778fe0a882cd7e87e5530dd885",
+        "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs": "83f05aa22cba0550efdc8fa4c73102ab41bda9756dfad6aa896d8f33f3350035",
+        "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs": "999ae1c9fc00a54efe58e2906c06e755ab1c3c1f4946181c2a8f1a92b8865d86",
+        "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs": "3c2f56e4601665dfdbdeedb0aed83313d6c921f4aba2c485644e94d25643d746",
+        "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs": "4bf282741c89d0559ba1d763d73b5eb5a1fdfe7d0ea84b8d085a7431885915b4",
+        "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs": "1d9839dbe87e9ba5135150095e3e4edd7a72de5c0ce9a7a727dbf8c7a31e4541",
+        "core/com.goa2.core/Runtime/Rules/CombatMath.cs": "547f23f0e21f562226344b112109005a8b5de069f7f961b5ff5f92fbb0a95ada",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs": "78957a1eec61c3de5b300383ad6166643708f16cf8e86ee5ea7526ff8251cd21",
+        "core/com.goa2.core/Runtime/Rules/DebugRules.cs": "08a138ab57a11b6bc84842ee96e711235dda3ac62c77d3d7b914f6678f0593c2",
+        "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs": "21f49df5ae523d86105bd5e9b03c670260e43fbf72c8789f9362a42033d47208",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs": "cd2f8af982f5047d3a4eed38cfc484f3cd6b4a30751839c9e87c9fb1c9237614",
+        "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs": "19d72ecccbc20056f527051ee03ba2dbb95c74c42b1b745a77f4affc58cecdb4",
+        "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs": "4abd6481a220c2d64b01734c51b2e69ac005b87ef7727ddd66b6da860c6ccb1a",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs": "23ee4e7d5b7e94f357c7fa4d9c3e480bd712f5e168b27f8a2833707a8e0d2392",
+        "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs": "7dc4faa1a0a8ec57603c6b5e8a99da1ae1719bb02ca52a53858209a8c65d610a",
+        "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs": "cb9a5dd1eef50822eb14663c88caff3d17fd6605f6a5c79f7a677b92f3172561",
+        "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+        "core/com.goa2.core/Runtime/Rules/GameRules.cs": "ba6c4bfc794334b395c20c436146c5786b25806023e2337f5c31121a7345c2ca",
+        "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+        "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+        "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs": "2d8fcddf97656934b491dacda503ef7c7f701300401a65ea86b239b140392e3a",
+        "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs": "69dd3f4656f13af4a680e09f3eb0be12c49e9ea2b251142dfb23959ac288ea21",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs": "29e65bece723814cf05696df8261a55f875e17c79cf119891703fc95b3d410e4",
+        "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs": "334f0bd3c605939b234d64dac45b7243b4a9b7a4882dec266757b00e5a77e54e",
+        "core/com.goa2.core/Runtime/Rules/PushRules.cs": "327cb80b315d05dbff8a0fae40f17ec8582bfa27b06ce5137db1b773212a799a",
+        "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs": "236420d03602dfd0c5e7e5fb8b2da29e90c1fe542fc3b76de290516a5bfc103d",
+        "core/com.goa2.core/Runtime/Rules/TurnRules.cs": "66830a6cb5df872063f3c10e5c968a33b4471b080cb7fc47828075f93490d5b3",
+        "core/com.goa2.core/Runtime/Rules/UltimateRules.cs": "4b0a83ab369c5485db3cca7767d1c13199dc1306f8523a6cc6d599eb2c97062a",
+        "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+        "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+        "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs": "4c994af1b9525a3c1f8869b665fca9b64559a014223cb2e280a9266947acf63d",
+        "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs": "c7f2114f3d80d6d1630a377e7a98eb163a5369a24099a5d563adaebf2d9ef7ef"
+      }
+    }
+  ],
+  "client_and_testhost_assemblies": {
+    "network/tests/Goa2.Network.ClientHarness/bin/Release/net10.0/Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+    "network/tests/Goa2.Network.ClientHarness/bin/Release/net10.0/Goa2.Network.Client.dll": "bd12d503c94e49609a69e8e22d6e3bef97980d0eab2a7335050eedc5ffc856d8",
+    "network/tests/Goa2.Network.ClientHarness/bin/Release/net10.0/Goa2.Network.ClientHarness.dll": "cf0b9317c40d602228a71e2a102f156793904a898df460e96f6b501edb04b692",
+    "network/tests/Goa2.Network.ClientHarness/bin/Release/net10.0/Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e",
+    "network/tests/Goa2.Network.TestHost/bin/Release/net10.0/Goa2.Application.dll": "9b2efb6dc44c69fdd91786cf94078f927b81c1efa533b2115ff8edef51ae9b83",
+    "network/tests/Goa2.Network.TestHost/bin/Release/net10.0/Goa2.Domain.dll": "235841ae1ba1285589a1d80d68074b1ab297b8c016735687c02a1ac0bc2277af",
+    "network/tests/Goa2.Network.TestHost/bin/Release/net10.0/Goa2.Infrastructure.dll": "67bcffa30fc1f7d831a6abd0ba8fd74abad3502792f3f240469a300b15eb9a99",
+    "network/tests/Goa2.Network.TestHost/bin/Release/net10.0/Goa2.Network.dll": "109c4c3202fcba0f20b3b04a3ab923e1caa82100bcaaad7a2fd16a4889b0deb3",
+    "network/tests/Goa2.Network.TestHost/bin/Release/net10.0/Goa2.Network.TestHost.dll": "1849dc568e9158e8859edca567a5e6ed76918c293b96c15ef5f24d6189781750",
+    "network/tests/Goa2.Network.TestHost/bin/Release/net10.0/Goa2.Rules.dll": "f9d056c0496b62eb75b912c0247afb60d56877e4093fa58abecd3da1942a7b27",
+    "network/tests/Goa2.Network.TestHost/bin/Release/net10.0/Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+  },
+  "suite_files": {
+    "client-build.log": "85c345f3ec5ccdb8ba87f9f6ae1e798403d74313e911adca1a9404b98bf5ccd0",
+    "client-unit.log": "f2c53ce86fe0aefcf6ae8ae62f4dcef8a139f07b7f842d88dfeaf529d78b5683",
+    "core-session.log": "00f1a7a457a5226f7a6b7664928e4595a9c1313238bfeb40e97eb1cf3db9af12",
+    "core-session.trx": "1ce79a46f57778db21844c6146d298c3eb1758e28d746e5cb4e2e262470e18c2",
+    "runs--csharp.txt": "f679c8b908040496d083378de2458090dbd95cfbbb10eca2dc05baa6cb1d2ef1",
+    "runs--pending.txt": "936b5cffe20519b494937dc0fab49760fed0a4483566fd1679531affe4770a0c",
+    "runs.txt": "11a9ddf7eb3b7820b2c5d9d1262d4ce0a28eaf332f96f2f5df449f50065d0616",
+    "server-build.log": "b4f0aa52d4b28ef6c20a889b6d1533773ead42c70b3e4ef63c8a1b9b725e4f11"
+  }
+}
