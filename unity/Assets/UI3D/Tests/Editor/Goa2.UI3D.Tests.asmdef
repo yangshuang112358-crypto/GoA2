@@ -1,0 +1,9 @@
+{
+  "name": "Goa2.UI3D.Tests",
+  "references": ["Goa2.Presentation", "Goa2.Domain", "Goa2.Infrastructure", "Goa2.Application"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "includePlatforms": ["Editor"],
+  "overrideReferences": true,
+  "precompiledReferences": ["nunit.framework.dll"],
+  "autoReferenced": false
+}
