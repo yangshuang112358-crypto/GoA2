@@ -924,11 +924,20 @@
     },
     {
       "card_id": "arien-01-汹涌",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-01-汹涌.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/SurgeTests.cs",
+        "tests/scenarios/surge-same-target.json",
+        "tests/scenarios/surge-skip.json",
+        "tests/scenarios/surge-defeat-other.json",
+        "tests/scenarios/surge-counter.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "arien-02-激流",

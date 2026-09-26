@@ -39,7 +39,7 @@ namespace Goa2.Rules.Cards
         public readonly UnitSwapTargetKind UnitSwapTarget;
         public readonly PlacementTargetKind PlacementTarget;
         public readonly PushTargetKind PushTarget;
-        public readonly bool OptionalPushTarget;
+        public readonly bool OptionalPushTarget, FixedPushDistance;
         public readonly int Version = 1, MinimumDistance;
         public readonly IReadOnlyList<InstructionKind> Instructions;
         public readonly EffectKind? Effect;
@@ -60,12 +60,12 @@ namespace Goa2.Rules.Cards
         public readonly int TextPushDistance;
         public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
             EffectAreaKind areaKind=EffectAreaKind.SkillRange, AttackBonusKind bonus=AttackBonusKind.None, int bonusValue=0,
-            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,bool extraRemovalUsesAttackRange=false,int textPushDistance=0,int textMoveMinimum=0,string? attackSubtype=null,int goldMaximum=0,bool ignoreHeavyImmunity=false,UnitSwapTargetKind unitSwapTarget=UnitSwapTargetKind.MinionOrFriendlyHeroInAttackRange,EffectDuration duration=EffectDuration.ThisTurn,PlacementTargetKind placementTarget=PlacementTargetKind.EmptyNoSpawnInAttackRange,PushTargetKind pushTarget=PushTargetKind.EnemyMinion,bool optionalPushTarget=false,params InstructionKind[] instructions)
+            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,bool extraRemovalUsesAttackRange=false,int textPushDistance=0,int textMoveMinimum=0,string? attackSubtype=null,int goldMaximum=0,bool ignoreHeavyImmunity=false,UnitSwapTargetKind unitSwapTarget=UnitSwapTargetKind.MinionOrFriendlyHeroInAttackRange,EffectDuration duration=EffectDuration.ThisTurn,PlacementTargetKind placementTarget=PlacementTargetKind.EmptyNoSpawnInAttackRange,PushTargetKind pushTarget=PushTargetKind.EnemyMinion,bool optionalPushTarget=false,bool fixedPushDistance=false,params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
             AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=duration;
             AttackSubtype=attackSubtype ?? (adjacent ? "" : "远程");
-            GoldMaximum=goldMaximum; IgnoreHeavyImmunity=ignoreHeavyImmunity; UnitSwapTarget=unitSwapTarget; PlacementTarget=placementTarget; PushTarget=pushTarget; OptionalPushTarget=optionalPushTarget;
+            GoldMaximum=goldMaximum; IgnoreHeavyImmunity=ignoreHeavyImmunity; UnitSwapTarget=unitSwapTarget; PlacementTarget=placementTarget; PushTarget=pushTarget; OptionalPushTarget=optionalPushTarget; FixedPushDistance=fixedPushDistance;
             AttackBonusKind=bonus; AttackBonusValue=bonusValue;
             RangeBonusKind=rangeBonus; RangeBonusValue=rangeBonusValue;
             TextMoveDistance=textMoveDistance;
@@ -97,6 +97,7 @@ namespace Goa2.Rules.Cards
         private static readonly Dictionary<string,(string text,int minimumEngine,PrimaryProgram program)> Attacks = new Dictionary<string,(string,int,PrimaryProgram)>
         {
             ["shargatha-00-反击"] = ("选择与你相邻的一个单位为目标。攻击后：此回合，当你因任何原因丢弃一张卡牌后，如果可行，执行你弃牌堆中一张攻击牌的主要行动。（优先执行完导致弃牌的行动。）",63,new PrimaryProgram("adjacent_attack_then_discard_attack_trigger",1,adjacent:true,effect:EffectKind.AttackFromDiscard,areaKind:EffectAreaKind.None,instructions:new[]{InstructionKind.ChooseAttackTarget,InstructionKind.Attack,InstructionKind.ApplyEffect,InstructionKind.End})),
+            ["arien-01-汹涌"] = ("选择攻击距离内的一个单位为目标。攻击后：将最多一个与你相邻的标志物或敌方单位推动1格。",75,new PrimaryProgram("ranged_attack_then_optional_adjacent_fixed_push",1,textPushDistance:1,pushTarget:PushTargetKind.EnemyUnit,optionalPushTarget:true,fixedPushDistance:true,instructions:new[]{InstructionKind.ChooseAttackTarget,InstructionKind.Attack,InstructionKind.ChooseUnitPush,InstructionKind.End})),
             ["arien-00-华丽刀锋"] = ("选择与你相邻的一个单位为目标。攻击前：你可以将另一个与目标相邻的单位移动1格。（另一个单位不能选择你自己。）",42,new PrimaryProgram("adjacent_attack_optional_other_unit_move",1,adjacent:true,textMoveDistance:1,instructions:new[]{InstructionKind.ChooseAttackTarget,InstructionKind.OptionalMoveOtherAdjacentToTarget,InstructionKind.Attack,InstructionKind.End})),
             ["shargatha-04-横枪跃马"] = ("选择攻击距离内与你不相邻的一个单位为目标。攻击后：如果你与一个敌方英雄相邻，可以对不同目标重复一次。",40,new PrimaryProgram("non_adjacent_attack_repeat_once_different_if_adjacent_enemy",2,instructions:new[]{InstructionKind.ChooseAttackTarget,InstructionKind.Attack,InstructionKind.OptionalDifferentAttackIfAdjacentEnemy,InstructionKind.Attack,InstructionKind.End})),
             ["wasp-01-电击"] = ("选择与你相邻的一个单位为目标。攻击前：最多一个与你相邻的敌方英雄（除攻击目标外）丢弃一张牌（如果可能）。",35,new PrimaryProgram("adjacent_attack_optional_other_hero_discard",1,adjacent:true,heroTarget:HeroTargetKind.OtherAdjacentEnemy,instructions:new[]{InstructionKind.ChooseAttackTarget,InstructionKind.OptionalOtherHeroDiscard,InstructionKind.Attack,InstructionKind.End})),

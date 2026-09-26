@@ -54,7 +54,7 @@ namespace Goa2.Rules
             state.Pending=new PendingChoice{Id="unit-push-distance:"+(state.Events.Count+1),Kind="effect_move",ChooserSeat=e.ControllerSeat,Source=e.CardId,
                 UnitId=command.Value,ResumeAt="single_push_distance",Optional=true};
             var result=CurrentUnitPush(catalog,state)!;
-            if(result.Path.Count==1){CompleteUnitPush(catalog,state,command,result.Path,result.StopReason);return;}
+            if(result.Path.Count==1 || p!.FixedPushDistance){CompleteUnitPush(catalog,state,command,result.Path,result.StopReason);return;}
             state.Pending.CandidateCells=LegalUnitPushMoves(catalog,state,e.ControllerSeat).Select(m=>m.Destination).ToList();Emit(state,command,"EffectMoveChoiceRequired",e.ControllerSeat,e.CardId,detail:"push_up_to:"+p!.TextPushDistance);
         }
         private static void ChooseUnitPushDistance(ContentCatalog catalog,GameState state,Command command)

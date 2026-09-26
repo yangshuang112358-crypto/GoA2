@@ -666,6 +666,15 @@
       "input": "tests/fixtures/engine74-savage-kick-phantasm-scenario.json",
       "input_sha256": "eea7322e5d15eec81bebb5b77a760950dfb587f7a118cd3e4cf3b1203e1c4259",
       "provenance": "tests/fixtures/engine74-savage-kick-phantasm.md"
+    },
+    {
+      "engine_version": 75,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine75-surge-push-choice.json",
+      "save_sha256": "b846b407e91f86242b043bf6a28d3860e5da9d45358542848f202e93d91df8af",
+      "input": "tests/fixtures/engine75-surge-push-choice-scenario.json",
+      "input_sha256": "15a97d2d22107d2cac5d2cc67fe9b7cd7aec891cefbab17cc468fd9a317f0c4e",
+      "provenance": "tests/fixtures/engine75-surge-push-choice.md"
     }
   ]
 }
