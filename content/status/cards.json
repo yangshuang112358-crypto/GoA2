@@ -393,11 +393,23 @@
     },
     {
       "card_id": "shargatha-06-海妖之歌",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-06-海妖之歌.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/SirenSongTests.cs",
+        "tests/scenarios/siren-song-two-targets.json",
+        "tests/scenarios/siren-song-zero-move.json",
+        "tests/scenarios/siren-song-minion-return.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs"
+      ]
     },
     {
       "card_id": "shargatha-07-魅惑",

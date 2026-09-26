@@ -117,6 +117,17 @@ namespace Goa2.Rules
                         if (BeginRecovery(catalog,state,command,execution,program)) return;
                         execution.Cursor++;
                         break;
+                    case InstructionKind.ChooseNearestApproachTarget:
+                        if(BeginApproachTarget(catalog,state,command,false))return;
+                        StopCard(catalog,state,command,"no_targets");return;
+                    case InstructionKind.OptionalApproachMove:
+                        if(BeginApproachMove(catalog,state,command))return;
+                        execution.Cursor++;break;
+                    case InstructionKind.OptionalRepeatApproach:
+                        if(BeginMinionReturns(catalog,state,command))return;
+                        if(BeginDiscardReactions(catalog,state,command))return;
+                        if(BeginApproachTarget(catalog,state,command,true))return;
+                        execution.Cursor++;break;
                     case InstructionKind.OptionalRepeatFriendlyMinionMove:
                         if(BeginMinionReturns(catalog,state,command))return;
                         if(BeginFriendlyMinionTarget(catalog,state,command))return;
@@ -310,7 +321,8 @@ namespace Goa2.Rules
             var program=CardPrograms.Primary(catalog.Card(state.Execution.CardId),state.EngineVersion);
             if(program!=null && (program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalDifferentAttackIfAdjacentEnemy ||
                 program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatAttackAfterHeroDefeat ||
-                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatFriendlyMinionMove))
+                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatFriendlyMinionMove ||
+                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatApproach))
             {
                 ContinueCard(catalog,state,command);
                 return;

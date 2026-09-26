@@ -53,6 +53,7 @@ namespace Goa2.Rules
         }
         public static List<string> LegalEffectTargets(ContentCatalog catalog,GameState state,int seat)
         {
+            if(state.Pending?.ResumeAt=="approach_target" || state.Pending?.ResumeAt=="approach_repeat")return LegalApproachTargets(catalog,state,seat);
             if(state.Pending?.ResumeAt==BeforeActionTargetResume)return BeforeActionTargets(state,seat);
             if(state.Pending?.Kind=="effect_minion") return LegalEffectMinionRemovals(catalog,state,seat);
             var execution=state.Execution;
@@ -78,8 +79,9 @@ namespace Goa2.Rules
                 Source=execution.CardId,CandidateUnits=targets,ResumeAt=optional ? "attack_before_optional_discard" : "card_effect_target",Optional=optional};
             Emit(state,command,"EffectTargetChoiceRequired",execution.ControllerSeat,execution.CardId);return true;
         }
-        private static void ChooseEffectTarget(ContentCatalog catalog,GameState state,Command command)
+        private static void ChooseEffectTarget(ContentCatalog catalog,GameState state,Command command,bool allowBeforeAction=true)
         {
+            if(state.Pending?.ResumeAt=="approach_target" || state.Pending?.ResumeAt=="approach_repeat"){ChooseApproachTarget(catalog,state,command,allowBeforeAction);return;}
             if(state.Pending?.ResumeAt==BeforeActionTargetResume){ChooseBeforeActionTarget(catalog,state,command);return;}
             if(state.Pending?.ResumeAt==UltimateTargetResume){ChooseCompletionTarget(catalog,state,command);return;}
             if(state.Pending?.ResumeAt=="push_all_adjacent" || state.Pending?.ResumeAt=="blocked_push_discard_target"){ChooseGroupPushTarget(catalog,state,command);return;}

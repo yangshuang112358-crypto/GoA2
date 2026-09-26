@@ -594,6 +594,15 @@
       "input": "tests/fixtures/engine66-legendary-duelist-respawn-scenario.json",
       "input_sha256": "56b1883a4a6c8371e23a90738d3002eda8cf1756cecf4d2d95903144265fe4de",
       "provenance": "tests/fixtures/engine66-legendary-duelist-respawn.md"
+    },
+    {
+      "engine_version": 67,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine67-siren-repeat.json",
+      "save_sha256": "2d662de07d50b4f3c766769f7f4e97b6741822b625be14a5aa7b3485516924e2",
+      "input": "tests/fixtures/engine67-siren-repeat-scenario.json",
+      "input_sha256": "aa57a2dba6ebe5d5884e69453a9045fb90829ab15bfbd6c731bf90a9e14a5f39",
+      "provenance": "tests/fixtures/engine67-siren-repeat.md"
     }
   ]
 }
