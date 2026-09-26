@@ -281,11 +281,23 @@
     },
     {
       "card_id": "shargatha-00-反击",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-00-反击.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CounterattackTests.cs",
+        "tests/scenarios/counterattack-defense.json",
+        "tests/scenarios/counterattack-moved.json",
+        "tests/scenarios/counterattack-nested.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs",
+        "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs"
+      ]
     },
     {
       "card_id": "shargatha-01-劈砍",

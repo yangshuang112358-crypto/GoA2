@@ -37,6 +37,7 @@ namespace Goa2.Rules
                 case CommandKind.ChooseMinionProtection: ChooseMinionProtection(catalog,state,command); break;
                 case CommandKind.ChoosePrimaryOption: ChoosePrimaryOption(catalog,state,command); break;
                 case CommandKind.BeginPrimary: BeginPrimary(catalog, state, command); break;
+                case CommandKind.ChooseDiscardAttack: ChooseDiscardAttack(catalog,state,command); break;
                 case CommandKind.ChooseAttackTarget: ChooseAttackTarget(catalog, state, command); break;
                 case CommandKind.Defend: Defend(catalog, state, command); break;
                 case CommandKind.DeclineDefense: DeclineDefense(catalog, state, command); break;
@@ -81,6 +82,7 @@ namespace Goa2.Rules
                     ApplyDebug(catalog, state, command); break;
                 default: throw new RuleViolation("unsupported_command", "此操作尚未实装。");
             }
+            if(command.Kind==CommandKind.DebugDiscard)BeginDiscardReactions(catalog,state,command,"command:"+command.Id);
         }
         private static void Move(ContentCatalog catalog, GameState state, Command command, bool allowBeforeAction = true)
         {

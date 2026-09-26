@@ -81,6 +81,7 @@ namespace Goa2.Domain
         public bool CanDeclineRetaliationDiscard;
         public List<string> OptionalDiscardCards = new List<string>();
         public List<string> RecoverableCards = new List<string>();
+        public List<string> DiscardAttackCards = new List<string>();
         public List<string> CardSwapOptions = new List<string>();
         public List<string> MinionProtectionCards = new List<string>();
         public List<string> PrimaryOptions = new List<string>();

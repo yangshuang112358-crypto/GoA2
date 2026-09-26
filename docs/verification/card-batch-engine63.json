@@ -1,0 +1,83 @@
+{
+  "engine": 63,
+  "implemented_cards": 74,
+  "data_only_cards": 34,
+  "build_utc": "2026-09-26T05:37:05.3746526Z",
+  "assemblies": {
+    "Goa2.Application.dll": "800636790bde22e97c5fed0e1b59e39897df34095808aa4cd25073ad6e6100d7",
+    "Goa2.Domain.dll": "e477a5d58e6a0b69c9cc601b31995e758ac076298c9f8cb52d02063da6cb67b8",
+    "Goa2.Editor.dll": "0b3b8eeeca9bfc1d51413a6934e30a9da2c35ee466f96f1567ba25e933d402a1",
+    "Goa2.Infrastructure.dll": "a43ef608c4b9e64481e0364f52b70a47740aa5515890a733066a924989ed6957",
+    "Goa2.Rules.dll": "12190bb0cdd643ef3fc13460d736410191ab58c1e3049f0b9d91ec63f4d1376b"
+  },
+  "core": {
+    "passed": 1616,
+    "failed": 0,
+    "report": "artifacts/tests/counterattack-unity-0.xml",
+    "card_specific": 18,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/counterattack-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/counterattack-defense.json",
+        "input_sha256": "1f9fa266bf819a115aba41a2a4ae0fe2197c4006d8a1c9da0f0e54d0a2ca9923",
+        "report": "artifacts/editor-scenarios/counterattack-defense/59ee44274bef485e87d3b79ad0dad4a6/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/counterattack-moved.json",
+        "input_sha256": "8d32048bfa50b8b724ee8be12434065c4e5e4ca6552bbea70d70889f3e0bf375",
+        "report": "artifacts/editor-scenarios/counterattack-moved/4de22c7574fd44bdafbec7c3850bf5d9/report.json",
+        "steps": 19,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/counterattack-nested.json",
+        "input_sha256": "031ec874fede3c859e5007c9c786a974f15d5251856b86b009401bf69b740712",
+        "report": "artifacts/editor-scenarios/counterattack-nested/3b1b90e8c4e54540b12fc9c56b400174/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine63-counterattack-nested-scenario.json",
+        "input_sha256": "bacbd075628a91f4f6dec50de69d51032705663daaef0eb735f40213b320f395",
+        "report": "artifacts/editor-scenarios/engine63-counterattack-nested-scenario/09f98537783643a09438ba24204c081c/report.json",
+        "steps": 22,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 85
+  },
+  "manual_presets": [
+    "counterattack-defense",
+    "counterattack-nested"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "red": {
+    "report": "artifacts/unity/tests/counterattack-red.xml",
+    "passed": 1,
+    "failed": 5
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e63-counterattack-20260926-053737-6e2d19f2.zip",
+    "sha256": "6d23b4edb549f61b64d247222a4758d756d836dba92d98b2b8544b5162036ebc"
+  }
+}

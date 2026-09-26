@@ -45,8 +45,8 @@ namespace Goa2.Rules
             else
             {
                 var instance=state.Players[command.ActorSeat].Cards.Single(c=>c.CardId==command.Value && c.Zone==CardZone.InHand);
-                instance.Zone=CardZone.Discarded; execution.PreAttackDiscarded=true;
-                Emit(state,command,"CardDiscarded",command.ActorSeat,instance.CardId,command.ActorSeat);
+                execution.PreAttackDiscarded=true;
+                DiscardCard(state,command,instance,command.ActorSeat,"cost");
                 Emit(state,command,"DiscardColorShown",command.ActorSeat,detail:catalog.Card(instance.CardId).Color);
                 Emit(state,command,"OptionalDiscardCompleted",command.ActorSeat,execution.CardId);
             }

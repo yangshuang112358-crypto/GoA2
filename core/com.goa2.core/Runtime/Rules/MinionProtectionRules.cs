@@ -36,8 +36,7 @@ namespace Goa2.Rules
    state.MinionDefeat=null;state.Pending=saved!.ResumePending;state.Phase=saved.ResumePhase;state.ActiveSeat=saved.ResumeActiveSeat;
    if(command.Value!="skip")
    {
-    var card=state.Players[command.ActorSeat].Cards.Single(c=>c.CardId==command.Value && c.Zone==CardZone.InHand);card.Zone=CardZone.Discarded;
-    Emit(state,command,"CardDiscarded",command.ActorSeat,card.CardId,command.ActorSeat);
+    var card=state.Players[command.ActorSeat].Cards.Single(c=>c.CardId==command.Value && c.Zone==CardZone.InHand);DiscardCard(state,command,card,command.ActorSeat,"protection");
     Emit(state,command,"DiscardColorShown",command.ActorSeat,detail:catalog.Card(card.CardId).Color);
     Emit(state,command,"MinionDefeatPrevented",command.ActorSeat,saved.ProtectionCardId,detail:saved.UnitId);
     if(saved.ResumeCardExecution && state.Execution!=null)state.Execution.AttackOutcome="minion_saved";

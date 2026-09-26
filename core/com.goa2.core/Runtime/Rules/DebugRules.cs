@@ -17,6 +17,7 @@ namespace Goa2.Rules
             Require(state.MinionDefeat==null,"pending_minion_defeat","请先完成小兵保护选择再调试局面。");
             Require(state.EngineVersion<58 || state.Pending?.ResumeAt!=UltimateRepeatResume,"pending_ultimate_repeat","请先完成紫卡重复选择再调试局面。");
             Require(state.BeforeAction==null,"pending_before_action","请先完成行动前选择再调试局面。");
+            Require(state.DiscardReactionFrames==null,"pending_discard_reaction","请先完成反击及其父行动恢复再调试局面。");
             Require(state.Execution?.ForcedPayment==null,"pending_forced_payment","请先完成弃牌或被击败选择再调试局面。");
             Require(state.Execution?.Completion==null,"pending_action_completion","请先完成行动结束后的紫卡选择再调试局面。");
             bool structural = command.Kind == CommandKind.DebugTeleport || command.Kind == CommandKind.DebugRemoveMinion || command.Kind == CommandKind.DebugDefeatMinion ||
@@ -123,7 +124,7 @@ namespace Goa2.Rules
             // range is executed by this sandbox basic, non-ranged attack.
             var sourceCard=catalog.Cards.First(c=>c.HeroId==state.Players[command.ActorSeat].HeroId && c.PrimaryFamily=="attack");
             var basic=new CardDefinition { Id=sourceCard.Id, PrimaryValue=power,PrimaryCategory="基础攻击",PrimaryFamily="attack" };
-            state.Execution=new CardExecution { CardId=sourceCard.Id, ProgramId="debug-attack-v1", ProgramVersion=1, ControllerSeat=command.ActorSeat,
+            state.Execution=new CardExecution { CardId=sourceCard.Id, ProgramId="debug-attack-v1", ProgramVersion=1, ControllerSeat=command.ActorSeat, ActionInstanceId=state.EngineVersion>=63?NewActionInstance(state):null,
                 TargetUnitId=target.Id, Attack=CombatMath.Attack(state,basic,command.ActorSeat,target.Id,minionKinds:EffectRules.MinionCombatKinds(catalog,state,basic,command.ActorSeat),ultimateAttack:UltimateRules.AttackBonus(catalog,state,basic,command.ActorSeat)) };
             Emit(state,command,"AttackCalculated",command.ActorSeat,sourceCard.Id);
             state.Events.Last().AttackValues=state.Execution.Attack;
@@ -192,8 +193,7 @@ namespace Goa2.Rules
             var player = DebugPlayer(state, command.TargetSeat);
             var card = player.Cards.SingleOrDefault(c => c.CardId == command.Value && (c.Zone == CardZone.InHand || c.Zone == CardZone.Selected));
             Require(card != null && !(card.Zone == CardZone.Selected && player.Confirmed), "invalid_discard", "只能调试弃置未锁定的手牌。");
-            card!.Zone = CardZone.Discarded;
-            Emit(state, command, "CardDiscarded", player.Seat, card.CardId, player.Seat);
+            DiscardCard(state,command,card!,player.Seat,"debug");
             Emit(state, command, "DiscardColorShown", player.Seat, detail: catalog.Card(card.CardId).Color);
             if (state.Phase == Phase.Planning)
             {

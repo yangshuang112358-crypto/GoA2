@@ -147,7 +147,7 @@ namespace Goa2.Rules
         private static void DeclareVictory(GameState state, Command command, Team winner, string reason)
         {
             state.Winner = winner; state.VictoryReason = reason; state.Phase = Phase.Finished;
-            state.ActiveSeat = null; state.Pending = null; state.Frontline = null; state.Execution = null; state.RoundEnd = null; state.MinionDefeat = null; state.BeforeAction = null;
+            state.ActiveSeat = null; state.Pending = null; state.Frontline = null; state.Execution = null; state.RoundEnd = null; state.MinionDefeat = null; state.BeforeAction = null; state.DiscardReactions = null; state.DiscardReactionFrames = null;
             Emit(state, command, "MatchWon", detail: winner + ":" + reason);
         }
     }

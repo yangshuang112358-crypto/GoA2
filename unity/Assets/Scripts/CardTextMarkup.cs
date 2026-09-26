@@ -9,9 +9,10 @@ namespace Goa2.Presentation
 {
     public static class CardTextMarkup
     {
-        // Display-only user ruling D-038; keep historical content snapshots intact.
+        // User interpretations D-038/D-047 are marked *, separate from canonical text.
         public static string Description(Goa2.Domain.CardDefinition card) => card.Text +
-            (card.Id == "tigerclaw-13-斗篷与匕首" ? "（含首次攻击在内，总计最多进行两次基础攻击，且目标不同。）" : "");
+            (card.Id == "tigerclaw-13-斗篷与匕首" ? "（*含首次攻击在内，总计最多进行两次基础攻击，且目标不同。）" :
+             card.Id == "shargatha-07-魅惑" || card.Id == "shargatha-08-统治领域" || card.Id == "shargatha-10-独霸一方" ? "（*仅在你本人防御时适用。）" : "");
 
         public const string ActionColor="#F6D278",TimingColor="#84D8E7",RestrictionColor="#FFFFFF",DefeatColor="#FF9B94";
         public sealed class Keyword

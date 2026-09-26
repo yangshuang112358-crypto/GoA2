@@ -97,6 +97,7 @@ namespace Goa2.Rules
             resume.Kind = frame.ResumeKind; resume.MoveMode = frame.ResumeMoveMode;
             switch (frame.ResumeKind)
             {
+                case CommandKind.ChooseDiscardAttack: ChooseDiscardAttack(catalog,state,resume,false); break;
                 case CommandKind.BeginPrimary: BeginPrimary(catalog, state, resume, false); break;
                 case CommandKind.Move:
                     if(frame.Stage == "move") BeginMovementDestination(catalog,state,resume,frame);

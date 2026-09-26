@@ -566,6 +566,11 @@ namespace Goa2.Presentation
                 case "MatchWon": return (entry.Detail.StartsWith("Blue:") ? "蓝队" : "红队") + "获胜";
                 case "PrimaryActionStarted": return actor + "开始主要行动";
                 case "ForcedPaymentPaid": return "已支付弃牌，继续原行动";
+                case "DiscardReactionQueued": return actor + "记录一次反击，等待导致弃牌的行动结束";
+                case "DiscardReactionSkipped": return actor + "当前没有可执行的弃牌攻击，跳过此次反击";
+                case "DiscardAttackChoiceRequired": return actor + "选择弃牌堆攻击牌进行反击";
+                case "DiscardAttackStarted": return actor + "执行反击 · " + catalog.Card(entry.CardId!).Name;
+                case "DiscardAttackCompleted": return actor + "完成反击，恢复原行动";
                 case "ForcedPaymentDefeat": return "未弃牌，按牌文被击败";
                 case "UltimateTriggered": return actor + "触发紫卡能力 · " + (catalog.Cards.FirstOrDefault(c=>c.Id==entry.CardId)?.Name ?? "紫卡");
                 case "UltimateCompleted": return actor + "完成紫卡后续" + (entry.Detail=="no_targets" ? "（无合法目标）" : entry.Detail=="empty_hand" ? "（目标空手）" : "");

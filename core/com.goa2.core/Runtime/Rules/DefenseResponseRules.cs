@@ -107,8 +107,7 @@ namespace Goa2.Rules
         {
             Require(LegalForcedDiscards(state,command.ActorSeat).Contains(command.Value), "invalid_forced_discard", "请由弃牌者本人选择一张当前手牌；此选择不能跳过。");
             var instance=state.Players[command.ActorSeat].Cards.Single(c => c.CardId==command.Value && c.Zone==CardZone.InHand);
-            instance.Zone=CardZone.Discarded;
-            Emit(state,command,"CardDiscarded",command.ActorSeat,instance.CardId,command.ActorSeat);
+            DiscardCard(state,command,instance,command.ActorSeat,"forced");
             Emit(state,command,"DiscardColorShown",command.ActorSeat,detail:catalog.Card(instance.CardId).Color);
             Emit(state,command,"ForcedDiscardCompleted",command.ActorSeat);
             if(IsBeforeActionDiscard(state,command.ActorSeat)){FinishBeforeAction(catalog,state,command);return;}

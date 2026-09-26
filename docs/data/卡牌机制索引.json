@@ -293,7 +293,7 @@
         "continuous",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/shargatha-00-反击.md",
       "question_candidates": [
         "U-011"

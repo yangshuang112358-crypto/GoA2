@@ -558,6 +558,15 @@
       "input": "tests/fixtures/engine62-defensive-counter-payment-scenario.json",
       "input_sha256": "9e3a5c18c86286c30ea73596e9676d9ff1e61bf9d9ff7eeb377797d3f6098e59",
       "provenance": "tests/fixtures/engine62-defensive-counter-payment.md"
+    },
+    {
+      "engine_version": 63,
+      "accepted_commands": 22,
+      "save": "tests/fixtures/engine63-counterattack-nested.json",
+      "save_sha256": "8716f22249091c333d118ce07dca970ed4423592d942fb4cabc66a46b380c9a2",
+      "input": "tests/fixtures/engine63-counterattack-nested-scenario.json",
+      "input_sha256": "bacbd075628a91f4f6dec50de69d51032705663daaef0eb735f40213b320f395",
+      "provenance": "tests/fixtures/engine63-counterattack-nested.md"
     }
   ]
 }

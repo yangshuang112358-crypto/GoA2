@@ -16,7 +16,7 @@ namespace Goa2.Rules
             Require(program != null, "primary_not_implemented", "此卡主要行动尚未实装。");
             Require(EffectRules.SkillRestriction(catalog,state,command.ActorSeat,definition) == "", "primary_restricted", "当前技能受到打断施法限制。");
             if (allowBeforeAction && BeginBeforeAction(catalog,state,command)) return;
-            state.Execution = new CardExecution { CardId = card.CardId, ControllerSeat = command.ActorSeat, ProgramId = program!.Id, ProgramVersion = program.Version };
+            state.Execution = new CardExecution { CardId = card.CardId, ControllerSeat = command.ActorSeat, ProgramId = program!.Id, ProgramVersion = program.Version, ActionInstanceId = state.EngineVersion >= 63 ? NewActionInstance(state) : null };
             Emit(state, command, "PrimaryActionStarted", command.ActorSeat, card.CardId);
             ContinueCard(catalog, state, command);
         }
@@ -63,13 +63,16 @@ namespace Goa2.Rules
                         StartAttack(catalog, state, command, program);
                         return;
                     case InstructionKind.OptionalRepeatAttackAfterHeroDefeat:
+                        if(state.EngineVersion>=63 && execution.DefenseResponse!=null && !ContinueDefenseResponse(catalog,state,command))return;
                         if(BeginMinionReturns(catalog,state,command))return;
+                        if(BeginDiscardReactions(catalog,state,command))return;
                         if(BeginAttackRepeat(catalog,state,command,execution,card,program)) return;
                         execution.Cursor++;
                         break;
                     case InstructionKind.OptionalDifferentAttackIfAdjacentEnemy:
                         if(execution.DefenseResponse!=null && !ContinueDefenseResponse(catalog,state,command)) return;
                         if(BeginMinionReturns(catalog,state,command))return;
+                        if(BeginDiscardReactions(catalog,state,command))return;
                         if(BeginDifferentAttackRepeat(catalog,state,command,execution,card,program)) return;
                         execution.Cursor+=2;
                         break;
@@ -189,6 +192,7 @@ namespace Goa2.Rules
             }
             Require(CombatRules.AttackTargets(catalog,state,command.ActorSeat).Contains(command.Value),"invalid_attack_target","请选择当前合法敌方目标。");
             if(allowBeforeAction && (repeat || once) && BeginBeforeAction(catalog,state,command))return;
+            if(state.EngineVersion>=63 && (repeat || once))state.Execution!.ActionInstanceId=NewActionInstance(state);
             if(repeat) RestartAttack(catalog,state,command); else state.Execution!.Cursor++;
             if(once)
             {
@@ -249,8 +253,7 @@ namespace Goa2.Rules
             Require(option != null, "invalid_defense", "只能使用本人手中的合法防御牌。");
             if (allowBeforeAction && BeginBeforeAction(catalog,state,command)) return;
             var instance = state.Players[command.ActorSeat].Cards.Single(c => c.CardId == command.Value && c.Zone == CardZone.InHand);
-            instance.Zone = CardZone.Discarded;
-            Emit(state, command, "CardDiscarded", command.ActorSeat, instance.CardId, command.ActorSeat);
+            DiscardCard(state,command,instance,command.ActorSeat,"defense");
             Emit(state, command, "DiscardColorShown", command.ActorSeat, detail: catalog.Card(instance.CardId).Color);
             Emit(state, command, "DefenseCalculated", command.ActorSeat, instance.CardId, command.ActorSeat,
                 option!.Block ? "block" : option.Assessment.FinalDefense + ":" + option.Assessment.AttackCompared);
@@ -295,6 +298,7 @@ namespace Goa2.Rules
             if (state.Execution!.DefenseResponse != null && !ContinueDefenseResponse(catalog,state,command)) return;
             if (state.Execution.ProgramId == "debug-attack-v1")
             {
+                if(BeginDiscardReactions(catalog,state,command))return;
                 Emit(state,command,"DebugAttackCompleted",state.Execution.ControllerSeat,detail:state.Execution.AttackOutcome);
                 state.Execution=null; state.Pending=null; state.ActiveSeat=null; state.Phase=Phase.Planning;
                 return;
@@ -308,9 +312,12 @@ namespace Goa2.Rules
                 ContinueCard(catalog,state,command);
                 return;
             }
+            if(BeginDiscardReactions(catalog,state,command))return;
             if(BeginUltimateRepeat(catalog,state,command))return;
             bool returnSource=state.EngineVersion>=50 && state.Execution.ReturnSourceAtEnd;
             if (BeginPrimaryCompletion(catalog, state, command)) return;
+            if(BeginDiscardReactions(catalog,state,command))return;
+            if(CompleteDiscardAttack(catalog,state,command))return;
             state.ActiveSeat = state.Execution!.ControllerSeat; state.Execution = null; state.Pending = null; state.Phase = Phase.Action;
             FinishAction(catalog, state, command,returnSource);
         }

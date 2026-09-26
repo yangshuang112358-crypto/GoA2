@@ -169,6 +169,7 @@ namespace Goa2.Application
                 view.CanDeclineRetaliationDiscard = GameRules.CanDeclineRetaliationDiscard(catalog,snapshot,seat.Value);
                 view.OptionalDiscardCards = GameRules.LegalOptionalDiscards(catalog,snapshot,seat.Value);
                 view.RecoverableCards = GameRules.LegalRecoveries(catalog,snapshot,seat.Value);
+                view.DiscardAttackCards = GameRules.LegalDiscardAttacks(catalog,snapshot,seat.Value);
                 view.CardSwapOptions = GameRules.LegalCardSwaps(catalog,snapshot,seat.Value);
                 view.MinionProtectionCards = GameRules.LegalMinionProtectionCards(snapshot,seat.Value);
                 view.PrimaryOptions = GameRules.LegalPrimaryOptions(catalog,snapshot,seat.Value);

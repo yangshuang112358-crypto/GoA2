@@ -123,7 +123,7 @@ namespace Goa2.Rules
             }
             if(allowBeforeAction && BeginBeforeAction(catalog,state,command))return;
             state.Execution=new CardExecution {CardId=previous.CardId,ProgramId=previous.ProgramId,ProgramVersion=previous.ProgramVersion,
-                ControllerSeat=previous.ControllerSeat,UltimateRepeatUsed=true,UltimateRepeatExcludedTarget=previous.TargetUnitId};
+                ControllerSeat=previous.ControllerSeat,FromDiscard=previous.FromDiscard,ActionInstanceId=state.EngineVersion>=63?NewActionInstance(state):null,UltimateRepeatUsed=true,UltimateRepeatExcludedTarget=previous.TargetUnitId};
             state.Pending=null;state.Phase=Phase.Action;
             Emit(state,command,"AttackRepeated",command.ActorSeat,previous.CardId,detail:"ultimate");
             ContinueCard(catalog,state,command);

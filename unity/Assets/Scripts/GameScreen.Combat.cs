@@ -147,6 +147,23 @@ namespace Goa2.Presentation
                 RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
             }
+            if (choice.Kind == "discard_attack")
+            {
+                parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择弃牌堆中的一张攻击牌执行反击。","section-title"));
+                if(choice.ChooserSeat!=seat)
+                { parent.Add(Text("等待反击者选择攻击牌。","body"));RenderCardDetail(parent,catalog.Card(choice.Source));return true; }
+                foreach(string id in view.DiscardAttackCards)
+                {
+                    string selected=id;
+                    var button=Button(catalog.Card(id).Name+" · 已丢弃",()=>{discardCardId=selected;Render();},"choice-button","discard-attack-"+catalog.Card(id).Color);
+                    if(discardCardId==id)button.AddToClassList("chosen");parent.Add(button);
+                }
+                if(view.DiscardAttackCards.Contains(discardCardId))
+                    Confirm(parent,"执行反击："+catalog.Card(discardCardId).Name,()=>Submit(CommandKind.ChooseDiscardAttack,discardCardId));
+                parent.Add(Text("此牌仍留在弃牌堆；反击完成后继续原行动流程。","body"));
+                RenderCardDetail(parent,catalog.Card(view.DiscardAttackCards.Contains(discardCardId)?discardCardId:choice.Source));
+                return true;
+            }
             if (choice.Kind == "recover_discard")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择取回一张卡牌。","section-title"));

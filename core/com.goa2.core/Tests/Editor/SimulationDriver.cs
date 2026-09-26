@@ -170,6 +170,7 @@ namespace Goa2.Tests
                     case "effect_minion": return Step(CommandKind.ChooseEffectTarget,seat,Next(3)==0 ? "skip" : Pick(own.EffectTargets));
                     case "card_swap": return Step(CommandKind.ChooseCardSwap,seat,Next(3)==0 ? "skip" : Pick(own.CardSwapOptions));
                     case "recover_discard": return Step(CommandKind.ChooseRecoveredCard,seat,Next(3)==0 ? "skip" : Pick(own.RecoverableCards));
+                    case "discard_attack": return Step(CommandKind.ChooseDiscardAttack,seat,Pick(own.DiscardAttackCards));
                     case "round_minion_removal": return Step(CommandKind.ChooseRoundMinionRemoval,seat,Pick(own.RoundMinionRemovals));
                     case "minion_spawn":
                         return Pick(own.SpawnChoices.SelectMany(pair=>pair.Value.Select(at=>Step(CommandKind.ChooseMinionSpawn,seat,pair.Key,at:at))));
@@ -269,7 +270,7 @@ namespace Goa2.Tests
             Guard(state.Receipts.Select(r=>r.Id).Distinct().Count()==state.Receipts.Count,"Duplicate receipt.");
             Guard(state.Events.Select((e,i)=>e.Sequence==i+1L && e.Revision>0 && e.Revision<=state.Revision).All(ok=>ok),"Invalid event sequence/revision.");
             Guard((state.Phase==Phase.Finished)==state.Winner.HasValue,"Winner/phase mismatch.");
-            Guard(state.Phase!=Phase.Finished || state.Pending==null && state.Execution==null && !state.ActiveSeat.HasValue && state.Frontline==null && state.RoundEnd==null,"Finished match retains an active continuation.");
+            Guard(state.Phase!=Phase.Finished || state.Pending==null && state.Execution==null && !state.ActiveSeat.HasValue && state.Frontline==null && state.RoundEnd==null && state.DiscardReactions==null && state.DiscardReactionFrames==null,"Finished match retains an active continuation.");
             Guard(state.Phase!=Phase.EffectChoice || state.Pending!=null,"Effect choice has no pending choice.");
             foreach(var player in state.Players)
             {
@@ -285,7 +286,7 @@ namespace Goa2.Tests
         }
         private static void CheckProjection(GameView view)
         {
-            Guard(view.OwnCards.Count==0 && view.DefenseOptions.Count==0 && view.ForcedDiscardCards.Count==0 && view.OptionalDiscardCards.Count==0 && view.MinionProtectionCards.Count==0,"Public view exposes private choices.");
+            Guard(view.OwnCards.Count==0 && view.DefenseOptions.Count==0 && view.ForcedDiscardCards.Count==0 && view.OptionalDiscardCards.Count==0 && view.MinionProtectionCards.Count==0 && view.DiscardAttackCards.Count==0,"Public view exposes private choices.");
             Guard(view.Events.All(e=>e.PrivateTo==null),"Public view exposes private events.");
             Guard(view.Pending?.SourcePrivateTo==null || view.Pending.Source=="","Public view exposes private pending source.");
             Guard(view.Effects.All(e=>!e.SourcePrivateTo.HasValue || e.SourceCardId==""),"Public view exposes private effect source.");
