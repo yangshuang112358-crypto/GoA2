@@ -907,5 +907,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：阿连站在小兵出生点(5,-9)，发动潮水，可放到(3,-9)。分支：不能选相邻(5,-8)，小兵出生点与英雄出生点采用同一放置后判断。"
+  },
+  {
+    "id": "magic-water-third-ring",
+    "title": "魔法水流：三格放置与出生点",
+    "scenario": "magic-water-third-ring",
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号阿连发动魔法水流，选择(6,-5)，距离为3格，可跨越黄蜂的静电封锁边界，因为放置不是移动。分支：占有英雄出生点(7,-9)的黄蜂使相邻(7,-10)可选；占有小兵出生点(5,-9)的布罗根使(5,-8)可选。落点不能是任何出生点或空出生点邻格。"
+  },
+  {
+    "id": "magic-water-vacated-minion-spawn",
+    "title": "魔法水流：腾空小兵出生点",
+    "scenario": "magic-water-vacated-minion-spawn",
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：阿连站在小兵出生点(5,-9)，发动魔法水流，可放到(3,-9)。分支：不能选相邻(5,-8)，小兵出生点与英雄出生点采用同一放置后判断。"
   }
 ]

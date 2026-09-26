@@ -612,6 +612,15 @@
       "input": "tests/fixtures/engine68-tide-placement-scenario.json",
       "input_sha256": "5303489090b92df6d1ceb8c303f20d6bb1a408b965855784904400a253a8a283",
       "provenance": "tests/fixtures/engine68-tide-placement.md"
+    },
+    {
+      "engine_version": 69,
+      "accepted_commands": 11,
+      "save": "tests/fixtures/engine69-magic-water-placement.json",
+      "save_sha256": "0118e5349fd15e0d732ec552cb6fef7da723c452bec64d300b84d01a7a6f7216",
+      "input": "tests/fixtures/engine69-magic-water-placement-scenario.json",
+      "input_sha256": "ff5611de11f81b17c96cd8841a5cc596f649ad4057e3ec5e1638256d7bc9dfd8",
+      "provenance": "tests/fixtures/engine69-magic-water-placement.md"
     }
   ]
 }
