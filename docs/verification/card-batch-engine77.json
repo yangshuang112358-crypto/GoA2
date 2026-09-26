@@ -1,0 +1,91 @@
+{
+  "engine": 77,
+  "implemented_cards": 88,
+  "data_only_cards": 20,
+  "build_utc": "2026-09-26T07:37:24.6680110Z",
+  "assemblies": {
+    "Goa2.Application.dll": "2db10defd6797069531e2cc144953903d3230ec6bdedccc9cddd51e174f1a518",
+    "Goa2.Domain.dll": "63dfae619573ea682594011a10e2df35d11aa40c7fbb6b2a4ccad8f97a0524d4",
+    "Goa2.Editor.dll": "dbb747bbbbd6884145050da51be0eda0266fadc73c268d205a0e5ad45537b92a",
+    "Goa2.Infrastructure.dll": "9cf115381659b7b40e5ae936df56040660655160801130802f66a44ae42b6679",
+    "Goa2.Rules.dll": "a863ffa640404f3115c182a7460195e7a8cac269dc11097fa445e695264008fb"
+  },
+  "core": {
+    "passed": 1837,
+    "failed": 0,
+    "report": "artifacts/tests/tsunami-unity-0.xml",
+    "card_specific": 10,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/tsunami-unity-0.xml",
+      "artifacts/tests/tsunami-unity-1.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/tsunami-move-push.json",
+        "input_sha256": "5c4979b647cff786499b6818bc7f07e642312c2a4cebd903effbdf7c9580b985",
+        "report": "artifacts/editor-scenarios/tsunami-move-push/a707f69b648443389b2cd3ea34af9f2d/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/tsunami-skip.json",
+        "input_sha256": "a3fee9c7eed94e8dd20f1c7bb8fd7f95cf260270bab1f04b67d64d09ec6b3012",
+        "report": "artifacts/editor-scenarios/tsunami-skip/76490eb129f5468dbce3da035367a824/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/tsunami-defeat.json",
+        "input_sha256": "bb7e476812445eabe5cc9cac5fba449a30d9910883e51b55064cfc2b9e5ffc82",
+        "report": "artifacts/editor-scenarios/tsunami-defeat/76cec20f7eeb4ba0800287fb3c067a57/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/tsunami-counter.json",
+        "input_sha256": "0580fffc2847ad76b5cf8c155bd03f5667d632c1c8132465f03ba1b0cfc52503",
+        "report": "artifacts/editor-scenarios/tsunami-counter/2806f2b8625f42ef8b716598f5307e09/report.json",
+        "steps": 21,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine77-tsunami-target-move-scenario.json",
+        "input_sha256": "5c5fbcf0f9fb30be0c165eb3bf65363a0aa4271f6a33b9bae44991ac381fec8e",
+        "report": "artifacts/editor-scenarios/engine77-tsunami-target-move-scenario/bdf519b325044be9b9b339d7ed3cb9ce/report.json",
+        "steps": 14,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 82
+  },
+  "manual_presets": [
+    "tsunami-move-push",
+    "tsunami-counter"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/tsunami-red.xml",
+    "passed": 1,
+    "failed": 9
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e77-tsunami-20260926-073803-cb365e92.zip",
+    "sha256": "54b77d2b4f6ac80e87cae0530117f46bc3f16ec173d9eaec8482e0bb010f4a63"
+  }
+}

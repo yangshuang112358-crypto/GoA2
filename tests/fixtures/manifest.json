@@ -684,6 +684,15 @@
       "input": "tests/fixtures/engine76-rising-tide-choice-scenario.json",
       "input_sha256": "59ccc17510e0250a75c7624a62bb2ad9c5647852f1dbddf45deffa0ce0df053b",
       "provenance": "tests/fixtures/engine76-rising-tide-choice.md"
+    },
+    {
+      "engine_version": 77,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine77-tsunami-target-move.json",
+      "save_sha256": "0bc26f2d1938c56b55242bf07400f68d4bcefeacdbf4c56051d9cc3eae9a5824",
+      "input": "tests/fixtures/engine77-tsunami-target-move-scenario.json",
+      "input_sha256": "5c5fbcf0f9fb30be0c165eb3bf65363a0aa4271f6a33b9bae44991ac381fec8e",
+      "provenance": "tests/fixtures/engine77-tsunami-target-move.md"
     }
   ]
 }

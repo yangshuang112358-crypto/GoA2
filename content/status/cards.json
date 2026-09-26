@@ -973,11 +973,21 @@
     },
     {
       "card_id": "arien-05-巨浪滔天",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-05-巨浪滔天.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/TsunamiTests.cs",
+        "tests/scenarios/tsunami-move-push.json",
+        "tests/scenarios/tsunami-skip.json",
+        "tests/scenarios/tsunami-defeat.json",
+        "tests/scenarios/tsunami-counter.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "arien-06-打断施法",

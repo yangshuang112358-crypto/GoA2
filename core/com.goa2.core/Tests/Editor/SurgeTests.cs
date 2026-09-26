@@ -44,7 +44,7 @@ namespace Goa2.Tests
   {
    var cat=BattlefieldTests.Catalog();var g=Ready(cat);Attack(g);Apply(g,0,CommandKind.ChooseEffectTarget,"skip");Assert.That(g.View(0).Events.Any(e=>e.Kind=="UnitPushed"),Is.False);ChargeTests.Restore(cat,g);
    g=Ready(cat);Apply(g,0,CommandKind.DebugTeleport,"hero:3",cell:new Hex(7,-8));Attack(g,false);
-   Assert.That(g.View(0).Pending,Is.Null);Assert.That(g.View(0).Events.Any(e=>e.Kind=="CardStopped"),Is.False);ChargeTests.Restore(cat,g);
+   Assert.That(g.View(0).Pending,Is.Null);Assert.That(g.View(0).Events.Any(e=>e.Kind=="CardEffectStopped"),Is.False);ChargeTests.Restore(cat,g);
   }
   [Test] public void FixedPushCanLegallyMoveZeroWhenBlocked()
   {
