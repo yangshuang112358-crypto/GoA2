@@ -330,7 +330,7 @@ namespace Goa2.Presentation
             if(view.Pending?.Kind=="minion_return")
             {PrepareReturnSelection(view);return view.MinionReturns.Where(o=>o.UnitId==returnUnitId).Select(o=>o.Destination).ToList();}
             if (view.Pending?.Kind == "effect_move") return view.EffectMoves.Select(m=>m.Destination).ToList();
-            if (view.Pending?.Kind == "round_minion_removal") return view.Units.Where(u => view.RoundMinionRemovals.Contains(u.Id)).Select(u => u.Position).ToList();
+            if (view.Pending?.Kind == "round_minion_removal" || view.Pending?.Kind == "action_minion_removal") return view.Units.Where(u => view.RoundMinionRemovals.Contains(u.Id)).Select(u => u.Position).ToList();
             if (view.Pending?.Kind == "minion_spawn" && view.Pending.ChooserSeat == seat)
             {
                 PrepareSpawnSelection(view);
@@ -614,6 +614,11 @@ namespace Goa2.Presentation
                     return "轮末蓝兵 " + minionCounts[0] + " · 红兵 " + minionCounts[1] + " · 需移除 " + minionCounts[2];
                 case "RoundMinionChoiceRequired": return actor + "还须选择移除 " + entry.Detail + " 名小兵";
                 case "MinionBattleCompleted": return "轮末小兵战斗完成";
+                case "MinionBattleStoppedByHero": return actor + "选择布罗根承担移除，保留英雄并停止本次剩余移除与推进";
+                case "ActionMinionBattleOffered": return actor + "可选择发动小兵战斗或跳过";
+                case "ActionMinionBattleSkipped": return actor + "不发动小兵战斗";
+                case "ActionMinionBattleCounted": return "轮中兵战：蓝兵数/红兵数/须移除 " + entry.Detail;
+                case "ActionMinionBattleCompleted": return "轮中小兵战斗完成，继续原行动";
                 case "HeroLeveled":
                     var levelChange = entry.Detail.Split(':');
                     return actor + "升至 Lv." + levelChange[1] + "，支付 " + levelChange[2] + " 金";

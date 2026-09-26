@@ -1,0 +1,213 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine60-lord-tides-army-scenario",
+  "Name": "潮汐之主：先移远程后保存",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "arien,wasp,brogan,sabina"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "28",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "28",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugAdvance",
+      "Actor": "p1",
+      "Value": "round"
+    },
+    {
+      "Command": "ResolveRoundEnd",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-02-激流"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-08-奥术换位"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-14-滑溜溜"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-04-惊涛骇浪"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-10-移形换步"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-16-传奇决斗家"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-12-潮汐之主"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-02-投掷飞斧"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-08-战鼓"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-14-碾压重拳"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-04-投掷长矛"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-10-吟游诗人"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-16-野蛮飞踢"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-12-一人成军"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Actor": "p1",
+      "Value": "minion:1,0"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Actor": "p1",
+      "Value": "minion:-3,1"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Actor": "p1",
+      "Value": "minion:-4,2"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Actor": "p1",
+      "Value": "minion:1,4"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 6,
+        "Y": -5
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "arien-06-打断施法"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-00-闪耀之刃"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-00-猛攻"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "sabina-00-近身射击",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "primary_option",
+        "PendingChooser": "p1",
+        "EventCounts": {
+          "ActionMinionBattleOffered": 1
+        }
+      }
+    },
+    {
+      "Command": "ChoosePrimaryOption",
+      "Actor": "p1",
+      "Value": "battle",
+      "Expect": {
+        "RemainingMinionRemovals": 2,
+        "PendingChooser": "p1",
+        "PendingKind": "action_minion_removal"
+      }
+    },
+    {
+      "Command": "ChooseRoundMinionRemoval",
+      "Actor": "p1",
+      "Value": "minion:-1,2",
+      "Expect": {
+        "RemainingMinionRemovals": 1,
+        "BlueMinions": 1
+      }
+    }
+  ]
+}

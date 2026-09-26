@@ -1,0 +1,100 @@
+{
+  "engine": 60,
+  "implemented_cards": 71,
+  "data_only_cards": 37,
+  "build_utc": "2026-09-26T04:34:03.2338111Z",
+  "assemblies": {
+    "Goa2.Application.dll": "47f5572c3102ce43538d27d48670e7eb604083643974a95d0ba1e80db6c702df",
+    "Goa2.Domain.dll": "13197e4b7bfb07c96c60030cd2c8e6a2b58663ee2b859a0d20326566547a5cbe",
+    "Goa2.Editor.dll": "8d07ff524bcb406588e14e443cfe05e91c378ea8d3e302973dba5c6b93bdc199",
+    "Goa2.Infrastructure.dll": "328daf50f9bef99231e83de8f7506675e3f4e804a3a40568a89905816463c0c2",
+    "Goa2.Rules.dll": "c9ec025c08eca7e7f5415e41158a59f04c57ff31a4f3457f737cb2258230c767"
+  },
+  "core": {
+    "passed": 1551,
+    "failed": 0,
+    "report": "artifacts/tests/lord-tides-unity-0.xml",
+    "card_specific": 18,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/lord-tides-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/lord-tides-tie.json",
+        "input_sha256": "daf0911b8f062fcc3f2460fc81ed2d78a6e41670fc27b47fd2767dbabeac1f20",
+        "report": "artifacts/editor-scenarios/lord-tides-tie/0a6540406db4403d8f8a6fcdf1c6af69/report.json",
+        "steps": 21,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/lord-tides-skip.json",
+        "input_sha256": "b13bf444d3ef21a3e4622e3a5a13ebba8ab28e4c10f1dcdcb93eb8ae6765450b",
+        "report": "artifacts/editor-scenarios/lord-tides-skip/1df4714b963946ebb33b6354081c2598/report.json",
+        "steps": 21,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/lord-tides-outside.json",
+        "input_sha256": "2db360f42882bd527390461f0f5aa79d4e99f3bdf778682ffc28931888cc90b3",
+        "report": "artifacts/editor-scenarios/lord-tides-outside/de5f44990cd3498cb723a69fef7c485e/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/lord-tides-enemy.json",
+        "input_sha256": "315667fc63c94295c9d3b8a0b9abba27a24c7661052f99ee98a289daa3f011c8",
+        "report": "artifacts/editor-scenarios/lord-tides-enemy/71652a2dcb1245a1aa1cffbafa022081/report.json",
+        "steps": 23,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/lord-tides-army.json",
+        "input_sha256": "eaf9084b52f43624cac0bcb8a7d94384214c7b5be0630b900d35f09fd43349fb",
+        "report": "artifacts/editor-scenarios/lord-tides-army/7be204f1cc654c069ae2ab7a46ac06ad/report.json",
+        "steps": 35,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/lord-tides-heavy.json",
+        "input_sha256": "fd55fcda702765b6d7e4720250eab1696ba269929c80c8acc6d9c9cc4d1d1035",
+        "report": "artifacts/editor-scenarios/lord-tides-heavy/db696680c3ae470b849b6c066bfe180d/report.json",
+        "steps": 27,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine60-lord-tides-army-scenario.json",
+        "input_sha256": "8abb1f0550e7f915f6bcb82415e4cd109508640a35beee99c2dbb3ddc6581ad7",
+        "report": "artifacts/editor-scenarios/engine60-lord-tides-army-scenario/e5d944f6b6e945c4a99df79430d425ba/report.json",
+        "steps": 34,
+        "passed": true
+      }
+    ],
+    "scenarios": 7,
+    "steps": 181
+  },
+  "manual_presets": [
+    "lord-tides-army",
+    "lord-tides-heavy",
+    "lord-tides-enemy"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e60-lord-tides-20260926-043505-e5936807.zip",
+    "sha256": "437823c4ae9e2551cafdb018ccf5e054128b2e15e603f03b499fb11176898be7"
+  }
+}

@@ -37,6 +37,7 @@ namespace Goa2.Domain
         public string SourceCardId = "", ProgramId = "", TargetUnitId = "";
         public int ProgramVersion;
         public string Stage = "target";
+        public ActionMinionBattleProgress? ActionBattle;
     }
     [Serializable]
     public sealed class ForcedPaymentProgress

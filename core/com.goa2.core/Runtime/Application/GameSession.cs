@@ -109,7 +109,7 @@ namespace Goa2.Application
                 Attack = snapshot.Execution?.Attack ?? snapshot.BeforeAction?.ParentExecution?.Attack,
                 AttackRange = CombatRules.CurrentAttackRange(catalog,snapshot),
                 RoundEndStage = snapshot.RoundEnd?.Stage ?? "",
-                RemainingMinionRemovals = snapshot.RoundEnd?.RemainingRemovals ?? 0,
+                RemainingMinionRemovals = snapshot.RoundEnd?.RemainingRemovals ?? snapshot.Execution?.Completion?.ActionBattle?.RemainingRemovals ?? 0,
                 UpgradingSeats = snapshot.RoundEnd?.Upgrades.Where(p => p.PendingLevels.Count > 0).Select(p => p.Seat).ToList() ?? new System.Collections.Generic.List<int>(),
                 Effects = snapshot.Effects,
                 EffectAreas = snapshot.Effects.ToDictionary(e => e.Id, e => EffectRules.Area(catalog,snapshot,e)),

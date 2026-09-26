@@ -222,7 +222,7 @@ namespace Goa2.Infrastructure.Scenarios
             foreach (var pair in expect.PurpleCards) Equal(result, "PurpleCards."+pair.Key, pair.Value, state.Players[Seat(pair.Key,view)].PurpleCardId ?? "none");
             if (expect.RoundEndStage != null) Equal(result,"RoundEndStage",expect.RoundEndStage,state.RoundEnd?.Stage ?? "none");
             if (expect.UpgradingPlayers.HasValue) Equal(result,"UpgradingPlayers",expect.UpgradingPlayers.Value,view.UpgradingSeats.Count);
-            if (expect.RemainingMinionRemovals.HasValue) Equal(result,"RemainingMinionRemovals",expect.RemainingMinionRemovals.Value,state.RoundEnd?.RemainingRemovals ?? 0);
+            if (expect.RemainingMinionRemovals.HasValue) Equal(result,"RemainingMinionRemovals",expect.RemainingMinionRemovals.Value,state.RoundEnd?.RemainingRemovals ?? state.Execution?.Completion?.ActionBattle?.RemainingRemovals ?? 0);
             foreach (var pair in expect.EffectCounts) Equal(result,"EffectCounts."+pair.Key,pair.Value,state.Effects.Count(e => e.SourceCardId==pair.Key));
             foreach (var pair in expect.PrimaryRestrictions)
             {

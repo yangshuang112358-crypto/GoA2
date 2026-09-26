@@ -75,9 +75,11 @@ namespace Goa2.Presentation
         }
         private bool RenderRoundMinionChoice(VisualElement parent, GameView view)
         {
-            if (view.Pending?.Kind != "round_minion_removal") return false;
-            parent.Add(Text("轮末小兵战斗", "section-title"));
-            parent.Add(Text(PlayerName(view.Pending.ChooserSeat) + "还须移除 " + view.RemainingMinionRemovals + " 名本队小兵。先处理非重型；轮末移除没有金币。", "body"));
+            if (view.Pending?.Kind != "round_minion_removal" && view.Pending?.Kind != "action_minion_removal") return false;
+            bool duringAction=view.Pending.Kind=="action_minion_removal";
+            parent.Add(Text(duringAction ? "轮中小兵战斗 · 潮汐之主" : "轮末小兵战斗", "section-title"));
+            parent.Add(Text(PlayerName(view.Pending.ChooserSeat) + "还须移除 " + view.RemainingMinionRemovals + " 名本队小兵。先处理非重型；兵战移除没有金币。", "body"));
+            if(duringAction)parent.Add(Text("完成移除和出生选择后，继续阿连原行动；不执行轮末收牌、升级或补偿。","body"));
             if(view.Units.Any(u => u.Kind == "hero" && view.RoundMinionRemovals.Contains(u.Id)))
                 parent.Add(Text("可选择高亮英雄承担移除：保留英雄，立即停止本次剩余移除和推进；此前移除的小兵不恢复。", "body"));
             if (view.Pending.ChooserSeat != seat) return true;

@@ -3,7 +3,7 @@ using Goa2.Domain;
 
 namespace Goa2.Rules.Cards
 {
-    internal enum UltimateTrigger { AfterBasicSkillDiscard, AfterPushDiscardOrDefeat, BeforeActionAdjacentDiscard, BeforeActionMoveAndRepeat, MinionBattleParticipant }
+    internal enum UltimateTrigger { AfterBasicSkillDiscard, AfterPushDiscardOrDefeat, BeforeActionAdjacentDiscard, BeforeActionMoveAndRepeat, MinionBattleParticipant, AfterBasicSkillMinionBattle }
 
     internal sealed class UltimateProgram
     {
@@ -31,9 +31,13 @@ namespace Goa2.Rules.Cards
             new UltimateProgram("traverse_obstacles_before_action_discard", UltimateTrigger.BeforeActionAdjacentDiscard, traverseObstacles: true);
         private static readonly UltimateProgram BattleParticipant =
             new UltimateProgram("two_minions_stop_battle_on_removal", UltimateTrigger.MinionBattleParticipant, battleMinionCount: 2);
+        private static readonly UltimateProgram SkillBattle =
+            new UltimateProgram("after_basic_skill_optional_minion_battle", UltimateTrigger.AfterBasicSkillMinionBattle);
 
         public static UltimateProgram? Find(CardDefinition card, int engine)
         {
+            if (engine >= 60 && card.Id == "arien-12-潮汐之主" && card.HeroId == "arien" && card.Color == "purple" && card.PrimaryCategory == "终极技能" &&
+                card.Text == "在你执行基础技能后，可以在你所在的战斗区域触发一场小兵战斗。") return SkillBattle;
             if (engine >= 59 && card.Id == "brogan-12-一人成军" && card.HeroId == "brogan" && card.Color == "purple" && card.PrimaryCategory == "终极技能" &&
                 card.Text == "在小兵战斗中，你视为2个小兵。如果在小兵战斗中你将被移除，则本次推线失败而不会被移除。") return BattleParticipant;
             if (engine >= 58 && card.Id == "tigerclaw-13-斗篷与匕首" && card.HeroId == "tigerclaw" && card.Color == "purple" && card.PrimaryCategory == "终极技能" &&

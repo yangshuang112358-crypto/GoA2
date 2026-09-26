@@ -169,6 +169,7 @@ namespace Goa2.Domain
         public bool FinishActionOnResume;
         public bool ResumeCardExecution;
         public bool ResumeRoundEnd;
+        public bool ResumeActionMinionBattle;
         public List<MinionSpawn> Remaining = new List<MinionSpawn>();
     }
     [Serializable]
@@ -212,7 +213,7 @@ namespace Goa2.Domain
     public sealed class GameState
     {
         public const string CurrentProtocol = "1.0.0";
-        public const int CurrentEngineVersion = 59;
+        public const int CurrentEngineVersion = 60;
         public int InitialEngineVersion;
         public int EngineVersion;
         public string ProtocolVersion = CurrentProtocol;

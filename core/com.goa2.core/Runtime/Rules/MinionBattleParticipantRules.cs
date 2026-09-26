@@ -9,6 +9,8 @@ namespace Goa2.Rules
     // These roles exist only inside a minion battle; they never change a unit's kind.
     internal static class MinionBattleParticipantRules
     {
+        internal static int Count(GameState state, List<BattleHeroContribution>? roles, Team team) =>
+            state.Units.Count(u => (u.Kind == "melee" || u.Kind == "ranged" || u.Kind == "heavy") && u.Team == team) + ForTeam(state,roles,team).Sum(r=>r.Count);
         internal static List<BattleHeroContribution>? Capture(ContentCatalog catalog, GameState state)
         {
             if (state.EngineVersion < 59) return null;

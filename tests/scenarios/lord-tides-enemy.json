@@ -1,0 +1,163 @@
+{
+  "SchemaVersion": 1,
+  "Id": "lord-tides-enemy",
+  "Name": "潮汐之主：敌方队长移兵",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "arien,wasp,brogan,sabina"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "28",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugAdvance",
+      "Actor": "p1",
+      "Value": "round"
+    },
+    {
+      "Command": "ResolveRoundEnd",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-02-激流"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-08-奥术换位"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-14-滑溜溜"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-04-惊涛骇浪"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-10-移形换步"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-16-传奇决斗家"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "arien-12-潮汐之主"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Actor": "p1",
+      "Value": "minion:-1,-3"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": -2,
+        "Y": 0
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 6,
+        "Y": -5
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "arien-06-打断施法"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-00-闪耀之刃"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-00-猛攻"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "sabina-00-近身射击",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "primary_option",
+        "PendingChooser": "p1",
+        "EventCounts": {
+          "ActionMinionBattleOffered": 1
+        }
+      }
+    },
+    {
+      "Command": "ChoosePrimaryOption",
+      "Actor": "p1",
+      "Value": "battle",
+      "Expect": {
+        "PendingKind": "action_minion_removal",
+        "PendingChooser": "p2",
+        "RemainingMinionRemovals": 1
+      }
+    },
+    {
+      "Command": "ChooseRoundMinionRemoval",
+      "Actor": "p2",
+      "Value": "minion:4,-1",
+      "Expect": {
+        "RedMinions": 4,
+        "Round": 2,
+        "Turn": 1,
+        "EventCounts": {
+          "MinionRemoved": 1,
+          "CardResolved": 1,
+          "GoldAwarded": 0
+        }
+      }
+    }
+  ]
+}

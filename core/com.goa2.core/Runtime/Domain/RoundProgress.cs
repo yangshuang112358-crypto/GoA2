@@ -35,6 +35,14 @@ namespace Goa2.Domain
         public int ProgramVersion;
     }
     [Serializable]
+    public sealed class ActionMinionBattleProgress
+    {
+        public string Region = "";
+        public int BlueMinions, RedMinions, RemainingRemovals;
+        public Team? LosingTeam;
+        public List<BattleHeroContribution>? HeroContributions;
+    }
+    [Serializable]
     public sealed class RoundEndProgress
     {
         public int Round;

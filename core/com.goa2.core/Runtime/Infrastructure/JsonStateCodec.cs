@@ -27,6 +27,10 @@ namespace Goa2.Infrastructure
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 if(member.DeclaringType==typeof(RoundEndProgress) && member.Name==nameof(RoundEndProgress.HeroContributions))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
+                if(member.DeclaringType==typeof(ActionCompletionProgress) && member.Name==nameof(ActionCompletionProgress.ActionBattle))
+                    property.DefaultValueHandling=DefaultValueHandling.Ignore;
+                if(member.DeclaringType==typeof(FrontlineTransition) && member.Name==nameof(FrontlineTransition.ResumeActionMinionBattle))
+                    property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 return property;
             }
         }

@@ -531,6 +531,15 @@
       "input": "tests/fixtures/engine59-one-man-removal-scenario.json",
       "input_sha256": "c27a52cdfa7f9fd986bb5c4357c2ced2ff0c029054f9164f66273134d34a9ff9",
       "provenance": "tests/fixtures/engine59-one-man-removal.md"
+    },
+    {
+      "engine_version": 60,
+      "accepted_commands": 34,
+      "save": "tests/fixtures/engine60-lord-tides-army.json",
+      "save_sha256": "b8c17c02bb8a11527c997502ff3e56cfc65569f743520456eab850f8c7a1cc80",
+      "input": "tests/fixtures/engine60-lord-tides-army-scenario.json",
+      "input_sha256": "8abb1f0550e7f915f6bcb82415e4cd109508640a35beee99c2dbb3ddc6581ad7",
+      "provenance": "tests/fixtures/engine60-lord-tides-army.md"
     }
   ]
 }

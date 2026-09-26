@@ -105,6 +105,17 @@ namespace Goa2.Presentation
                 else parent.Add(Text("等待行动者决定是否重复。","body"));
                 RenderCardDetail(parent,catalog.Card(choice.Source));return true;
             }
+            if(choice.Kind=="primary_option" && choice.ResumeAt=="action_minion_battle_offer")
+            {
+                parent.Add(Text(PlayerName(choice.ChooserSeat)+"的基础技能已执行，可在当前交战区发动一场小兵战斗。","section-title"));
+                if(choice.ChooserSeat==seat)
+                {
+                    Confirm(parent,"发动小兵战斗",()=>Submit(CommandKind.ChoosePrimaryOption,"battle"));
+                    parent.Add(Button("不发动，完成原行动",()=>Submit(CommandKind.ChoosePrimaryOption,"skip"),"quiet-button","action-battle-skip"));
+                }
+                else parent.Add(Text("等待阿连决定是否发动。","body"));
+                RenderCardDetail(parent,catalog.Card(choice.Source));return true;
+            }
             if(choice.Kind=="primary_option")
             {
                 parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择一项卡牌效果。","section-title"));

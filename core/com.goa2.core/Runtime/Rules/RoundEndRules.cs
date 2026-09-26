@@ -10,6 +10,7 @@ namespace Goa2.Rules
         public static bool CanResolveRoundEnd(GameState state) => state.Phase == Phase.RoundEnd && state.RoundEnd == null && state.Pending == null && state.Frontline == null && state.Execution == null;
         public static List<string> LegalRoundMinionRemovals(GameState state, int seat)
         {
+            if(state.Pending?.Kind=="action_minion_removal")return LegalActionMinionRemovals(state,seat);
             if (state.Phase != Phase.EffectChoice || state.Pending?.Kind != "round_minion_removal" || state.Pending.ChooserSeat != seat || state.RoundEnd?.Stage != "minion_battle" || state.Frontline != null)
                 return new List<string>();
             return MinionBattleParticipantRules.RemovalCandidates(state, state.RoundEnd.HeroContributions, state.RoundEnd.LosingTeam);
@@ -63,6 +64,7 @@ namespace Goa2.Rules
         }
         private static void ChooseRoundMinionRemoval(ContentCatalog catalog, GameState state, Command command)
         {
+            if(state.Pending?.Kind=="action_minion_removal"){ChooseActionMinionRemoval(catalog,state,command);return;}
             Require(LegalRoundMinionRemovals(state, command.ActorSeat).Contains(command.Value), "invalid_round_minion", "须由少兵方队长选择可承担移除的本队小兵或英雄。");
             var role = MinionBattleParticipantRules.ForTeam(state, state.RoundEnd!.HeroContributions, state.RoundEnd.LosingTeam).SingleOrDefault(r => r.UnitId == command.Value);
             if (role != null)

@@ -763,5 +763,32 @@
     "phase": "RoundEnd",
     "pending": "",
     "instructions": "操作：点击结算轮末；3号布罗根拥有紫卡，但由1号蓝方队长点击布罗根确认保留并结束兵战，3号不能代队长选择。也可先移除远程测试分支。"
+  },
+  {
+    "id": "lord-tides-army",
+    "title": "潮汐之主：与一人成军联动",
+    "scenario": "lord-tides-army",
+    "through_step": 31,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号阿连执行打断施法，再选择发动兵战。己方远程+重型+战区外布罗根计4，对方6；1号队长可直接选布罗根结束，也可先移远程再选布罗根，已移除不恢复。分支：阿连也能选择不发动。所有选择后继续本回合，不收牌升级。"
+  },
+  {
+    "id": "lord-tides-heavy",
+    "title": "潮汐之主：移除重兵并推进",
+    "scenario": "lord-tides-heavy",
+    "through_step": 24,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号阿连执行打断施法→发动兵战→1号队长移除本队唯一重型，红队推进一次；完成后继续原行动，不发击败金币。分支：也可跳过发动，保留重兵。"
+  },
+  {
+    "id": "lord-tides-enemy",
+    "title": "潮汐之主：敌方队长决定移除",
+    "scenario": "lord-tides-enemy",
+    "through_step": 20,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号阿连执行打断施法→发动兵战→切2号红队队长，自行选择高亮非重型小兵移除。阿连不能替敌方决定。分支：发动前可选跳过；受保护重型不能选。"
   }
 ]

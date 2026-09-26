@@ -41,9 +41,12 @@ namespace Goa2.Rules
             var owner = state.Players[execution.ControllerSeat];
             var ability = catalog.Cards.FirstOrDefault(c => c.Id == owner.PurpleCardId && c.HeroId == owner.HeroId);
             var program = ability == null ? null : UltimatePrograms.Find(ability, state.EngineVersion);
-            if (program == null || program.Trigger != UltimateTrigger.AfterBasicSkillDiscard ||
+            if (program == null ||
                 catalog.Card(execution.CardId).PrimaryCategory != "基础技能" ||
                 !state.Units.Any(u => u.Kind == "hero" && u.Seat == execution.ControllerSeat)) return false;
+            if (program.Trigger == UltimateTrigger.AfterBasicSkillMinionBattle)
+                return BeginActionBattleCompletion(catalog,state,command,ability!,program);
+            if (program.Trigger != UltimateTrigger.AfterBasicSkillDiscard) return false;
 
             execution.Completion = new ActionCompletionProgress
             {

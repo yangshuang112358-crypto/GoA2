@@ -956,11 +956,24 @@
     },
     {
       "card_id": "arien-12-潮汐之主",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-12-潮汐之主.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/LordOfTidesTests.cs",
+        "tests/scenarios/lord-tides-tie.json",
+        "tests/scenarios/lord-tides-skip.json",
+        "tests/scenarios/lord-tides-outside.json",
+        "tests/scenarios/lord-tides-enemy.json",
+        "tests/scenarios/lord-tides-army.json",
+        "tests/scenarios/lord-tides-heavy.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs",
+        "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs",
+        "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs"
+      ]
     },
     {
       "card_id": "arien-13-挑战者",
