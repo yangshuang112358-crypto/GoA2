@@ -16,16 +16,17 @@ namespace Goa2.Rules.Cards
     {
         public readonly string Id;
         public readonly int Version = 1, MinimumDistance, TextMoveDistance;
-        public readonly bool Block, IgnoresMinions, RequiresAdjacentFriendlyMinion, SwapAfterMove, ProtectFromOtherEnemies;
+        public readonly bool Block, IgnoresMinions, RequiresAdjacentFriendlyMinion, SwapAfterMove, ProtectFromOtherEnemies, ProtectFromOtherAttacks, PersistImmunityThroughDefeat;
         public readonly DefenseAttackKind AttackKind;
         public readonly DefenseFollowup Followup;
         public DefenseProgram(string id, bool block, int minimumDistance=1, DefenseFollowup followup=DefenseFollowup.None,
-            DefenseAttackKind attackKind=DefenseAttackKind.Ranged, bool adjacentFriendlyMinion=false,int textMoveDistance=0,bool swapAfterMove=false,bool protectFromOtherEnemies=false)
+            DefenseAttackKind attackKind=DefenseAttackKind.Ranged, bool adjacentFriendlyMinion=false,int textMoveDistance=0,bool swapAfterMove=false,bool protectFromOtherEnemies=false,bool protectFromOtherAttacks=false,bool persistImmunityThroughDefeat=false)
         {
             Id=id; Block=block; AttackKind=block ? attackKind : DefenseAttackKind.Any; IgnoresMinions=!block;
             MinimumDistance=minimumDistance; Followup=followup; RequiresAdjacentFriendlyMinion=adjacentFriendlyMinion;
             TextMoveDistance=textMoveDistance;
             SwapAfterMove=swapAfterMove; ProtectFromOtherEnemies=protectFromOtherEnemies;
+            ProtectFromOtherAttacks=protectFromOtherAttacks; PersistImmunityThroughDefeat=persistImmunityThroughDefeat;
         }
     }
     internal sealed class PrimaryProgram
@@ -154,6 +155,7 @@ namespace Goa2.Rules.Cards
             ["tigerclaw-15-侧步"] = ("抵挡一次远程攻击。若如此做，你可以沿直线移动2格。",24,new DefenseProgram("block_ranged_optional_straight_move",true,followup:DefenseFollowup.OptionalStraightMove,textMoveDistance:2)),
             ["wasp-07-抵挡屏障"] = ("如果攻击者不与你相邻，抵挡一次远程攻击。", 0, new DefenseProgram("block_non_adjacent_ranged",true,2)),
             ["tigerclaw-18-躲闪"] = ("抵挡一次远程攻击", 0, new DefenseProgram("block_ranged",true)),
+            ["arien-15-决斗家"] = ("无视所有的小兵防御修正。此回合：你免疫其他敌人的所有攻击行动。",65,new DefenseProgram("numeric_defense_other_enemy_attack_immunity",false,protectFromOtherAttacks:true,persistImmunityThroughDefeat:true)),
             ["arien-13-挑战者"] = ("无视所有的小兵防御修正。", 0, new DefenseProgram("numeric_ignore_minions",false)),
             ["wasp-08-偏转屏障"] = ("如果攻击者不与你相邻，抵挡一次远程攻击。若如此做，攻击者丢弃一张卡牌（如果可行）。", 4, new DefenseProgram("block_ranged_discard_attacker",true,2,DefenseFollowup.DiscardAttacker)),
             ["wasp-10-反射屏障"] = ("如果攻击者不与你相邻，抵挡一次远程攻击。若如此做，攻击者丢弃一张卡牌（如果可行），此回合：你免疫不与你相邻的英雄的远程攻击。", 4, new DefenseProgram("block_ranged_discard_attacker_then_immunity",true,2,DefenseFollowup.DiscardAttackerThenImmunity)),

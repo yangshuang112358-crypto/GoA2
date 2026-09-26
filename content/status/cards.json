@@ -1041,11 +1041,22 @@
     },
     {
       "card_id": "arien-15-决斗家",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-15-决斗家.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/DuelistTests.cs",
+        "tests/scenarios/duelist-failed-respawn.json",
+        "tests/scenarios/duelist-success.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Domain/Effects.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs"
+      ]
     },
     {
       "card_id": "arien-16-传奇决斗家",

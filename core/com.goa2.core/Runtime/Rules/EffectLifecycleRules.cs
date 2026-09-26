@@ -10,7 +10,7 @@ namespace Goa2.Rules
         private static void CancelDefeatedHeroEffects(GameState state,Command command,int seat)
         {
             if(state.EngineVersion<30)return;
-            foreach(var effect in state.Effects.Where(e=>e.ControllerSeat==seat).OrderBy(e=>e.CreationOrder).ToList())
+            foreach(var effect in state.Effects.Where(e=>e.ControllerSeat==seat && (state.EngineVersion<65 || !e.PersistsThroughDefeat)).OrderBy(e=>e.CreationOrder).ToList())
             {
                 state.Effects.Remove(effect);
                 Emit(state,command,"EffectCancelled",seat,effect.SourceCardId,effect.SourcePrivateTo,detail:"hero_defeated|"+effect.Id);

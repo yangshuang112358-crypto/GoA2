@@ -132,7 +132,8 @@ namespace Goa2.Rules
                 Id="effect:"+state.EffectSequence,SourceCardId=cardId,SourceUnitId=attack.TargetUnitId,
                 ProtectedUnitId=attack.TargetUnitId,SourcePrivateTo=attack.DefenderSeat,ControllerSeat=attack.DefenderSeat,
                 ExemptControllerSeat=attack.AttackerSeat,CreatedRound=state.Round,CreatedTurn=state.Turn,CreationOrder=state.EffectSequence,
-                Kind=EffectKind.OtherEnemyActionImmunity,Duration=EffectDuration.ThisTurn,AreaKind=EffectAreaKind.None,
+                Kind=CardPrograms.Defense(catalog.Card(cardId),state.EngineVersion)!.ProtectFromOtherAttacks ? EffectKind.OtherEnemyAttackImmunity : EffectKind.OtherEnemyActionImmunity,Duration=EffectDuration.ThisTurn,AreaKind=EffectAreaKind.None,
+                PersistsThroughDefeat=CardPrograms.Defense(catalog.Card(cardId),state.EngineVersion)!.PersistImmunityThroughDefeat,
                 Window=EffectTimeline.Create(state.Round,state.Turn,catalog.Rules.TurnsPerRound,EffectDuration.ThisTurn)!
             };
             state.Effects.Add(effect);

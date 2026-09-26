@@ -576,6 +576,15 @@
       "input": "tests/fixtures/engine64-undying-recovery-scenario.json",
       "input_sha256": "48bc85aaae795cdda408b7fc698dc543be86f7829e1e7a71101db4ec573ff1c8",
       "provenance": "tests/fixtures/engine64-undying-recovery.md"
+    },
+    {
+      "engine_version": 65,
+      "accepted_commands": 17,
+      "save": "tests/fixtures/engine65-duelist-respawn.json",
+      "save_sha256": "b0a8dd26f5048a0b789466f2b3acc93cf03f105374c432beff84ee4f69eff84d",
+      "input": "tests/fixtures/engine65-duelist-respawn-scenario.json",
+      "input_sha256": "9606f2ec105ff8617b9afe47c92d064f792518b48d179dbcfd1e325d4cfa352d",
+      "provenance": "tests/fixtures/engine65-duelist-respawn.md"
     }
   ]
 }

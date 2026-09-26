@@ -12,6 +12,8 @@ namespace Goa2.Presentation
         // User interpretations D-038/D-047 are marked *, separate from canonical text.
         public static string Description(Goa2.Domain.CardDefinition card) => card.Text +
             (card.Id == "tigerclaw-13-斗篷与匕首" ? "（*含首次攻击在内，总计最多进行两次基础攻击，且目标不同。）" :
+             card.Id == "arien-15-决斗家" || card.Id == "arien-16-传奇决斗家" ? "（*此免疫保留至本回合结束，被击败后复活仍生效。）" :
+             card.Id == "tigerclaw-09-淬毒匕首" || card.Id == "tigerclaw-12-剧毒飞镖" ? "（*中毒标记在本轮结束时移除，被击败不会移除。）" :
              card.Id == "shargatha-07-魅惑" || card.Id == "shargatha-08-统治领域" || card.Id == "shargatha-10-独霸一方" ? "（*仅在你本人防御时适用。）" : "");
 
         public const string ActionColor="#F6D278",TimingColor="#84D8E7",RestrictionColor="#FFFFFF",DefeatColor="#FF9B94";

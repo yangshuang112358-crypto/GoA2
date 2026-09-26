@@ -63,6 +63,7 @@ namespace Goa2.Rules
             if(state.EngineVersion>=64 && attackAction && Current(state,EffectKind.AttackActionImmunity).Any(e=>e.SourceUnitId==target.Id))return false;
             if(Current(state,EffectKind.ImmunityAndUnitTraversal).Any(e=>e.SourceUnitId==target.Id))return false;
             if(state.EngineVersion<52 || controllerSeat<0 || controllerSeat>=state.Players.Count || state.Players[controllerSeat].Team==target.Team)return true;
+            if(state.EngineVersion>=65 && attackAction && Current(state,EffectKind.OtherEnemyAttackImmunity).Any(e=>e.ProtectedUnitId==target.Id && e.ExemptControllerSeat!=controllerSeat))return false;
             return !Current(state,EffectKind.OtherEnemyActionImmunity).Any(e=>e.ProtectedUnitId==target.Id && e.ExemptControllerSeat!=controllerSeat);
         }
         public static List<ActiveEffect> MinionDefeatProtectors(ContentCatalog catalog,GameState state,UnitState unit)

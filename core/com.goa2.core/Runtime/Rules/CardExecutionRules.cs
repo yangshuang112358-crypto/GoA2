@@ -270,7 +270,7 @@ namespace Goa2.Rules
                     AttackerSeat=attack.AttackerSeat, AttackerUnitId="hero:"+attack.AttackerSeat, ProgramId=response.Id, ProgramVersion=response.Version
                 };
             }
-            if(option.Primary && option.Assessment.Successful && response!=null && response.ProtectFromOtherEnemies)
+            if(option.Primary && response!=null && (option.Assessment.Successful || response.PersistImmunityThroughDefeat) && (response.ProtectFromOtherEnemies || response.ProtectFromOtherAttacks))
                 ApplyOtherEnemyImmunity(catalog,state,command,instance.CardId,state.Execution!.Attack!);
             ResolveDefense(catalog, state, command, option.Assessment.Successful);
         }

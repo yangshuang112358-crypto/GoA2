@@ -1,0 +1,118 @@
+{
+  "SchemaVersion": 1,
+  "Id": "duelist-success",
+  "Name": "决斗家：数值防御成功后免疫其他敌人攻击",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "brogan,arien,wasp,sabina"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "arien-15-决斗家",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "brogan-01-冲撞",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 3,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 6,
+        "Y": -6
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "brogan-01-冲撞"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "wasp-13-控物"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "sabina-00-近身射击"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p3"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p1",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p1",
+      "Value": "hero:1"
+    },
+    {
+      "Command": "Defend",
+      "Actor": "p2",
+      "Value": "arien-15-决斗家",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p2",
+        "EventCounts": {
+          "HeroDefeated": 0,
+          "ProtectionActivated": 1
+        }
+      }
+    }
+  ]
+}
