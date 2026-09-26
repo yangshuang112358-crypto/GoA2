@@ -89,7 +89,16 @@ class Run:
         self.checks.append({"name": name, "passed": True})
 
     def view(self, seat=0):
-        return self.rpc(seat, "view", revision=self.revision)
+        view = self.rpc(seat, "view", revision=self.revision)
+        assert not any(key in view for key in ["AcceptedCommands", "Receipts", "InitialEngineVersion"]), "full state leaked"
+        assert all("Cards" not in player for player in view["Players"]), "opponent card collection leaked"
+        assert all(event.get("PrivateTo") in (None, seat) for event in view["Events"]), "private event leaked"
+        hero = view["Players"][seat]["HeroId"]
+        assert not view["OwnCards"] or all(card["CardId"].startswith(hero + "-") for card in view["OwnCards"]), "foreign hand leaked"
+        pending = view.get("Pending")
+        if pending and pending["ChooserSeat"] != seat:
+            assert not any(pending[key] for key in ["CandidateCells", "CandidateSeats", "CandidateUnits"]), "foreign candidates leaked"
+        return view
 
     def command(self, seat, kind, expected="ok", **args):
         self.view(seat)
@@ -437,11 +446,20 @@ class Run:
             self.server.wait()
         self.report["server_exit"] = self.server.returncode
         self.report["restore_verified"] = (self.output / "private/restore-check.json").exists()
+        self.report["passed"] = self.report.get("passed", False) and self.server.returncode == 0 and self.report["restore_verified"]
         self.report["finished_utc"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         for log in self.logs:
             log.close()
+        public_logs = list(self.output.glob("*.log")) + list(self.output.glob("*.jsonl"))
+        for path in public_logs:
+            text = path.read_text(encoding="utf-8")
+            assert all(self.ticket(seat)["Credential"] not in text for seat in range(4)), "credential in public log"
+            assert '"OwnCards"' not in text and '"AcceptedCommands"' not in text, "private state in public log"
+        self.report["public_logs_privacy_checked"] = True
         (self.output / "report.json").write_text(json.dumps(self.report, indent=2, ensure_ascii=False), encoding="utf-8")
         print(self.output)
+        if self.server.returncode != 0 or not self.report["restore_verified"]:
+            raise RuntimeError("server shutdown or Restore verification failed")
 
 
 if __name__ == "__main__":
