@@ -585,6 +585,15 @@
       "input": "tests/fixtures/engine65-duelist-respawn-scenario.json",
       "input_sha256": "9606f2ec105ff8617b9afe47c92d064f792518b48d179dbcfd1e325d4cfa352d",
       "provenance": "tests/fixtures/engine65-duelist-respawn.md"
+    },
+    {
+      "engine_version": 66,
+      "accepted_commands": 17,
+      "save": "tests/fixtures/engine66-legendary-duelist-respawn.json",
+      "save_sha256": "0c6ad9bbc5a4270b912bd8843203a40d3e6a3ed44139feabdeafe6d85ef11a3c",
+      "input": "tests/fixtures/engine66-legendary-duelist-respawn-scenario.json",
+      "input_sha256": "56b1883a4a6c8371e23a90738d3002eda8cf1756cecf4d2d95903144265fe4de",
+      "provenance": "tests/fixtures/engine66-legendary-duelist-respawn.md"
     }
   ]
 }

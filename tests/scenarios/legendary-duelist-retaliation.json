@@ -1,0 +1,116 @@
+{
+  "SchemaVersion": 1,
+  "Id": "legendary-duelist-retaliation",
+  "Name": "传奇决斗家：其他敌人的防御弃牌响应也被免疫",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "wasp,arien,tigerclaw,brogan"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "arien-16-传奇决斗家",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "tigerclaw-14-近身格挡",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 8,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 4,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugAttack",
+      "Actor": "p1",
+      "Value": "hero:1|5"
+    },
+    {
+      "Command": "Defend",
+      "Actor": "p2",
+      "Value": "arien-16-传奇决斗家"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "wasp-13-控物"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "arien-00-华丽刀锋"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "tigerclaw-07-伺机待发"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p2"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p2",
+      "Value": "hero:2"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Actor": "p2",
+      "Value": "skip"
+    },
+    {
+      "Command": "Defend",
+      "Actor": "p3",
+      "Value": "tigerclaw-14-近身格挡",
+      "Expect": {
+        "EventCounts": {
+          "ForcedDiscardSkipped": 1,
+          "ForcedDiscardRequired": 0,
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

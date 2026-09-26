@@ -1,0 +1,82 @@
+{
+  "engine": 66,
+  "implemented_cards": 77,
+  "data_only_cards": 31,
+  "build_utc": "2026-09-26T06:03:32.0251212Z",
+  "assemblies": {
+    "Goa2.Application.dll": "a745ebc4a4993bdcb9f022feec57d1ec3a9642695e6123dcfcc2155fc42d0394",
+    "Goa2.Domain.dll": "ebb84ed42b8807aec82e5ce5eeb3d44450c1f00f67ef3b8f8f6a439820fa2949",
+    "Goa2.Editor.dll": "5942a0f5516e706a4d137d1141e03a75774ef3594df3250d6f8b200f659260fa",
+    "Goa2.Infrastructure.dll": "7be1b8778c741f21474fec76f6b41918c1dbb6ea6f24d4a2629d83044a31e6dc",
+    "Goa2.Rules.dll": "35fa79f138ad79a6f1d09aa2733fa5e980d96f36a1ef1589ac7c31ac81012aff"
+  },
+  "core": {
+    "passed": 127,
+    "failed": 0,
+    "report": "artifacts/tests/legendary-duelist-unity-0.xml",
+    "card_specific": 8,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/legendary-duelist-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/legendary-duelist-failed-respawn.json",
+        "input_sha256": "4889976c3190f43f4f00d840cec192c11ba1128acddc9c80e5abde9340ba777e",
+        "report": "artifacts/editor-scenarios/legendary-duelist-failed-respawn/9fcedd603a8a403a873ba1e79278a28b/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/legendary-duelist-success.json",
+        "input_sha256": "246ee827d6d65a65b25ae6d29e9868933f718111d8ee3b454b76d3904948afc9",
+        "report": "artifacts/editor-scenarios/legendary-duelist-success/70e8b75757474776881baa389707caa6/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/legendary-duelist-retaliation.json",
+        "input_sha256": "0f89ff769cf1b8dfd05a7b34d72ccf3ba7ca968dc71cfffd7b061eaa2f4a9836",
+        "report": "artifacts/editor-scenarios/legendary-duelist-retaliation/65fa55b344d94324b72d2fbc5c9f17d3/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine66-legendary-duelist-respawn-scenario.json",
+        "input_sha256": "56b1883a4a6c8371e23a90738d3002eda8cf1756cecf4d2d95903144265fe4de",
+        "report": "artifacts/editor-scenarios/engine66-legendary-duelist-respawn-scenario/e3899500eb414c42a1cf3394d8e6ef71/report.json",
+        "steps": 17,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 69
+  },
+  "manual_presets": [
+    "legendary-duelist-failed-respawn"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/legendary-duelist-red.xml",
+    "passed": 1,
+    "failed": 7
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e66-legendary-duelist-20260926-060514-af6a7352.zip",
+    "sha256": "71e80c8e250c80159f29a3f6dfb47d56a76fb891c352eeb4af2bb13cad6688bb"
+  }
+}

@@ -155,6 +155,7 @@ namespace Goa2.Rules.Cards
             ["tigerclaw-15-侧步"] = ("抵挡一次远程攻击。若如此做，你可以沿直线移动2格。",24,new DefenseProgram("block_ranged_optional_straight_move",true,followup:DefenseFollowup.OptionalStraightMove,textMoveDistance:2)),
             ["wasp-07-抵挡屏障"] = ("如果攻击者不与你相邻，抵挡一次远程攻击。", 0, new DefenseProgram("block_non_adjacent_ranged",true,2)),
             ["tigerclaw-18-躲闪"] = ("抵挡一次远程攻击", 0, new DefenseProgram("block_ranged",true)),
+            ["arien-16-传奇决斗家"] = ("无视所有的小兵防御修正。此回合：你免疫其他敌人的所有行动。",66,new DefenseProgram("numeric_defense_other_enemy_all_action_immunity",false,protectFromOtherEnemies:true,persistImmunityThroughDefeat:true)),
             ["arien-15-决斗家"] = ("无视所有的小兵防御修正。此回合：你免疫其他敌人的所有攻击行动。",65,new DefenseProgram("numeric_defense_other_enemy_attack_immunity",false,protectFromOtherAttacks:true,persistImmunityThroughDefeat:true)),
             ["arien-13-挑战者"] = ("无视所有的小兵防御修正。", 0, new DefenseProgram("numeric_ignore_minions",false)),
             ["wasp-08-偏转屏障"] = ("如果攻击者不与你相邻，抵挡一次远程攻击。若如此做，攻击者丢弃一张卡牌（如果可行）。", 4, new DefenseProgram("block_ranged_discard_attacker",true,2,DefenseFollowup.DiscardAttacker)),

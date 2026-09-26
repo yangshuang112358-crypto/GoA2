@@ -1060,11 +1060,22 @@
     },
     {
       "card_id": "arien-16-传奇决斗家",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-16-传奇决斗家.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/LegendaryDuelistTests.cs",
+        "tests/scenarios/legendary-duelist-failed-respawn.json",
+        "tests/scenarios/legendary-duelist-success.json",
+        "tests/scenarios/legendary-duelist-retaliation.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs"
+      ]
     },
     {
       "card_id": "arien-17-洪水",
