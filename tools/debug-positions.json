@@ -943,5 +943,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：先由1号夏尔加萨发动反击，攻击(5,-8)敌方小兵。再由2号萨彼娜发动火力掩护，选择夏尔加萨；1号弃劈砍后触发反击，选择弃牌堆劈砍攻击4号黄蜂。分支：1号可以主动被击败，或丢非攻击牌；若弃牌堆无合法攻击则不会出现反击候选。"
+  },
+  {
+    "id": "energy-explosion-pay",
+    "title": "电能爆炸：原目标与额外目标",
+    "scenario": "energy-explosion-pay",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号黄蜂发动电能爆炸，攻击相邻2号萨彼娜，再决定是否选范围内4号夏尔加萨。4号可弃牌或主动被击败，随后2号才防御原攻击。分支：可跳过额外目标；范围图标只扩大额外目标范围，不允许远距离选择攻击目标。"
+  },
+  {
+    "id": "energy-explosion-counterattack",
+    "title": "电能爆炸：反击须等待原攻击",
+    "scenario": "energy-explosion-counterattack",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：4号夏尔加萨先发动反击，攻击(5,-9)蓝方小兵。1号黄蜂再用电能爆炸攻击2号萨彼娜，额外选择4号；4号弃劈砍后仍须先由2号完成防御，之后4号才从弃牌堆选劈砍反击1号。分支：额外目标拒绝弃牌会被击败，不会产生该次弃牌触发。"
   }
 ]

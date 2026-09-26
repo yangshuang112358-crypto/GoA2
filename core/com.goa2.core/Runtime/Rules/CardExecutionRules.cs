@@ -146,6 +146,7 @@ namespace Goa2.Rules
                         if(BeginOtherMove(catalog,state,command))return;
                         execution.Cursor++;break;
                     case InstructionKind.OptionalOtherHeroDiscard:
+                    case InstructionKind.OptionalOtherHeroDiscardOrDefeat:
                         if(BeginHeroTarget(catalog,state,command,execution,program))return;
                         execution.Cursor++;
                         break;

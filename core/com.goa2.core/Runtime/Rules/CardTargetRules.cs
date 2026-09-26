@@ -66,14 +66,14 @@ namespace Goa2.Rules
             if(state.Pending.ResumeAt=="before_attack_other_move")return OtherMoveTargets(catalog,state);
             var program=CardPrograms.Primary(catalog.Card(execution.CardId),state.EngineVersion);
             return program!=null && program.Id==execution.ProgramId && program.Version==execution.ProgramVersion && execution.Cursor>=0 &&
-                execution.Cursor<program.Instructions.Count && (program.Instructions[execution.Cursor]==InstructionKind.ChooseHeroTarget || program.Instructions[execution.Cursor]==InstructionKind.OptionalOtherHeroDiscard)
+                execution.Cursor<program.Instructions.Count && (program.Instructions[execution.Cursor]==InstructionKind.ChooseHeroTarget || program.Instructions[execution.Cursor]==InstructionKind.OptionalOtherHeroDiscard || program.Instructions[execution.Cursor]==InstructionKind.OptionalOtherHeroDiscardOrDefeat)
                 ? HeroTargets(catalog,state,execution,program) : new List<string>();
         }
         private static bool BeginHeroTarget(ContentCatalog catalog,GameState state,Command command,CardExecution execution,PrimaryProgram program)
         {
             var targets=HeroTargets(catalog,state,execution,program);
             if(targets.Count==0)return false;
-            bool optional=program.Instructions[execution.Cursor]==InstructionKind.OptionalOtherHeroDiscard;
+            bool optional=program.Instructions[execution.Cursor]==InstructionKind.OptionalOtherHeroDiscard || program.Instructions[execution.Cursor]==InstructionKind.OptionalOtherHeroDiscardOrDefeat;
             state.Phase=Phase.EffectChoice;
             state.Pending=new PendingChoice {Id="effect-target:"+(state.Events.Count+1),Kind="effect_target",ChooserSeat=execution.ControllerSeat,
                 Source=execution.CardId,CandidateUnits=targets,ResumeAt=optional ? "attack_before_optional_discard" : "card_effect_target",Optional=optional};
@@ -112,6 +112,15 @@ namespace Goa2.Rules
                     (command.Value=="skip" || LegalEffectTargets(catalog,state,command.ActorSeat).Contains(command.Value)),"invalid_effect_target","请选择另一名合法敌方英雄，或跳过额外弃牌。");
                 var attack=state.Execution!;state.Pending=null;state.Phase=Phase.Action;
                 Emit(state,command,command.Value=="skip" ? "EffectTargetSkipped" : "EffectTargetChosen",command.ActorSeat,attack.CardId,detail:command.Value);
+                var program=CardPrograms.Primary(catalog.Card(attack.CardId),state.EngineVersion)!;
+                if(program.Instructions[attack.Cursor]==InstructionKind.OptionalOtherHeroDiscardOrDefeat)
+                {
+                    // Preserve TargetUnitId: the extra payment target is not the attack target.
+                    attack.Cursor++;
+                    if(command.Value!="skip")BeginForcedPayment(state,command,attack.ControllerSeat,attack.CardId,state.Units.Single(u=>u.Id==command.Value));
+                    if(state.Phase==Phase.Finished || state.Pending!=null)return;
+                    ContinueCard(catalog,state,command);return;
+                }
                 if(command.Value!="skip" && BeginTargetDiscard(catalog,state,command,attack,command.Value))return;
                 attack.Cursor++;ContinueCard(catalog,state,command);return;
             }

@@ -630,6 +630,15 @@
       "input": "tests/fixtures/engine70-covering-fire-payment-scenario.json",
       "input_sha256": "ed8bb456c829394cef045564cd2700e617cb14657d55572fd68cb3304ad421ab",
       "provenance": "tests/fixtures/engine70-covering-fire-payment.md"
+    },
+    {
+      "engine_version": 71,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine71-energy-explosion-payment.json",
+      "save_sha256": "938a57a1d66445ae58413830a800d684a072f27f7d0299fb6a0616bc138ec336",
+      "input": "tests/fixtures/engine71-energy-explosion-payment-scenario.json",
+      "input_sha256": "9c11ad29d6304b4a4d62ede1f4e8a4443ef0cdad03e78336cf0922827a989a9d",
+      "provenance": "tests/fixtures/engine71-energy-explosion-payment.md"
     }
   ]
 }
