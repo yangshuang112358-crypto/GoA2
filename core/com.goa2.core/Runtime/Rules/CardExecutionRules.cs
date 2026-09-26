@@ -159,6 +159,13 @@ namespace Goa2.Rules
                         if(BeginTargetDiscard(state,command,execution))return;
                         execution.Cursor++;
                         break;
+                    case InstructionKind.TargetDiscardOrDefeat:
+                        execution.Cursor++;
+                        var paymentTarget = state.Units.SingleOrDefault(u => u.Id == execution.TargetUnitId && u.Kind == "hero" && u.Seat.HasValue);
+                        if (paymentTarget != null && EffectRules.CanAffect(state,execution.ControllerSeat,paymentTarget))
+                            BeginForcedPayment(state,command,execution.ControllerSeat,execution.CardId,paymentTarget);
+                        if (state.Phase == Phase.Finished || state.Pending != null) return;
+                        break;
                     case InstructionKind.CancelAdjacentSkillEffects:
                         CancelAdjacentSkillEffects(catalog,state,command,execution);
                         execution.Cursor++;

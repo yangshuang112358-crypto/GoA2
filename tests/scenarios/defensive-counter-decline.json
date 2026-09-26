@@ -1,0 +1,121 @@
+{
+  "SchemaVersion": 1,
+  "Id": "defensive-counter-decline",
+  "Name": "防守反击：有手牌主动被击败",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "brogan,sabina,tigerclaw,wasp",
+      "Actor": "p1"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Value": "brogan-17-防守反击",
+      "Actor": "p1",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:2",
+      "Actor": "p1",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "brogan-17-防守反击",
+      "Actor": "p1"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "sabina-01-拔枪",
+      "Actor": "p2"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "tigerclaw-07-伺机待发",
+      "Actor": "p3"
+    },
+    {
+      "Command": "SelectCard",
+      "Value": "wasp-00-闪耀之刃",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Value": "",
+      "Actor": "p4",
+      "Expect": {
+        "Phase": "Action",
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Value": "",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "effect_target",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Value": "hero:1",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "forced_discard",
+        "PendingChooser": "p2",
+        "EventCounts": {
+          "ForcedDiscardRequired": 1,
+          "AttackCalculated": 0
+        }
+      }
+    },
+    {
+      "Command": "DeclineRetaliationDiscard",
+      "Actor": "p2",
+      "Expect": {
+        "Gold": {
+          "p1": 1,
+          "p3": 1
+        },
+        "EventCounts": {
+          "ForcedPaymentDefeat": 1,
+          "HeroDefeated": 1,
+          "CardResolved": 1,
+          "AttackCalculated": 0
+        }
+      }
+    }
+  ]
+}

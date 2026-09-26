@@ -1,0 +1,82 @@
+{
+  "engine": 62,
+  "implemented_cards": 73,
+  "data_only_cards": 35,
+  "build_utc": "2026-09-26T05:13:09.0477166Z",
+  "assemblies": {
+    "Goa2.Application.dll": "96417a4e6ad58d83b1c28e2197105330a94d292b1f395203312f00c07810392f",
+    "Goa2.Domain.dll": "20834a10f8c296e16c2fa1499b45e96fee56649c047bbd766d567c72517839a3",
+    "Goa2.Editor.dll": "303d1e166eceeeaffccd3ada9bf4d22d8922ffcf1000d7fbe1de8aab9792f344",
+    "Goa2.Infrastructure.dll": "d5b3c77210cebafd424ea15d5b531817d610653a1cf5966b62f10d242db2c56f",
+    "Goa2.Rules.dll": "1458d5b95f3930316e0daa630b4004fbcc5744d92057dd17fa5cc0b3d6119c68"
+  },
+  "core": {
+    "passed": 1593,
+    "failed": 0,
+    "report": "artifacts/tests/defensive-counter-unity-0.xml",
+    "card_specific": 12,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/defensive-counter-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/defensive-counter-pay.json",
+        "input_sha256": "726e04c26a02614c98bb6e3c75120c955c6fd36272223b99d8ba3a043b10c019",
+        "report": "artifacts/editor-scenarios/defensive-counter-pay/f1560433eb7241b49ec11b023133f55b/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/defensive-counter-decline.json",
+        "input_sha256": "45dc09219beff4906f0443f2330703c8cbd951f1a35c188dfe289e381f9ff2cf",
+        "report": "artifacts/editor-scenarios/defensive-counter-decline/8741750c64bb4b9984f5a57716f1ba4f/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/defensive-counter-empty.json",
+        "input_sha256": "6b9087f66211f89efa2ae87502be3e541a8d1de60a34c8492c9b3de28e69e2e7",
+        "report": "artifacts/editor-scenarios/defensive-counter-empty/15054d3e81c4470596e458454e90a10c/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine62-defensive-counter-payment-scenario.json",
+        "input_sha256": "9e3a5c18c86286c30ea73596e9676d9ff1e61bf9d9ff7eeb377797d3f6098e59",
+        "report": "artifacts/editor-scenarios/engine62-defensive-counter-payment-scenario/774ab2f2cfeb492ba02da7e8aca9a24f/report.json",
+        "steps": 13,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 58
+  },
+  "manual_presets": [
+    "defensive-counter-pay"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "red": {
+    "report": "artifacts/unity/tests/defensive-counter-red.xml",
+    "passed": 1,
+    "failed": 11
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e62-defensive-counter-20260926-051349-6d39cb2d.zip",
+    "sha256": "e933a63df0cea8920ec96bc2238d84d5f485764ae6850ab1f644b0c41fbc7069"
+  }
+}

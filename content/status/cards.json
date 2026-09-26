@@ -810,11 +810,21 @@
     },
     {
       "card_id": "brogan-17-防守反击",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-17-防守反击.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/DefensiveCounterTests.cs",
+        "tests/scenarios/defensive-counter-pay.json",
+        "tests/scenarios/defensive-counter-decline.json",
+        "tests/scenarios/defensive-counter-empty.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs"
+      ]
     },
     {
       "card_id": "arien-00-华丽刀锋",
