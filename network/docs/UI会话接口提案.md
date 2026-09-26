@@ -22,3 +22,5 @@ Task ReconnectAsync();
 网络实例不暴露 GameSession、存档、其他席位视图查询、身份 setter。热座快速选牌保留独立适配；网络必须四人确认；数字键只可查看公开信息。网络不提供 Debug、SetQuickSelection、UpgradeEngine 操作。
 
 本提案未与其他任务交换确认，不修改 GameScreen*.cs。正式 UI 接线及四个 Unity 窗口验收待协调，不能用命令行四进程冒充。合法候选全部来自服务 GameSession.View，规则只经 Execute。
+
+2026-09-26收尾更新：已只读核对UI分支提交37d64f3的接线/交接文档，UI任务认可此接口方向，并提供BattlefieldSurface.SetConnected边界；整个GameScreen迁移仍由主任务统一。上段“未交换确认”为初始提案时状态。现在有可复用实现 `network/com.goa2.network.client/`，具体整合清单见 `主任务交接.md`，仍未自行接线。
