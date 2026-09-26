@@ -1,0 +1,101 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine73-crushing-punch-distance-scenario",
+  "Name": "碾压重拳：前置移动后等待推动",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "brogan,wasp,sabina,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "brogan-14-碾压重拳",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 0,
+        "Y": -5
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "minion:-1,-3",
+      "Destination": {
+        "X": 0,
+        "Y": -4
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "brogan-14-碾压重拳"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "sabina-07-指挥"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p1",
+      "Value": "skip"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Actor": "p1",
+      "Value": "minion:-1,-3",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p1"
+      }
+    }
+  ]
+}

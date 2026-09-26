@@ -648,6 +648,15 @@
       "input": "tests/fixtures/engine72-punch-distance-scenario.json",
       "input_sha256": "dbde0652419c4c56deb3c23663b505d4d7602a7fd32d0756fd90d66304f94e84",
       "provenance": "tests/fixtures/engine72-punch-distance.md"
+    },
+    {
+      "engine_version": 73,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine73-crushing-punch-distance.json",
+      "save_sha256": "c93da6efa40d5ceb0f6842d51e0ecdc62e33e52d1eed485c6c4bbff2663a8acb",
+      "input": "tests/fixtures/engine73-crushing-punch-distance-scenario.json",
+      "input_sha256": "be409aba7ac6960ac121db8804b4ceb9477cb69312f244741910d0fa9c3b3d85",
+      "provenance": "tests/fixtures/engine73-crushing-punch-distance.md"
     }
   ]
 }

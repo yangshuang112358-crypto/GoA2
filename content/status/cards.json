@@ -828,11 +828,20 @@
     },
     {
       "card_id": "brogan-14-碾压重拳",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-14-碾压重拳.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CrushingPunchTests.cs",
+        "tests/scenarios/crushing-punch-stay.json",
+        "tests/scenarios/crushing-punch-skip.json",
+        "tests/scenarios/crushing-punch-move.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "brogan-15-盾牌猛击",
