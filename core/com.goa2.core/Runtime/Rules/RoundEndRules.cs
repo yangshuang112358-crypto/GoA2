@@ -12,8 +12,7 @@ namespace Goa2.Rules
         {
             if (state.Phase != Phase.EffectChoice || state.Pending?.Kind != "round_minion_removal" || state.Pending.ChooserSeat != seat || state.RoundEnd?.Stage != "minion_battle" || state.Frontline != null)
                 return new List<string>();
-            var legal = LegalMinionRemovals(state);
-            return state.Units.Where(u => u.Team == state.RoundEnd.LosingTeam && legal.Contains(u.Id)).Select(u => u.Id).OrderBy(id => id, System.StringComparer.Ordinal).ToList();
+            return MinionBattleParticipantRules.RemovalCandidates(state, state.RoundEnd.HeroContributions, state.RoundEnd.LosingTeam);
         }
         private static void ResolveRoundEnd(ContentCatalog catalog, GameState state, Command command)
         {
@@ -31,8 +30,11 @@ namespace Goa2.Rules
             {
                 Round = state.Round,
                 BlueMinions = state.Units.Count(u => IsMinion(u) && u.Team == Team.Blue),
-                RedMinions = state.Units.Count(u => IsMinion(u) && u.Team == Team.Red)
+                RedMinions = state.Units.Count(u => IsMinion(u) && u.Team == Team.Red),
+                HeroContributions = MinionBattleParticipantRules.Capture(catalog, state)
             };
+            progress.BlueMinions += MinionBattleParticipantRules.ForTeam(state, progress.HeroContributions, Team.Blue).Sum(r => r.Count);
+            progress.RedMinions += MinionBattleParticipantRules.ForTeam(state, progress.HeroContributions, Team.Red).Sum(r => r.Count);
             progress.RemainingRemovals = System.Math.Abs(progress.BlueMinions - progress.RedMinions);
             if (progress.RemainingRemovals > 0) progress.LosingTeam = progress.BlueMinions < progress.RedMinions ? Team.Blue : Team.Red;
             state.RoundEnd = progress;
@@ -43,7 +45,7 @@ namespace Goa2.Rules
         {
             if (state.Phase == Phase.Finished || state.RoundEnd == null || state.RoundEnd.Stage != "minion_battle") return;
             var progress = state.RoundEnd;
-            if (progress.RemainingRemovals == 0 || !state.Units.Any(u => IsMinion(u) && u.Team == progress.LosingTeam))
+            if (progress.RemainingRemovals == 0 || MinionBattleParticipantRules.RemovalCandidates(state, progress.HeroContributions, progress.LosingTeam).Count == 0)
             {
                 progress.RemainingRemovals = 0; state.Pending = null; state.ActiveSeat = null; state.Phase = Phase.RoundEnd;
                 Emit(state, command, "MinionBattleCompleted", detail: progress.Round.ToString());
@@ -61,7 +63,19 @@ namespace Goa2.Rules
         }
         private static void ChooseRoundMinionRemoval(ContentCatalog catalog, GameState state, Command command)
         {
-            Require(LegalRoundMinionRemovals(state, command.ActorSeat).Contains(command.Value), "invalid_round_minion", "须由少兵方队长选择可移除的本队小兵。");
+            Require(LegalRoundMinionRemovals(state, command.ActorSeat).Contains(command.Value), "invalid_round_minion", "须由少兵方队长选择可承担移除的本队小兵或英雄。");
+            var role = MinionBattleParticipantRules.ForTeam(state, state.RoundEnd!.HeroContributions, state.RoundEnd.LosingTeam).SingleOrDefault(r => r.UnitId == command.Value);
+            if (role != null)
+            {
+                var program = UltimateRules.OwnedProgram(catalog, state, role.ControllerSeat);
+                Require(program != null && program.Id == role.ProgramId && program.Version == role.ProgramVersion && state.Players[role.ControllerSeat].PurpleCardId == role.SourceCardId,
+                    "invalid_battle_participant", "小兵战斗英雄能力与保存的来源不符。");
+                Emit(state, command, "UltimateTriggered", role.ControllerSeat, role.SourceCardId, detail: role.UnitId);
+                Emit(state, command, "MinionBattleStoppedByHero", command.ActorSeat, role.SourceCardId, detail: role.UnitId);
+                state.RoundEnd.RemainingRemovals = 0; state.Pending = null;
+                ContinueRoundMinionBattle(catalog, state, command);
+                return;
+            }
             bool heavy = state.Units.Single(u => u.Id == command.Value).Kind == "heavy";
             state.RoundEnd!.RemainingRemovals = heavy ? 0 : state.RoundEnd.RemainingRemovals - 1;
             state.Pending = null;

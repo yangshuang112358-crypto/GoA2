@@ -79,7 +79,7 @@
     "cloak-repeat",
     "cloak-fail"
   ],
-  "note": "Unity Editor batch commands and frozen original save verified; Unity build passed, but Windows application control blocks the newly built Player. Unity runtime, UI and physical input are NOT verified.",
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
   "python": {
     "passed": 32,
     "failed": 0

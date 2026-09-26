@@ -25,6 +25,8 @@ namespace Goa2.Infrastructure
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 if(member.DeclaringType==typeof(AttackBreakdown) && member.Name==nameof(AttackBreakdown.UltimateBonus))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
+                if(member.DeclaringType==typeof(RoundEndProgress) && member.Name==nameof(RoundEndProgress.HeroContributions))
+                    property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 return property;
             }
         }

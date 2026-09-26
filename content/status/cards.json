@@ -739,11 +739,21 @@
     },
     {
       "card_id": "brogan-12-一人成军",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-12-一人成军.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/OneManArmyTests.cs",
+        "tests/scenarios/one-man-first.json",
+        "tests/scenarios/one-man-ranged.json",
+        "tests/scenarios/one-man-captain.json",
+        "tests/scenarios/one-man-tie.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs",
+        "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs"
+      ]
     },
     {
       "card_id": "brogan-13-冲拳",

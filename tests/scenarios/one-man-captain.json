@@ -1,0 +1,163 @@
+{
+  "SchemaVersion": 1,
+  "Id": "one-man-captain",
+  "Name": "一人成军：队长选择队友布罗根",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "arien,wasp,brogan,sabina"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "28",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugAdvance",
+      "Actor": "p1",
+      "Value": "round"
+    },
+    {
+      "Command": "ResolveRoundEnd",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-02-投掷飞斧"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-08-战鼓"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-14-碾压重拳"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-04-投掷长矛"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-10-吟游诗人"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-16-野蛮飞踢"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p3",
+      "Value": "brogan-12-一人成军"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Actor": "p1",
+      "Value": "minion:1,0"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Actor": "p1",
+      "Value": "minion:-3,1"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Actor": "p1",
+      "Value": "minion:-4,2"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Actor": "p1",
+      "Value": "minion:1,4"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "0",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "0",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "0",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "0",
+      "Target": "p4"
+    },
+    {
+      "Command": "DebugAdvance",
+      "Actor": "p1",
+      "Value": "round",
+      "Expect": {
+        "Phase": "RoundEnd",
+        "Round": 2
+      }
+    },
+    {
+      "Command": "ResolveRoundEnd",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "round_minion_removal",
+        "PendingChooser": "p1",
+        "RemainingMinionRemovals": 2,
+        "BlueMinions": 2,
+        "RedMinions": 6
+      }
+    },
+    {
+      "Command": "ChooseRoundMinionRemoval",
+      "Actor": "p3",
+      "Value": "hero:2",
+      "Expect": {
+        "Code": "invalid_round_minion"
+      }
+    },
+    {
+      "Command": "ChooseRoundMinionRemoval",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Expect": {
+        "Phase": "Planning",
+        "Round": 3,
+        "BlueMinions": 2,
+        "RedMinions": 6,
+        "BlueMarks": 0,
+        "RedMarks": 0,
+        "CombatRegion": "mid",
+        "EventCounts": {
+          "MinionBattleStoppedByHero": 1,
+          "UltimateTriggered": 1,
+          "MinionRemoved": 0,
+          "HeroDefeated": 0
+        }
+      }
+    }
+  ]
+}

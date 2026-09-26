@@ -25,6 +25,16 @@ namespace Goa2.Domain
         public List<int> PendingLevels = new List<int>();
     }
     [Serializable]
+    public sealed class BattleHeroContribution
+    {
+        public string UnitId = "";
+        public string SourceCardId = "";
+        public int ControllerSeat;
+        public int Count;
+        public string ProgramId = "";
+        public int ProgramVersion;
+    }
+    [Serializable]
     public sealed class RoundEndProgress
     {
         public int Round;
@@ -34,6 +44,7 @@ namespace Goa2.Domain
         public Team? LosingTeam;
         public int RemainingRemovals;
         public List<PlayerUpgradeProgress> Upgrades = new List<PlayerUpgradeProgress>();
+        public List<BattleHeroContribution>? HeroContributions;
     }
     public sealed class UpgradeOption
     {

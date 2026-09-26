@@ -78,10 +78,12 @@ namespace Goa2.Presentation
             if (view.Pending?.Kind != "round_minion_removal") return false;
             parent.Add(Text("轮末小兵战斗", "section-title"));
             parent.Add(Text(PlayerName(view.Pending.ChooserSeat) + "还须移除 " + view.RemainingMinionRemovals + " 名本队小兵。先处理非重型；轮末移除没有金币。", "body"));
+            if(view.Units.Any(u => u.Kind == "hero" && view.RoundMinionRemovals.Contains(u.Id)))
+                parent.Add(Text("可选择高亮英雄承担移除：保留英雄，立即停止本次剩余移除和推进；此前移除的小兵不恢复。", "body"));
             if (view.Pending.ChooserSeat != seat) return true;
             var target = chosenCell.HasValue ? view.Units.SingleOrDefault(u => u.Position == chosenCell.Value && view.RoundMinionRemovals.Contains(u.Id)) : null;
-            if (target == null) parent.Add(Text("点击地图高亮的小兵后确认。", "body"));
-            else Confirm(parent, "确认移除 " + MinionName(target), () => Submit(CommandKind.ChooseRoundMinionRemoval, target.Id));
+            if (target == null) parent.Add(Text("点击地图高亮的参战单位后确认。", "body"));
+            else Confirm(parent, target.Kind == "hero" ? "选择 " + PlayerName(target.Seat!.Value) + " · 保留并结束兵战" : "确认移除 " + MinionName(target), () => Submit(CommandKind.ChooseRoundMinionRemoval, target.Id));
             return true;
         }
         private void RenderPermanentStats(VisualElement parent, GameView view)
@@ -100,7 +102,7 @@ namespace Goa2.Presentation
             {
                 parent.Add(Text("紫卡 · 已获得", "section-title"));
                 RenderCardDetail(parent, catalog.Card(purple));
-                parent.Add(Text("持续文字待实装；紫卡不进入暗选手牌。", "tiny"));
+                parent.Add(Text((view.SupportedUltimateCards.Contains(purple) ? "持有能力已接入；" : "持续文字待实装；") + "紫卡不进入暗选手牌。", "tiny"));
             }
         }
     }

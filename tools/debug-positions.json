@@ -745,5 +745,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：1号虎爪开始瞬闪打击→紫卡移到(5,-7)，随后没有穿敌路线，本次攻击结束但位置保留。分支：紫卡不移动则能穿2号攻击；也可选次要移动，先走紫卡最多2格，再从新位置选择原移动落点。"
+  },
+  {
+    "id": "one-man-first",
+    "title": "一人成军：英雄保兵与先移远程分支",
+    "scenario": "one-man-first",
+    "through_step": 21,
+    "phase": "RoundEnd",
+    "pending": "",
+    "instructions": "操作：点击结算轮末。蓝方实体为远程+重型，布罗根在战区外贡献2兵，对红方6兵。1号队长可直接点击布罗根确认，保留全部兵；也可先移除远程，再选布罗根。后者不会恢复远程，两种路径均不推进；重型不能先选。"
+  },
+  {
+    "id": "one-man-captain",
+    "title": "一人成军：队长选择队友",
+    "scenario": "one-man-captain",
+    "through_step": 21,
+    "phase": "RoundEnd",
+    "pending": "",
+    "instructions": "操作：点击结算轮末；3号布罗根拥有紫卡，但由1号蓝方队长点击布罗根确认保留并结束兵战，3号不能代队长选择。也可先移除远程测试分支。"
   }
 ]

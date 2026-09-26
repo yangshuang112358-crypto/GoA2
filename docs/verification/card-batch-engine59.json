@@ -1,0 +1,89 @@
+{
+  "engine": 59,
+  "implemented_cards": 70,
+  "data_only_cards": 38,
+  "build_utc": "2026-09-26T04:11:15.7347560Z",
+  "assemblies": {
+    "Goa2.Application.dll": "32345dc8c52ae81777c28f1c9a3450ab00ed447de2b4b2d1411a1b7d94a6e5c3",
+    "Goa2.Domain.dll": "d8ce9a058f64478bf0321cbd967094f4cb3525626a901c09319882ac0bc26ffd",
+    "Goa2.Editor.dll": "468e18447b0ee30925ea8ce662c36b87949eaa610829352ff918bce374762638",
+    "Goa2.Infrastructure.dll": "fd7bcafa6bf35f65f3c7ce2700dfa2fb1add636900dde5ce760a889a2ef9c6f5",
+    "Goa2.Rules.dll": "1ee706e4dccd63cd73d1e93108d8639d182c5592e32055a3b5f69880510ac751"
+  },
+  "core": {
+    "passed": 1524,
+    "failed": 0,
+    "report": "artifacts/tests/one-man-unity-0.xml",
+    "card_specific": 17,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/one-man-unity-0.xml",
+      "artifacts/tests/one-man-unity-1.xml"
+    ],
+    "replaced_failed_tests": [
+      "Goa2.Tests.DebugPositionTests.ManualCardPositionsStartBeforeTheirActionAndExplainHowToPlayThem"
+    ],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch.",
+    "aggregation": "1523 passed in full run; one manual-start assertion updated for pre-round-end cases and rerun 1/1. Raw reports retained; unique passing total 1524."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/one-man-first.json",
+        "input_sha256": "5906703a247058c265ac21c9b4dad1166f37ec6950c05fe724e62d8253df6f3b",
+        "report": "artifacts/editor-scenarios/one-man-first/06416c5fe0a44f9d851d65f5e8a101d1/report.json",
+        "steps": 23,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/one-man-ranged.json",
+        "input_sha256": "e2386a952a1dcde6649b8746a28ad836d524299dba8b348d34cc45ca05e06371",
+        "report": "artifacts/editor-scenarios/one-man-ranged/9fd816bd08694e96b17f576fe6afe5fa/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/one-man-captain.json",
+        "input_sha256": "a2ecb13bce46015c89d08e5e3954da5f71c8ae76ab0835ac6c49c289f4aecca4",
+        "report": "artifacts/editor-scenarios/one-man-captain/f65eccdcaf354d758f59181ded865c50/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/one-man-tie.json",
+        "input_sha256": "9794eefd2edcb63cd408add9b2023258af31b7371252b316aada31d47aa57cd4",
+        "report": "artifacts/editor-scenarios/one-man-tie/39e6ab7cc4914a04b15d94068c7932c0/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine59-one-man-removal-scenario.json",
+        "input_sha256": "c27a52cdfa7f9fd986bb5c4357c2ced2ff0c029054f9164f66273134d34a9ff9",
+        "report": "artifacts/editor-scenarios/engine59-one-man-removal-scenario/1ea1911291a843a3a5f7e8d54945ac70/report.json",
+        "steps": 23,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 115
+  },
+  "manual_presets": [
+    "one-man-first",
+    "one-man-captain"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e59-one-man-20260926-041211-5004429f.zip",
+    "sha256": "d451c72a4e8326855b7cb15b98cb67b050a820c224f1327938606908f1c6deba"
+  }
+}

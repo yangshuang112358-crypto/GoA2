@@ -1,0 +1,127 @@
+{
+  "SchemaVersion": 1,
+  "Id": "one-man-tie",
+  "Name": "一人成军：计入两兵后平局",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "brogan,wasp,arien,sabina"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "28",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugAdvance",
+      "Actor": "p1",
+      "Value": "round"
+    },
+    {
+      "Command": "ResolveRoundEnd",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "brogan-02-投掷飞斧"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "brogan-08-战鼓"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "brogan-14-碾压重拳"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "brogan-04-投掷长矛"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "brogan-10-吟游诗人"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "brogan-16-野蛮飞踢"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "brogan-12-一人成军"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Actor": "p1",
+      "Value": "minion:1,0"
+    },
+    {
+      "Command": "DebugRemoveMinion",
+      "Actor": "p1",
+      "Value": "minion:-3,1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "0",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "0",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "0",
+      "Target": "p3"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "0",
+      "Target": "p4"
+    },
+    {
+      "Command": "DebugAdvance",
+      "Actor": "p1",
+      "Value": "round",
+      "Expect": {
+        "Phase": "RoundEnd",
+        "Round": 2
+      }
+    },
+    {
+      "Command": "ResolveRoundEnd",
+      "Actor": "p1",
+      "Expect": {
+        "Phase": "Planning",
+        "Round": 3,
+        "BlueMinions": 4,
+        "RedMinions": 6,
+        "EventCounts": {
+          "MinionBattleStoppedByHero": 0
+        }
+      }
+    }
+  ]
+}

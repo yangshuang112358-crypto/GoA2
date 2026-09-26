@@ -32,8 +32,17 @@ namespace Goa2.Tests
             foreach(var position in DebugPositions.Read(Prepared()).Where(p=>!new[]{"upgrades","respawn","occupied-spawn"}.Contains(p.Id)))
             {
                 var session=DebugPositions.Open(catalog,position);var state=new JsonStateCodec().Read(session.ExportSave());
-                Assert.That(state.Phase,Is.EqualTo(Goa2.Domain.Phase.Action),position.Id);Assert.That(state.Pending,Is.Null,position.Id);
-                Assert.That(state.Execution,Is.Null,position.Id);Assert.That(state.ActiveSeat,Is.Not.Null,position.Id);
+                Assert.That(state.Pending,Is.Null,position.Id);Assert.That(state.Execution,Is.Null,position.Id);
+                if(position.Phase==Goa2.Domain.Phase.RoundEnd)
+                {
+                    Assert.That(Goa2.Rules.GameRules.CanResolveRoundEnd(state),Is.True,position.Id);
+                    Assert.That(state.RoundEnd,Is.Null,position.Id);
+                }
+                else
+                {
+                    Assert.That(state.Phase,Is.EqualTo(Goa2.Domain.Phase.Action),position.Id);
+                    Assert.That(state.ActiveSeat,Is.Not.Null,position.Id);
+                }
                 Assert.That(metadata.Single(m=>m["id"]!.Value<string>()==position.Id)["instructions"]?.Value<string>(),Does.Contain("操作"),position.Id);
             }
         }

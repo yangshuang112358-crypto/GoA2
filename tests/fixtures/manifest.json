@@ -522,6 +522,15 @@
       "input": "tests/fixtures/engine58-cloak-repeat-prelude-scenario.json",
       "input_sha256": "24f8217ce5aac0082bc780074ec25df6d167e057052c7048bfd8577cd5f309f1",
       "provenance": "tests/fixtures/engine58-cloak-repeat-prelude.md"
+    },
+    {
+      "engine_version": 59,
+      "accepted_commands": 23,
+      "save": "tests/fixtures/engine59-one-man-removal.json",
+      "save_sha256": "f814ceb7b40550d1620bb2d26df646569fe1d937bff8aa9162b7691fb6db0136",
+      "input": "tests/fixtures/engine59-one-man-removal-scenario.json",
+      "input_sha256": "c27a52cdfa7f9fd986bb5c4357c2ced2ff0c029054f9164f66273134d34a9ff9",
+      "provenance": "tests/fixtures/engine59-one-man-removal.md"
     }
   ]
 }
