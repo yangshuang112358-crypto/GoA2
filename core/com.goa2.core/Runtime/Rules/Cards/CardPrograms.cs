@@ -4,7 +4,8 @@ using Goa2.Domain;
 
 namespace Goa2.Rules.Cards
 {
-    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, ApplyEffectIfRecovered, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget, OptionalRepeatAttackAfterHeroDefeat, OptionalMinionRemovalAfterDefeat, PushAttackTargetIfAdjacent, MoveIntoAttackTargetCell, RequiredStraightMoveToAttack, RequiredStraightMoveThroughEnemy, PrimaryMovement, TargetDiscardIfAble, TargetDiscardOrDefeat, OptionalOtherHeroDiscard, OptionalGoldTransfer, RequiredStraightMoveIfAble, OptionalDifferentAttackIfAdjacentEnemy, ChooseSelfPlacement, OptionalMoveOtherAdjacentToTarget, ChooseFriendlyMinionTarget, OptionalTargetUnitMove, OptionalRepeatFriendlyMinionMove, ChooseUnitSwapTarget, SwapTargetUnits, ChooseOptionalUnitSwapTarget, PushAllAdjacentEnemies, DiscardBlockedPushHeroesIfAble, ChooseProtectionOrSelfRecovery, ChooseNearestApproachTarget, OptionalApproachMove, OptionalRepeatApproach, OptionalOtherHeroDiscardOrDefeat }
+    internal enum InstructionKind { ChooseAttackTarget, Attack, End, ApplyEffect, ApplyEffectIfRecovered, CancelAdjacentSkillEffects, ChooseOptionalDiscard, DetermineAttackRange, OptionalTextMove, OptionalRecoverDiscard, OptionalPreAttackTextMove, OptionalTextMoveIfNoPreMove, ChooseHeroTarget, OptionalRepeatAttackAfterHeroDefeat, OptionalMinionRemovalAfterDefeat, PushAttackTargetIfAdjacent, MoveIntoAttackTargetCell, RequiredStraightMoveToAttack, RequiredStraightMoveThroughEnemy, PrimaryMovement, TargetDiscardIfAble, TargetDiscardOrDefeat, OptionalOtherHeroDiscard, OptionalGoldTransfer, RequiredStraightMoveIfAble, OptionalDifferentAttackIfAdjacentEnemy, ChooseSelfPlacement, OptionalMoveOtherAdjacentToTarget, ChooseFriendlyMinionTarget, OptionalTargetUnitMove, OptionalRepeatFriendlyMinionMove, ChooseUnitSwapTarget, SwapTargetUnits, ChooseOptionalUnitSwapTarget, PushAllAdjacentEnemies, DiscardBlockedPushHeroesIfAble, ChooseProtectionOrSelfRecovery, ChooseNearestApproachTarget, OptionalApproachMove, OptionalRepeatApproach, OptionalOtherHeroDiscardOrDefeat, ChooseUnitPush }
+    internal enum PushTargetKind { EnemyMinion, EnemyUnit }
     internal enum PlacementTargetKind { EmptyNoSpawnInAttackRange, SafeInSkillRangeNearObstacle, EmptyNoSpawnAwayFromEmptySpawns }
     internal enum UnitSwapTargetKind { MinionOrFriendlyHeroInAttackRange, AdjacentFriendlyMinion }
     internal enum HeroTargetKind { None, AlliedNearEnemy, AdjacentEnemyUsedAttack, EnemyInSkillRangeNearFriendlyMinion, OtherAdjacentEnemy, OtherEnemyInSkillRange }
@@ -37,6 +38,8 @@ namespace Goa2.Rules.Cards
         public readonly bool IgnoreHeavyImmunity;
         public readonly UnitSwapTargetKind UnitSwapTarget;
         public readonly PlacementTargetKind PlacementTarget;
+        public readonly PushTargetKind PushTarget;
+        public readonly bool OptionalPushTarget;
         public readonly int Version = 1, MinimumDistance;
         public readonly IReadOnlyList<InstructionKind> Instructions;
         public readonly EffectKind? Effect;
@@ -57,12 +60,12 @@ namespace Goa2.Rules.Cards
         public readonly int TextPushDistance;
         public PrimaryProgram(string id, int minimumDistance, bool adjacent=false, bool onlyHeroes=false, EffectKind? effect=null,
             EffectAreaKind areaKind=EffectAreaKind.SkillRange, AttackBonusKind bonus=AttackBonusKind.None, int bonusValue=0,
-            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,bool extraRemovalUsesAttackRange=false,int textPushDistance=0,int textMoveMinimum=0,string? attackSubtype=null,int goldMaximum=0,bool ignoreHeavyImmunity=false,UnitSwapTargetKind unitSwapTarget=UnitSwapTargetKind.MinionOrFriendlyHeroInAttackRange,EffectDuration duration=EffectDuration.ThisTurn,PlacementTargetKind placementTarget=PlacementTargetKind.EmptyNoSpawnInAttackRange,params InstructionKind[] instructions)
+            AttackRangeBonusKind rangeBonus=AttackRangeBonusKind.None,int rangeBonusValue=0,int textMoveDistance=0,bool recoveryRequiresAdjacentMinion=false,HeroTargetKind heroTarget=HeroTargetKind.None,bool recoverResolved=false,bool supportMakesUnblockable=false,bool excludeStraightLine=false,bool extraRemovalUsesAttackRange=false,int textPushDistance=0,int textMoveMinimum=0,string? attackSubtype=null,int goldMaximum=0,bool ignoreHeavyImmunity=false,UnitSwapTargetKind unitSwapTarget=UnitSwapTargetKind.MinionOrFriendlyHeroInAttackRange,EffectDuration duration=EffectDuration.ThisTurn,PlacementTargetKind placementTarget=PlacementTargetKind.EmptyNoSpawnInAttackRange,PushTargetKind pushTarget=PushTargetKind.EnemyMinion,bool optionalPushTarget=false,params InstructionKind[] instructions)
         {
             Id = id; MinimumDistance = minimumDistance;
             AdjacentAttack=adjacent; OnlyHeroes=onlyHeroes; Effect=effect; AreaKind=areaKind; Duration=duration;
             AttackSubtype=attackSubtype ?? (adjacent ? "" : "远程");
-            GoldMaximum=goldMaximum; IgnoreHeavyImmunity=ignoreHeavyImmunity; UnitSwapTarget=unitSwapTarget; PlacementTarget=placementTarget;
+            GoldMaximum=goldMaximum; IgnoreHeavyImmunity=ignoreHeavyImmunity; UnitSwapTarget=unitSwapTarget; PlacementTarget=placementTarget; PushTarget=pushTarget; OptionalPushTarget=optionalPushTarget;
             AttackBonusKind=bonus; AttackBonusValue=bonusValue;
             RangeBonusKind=rangeBonus; RangeBonusValue=rangeBonusValue;
             TextMoveDistance=textMoveDistance;
@@ -186,6 +189,7 @@ namespace Goa2.Rules.Cards
             ["tigerclaw-08-偷天妙手"] = ("移动最多2格，再从与你相邻的一个敌方英雄处拿取最多1枚金币。然后沿直线移动2格（如果可行）。",37,null,new PrimaryProgram("move_steal_one_gold_move_straight",0,textMoveDistance:2,goldMaximum:1,instructions:new[]{InstructionKind.OptionalTextMove,InstructionKind.OptionalGoldTransfer,InstructionKind.RequiredStraightMoveIfAble,InstructionKind.End})),
             ["tigerclaw-10-探囊取物"] = ("移动最多2格，再从与你相邻的一个敌方英雄处拿取最多2枚金币。然后沿直线移动2格（如果可行）。",38,null,new PrimaryProgram("move_steal_two_gold_move_straight",0,textMoveDistance:2,goldMaximum:2,instructions:new[]{InstructionKind.OptionalTextMove,InstructionKind.OptionalGoldTransfer,InstructionKind.RequiredStraightMoveIfAble,InstructionKind.End})),
             ["tigerclaw-11-盗贼大师"] = ("移动最多2格，再从与你相邻的一个敌方英雄处拿取最多3枚金币。然后沿直线移动2格（如果可行）。",39,null,new PrimaryProgram("move_steal_three_gold_move_straight",0,textMoveDistance:2,goldMaximum:3,instructions:new[]{InstructionKind.OptionalTextMove,InstructionKind.OptionalGoldTransfer,InstructionKind.RequiredStraightMoveIfAble,InstructionKind.End})),
+            ["brogan-13-冲拳"] = ("选择一项：移除与你相邻的一个标志物；或将与你相邻的一个敌方小兵推动最多2格。",72,null,new PrimaryProgram("adjacent_enemy_minion_push_up_to_two",0,textPushDistance:2,instructions:new[]{InstructionKind.ChooseUnitPush,InstructionKind.End})),
             ["sabina-15-火力掩护"] = ("如果你与一个友方小兵相邻，则技能范围内的一名敌方英雄丢弃一张卡牌，否则被击败。",70,"范围",new PrimaryProgram("enemy_in_skill_range_pay_or_defeat_near_minion",0,heroTarget:HeroTargetKind.EnemyInSkillRangeNearFriendlyMinion,instructions:new[]{InstructionKind.ChooseHeroTarget,InstructionKind.TargetDiscardOrDefeat,InstructionKind.End})),
             ["sabina-13-近身支援"] = ("如果你与一个友方小兵相邻，技能范围内的一名敌方英雄丢弃一张卡牌（如果可行）。",34,"范围",new PrimaryProgram("enemy_in_skill_range_discard_near_minion",0,heroTarget:HeroTargetKind.EnemyInSkillRangeNearFriendlyMinion,instructions:new[]{InstructionKind.ChooseHeroTarget,InstructionKind.TargetDiscardIfAble,InstructionKind.End})),
             ["brogan-17-防守反击"] = ("与你相邻的一个敌方英雄，如果在此回合打出过攻击卡，需丢弃一张卡牌，否则被击败。",62,null,new PrimaryProgram("adjacent_enemy_attack_history_discard_or_defeat",0,heroTarget:HeroTargetKind.AdjacentEnemyUsedAttack,instructions:new[]{InstructionKind.ChooseHeroTarget,InstructionKind.TargetDiscardOrDefeat,InstructionKind.End})),

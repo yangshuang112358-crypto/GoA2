@@ -1,0 +1,111 @@
+{
+  "SchemaVersion": 1,
+  "Id": "punch-two-steps",
+  "Name": "冲拳：推动两格进入战区",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "brogan,wasp,sabina,arien"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "brogan-13-冲拳",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 0,
+        "Y": -5
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "minion:-1,-3",
+      "Destination": {
+        "X": 0,
+        "Y": -4
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "brogan-13-冲拳"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "sabina-07-指挥"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Actor": "p1",
+      "Value": "minion:-1,-3",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p1",
+      "Destination": {
+        "X": 0,
+        "Y": -2
+      },
+      "Expect": {
+        "EventCounts": {
+          "UnitPushed": 1,
+          "UnitMoved": 0,
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

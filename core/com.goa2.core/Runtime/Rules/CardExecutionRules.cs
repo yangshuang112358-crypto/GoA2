@@ -138,6 +138,10 @@ namespace Goa2.Rules
                     case InstructionKind.OptionalTargetUnitMove:
                         if(BeginTargetUnitMove(catalog,state,command))return;
                         execution.Cursor++;break;
+                    case InstructionKind.ChooseUnitPush:
+                        if(BeginUnitPush(catalog,state,command))return;
+                        if(program.OptionalPushTarget){execution.Cursor++;break;}
+                        StopCard(catalog,state,command,"no_push_targets");return;
                     case InstructionKind.ChooseHeroTarget:
                         if(BeginHeroTarget(catalog,state,command,execution,program)) return;
                         StopCard(catalog,state,command,"no_targets");

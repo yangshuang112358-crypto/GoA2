@@ -639,6 +639,15 @@
       "input": "tests/fixtures/engine71-energy-explosion-payment-scenario.json",
       "input_sha256": "9c11ad29d6304b4a4d62ede1f4e8a4443ef0cdad03e78336cf0922827a989a9d",
       "provenance": "tests/fixtures/engine71-energy-explosion-payment.md"
+    },
+    {
+      "engine_version": 72,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine72-punch-distance.json",
+      "save_sha256": "ae6a684768857fbb82930345f540e9b5d035f7cf9cfe3dbf7cd6aaaa9bdf5a96",
+      "input": "tests/fixtures/engine72-punch-distance-scenario.json",
+      "input_sha256": "dbde0652419c4c56deb3c23663b505d4d7602a7fd32d0756fd90d66304f94e84",
+      "provenance": "tests/fixtures/engine72-punch-distance.md"
     }
   ]
 }

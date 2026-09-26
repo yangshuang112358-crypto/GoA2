@@ -961,5 +961,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：4号夏尔加萨先发动反击，攻击(5,-9)蓝方小兵。1号黄蜂再用电能爆炸攻击2号萨彼娜，额外选择4号；4号弃劈砍后仍须先由2号完成防御，之后4号才从弃牌堆选劈砍反击1号。分支：额外目标拒绝弃牌会被击败，不会产生该次弃牌触发。"
+  },
+  {
+    "id": "punch-two-steps",
+    "title": "冲拳：推动0至2格",
+    "scenario": "punch-two-steps",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号布罗根发动冲拳，选择(0,-4)的红方小兵，再推动至(0,-3)或(0,-2)。分支：可选择不推动；不能选友方小兵或英雄；当前六英雄没有地图标志物，移除标志物分支尚未扩展。"
+  },
+  {
+    "id": "punch-minion-return",
+    "title": "冲拳：小兵离区回归",
+    "scenario": "punch-minion-return",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号布罗根选择(0,-3)红方小兵，推动到(0,-5)。2号红方队长须先选最短回归路线，例如(0,-4)再到(0,-3)，冲拳随后才结算。分支：只推1格或不推动，比较是否需要回归。"
   }
 ]

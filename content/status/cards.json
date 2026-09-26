@@ -811,11 +811,20 @@
     },
     {
       "card_id": "brogan-13-冲拳",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-13-冲拳.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/PunchTests.cs",
+        "tests/scenarios/punch-two-steps.json",
+        "tests/scenarios/punch-skip.json",
+        "tests/scenarios/punch-minion-return.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/PushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "brogan-14-碾压重拳",
