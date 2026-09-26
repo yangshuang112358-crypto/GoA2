@@ -700,5 +700,32 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：1号萨彼娜开始近身射击，攻击2号虎爪；2号用躲闪防御。3号布罗根挡在虎爪后方，所以推动实际0格，但仍由虎爪选择弃牌或被击败。若希望对照，行动前把3号传送离开，再执行同样流程。"
+  },
+  {
+    "id": "phantasm",
+    "title": "幻化：行动前弃牌与移动",
+    "scenario": "phantasm-primary",
+    "through_step": 21,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号夏尔加萨选择劈砍攻击→选相邻的2号萨彼娜→切2号自行弃牌→回1号选择攻击目标。分支：也可以选择次要移动，先完成同样的弃牌再移动；不能落在单位或地形上，但可以穿过。"
+  },
+  {
+    "id": "phantasm-defense",
+    "title": "幻化：从敌方攻击起点测试防御",
+    "scenario": "phantasm-defense",
+    "through_step": 20,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号萨彼娜发起近身射击→攻击1号夏尔加萨→切1号用劈砍防御→先选相邻的萨彼娜→切2号弃牌，随后原防御自动继续。分支：夏尔加萨也可以不防御，此时不触发幻化。加载时尚未攻击。"
+  },
+  {
+    "id": "phantasm-empty",
+    "title": "幻化：空手邻敌与有牌邻敌",
+    "scenario": "phantasm-empty",
+    "through_step": 26,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号夏尔加萨开始劈砍，选择空手的2号萨彼娜则跳过弃牌；选择相邻的4号阿连则由阿连弃牌。之后继续选择原攻击目标。空手与有牌两个分支都合法；队友和小兵不能成为幻化弃牌目标。"
   }
 ]

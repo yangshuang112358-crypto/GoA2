@@ -15,6 +15,7 @@ namespace Goa2.Rules
         {
             Require(state.Sandbox, "debug_disabled", "普通对局不能使用调试命令。");
             Require(state.MinionDefeat==null,"pending_minion_defeat","请先完成小兵保护选择再调试局面。");
+            Require(state.BeforeAction==null,"pending_before_action","请先完成行动前选择再调试局面。");
             Require(state.Execution?.ForcedPayment==null,"pending_forced_payment","请先完成弃牌或被击败选择再调试局面。");
             Require(state.Execution?.Completion==null,"pending_action_completion","请先完成行动结束后的紫卡选择再调试局面。");
             bool structural = command.Kind == CommandKind.DebugTeleport || command.Kind == CommandKind.DebugRemoveMinion || command.Kind == CommandKind.DebugDefeatMinion ||

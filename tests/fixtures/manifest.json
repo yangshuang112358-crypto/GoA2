@@ -504,6 +504,15 @@
       "input": "tests/fixtures/engine56-heavy-weaponry-payment-scenario.json",
       "input_sha256": "d86ce7140e5b2a884bd87299edd1bad2beb40253fd0fb187e0bd31f382959971",
       "provenance": "tests/fixtures/engine56-heavy-weaponry-payment.md"
+    },
+    {
+      "engine_version": 57,
+      "accepted_commands": 24,
+      "save": "tests/fixtures/engine57-phantasm-defense-discard.json",
+      "save_sha256": "d5cdd6fe218f9449019c17855874bb2356ad46eaac749d84f1f3525cd8fed280",
+      "input": "tests/fixtures/engine57-phantasm-defense-discard-scenario.json",
+      "input_sha256": "a83f5677b7060fe50c8a1f8eb351fc353de28857a594d4256dfb088893fbc3cb",
+      "provenance": "tests/fixtures/engine57-phantasm-defense-discard.md"
     }
   ]
 }

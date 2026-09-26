@@ -82,10 +82,11 @@ namespace Goa2.Rules
                 default: throw new RuleViolation("unsupported_command", "此操作尚未实装。");
             }
         }
-        private static void Move(ContentCatalog catalog, GameState state, Command command)
+        private static void Move(ContentCatalog catalog, GameState state, Command command, bool allowBeforeAction = true)
         {
             var option = MovementRules.LegalMoves(catalog, state, command.ActorSeat, command.MoveMode).FirstOrDefault(o => o.Destination == command.Destination);
             Require(option != null, "invalid_move", "目标不在当前合法移动集合中。");
+            if(allowBeforeAction && BeginBeforeAction(catalog,state,command))return;
             var unit = state.Units.Single(u => u.Seat == command.ActorSeat);
             var origin = unit.Position;
             unit.Position = command.Destination;

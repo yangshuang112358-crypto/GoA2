@@ -33,6 +33,7 @@ namespace Goa2.Rules
         public static List<string> LegalForcedDiscards(GameState state,int seat)
         {
             if(IsForcedPayment(state,seat))return state.Players[seat].Cards.Where(c=>c.Zone==CardZone.InHand).Select(c=>c.CardId).ToList();
+            if(IsBeforeActionDiscard(state,seat))return state.Players[seat].Cards.Where(c=>c.Zone==CardZone.InHand).Select(c=>c.CardId).ToList();
             if(IsCompletionDiscard(state,seat))return state.Players[seat].Cards.Where(c=>c.Zone==CardZone.InHand).Select(c=>c.CardId).ToList();
             if(state.EngineVersion>=48 && state.Phase==Phase.EffectChoice && state.Pending?.Kind=="forced_discard" &&
                 state.Pending.ResumeAt=="push_blocked_discard" && state.Pending.ChooserSeat==seat && state.Execution!=null &&
@@ -110,6 +111,7 @@ namespace Goa2.Rules
             Emit(state,command,"CardDiscarded",command.ActorSeat,instance.CardId,command.ActorSeat);
             Emit(state,command,"DiscardColorShown",command.ActorSeat,detail:catalog.Card(instance.CardId).Color);
             Emit(state,command,"ForcedDiscardCompleted",command.ActorSeat);
+            if(IsBeforeActionDiscard(state,command.ActorSeat)){FinishBeforeAction(catalog,state,command);return;}
             if(IsForcedPayment(state,command.ActorSeat)){FinishForcedPayment(catalog,state,command,false);return;}
             if(state.EngineVersion>=55 && state.Pending!.ResumeAt==UltimateDiscardResume)
             {CompleteUltimate(state,command,"discarded");EndCardExecution(catalog,state,command);return;}

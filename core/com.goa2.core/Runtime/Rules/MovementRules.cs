@@ -28,6 +28,7 @@ namespace Goa2.Rules
         {
             var result = new List<MoveOption>();
             if (budget <= 0) return result;
+            bool traverse=UltimateRules.CanTraverseObstacles(catalog,state,unit);
             var origin = unit.Position;
             var cells = catalog.Cells.ToDictionary(c => c.Position);
             var occupied = new HashSet<Hex>(state.Units.Select(u => u.Position));
@@ -39,11 +40,11 @@ namespace Goa2.Rules
                 if (paths[current].Count - 1 >= budget) continue;
                 foreach (var next in current.Neighbors())
                 {
-                    if (paths.ContainsKey(next) || occupied.Contains(next) && !EffectRules.CanTraverseUnits(state,unit) || !cells.TryGetValue(next, out var cell) || cell.Obstacle) continue;
+                    if (paths.ContainsKey(next) || occupied.Contains(next) && !traverse && !EffectRules.CanTraverseUnits(state,unit) || !cells.TryGetValue(next, out var cell) || cell.Obstacle && !traverse) continue;
                     if (!EffectRules.CanMoveAcross(catalog,state,unit,current,next)) continue;
                     var path = new List<Hex>(paths[current]) { next };
                     paths.Add(next, path); queue.Enqueue(next);
-                    if(!occupied.Contains(next))result.Add(new MoveOption { Destination = next, Path = path });
+                    if(!occupied.Contains(next) && !cell.Obstacle)result.Add(new MoveOption { Destination = next, Path = path });
                 }
             }
             return result.OrderBy(o => o.Destination.X).ThenBy(o => o.Destination.Y).ToList();
@@ -51,6 +52,7 @@ namespace Goa2.Rules
         internal static List<MoveOption> StraightExact(ContentCatalog catalog,GameState state,UnitState unit,int distance,string? passThroughUnitId=null)
         {
             var result=new List<MoveOption>();if(distance<1)return result;
+            bool traverse=UltimateRules.CanTraverseObstacles(catalog,state,unit);
             var occupied=new HashSet<Hex>(state.Units.Select(u=>u.Position));
             foreach(var first in unit.Position.Neighbors())
             {
@@ -58,9 +60,10 @@ namespace Goa2.Rules
                 for(int i=0;i<distance;i++)
                 {
                     var next=new Hex(current.X+delta.X,current.Y+delta.Y);
-                    bool occupiedBlocking=occupied.Contains(next) && (i==distance-1 || !EffectRules.CanTraverseUnits(state,unit) && (passThroughUnitId==null ||
+                    bool occupiedBlocking=occupied.Contains(next) && (i==distance-1 || !traverse && !EffectRules.CanTraverseUnits(state,unit) && (passThroughUnitId==null ||
                         !state.Units.Any(u=>u.Id==passThroughUnitId && u.Position==next)));
-                    if(catalog.Cell(next)?.Obstacle!=false || occupiedBlocking || !EffectRules.CanMoveAcross(catalog,state,unit,current,next))break;
+                    var cell=catalog.Cell(next);
+                    if(cell==null || cell.Obstacle && (i==distance-1 || !traverse) || occupiedBlocking || !EffectRules.CanMoveAcross(catalog,state,unit,current,next))break;
                     path.Add(next);current=next;
                 }
                 if(path.Count==distance+1)result.Add(new MoveOption{Destination=current,Path=path});

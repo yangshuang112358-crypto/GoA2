@@ -1,0 +1,201 @@
+{
+  "SchemaVersion": 1,
+  "Id": "phantasm-empty",
+  "Name": "幻化：可选择空手邻敌",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "shargatha,sabina,brogan,arien"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "28",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugAdvance",
+      "Actor": "p1",
+      "Value": "round"
+    },
+    {
+      "Command": "ResolveRoundEnd",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "shargatha-02-快速突刺"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "shargatha-08-统治领域"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "shargatha-14-石化之眼"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "shargatha-04-横枪跃马"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "shargatha-10-独霸一方"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "shargatha-16-石化凝视"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p1",
+      "Value": "shargatha-12-幻化"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "shargatha-01-劈砍",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 4,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 6,
+        "Y": -5
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "shargatha-01-劈砍"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "sabina-00-近身射击"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2",
+      "Expect": {
+        "Active": "p1",
+        "Phase": "Action",
+        "PendingKind": "none"
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 6,
+        "Y": -7
+      }
+    },
+    {
+      "Command": "DebugDiscard",
+      "Actor": "p1",
+      "Value": "sabina-01-拔枪",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugDiscard",
+      "Actor": "p1",
+      "Value": "sabina-06-并肩作战",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugDiscard",
+      "Actor": "p1",
+      "Value": "sabina-07-指挥",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugDiscard",
+      "Actor": "p1",
+      "Value": "sabina-17-演练",
+      "Target": "p2"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "effect_target",
+        "PendingChooser": "p1",
+        "EventCounts": {
+          "UltimateTriggered": 1,
+          "PrimaryActionStarted": 0
+        }
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "attack_target",
+        "EventCounts": {
+          "ForcedDiscardSkipped": 1,
+          "ForcedDiscardRequired": 0
+        }
+      }
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Expect": {
+        "EventCounts": {
+          "AttackResolved": 1,
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

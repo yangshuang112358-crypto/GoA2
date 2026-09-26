@@ -212,7 +212,7 @@ namespace Goa2.Domain
     public sealed class GameState
     {
         public const string CurrentProtocol = "1.0.0";
-        public const int CurrentEngineVersion = 56;
+        public const int CurrentEngineVersion = 57;
         public int InitialEngineVersion;
         public int EngineVersion;
         public string ProtocolVersion = CurrentProtocol;
@@ -242,6 +242,7 @@ namespace Goa2.Domain
         public string VictoryReason = "";
         public FrontlineTransition? Frontline;
         public CardExecution? Execution;
+        public BeforeActionFrame? BeforeAction;
         public PendingMinionDefeat? MinionDefeat;
         public RoundEndProgress? RoundEnd;
         public int EffectSequence;

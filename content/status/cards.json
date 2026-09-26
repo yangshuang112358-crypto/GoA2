@@ -429,11 +429,26 @@
     },
     {
       "card_id": "shargatha-12-幻化",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-12-幻化.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/PhantasmTests.cs",
+        "tests/scenarios/phantasm-primary.json",
+        "tests/scenarios/phantasm-move.json",
+        "tests/scenarios/phantasm-defense.json",
+        "tests/scenarios/phantasm-empty.json",
+        "tests/scenarios/phantasm-invalid.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs",
+        "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+        "unity/Assets/Scripts/GameScreen.Combat.cs"
+      ]
     },
     {
       "card_id": "shargatha-13-石化",

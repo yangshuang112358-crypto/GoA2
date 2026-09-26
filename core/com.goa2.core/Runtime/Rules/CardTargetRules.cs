@@ -53,6 +53,7 @@ namespace Goa2.Rules
         }
         public static List<string> LegalEffectTargets(ContentCatalog catalog,GameState state,int seat)
         {
+            if(state.Pending?.ResumeAt==BeforeActionTargetResume)return BeforeActionTargets(state,seat);
             if(state.Pending?.Kind=="effect_minion") return LegalEffectMinionRemovals(catalog,state,seat);
             var execution=state.Execution;
             if(state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="effect_target" || state.Pending.ChooserSeat!=seat ||
@@ -79,6 +80,7 @@ namespace Goa2.Rules
         }
         private static void ChooseEffectTarget(ContentCatalog catalog,GameState state,Command command)
         {
+            if(state.Pending?.ResumeAt==BeforeActionTargetResume){ChooseBeforeActionTarget(catalog,state,command);return;}
             if(state.Pending?.ResumeAt==UltimateTargetResume){ChooseCompletionTarget(catalog,state,command);return;}
             if(state.Pending?.ResumeAt=="push_all_adjacent" || state.Pending?.ResumeAt=="blocked_push_discard_target"){ChooseGroupPushTarget(catalog,state,command);return;}
             if(state.Pending?.ResumeAt=="unit_swap" && command.Value=="skip")

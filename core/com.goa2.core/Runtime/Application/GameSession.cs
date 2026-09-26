@@ -106,7 +106,7 @@ namespace Goa2.Application
                 PendingSpawns = snapshot.Frontline?.Remaining.Select(s => s.Unit).ToList() ?? new System.Collections.Generic.List<UnitState>(),
                 EngineVersion = snapshot.EngineVersion,
                 CanUpgradeEngine = seat.HasValue && GameRules.CanUpgradeEngine(snapshot),
-                Attack = snapshot.Execution?.Attack,
+                Attack = snapshot.Execution?.Attack ?? snapshot.BeforeAction?.ParentExecution?.Attack,
                 AttackRange = CombatRules.CurrentAttackRange(catalog,snapshot),
                 RoundEndStage = snapshot.RoundEnd?.Stage ?? "",
                 RemainingMinionRemovals = snapshot.RoundEnd?.RemainingRemovals ?? 0,

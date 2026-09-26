@@ -7,7 +7,7 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
-        private static void BeginPrimary(ContentCatalog catalog, GameState state, Command command)
+        private static void BeginPrimary(ContentCatalog catalog, GameState state, Command command, bool allowBeforeAction = true)
         {
             Require(state.Phase == Phase.Action && state.ActiveSeat == command.ActorSeat && state.Pending == null && state.Execution == null,
                 "not_active", "当前不能开始主要行动。");
@@ -15,6 +15,7 @@ namespace Goa2.Rules
             var card = ActiveCard(state); var definition = catalog.Card(card.CardId); var program = CardPrograms.Primary(definition,state.EngineVersion);
             Require(program != null, "primary_not_implemented", "此卡主要行动尚未实装。");
             Require(EffectRules.SkillRestriction(catalog,state,command.ActorSeat,definition) == "", "primary_restricted", "当前技能受到打断施法限制。");
+            if (allowBeforeAction && BeginBeforeAction(catalog,state,command)) return;
             state.Execution = new CardExecution { CardId = card.CardId, ControllerSeat = command.ActorSeat, ProgramId = program!.Id, ProgramVersion = program.Version };
             Emit(state, command, "PrimaryActionStarted", command.ActorSeat, card.CardId);
             ContinueCard(catalog, state, command);
@@ -166,7 +167,7 @@ namespace Goa2.Rules
             }
             throw new RuleViolation("card_step_limit", "单次卡牌推进超过上限。");
         }
-        private static void ChooseAttackTarget(ContentCatalog catalog, GameState state, Command command)
+        private static void ChooseAttackTarget(ContentCatalog catalog, GameState state, Command command, bool allowBeforeAction = true)
         {
             Require(state.Pending?.Kind == "attack_target" && state.Pending.ChooserSeat == command.ActorSeat && state.Execution != null,
                 "invalid_attack_target", "请选择当前合法敌方目标。");
@@ -180,6 +181,7 @@ namespace Goa2.Rules
                 ContinueCard(catalog,state,command);return;
             }
             Require(CombatRules.AttackTargets(catalog,state,command.ActorSeat).Contains(command.Value),"invalid_attack_target","请选择当前合法敌方目标。");
+            if(allowBeforeAction && (repeat || once) && BeginBeforeAction(catalog,state,command))return;
             if(repeat) RestartAttack(catalog,state,command); else state.Execution!.Cursor++;
             if(once)
             {
@@ -231,13 +233,14 @@ namespace Goa2.Rules
             }
             else Emit(state, command, "DefenseChoiceRequired", defender, card.Id);
         }
-        private static void Defend(ContentCatalog catalog, GameState state, Command command)
+        private static void Defend(ContentCatalog catalog, GameState state, Command command, bool allowBeforeAction = true)
         {
             Require(state.Phase == Phase.EffectChoice && state.Pending?.Kind == "defense" && state.Pending.ChooserSeat == command.ActorSeat && state.Execution?.Attack != null,
                 "invalid_defender", "当前不由你响应攻击。");
             Require(!CombatRules.UnimplementedDefenses(catalog, state, command.ActorSeat).Contains(command.Value), "response_not_implemented", "该主要防御的响应文字尚未实装。");
             var option = CombatRules.DefenseOptions(catalog, state, command.ActorSeat).SingleOrDefault(o => o.CardId == command.Value);
             Require(option != null, "invalid_defense", "只能使用本人手中的合法防御牌。");
+            if (allowBeforeAction && BeginBeforeAction(catalog,state,command)) return;
             var instance = state.Players[command.ActorSeat].Cards.Single(c => c.CardId == command.Value && c.Zone == CardZone.InHand);
             instance.Zone = CardZone.Discarded;
             Emit(state, command, "CardDiscarded", command.ActorSeat, instance.CardId, command.ActorSeat);

@@ -1,0 +1,92 @@
+{
+  "engine": 57,
+  "implemented_cards": 68,
+  "data_only_cards": 40,
+  "build_utc": "2026-09-26T00:31:50.2619824Z",
+  "assemblies": {
+    "Goa2.Application.dll": "fdf6fd84d527c905b0053544c3b84c183a4aa2b6e64baeb2783332fe256a3a03",
+    "Goa2.Domain.dll": "cee99ee60c320804bfd9bc88066b9513b755159ae5cba77154442454304669ed",
+    "Goa2.Editor.dll": "f934be2659f5b3e32aa2e47994095084ba55dd6df2eea18842755f00bcadd901",
+    "Goa2.Infrastructure.dll": "354aa35acf024681bfdb59f9a94fa24e4538504dfeeb945b700b9f54ebe0bf16",
+    "Goa2.Rules.dll": "c8056d693139a6d82a215df1c05465494807975347b43b760bc8aa2c1b9a6268"
+  },
+  "core": {
+    "passed": 1476,
+    "failed": 0,
+    "report": "artifacts/tests/phantasm-unity-0.xml",
+    "card_specific": 22,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/phantasm-unity-0.xml"
+    ],
+    "environment_failure": "Windows App Control 0x800711C7 blocked the .NET application assembly; artifacts/tests/tidal-focused.trx preserves the failed attempt."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "blocked_by_windows_application_control"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/phantasm-primary.json",
+        "input_sha256": "231b7756da6b51dc25d093cc381a6788433be92969bfd0f5de51104064f81106",
+        "report": "artifacts/editor-scenarios/phantasm-primary/03180eead4034100b6bd2040df6bcef2/report.json",
+        "steps": 26,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/phantasm-move.json",
+        "input_sha256": "3002b3c65aca61ece5d7bed5b9347fcefef59ba5761a62a7296c2df5857d66f8",
+        "report": "artifacts/editor-scenarios/phantasm-move/ea5392af212843efad9e984017bfe23c/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/phantasm-defense.json",
+        "input_sha256": "bbacbf18b37491752824730eaae1c6c33357efb0daab116ea5ee2c5d85771f01",
+        "report": "artifacts/editor-scenarios/phantasm-defense/5c787652ba6b4830a5a8039188301f92/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/phantasm-empty.json",
+        "input_sha256": "64be377fe2b449fea45b4ef4226e8ae15e0373a9479bf66c2d928c14c10740fd",
+        "report": "artifacts/editor-scenarios/phantasm-empty/d6cb336ae44f4143ab7231ffd14d8cf1/report.json",
+        "steps": 29,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/phantasm-invalid.json",
+        "input_sha256": "6260bd60a7eff681baf5d05da76d9755c81e873584db87b3bdf63c1066aa7a9f",
+        "report": "artifacts/editor-scenarios/phantasm-invalid/4d394507cad4447b97b9339aab383a18/report.json",
+        "steps": 26,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine57-phantasm-defense-discard-scenario.json",
+        "input_sha256": "a83f5677b7060fe50c8a1f8eb351fc353de28857a594d4256dfb088893fbc3cb",
+        "report": "artifacts/editor-scenarios/engine57-phantasm-defense-discard-scenario/89ed5c6f744d42c38f88f5ff48d14fb1/report.json",
+        "steps": 24,
+        "passed": true
+      }
+    ],
+    "scenarios": 6,
+    "steps": 154
+  },
+  "manual_presets": [
+    "phantasm",
+    "phantasm-defense",
+    "phantasm-empty"
+  ],
+  "note": "Unity EditMode 1476 tests and Editor batch 6 scenarios/154 steps passed; Windows build and package integrity passed. Native Player/UI/physical input were not attempted in this batch. The last known Windows App Control restriction is historical evidence, not a new launch attempt.",
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "path": "artifacts/releases/Goa2V1-e57-phantasm-20260926-003400-43668153.zip",
+    "sha256": "d3dbff856ab21a1d218948c8a6638046d959f809837f5af9168c2b0b42259df8"
+  }
+}
