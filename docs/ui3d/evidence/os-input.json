@@ -1,0 +1,27 @@
+{
+  "method": "OS key/mouse injection into verified foreground standalone Player; not human physical input and not UI Toolkit synthetic events",
+  "passed": true,
+  "error": "",
+  "checks": [
+    "Q rotates one step left",
+    "E reverses Q",
+    "E step 1",
+    "E step 2",
+    "E step 3",
+    "E step 4",
+    "E step 5",
+    "E step 6",
+    "E step 7",
+    "E step 8",
+    "E step 9",
+    "E step 10",
+    "E step 11",
+    "E step 12",
+    "Rotation does not submit a game command",
+    "Wheel zoom reaches actual board",
+    "Middle drag pans camera",
+    "2D fallback click",
+    "2.5D return click",
+    "Camera and fallback preserve game revision"
+  ]
+}
