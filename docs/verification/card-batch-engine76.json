@@ -1,0 +1,82 @@
+{
+  "engine": 76,
+  "implemented_cards": 87,
+  "data_only_cards": 21,
+  "build_utc": "2026-09-26T07:20:21.1209877Z",
+  "assemblies": {
+    "Goa2.Application.dll": "a932eaa9df4dbcf4df7e84d58677fc2cc66cbc25249cc3f7ea854846be0bb459",
+    "Goa2.Domain.dll": "fd631fee7a77f2ca72537fddd60e82c981593612c41855280ffd7fd1938b5eca",
+    "Goa2.Editor.dll": "5d863c2e600009329c107059e3b1c5de3a436e7d46e113f7a424c325c984f9fa",
+    "Goa2.Infrastructure.dll": "7eebdfd8763bdec6eb85ba28177e4090ced40b187a28d86e74b25d54f693c522",
+    "Goa2.Rules.dll": "0629a7ce170823b1460bd43976d8ec10b516f75b2591a7c441d1cc2a6c8f2b30"
+  },
+  "core": {
+    "passed": 54,
+    "failed": 0,
+    "report": "artifacts/tests/rising-tide-unity-0.xml",
+    "card_specific": 6,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/rising-tide-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/rising-tide-push.json",
+        "input_sha256": "d3fa1058a7b224b16a4898757bacf2f23cb9c21e63c7ec834e18c878b1461cd9",
+        "report": "artifacts/editor-scenarios/rising-tide-push/7db220ce625541d796265cb2f218c003/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/rising-tide-skip.json",
+        "input_sha256": "ee6018b482ed232d8d040ed8f4acc8c32eb1b2e86e1538066a5bdb843805786c",
+        "report": "artifacts/editor-scenarios/rising-tide-skip/6ea989aa77104a8684104397de232f97/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/rising-tide-defeat.json",
+        "input_sha256": "74493a7d74826c3f2da05598c544ac508531d96fa6577b75b2387fc04ab390ee",
+        "report": "artifacts/editor-scenarios/rising-tide-defeat/bb07b32ad49a463abedb7ee691395020/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine76-rising-tide-choice-scenario.json",
+        "input_sha256": "59ccc17510e0250a75c7624a62bb2ad9c5647852f1dbddf45deffa0ce0df053b",
+        "report": "artifacts/editor-scenarios/engine76-rising-tide-choice-scenario/fc1d232905364621b917059d018c4392/report.json",
+        "steps": 14,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 59
+  },
+  "manual_presets": [
+    "rising-tide-push"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/rising-tide-red.xml",
+    "passed": 2,
+    "failed": 4
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e76-rising-tide-20260926-072059-55e2d191.zip",
+    "sha256": "95bcce48494f5f508c9749c111bb4b5b3f7e3bf4cfc51638e26dc3c426154920"
+  }
+}

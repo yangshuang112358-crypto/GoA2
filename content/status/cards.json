@@ -949,11 +949,19 @@
     },
     {
       "card_id": "arien-03-潮起",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-03-潮起.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/RisingTideTests.cs",
+        "tests/scenarios/rising-tide-push.json",
+        "tests/scenarios/rising-tide-skip.json",
+        "tests/scenarios/rising-tide-defeat.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "arien-04-惊涛骇浪",

@@ -675,6 +675,15 @@
       "input": "tests/fixtures/engine75-surge-push-choice-scenario.json",
       "input_sha256": "15a97d2d22107d2cac5d2cc67fe9b7cd7aec891cefbab17cc468fd9a317f0c4e",
       "provenance": "tests/fixtures/engine75-surge-push-choice.md"
+    },
+    {
+      "engine_version": 76,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine76-rising-tide-choice.json",
+      "save_sha256": "cec98cbbed56b6bc2889064a2fabdfb157067cc8261a21031dbf6e0155993c32",
+      "input": "tests/fixtures/engine76-rising-tide-choice-scenario.json",
+      "input_sha256": "59ccc17510e0250a75c7624a62bb2ad9c5647852f1dbddf45deffa0ce0df053b",
+      "provenance": "tests/fixtures/engine76-rising-tide-choice.md"
     }
   ]
 }
