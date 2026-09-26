@@ -621,6 +621,15 @@
       "input": "tests/fixtures/engine69-magic-water-placement-scenario.json",
       "input_sha256": "ff5611de11f81b17c96cd8841a5cc596f649ad4057e3ec5e1638256d7bc9dfd8",
       "provenance": "tests/fixtures/engine69-magic-water-placement.md"
+    },
+    {
+      "engine_version": 70,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine70-covering-fire-payment.json",
+      "save_sha256": "101a92f634ac5a0e92c99f48a316797c2c78de00a4ab96e48c740541a055e055",
+      "input": "tests/fixtures/engine70-covering-fire-payment-scenario.json",
+      "input_sha256": "ed8bb456c829394cef045564cd2700e617cb14657d55572fd68cb3304ad421ab",
+      "provenance": "tests/fixtures/engine70-covering-fire-payment.md"
     }
   ]
 }

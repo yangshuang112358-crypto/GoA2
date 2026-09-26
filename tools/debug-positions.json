@@ -925,5 +925,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：阿连站在小兵出生点(5,-9)，发动魔法水流，可放到(3,-9)。分支：不能选相邻(5,-8)，小兵出生点与英雄出生点采用同一放置后判断。"
+  },
+  {
+    "id": "covering-fire-pay",
+    "title": "火力掩护：邻兵、弃牌与拒绝",
+    "scenario": "covering-fire-pay",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号萨彼娜与(4,-8)友方兵相邻，发动火力掩护，可选2号虎爪或4号黄蜂；目标本人弃一张手牌，也可主动选择被击败。分支：选择不同敌人，或在调试中移走邻兵后验证不能发动效果；受保护重型也可满足邻兵条件。"
+  },
+  {
+    "id": "covering-fire-counterattack",
+    "title": "火力掩护：与夏尔加萨反击联动",
+    "scenario": "covering-fire-counterattack",
+    "through_step": 12,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：先由1号夏尔加萨发动反击，攻击(5,-8)敌方小兵。再由2号萨彼娜发动火力掩护，选择夏尔加萨；1号弃劈砍后触发反击，选择弃牌堆劈砍攻击4号黄蜂。分支：1号可以主动被击败，或丢非攻击牌；若弃牌堆无合法攻击则不会出现反击候选。"
   }
 ]

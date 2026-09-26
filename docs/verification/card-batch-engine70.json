@@ -1,0 +1,83 @@
+{
+  "engine": 70,
+  "implemented_cards": 81,
+  "data_only_cards": 27,
+  "build_utc": "2026-09-26T06:36:21.2156851Z",
+  "assemblies": {
+    "Goa2.Application.dll": "542e38f5885309a450a84d999dd43d494a2161fe5b7fd8a4937370b8e55f4a6f",
+    "Goa2.Domain.dll": "6aace7cfa6d15510f64122ba5151d1795b6003c829e7aba1c59f554e010c6aab",
+    "Goa2.Editor.dll": "e65d8c57d8cb6e22626f8d6e1185fdbb70793098aa168d627625e91747d87853",
+    "Goa2.Infrastructure.dll": "7c84693fbe82dfae7da028bc5e1b4e2d0d5543c62e99d7915a973ddfdc53dc65",
+    "Goa2.Rules.dll": "d13f0899e159471b39674cfcade08e6d18d987e4b129bd9c26aaf0dffe343287"
+  },
+  "core": {
+    "passed": 79,
+    "failed": 0,
+    "report": "artifacts/tests/covering-fire-unity-0.xml",
+    "card_specific": 11,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/covering-fire-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/covering-fire-pay.json",
+        "input_sha256": "dc4981456833ce4534f2eff76db95581e5debd58b754a4843a010a0d0bf20926",
+        "report": "artifacts/editor-scenarios/covering-fire-pay/1ee14b5854ae4b829fdf11626b80287e/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/covering-fire-decline.json",
+        "input_sha256": "7c0384fd975dd6c6e36e6c2236da76817fb7edc714272b437d00662df9e6f829",
+        "report": "artifacts/editor-scenarios/covering-fire-decline/e1bae8a540064f1ca448e8b3c81973ac/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/covering-fire-counterattack.json",
+        "input_sha256": "9a9b66a5cfe3896018df9458fcb45e4a3a8991ffbaa238fa692e8a61138858a1",
+        "report": "artifacts/editor-scenarios/covering-fire-counterattack/2ae1aaf90c3941e2a512e9e04e80bc4c/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine70-covering-fire-payment-scenario.json",
+        "input_sha256": "ed8bb456c829394cef045564cd2700e617cb14657d55572fd68cb3304ad421ab",
+        "report": "artifacts/editor-scenarios/engine70-covering-fire-payment-scenario/38c01c8c3cd3456690851270378f1a6e/report.json",
+        "steps": 13,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 61
+  },
+  "manual_presets": [
+    "covering-fire-pay",
+    "covering-fire-counterattack"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/covering-fire-red.xml",
+    "passed": 1,
+    "failed": 10
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e70-covering-fire-20260926-063711-df7a96eb.zip",
+    "sha256": "154871391982c5e1588c7cd9267b8ef1272c2f7fd5833bb2adc125d904de2439"
+  }
+}
