@@ -946,11 +946,19 @@
     },
     {
       "card_id": "arien-07-潮水",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-07-潮水.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/TideTests.cs",
+        "tests/scenarios/tide-static-boundary.json",
+        "tests/scenarios/tide-vacated-hero-spawn.json",
+        "tests/scenarios/tide-vacated-minion-spawn.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "arien-08-奥术换位",

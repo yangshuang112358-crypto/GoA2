@@ -880,5 +880,32 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：1号发动海妖之歌，选(-1,-3)的红方小兵，移到(-1,-4)。2号红方队长先沿最短路线把兵归回(-1,-3)，随后1号才决定是否重复。分支：第一次不移动就不产生归区；归区后该兵仍可能再次成为最近目标。"
+  },
+  {
+    "id": "tide-static-boundary",
+    "title": "潮水：出生点占位与放置边界",
+    "scenario": "tide-static-boundary",
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号阿连发动潮水，选择(6,-6)，可跨越黄蜂的静电封锁边界，因为放置不是移动。分支：占有英雄出生点(7,-9)的黄蜂使相邻(7,-10)可选；占有小兵出生点(5,-9)的布罗根使(5,-8)可选。落点不能是任何出生点或空出生点邻格。"
+  },
+  {
+    "id": "tide-vacated-hero-spawn",
+    "title": "潮水：腾空英雄出生点",
+    "scenario": "tide-vacated-hero-spawn",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：阿连站在英雄出生点(7,-9)，发动潮水，可放到(6,-7)。分支：不能选(7,-10)等原格邻格，因为离开后(7,-9)变为空出生点；其他被占出生点邻格仍按占位允许。"
+  },
+  {
+    "id": "tide-vacated-minion-spawn",
+    "title": "潮水：腾空小兵出生点",
+    "scenario": "tide-vacated-minion-spawn",
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：阿连站在小兵出生点(5,-9)，发动潮水，可放到(3,-9)。分支：不能选相邻(5,-8)，小兵出生点与英雄出生点采用同一放置后判断。"
   }
 ]

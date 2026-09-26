@@ -1,0 +1,72 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine68-tide-placement-scenario",
+  "Name": "潮水：等待放置，空出生点按放置后检查",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "arien,wasp,brogan,sabina"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "arien-07-潮水",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 5,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-06-静电封锁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "sabina-07-指挥"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p2"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p3"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "placement",
+        "PendingChooser": "p1"
+      }
+    }
+  ]
+}

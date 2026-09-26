@@ -11,12 +11,18 @@ namespace Goa2.Rules
         {
             var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
             if(source==null)return new List<Hex>();
-            bool safe=CardPrograms.Primary(catalog.Card(execution.CardId),state.EngineVersion)!.PlacementTarget==PlacementTargetKind.SafeInSkillRangeNearObstacle;
+            var placement=CardPrograms.Primary(catalog.Card(execution.CardId),state.EngineVersion)!.PlacementTarget;
+            bool safe=placement==PlacementTargetKind.SafeInSkillRangeNearObstacle;
+            // D-048 samples occupancy after leaving the origin; all hero/minion spawn types count.
+            var blockedByEmptySpawn=new HashSet<Hex>();
+            if(placement==PlacementTargetKind.EmptyNoSpawnAwayFromEmptySpawns)
+                foreach(var spawn in catalog.Cells.Where(c=>c.Spawn.EndsWith("Spawn") && !state.Units.Any(u=>u.Id!=source.Id && u.Position==c.Position)))
+                    foreach(var neighbor in spawn.Position.Neighbors())blockedByEmptySpawn.Add(neighbor);
             if(safe && !catalog.Cells.Any(c=>c.Obstacle && c.Position.Distance(source.Position)==1) && !state.Units.Any(u=>u.Id!=source.Id && u.Position.Distance(source.Position)==1))return new List<Hex>();
             int distance=(catalog.Card(execution.CardId).SubtypeValue??0)+(safe?state.Players[execution.ControllerSeat].RangeBonus:state.Players[execution.ControllerSeat].RangedBonus);
             // Placement has no traversal path; movement boundaries do not constrain its destination.
             return catalog.Cells.Where(c=>!c.Obstacle && (safe?!state.Units.Any(u=>u.Team!=source.Team && u.Position.Distance(c.Position)==1):c.Spawn=="empty") && c.Position.Distance(source.Position)>0 &&
-                c.Position.Distance(source.Position)<=distance && !state.Units.Any(u=>u.Position==c.Position))
+                c.Position.Distance(source.Position)<=distance && !blockedByEmptySpawn.Contains(c.Position) && !state.Units.Any(u=>u.Position==c.Position))
                 .Select(c=>c.Position).OrderBy(p=>p.X).ThenBy(p=>p.Y).ToList();
         }
         public static List<Hex> LegalPlacements(ContentCatalog catalog,GameState state,int seat)

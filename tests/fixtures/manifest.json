@@ -603,6 +603,15 @@
       "input": "tests/fixtures/engine67-siren-repeat-scenario.json",
       "input_sha256": "aa57a2dba6ebe5d5884e69453a9045fb90829ab15bfbd6c731bf90a9e14a5f39",
       "provenance": "tests/fixtures/engine67-siren-repeat.md"
+    },
+    {
+      "engine_version": 68,
+      "accepted_commands": 11,
+      "save": "tests/fixtures/engine68-tide-placement.json",
+      "save_sha256": "300661b90d5d250a0873a936a56b71e8c1721a6a39dbbd53777ebbfdd0b94480",
+      "input": "tests/fixtures/engine68-tide-placement-scenario.json",
+      "input_sha256": "5303489090b92df6d1ceb8c303f20d6bb1a408b965855784904400a253a8a283",
+      "provenance": "tests/fixtures/engine68-tide-placement.md"
     }
   ]
 }
