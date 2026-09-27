@@ -25,9 +25,9 @@ namespace Goa2.Rules
             bool primaryMove = card.PrimaryFamily == "movement" && card.PrimaryValue > 0;
             bool secondaryMove = card.PrimaryFamily != "movement" && card.SecondaryMovement > 0;
             if (mode == MoveMode.Secondary && secondaryMove)
-                return Reachable(catalog, state, unit, card.SecondaryMovement!.Value + player.MovementBonus);
+                return Reachable(catalog, state, unit, EffectRules.ActionMovementBudget(catalog,state,unit,card.SecondaryMovement!.Value + player.MovementBonus));
             if (mode == MoveMode.Fast && (primaryMove || secondaryMove))
-                return Fast(catalog, state, unit);
+                return Fast(catalog, state, unit).Where(m=>unit.Position.Distance(m.Destination)<=EffectRules.ActionMovementBudget(catalog,state,unit,int.MaxValue)).ToList();
             return empty;
         }
         internal static List<MoveOption> Reachable(ContentCatalog catalog, GameState state, UnitState unit, int budget)

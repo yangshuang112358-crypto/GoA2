@@ -792,6 +792,15 @@
       "input": "tests/fixtures/engine88-dominance-defense-scenario.json",
       "input_sha256": "f355d6c345d6ac87823a1090d8baed7ba3b84fced5e3ff1bdffbc86dacb0adf8",
       "provenance": "tests/fixtures/engine88-dominance-defense.md"
+    },
+    {
+      "engine_version": 89,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine89-slippery-internal.json",
+      "save_sha256": "647cee897ae8b8748fc71d3492987327f232abe831d6260cf5c0ba054711912b",
+      "input": "tests/fixtures/engine89-slippery-internal-scenario.json",
+      "input_sha256": "f39507594f07cc2313ee129247d239a5433c59a3eff5a3c36261feee7a4200a0",
+      "provenance": "tests/fixtures/engine89-slippery-internal.md"
     }
   ]
 }

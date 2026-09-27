@@ -1,0 +1,91 @@
+{
+  "engine": 89,
+  "implemented_cards": 100,
+  "data_only_cards": 8,
+  "build_utc": "2026-09-27T06:39:23.8925775Z",
+  "assemblies": {
+    "Goa2.Application.dll": "40e49e67640de21421b372e66f43889061adf4d0b5bd9a823d2e7a36bc5f0c5b",
+    "Goa2.Domain.dll": "58d6a846dfdd20b70f42180fd37343b09a2bed1e558b4b221d1d55a52501fbad",
+    "Goa2.Editor.dll": "59b7b362d010baedb1afcfaac84e42a7039063adece808befced784987569306",
+    "Goa2.Infrastructure.dll": "83b9f8beaf435dce4f7d0c5c98391d3421e0b24c2ed9758473920e09e53d2589",
+    "Goa2.Rules.dll": "d60f2be2cbf6785c2ebe90c82e8f6a7bc4e7b74a39e74a85f546e4842fe89434"
+  },
+  "core": {
+    "passed": 114,
+    "failed": 0,
+    "report": "artifacts/tests/slippery-unity-0.xml",
+    "card_specific": 11,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/slippery-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/slippery-secondary.json",
+        "input_sha256": "fc26ae0c4128b73172c3a2e039f31baf8394e1a80255800ccc9df357b0c0e4e8",
+        "report": "artifacts/editor-scenarios/slippery-secondary/0bd3e54278e04d40be52b2d9b960f3ca/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/slippery-primary.json",
+        "input_sha256": "d1cf15fc45b9c43d2364c8799b264da3575bc6eebba6f1b7c71666637bb9dc9d",
+        "report": "artifacts/editor-scenarios/slippery-primary/28532858e5e049efbd97df90d581bb7a/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/slippery-outside.json",
+        "input_sha256": "594706295b82477dfe050985f056cea83972b2baf9e2ef1f3e32d207a5bbfd7c",
+        "report": "artifacts/editor-scenarios/slippery-outside/900f518714d64f94a26995313e0a78b6/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/slippery-internal.json",
+        "input_sha256": "29eaec9d095efb44f1efc3f10d3235249a6e4446117d8e1f6513bcc479687e89",
+        "report": "artifacts/editor-scenarios/slippery-internal/35a1a9565d934c8098b248bbaccf920c/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine89-slippery-internal-scenario.json",
+        "input_sha256": "f39507594f07cc2313ee129247d239a5433c59a3eff5a3c36261feee7a4200a0",
+        "report": "artifacts/editor-scenarios/engine89-slippery-internal-scenario/adeb8439a92a44c0a6493bd1692d9ad1/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 71
+  },
+  "manual_presets": [
+    "slippery-secondary",
+    "slippery-primary",
+    "slippery-outside"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/slippery-red.xml",
+    "passed": 1,
+    "failed": 10
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e89-slippery-20260927-063946-d691b51c.zip",
+    "sha256": "089f410c2753d20177c38ba4670347c30f8a7378df18ae008202be29ffb93cbb"
+  }
+}

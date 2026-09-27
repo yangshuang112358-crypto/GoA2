@@ -1285,5 +1285,32 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：2号黄蜂攻击(3,-8)夏尔加萨，攻击总值2，重型虽保持真实免疫也不再提供敌方支持。分支：攻击(4,-9)布罗根总值5；不能借此直接移除红重型。"
+  },
+  {
+    "id": "slippery-secondary",
+    "title": "滑溜溜：主要技能起点",
+    "scenario": "slippery-secondary",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号阿连执行主要技能，随后2号夏尔加萨的次要移动最多1格。分支：切至4号执行偷天妙手，其牌内移动仍可2格；3号友方不受限制。"
+  },
+  {
+    "id": "slippery-primary",
+    "title": "滑溜溜：限制主要移动",
+    "scenario": "slippery-primary",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号先施法，3号跳过后2号执行魅惑主要移动，最多1格；0格仍能正常建立魅惑。"
+  },
+  {
+    "id": "slippery-outside",
+    "title": "滑溜溜：范围外起步",
+    "scenario": "slippery-outside",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号施法后，2号从(7,-8)范围外开始次要移动，可走入范围内且不受1格上限；例如落(5,-7)。"
   }
 ]

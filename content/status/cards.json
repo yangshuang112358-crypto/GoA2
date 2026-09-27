@@ -1237,11 +1237,22 @@
     },
     {
       "card_id": "arien-14-滑溜溜",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-14-滑溜溜.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/SlipperyTests.cs",
+        "tests/scenarios/slippery-secondary.json",
+        "tests/scenarios/slippery-primary.json",
+        "tests/scenarios/slippery-outside.json",
+        "tests/scenarios/slippery-internal.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "arien-15-决斗家",

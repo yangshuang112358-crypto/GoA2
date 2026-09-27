@@ -133,6 +133,16 @@ namespace Goa2.Rules
                     (source.Id==defender.Id || source.Position.Distance(defender.Position)<=Radius(catalog,state,effect));
             });
         }
+        public static int ActionMovementBudget(ContentCatalog catalog,GameState state,UnitState unit,int budget)
+        {
+            if(state.EngineVersion<89)return budget;
+            foreach(var effect in Current(state,EffectKind.EnemyActionMovementLimitOne))
+            {
+                var source=Source(state,effect);
+                if(source!=null && source.Team!=unit.Team && CanAffect(state,effect.ControllerSeat,unit) && unit.Position.Distance(source.Position)<=Radius(catalog,state,effect))return System.Math.Min(budget,1);
+            }
+            return budget;
+        }
         public static bool CanMoveAcross(ContentCatalog catalog, GameState state, UnitState unit, Hex from, Hex to)
         {
             // A card ignoring heavy immunity does not remove immunity against other sources.

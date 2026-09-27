@@ -8,9 +8,13 @@ namespace Goa2.Rules
 {
     public sealed partial class GameRules
     {
-        private static int MovementStepBudget(ContentCatalog catalog,GameState state,PrimaryProgram program) =>
-            program.Instructions[state.Execution!.Cursor]==InstructionKind.PrimaryMovement
-                ? catalog.Card(state.Execution.CardId).PrimaryValue+state.Players[state.Execution.ControllerSeat].MovementBonus : program.TextMoveDistance;
+        private static int MovementStepBudget(ContentCatalog catalog,GameState state,PrimaryProgram program)
+        {
+            if(program.Instructions[state.Execution!.Cursor]!=InstructionKind.PrimaryMovement)return program.TextMoveDistance;
+            int budget=catalog.Card(state.Execution.CardId).PrimaryValue+state.Players[state.Execution.ControllerSeat].MovementBonus;
+            var source=state.Units.SingleOrDefault(u=>u.Seat==state.Execution.ControllerSeat);
+            return source==null ? 0 : EffectRules.ActionMovementBudget(catalog,state,source,budget);
+        }
         private static bool PassesThroughTarget(GameState state,PrimaryProgram program) => program.Instructions[state.Execution!.Cursor]==InstructionKind.RequiredStraightMoveThroughEnemy;
         private static List<MoveOption> StrikeThroughMoves(ContentCatalog catalog,GameState state,UnitState source,PrimaryProgram program)
         {
