@@ -346,6 +346,13 @@ namespace Goa2.Presentation
                 string result = option.Block ? "抵挡" : "防御 " + option.Assessment.FinalDefense + (option.Assessment.Successful ? " ≥ " : " < ") + option.Assessment.AttackCompared;
                 if (option.IgnoresMinions) result += " · 忽略小兵修正";
                 var button = Button(catalog.Card(id).Name + " · " + result, () => { defenseCardId = id; declineDefensePending = false; Render(); }, "choice-button");
+                button.name="defense-option-"+id;
+                if(CardDisplay.WarnDefense(catalog.Card(id),option.Assessment))
+                {
+                    button.style.backgroundColor=new UnityEngine.Color(.48f,.22f,.28f);
+                    button.text+=" · 数值偏低";
+                    button.tooltip="防御数值低于攻击数值；仅作数值警告，不判断牌文能否抵挡。";
+                }
                 if (id == defenseCardId) button.AddToClassList("chosen"); parent.Add(button);
             }
             foreach (string id in view.UnimplementedDefenseCards) parent.Add(Text(catalog.Card(id).Name + "：响应文字待实装，已保留等待。", "tiny"));

@@ -23,6 +23,7 @@ namespace Goa2.Presentation.UI3D
         private bool connected=true,dragging;
         private int pointerId;
         private Vector2 lastPointer;
+        private float lastAnimationTime;
         public Action? ViewportChanged;
         public int RotationStep => state.Step;
         public bool Connected => connected;
@@ -41,6 +42,12 @@ namespace Goa2.Presentation.UI3D
             }
             image=new Image {pickingMode=PickingMode.Ignore,scaleMode=ScaleMode.StretchToFill};
             image.StretchToParentSize();Add(image);
+            schedule.Execute(()=>
+            {
+                float now=Time.realtimeSinceStartup;
+                if(state.Advance(now-lastAnimationTime)) Repaint();
+                lastAnimationTime=now;
+            }).Every(16);
             compass.pickingMode=PickingMode.Ignore;compass.style.position=Position.Absolute;compass.style.left=8;compass.style.top=6;
             compass.style.fontSize=20;compass.style.color=Board3DScene.ColorOf("#DEE8EC");
             compass.style.backgroundColor=new Color(.06f,.11f,.16f,.88f);Add(compass);
@@ -49,11 +56,11 @@ namespace Goa2.Presentation.UI3D
                 scene=new Board3DScene(catalog,view,this.legal,connected ? selected : null,effectArea,state);
                 foreach(var token in scene.Labels)
                 {
-                    var label=new Label(token.text) {pickingMode=PickingMode.Ignore};label.AddToClassList("unit-label");
+                    var label=new Label(token.text.Replace("·","\n")) {pickingMode=PickingMode.Ignore};label.AddToClassList("unit-label");
                     label.style.color=Color.white;label.style.unityTextOutlineColor=new Color(.04f,.07f,.12f);label.style.unityTextOutlineWidth=.45f;
                     Add(label);labels.Add((label,token.cell,token.top));
                 }
-                compass.BringToFront();Repaint();
+                lastAnimationTime=Time.realtimeSinceStartup;compass.BringToFront();Repaint();
             });
             RegisterCallback<DetachFromPanelEvent>(_=>
             {
@@ -81,13 +88,21 @@ namespace Goa2.Presentation.UI3D
         {
             if(!connected || dragging || scene==null) return false;
             var cell=scene.Hit(local,contentRect.size);
-            if(cell==null || !legal.Contains(cell.Position)) return false;
+            if(cell==null) return false;
+            if(!legal.Contains(cell.Position))
+            {
+                // Tall pieces can cover an allowed ground hex. A non-target piece must
+                // not steal that click; still use only the host-supplied legal set.
+                var ground=Board3DGeometry.HexAt(scene.Ground(local,contentRect.size));
+                if(!legal.Contains(ground)) return false;
+                choose(ground);return true;
+            }
             choose(cell.Position);return true;
         }
         // A host adapter must clear its own preselection too, and construct a new surface from
         // the latest own Snapshot before enabling submissions after reconnect.
         public void SetConnected(bool value) {connected=value;Repaint();}
-        public void Rotate(int direction) {if(!state.Enabled) return;state.Step=Board3DGeometry.WrapStep(state.Step+direction);Repaint();}
+        public void Rotate(int direction) {if(!state.Enabled) return;state.Rotate(direction);lastAnimationTime=Time.realtimeSinceStartup;Repaint();}
         public void ResetView() {if(fallback!=null) fallback.ResetView();else {scene?.Reset();Repaint();}}
         public void FocusAt(Hex hex) {if(fallback!=null) fallback.FocusAt(hex);else {state.Focus=Board3DGeometry.World(hex);state.Zoom=3;Repaint();}}
         public void ZoomAtCenter(float factor) {if(fallback!=null) fallback.ZoomAtCenter(factor);else Zoom(contentRect.center,factor);}
@@ -107,9 +122,15 @@ namespace Goa2.Presentation.UI3D
                 var p=scene.Project(entry.cell,contentRect.size,entry.top);
                 float pixels=contentRect.height/(2*scene.Camera.orthographicSize);
                 float size=Mathf.Clamp(pixels*.65f,10,26);
-                entry.label.style.display=pixels<12 && !char.IsDigit(entry.label.text[entry.label.text.Length-1]) ? DisplayStyle.None : DisplayStyle.Flex;
-                entry.label.style.left=p.x-32;entry.label.style.top=p.y-size*.7f;
-                entry.label.style.width=64;entry.label.style.height=size*1.4f;entry.label.style.fontSize=size;
+                bool hero=entry.top>Board3DScene.WallHeight;
+                bool offscreen=p.x<0 || p.y<0 || p.x>contentRect.width || p.y>contentRect.height;
+                entry.label.style.display=offscreen || pixels<12 && !hero ? DisplayStyle.None : DisplayStyle.Flex;
+                var lines=entry.label.text.Split('\n');
+                float width=hero ? Mathf.Max(70,lines.Max(line=>line.Length)*size+12) : 40;
+                float height=size*1.4f*lines.Length;
+                entry.label.style.left=Mathf.Clamp(p.x-width/2,0,Mathf.Max(0,contentRect.width-width));
+                entry.label.style.top=Mathf.Clamp(p.y-height/2,0,Mathf.Max(0,contentRect.height-height));
+                entry.label.style.width=width;entry.label.style.height=height;entry.label.style.fontSize=size;
             }
             compass.text=connected ? $"Q ↶  {state.Step*30}°  ↷ E" : "连接已断开 · 禁止选择";
             ViewportChanged?.Invoke();

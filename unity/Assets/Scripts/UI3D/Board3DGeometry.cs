@@ -68,6 +68,21 @@ namespace Goa2.Presentation.UI3D
     {
         public bool Enabled = !Array.Exists(Environment.GetCommandLineArgs(), a => a == "-goa2d");
         public int Step;
+        public float Yaw { get; private set; }
+        private float startYaw,targetYaw,elapsed;
+        public bool Rotating => elapsed < .24f && Mathf.Abs(Yaw-targetYaw) > .001f;
+        public void Rotate(int direction)
+        {
+            Step=Board3DGeometry.WrapStep(Step+direction);
+            startYaw=Yaw;targetYaw+=direction*30;elapsed=0;
+        }
+        public bool Advance(float seconds)
+        {
+            if(!Rotating) return false;
+            elapsed=Mathf.Min(.24f,elapsed+Mathf.Max(0,seconds));
+            float t=elapsed/.24f;Yaw=Mathf.Lerp(startYaw,targetYaw,t*t*(3-2*t));
+            return true;
+        }
         public float Zoom = 1;
         public Vector3 Focus;
         public bool Initialized;

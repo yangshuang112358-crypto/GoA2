@@ -57,6 +57,19 @@ namespace Goa2.Presentation
             Submit(CommandKind.DebugPrepare,"wasp,shargatha,brogan,arien");
             yield return null;yield return null;
             Check(board?.Scene!=null,"Actual GameScreen contains 3D RenderTexture");
+            foreach(var unit in renderedView.Units)
+            {
+                var token=board!.Scene!.Labels.Single(t=>t.cell==unit.Position);
+                if(unit.Seat.HasValue)
+                {
+                    string hero=catalog.Heroes.Single(h=>h.Id==renderedView.Players.Single(p=>p.Seat==unit.Seat).HeroId).Name;
+                    Check(token.text==hero,"Full hero name: "+hero);
+                }
+                else Check(new[]{"近","远","重"}.Contains(token.text),"Minion label: "+token.text);
+            }
+            board!.Rotate(1);yield return new WaitForSecondsRealtime(.08f);
+            Check(board3DViewport.Yaw>0 && board3DViewport.Yaw<30,"Rendered intermediate rotation angle");
+            yield return new WaitForSecondsRealtime(.25f);board.Rotate(-1);yield return new WaitForSecondsRealtime(.3f);
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"initial-board.png"));yield return new WaitForSecondsRealtime(.25f);
             board!.ResetView();yield return null;
             long revision=renderedView.Revision;
@@ -68,15 +81,16 @@ namespace Goa2.Presentation
                 {
                     var token=scene.Labels.FirstOrDefault(t=>t.cell==cell.Position);
                     var point=scene.Project(cell.Position,size,token.text==null ? 0 : token.top);
-                    Check(scene.Hit(point,size)?.Position==cell.Position,"Pick "+step+" "+cell.Position);
+                    Check(token.text!=null ? scene.Hit(point,size)?.Position==cell.Position :
+                        Board3DGeometry.HexAt(scene.Ground(point,size))==cell.Position,"Pick "+step+" "+cell.Position);
                     Check(point.x>=0 && point.y>=0 && point.x<=size.x && point.y<=size.y,"Fit "+step+" "+cell.Position);
                 }
                 if(step==0 || step==3 || step==7)
                 {ScreenCapture.CaptureScreenshot(Path.Combine(output,"board-"+step+".png"));yield return new WaitForSecondsRealtime(.25f);}
-                surface.Rotate(1);yield return null;
+                surface.Rotate(1);yield return new WaitForSecondsRealtime(.3f);
             }
             Check(board!.RotationStep==0 && renderedView.Revision==revision,"Twelve rotations preserve revision and wrap to zero");
-            board.Rotate(-1);Check(board.RotationStep==11,"Q wraps backwards");board.Rotate(1);
+            board.Rotate(-1);Check(board.RotationStep==11,"Q wraps backwards");yield return new WaitForSecondsRealtime(.3f);board.Rotate(1);yield return new WaitForSecondsRealtime(.3f);
             var oldScene=board.Scene;Render();yield return null;yield return null;
             Check(oldScene!.Disposed && board!.Scene!=oldScene,"Snapshot rebuild disposes old scene");
             Check(board!.Scene!.TokenCount==renderedView.Units.Count,"Snapshot reconstruction matches all units");
@@ -85,6 +99,11 @@ namespace Goa2.Presentation
             leftExpanded=false;rightExpanded=false;topExpanded=false;bottomExpanded=false;Render();
             yield return null;yield return null;
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"expanded-board.png"));yield return new WaitForSecondsRealtime(.25f);
+            board!.ZoomAtCenter(1.8f);board.Rotate(1);yield return new WaitForSecondsRealtime(.3f);
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"tall-pieces.png"));yield return new WaitForSecondsRealtime(.25f);
+            board.FocusAt(renderedView.Units.First(u=>u.Seat==0).Position);yield return null;
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"hero-full-name.png"));yield return new WaitForSecondsRealtime(.25f);
+            board.ResetView();board.Rotate(-1);yield return new WaitForSecondsRealtime(.3f);
             Check(root.Q<Button>("toggle-left")!=null && root.Q<Button>("toggle-right")!=null,"Panel collapse controls retained");
             leftExpanded=rightExpanded=topExpanded=bottomExpanded=true;Render();yield return null;yield return null;
             var source=root.Q<VisualElement>("hand-zone");var longest=catalog.Cards.OrderByDescending(c=>c.Text.Length).First();
@@ -93,6 +112,11 @@ namespace Goa2.Presentation
             Check(rules!=null && CardTextMarkup.PlainText(rules.text)==CardTextMarkup.Description(longest),"Longest card full text retained");
             Check(preview!=null && preview.worldBound.x>=0 && preview.worldBound.y>=0 && preview.worldBound.xMax<=Screen.width+1 && preview.worldBound.yMax<=Screen.height+1,"Longest card stays inside window");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"long-card.png"));yield return new WaitForSecondsRealtime(.25f);HideCardPreview();
+            foreach(var card in catalog.Cards)
+            {
+                var numbers=new VisualElement();CompactCardNumbers(numbers,card,renderedView.Players[0],false,"audit");
+                Check(numbers.Query<Label>().ToList().Any(l=>l.text==CardDisplay.Primary(card)),"Unified card value: "+card.Id);
+            }
             // Standalone visual boundary test: legal selection, offline gating and rebuilding.
             var target=renderedView.Units.First().Position;int selections=0;
             var fixture=new BattlefieldSurface(catalog,renderedView,new[]{target},null,_=>selections++,_=>{},new BoardViewport(),Array.Empty<Hex>(),new Board3DViewport());
@@ -113,9 +137,23 @@ namespace Goa2.Presentation
                 Check(position!=null,"Preset exists: "+id);
                 session=DebugPositions.Open(catalog,position!);seat=session.View(0).Pending?.ChooserSeat ?? 0;ClearPending();Render();
                 yield return null;yield return null;
-                Check(renderedView.Phase==position.Phase,"Preset "+id+" renders original phase");
+                Check(renderedView.Phase==position!.Phase,"Preset "+id+" renders original phase");
                 ScreenCapture.CaptureScreenshot(Path.Combine(output,"pending-"+id+".png"));yield return new WaitForSecondsRealtime(.25f);
             }
+            session=DebugPositions.Open(catalog,positions.Single(p=>p.Id=="axe-ready"));seat=0;ClearPending();Render();
+            Submit(CommandKind.BeginPrimary);Submit(CommandKind.ChooseOptionalDiscard,"brogan-00-猛攻");Submit(CommandKind.ChooseAttackTarget,"hero:1");
+            seat=1;Render();yield return null;yield return null;
+            Check(renderedView.Pending?.Kind=="defense","Live defense choice reached through rules");
+            int warnings=0;
+            foreach(var option in renderedView.DefenseOptions)
+            {
+                var button=root.Q<Button>("defense-option-"+option.CardId);
+                bool warn=CardDisplay.WarnDefense(catalog.Card(option.CardId),option.Assessment);
+                Check(button!=null && (button.text.Contains("数值偏低")==warn),"Defense numeric warning: "+option.CardId);
+                if(warn) {warnings++;Check(button!.resolvedStyle.backgroundColor.r>.4f,"Pink background applied");}
+            }
+            Check(warnings>0,"Defense fixture includes insufficient finite defense");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"defense-warning.png"));yield return new WaitForSecondsRealtime(.25f);
             NewMatch();Submit(CommandKind.DebugPrepare,"wasp,shargatha,brogan,arien");yield return null;yield return null;
             // Both renderers remain usable with the exact same local session.
             board3DViewport.Enabled=false;Render();yield return null;yield return null;

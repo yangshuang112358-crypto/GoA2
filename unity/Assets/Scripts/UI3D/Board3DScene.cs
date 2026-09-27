@@ -13,6 +13,7 @@ namespace Goa2.Presentation.UI3D
     public sealed class Board3DScene : IDisposable
     {
         private const int Layer = 30;
+        public const float WallHeight = 1.05f, HeroHeight = WallHeight * 2;
         private readonly GameObject host;
         private readonly List<Object> owned = new List<Object>();
         private readonly Dictionary<Color, Material> materials = new Dictionary<Color, Material>();
@@ -42,8 +43,8 @@ namespace Goa2.Presentation.UI3D
             var targets=new HashSet<Hex>(legal); var areas=new HashSet<Hex>(effectArea);
             foreach (var cell in catalog.Cells)
             {
-                float height=cell.Obstacle ? .35f : .13f;
-                Add(hex,Board3DGeometry.World(cell.Position,-.13f),new Vector3(.965f,height,.965f),RegionColor(cell),"hex "+cell.Position);
+                float height=cell.Obstacle ? WallHeight : .13f;
+                Add(hex,Board3DGeometry.World(cell.Position,cell.Obstacle ? 0 : -.13f),new Vector3(.965f,height,.965f),RegionColor(cell),"hex "+cell.Position);
                 if (cell.Spawn.EndsWith("Spawn",StringComparison.Ordinal))
                     Add(circle,Board3DGeometry.World(cell.Position,.015f),Vector3.one*.28f,
                         ColorOf(cell.Spawn.StartsWith("blue",StringComparison.Ordinal) ? "#7BB9DF" : "#EA9F95"),"spawn");
@@ -53,9 +54,10 @@ namespace Goa2.Presentation.UI3D
             }
             foreach (var unit in view.Units)
             {
-                float radius=unit.Seat.HasValue ? .55f : .42f, height=unit.Seat.HasValue ? .52f : .34f;
-                string team=unit.Team==Team.Blue ? "蓝" : "红";
-                string text=team+(unit.Seat.HasValue ? (unit.Seat.Value+1).ToString() : unit.Kind=="heavy" ? "重" : unit.Kind=="ranged" ? "弓" : "兵");
+                float radius=unit.Seat.HasValue ? .55f : .42f, height=unit.Seat.HasValue ? HeroHeight : .34f;
+                string text=unit.Seat.HasValue
+                    ? catalog.Heroes.FirstOrDefault(h=>h.Id==view.Players.FirstOrDefault(p=>p.Seat==unit.Seat)?.HeroId)?.Name ?? "英雄"
+                    : unit.Kind=="heavy" ? "重" : unit.Kind=="ranged" ? "远" : "近";
                 Add(cylinder,Board3DGeometry.World(unit.Position,.03f),new Vector3(radius,height,radius),ColorOf(unit.Team==Team.Blue ? "#559EDB" : "#D77C79"),"token "+unit.Id);
                 Add(circle,Board3DGeometry.World(unit.Position,height+.04f),Vector3.one*radius,
                     ColorOf(unit.Seat.HasValue && unit.Seat==view.ActiveSeat ? "#FFE39A" : "#DDE8EA"),"token rim");
@@ -75,6 +77,7 @@ namespace Goa2.Presentation.UI3D
                 var shader=Resources.Load<Shader>("UI3D/Board");
                 if(shader==null) throw new InvalidOperationException("Missing UI3D board shader");
                 material=Own(new Material(shader) {color=color}); materials.Add(color,material);
+                if(name=="legal" || name=="selected") { material.SetInt("_ZTest",8);material.renderQueue=4000; }
             }
             go.AddComponent<MeshRenderer>().sharedMaterial=material;
         }
@@ -108,13 +111,13 @@ namespace Goa2.Presentation.UI3D
                 Texture.Create();Camera.targetTexture=Texture;
             }
             Camera.aspect=(float)width/height;
-            Camera.transform.rotation=Board3DGeometry.Rotation(state.Step);
+            Camera.transform.rotation=Quaternion.Euler(55,state.Yaw,0);
             Camera.transform.position=state.Focus-Camera.transform.forward*80;
             // Fit all twelve orientations at zoom 1; pan does not silently change scale.
             var inverse=Quaternion.Inverse(Camera.transform.rotation);
             var points=cells.Keys.Select(h=>inverse*Board3DGeometry.World(h)).ToList();
             float extentX=points.Count==0 ? 1 : (points.Max(p=>p.x)-points.Min(p=>p.x))*.5f+1.6f;
-            float extentY=points.Count==0 ? 1 : (points.Max(p=>p.y)-points.Min(p=>p.y))*.5f+1.6f;
+            float extentY=points.Count==0 ? 1 : (points.Max(p=>p.y)-points.Min(p=>p.y))*.5f+3;
             float fittedSize=Mathf.Max(extentY,extentX/Camera.aspect);
             Camera.orthographicSize=fittedSize/state.Zoom;
             Camera.Render();

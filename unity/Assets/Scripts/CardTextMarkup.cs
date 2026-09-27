@@ -41,7 +41,7 @@ namespace Goa2.Presentation
             new Keyword("快速移动",ActionColor,"按快速移动的独立合法范围选择目的地；不能拿普通移动范围代替。","R-MOVE","快速移动"),
             new Keyword("防御",ActionColor,"被攻击时从可用手牌选择合法防御；数值防御与牌文抵挡分别判断。","R-DEFENSE","主要防御","次要防御","防御"),
             new Keyword("抵挡",ActionColor,"牌文规定的抵挡效果；可用性取决于本卡条件及本次攻击限制。","R-DEFENSE","抵挡"),
-            new Keyword("弃牌",ActionColor,"由指定玩家选择合法牌并移入弃牌区；弃牌本身不执行该牌的主要文字。","R-CARD-ZONES","丢弃","弃牌"),
+            new Keyword("弃牌",DefeatColor,"由指定玩家选择合法牌并移入弃牌区；弃牌本身不执行该牌的主要文字。","R-CARD-ZONES","丢弃","弃牌"),
             new Keyword("取回",ActionColor,"将牌文指定区域中的合法卡牌取回手牌。","R-CARD-ZONES","取回"),
             new Keyword("放置",ActionColor,"按该效果选择合法位置；不能默认使用普通移动的路径规则。","R-MOVE","放置"),
             new Keyword("推动",ActionColor,"按推动的规则和本卡方向、距离处理；遇阻挡可停止。","R-MOVE","推动"),
@@ -62,6 +62,7 @@ namespace Goa2.Presentation
         });
         private static readonly (string term,Keyword keyword)[] Terms=Keywords.SelectMany(k=>k.Terms.Select(t=>(term:t,keyword:k))).OrderByDescending(t=>t.term.Length).ToArray();
         private static readonly Regex Quantity=new Regex(@"\G(?:[+−-]?\d+|[一二三四五六七八九十两]+)(?:张卡牌|张牌|格|次)");
+        private static readonly Regex DiscardPhrase=new Regex(@"\G(?:丢弃|弃置)(?:[一二三四五六七八九十两\d]+张(?:卡牌|牌))?");
         private static readonly Regex Tags=new Regex(@"</?(?:b|nobr|color(?:=#[0-9A-Fa-f]{6})?)>");
         private const string LiteralLessThan="<noparse><</noparse>";
         public static IReadOnlyList<Span> Spans(string text)
@@ -69,6 +70,8 @@ namespace Goa2.Presentation
             var spans=new List<Span>();
             for(int index=0;index<text.Length;)
             {
+                var discard=DiscardPhrase.Match(text,index);
+                if(discard.Success) {spans.Add(new Span(index,discard.Length,Keywords.First(k=>k.Name=="弃牌")));index+=discard.Length;continue;}
                 var term=Terms.FirstOrDefault(t=>index+t.term.Length<=text.Length && string.CompareOrdinal(text,index,t.term,0,t.term.Length)==0);
                 if(term.term!=null) { spans.Add(new Span(index,term.term.Length,term.keyword));index+=term.term.Length;continue; }
                 var quantity=Quantity.Match(text,index);

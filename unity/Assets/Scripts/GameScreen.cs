@@ -475,7 +475,7 @@ namespace Goa2.Presentation
             box.Add(Text(card.Name + "    先攻 " + card.Initiative, "section-title"));
             box.Add(RulesText(CardTextMarkup.Description(card), "card-rules"));
             box.Add(Button("本牌术语",()=>OpenKeywordGlossary(card),"quiet-button","card-keywords"));
-            box.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "muted"));
+            box.Add(Text(CardDisplay.Primary(card) + SubtypeText(card), "muted"));
             box.Add(Text("移 " + Number(card.SecondaryMovement) + "    防 " + Number(card.SecondaryDefense), "tiny"));
             parent.Add(box);
             AttachCardReading(box,card);
@@ -731,7 +731,7 @@ namespace Goa2.Presentation
                 var name=Text(card.Name,"card-name");name.name="gallery-card-name-"+card.Id;tile.Add(name);
                 tile.Add(Text((card.Color=="purple" ? "紫卡 · 英雄8级获得" : card.Level.HasValue ? "卡牌等级 " + card.Level : "基础牌") + "    先攻 " + card.Initiative, "muted"));
                 if(galleryHero=="") tile.Add(Text(HeroName(card.HeroId),"tiny"));
-                tile.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "body"));
+                tile.Add(Text(CardDisplay.Primary(card) + SubtypeText(card), "body"));
                 tile.Add(RulesText(CardTextMarkup.Description(card), "card-rules"));
                 tile.Add(Text("次要移动 " + Number(card.SecondaryMovement) + "    次要防御 " + Number(card.SecondaryDefense), "tiny"));
                 tile.Add(Text("底部被动 " + (card.Passive ?? "无"), "tiny"));
@@ -757,7 +757,7 @@ namespace Goa2.Presentation
                 tile.Add(Text("席位 " + (player.Seat + 1) + " · " + HeroName(player.HeroId), "eyebrow"));
                 tile.Add(Text(card.Name + " · 先攻 " + card.Initiative, "card-name"));
                 tile.Add(Text("第 " + play.Round + " 轮 · 第 " + play.Turn + " 回合", "muted"));
-                tile.Add(Text(card.PrimaryCategory + " " + (card.Exclamation ? "!" : card.PrimaryValue.ToString()) + SubtypeText(card), "body"));
+                tile.Add(Text(CardDisplay.Primary(card) + SubtypeText(card), "body"));
                 tile.Add(RulesText(CardTextMarkup.Description(card), "card-rules"));
                 tile.Add(Text("次要移动 " + Number(card.SecondaryMovement) + " · 次要防御 " + Number(card.SecondaryDefense), "tiny"));
                 tile.Add(Text("底部被动 " + (card.Passive ?? "无"), "tiny")); scroll.Add(tile);

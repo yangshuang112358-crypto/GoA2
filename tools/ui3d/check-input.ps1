@@ -32,6 +32,15 @@ function ClickButton([string]$name,[string]$caption) {
 try {
  $uiProcess=Get-Process -Id ([int](Get-Content -LiteralPath (Join-Path $uiOutput 'player.pid')))
  if($uiProcess.Path -ne (Join-Path $uiRoot 'artifacts/player/Goa2V1.exe')) {throw 'Refusing input to another worktree or executable.'}
+ $uiDeadline=[DateTime]::UtcNow.AddSeconds(20)
+ do {
+  $uiFresh=Get-Item -LiteralPath (Join-Path $uiOutput 'render.board3d.json') -ErrorAction SilentlyContinue
+  if($uiFresh -and $uiFresh.LastWriteTimeUtc -gt $uiProcess.StartTime.ToUniversalTime()) {break}
+  Start-Sleep -Milliseconds 200
+ } while([DateTime]::UtcNow -lt $uiDeadline)
+ if(-not $uiFresh -or $uiFresh.LastWriteTimeUtc -le $uiProcess.StartTime.ToUniversalTime()) {throw 'No fresh telemetry from this Player; old results cannot establish readiness.'}
+ Start-Sleep -Milliseconds 500
+ $uiProcess.Refresh()
  $uiHandle=$uiProcess.MainWindowHandle
  [GoaUI3DInput]::SetProcessDPIAware() | Out-Null
  [GoaUI3DInput]::SetForegroundWindow($uiHandle) | Out-Null

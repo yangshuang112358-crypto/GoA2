@@ -1,11 +1,12 @@
 Shader "Goa2/UI3D/Board"
 {
-    Properties { _Color ("Color", Color) = (1,1,1,1) }
+    Properties { _Color ("Color", Color) = (1,1,1,1) _ZTest ("Depth test", Float) = 4 }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
         Pass
         {
+            ZTest [_ZTest]
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
