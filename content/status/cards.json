@@ -1294,11 +1294,23 @@
     },
     {
       "card_id": "arien-17-洪水",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-17-洪水.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/FloodTests.cs",
+        "tests/scenarios/flood-secondary.json",
+        "tests/scenarios/flood-outside.json",
+        "tests/scenarios/flood-internal.json",
+        "tests/scenarios/flood-expiry.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs"
+      ]
     },
     {
       "card_id": "tigerclaw-00-瞬闪打击",

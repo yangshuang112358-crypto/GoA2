@@ -1312,5 +1312,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：1号施法后，2号从(7,-8)范围外开始次要移动，可走入范围内且不受1格上限；例如落(5,-7)。"
+  },
+  {
+    "id": "flood-secondary",
+    "title": "洪水：主要技能起点",
+    "scenario": "flood-secondary",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号阿连执行主要技能，随后2号夏尔加萨的次要移动最多1格。分支：切至4号执行偷天妙手，其牌内移动仍可2格；3号友方不受限制。 洪水持续当前及下一回合，下一回合仍检查每次起点；第4回合施放不跨轮。"
+  },
+  {
+    "id": "flood-outside",
+    "title": "洪水：范围外起步",
+    "scenario": "flood-outside",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号施法后，2号从(7,-8)范围外开始次要移动，可走入范围内且不受1格上限；例如落(5,-7)。 洪水持续当前及下一回合，下一回合仍检查每次起点；第4回合施放不跨轮。"
   }
 ]

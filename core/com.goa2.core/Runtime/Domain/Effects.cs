@@ -3,7 +3,7 @@ using System;
 
 namespace Goa2.Domain
 {
-    public enum EffectDuration { ThisTurn, NextTurn, ThisRound }
+    public enum EffectDuration { ThisTurn, NextTurn, ThisRound, ThisAndNextTurn }
     public enum EffectKind { MovementBoundary, SkillSuppression, NonAdjacentRangedImmunity, FriendlyBasicMinionsRanged, FriendlyAttackMinionsRanged, FriendlyAttackMinionsDual, FriendlyNearMinionDefense, FriendlyDisplacementProtection, ImmunityAndUnitTraversal, OtherEnemyActionImmunity, FriendlyMeleeDefeatPrevention, FriendlyNonHeavyDefeatPrevention, FriendlyMinionDefeatPrevention, AttackFromDiscard, AttackActionImmunity, OtherEnemyAttackImmunity, EnemyMeleeFriendlyForOwnDefense, EnemyLightMinionsFriendlyForOwnDefense, EnemyAllMinionsFriendlyForOwnDefense, EnemyActionMovementLimitOne }
     public enum EffectAreaKind { SkillRange, Adjacent, None }
     [Serializable]

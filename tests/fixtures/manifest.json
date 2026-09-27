@@ -801,6 +801,15 @@
       "input": "tests/fixtures/engine89-slippery-internal-scenario.json",
       "input_sha256": "f39507594f07cc2313ee129247d239a5433c59a3eff5a3c36261feee7a4200a0",
       "provenance": "tests/fixtures/engine89-slippery-internal.md"
+    },
+    {
+      "engine_version": 90,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine90-flood-internal.json",
+      "save_sha256": "8146e79c89534dd4b0a8e4b7812421ecc81e18880e6de97f016f2083e3ceee67",
+      "input": "tests/fixtures/engine90-flood-internal-scenario.json",
+      "input_sha256": "bb7dece3b9fc8aad86501fbac1667fdb57f632ad989dd4241be485a80233794e",
+      "provenance": "tests/fixtures/engine90-flood-internal.md"
     }
   ]
 }

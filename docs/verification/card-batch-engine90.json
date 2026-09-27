@@ -1,0 +1,90 @@
+{
+  "engine": 90,
+  "implemented_cards": 101,
+  "data_only_cards": 7,
+  "build_utc": "2026-09-27T06:42:40.4830663Z",
+  "assemblies": {
+    "Goa2.Application.dll": "e694f1a82f8ae39fcb8e3d4039a4d33d7b87905170dab4ca44e7aa707568df8d",
+    "Goa2.Domain.dll": "97a6719871952985827b9cf4d8129178e5af1345cdce60ff3abdee01b3f89764",
+    "Goa2.Editor.dll": "efd4b76126ed195c041f4a66b2fb6d08b86a48061890d11c45cb6a2cb79dfa2f",
+    "Goa2.Infrastructure.dll": "76832e26a89e96f63574dbcaf4372abd58ed96db238decbd222eb75d26b94070",
+    "Goa2.Rules.dll": "162a8f60b200be07d43e2042c0054273c3546e52dfec9897a04c3094f3aa2b41"
+  },
+  "core": {
+    "passed": 61,
+    "failed": 0,
+    "report": "artifacts/tests/flood-unity-0.xml",
+    "card_specific": 7,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/flood-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/flood-secondary.json",
+        "input_sha256": "5544b7985421353ec30f23aa83f0c237f87bf6dab9250b66994dd31eb9700e2d",
+        "report": "artifacts/editor-scenarios/flood-secondary/a3151b09de8241488b2d3424a159a795/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/flood-outside.json",
+        "input_sha256": "6813a53cc1fe3e78afb85a9072536f03a30da32fe17a6da9a420fb7f622c95e9",
+        "report": "artifacts/editor-scenarios/flood-outside/d6227b531403426ab324343597d45b4a/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/flood-internal.json",
+        "input_sha256": "06bab807056d2bb31f1ac6c094078a8d95c4de832ea1776aeec595863b497d21",
+        "report": "artifacts/editor-scenarios/flood-internal/8f0ddb7eea36479e8e78f23dedbd15f0/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/flood-expiry.json",
+        "input_sha256": "aeb813d50f0291460b6798df81f0d76d2d53f075e6b8f434e3c8acf24f016886",
+        "report": "artifacts/editor-scenarios/flood-expiry/41fd3cc755264f17b282cd0b23a97577/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine90-flood-internal-scenario.json",
+        "input_sha256": "bb7dece3b9fc8aad86501fbac1667fdb57f632ad989dd4241be485a80233794e",
+        "report": "artifacts/editor-scenarios/engine90-flood-internal-scenario/27d0d2b97ef04f8f933dbda0e88ccd03/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 72
+  },
+  "manual_presets": [
+    "flood-secondary",
+    "flood-outside"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/flood-red.xml",
+    "passed": 1,
+    "failed": 6
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e90-flood-20260927-064308-f6124e52.zip",
+    "sha256": "fabe305c5bdfed1029e5c61cd28be21eae51beaa374502dc2f6608a3c4047bde"
+  }
+}

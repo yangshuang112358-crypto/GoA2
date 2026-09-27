@@ -12,7 +12,7 @@ namespace Goa2.Rules
                 throw new ArgumentOutOfRangeException(nameof(turn), "效果持续时间需要有效轮次、回合和持续期。");
             if (duration == EffectDuration.NextTurn && turn == turnsPerRound) return null;
             int first = duration == EffectDuration.NextTurn ? turn + 1 : turn;
-            int last = duration == EffectDuration.ThisRound ? turnsPerRound : first;
+            int last = duration == EffectDuration.ThisRound ? turnsPerRound : duration == EffectDuration.ThisAndNextTurn ? Math.Min(turnsPerRound,turn+1) : first;
             return new EffectWindow { StartRound=round,StartTurn=first,EndRound=round,EndTurn=last };
         }
         private static int Compare(int leftRound, int leftTurn, int rightRound, int rightTurn) => leftRound != rightRound ? leftRound.CompareTo(rightRound) : leftTurn.CompareTo(rightTurn);

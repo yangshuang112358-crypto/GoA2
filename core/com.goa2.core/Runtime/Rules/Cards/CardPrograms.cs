@@ -176,6 +176,7 @@ namespace Goa2.Rules.Cards
         };
         private static readonly Dictionary<string,(string text, int minimumEngine, string? subtype, PrimaryProgram program)> Skills = new Dictionary<string,(string, int, string?, PrimaryProgram)>
         {
+            ["arien-17-洪水"] = ("此回合和下回合：技能范围内敌方单位的移动行动最多移动1格。",90,"范围",new PrimaryProgram("skill_this_and_next_turn_enemy_action_move_limit_one",EffectKind.EnemyActionMovementLimitOne,EffectDuration.ThisAndNextTurn)),
             ["arien-14-滑溜溜"] = ("此回合：技能范围内敌方单位的移动行动最多移动1格。（技能范围外开始移动的敌人不受影响）",89,"范围",new PrimaryProgram("skill_turn_enemy_action_move_limit_one",EffectKind.EnemyActionMovementLimitOne,EffectDuration.ThisTurn)),
 
             ["brogan-09-持盾"] = ("本轮：如果技能范围内的一个友方非重型小兵将被击败，你可以丢弃一张卡牌。若如此做，该小兵不会被击败。",54,"范围",new PrimaryProgram("friendly_nonheavy_minion_defeat_prevention",EffectKind.FriendlyNonHeavyDefeatPrevention,EffectDuration.ThisRound)),
