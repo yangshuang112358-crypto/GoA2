@@ -1,0 +1,90 @@
+{
+  "engine": 84,
+  "implemented_cards": 95,
+  "data_only_cards": 13,
+  "build_utc": "2026-09-27T05:54:31.1363607Z",
+  "assemblies": {
+    "Goa2.Application.dll": "6745bebe4f8f036183deafbcdb09e3a4f58b9661a1746dc9dc9456744419e872",
+    "Goa2.Domain.dll": "53a81a3c78fa0dc8ffc09b807498a1acde6271d94a2c8746688d4377af970c8b",
+    "Goa2.Editor.dll": "50adee6a5960af8b08ad3eb4f9dbb4642a303c3da573526cded9e741458aad67",
+    "Goa2.Infrastructure.dll": "826b197285d0d83b68515e08d1fcb1b906c143a2fd3ec5bc9688cef4b120fdfb",
+    "Goa2.Rules.dll": "53eb625afb833cea099df91ff9c3695b9a5d9666ebf8c1643cf79c2b7110eb5c"
+  },
+  "core": {
+    "passed": 66,
+    "failed": 0,
+    "report": "artifacts/tests/gravity-control-unity-0.xml",
+    "card_specific": 7,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/gravity-control-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/gravity-control-same.json",
+        "input_sha256": "5a54d8347ba44156607b4d463f7092d826a1880303e372a6aabb22232843f065",
+        "report": "artifacts/editor-scenarios/gravity-control-same/0c3c76d394d941559ec0ead7d4f1b28c/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/gravity-control-skip.json",
+        "input_sha256": "5394e9c07731498daba3c0864a56b21a3066fe3663896226504ba2b0b173766b",
+        "report": "artifacts/editor-scenarios/gravity-control-skip/b4b684eb9bb44e509c208451394e1738/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/gravity-control-zero.json",
+        "input_sha256": "0370124e6a4cbd7f2b29eaf6e70c53d4be86a3ff7f4412af0bf5217c32ac68dd",
+        "report": "artifacts/editor-scenarios/gravity-control-zero/da394283184c4613ae9273af95f44560/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/gravity-control-minion.json",
+        "input_sha256": "736a66a84e9d2063303a67db373939b3fe08718dbc5007f53eaf73fc87561abe",
+        "report": "artifacts/editor-scenarios/gravity-control-minion/130fffb9bb7e413e9e65aaaccbfca479/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine84-gravity-control-repeat-scenario.json",
+        "input_sha256": "c9ee2fc25d88ef50adcb7c80837b21e80512fe0c2e9b1dc89e64fb8f0c28af94",
+        "report": "artifacts/editor-scenarios/engine84-gravity-control-repeat-scenario/1dc340585d304ac792ed3f428eb8191d/report.json",
+        "steps": 13,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 75
+  },
+  "manual_presets": [
+    "gravity-control-same",
+    "gravity-control-minion"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/gravity-control-red.xml",
+    "passed": 1,
+    "failed": 6
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e84-gravity-control-20260927-055517-0037d5b4.zip",
+    "sha256": "40d8e348d1157966bdb8c32e8a98a81affd89a9be1c611e018ae928a59354445"
+  }
+}

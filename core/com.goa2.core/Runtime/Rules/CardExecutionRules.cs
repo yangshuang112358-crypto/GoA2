@@ -133,6 +133,11 @@ namespace Goa2.Rules
                         if(BeginMinionReturns(catalog,state,command))return;
                         if(BeginFriendlyMinionTarget(catalog,state,command))return;
                         execution.Cursor+=2;break;
+                    case InstructionKind.OptionalRepeatOrbitalMove:
+                        if(BeginMinionReturns(catalog,state,command))return;
+                        if(BeginDiscardReactions(catalog,state,command))return;
+                        if(BeginOrbitalTarget(catalog,state,command))return;
+                        execution.Cursor=program.Instructions.ToList().IndexOf(InstructionKind.End);break;
                     case InstructionKind.ChooseOrbitalTarget:
                         if(BeginOrbitalTarget(catalog,state,command))return;
                         StopCard(catalog,state,command,"no_targets");return;
@@ -343,7 +348,8 @@ namespace Goa2.Rules
                 program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatAttackAfterHeroDefeat ||
                 program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatFriendlyMinionMove ||
                 program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatApproach ||
-                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatUnitPlacement))
+                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatUnitPlacement ||
+                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatOrbitalMove))
             {
                 ContinueCard(catalog,state,command);
                 return;

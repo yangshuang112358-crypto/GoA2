@@ -286,11 +286,21 @@
     },
     {
       "card_id": "wasp-15-引力控制",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-15-引力控制.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/GravityControlTests.cs",
+        "tests/scenarios/gravity-control-same.json",
+        "tests/scenarios/gravity-control-skip.json",
+        "tests/scenarios/gravity-control-zero.json",
+        "tests/scenarios/gravity-control-minion.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs"
+      ]
     },
     {
       "card_id": "wasp-16-动能震爆",

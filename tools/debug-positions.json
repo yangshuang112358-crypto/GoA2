@@ -1177,5 +1177,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：1号黄蜂选(0,-3)红兵，移动至(1,-4)；2号队长再选(0,-3)回归，之后卡牌结束。分支：选敌布罗根或友阿连测试英雄移动；也可选0步，不触发回归。"
+  },
+  {
+    "id": "gravity-control-same",
+    "title": "引力控制：同目标/换目标/不重复",
+    "scenario": "gravity-control-same",
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号黄蜂选(1,-4)敌布罗根，移动到(2,-5)，再选他移动至(2,-6)。分支：可改选(-2,-4)友阿连；可0步；也可不重复。总计最多两次。"
+  },
+  {
+    "id": "gravity-control-minion",
+    "title": "引力控制：小兵回归后再重复",
+    "scenario": "gravity-control-minion",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号黄蜂选(0,-3)红兵移动到(1,-4)，切2号队长回归到(0,-3)，再切1号可重复同样操作。先回归再提供重复，第二次之后结束。"
   }
 ]

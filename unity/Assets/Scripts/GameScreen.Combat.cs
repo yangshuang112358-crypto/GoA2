@@ -131,7 +131,7 @@ namespace Goa2.Presentation
             }
             if(choice.Kind=="effect_target")
             {
-                bool orbital=choice.ResumeAt=="orbital_target";
+                bool orbital=choice.ResumeAt=="orbital_target" || choice.ResumeAt=="orbital_repeat";
                 bool unitPlacement=choice.ResumeAt=="unit_placement_target" || choice.ResumeAt=="unit_placement_repeat";
                 bool singlePush=choice.ResumeAt=="single_push_target";
                 bool otherMove=choice.ResumeAt=="before_attack_other_move";
@@ -142,13 +142,13 @@ namespace Goa2.Presentation
                 bool unitSwap=choice.ResumeAt=="unit_swap";
                 bool minionRepeat=choice.ResumeAt=="friendly_minion_repeat";
                 bool minionMove=choice.ResumeAt=="friendly_minion_move" || minionRepeat;
-                var targetTitle=Text(PlayerName(choice.ChooserSeat)+(orbital ? "选择范围内其他非相邻单位；移动后须保持与你的距离。" : unitPlacement ? "选择攻击距离内不在同一直线的合法单位。" : singlePush ? "选择本牌允许推动的相邻敌方单位。" : approach ? (approachRepeat?"可重复一次技能，重新选择最近的非相邻敌方单位。":"选择攻击距离内最近的非相邻敌方单位。") : groupPush ? "选择下一个要推动的敌方单位；全部推动后再处理弃牌。" : blockedPush ? "选择下一名受阻英雄，由该英雄本人弃牌。" : unitSwap ? (choice.Optional?"可与相邻友方小兵换位，也可不换位并继续此牌。":"选择本牌允许换位的单位。") : minionRepeat ? "可再选择一个合法友方小兵移动一次，也可不重复。" : minionMove ? "选择技能范围内的一个友方小兵。" : otherMove ? "选择原攻击目标旁的另一个单位移动，或跳过。" : choice.Optional ? "选择另一名敌方英雄，或跳过。" : "选择牌文作用的英雄。"),"section-title");targetTitle.name="effect-target-choice";parent.Add(targetTitle);
+                var targetTitle=Text(PlayerName(choice.ChooserSeat)+(orbital ? (choice.Optional?"可再选择一个非相邻单位等距移动，也可不重复。":"选择范围内其他非相邻单位；移动后须保持与你的距离。") : unitPlacement ? "选择攻击距离内不在同一直线的合法单位。" : singlePush ? "选择本牌允许推动的相邻敌方单位。" : approach ? (approachRepeat?"可重复一次技能，重新选择最近的非相邻敌方单位。":"选择攻击距离内最近的非相邻敌方单位。") : groupPush ? "选择下一个要推动的敌方单位；全部推动后再处理弃牌。" : blockedPush ? "选择下一名受阻英雄，由该英雄本人弃牌。" : unitSwap ? (choice.Optional?"可与相邻友方小兵换位，也可不换位并继续此牌。":"选择本牌允许换位的单位。") : minionRepeat ? "可再选择一个合法友方小兵移动一次，也可不重复。" : minionMove ? "选择技能范围内的一个友方小兵。" : otherMove ? "选择原攻击目标旁的另一个单位移动，或跳过。" : choice.Optional ? "选择另一名敌方英雄，或跳过。" : "选择牌文作用的英雄。"),"section-title");targetTitle.name="effect-target-choice";parent.Add(targetTitle);
                 if(orbital || singlePush || unitPlacement)parent.Add(Text("当前六英雄没有地图标志物，仅显示本牌的单位分支。","body"));
                 if(choice.ChooserSeat!=seat) {parent.Add(Text("等待来源英雄选择目标。","body"));RenderCardDetail(parent,catalog.Card(choice.Source));return true;}
                 var target=chosenCell.HasValue ? view.Units.SingleOrDefault(u=>u.Position==chosenCell.Value && view.EffectTargets.Contains(u.Id)) : null;
                 if(target!=null) Confirm(parent,"确认选择 "+(target.Seat.HasValue?PlayerName(target.Seat.Value):MinionName(target)),()=>Submit(CommandKind.ChooseEffectTarget,target.Id));
-                else parent.Add(Text(unitPlacement?"可选择本牌允许的友方或敌方单位；确认后，选择来源英雄相邻的空格放置。":singlePush?"点击高亮单位后确认；距离按牌文处理，通行能力和阻挡由规则判断。":approach?"点击高亮单位，再选择沿最短有效路径向你接近的落点。":groupPush?"点击高亮敌方单位后确认推动；已处理目标不会再次推动。":blockedPush?"点击受阻英雄后确认，再切至该英雄选弃牌。":unitSwap?"点击高亮单位后确认换位；换位不算移动，小兵离开战区后仍需回归。":minionMove?"点击高亮小兵后确认；再由你选择移动落点，也可不移动。":otherMove?"点击高亮单位后确认，再由你选择该单位的一格落点。":"点击高亮英雄后确认；后续选牌由目标英雄本人决定。","body"));
-                if(choice.Optional)parent.Add(Button(unitPlacement?"不重复，结束此牌":singlePush?"不推动，继续此牌":approachRepeat?"不重复，结束此牌":unitSwap?"不换位，继续此牌":minionRepeat?"不重复，结束此牌":otherMove?"不移动，继续原攻击":"跳过额外弃牌，继续原攻击",()=>Submit(CommandKind.ChooseEffectTarget,"skip"),"quiet-button","effect-target-skip"));
+                else parent.Add(Text(orbital?"点击高亮单位后确认；可选择0步，或移动1格且保持与来源英雄距离相等。":unitPlacement?"可选择本牌允许的友方或敌方单位；确认后，选择来源英雄相邻的空格放置。":singlePush?"点击高亮单位后确认；距离按牌文处理，通行能力和阻挡由规则判断。":approach?"点击高亮单位，再选择沿最短有效路径向你接近的落点。":groupPush?"点击高亮敌方单位后确认推动；已处理目标不会再次推动。":blockedPush?"点击受阻英雄后确认，再切至该英雄选弃牌。":unitSwap?"点击高亮单位后确认换位；换位不算移动，小兵离开战区后仍需回归。":minionMove?"点击高亮小兵后确认；再由你选择移动落点，也可不移动。":otherMove?"点击高亮单位后确认，再由你选择该单位的一格落点。":"点击高亮英雄后确认；后续选牌由目标英雄本人决定。","body"));
+                if(choice.Optional)parent.Add(Button(orbital?"不重复，结束此牌":unitPlacement?"不重复，结束此牌":singlePush?"不推动，继续此牌":approachRepeat?"不重复，结束此牌":unitSwap?"不换位，继续此牌":minionRepeat?"不重复，结束此牌":otherMove?"不移动，继续原攻击":"跳过额外弃牌，继续原攻击",()=>Submit(CommandKind.ChooseEffectTarget,"skip"),"quiet-button","effect-target-skip"));
                 RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
             }

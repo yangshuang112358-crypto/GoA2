@@ -747,6 +747,15 @@
       "input": "tests/fixtures/engine83-telekinesis-move-scenario.json",
       "input_sha256": "c7e889cf2c84bed48f7a7ae210a61bf4f57e17f7b651048ec06bbc8afce7643b",
       "provenance": "tests/fixtures/engine83-telekinesis-move.md"
+    },
+    {
+      "engine_version": 84,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine84-gravity-control-repeat.json",
+      "save_sha256": "6c973a51d16692933610b58ee9696b249b3e01dd5a355107991ef8e8889684e7",
+      "input": "tests/fixtures/engine84-gravity-control-repeat-scenario.json",
+      "input_sha256": "c9ee2fc25d88ef50adcb7c80837b21e80512fe0c2e9b1dc89e64fb8f0c28af94",
+      "provenance": "tests/fixtures/engine84-gravity-control-repeat.md"
     }
   ]
 }
