@@ -702,6 +702,15 @@
       "input": "tests/fixtures/engine78-mind-control-placement-scenario.json",
       "input_sha256": "affd7d2c5aa61799529d814dc7ac64c6dceb6bb0f228ca75721ff74a7d0972f0",
       "provenance": "tests/fixtures/engine78-mind-control-placement.md"
+    },
+    {
+      "engine_version": 79,
+      "accepted_commands": 16,
+      "save": "tests/fixtures/engine79-heart-control-repeat.json",
+      "save_sha256": "368d9c84a79032d263a7fc8ccd9fec700dcf9bf9bf6bf234e31e909a79a990cc",
+      "input": "tests/fixtures/engine79-heart-control-repeat-scenario.json",
+      "input_sha256": "e94233d0188dfe7533ba4f5516735407a9919af383967d504073be949501dc5e",
+      "provenance": "tests/fixtures/engine79-heart-control-repeat.md"
     }
   ]
 }

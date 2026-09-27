@@ -210,11 +210,20 @@
     },
     {
       "card_id": "wasp-11-心灵控制",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-11-心灵控制.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/HeartControlTests.cs",
+        "tests/scenarios/heart-control-repeat.json",
+        "tests/scenarios/heart-control-skip.json",
+        "tests/scenarios/heart-control-minion.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "wasp-12-电闪雷鸣",

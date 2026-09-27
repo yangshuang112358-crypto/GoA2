@@ -138,6 +138,11 @@ namespace Goa2.Rules
                     case InstructionKind.OptionalTargetUnitMove:
                         if(BeginTargetUnitMove(catalog,state,command))return;
                         execution.Cursor++;break;
+                    case InstructionKind.OptionalRepeatUnitPlacement:
+                        if(BeginMinionReturns(catalog,state,command))return;
+                        if(BeginDiscardReactions(catalog,state,command))return;
+                        if(BeginUnitPlacement(catalog,state,command))return;
+                        execution.Cursor++;break;
                     case InstructionKind.ChooseUnitPlacement:
                         if(BeginUnitPlacement(catalog,state,command))return;
                         StopCard(catalog,state,command,"no_placement_targets");return;
@@ -330,7 +335,8 @@ namespace Goa2.Rules
             if(program!=null && (program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalDifferentAttackIfAdjacentEnemy ||
                 program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatAttackAfterHeroDefeat ||
                 program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatFriendlyMinionMove ||
-                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatApproach))
+                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatApproach ||
+                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatUnitPlacement))
             {
                 ContinueCard(catalog,state,command);
                 return;

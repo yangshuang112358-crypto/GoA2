@@ -131,7 +131,7 @@ namespace Goa2.Presentation
             }
             if(choice.Kind=="effect_target")
             {
-                bool unitPlacement=choice.ResumeAt=="unit_placement_target";
+                bool unitPlacement=choice.ResumeAt=="unit_placement_target" || choice.ResumeAt=="unit_placement_repeat";
                 bool singlePush=choice.ResumeAt=="single_push_target";
                 bool otherMove=choice.ResumeAt=="before_attack_other_move";
                 bool approach=choice.ResumeAt=="approach_target" || choice.ResumeAt=="approach_repeat",approachRepeat=choice.ResumeAt=="approach_repeat";
@@ -147,7 +147,7 @@ namespace Goa2.Presentation
                 var target=chosenCell.HasValue ? view.Units.SingleOrDefault(u=>u.Position==chosenCell.Value && view.EffectTargets.Contains(u.Id)) : null;
                 if(target!=null) Confirm(parent,"确认选择 "+(target.Seat.HasValue?PlayerName(target.Seat.Value):MinionName(target)),()=>Submit(CommandKind.ChooseEffectTarget,target.Id));
                 else parent.Add(Text(unitPlacement?"可选择本牌允许的友方或敌方单位；确认后，选择来源英雄相邻的空格放置。":singlePush?"点击高亮单位后确认；距离按牌文处理，通行能力和阻挡由规则判断。":approach?"点击高亮单位，再选择沿最短有效路径向你接近的落点。":groupPush?"点击高亮敌方单位后确认推动；已处理目标不会再次推动。":blockedPush?"点击受阻英雄后确认，再切至该英雄选弃牌。":unitSwap?"点击高亮单位后确认换位；换位不算移动，小兵离开战区后仍需回归。":minionMove?"点击高亮小兵后确认；再由你选择移动落点，也可不移动。":otherMove?"点击高亮单位后确认，再由你选择该单位的一格落点。":"点击高亮英雄后确认；后续选牌由目标英雄本人决定。","body"));
-                if(choice.Optional)parent.Add(Button(singlePush?"不推动，继续此牌":approachRepeat?"不重复，结束此牌":unitSwap?"不换位，继续此牌":minionRepeat?"不重复，结束此牌":otherMove?"不移动，继续原攻击":"跳过额外弃牌，继续原攻击",()=>Submit(CommandKind.ChooseEffectTarget,"skip"),"quiet-button","effect-target-skip"));
+                if(choice.Optional)parent.Add(Button(unitPlacement?"不重复，结束此牌":singlePush?"不推动，继续此牌":approachRepeat?"不重复，结束此牌":unitSwap?"不换位，继续此牌":minionRepeat?"不重复，结束此牌":otherMove?"不移动，继续原攻击":"跳过额外弃牌，继续原攻击",()=>Submit(CommandKind.ChooseEffectTarget,"skip"),"quiet-button","effect-target-skip"));
                 RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
             }

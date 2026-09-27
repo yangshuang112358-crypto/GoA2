@@ -1,0 +1,83 @@
+{
+  "engine": 79,
+  "implemented_cards": 90,
+  "data_only_cards": 18,
+  "build_utc": "2026-09-26T07:46:13.5400175Z",
+  "assemblies": {
+    "Goa2.Application.dll": "6a881398c6c8882ebcb67706f79205e2c1c8e48a8db7b111779fb6a49ce1da72",
+    "Goa2.Domain.dll": "85f7bb53db2b715a03e06b5fab6ae2fe33187e9b84e1960435199c0aba696e79",
+    "Goa2.Editor.dll": "ac0f5b19cfcae3290ef608b4e180cc22a24e8817efe06f0fdad8a8f58d433608",
+    "Goa2.Infrastructure.dll": "e966d932894e70bb6b1fb06fe78dc025d7f6e4681b0ffc511eec6e25d434789e",
+    "Goa2.Rules.dll": "c9b18257ab51e009249fec8151631a8d0fb1f7e8d9d95045146ba27fd8e50ba7"
+  },
+  "core": {
+    "passed": 56,
+    "failed": 0,
+    "report": "artifacts/tests/heart-control-unity-0.xml",
+    "card_specific": 7,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/heart-control-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/heart-control-repeat.json",
+        "input_sha256": "2c7ee19ec1ffadc3a8fc599f143a64415d01f23bd83078be48d509cdbd140d71",
+        "report": "artifacts/editor-scenarios/heart-control-repeat/467065127a29488a9e13b907f50d7485/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/heart-control-skip.json",
+        "input_sha256": "61336006312c7d872d029d4443635b7a454ec8a5e399bb8a98bf8cd8d1cf4812",
+        "report": "artifacts/editor-scenarios/heart-control-skip/4d46d82f8ef2427cb5e699d94eec68e3/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/heart-control-minion.json",
+        "input_sha256": "c3463605f3fcc742efa59907bd1926b04904f537b62c528b71729e4538dda221",
+        "report": "artifacts/editor-scenarios/heart-control-minion/b00fc0ef86e149ed93816c3934b8c3b5/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine79-heart-control-repeat-scenario.json",
+        "input_sha256": "e94233d0188dfe7533ba4f5516735407a9919af383967d504073be949501dc5e",
+        "report": "artifacts/editor-scenarios/engine79-heart-control-repeat-scenario/1838a03d0074464aaad793e6f89310a1/report.json",
+        "steps": 16,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 71
+  },
+  "manual_presets": [
+    "heart-control-repeat",
+    "heart-control-minion"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/heart-control-red.xml",
+    "passed": 1,
+    "failed": 6
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e79-heart-control-20260927-035636-2240ee38.zip",
+    "sha256": "6a11ddc231d51021614b7753ac84b4502426c2b2362a22104ee830324f651999"
+  }
+}

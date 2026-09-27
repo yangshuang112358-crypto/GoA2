@@ -10,8 +10,10 @@ namespace Goa2.Rules
   private static bool IsUnitPlacementStep(ContentCatalog catalog,GameState state)
   {
    var e=state.Execution;if(e==null || state.EngineVersion<78)return false;var p=CardPrograms.Primary(catalog.Card(e.CardId),state.EngineVersion);
-   return p!=null && p.Id==e.ProgramId && p.Version==e.ProgramVersion && e.Cursor>=0 && e.Cursor<p.Instructions.Count && p.Instructions[e.Cursor]==InstructionKind.ChooseUnitPlacement;
+   return p!=null && p.Id==e.ProgramId && p.Version==e.ProgramVersion && e.Cursor>=0 && e.Cursor<p.Instructions.Count && (p.Instructions[e.Cursor]==InstructionKind.ChooseUnitPlacement || p.Instructions[e.Cursor]==InstructionKind.OptionalRepeatUnitPlacement);
   }
+  private static bool IsUnitPlacementRepeat(ContentCatalog catalog,GameState state)=>IsUnitPlacementStep(catalog,state) &&
+   CardPrograms.Primary(catalog.Card(state.Execution!.CardId),state.EngineVersion)!.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatUnitPlacement;
   private static List<Hex> UnitPlacementCells(ContentCatalog catalog,GameState state)
   {
    var source=state.Units.SingleOrDefault(u=>u.Seat==state.Execution?.ControllerSeat);if(source==null)return new List<Hex>();
@@ -26,21 +28,31 @@ namespace Goa2.Rules
     !u.Position.IsInStraightLineWith(source.Position) && EffectRules.CanDisplace(catalog,state,e.ControllerSeat,u)).Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
   }
   private static List<string> LegalUnitPlacementTargets(ContentCatalog catalog,GameState state,int seat)=>
-   state.Phase==Phase.EffectChoice && state.Pending?.Kind=="effect_target" && state.Pending.ResumeAt=="unit_placement_target" && state.Pending.ChooserSeat==seat &&
+   state.Phase==Phase.EffectChoice && state.Pending?.Kind=="effect_target" && state.Pending.ResumeAt==(IsUnitPlacementRepeat(catalog,state)?"unit_placement_repeat":"unit_placement_target") && state.Pending.ChooserSeat==seat &&
    state.Execution?.ControllerSeat==seat && state.ActiveSeat==seat ? UnitPlacementTargets(catalog,state):new List<string>();
   private static List<Hex> LegalUnitPlacements(ContentCatalog catalog,GameState state,int seat)=>
    state.Phase==Phase.EffectChoice && state.Pending?.Kind=="placement" && state.Pending.ResumeAt=="unit_placement" && state.Pending.ChooserSeat==seat &&
    state.Execution?.ControllerSeat==seat && state.ActiveSeat==seat && UnitPlacementTargets(catalog,state).Contains(state.Pending.UnitId) ? UnitPlacementCells(catalog,state):new List<Hex>();
   private static bool BeginUnitPlacement(ContentCatalog catalog,GameState state,Command command)
   {
-   var targets=UnitPlacementTargets(catalog,state);if(targets.Count==0)return false;var e=state.Execution!;
-   state.Phase=Phase.EffectChoice;state.Pending=new PendingChoice{Id="unit-placement-target:"+(state.Events.Count+1),Kind="effect_target",Source=e.CardId,ChooserSeat=e.ControllerSeat,ResumeAt="unit_placement_target",CandidateUnits=targets};
-   Emit(state,command,"EffectTargetChoiceRequired",e.ControllerSeat,e.CardId,detail:"unit_placement_target");return true;
+   var targets=UnitPlacementTargets(catalog,state);if(targets.Count==0)return false;var e=state.Execution!;bool repeat=IsUnitPlacementRepeat(catalog,state);
+   state.Phase=Phase.EffectChoice;state.Pending=new PendingChoice{Id="unit-placement-target:"+(state.Events.Count+1),Kind="effect_target",Source=e.CardId,ChooserSeat=e.ControllerSeat,ResumeAt=repeat?"unit_placement_repeat":"unit_placement_target",Optional=repeat,CandidateUnits=targets};
+   Emit(state,command,repeat?"ActionRepeatChoiceRequired":"EffectTargetChoiceRequired",e.ControllerSeat,e.CardId,detail:state.Pending.ResumeAt);return true;
   }
-  private static void ChooseUnitPlacementTarget(ContentCatalog catalog,GameState state,Command command)
+  private static void ChooseUnitPlacementTarget(ContentCatalog catalog,GameState state,Command command,bool allowBeforeAction)
   {
-   Require(LegalUnitPlacementTargets(catalog,state,command.ActorSeat).Contains(command.Value),"invalid_effect_target","请选择攻击距离内不在同一直线、且可被放置的单位。");
-   var e=state.Execution!;e.TargetUnitId=command.Value;
+   bool repeat=IsUnitPlacementRepeat(catalog,state);
+   Require(state.Phase==Phase.EffectChoice && state.Pending?.Kind=="effect_target" && state.Pending.ChooserSeat==command.ActorSeat && state.ActiveSeat==command.ActorSeat &&
+    state.Execution?.ControllerSeat==command.ActorSeat && (repeat && state.Pending.Optional && state.Pending.ResumeAt=="unit_placement_repeat" && command.Value=="skip" || LegalUnitPlacementTargets(catalog,state,command.ActorSeat).Contains(command.Value)),"invalid_effect_target","请选择攻击距离内不在同一直线、且可被放置的单位；只有重复可跳过。");
+   var e=state.Execution!;
+   if(repeat && command.Value=="skip")
+   {e.Cursor++;state.Pending=null;state.Phase=Phase.Action;Emit(state,command,"ActionRepeatSkipped",e.ControllerSeat,e.CardId);ContinueCard(catalog,state,command);return;}
+   if(repeat)
+   {
+    if(allowBeforeAction){e.ActionInstanceId=NewActionInstance(state);if(BeginBeforeAction(catalog,state,command))return;}
+    Emit(state,command,"ActionRepeated",e.ControllerSeat,e.CardId,detail:command.Value);
+   }
+   e.TargetUnitId=command.Value;
    state.Pending=new PendingChoice{Id="unit-placement:"+(state.Events.Count+1),Kind="placement",Source=e.CardId,ChooserSeat=e.ControllerSeat,ResumeAt="unit_placement",UnitId=command.Value,CandidateCells=UnitPlacementCells(catalog,state)};
    Emit(state,command,"EffectTargetChosen",e.ControllerSeat,e.CardId,detail:command.Value);Emit(state,command,"PlacementChoiceRequired",e.ControllerSeat,e.CardId,detail:command.Value);
   }
