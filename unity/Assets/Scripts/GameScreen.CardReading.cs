@@ -47,7 +47,7 @@ namespace Goa2.Presentation
             if(player!=null) CompactCardNumbers(preview,card,player,true,"card-preview");
             else
             {
-                preview.Add(Text(card.PrimaryCategory+" "+(card.Exclamation ? "!" : card.PrimaryValue.ToString())+SubtypeText(card)+" · 先攻 "+card.Initiative,"body"));
+                preview.Add(Text(CardDisplay.Primary(card)+SubtypeText(card)+" · 先攻 "+card.Initiative,"body"));
                 preview.Add(Text("次要移动 "+Number(card.SecondaryMovement)+" · 次要防御 "+Number(card.SecondaryDefense),"tiny"));
             }
             preview.Add(Text("卡底升级图标 · "+(card.Passive ?? "无"),"tiny"));
@@ -91,7 +91,7 @@ namespace Goa2.Presentation
                 if(bonus>0) {var plus=Text("+"+bonus,"passive-plus");plus.name=prefix+"-"+suffix+"-bonus";chip.Add(plus);}
             }
             string key=card.PrimaryFamily=="attack" ? "攻击" : card.PrimaryFamily=="defense" ? "防御" : card.PrimaryFamily=="movement" ? "移动" : "";
-            Add(card.PrimaryCategory+" "+(card.Exclamation ? "!" : card.PrimaryValue.ToString()),bonuses && !card.Exclamation ? (Bonus(player,key)+(card.PrimaryCategory=="基础攻击" ? player.BasicAttackBonus : 0)) : 0,"primary");
+            Add(CardDisplay.Primary(card),bonuses && !card.Exclamation ? (Bonus(player,key)+(card.PrimaryCategory=="基础攻击" ? player.BasicAttackBonus : 0)) : 0,"primary");
             Add("先 "+card.Initiative,bonuses ? Bonus(player,"先攻") : 0,"initiative");
             if(overviewOnly) return;
             Add("移 "+Number(card.SecondaryMovement),bonuses && card.SecondaryMovement.HasValue ? Bonus(player,"移动") : 0,"movement");

@@ -1,0 +1,118 @@
+{
+  "date": "2026-09-27",
+  "card_parent": "deff8a1df42866b2c1282145ad7f1040dcffb593",
+  "ui_parent": "03a6b34936fbf67f0195775d8687343980273d64",
+  "engine_version": 79,
+  "editmode": {
+    "passed": 48,
+    "failed": 0,
+    "report": "docs/verification/ui3d-engine79/editmode.xml",
+    "sha256": "7e55ccb0aa8424a9b80a7f0ed66f5e8dce46790cb1853bb8d588b6112a5ae923"
+  },
+  "graphics": [
+    {
+      "report": "artifacts/ui3d/audit-1600x1000-20260927-120115/report.json",
+      "sha256": "06594d4fc6e0d43f994e116f9594174ddc10011408b4b503719cf482ee77bb2f",
+      "resolution": [
+        1600,
+        1000
+      ],
+      "checks": 6264,
+      "passed": true,
+      "method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard"
+    },
+    {
+      "report": "artifacts/ui3d/audit-1280x800-20260927-120152/report.json",
+      "sha256": "88c3611335e954b96a6831fa9fcaa7cfe861e3863e30a98c4e30eff09b64d06c",
+      "resolution": [
+        1280,
+        800
+      ],
+      "checks": 6264,
+      "passed": true,
+      "method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard"
+    }
+  ],
+  "editor_scenarios": [
+    {
+      "id": "siren-song-two-targets",
+      "report": "artifacts/editor-scenarios/siren-song-two-targets/fa6fbe8bb22c417084615896cd126970/report.json",
+      "sha256": "c51f7d5c5f6c795df4d8f146074d927435dba7135775a28e20ae8aa3daa18312",
+      "input": "tests/scenarios/siren-song-two-targets.json",
+      "input_sha256": "5aae05a6867d51b8ee9786a56fa678fa47a0bafaffd9259f2208894b2a36c292",
+      "steps": 17,
+      "passed": true
+    },
+    {
+      "id": "magic-water-vacated-minion-spawn",
+      "report": "artifacts/editor-scenarios/magic-water-vacated-minion-spawn/263fb81c8d3643c0b44493330fa1b25d/report.json",
+      "sha256": "11de2701d267732eebc944cfc5315913cd5569b2803b9f69a3138b61c6a3ddc5",
+      "input": "tests/scenarios/magic-water-vacated-minion-spawn.json",
+      "input_sha256": "e587a05c69a79379777a0d0a249cd2c855f868436674da814bff67626a90cf7e",
+      "steps": 12,
+      "passed": true
+    },
+    {
+      "id": "covering-fire-decline",
+      "report": "artifacts/editor-scenarios/covering-fire-decline/fb39a79e150c4188b09fdce4837e7f4e/report.json",
+      "sha256": "67c084d88ed48e73fb65dc582e3fab3f468e46a56f06cc957a67c69d0ad098eb",
+      "input": "tests/scenarios/covering-fire-decline.json",
+      "input_sha256": "7c0384fd975dd6c6e36e6c2236da76817fb7edc714272b437d00662df9e6f829",
+      "steps": 14,
+      "passed": true
+    },
+    {
+      "id": "energy-explosion-pay",
+      "report": "artifacts/editor-scenarios/energy-explosion-pay/9000cf2dc6804eb3b78811efac632c6f/report.json",
+      "sha256": "8fee8b02a4497993ed926dee55928f76740f5297ab6fddb68c0c93c818e9ee91",
+      "input": "tests/scenarios/energy-explosion-pay.json",
+      "input_sha256": "4961190f8a451d0a5406f6da73cd66ea59e168659fce8ea0bd053d1a3e016d89",
+      "steps": 16,
+      "passed": true
+    },
+    {
+      "id": "counterattack-defense",
+      "report": "artifacts/editor-scenarios/counterattack-defense/8752a2eca4d644808fee520b8d0bfbeb/report.json",
+      "sha256": "3d1636ea2ab3c4ca37f5928337b5122cb904f5454cf003ef73897a11b6f3891f",
+      "input": "tests/scenarios/counterattack-defense.json",
+      "input_sha256": "1f9fa266bf819a115aba41a2a4ae0fe2197c4006d8a1c9da0f0e54d0a2ca9923",
+      "steps": 19,
+      "passed": true
+    },
+    {
+      "id": "heart-control-repeat",
+      "report": "artifacts/editor-scenarios/heart-control-repeat/1962c039e2c7454fa74caec145075121/report.json",
+      "sha256": "2d0ee08968426bd2303ee132dc455c17cd9432a2810b8d7890248e35eaefb56d",
+      "input": "tests/scenarios/heart-control-repeat.json",
+      "input_sha256": "2c7ee19ec1ffadc3a8fc599f143a64415d01f23bd83078be48d509cdbd140d71",
+      "steps": 18,
+      "passed": true
+    },
+    {
+      "id": "heart-control-minion",
+      "report": "artifacts/editor-scenarios/heart-control-minion/1be29566eaf6443f84da40ffeb472f29/report.json",
+      "sha256": "beaa537daddf6f078be0950f3361f22f639b8754b2740238b45499f0aaf13b23",
+      "input": "tests/scenarios/heart-control-minion.json",
+      "input_sha256": "c3463605f3fcc742efa59907bd1926b04904f537b62c528b71729e4538dda221",
+      "steps": 20,
+      "passed": true
+    }
+  ],
+  "build": {
+    "unity": "6000.3.23f1",
+    "built_utc": "2026-09-27T03:58:48.8210251Z",
+    "content_hash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+    "source_inventory": "docs/verification/ui3d-engine79/build-sources.json",
+    "source_inventory_sha256": "ab3d15871a62c6a00586c2f514893b61be84d25a0b5da6db3df662470d89b3fe"
+  },
+  "package": {
+    "path": "artifacts/releases/Goa2V1-e79-ui3d-integrated-20260927-040252-de0b13e9.zip",
+    "sha256": "1de1ab8814b156106f335d01f2488db67eac6edbf47ad93639ad408ff36ad8e7"
+  },
+  "limitations": [
+    "No fresh standalone Player OS-input test at merged engine79; UI branch records 20 passed checks at engine78.",
+    "No network branch merge, GameScreen network integration or four-client Unity validation.",
+    "1280x800 all panels expanded leaves a very small board and overlapping unit labels; UI follow-up.",
+    "No new full core suite; 48 affected tests plus 7 scenarios passed."
+  ]
+}

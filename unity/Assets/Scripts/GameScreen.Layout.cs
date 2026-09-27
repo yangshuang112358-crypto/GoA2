@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using Goa2.Domain;
+using Goa2.Presentation.UI3D;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,10 +10,11 @@ namespace Goa2.Presentation
 {
     public sealed partial class GameScreen
     {
-        private bool leftExpanded = true, rightExpanded = true, topExpanded = true, bottomExpanded = true;
+        private bool leftExpanded = true, rightExpanded = true, topExpanded = Environment.GetCommandLineArgs().Contains("-goa2d"), bottomExpanded = true;
         private bool showDebug;
         private readonly BoardViewport viewport = new BoardViewport();
-        private HexBoard? board;
+        private BattlefieldSurface? board;
+        private readonly Board3DViewport board3DViewport = new Board3DViewport();
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.Escape)) { if(keywordGlossaryOpen) CloseKeywordGlossary();else HideCardPreview();return; }
@@ -26,6 +28,8 @@ namespace Goa2.Presentation
             if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)) SwitchSeat(2);
             if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4)) SwitchSeat(3);
             if (Input.GetKeyDown(KeyCode.Home)) board?.ResetView();
+            if (Input.GetKeyDown(KeyCode.Q)) board?.Rotate(-1);
+            if (Input.GetKeyDown(KeyCode.E)) board?.Rotate(1);
         }
         private bool IsEditingText()
         {
@@ -182,6 +186,7 @@ namespace Goa2.Presentation
             var heading = Box("field-header"); field.Add(heading);
             heading.Add(Text("亚特兰蒂斯 · 254格", "section-title"));
             var tools = Box("map-controls"); heading.Add(tools);
+            tools.Add(Button(board3DViewport.Enabled ? "2.5D / 切2D" : "2D / 切2.5D", () => { board3DViewport.Enabled = !board3DViewport.Enabled; Render(); }, "compact-button", "toggle-3d"));
             var ownUnit=view.Units.SingleOrDefault(u => u.Seat==seat);
             var focus=Button("定位角色",() => { if (ownUnit!=null) board?.FocusAt(ownUnit.Position); },"compact-button","focus-hero");
             focus.SetEnabled(ownUnit!=null); tools.Add(focus);
@@ -189,11 +194,11 @@ namespace Goa2.Presentation
             tools.Add(Button("全图", () => board?.ResetView(), "compact-button"));
             tools.Add(Button("＋", () => board?.ZoomAtCenter(1.25f), "compact-button"));
             var targets = LegalCells(view);
-            board = new HexBoard(catalog, view, targets, chosenCell, cell =>
+            board = new BattlefieldSurface(catalog, view, targets, chosenCell, cell =>
             {
                 if (!targets.Contains(cell)) { notice = "此格不可用于当前操作。"; return; }
                 chosenCell = cell; notice = "已选地图格 " + cell + "，确认后应用。"; Render();
-            }, cell => cellInfo.text = BoardHint(view,RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : "")), viewport, SelectedEffectArea(view));
+            }, cell => cellInfo.text = BoardHint(view,RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : "")), viewport, SelectedEffectArea(view), board3DViewport);
             board.ViewportChanged = RequestCapture;
             field.Add(board);
             cellInfo = Text(BoardHint(view,targets.Count == 0 ? "滚轮缩放 · 中/右键拖动 · Home全图" : targets.Count + " 个合法目标 · 点击后确认"), "tiny");

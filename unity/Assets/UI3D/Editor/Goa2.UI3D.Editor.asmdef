@@ -1,0 +1,5 @@
+{
+  "name": "Goa2.UI3D.Editor",
+  "references": ["Goa2.Editor"],
+  "includePlatforms": ["Editor"]
+}

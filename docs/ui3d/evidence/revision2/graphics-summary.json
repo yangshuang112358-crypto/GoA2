@@ -1,0 +1,20 @@
+[
+  {
+    "path": "artifacts\\ui3d\\audit-1600x1000-20260927-114328",
+    "passed": true,
+    "width": 1600,
+    "height": 1000,
+    "assertions": 6264,
+    "method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard",
+    "sha256": "06594D4FC6E0D43F994E116F9594174DDC10011408B4B503719CF482EE77BB2F"
+  },
+  {
+    "path": "artifacts\\ui3d\\audit-1280x800-20260927-114223",
+    "passed": true,
+    "width": 1280,
+    "height": 800,
+    "assertions": 6264,
+    "method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard",
+    "sha256": "88C3611335E954B96A6831FA9FCAA7CFE861E3863E30A98C4E30EFF09B64D06C"
+  }
+]
