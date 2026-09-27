@@ -1267,5 +1267,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：2号攻击夏尔加萨；战斗演练范围内敌近战被视为远程，统治领域仍覆盖它，但远程友兵不提供近战守卫。场景两种效果均经真实行动建立。"
+  },
+  {
+    "id": "dominance-activate",
+    "title": "独霸一方：完整主要移动起点",
+    "scenario": "dominance-self",
+    "through_step": 16,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号夏尔加萨执行主要移动，可0格，建立本轮效果。下回合2号黄蜂攻击本人时，包含受保护重型的全部敌兵改为友方计算。快速替代不会建立效果。"
+  },
+  {
+    "id": "dominance-defense",
+    "title": "独霸一方：免疫重型计算例外",
+    "scenario": "dominance-self",
+    "through_step": 22,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号黄蜂攻击(3,-8)夏尔加萨，攻击总值2，重型虽保持真实免疫也不再提供敌方支持。分支：攻击(4,-9)布罗根总值5；不能借此直接移除红重型。"
   }
 ]

@@ -1,0 +1,90 @@
+{
+  "engine": 88,
+  "implemented_cards": 99,
+  "data_only_cards": 9,
+  "build_utc": "2026-09-27T06:35:57.6451510Z",
+  "assemblies": {
+    "Goa2.Application.dll": "80b1d76ae3bfaae87f92c8f4df7782d4c6cea7cb812c9e50a8ff30ade974b1ab",
+    "Goa2.Domain.dll": "8c31e083e8e29b0957f4a8e9b6092969dc6856254d839872eb056def3d2bf967",
+    "Goa2.Editor.dll": "84ef080602853f46960decde1d1cf50f4bfacff9405a4d4a8b50c41c375334f1",
+    "Goa2.Infrastructure.dll": "5b8a860dcde2acd063680fa406f82d3239ca3612c3ff1e5236dc1d5edf4fec4e",
+    "Goa2.Rules.dll": "e38168dfa483c911ed661f4bcfa762fe4128706f557f7e085aa9197f3ee7ec84"
+  },
+  "core": {
+    "passed": 2031,
+    "failed": 0,
+    "report": "artifacts/tests/dominance-unity-0.xml",
+    "card_specific": 6,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/dominance-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/dominance-self.json",
+        "input_sha256": "ab54a858f76fb45839303fa40f6615082774e7a28523df2fc1d79591b14a57e0",
+        "report": "artifacts/editor-scenarios/dominance-self/5c2bc52ec61843d4816069dbd1853911/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/dominance-ally.json",
+        "input_sha256": "be99ca4fa9707b3c759c9e2a6713421a4cde6210bbf4ba66f802584174285c8c",
+        "report": "artifacts/editor-scenarios/dominance-ally/90db1c3c4a9f4c7994f090e41fc062a8/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/dominance-ranged.json",
+        "input_sha256": "e3ae51fa3a52e763b6a3ec1846962501ba5a5f8a1c1becd655edc574e55b9bc9",
+        "report": "artifacts/editor-scenarios/dominance-ranged/61d51b809e964dc9b6e45658387b6920/report.json",
+        "steps": 27,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/dominance-dual.json",
+        "input_sha256": "d27dd9146494fe477546b52e176491cd73fd4bb4ab1877bd9e76f97ed78fda44",
+        "report": "artifacts/editor-scenarios/dominance-dual/20e1f5969191410abf7417f0662fbc9c/report.json",
+        "steps": 27,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine88-dominance-defense-scenario.json",
+        "input_sha256": "f355d6c345d6ac87823a1090d8baed7ba3b84fced5e3ff1bdffbc86dacb0adf8",
+        "report": "artifacts/editor-scenarios/engine88-dominance-defense-scenario/c8fceaa7cffa4216a1ae331076233d3c/report.json",
+        "steps": 24,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 128
+  },
+  "manual_presets": [
+    "dominance-activate",
+    "dominance-defense"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/dominance-red.xml",
+    "passed": 1,
+    "failed": 5
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e88-dominance-20260927-063619-a6fd7918.zip",
+    "sha256": "d021d35baf376249013fdc6f8da9fbb1296965dae847792f75a18c093f1f64e9"
+  }
+}

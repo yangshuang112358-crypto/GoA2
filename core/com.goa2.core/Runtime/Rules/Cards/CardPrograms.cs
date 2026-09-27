@@ -222,6 +222,7 @@ namespace Goa2.Rules.Cards
         };
         private static readonly Dictionary<string,(string text,int minimumEngine,PrimaryProgram program)> Movements = new Dictionary<string,(string,int,PrimaryProgram)>
         {
+            ["shargatha-10-独霸一方"] = ("本轮：计算防御总值时，技能范围内所有敌方小兵（包括免疫的小兵）视为友方单位。",88,new PrimaryProgram("primary_move_round_enemy_all_minions_friendly_for_own_defense",EffectKind.EnemyAllMinionsFriendlyForOwnDefense,EffectDuration.ThisRound,primaryMovement:true)),
             ["shargatha-08-统治领域"] = ("本轮：计算防御总值时，在技能范围内的敌方远程小兵和近战小兵均视为友方单位。",87,new PrimaryProgram("primary_move_round_enemy_light_minions_friendly_for_own_defense",EffectKind.EnemyLightMinionsFriendlyForOwnDefense,EffectDuration.ThisRound,primaryMovement:true)),
             ["shargatha-07-魅惑"] = ("本轮：计算防御总值时，在技能范围内的敌方近战小兵视为友方单位。",86,new PrimaryProgram("primary_move_round_enemy_melee_friendly_for_own_defense",EffectKind.EnemyMeleeFriendlyForOwnDefense,EffectDuration.ThisRound,primaryMovement:true)),
             ["sabina-16-战斗武装"] = ("本轮：当你或一名友方英雄执行攻击时，将技能范围内的所有友方小兵（包括免疫的）视为同时具有近战和远程。（这可以使每个小兵减少敌方英雄最多2点防御总值。）",32,
