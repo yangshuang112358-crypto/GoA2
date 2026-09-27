@@ -828,6 +828,15 @@
       "input": "tests/fixtures/engine92-poison-dart-defense-scenario.json",
       "input_sha256": "36a9c4b9284acd7cc86a28da9bcaae60765aff88dd47193d521e4dadf9b46e9c",
       "provenance": "tests/fixtures/engine92-poison-dart-defense.md"
+    },
+    {
+      "engine_version": 93,
+      "accepted_commands": 20,
+      "save": "tests/fixtures/engine93-binding-defense.json",
+      "save_sha256": "788c34c8659e695162bfab255ec1baeb2cef158cd7d8c486f1ca042c31b30277",
+      "input": "tests/fixtures/engine93-binding-defense-scenario.json",
+      "input_sha256": "56b7a85681f1a3955b63d35af938d48289cc27f63b7859ce371f69049ba10d82",
+      "provenance": "tests/fixtures/engine93-binding-defense.md"
     }
   ]
 }

@@ -1,0 +1,95 @@
+{
+  "engine": 93,
+  "implemented_cards": 104,
+  "data_only_cards": 4,
+  "build_utc": "2026-09-27T07:15:39.3242798Z",
+  "assemblies": {
+    "Goa2.Application.dll": "240ddd172034fc17e8f5f4ca0eb8d234d5c20b01b2b19076669bced419193424",
+    "Goa2.Domain.dll": "1a2d34b2cfcfebcec3da80c51797512f7421f1cbe87c78317fb9f28a6fd2c46e",
+    "Goa2.Editor.dll": "772e0d90c3348444b908c8fedaf3beee4de81b71930e6e5612f9009ed7b5fb76",
+    "Goa2.Infrastructure.dll": "b94cf091634d19db71d624053e0a8a28bb5da1df7386e55f0b74657090aca5e1",
+    "Goa2.Rules.dll": "1ea8157606aff22f2b4b58b21707922c92a9f5aa3e4ea243a9d6bd97fffc8bd2"
+  },
+  "core": {
+    "passed": 218,
+    "failed": 0,
+    "report": "artifacts/tests/binding-unity-0.xml",
+    "card_specific": 15,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/binding-unity-0.xml",
+      "artifacts/tests/binding-unity-1.xml"
+    ],
+    "replaced_failed_tests": [
+      "Goa2.Tests.PhantasmTests.StraightMovementTraversesWallAtExactBudgetWithoutCreatingAnAction"
+    ],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/binding-gold.json",
+        "input_sha256": "56aeabe2bfeb72431bdcba345001b25012b8c3602952d1e6f010e48eadea3bc8",
+        "report": "artifacts/editor-scenarios/binding-gold/cf333e23ff5743e9ab4cde5c487294c5/report.json",
+        "steps": 21,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/binding-red.json",
+        "input_sha256": "cd82bedab04a56adcd443e6b6cee553e4b038d613b5974164cba5bf259386f12",
+        "report": "artifacts/editor-scenarios/binding-red/73ffb1187d684687a36c4c02ca7fa455/report.json",
+        "steps": 21,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/binding-blue.json",
+        "input_sha256": "c81538ca412ea3ff38a4a0da3fbad126642293ae4535ccc5ecc01db488f862d0",
+        "report": "artifacts/editor-scenarios/binding-blue/745ff42568564d9ab5629375b7931160/report.json",
+        "steps": 22,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/binding-green.json",
+        "input_sha256": "3dcba91c2d30e7e7b05e701b139738658315706233267f19610d2933a855dc4a",
+        "report": "artifacts/editor-scenarios/binding-green/c25b815db69741f4bd6e89b0d0cb8b52/report.json",
+        "steps": 23,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine93-binding-defense-scenario.json",
+        "input_sha256": "56b7a85681f1a3955b63d35af938d48289cc27f63b7859ce371f69049ba10d82",
+        "report": "artifacts/editor-scenarios/engine93-binding-defense-scenario/ed47a71ba2cb46198d21dae48a673921/report.json",
+        "steps": 20,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 107
+  },
+  "manual_presets": [
+    "binding-cast",
+    "binding-gold",
+    "binding-red",
+    "binding-blue"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/binding-red.xml",
+    "passed": 1,
+    "failed": 10
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e93-binding-20260927-071611-ef8ffd60.zip",
+    "sha256": "c88f38c021d9b891bf3adee9d63a91bef3d2b85f32e5f4105722c4e7307b8147"
+  }
+}

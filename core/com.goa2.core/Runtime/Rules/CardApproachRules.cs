@@ -72,7 +72,7 @@ namespace Goa2.Rules
             var program=ApproachProgram(catalog,state);var e=state.Execution;
             if(program==null || e==null)return new List<MoveOption>();
             var source=state.Units.SingleOrDefault(u=>u.Seat==e.ControllerSeat);var unit=state.Units.SingleOrDefault(u=>u.Id==e.TargetUnitId);
-            if(source==null || unit==null || !EffectRules.CanDisplace(catalog,state,e.ControllerSeat,unit) || IsMinion(unit) && !LegalMinionRemovals(state).Contains(unit.Id))return new List<MoveOption>();
+            if(source==null || unit==null || !EffectRules.CanMoveForCard(catalog,state,unit,e.CardId) || !EffectRules.CanDisplace(catalog,state,e.ControllerSeat,unit) || IsMinion(unit) && !LegalMinionRemovals(state).Contains(unit.Id))return new List<MoveOption>();
             var occupied=new HashSet<Hex>(state.Units.Where(u=>u.Id!=unit.Id).Select(u=>u.Position));
             bool traverseTerrain=UltimateRules.CanTraverseObstacles(catalog,state,unit),traverseUnits=traverseTerrain || EffectRules.CanTraverseUnits(state,unit);
             var cells=catalog.Cells.ToDictionary(c=>c.Position);

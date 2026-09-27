@@ -225,16 +225,18 @@ namespace Goa2.Rules.Cards
             ["shargatha-15-忠实信徒"] = ("如果你与一个小兵相邻，你可以拿回一张已丢弃的卡牌。",12,null,new PrimaryProgram("optional_discard_recovery_near_minion",0,recoveryRequiresAdjacentMinion:true,
                 instructions:new[]{InstructionKind.OptionalRecoverDiscard,InstructionKind.End}))
         };
-        private static readonly Dictionary<string,(string text,int minimumEngine,PrimaryProgram program)> Movements = new Dictionary<string,(string,int,PrimaryProgram)>
+        private static readonly Dictionary<string,(string text,int minimumEngine,string? subtype,PrimaryProgram program)> Movements = new Dictionary<string,(string,int,string?,PrimaryProgram)>
         {
-            ["shargatha-10-独霸一方"] = ("本轮：计算防御总值时，技能范围内所有敌方小兵（包括免疫的小兵）视为友方单位。",88,new PrimaryProgram("primary_move_round_enemy_all_minions_friendly_for_own_defense",EffectKind.EnemyAllMinionsFriendlyForOwnDefense,EffectDuration.ThisRound,primaryMovement:true)),
-            ["shargatha-08-统治领域"] = ("本轮：计算防御总值时，在技能范围内的敌方远程小兵和近战小兵均视为友方单位。",87,new PrimaryProgram("primary_move_round_enemy_light_minions_friendly_for_own_defense",EffectKind.EnemyLightMinionsFriendlyForOwnDefense,EffectDuration.ThisRound,primaryMovement:true)),
-            ["shargatha-07-魅惑"] = ("本轮：计算防御总值时，在技能范围内的敌方近战小兵视为友方单位。",86,new PrimaryProgram("primary_move_round_enemy_melee_friendly_for_own_defense",EffectKind.EnemyMeleeFriendlyForOwnDefense,EffectDuration.ThisRound,primaryMovement:true)),
-            ["sabina-16-战斗武装"] = ("本轮：当你或一名友方英雄执行攻击时，将技能范围内的所有友方小兵（包括免疫的）视为同时具有近战和远程。（这可以使每个小兵减少敌方英雄最多2点防御总值。）",32,
+            ["shargatha-09-致命束缚"] = ("下回合：与你相邻的所有敌方英雄无法移动，只能执行金色或红色卡牌上的移动。",93,null,new PrimaryProgram("primary_move_next_turn_adjacent_enemy_gold_red_only",0,effect:EffectKind.EnemyMovementGoldOrRedOnly,areaKind:EffectAreaKind.Adjacent,duration:EffectDuration.NextTurn,instructions:new[]{InstructionKind.PrimaryMovement,InstructionKind.ApplyEffect,InstructionKind.End})),
+
+            ["shargatha-10-独霸一方"] = ("本轮：计算防御总值时，技能范围内所有敌方小兵（包括免疫的小兵）视为友方单位。",88,"范围",new PrimaryProgram("primary_move_round_enemy_all_minions_friendly_for_own_defense",EffectKind.EnemyAllMinionsFriendlyForOwnDefense,EffectDuration.ThisRound,primaryMovement:true)),
+            ["shargatha-08-统治领域"] = ("本轮：计算防御总值时，在技能范围内的敌方远程小兵和近战小兵均视为友方单位。",87,"范围",new PrimaryProgram("primary_move_round_enemy_light_minions_friendly_for_own_defense",EffectKind.EnemyLightMinionsFriendlyForOwnDefense,EffectDuration.ThisRound,primaryMovement:true)),
+            ["shargatha-07-魅惑"] = ("本轮：计算防御总值时，在技能范围内的敌方近战小兵视为友方单位。",86,"范围",new PrimaryProgram("primary_move_round_enemy_melee_friendly_for_own_defense",EffectKind.EnemyMeleeFriendlyForOwnDefense,EffectDuration.ThisRound,primaryMovement:true)),
+            ["sabina-16-战斗武装"] = ("本轮：当你或一名友方英雄执行攻击时，将技能范围内的所有友方小兵（包括免疫的）视为同时具有近战和远程。（这可以使每个小兵减少敌方英雄最多2点防御总值。）",32,"范围",
                 new PrimaryProgram("primary_move_round_attack_minions_dual",EffectKind.FriendlyAttackMinionsDual,EffectDuration.ThisRound,primaryMovement:true)),
-            ["sabina-14-战斗演练"] = ("本轮：当你或一名友方英雄执行攻击时，将技能范围内的所有友方小兵（包括免疫的）视为远程单位。",31,
+            ["sabina-14-战斗演练"] = ("本轮：当你或一名友方英雄执行攻击时，将技能范围内的所有友方小兵（包括免疫的）视为远程单位。",31,"范围",
                 new PrimaryProgram("primary_move_round_attack_minions_ranged",EffectKind.FriendlyAttackMinionsRanged,EffectDuration.ThisRound,primaryMovement:true)),
-            ["sabina-17-演练"] = ("本轮：当你或一名友方英雄执行基础攻击时，将技能范围内的所有友方小兵（包括免疫的）视为远程单位。",30,
+            ["sabina-17-演练"] = ("本轮：当你或一名友方英雄执行基础攻击时，将技能范围内的所有友方小兵（包括免疫的）视为远程单位。",30,"范围",
                 new PrimaryProgram("primary_move_round_basic_minions_ranged",EffectKind.FriendlyBasicMinionsRanged,EffectDuration.ThisRound,primaryMovement:true))
         };
         public static PrimaryProgram? Primary(CardDefinition card, int engineVersion)
@@ -242,7 +244,7 @@ namespace Goa2.Rules.Cards
             if (card.PrimaryFamily == "attack" && Attacks.TryGetValue(card.Id,out var attack) && card.Text == attack.text && engineVersion>=attack.minimumEngine &&
                 (card.Subtype ?? "")==attack.program.AttackSubtype) return attack.program;
             if (card.PrimaryFamily == "skill" && Skills.TryGetValue(card.Id,out var skill) && engineVersion>=skill.minimumEngine && card.Subtype==skill.subtype && card.Text==skill.text) return skill.program;
-            if (card.PrimaryFamily == "movement" && Movements.TryGetValue(card.Id,out var movement) && engineVersion>=movement.minimumEngine && card.Subtype=="范围" && card.Text==movement.text) return movement.program;
+            if (card.PrimaryFamily == "movement" && Movements.TryGetValue(card.Id,out var movement) && engineVersion>=movement.minimumEngine && card.Subtype==movement.subtype && card.Text==movement.text) return movement.program;
             if (engineVersion >= 3 && card.Id=="wasp-00-闪耀之刃" && card.PrimaryCategory=="基础攻击" && string.IsNullOrEmpty(card.Subtype) &&
                 card.Text=="选择与你相邻的一个英雄为目标。攻击后：取消与你相邻的敌方英雄技能卡上的激活效果。此回合：与你相邻的敌方英雄无法执行技能行动。") return ShiningBlade;
             return null;

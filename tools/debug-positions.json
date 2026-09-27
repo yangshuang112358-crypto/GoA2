@@ -1366,5 +1366,41 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：2号中毒黄蜂攻击(3,-8)虎爪，基础3加攻击被动-1，总值2。黄蜂防御时其防御被动也为-1；∞抵挡本身不被中毒改成数值防御。"
+  },
+  {
+    "id": "binding-cast",
+    "title": "致命束缚：主要移动起点",
+    "scenario": "binding-gold",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号主要移动或0格，效果在下回合生效；下回合相邻敌英雄只允许金/红牌上的移动。移开来源或让目标离开相邻后，后续移动重新判断；推动/放置不受禁移条款限制。"
+  },
+  {
+    "id": "binding-gold",
+    "title": "致命束缚：金牌移动例外",
+    "scenario": "binding-gold",
+    "through_step": 18,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号虎爪执行金牌，穿过(3,-8)夏尔加萨移动至(2,-8)，正常攻击。切1号防御；金牌内的必需移动允许。"
+  },
+  {
+    "id": "binding-red",
+    "title": "致命束缚：红牌移动例外",
+    "scenario": "binding-red",
+    "through_step": 20,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号虎爪持红牌，可正常次要移动到(5,-8)。此时仍与来源相邻，红色本身提供移动例外。"
+  },
+  {
+    "id": "binding-blue",
+    "title": "致命束缚：蓝牌禁移/动态邻接",
+    "scenario": "binding-blue",
+    "through_step": 19,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号虎爪蓝牌无移动落点；用调试传送把1号来源从(3,-8)移到(2,-8)，2号即可移动。分支：来源被击败也解除；源牌取回沿普通持续规则取消。"
   }
 ]

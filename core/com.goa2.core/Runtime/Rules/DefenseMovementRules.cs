@@ -20,12 +20,12 @@ namespace Goa2.Rules
         {
             var program=DefenseMoveProgram(catalog,state,seat);var response=state.Execution?.DefenseResponse;
             var source=response==null ? null : state.Units.SingleOrDefault(u=>u.Id==response.SourceUnitId && u.Seat==seat);
-            return program==null || source==null ? new List<MoveOption>() : MovementRules.StraightExact(catalog,state,source,program.TextMoveDistance);
+            return program==null || source==null ? new List<MoveOption>() : MovementRules.StraightExact(catalog,state,source,program.TextMoveDistance,sourceCard:response!.SourceCardId);
         }
         private static bool BeginDefenseMove(ContentCatalog catalog,GameState state,Command command,DefenseResponse response,DefenseProgram program)
         {
             var source=state.Units.SingleOrDefault(u=>u.Id==response.SourceUnitId && u.Seat==response.ControllerSeat);
-            var options=source==null ? new List<MoveOption>() : MovementRules.StraightExact(catalog,state,source,program.TextMoveDistance);
+            var options=source==null ? new List<MoveOption>() : MovementRules.StraightExact(catalog,state,source,program.TextMoveDistance,sourceCard:response!.SourceCardId);
             if(options.Count==0)
             {
                 Emit(state,command,"EffectMoveSkipped",response.ControllerSeat,response.SourceCardId,response.ControllerSeat,source==null?"source_absent":"no_destinations");return false;

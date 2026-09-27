@@ -133,6 +133,17 @@ namespace Goa2.Rules
                     (source.Id==defender.Id || source.Position.Distance(defender.Position)<=Radius(catalog,state,effect));
             });
         }
+        public static bool CanMoveForCard(ContentCatalog catalog,GameState state,UnitState unit,string? sourceCard)
+        {
+            if(state.EngineVersion<93 || unit.Kind!="hero")return true;
+            string color=sourceCard==null ? "" : catalog.Card(sourceCard).Color;
+            foreach(var effect in Current(state,EffectKind.EnemyMovementGoldOrRedOnly))
+            {
+                var source=Source(state,effect);
+                if(source!=null && source.Team!=unit.Team && source.Position.Distance(unit.Position)==1 && CanAffect(state,effect.ControllerSeat,unit) && color!="gold" && color!="red")return false;
+            }
+            return true;
+        }
         public static int ActionMovementBudget(ContentCatalog catalog,GameState state,UnitState unit,int budget)
         {
             if(state.EngineVersion<89)return budget;

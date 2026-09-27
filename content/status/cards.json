@@ -510,11 +510,24 @@
     },
     {
       "card_id": "shargatha-09-致命束缚",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-09-致命束缚.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/BindingTests.cs",
+        "tests/scenarios/binding-gold.json",
+        "tests/scenarios/binding-red.json",
+        "tests/scenarios/binding-blue.json",
+        "tests/scenarios/binding-green.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "shargatha-10-独霸一方",

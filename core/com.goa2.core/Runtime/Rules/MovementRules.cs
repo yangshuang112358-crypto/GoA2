@@ -22,6 +22,7 @@ namespace Goa2.Rules
             var unit = state.Units.SingleOrDefault(u => u.Seat == seat);
             if (played == null || unit == null) return empty;
             var card = catalog.Card(played.CardId);
+            if(!EffectRules.CanMoveForCard(catalog,state,unit,card.Id))return empty;
             bool primaryMove = card.PrimaryFamily == "movement" && card.PrimaryValue > 0;
             bool secondaryMove = card.PrimaryFamily != "movement" && card.SecondaryMovement > 0;
             if (mode == MoveMode.Secondary && secondaryMove)
@@ -30,10 +31,10 @@ namespace Goa2.Rules
                 return Fast(catalog, state, unit).Where(m=>unit.Position.Distance(m.Destination)<=EffectRules.ActionMovementBudget(catalog,state,unit,int.MaxValue)).ToList();
             return empty;
         }
-        internal static List<MoveOption> Reachable(ContentCatalog catalog, GameState state, UnitState unit, int budget)
+        internal static List<MoveOption> Reachable(ContentCatalog catalog, GameState state, UnitState unit, int budget,string? sourceCard=null)
         {
             var result = new List<MoveOption>();
-            if (budget <= 0) return result;
+            if (budget <= 0 || !EffectRules.CanMoveForCard(catalog,state,unit,sourceCard??MovementSource(state,unit))) return result;
             bool traverse=UltimateRules.CanTraverseObstacles(catalog,state,unit);
             var origin = unit.Position;
             var cells = catalog.Cells.ToDictionary(c => c.Position);
@@ -55,9 +56,9 @@ namespace Goa2.Rules
             }
             return result.OrderBy(o => o.Destination.X).ThenBy(o => o.Destination.Y).ToList();
         }
-        internal static List<MoveOption> StraightExact(ContentCatalog catalog,GameState state,UnitState unit,int distance,string? passThroughUnitId=null)
+        internal static List<MoveOption> StraightExact(ContentCatalog catalog,GameState state,UnitState unit,int distance,string? passThroughUnitId=null,string? sourceCard=null)
         {
-            var result=new List<MoveOption>();if(distance<1)return result;
+            var result=new List<MoveOption>();if(distance<1 || !EffectRules.CanMoveForCard(catalog,state,unit,sourceCard??MovementSource(state,unit)))return result;
             bool traverse=UltimateRules.CanTraverseObstacles(catalog,state,unit);
             var occupied=new HashSet<Hex>(state.Units.Select(u=>u.Position));
             foreach(var first in unit.Position.Neighbors())
@@ -76,6 +77,7 @@ namespace Goa2.Rules
             }
             return result.OrderBy(o=>o.Destination.X).ThenBy(o=>o.Destination.Y).ToList();
         }
+        private static string? MovementSource(GameState state,UnitState unit) => state.Execution?.CardId ?? (unit.Seat.HasValue ? state.Players[unit.Seat.Value].Cards.SingleOrDefault(c=>c.Zone==CardZone.PlayedUnresolved)?.CardId : null);
         private static List<MoveOption> Fast(ContentCatalog catalog, GameState state, UnitState source)
         {
             var cells = catalog.Cells.ToDictionary(c => c.Position);

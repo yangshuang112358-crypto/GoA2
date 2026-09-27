@@ -49,7 +49,7 @@ namespace Goa2.Rules
                 state.Pending?.ChooserSeat!=seat || state.Pending.Kind!="effect_move")return new List<MoveOption>();
             var unit=state.Units.SingleOrDefault(u=>u.Kind=="hero" && u.Seat==seat);
             if(unit==null)return new List<MoveOption>();
-            return state.BeforeAction.Stage=="move" ? MovementRules.Reachable(catalog,state,unit,2) :
+            return state.BeforeAction.Stage=="move" ? MovementRules.Reachable(catalog,state,unit,2,sourceCard:state.BeforeAction.SourceCardId) :
                 state.BeforeAction.Stage=="destination" ? MovementRules.ActionMoves(catalog,state,seat,state.BeforeAction.ResumeMoveMode) : new List<MoveOption>();
         }
 

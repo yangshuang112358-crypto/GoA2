@@ -287,9 +287,9 @@ namespace Goa2.Tests
                 .First(p=>catalog.Cell(p.Wall)?.Obstacle==true && catalog.Cell(p.End)?.Obstacle==false && !occupied.Contains(p.End));
             mage.Position=pair.Origin;
             var method=typeof(MovementRules).GetMethod("StraightExact",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Static);
-            var moves=(System.Collections.Generic.List<MoveOption>)method.Invoke(null,new object[]{catalog,state,mage,2,null});
+            var moves=(System.Collections.Generic.List<MoveOption>)method.Invoke(null,new object[]{catalog,state,mage,2,null,null});
             Assert.That(moves.Single(m=>m.Destination==pair.End).Path,Does.Contain(pair.Wall));
-            var shortMoves=(System.Collections.Generic.List<MoveOption>)method.Invoke(null,new object[]{catalog,state,mage,1,null});
+            var shortMoves=(System.Collections.Generic.List<MoveOption>)method.Invoke(null,new object[]{catalog,state,mage,1,null,null});
             Assert.That(shortMoves.Any(m=>m.Destination==pair.Wall || m.Destination==pair.End),Is.False);
             Assert.That(state.Events.Any(e=>e.Kind=="UltimateTriggered"),Is.False);
         }

@@ -412,7 +412,7 @@
         "continuous",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/shargatha-09-致命束缚.md",
       "question_candidates": [
         "U-011"
