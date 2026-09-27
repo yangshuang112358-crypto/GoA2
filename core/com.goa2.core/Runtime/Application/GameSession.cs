@@ -124,6 +124,7 @@ namespace Goa2.Application
                     PurpleCardId = p.PurpleCardId,
                     BasicAttackBonus = UltimateRules.BasicAttackBonus(catalog,snapshot,p.Seat),
                     BasicAttackRangeBonus = UltimateRules.BasicAttackRangeBonus(catalog,snapshot,p.Seat),
+                    IsPetrified = snapshot.Units.Any(u=>u.Seat==p.Seat && PetrificationRules.IsPetrified(snapshot,u)),
                     IsPoisoned = PassiveRules.Poison(snapshot,p.Seat)!=null,
                     PoisonIncludesDefense = PassiveRules.Poison(snapshot,p.Seat)?.IncludesDefense==true,
                     EffectiveBonuses = PassiveRules.Effective(snapshot,p.Seat),

@@ -593,11 +593,24 @@
     },
     {
       "card_id": "shargatha-13-石化",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-13-石化.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/PetrificationTests.cs",
+        "tests/scenarios/petrify-placement.json",
+        "tests/scenarios/petrify-dynamic.json",
+        "tests/scenarios/petrify-source-defeat.json",
+        "tests/scenarios/petrify-expiry.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/PushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/UltimateRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "shargatha-14-石化之眼",

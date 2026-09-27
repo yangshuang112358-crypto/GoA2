@@ -82,6 +82,11 @@ namespace Goa2.Rules
         }
         public static bool CanAffect(GameState state,int controllerSeat,UnitState target,bool attackAction=false)
         {
+            if(target.Seat!=controllerSeat && PetrificationRules.IsPetrified(state,target))return false;
+            return CanAffectWithoutPetrification(state,controllerSeat,target,attackAction);
+        }
+        internal static bool CanAffectWithoutPetrification(GameState state,int controllerSeat,UnitState target,bool attackAction=false)
+        {
             if(state.EngineVersion<51 || target.Seat==controllerSeat)return true;
             if(state.EngineVersion>=64 && attackAction && Current(state,EffectKind.AttackActionImmunity).Any(e=>e.SourceUnitId==target.Id))return false;
             if(Current(state,EffectKind.ImmunityAndUnitTraversal).Any(e=>e.SourceUnitId==target.Id))return false;
@@ -135,6 +140,7 @@ namespace Goa2.Rules
         }
         public static bool CanMoveForCard(ContentCatalog catalog,GameState state,UnitState unit,string? sourceCard)
         {
+            if(PetrificationRules.IsPetrified(state,unit))return false;
             if(state.EngineVersion<93 || unit.Kind!="hero")return true;
             string color=sourceCard==null ? "" : catalog.Card(sourceCard).Color;
             var restrictions=Current(state,EffectKind.EnemyMovementGoldOrRedOnly);

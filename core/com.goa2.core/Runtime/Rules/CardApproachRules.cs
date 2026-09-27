@@ -76,7 +76,8 @@ namespace Goa2.Rules
             var occupied=new HashSet<Hex>(state.Units.Where(u=>u.Id!=unit.Id).Select(u=>u.Position));
             bool traverseTerrain=UltimateRules.CanTraverseObstacles(catalog,state,unit),traverseUnits=traverseTerrain || EffectRules.CanTraverseUnits(state,unit);
             var cells=catalog.Cells.ToDictionary(c=>c.Position);
-            bool Enter(Hex p)=>cells.TryGetValue(p,out var c) && (!c.Obstacle || traverseTerrain) && (!occupied.Contains(p) || traverseUnits);
+            var stone=PetrificationRules.TerrainCells(state);
+            bool Enter(Hex p)=>cells.TryGetValue(p,out var c) && (!(c.Obstacle || stone.Contains(p)) || traverseTerrain) && (!occupied.Contains(p) || traverseUnits);
             bool Stop(Hex p)=>cells.TryGetValue(p,out var c) && !c.Obstacle && !occupied.Contains(p);
             var goals=source.Position.Neighbors().Where(Stop).ToList();
             var distances=goals.ToDictionary(p=>p,p=>0);var queue=new Queue<Hex>(goals);

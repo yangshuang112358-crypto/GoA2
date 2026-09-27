@@ -114,7 +114,7 @@ namespace Goa2.Presentation
                 if (seat == target) card.AddToClassList("selected-seat");
                 string captain = target == view.BlueCaptain || target == view.RedCaptain ? " · 队长" : "";
                 SeatLabel(card, (player.Team == Team.Blue ? "蓝队" : "红队") + " / " + (target + 1) + captain, "eyebrow", 5, 34);
-                SeatLabel(card, HeroName(player.HeroId) + (player.IsPoisoned ? " · 中毒" : "") + (player.AwaitingRespawn ? " · 待复活" : view.UpgradingSeats.Contains(target) ? " · 待升级" : view.ActiveSeat == target ? " · 行动" : ""), "seat-name", 43, 70);
+                SeatLabel(card, HeroName(player.HeroId) + (player.IsPoisoned ? " · 中毒" : "") + (player.IsPetrified ? " · 石化" : "") + (player.AwaitingRespawn ? " · 待复活" : view.UpgradingSeats.Contains(target) ? " · 待升级" : view.ActiveSeat == target ? " · 行动" : ""), "seat-name", 43, 70);
                 SeatLabel(card, "Lv." + player.Level + "  " + player.Gold + " 金 · 手牌 " + player.HandCount, "tiny", 117, 34);
                 if (bonusHeight>0)
                 {

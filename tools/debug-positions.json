@@ -1429,5 +1429,32 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：2号虎爪红牌不能次要移动，但可攻击邻接的1号夏尔加萨。1号用石化卡的次要防御挡住后，虎爪的攻击后1格移动仍被禁止。分支：1号选择不防御而被击败，束缚立即取消，此次攻击后的移动重新可选。"
+  },
+  {
+    "id": "petrify-cast",
+    "title": "石化：施法/并列最近",
+    "scenario": "petrify-placement",
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号夏尔加萨执行主要技能。相邻2号黄蜂和4号阿连都受石化；英雄身份保留，不能移动且免疫他人的行动。分支：移开其中一人后动态重算；自己非移动技能仍可使用。"
+  },
+  {
+    "id": "petrify-placement",
+    "title": "石化：石化中使用非移动技能",
+    "scenario": "petrify-placement",
+    "through_step": 13,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：4号阿连处于石化，无普通移动落点；执行潮水，将自己放置到(1,-8)。这是自己的放置，不是移动行动。分支：可选其他合法落点；仍须遵守英雄及小兵出生点限制。"
+  },
+  {
+    "id": "petrify-dynamic",
+    "title": "石化：动态来源/解除",
+    "scenario": "petrify-dynamic",
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：先1号施法，3号跳过，同先攻时选2号。黄蜂不能移动；调试传送1号到(2,-8)，黄蜂脱离最近目标后可移动到(5,-8)。分支：调试击败来源或结束回合也会解除。"
   }
 ]

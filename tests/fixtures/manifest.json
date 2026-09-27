@@ -846,6 +846,15 @@
       "input": "tests/fixtures/engine94-death-grasp-defense-scenario.json",
       "input_sha256": "03de99599a2f5f244ecd24636778d31bffe639c4f4a71c133eb550660f4fd4c7",
       "provenance": "tests/fixtures/engine94-death-grasp-defense.md"
+    },
+    {
+      "engine_version": 95,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine95-petrify-placement.json",
+      "save_sha256": "9f5e64fdf9fdf9671d449b4cd94301aa9b2c079c1da1aa5703b0153f75995a7a",
+      "input": "tests/fixtures/engine95-petrify-placement-scenario.json",
+      "input_sha256": "fa79ba9193b0ea7b3759ba3858282dee7ac44ba8d87fa6f7f12f9de9a9fc4dbc",
+      "provenance": "tests/fixtures/engine95-petrify-placement.md"
     }
   ]
 }

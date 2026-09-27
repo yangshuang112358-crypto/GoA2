@@ -17,7 +17,8 @@ namespace Goa2.Rules
         }
         public static bool HasImmuneActionPrelude(ContentCatalog catalog, GameState state, int seat) =>
             OwnedProgram(catalog,state,seat)?.Trigger == UltimateTrigger.BeforeActionMoveAndRepeat &&
-            state.Effects.Any(e => e.Kind == EffectKind.ImmunityAndUnitTraversal && e.SourceUnitId == "hero:"+seat && EffectTimeline.Active(e.Window,state.Round,state.Turn));
+            (state.Effects.Any(e => e.Kind == EffectKind.ImmunityAndUnitTraversal && e.SourceUnitId == "hero:"+seat && EffectTimeline.Active(e.Window,state.Round,state.Turn)) ||
+             state.Units.Any(u=>u.Seat==seat && PetrificationRules.IsPetrified(state,u)));
         public static bool CanTraverseObstacles(ContentCatalog catalog, GameState state, UnitState unit) =>
             unit.Kind == "hero" && unit.Seat.HasValue && (OwnedProgram(catalog, state, unit.Seat.Value)?.TraverseObstacles ?? false);
         public static int BasicAttackBonus(ContentCatalog catalog, GameState state, int seat) => OwnedProgram(catalog, state, seat)?.BasicAttackBonus ?? 0;

@@ -45,6 +45,7 @@ namespace Goa2.Rules
                 ControllerSeat = execution.ControllerSeat, CreatedRound = state.Round, CreatedTurn = state.Turn, CreationOrder = state.EffectSequence,
                 Kind = program.Effect!.Value, Duration = program.Duration, AreaKind=program.AreaKind, Window = window
             };
+            if(state.EngineVersion>=95 && effect.Kind==EffectKind.PetrifyNearestEnemyHeroes)effect.BaseRadius=catalog.Card(execution.CardId).SubtypeValue??0;
             state.Effects.Add(effect);
             Emit(state,command,"EffectCreated",effect.ControllerSeat,effect.SourceCardId,detail:effect.Id);
             Emit(state,command,EffectTimeline.Active(window,state.Round,state.Turn) ? "EffectActivated" : "EffectScheduled",effect.ControllerSeat,effect.SourceCardId,detail:effect.Id);

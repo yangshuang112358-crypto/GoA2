@@ -11,7 +11,7 @@ namespace Goa2.Domain
         public bool IncludesDefense;
     }
     public enum EffectDuration { ThisTurn, NextTurn, ThisRound, ThisAndNextTurn }
-    public enum EffectKind { MovementBoundary, SkillSuppression, NonAdjacentRangedImmunity, FriendlyBasicMinionsRanged, FriendlyAttackMinionsRanged, FriendlyAttackMinionsDual, FriendlyNearMinionDefense, FriendlyDisplacementProtection, ImmunityAndUnitTraversal, OtherEnemyActionImmunity, FriendlyMeleeDefeatPrevention, FriendlyNonHeavyDefeatPrevention, FriendlyMinionDefeatPrevention, AttackFromDiscard, AttackActionImmunity, OtherEnemyAttackImmunity, EnemyMeleeFriendlyForOwnDefense, EnemyLightMinionsFriendlyForOwnDefense, EnemyAllMinionsFriendlyForOwnDefense, EnemyActionMovementLimitOne, EnemyMovementGoldOrRedOnly, EnemyMovementGoldOnly }
+    public enum EffectKind { MovementBoundary, SkillSuppression, NonAdjacentRangedImmunity, FriendlyBasicMinionsRanged, FriendlyAttackMinionsRanged, FriendlyAttackMinionsDual, FriendlyNearMinionDefense, FriendlyDisplacementProtection, ImmunityAndUnitTraversal, OtherEnemyActionImmunity, FriendlyMeleeDefeatPrevention, FriendlyNonHeavyDefeatPrevention, FriendlyMinionDefeatPrevention, AttackFromDiscard, AttackActionImmunity, OtherEnemyAttackImmunity, EnemyMeleeFriendlyForOwnDefense, EnemyLightMinionsFriendlyForOwnDefense, EnemyAllMinionsFriendlyForOwnDefense, EnemyActionMovementLimitOne, EnemyMovementGoldOrRedOnly, EnemyMovementGoldOnly, PetrifyNearestEnemyHeroes }
     public enum EffectAreaKind { SkillRange, Adjacent, None }
     [Serializable]
     public sealed class EffectWindow
@@ -27,6 +27,7 @@ namespace Goa2.Domain
         public int? ExemptControllerSeat;
         public int ControllerSeat, CreatedRound, CreatedTurn, CreationOrder;
         public int ProgramVersion = 1;
+        public int BaseRadius;
         public bool PersistsThroughDefeat;
         public EffectKind Kind;
         public EffectDuration Duration;

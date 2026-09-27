@@ -20,7 +20,7 @@ namespace Goa2.Domain
         public string? PurpleCardId;
         public int HandCount;
         public int BasicAttackBonus, BasicAttackRangeBonus;
-        public bool IsPoisoned, PoisonIncludesDefense;
+        public bool IsPoisoned, PoisonIncludesDefense, IsPetrified;
         public Dictionary<string,int>? EffectiveBonuses;
         public Dictionary<string, int> PermanentBonuses = new Dictionary<string, int>();
         public List<CardInstance> Revealed = new List<CardInstance>();

@@ -38,6 +38,7 @@ namespace Goa2.Presentation
                     if(effect.Kind==EffectKind.EnemyMeleeFriendlyForOwnDefense)meaning="仅本人防御时，范围内敌方近战小兵视为友方；棋子的实际阵营不变。";
                     if(effect.Kind==EffectKind.EnemyMovementGoldOnly)meaning="下回合每次移动时，动态相邻的敌英雄只能执行金牌上的移动；推动、放置、换位另计。";
                     if(effect.Kind==EffectKind.EnemyMovementGoldOrRedOnly)meaning="下回合每次移动时，动态相邻的敌英雄只能执行金色或红色牌上的移动；推动、放置、换位另计。";
+                    if(effect.Kind==EffectKind.PetrifyNearestEnemyHeroes)meaning="动态影响范围内全部并列最近敌英雄；仍为英雄，免疫、不能移动、视为地形，可执行非移动行动。最近免疫者不让位给较远目标。";
                     if(effect.Kind==EffectKind.EnemyActionMovementLimitOne)meaning="敌方主要、次要、快速移动若从范围内开始，最多1格；牌内移动不受此限。";
                     if(effect.Kind==EffectKind.EnemyAllMinionsFriendlyForOwnDefense)meaning="仅本人防御时，范围内所有敌方小兵（含免疫）视为友方；不改变真实阵营及移除保护。";
                     if(effect.Kind==EffectKind.EnemyLightMinionsFriendlyForOwnDefense)meaning="仅本人防御时，范围内敌方近战及远程小兵视为友方；不豁免重型小兵免疫。";
