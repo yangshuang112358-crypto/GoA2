@@ -1159,5 +1159,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：4号先攻击(5,-9)蓝兵开启反击。1号攻击萨彼娜并让4号弃劈砍；2号防御结束后，4号劈砍(5,-7)布罗根，完成后才由1号选择是否攻击(3,-7)红兵。"
+  },
+  {
+    "id": "telekinesis-enemy",
+    "title": "控物：两队英雄与零步分支",
+    "scenario": "telekinesis-enemy",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号黄蜂施法，选择(1,-4)敌布罗根，移动到(2,-5)，或不移动。分支：可选(-2,-4)友方阿连移动到(-2,-3)；不能选自己、相邻单位或更靠近/远离的落点。"
+  },
+  {
+    "id": "telekinesis-minion",
+    "title": "控物：等距移动后小兵回归",
+    "scenario": "telekinesis-minion",
+    "through_step": 12,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号黄蜂选(0,-3)红兵，移动至(1,-4)；2号队长再选(0,-3)回归，之后卡牌结束。分支：选敌布罗根或友阿连测试英雄移动；也可选0步，不触发回归。"
   }
 ]

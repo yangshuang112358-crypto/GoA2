@@ -738,6 +738,15 @@
       "input": "tests/fixtures/engine82-tidal-wave-repeat-scenario.json",
       "input_sha256": "2624b5208d8f61acfb56348a0641e59d875ea8f6d20a262ee2aac549ba222878",
       "provenance": "tests/fixtures/engine82-tidal-wave-repeat.md"
+    },
+    {
+      "engine_version": 83,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine83-telekinesis-move.json",
+      "save_sha256": "68702c0fad4c09989cec89b584d689a1476d9ec1e8b26df231db8d8ebe7a45a7",
+      "input": "tests/fixtures/engine83-telekinesis-move-scenario.json",
+      "input_sha256": "c7e889cf2c84bed48f7a7ae210a61bf4f57e17f7b651048ec06bbc8afce7643b",
+      "provenance": "tests/fixtures/engine83-telekinesis-move.md"
     }
   ]
 }

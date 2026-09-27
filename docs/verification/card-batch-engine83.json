@@ -1,0 +1,91 @@
+{
+  "engine": 83,
+  "implemented_cards": 94,
+  "data_only_cards": 14,
+  "build_utc": "2026-09-27T05:49:04.8997281Z",
+  "assemblies": {
+    "Goa2.Application.dll": "4f91ab86c2f1d9453b52e8ea86973a8db40a9f0fc2a00ee79bf24cfac0b35175",
+    "Goa2.Domain.dll": "dd4123786e88960e92cda0f2708ce7b2c871cbb4c51f7d5f1b6432447b5427ae",
+    "Goa2.Editor.dll": "df8346fc8132a0da38cc76c95924e0149aa4fc2980c07483d0c9578391d1785b",
+    "Goa2.Infrastructure.dll": "764152c9ae968ed6566807879609862b9f6918994d1524a1187060acd1c78c74",
+    "Goa2.Rules.dll": "2322267dbee1062a878c6056a12f2f5b17b0a0e550683315c52923b9d2ca39b5"
+  },
+  "core": {
+    "passed": 103,
+    "failed": 0,
+    "report": "artifacts/tests/telekinesis-unity-0.xml",
+    "card_specific": 12,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/telekinesis-unity-0.xml",
+      "artifacts/tests/telekinesis-unity-1.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/telekinesis-enemy.json",
+        "input_sha256": "fd5ade2d5301ad7865c4c513fdcb4da15fd01f6bb0c121031caa9c9fcc339c2f",
+        "report": "artifacts/editor-scenarios/telekinesis-enemy/92e5e048b2024918b413929d7b43d2b0/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/telekinesis-friendly.json",
+        "input_sha256": "fd62d59027115d48ff8fb567a5e298ca6130011c507e888c94e80432aac81670",
+        "report": "artifacts/editor-scenarios/telekinesis-friendly/d2bab623da9b4ab3be57fedd123e0236/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/telekinesis-minion.json",
+        "input_sha256": "208511112fdb8d992b2f8f891b21a0489378ef86b4994aa961e954f543096577",
+        "report": "artifacts/editor-scenarios/telekinesis-minion/a060244175634983a763ad1c40c40e6b/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/telekinesis-zero.json",
+        "input_sha256": "4767b4d0971598e8ada47d3758904cf5fa4a6d23578180fb335e4571cf214dd7",
+        "report": "artifacts/editor-scenarios/telekinesis-zero/1aa080b381e34920931d8e26a08e139e/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine83-telekinesis-move-scenario.json",
+        "input_sha256": "c7e889cf2c84bed48f7a7ae210a61bf4f57e17f7b651048ec06bbc8afce7643b",
+        "report": "artifacts/editor-scenarios/engine83-telekinesis-move-scenario/ef82e0be55044452b53b62662f3e3f64/report.json",
+        "steps": 13,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 71
+  },
+  "manual_presets": [
+    "telekinesis-enemy",
+    "telekinesis-minion"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/telekinesis-red.xml",
+    "passed": 1,
+    "failed": 10
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e83-telekinesis-20260927-054958-6dfececb.zip",
+    "sha256": "5341039665511002f7bd7042eef006d93a9f1a54848ceb64fba222e6b18b8f70"
+  }
+}

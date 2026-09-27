@@ -246,11 +246,21 @@
     },
     {
       "card_id": "wasp-13-控物",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-13-控物.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/TelekinesisTests.cs",
+        "tests/scenarios/telekinesis-enemy.json",
+        "tests/scenarios/telekinesis-friendly.json",
+        "tests/scenarios/telekinesis-minion.json",
+        "tests/scenarios/telekinesis-zero.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs"
+      ]
     },
     {
       "card_id": "wasp-14-动力助推",

@@ -30,7 +30,10 @@ namespace Goa2.Rules
   {
    var e=state.Execution!;
    if(state.EngineVersion>=77 && !EffectRules.CanDisplace(catalog,state,e.ControllerSeat,unit,attackAction:catalog.Card(e.CardId).PrimaryFamily=="attack"))return new List<MoveOption>();
-   return MovementRules.Reachable(catalog,state,unit,p.TextMoveDistance);
+   var moves=MovementRules.Reachable(catalog,state,unit,p.TextMoveDistance);
+   if(!p.TargetMoveKeepsDistance)return moves;
+   var source=state.Units.SingleOrDefault(u=>u.Seat==e.ControllerSeat);
+   return source==null ? new List<MoveOption>() : moves.Where(m=>m.Destination.Distance(source.Position)==unit.Position.Distance(source.Position)).ToList();
   }
   private static bool BeginTargetUnitMove(ContentCatalog catalog,GameState state,Command command)
   {

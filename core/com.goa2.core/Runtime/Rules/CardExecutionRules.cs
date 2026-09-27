@@ -133,6 +133,9 @@ namespace Goa2.Rules
                         if(BeginMinionReturns(catalog,state,command))return;
                         if(BeginFriendlyMinionTarget(catalog,state,command))return;
                         execution.Cursor+=2;break;
+                    case InstructionKind.ChooseOrbitalTarget:
+                        if(BeginOrbitalTarget(catalog,state,command))return;
+                        StopCard(catalog,state,command,"no_targets");return;
                     case InstructionKind.ChooseFriendlyMinionTarget:
                         if(BeginFriendlyMinionTarget(catalog,state,command))return;
                         StopCard(catalog,state,command,"no_targets");return;
