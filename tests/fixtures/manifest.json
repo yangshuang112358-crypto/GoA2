@@ -774,6 +774,15 @@
       "input": "tests/fixtures/engine86-charm-defense-scenario.json",
       "input_sha256": "90185728a166a60f8ec2185df75d70535bf2b118ab42f7d4d73d97b5762d87d8",
       "provenance": "tests/fixtures/engine86-charm-defense.md"
+    },
+    {
+      "engine_version": 87,
+      "accepted_commands": 24,
+      "save": "tests/fixtures/engine87-dominion-defense.json",
+      "save_sha256": "6c3aea8f1c2c86485810f7e673552dd28deb2688dc2616771cb6385a96937323",
+      "input": "tests/fixtures/engine87-dominion-defense-scenario.json",
+      "input_sha256": "d31ac763c3dca0f03ffeebaff7fff2388ca6b6693076fc4062c6d671083926f0",
+      "provenance": "tests/fixtures/engine87-dominion-defense.md"
     }
   ]
 }

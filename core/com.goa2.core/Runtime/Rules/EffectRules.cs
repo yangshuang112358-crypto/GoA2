@@ -33,13 +33,15 @@ namespace Goa2.Rules
             if(defender==null)return result;
             var kinds=MinionCombatKinds(catalog,state,attack,attackerSeat);
             var affectable=new HashSet<string>(GameRules.LegalMinionRemovals(state));
-            foreach(var effect in Current(state,EffectKind.EnemyMeleeFriendlyForOwnDefense).Where(e=>e.SourceUnitId==defenderId && e.ControllerSeat==defender.Seat))
+            var defenseEffects=Current(state,EffectKind.EnemyMeleeFriendlyForOwnDefense);
+            if(state.EngineVersion>=87)defenseEffects=defenseEffects.Concat(Current(state,EffectKind.EnemyLightMinionsFriendlyForOwnDefense));
+            foreach(var effect in defenseEffects.Where(e=>e.SourceUnitId==defenderId && e.ControllerSeat==defender.Seat))
             {
                 int radius=Radius(catalog,state,effect);
                 foreach(var minion in state.Units.Where(u=>u.Team!=defender.Team && affectable.Contains(u.Id) && u.Position.Distance(defender.Position)<=radius && CanAffect(state,effect.ControllerSeat,u)))
                 {
                     string kind=kinds.TryGetValue(minion.Id,out var converted)?converted:minion.Kind;
-                    if(kind=="melee" || kind=="melee_ranged")result[minion.Id]=defender.Team;
+                    if(kind=="melee" || kind=="melee_ranged" || effect.Kind==EffectKind.EnemyLightMinionsFriendlyForOwnDefense && kind=="ranged")result[minion.Id]=defender.Team;
                 }
             }
             return result;

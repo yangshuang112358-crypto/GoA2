@@ -1240,5 +1240,32 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：2号黄蜂攻击夏尔加萨。红近战受战斗武装视为近战兼远程，魅惑仍把它计作本人友方守卫；若改攻击布罗根，则作为敌方双重支持。先前两个主要移动效果均经正常行动建立。"
+  },
+  {
+    "id": "dominion-activate",
+    "title": "统治领域：从主要移动开始",
+    "scenario": "dominion-self",
+    "through_step": 16,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号主要移动0格或正常移动，建立本轮效果。下回合2号攻击本人时，敌近战和远程改为友方计算，重型仍为敌方。分支：快速移动替代不建立效果。"
+  },
+  {
+    "id": "dominion-defense",
+    "title": "统治领域：近战/远程/重型对照",
+    "scenario": "dominion-self",
+    "through_step": 22,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号黄蜂攻击(3,-8)夏尔加萨，总值3：近战变守卫、远程不再支持、重型仍支持。分支：攻击(4,-9)布罗根，总值5，队友不享受统治领域。"
+  },
+  {
+    "id": "dominion-ranged",
+    "title": "统治领域与战斗演练",
+    "scenario": "dominion-ranged",
+    "through_step": 24,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号攻击夏尔加萨；战斗演练范围内敌近战被视为远程，统治领域仍覆盖它，但远程友兵不提供近战守卫。场景两种效果均经真实行动建立。"
   }
 ]
