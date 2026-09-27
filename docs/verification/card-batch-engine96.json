@@ -1,0 +1,91 @@
+{
+  "engine": 96,
+  "implemented_cards": 107,
+  "data_only_cards": 1,
+  "build_utc": "2026-09-27T07:52:50.9160459Z",
+  "assemblies": {
+    "Goa2.Application.dll": "df11d4142b1f14f0e21954f08796eb0b8030f5fcd3f5bde6746c0e9825e534fd",
+    "Goa2.Domain.dll": "02b082d7726a93610ae44296b704e3b74ad2fc5dbfdf9c69235f4f0c16533ec7",
+    "Goa2.Editor.dll": "7773de1271f6e0dc454b9bedc5e92b76f12d690d13d4dfa5a2912646ab01954f",
+    "Goa2.Infrastructure.dll": "2a7849b419f98bf9bfe386c01a200c7d2a92e441a02b1a6607d7388351c7bf9c",
+    "Goa2.Rules.dll": "d100bc92a082a75f9b73db5e761932b7009d3e97e5e2de5996da7d451e0d1d5c"
+  },
+  "core": {
+    "passed": 66,
+    "failed": 0,
+    "report": "artifacts/tests/petrify-eye-unity-0.xml",
+    "card_specific": 8,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/petrify-eye-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/petrify-eye-placement.json",
+        "input_sha256": "d1aea0be706e8988c0383d03292f6ac13fd6bb2a5568fe6f805e1e226a041606",
+        "report": "artifacts/editor-scenarios/petrify-eye-placement/dccf558d3251459a88858bd2769348ea/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/petrify-eye-dynamic.json",
+        "input_sha256": "2b93476f316293ada6a2afe9ecd98a993e90338b2b27abd68d6a07083c436b77",
+        "report": "artifacts/editor-scenarios/petrify-eye-dynamic/5b8846ec4db04399886ff46d3981cdc5/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/petrify-eye-source-defeat.json",
+        "input_sha256": "e3cf1c8c9dd464a6522efcce8275295ae7933b8df5eabf37967c065cc7d09731",
+        "report": "artifacts/editor-scenarios/petrify-eye-source-defeat/b9f436ecc63e400a8d35433db1a1da8b/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/petrify-eye-expiry.json",
+        "input_sha256": "3e2650dc5a1fe7c1322db8792f0aad5cd38dda78670ead4ceba0af251b1dd47e",
+        "report": "artifacts/editor-scenarios/petrify-eye-expiry/16fa6cfce3e645c093bcc8c5e829e880/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine96-petrify-eye-placement-scenario.json",
+        "input_sha256": "398cff472342f993cef07167d7fe5c6ed414ad370051e40ff70d8ec96144f347",
+        "report": "artifacts/editor-scenarios/engine96-petrify-eye-placement-scenario/142ffe0127484ae5adc1032f801611ab/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 71
+  },
+  "manual_presets": [
+    "petrify-eye-cast",
+    "petrify-eye-placement",
+    "petrify-eye-dynamic"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/petrify-eye-red.xml",
+    "passed": 1,
+    "failed": 7
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e96-petrify-eye-20260927-075329-ebfe32e8.zip",
+    "sha256": "88e072bdaf9946c2c6edb7fdc68daae82544c023776cf3bcab02ed99110df2b1"
+  }
+}

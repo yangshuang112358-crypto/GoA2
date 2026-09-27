@@ -614,11 +614,24 @@
     },
     {
       "card_id": "shargatha-14-石化之眼",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-14-石化之眼.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/PetrificationEyeTests.cs",
+        "tests/scenarios/petrify-eye-placement.json",
+        "tests/scenarios/petrify-eye-dynamic.json",
+        "tests/scenarios/petrify-eye-source-defeat.json",
+        "tests/scenarios/petrify-eye-expiry.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/PushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/UltimateRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "shargatha-15-忠实信徒",
