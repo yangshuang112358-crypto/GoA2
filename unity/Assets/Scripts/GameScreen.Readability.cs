@@ -15,12 +15,12 @@ namespace Goa2.Presentation
         private bool spaceGuardInstalled;
         private bool historyOpen;
         private int historyRound=1;
-        private int Bonus(PlayerView player,string key) => player.PermanentBonuses.TryGetValue(key,out var value) ? value : 0;
+        private int Bonus(PlayerView player,string key) => (player.EffectiveBonuses??player.PermanentBonuses).TryGetValue(key,out var value) ? value : 0;
         private void StatLine(VisualElement parent,string text,int bonus,string name="")
         {
             var line=Box("stat-line"); parent.Add(line);
             line.Add(Text(text,"tiny"));
-            if(bonus>0) { var label=Text("+"+bonus,"passive-plus"); label.name=name; line.Add(label); }
+            if(bonus!=0) { var label=Text((bonus>0?"+":"")+bonus,bonus>0?"passive-plus":"passive-minus"); label.name=name; line.Add(label); }
         }
         private void CardNumbers(VisualElement parent,CardDefinition card,PlayerView player,bool showBonuses,string prefix)
         {

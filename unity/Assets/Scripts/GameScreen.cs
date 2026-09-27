@@ -534,6 +534,9 @@ namespace Goa2.Presentation
                 case "CardsSwapped": return actor+"用 "+catalog.Card(entry.Detail).Name+" 换回 "+catalog.Card(entry.CardId!).Name;
                 case "CardSwapColorsShown": return actor+"交换了手牌与防御牌的状态";
                 case "RecoverDiscardRequired": return actor+"可按牌文取回一张卡牌";
+                case "PoisonApplied": return actor+"获得中毒标记，保留至轮末";
+                case "PoisonUnchanged": return actor+"已中毒，本次不叠加";
+                case "PoisonExpired": return actor+"的中毒标记在轮末移除";
                 case "EffectTargetChoiceRequired": return actor+(entry.Detail=="push_all_adjacent"?"选择下一个推动目标":entry.Detail=="blocked_push_discard_target"?"选择下一位受阻英雄":"选择牌文作用的英雄");
                 case "EffectTargetChosen": return actor+"选定牌文目标 · "+EventUnitName(entry.Detail);
                 case "GoldTransferChoiceRequired": return actor+"选择是否拿取金币";

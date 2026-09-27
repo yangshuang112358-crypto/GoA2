@@ -90,8 +90,8 @@ namespace Goa2.Rules
                 EndTurn(catalog, state, command);
                 return;
             }
-            int initiative = candidates.Max(p => catalog.Card(p.Cards.Single(c => c.Zone == CardZone.PlayedUnresolved).CardId).Initiative + p.InitiativeBonus);
-            candidates = candidates.Where(p => catalog.Card(p.Cards.Single(c => c.Zone == CardZone.PlayedUnresolved).CardId).Initiative + p.InitiativeBonus == initiative).ToList();
+            int initiative = candidates.Max(p => catalog.Card(p.Cards.Single(c => c.Zone == CardZone.PlayedUnresolved).CardId).Initiative + PassiveRules.Initiative(state,p.Seat));
+            candidates = candidates.Where(p => catalog.Card(p.Cards.Single(c => c.Zone == CardZone.PlayedUnresolved).CardId).Initiative + PassiveRules.Initiative(state,p.Seat) == initiative).ToList();
             if (candidates.Select(p => p.Team).Distinct().Count() > 1)
             {
                 var winningTeam = state.DecisionCoin;

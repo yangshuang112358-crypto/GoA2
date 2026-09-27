@@ -88,7 +88,7 @@ namespace Goa2.Presentation
             void Add(string label,int bonus,string suffix)
             {
                 var chip=Box("card-stat-chip");stats.Add(chip);chip.Add(Text(label,"tiny"));
-                if(bonus>0) {var plus=Text("+"+bonus,"passive-plus");plus.name=prefix+"-"+suffix+"-bonus";chip.Add(plus);}
+                if(bonus!=0) {var plus=Text((bonus>0?"+":"")+bonus,bonus>0?"passive-plus":"passive-minus");plus.name=prefix+"-"+suffix+"-bonus";chip.Add(plus);}
             }
             string key=card.PrimaryFamily=="attack" ? "攻击" : card.PrimaryFamily=="defense" ? "防御" : card.PrimaryFamily=="movement" ? "移动" : "";
             Add(CardDisplay.Primary(card),bonuses && !card.Exclamation ? (Bonus(player,key)+(card.PrimaryCategory=="基础攻击" ? player.BasicAttackBonus : 0)) : 0,"primary");

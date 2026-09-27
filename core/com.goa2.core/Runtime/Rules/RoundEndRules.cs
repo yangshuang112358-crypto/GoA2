@@ -20,6 +20,7 @@ namespace Goa2.Rules
             Require(CanResolveRoundEnd(state), "invalid_round_end", "当前不能开始轮末结算。");
             Require(state.Turn == catalog.Rules.TurnsPerRound && state.Players.All(p => p.HeroId != null) && !state.Players.SelectMany(p => p.Cards).Any(c => c.Zone == CardZone.PlayedUnresolved), "invalid_round_end", "须完成第四回合的全部行动。");
             Emit(state, command, "RoundEndStarted", detail: state.Round.ToString());
+            ClearRoundPoison(state,command);
             foreach (var player in state.Players)
             {
                 int returned = player.Cards.Count(c => c.Zone != CardZone.InHand);

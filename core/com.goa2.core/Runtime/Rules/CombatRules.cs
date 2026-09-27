@@ -97,7 +97,7 @@ namespace Goa2.Rules
             var defender = state.Units.SingleOrDefault(u => u.Seat == seat);
             var attacker = state.Units.SingleOrDefault(u => u.Seat == attack.AttackerSeat);
             if (defender == null || attacker == null) return result;
-            int defenseBonus=state.Players[seat].DefenseBonus+EffectRules.DefenseBonus(catalog,state,seat);
+            int defenseBonus=PassiveRules.Defense(state,seat)+EffectRules.DefenseBonus(catalog,state,seat);
             foreach (var instance in state.Players[seat].Cards.Where(c => c.Zone == CardZone.InHand))
             {
                 var card = catalog.Card(instance.CardId); var primary = CardPrograms.Defense(card,state.EngineVersion);

@@ -810,6 +810,15 @@
       "input": "tests/fixtures/engine90-flood-internal-scenario.json",
       "input_sha256": "bb7dece3b9fc8aad86501fbac1667fdb57f632ad989dd4241be485a80233794e",
       "provenance": "tests/fixtures/engine90-flood-internal.md"
+    },
+    {
+      "engine_version": 91,
+      "accepted_commands": 28,
+      "save": "tests/fixtures/engine91-poison-dagger-defense.json",
+      "save_sha256": "0368f7ac1639bf3dc7fb11f53f97055688f4bab94d30a442c1fe1c20499eba10",
+      "input": "tests/fixtures/engine91-poison-dagger-defense-scenario.json",
+      "input_sha256": "7e75580ac55473897aef076ce21d3ebf7259f6774b0d8da6f03fe280bc88e41c",
+      "provenance": "tests/fixtures/engine91-poison-dagger-defense.md"
     }
   ]
 }

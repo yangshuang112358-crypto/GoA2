@@ -124,6 +124,9 @@ namespace Goa2.Application
                     PurpleCardId = p.PurpleCardId,
                     BasicAttackBonus = UltimateRules.BasicAttackBonus(catalog,snapshot,p.Seat),
                     BasicAttackRangeBonus = UltimateRules.BasicAttackRangeBonus(catalog,snapshot,p.Seat),
+                    IsPoisoned = PassiveRules.Poison(snapshot,p.Seat)!=null,
+                    PoisonIncludesDefense = PassiveRules.Poison(snapshot,p.Seat)?.IncludesDefense==true,
+                    EffectiveBonuses = PassiveRules.Effective(snapshot,p.Seat),
                     PermanentBonuses = new System.Collections.Generic.Dictionary<string,int>
                     {
                         ["攻击"]=p.AttackBonus,["防御"]=p.DefenseBonus,["移动"]=p.MovementBonus,

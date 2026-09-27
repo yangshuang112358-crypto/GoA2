@@ -106,18 +106,19 @@ namespace Goa2.Presentation
                 int target = player.Seat;
                 var card = Button("", () => SwitchSeat(target), "seat-card");
                 card.name = "seat-" + (target + 1);
-                int bonusHeight=((player.PermanentBonuses.Count+1)/2)*34;
+                var displayedBonuses=player.EffectiveBonuses??player.PermanentBonuses;
+                int bonusHeight=((displayedBonuses.Count+1)/2)*34;
                 card.style.height = (player.DiscardColors.Count > 0 ? 254 : 214)+bonusHeight;
                 card.style.minHeight = (player.DiscardColors.Count > 0 ? 254 : 214)+bonusHeight;
                 card.AddToClassList(player.Team == Team.Blue ? "blue-seat" : "red-seat");
                 if (seat == target) card.AddToClassList("selected-seat");
                 string captain = target == view.BlueCaptain || target == view.RedCaptain ? " · 队长" : "";
                 SeatLabel(card, (player.Team == Team.Blue ? "蓝队" : "红队") + " / " + (target + 1) + captain, "eyebrow", 5, 34);
-                SeatLabel(card, HeroName(player.HeroId) + (player.AwaitingRespawn ? " · 待复活" : view.UpgradingSeats.Contains(target) ? " · 待升级" : view.ActiveSeat == target ? " · 行动" : ""), "seat-name", 43, 70);
+                SeatLabel(card, HeroName(player.HeroId) + (player.IsPoisoned ? " · 中毒" : "") + (player.AwaitingRespawn ? " · 待复活" : view.UpgradingSeats.Contains(target) ? " · 待升级" : view.ActiveSeat == target ? " · 行动" : ""), "seat-name", 43, 70);
                 SeatLabel(card, "Lv." + player.Level + "  " + player.Gold + " 金 · 手牌 " + player.HandCount, "tiny", 117, 34);
                 if (bonusHeight>0)
                 {
-                    var bonuses=player.PermanentBonuses.Select(p => p.Key + "+" + p.Value).ToList();
+                    var bonuses=displayedBonuses.Select(p => p.Key + (p.Value>0?"+":"") + p.Value).ToList();
                     for(int line=0;line*2<bonuses.Count;line++) SeatLabel(card,string.Join(" · ",bonuses.Skip(line*2).Take(2)),"bonus-line",155+line*34,34);
                 }
                 var rounds = Box("round-dots"); card.Add(rounds);

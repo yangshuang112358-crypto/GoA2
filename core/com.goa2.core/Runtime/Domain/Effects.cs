@@ -3,6 +3,13 @@ using System;
 
 namespace Goa2.Domain
 {
+    [Serializable]
+    public sealed class PoisonMarker
+    {
+        public int TargetSeat, SourceSeat, AppliedRound;
+        public string SourceCardId = "";
+        public bool IncludesDefense;
+    }
     public enum EffectDuration { ThisTurn, NextTurn, ThisRound, ThisAndNextTurn }
     public enum EffectKind { MovementBoundary, SkillSuppression, NonAdjacentRangedImmunity, FriendlyBasicMinionsRanged, FriendlyAttackMinionsRanged, FriendlyAttackMinionsDual, FriendlyNearMinionDefense, FriendlyDisplacementProtection, ImmunityAndUnitTraversal, OtherEnemyActionImmunity, FriendlyMeleeDefeatPrevention, FriendlyNonHeavyDefeatPrevention, FriendlyMinionDefeatPrevention, AttackFromDiscard, AttackActionImmunity, OtherEnemyAttackImmunity, EnemyMeleeFriendlyForOwnDefense, EnemyLightMinionsFriendlyForOwnDefense, EnemyAllMinionsFriendlyForOwnDefense, EnemyActionMovementLimitOne }
     public enum EffectAreaKind { SkillRange, Adjacent, None }

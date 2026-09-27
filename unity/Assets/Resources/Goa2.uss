@@ -262,3 +262,6 @@ Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
 .keyword-dialog { flex-shrink: 1; }
 .keyword-list { min-height: 0; flex-grow: 1; flex-shrink: 1; }
 .keyword-entry { margin-bottom: 16px; padding-bottom: 12px; border-bottom-width: 1px; border-bottom-color: #395560; }
+
+.passive-minus { color: #ff7777; font-size: 26px; -unity-font-style: bold; margin-left: 8px; }
+.card-stat-chip .passive-minus { margin: 0; padding: 0; margin-left: 4px; }

@@ -1330,5 +1330,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：1号施法后，2号从(7,-8)范围外开始次要移动，可走入范围内且不受1格上限；例如落(5,-7)。 洪水持续当前及下一回合，下一回合仍检查每次起点；第4回合施放不跨轮。"
+  },
+  {
+    "id": "poison-dagger-cast",
+    "title": "淬毒匕首：施毒整次行动",
+    "scenario": "poison-dagger-attack",
+    "through_step": 19,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号虎爪执行技能，选择(4,-8)黄蜂。黄蜂已合法升级获得攻击+2、先攻+1，中毒后显示攻击-2、先攻-1。分支：可选友布罗根或自己；目标击败、虎爪击败、取回毒牌都保留中毒至轮末，重复不叠加。"
+  },
+  {
+    "id": "poison-dagger-attack",
+    "title": "淬毒匕首：中毒英雄攻击起点",
+    "scenario": "poison-dagger-attack",
+    "through_step": 26,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号中毒黄蜂用闪耀之刃攻击(3,-8)虎爪，印刷攻击3，攻击被动-2，总值1。低级毒不反转防御被动；左栏标明中毒，卡牌数值显示负数。"
   }
 ]

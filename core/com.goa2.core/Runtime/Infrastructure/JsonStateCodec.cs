@@ -21,7 +21,7 @@ namespace Goa2.Infrastructure
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 if(member.DeclaringType==typeof(ActiveEffect) && (member.Name==nameof(ActiveEffect.ExemptControllerSeat) || member.Name==nameof(ActiveEffect.PersistsThroughDefeat)))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
-                if(member.DeclaringType==typeof(GameState) && (member.Name==nameof(GameState.MinionDefeat) || member.Name==nameof(GameState.BeforeAction) || member.Name==nameof(GameState.DiscardReactions) || member.Name==nameof(GameState.DiscardReactionFrames)))
+                if(member.DeclaringType==typeof(GameState) && (member.Name==nameof(GameState.PoisonMarkers) || member.Name==nameof(GameState.MinionDefeat) || member.Name==nameof(GameState.BeforeAction) || member.Name==nameof(GameState.DiscardReactions) || member.Name==nameof(GameState.DiscardReactionFrames)))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;
                 if(member.DeclaringType==typeof(AttackBreakdown) && member.Name==nameof(AttackBreakdown.UltimateBonus))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;

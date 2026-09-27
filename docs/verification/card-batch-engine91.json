@@ -1,0 +1,83 @@
+{
+  "engine": 91,
+  "implemented_cards": 102,
+  "data_only_cards": 6,
+  "build_utc": "2026-09-27T06:52:22.1363732Z",
+  "assemblies": {
+    "Goa2.Application.dll": "c2e321cc3590f8d7d86d53bbf3097cd6da463ec0796b9eb1695df18586146b5a",
+    "Goa2.Domain.dll": "9d1c9d62c868711905a9063a06bb4e52e9afdb285f6249331048dd3370577660",
+    "Goa2.Editor.dll": "ade089adca5f3fe306185d66eb6ae29572c63c60dd503757d3de90b345c1d983",
+    "Goa2.Infrastructure.dll": "88c8b9db804f2b582b1aaa2e722b7584f861870d8af762d20e2365e2e9aa5023",
+    "Goa2.Rules.dll": "673f3f9b78afd168a06b45bf78a4dc4aab5c8031abd7c67b58e1570065cf2b60"
+  },
+  "core": {
+    "passed": 99,
+    "failed": 0,
+    "report": "artifacts/tests/poison-dagger-unity-0.xml",
+    "card_specific": 15,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/poison-dagger-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/poison-dagger-attack.json",
+        "input_sha256": "66b4d7da5332931c03c55e9fc976085ca1e005b62ede499b1e5f66cff4c1707a",
+        "report": "artifacts/editor-scenarios/poison-dagger-attack/64a2b8bea7a0436682400012fb8efafa/report.json",
+        "steps": 29,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/poison-dagger-self.json",
+        "input_sha256": "835b22790b8ee82110c685336d71ea1d6c5d6130a95bc182176d0672587d40af",
+        "report": "artifacts/editor-scenarios/poison-dagger-self/5d17f0b428a94b4791d96307ba2b78c1/report.json",
+        "steps": 21,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/poison-dagger-ally.json",
+        "input_sha256": "91acb9387f31bd2cc1495e55872ec6e6ab5a2591cb56a04ea582e9c5c0694223",
+        "report": "artifacts/editor-scenarios/poison-dagger-ally/a4fde2c66c0c48208d102163aa6c85e3/report.json",
+        "steps": 21,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine91-poison-dagger-defense-scenario.json",
+        "input_sha256": "7e75580ac55473897aef076ce21d3ebf7259f6774b0d8da6f03fe280bc88e41c",
+        "report": "artifacts/editor-scenarios/engine91-poison-dagger-defense-scenario/a25920390f8648c9ba3d924548f70a01/report.json",
+        "steps": 28,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 99
+  },
+  "manual_presets": [
+    "poison-dagger-cast",
+    "poison-dagger-attack"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/poison-dagger-red.xml",
+    "passed": 1,
+    "failed": 11
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e91-poison-dagger-20260927-065247-ec3defd2.zip",
+    "sha256": "c7bc3bed647eaa884585ec1af2a0d391c43e6f2dc06c2584a09d0a5819c119ad"
+  }
+}

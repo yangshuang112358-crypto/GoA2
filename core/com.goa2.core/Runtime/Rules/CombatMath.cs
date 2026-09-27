@@ -24,7 +24,7 @@ namespace Goa2.Rules
             var result = new AttackBreakdown
             {
                 SourceCardId = card.Id, TargetUnitId = targetUnitId, AttackerSeat = attackerSeat, DefenderSeat = target!.Seat!.Value,
-                BaseAttack = card.PrimaryValue, AttackBonus = state.Players[attackerSeat].AttackBonus + extraAttack + ultimateAttack,
+                BaseAttack = card.PrimaryValue, AttackBonus = PassiveRules.Attack(state,attackerSeat) + extraAttack + ultimateAttack,
                 UltimateBonus = ultimateAttack,
                 CardTextBonus = extraAttack,
                 Ranged = card.Subtype == "远程", Unblockable = unblockable,
