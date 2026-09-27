@@ -1,0 +1,91 @@
+{
+  "engine": 97,
+  "implemented_cards": 108,
+  "data_only_cards": 0,
+  "build_utc": "2026-09-27T08:13:57.1157384Z",
+  "assemblies": {
+    "Goa2.Application.dll": "4c19c45c60c086c59a24530614ea0c4c1ca01abbf7de650f6a941ff428f2ceb4",
+    "Goa2.Domain.dll": "356471b93204475d919b5c982c2e2bf067984ac819bdc203f50f6f84d9082f14",
+    "Goa2.Editor.dll": "a2027bc3f6843b94ce1fc03054bddd51b629dbc1ca82b14bf143fc10d8694e39",
+    "Goa2.Infrastructure.dll": "bfadbf4b9f7b8f9775c24d4f0ab56a0c1b5010deb22445508eb152e110dab360",
+    "Goa2.Rules.dll": "792083dfe3b59061f2567e0878b2b5aaa3ddb64f0e62c212feedcb182f58fad5"
+  },
+  "core": {
+    "passed": 2196,
+    "failed": 0,
+    "report": "artifacts/tests/petrify-gaze-unity-0.xml",
+    "card_specific": 10,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/petrify-gaze-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/petrify-gaze-placement.json",
+        "input_sha256": "a7dc025ab7340a6da0338acefa0eb97660b3e65ca30f1213186fbfca0fd7644f",
+        "report": "artifacts/editor-scenarios/petrify-gaze-placement/ba60da1a7b70495e9eb4473a3fcb5978/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/petrify-gaze-dynamic.json",
+        "input_sha256": "1ebb53bc0b47de56bb4cdf9b1c2f44fa3fa4d54934ca3a06220b08c883a6459b",
+        "report": "artifacts/editor-scenarios/petrify-gaze-dynamic/87bf69397d5942ba9b977f4ab7cf7288/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/petrify-gaze-source-defeat.json",
+        "input_sha256": "89789c162e70d389bfc6ffea8fbb4ec78d7d92214e43b60d75d2399972066c70",
+        "report": "artifacts/editor-scenarios/petrify-gaze-source-defeat/1d3214adc154496296ec9d1a1d4260fe/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/petrify-gaze-expiry.json",
+        "input_sha256": "5c81f74e94d0f473ac2fc0fbb11d249cf44aad58f37e3a5fa23d43b125099f5e",
+        "report": "artifacts/editor-scenarios/petrify-gaze-expiry/07ab3898d7e343d0b4a71c2af016f4ce/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine97-petrify-gaze-placement-scenario.json",
+        "input_sha256": "3e0cb2d20270e80c60028b1965181d2c022b28615d127f791c7e93fadcb584c8",
+        "report": "artifacts/editor-scenarios/engine97-petrify-gaze-placement-scenario/04ec2131e7c9431aa80c32354344444b/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 71
+  },
+  "manual_presets": [
+    "petrify-gaze-cast",
+    "petrify-gaze-placement",
+    "petrify-gaze-dynamic"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/petrify-gaze-red.xml",
+    "passed": 1,
+    "failed": 9
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e97-petrify-gaze-20260927-081436-831de80e.zip",
+    "sha256": "c2640305f6ffdff7815c19f9726771e733186a92a2363b3d268f34b80753ebb7"
+  }
+}

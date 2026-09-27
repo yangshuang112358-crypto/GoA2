@@ -1483,5 +1483,32 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：先1号施法，3号跳过，同先攻时选2号。黄蜂不能移动；调试传送1号到(2,-8)，黄蜂脱离最近目标后可移动到(5,-8)。分支：调试击败来源或结束回合也会解除。"
+  },
+  {
+    "id": "petrify-gaze-cast",
+    "title": "石化凝视：施法/全范围",
+    "scenario": "petrify-gaze-placement",
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号夏尔加萨执行主要技能。相邻2号黄蜂和4号阿连及范围内其他敌英雄都受石化；英雄身份保留，不能移动且免疫他人的行动。分支：把其中一人移到范围外后动态重算；自己非移动技能仍可使用。"
+  },
+  {
+    "id": "petrify-gaze-placement",
+    "title": "石化凝视：石化中使用非移动技能",
+    "scenario": "petrify-gaze-placement",
+    "through_step": 13,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：4号阿连处于石化，无普通移动落点；执行潮水，将自己放置到(1,-8)。这是自己的放置，不是移动行动。分支：可选其他合法落点；仍须遵守英雄及小兵出生点限制。"
+  },
+  {
+    "id": "petrify-gaze-dynamic",
+    "title": "石化凝视：动态来源/解除",
+    "scenario": "petrify-gaze-dynamic",
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：先1号施法，3号跳过，同先攻时选2号。黄蜂不能移动；调试传送1号到(0,-6)，黄蜂脱离范围后可移动到(5,-8)。分支：调试击败来源或结束回合也会解除。"
   }
 ]

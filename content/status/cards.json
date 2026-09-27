@@ -652,11 +652,24 @@
     },
     {
       "card_id": "shargatha-16-石化凝视",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-16-石化凝视.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/PetrificationGazeTests.cs",
+        "tests/scenarios/petrify-gaze-placement.json",
+        "tests/scenarios/petrify-gaze-dynamic.json",
+        "tests/scenarios/petrify-gaze-source-defeat.json",
+        "tests/scenarios/petrify-gaze-expiry.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/MovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/PushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/UltimateRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "shargatha-17-至死不渝",

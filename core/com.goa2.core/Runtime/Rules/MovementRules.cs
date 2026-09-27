@@ -39,6 +39,7 @@ namespace Goa2.Rules
             var origin = unit.Position;
             var cells = catalog.Cells.ToDictionary(c => c.Position);
             var occupied = new HashSet<Hex>(state.Units.Select(u => u.Position));
+            // D-062: keep the start-position terrain view for this whole movement.
             var stone=PetrificationRules.TerrainCells(state);
             var paths = new Dictionary<Hex, List<Hex>> { [origin] = new List<Hex> { origin } };
             var queue = new Queue<Hex>(); queue.Enqueue(origin);
@@ -62,6 +63,7 @@ namespace Goa2.Rules
             var result=new List<MoveOption>();if(distance<1 || !EffectRules.CanMoveForCard(catalog,state,unit,sourceCard??MovementSource(state,unit)))return result;
             bool traverse=UltimateRules.CanTraverseObstacles(catalog,state,unit);
             var occupied=new HashSet<Hex>(state.Units.Select(u=>u.Position));
+            // D-062: keep the start-position terrain view for this whole movement.
             var stone=PetrificationRules.TerrainCells(state);
             foreach(var first in unit.Position.Neighbors())
             {
@@ -92,7 +94,6 @@ namespace Goa2.Rules
                     if (cells.TryGetValue(neighbor, out var adjacent) && !adjacent.Obstacle) allowedRegions.Add(adjacent.Region);
             allowedRegions.ExceptWith(enemyRegions);
             var occupied = new HashSet<Hex>(state.Units.Select(u => u.Position));
-            var stone=PetrificationRules.TerrainCells(state);
             return catalog.Cells.Where(c => !c.Obstacle && allowedRegions.Contains(c.Region) && !occupied.Contains(c.Position) && EffectRules.CanMoveAcross(catalog,state,source,source.Position,c.Position))
                 .OrderBy(c => c.Position.X).ThenBy(c => c.Position.Y)
                 .Select(c => new MoveOption { Destination = c.Position, Path = new List<Hex> { source.Position, c.Position } }).ToList();

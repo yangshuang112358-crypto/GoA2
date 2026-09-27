@@ -176,6 +176,7 @@ namespace Goa2.Rules.Cards
         };
         private static readonly Dictionary<string,(string text, int minimumEngine, string? subtype, PrimaryProgram program)> Skills = new Dictionary<string,(string, int, string?, PrimaryProgram)>
         {
+            ["shargatha-16-石化凝视"] = ("此回合：技能范围内的所有敌方英雄获得免疫，无法移动，且视为地形。",97,"范围",new PrimaryProgram("skill_turn_petrify_all_enemy_heroes",EffectKind.PetrifyAllEnemyHeroes,EffectDuration.ThisTurn)),
             ["shargatha-14-石化之眼"] = ("此回合：技能范围内最近的敌方英雄获得免疫，无法移动，且视为地形。",96,"范围",new PrimaryProgram("skill_turn_petrify_nearest_enemy_heroes",EffectKind.PetrifyNearestEnemyHeroes,EffectDuration.ThisTurn)),
             ["shargatha-13-石化"] = ("此回合：技能范围内最近的敌方英雄获得免疫，无法移动，且视为地形。（若有多个英雄距离相同，则影响多个英雄）",95,"范围",new PrimaryProgram("skill_turn_petrify_nearest_enemy_heroes",EffectKind.PetrifyNearestEnemyHeroes,EffectDuration.ThisTurn)),
             ["tigerclaw-12-剧毒飞镖"] = ("给攻击距离内一名英雄一枚中毒标记。拥有中毒标记的英雄每个先攻被动、攻击被动和防御被动的数值减1，而不是增加1。",92,"远程",new PrimaryProgram("skill_poison_attack_initiative_defense",0,heroTarget:HeroTargetKind.AnyHeroInAttackRange,instructions:new[]{InstructionKind.ChooseHeroTarget,InstructionKind.ApplyDefensePoison,InstructionKind.End})),

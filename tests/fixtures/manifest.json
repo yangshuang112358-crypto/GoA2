@@ -864,6 +864,15 @@
       "input": "tests/fixtures/engine96-petrify-eye-placement-scenario.json",
       "input_sha256": "398cff472342f993cef07167d7fe5c6ed414ad370051e40ff70d8ec96144f347",
       "provenance": "tests/fixtures/engine96-petrify-eye-placement.md"
+    },
+    {
+      "engine_version": 97,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine97-petrify-gaze-placement.json",
+      "save_sha256": "6931fdc4b3cc4fa75265e2e9f63beff6563372acaad1fc3bc1958bd0b6474920",
+      "input": "tests/fixtures/engine97-petrify-gaze-placement-scenario.json",
+      "input_sha256": "3e0cb2d20270e80c60028b1965181d2c022b28615d127f791c7e93fadcb584c8",
+      "provenance": "tests/fixtures/engine97-petrify-gaze-placement.md"
     }
   ]
 }
