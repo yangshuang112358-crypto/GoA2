@@ -10,7 +10,8 @@ namespace Goa2.Presentation
         private string lastBoardTelemetry="";
         [Serializable] private sealed class BoardTelemetry
         {
-            public bool Is3D,Connected;
+            public bool Is3D,Connected,Follow,Overview,SettingsOpen;
+            public string Toast="";
             public int Step,Seat,Units;
             public long Revision;
             public float Zoom;
@@ -24,6 +25,7 @@ namespace Goa2.Presentation
             if(screenshotPath==null || board==null || board.panel==null) return;
             var data=new BoardTelemetry {Is3D=board3DViewport.Enabled,Connected=board.Connected,
                 Step=board.RotationStep,Seat=seat,Units=board.Scene?.TokenCount ?? renderedView.Units.Count,
+                Follow=cameraFollow,Overview=followOverview,SettingsOpen=rightExpanded,Toast=followToast?.resolvedStyle.display==UnityEngine.UIElements.DisplayStyle.Flex ? followToast.text : "",
                 Revision=renderedView.Revision,Zoom=board3DViewport.Zoom,Focus=board3DViewport.Focus,Bounds=board.worldBound};
             string json=JsonUtility.ToJson(data,true);
             if(json==lastBoardTelemetry) return;

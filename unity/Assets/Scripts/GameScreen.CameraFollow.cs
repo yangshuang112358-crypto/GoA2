@@ -1,0 +1,79 @@
+#nullable enable
+using System.Linq;
+using Goa2.Presentation.UI3D;
+using UnityEngine;
+using UnityEngine.UIElements;
+namespace Goa2.Presentation
+{
+    public sealed partial class GameScreen
+    {
+        private bool cameraFollow=true,followOverview,followInitialized,showHotkeys;
+        private float heroZoom=3,heroZoom2D=2,toastStarted=-100;
+        private Label? followToast;
+        private Button? followButton;
+        private void SetCameraFollow(bool enabled)
+        {
+            if(cameraFollow==enabled) return;
+            cameraFollow=enabled;toastStarted=Time.realtimeSinceStartup;
+            if(enabled) ApplyCameraFollow(true);else board?.StopFollowing();
+            RefreshFollowControls();RequestCapture();
+        }
+        private void RefreshFollowControls()
+        {
+            if(followButton!=null) {followButton.text=cameraFollow ? "◉" : "◎";followButton.tooltip="视野跟随模式："+(cameraFollow ? "开" : "关")+"（空格）";followButton.EnableInClassList("follow-on",cameraFollow);}
+            if(followToast==null) return;
+            float age=Time.realtimeSinceStartup-toastStarted;
+            followToast.text="视野跟随模式："+(cameraFollow ? "开" : "关");
+            followToast.style.display=age<1.6f ? DisplayStyle.Flex : DisplayStyle.None;
+            followToast.style.opacity=age<.18f ? Mathf.Clamp01(age/.18f) : age<1.18f ? 1 : Mathf.Clamp01((1.6f-age)/.42f);
+            followToast.style.bottom=86+16*Mathf.Clamp01(age/.18f);
+        }
+        private void ApplyCameraFollow(bool reenabled=false)
+        {
+            if(board==null) return;
+            if(!cameraFollow) {board.StopFollowing();return;}
+            var target=CameraFollowPolicy.Target(renderedView,seat);
+            bool overview=!target.HasValue;
+            float? zoom=!followInitialized && !overview ? (board3DViewport.Enabled ? heroZoom : heroZoom2D) : (float?)null;
+            if(overview && (reenabled || !followInitialized || !followOverview)) {
+                if(followInitialized && !followOverview) {heroZoom=board3DViewport.Zoom;heroZoom2D=viewport.Zoom;}zoom=1;
+            } else if(!overview && followInitialized && followOverview) zoom=board3DViewport.Enabled ? heroZoom : heroZoom2D;
+            var points=catalog.Cells.Select(c=>Board3DGeometry.World(c.Position)).ToList();
+            var focus=target.HasValue ? Board3DGeometry.World(target.Value) : new Vector3((points.Min(p=>p.x)+points.Max(p=>p.x))*.5f,0,(points.Min(p=>p.z)+points.Max(p=>p.z))*.5f);
+            board.FollowAt(focus,zoom);followOverview=overview;followInitialized=true;
+        }
+        private void ConfirmCurrent()
+        {
+            if(ScenarioRunning || confirmButton==null || !confirmButton.enabledInHierarchy) return;
+            var action=confirmAction;confirmAction=null;action?.Invoke();
+        }
+        private void BuildCameraOverlays()
+        {
+            var settings=Button("设置",()=>{if(rightExpanded) showHotkeys=false;rightExpanded=!rightExpanded;Render();},"stone-settings","settings-toggle");
+            settings.tooltip="行动 / 调试 / 热键";
+            settings.generateVisualContent+=context=> {
+                var painter=context.painter2D;float w=settings.contentRect.width,h=settings.contentRect.height;
+                painter.strokeColor=new Color(.12f,.15f,.2f,.7f);painter.lineWidth=1.4f;
+                painter.BeginPath();painter.MoveTo(new Vector2(5,0));painter.LineTo(new Vector2(12,7));painter.LineTo(new Vector2(9,13));painter.Stroke();
+                painter.BeginPath();painter.MoveTo(new Vector2(w,h-8));painter.LineTo(new Vector2(w-10,h-12));painter.LineTo(new Vector2(w-15,h-5));painter.Stroke();
+                painter.strokeColor=new Color(.8f,.79f,.73f,.35f);painter.lineWidth=1;
+                painter.BeginPath();painter.MoveTo(new Vector2(3,h-5));painter.LineTo(new Vector2(14,h-6));painter.Stroke();
+            };
+            root.Add(settings);
+            followButton=Button("",()=>SetCameraFollow(!cameraFollow),"follow-toggle","follow-toggle");root.Add(followButton);
+            followToast=Text("","follow-toast");followToast.name="follow-toast";followToast.pickingMode=PickingMode.Ignore;root.Add(followToast);
+            if(!rightExpanded && confirmAction!=null && confirmButton!=null) {
+                var confirm=Button(confirmButton.text+" · Enter",ConfirmCurrent,"floating-confirm","floating-confirm");root.Add(confirm);
+            }
+            RefreshFollowControls();
+            var current=board;
+            root.schedule.Execute(()=>{if(board==current) ApplyCameraFollow();}).StartingIn(20);
+        }
+        private void RenderHotkeys(VisualElement parent)
+        {
+            parent.Add(Text("热键与鼠标","section-title"));
+            foreach(string line in new[]{"Enter / 小键盘Enter：确认当前选择","空格：开关视野跟随","1—4 / 小键盘1—4：切换本机测试席位","Q / E：向左 / 向右旋转30°","滚轮：以鼠标位置缩放","中键 / 右键拖动：平移并取消跟随","Home：全图并取消跟随","F1：关键词说明","Esc：关闭术语、设置或卡牌预览","悬停卡牌：查看完整描述"}) parent.Add(Text(line,"body"));
+            parent.Add(Text("输入文字或打开独立弹窗时，游戏热键暂停。相机跟随不改变操控身份。","muted"));
+        }
+    }
+}

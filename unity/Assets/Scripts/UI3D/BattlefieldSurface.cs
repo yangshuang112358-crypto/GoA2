@@ -25,6 +25,7 @@ namespace Goa2.Presentation.UI3D
         private Vector2 lastPointer;
         private float lastAnimationTime;
         public Action? ViewportChanged;
+        public Action? ManualPan;
         public int RotationStep => state.Step;
         public bool Connected => connected;
         public Board3DScene? Scene => scene;
@@ -38,7 +39,7 @@ namespace Goa2.Presentation.UI3D
             if(!state.Enabled)
             {
                 fallback=new HexBoard(catalog,view,legal,selected,h=> {if(connected) choose(h);},hover,oldState,effectArea);
-                fallback.ViewportChanged=()=>ViewportChanged?.Invoke();Add(fallback);return;
+                fallback.ManualPan=()=>ManualPan?.Invoke();fallback.ViewportChanged=()=>ViewportChanged?.Invoke();Add(fallback);return;
             }
             image=new Image {pickingMode=PickingMode.Ignore,scaleMode=ScaleMode.StretchToFill};
             image.StretchToParentSize();Add(image);
@@ -77,7 +78,7 @@ namespace Goa2.Presentation.UI3D
             {
                 if(scene==null) return;
                 if(dragging && e.pointerId==pointerId)
-                {state.Focus+=scene.Ground(lastPointer,contentRect.size)-scene.Ground(e.localPosition,contentRect.size);lastPointer=e.localPosition;Repaint();e.StopPropagation();return;}
+                {if(((Vector2)e.localPosition-lastPointer).sqrMagnitude>0) ManualPan?.Invoke();state.Focus+=scene.Ground(lastPointer,contentRect.size)-scene.Ground(e.localPosition,contentRect.size);lastPointer=e.localPosition;Repaint();e.StopPropagation();return;}
                 var cell=scene.Hit(e.localPosition,contentRect.size);if(cell!=null) hover(cell);
             });
             RegisterCallback<PointerUpEvent>(e=> {if(dragging && pointerId==e.pointerId) {dragging=false;this.ReleasePointer(pointerId);e.StopPropagation();}});
@@ -103,6 +104,8 @@ namespace Goa2.Presentation.UI3D
         // the latest own Snapshot before enabling submissions after reconnect.
         public void SetConnected(bool value) {connected=value;Repaint();}
         public void Rotate(int direction) {if(!state.Enabled) return;state.Rotate(direction);lastAnimationTime=Time.realtimeSinceStartup;Repaint();}
+        public void FollowAt(Vector3 target,float? zoom) {if(fallback!=null) fallback.FollowAt(new Vector2(target.x,-target.z),zoom);else state.Follow(target,zoom);}
+        public void StopFollowing() {state.StopFollowing();fallback?.StopFollowing();}
         public void ResetView() {if(fallback!=null) fallback.ResetView();else {scene?.Reset();Repaint();}}
         public void FocusAt(Hex hex) {if(fallback!=null) fallback.FocusAt(hex);else {state.Focus=Board3DGeometry.World(hex);state.Zoom=3;Repaint();}}
         public void ZoomAtCenter(float factor) {if(fallback!=null) fallback.ZoomAtCenter(factor);else Zoom(contentRect.center,factor);}
@@ -110,7 +113,7 @@ namespace Goa2.Presentation.UI3D
         private void Zoom(Vector2 pointer,float factor)
         {
             if(scene==null || contentRect.width<=0 || contentRect.height<=0) return;
-            var before=scene.Ground(pointer,contentRect.size);state.Zoom=Mathf.Clamp(state.Zoom*factor,.6f,8);Repaint();
+            state.ManualZoom();var before=scene.Ground(pointer,contentRect.size);state.Zoom=Mathf.Clamp(state.Zoom*factor,.6f,8);Repaint();
             state.Focus+=before-scene.Ground(pointer,contentRect.size);Repaint();
         }
         private void Repaint()

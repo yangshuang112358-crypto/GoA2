@@ -78,11 +78,29 @@ namespace Goa2.Presentation.UI3D
         }
         public bool Advance(float seconds)
         {
-            if(!Rotating) return false;
+            bool changed=false;
+            if(followTarget.HasValue)
+            {
+                float followT=1-Mathf.Exp(-12*Mathf.Max(0,seconds));
+                var next=Vector3.Lerp(Focus,followTarget.Value,followT);
+                if(Vector3.Distance(next,followTarget.Value)<.001f) next=followTarget.Value;
+                changed=next!=Focus;Focus=next;
+                if(followZoom.HasValue) {
+                    float zoom=Mathf.Lerp(Zoom,followZoom.Value,followT);
+                    if(Mathf.Abs(zoom-followZoom.Value)<.001f) {zoom=followZoom.Value;followZoom=null;}
+                    changed|=zoom!=Zoom;Zoom=zoom;
+                }
+            }
+            if(!Rotating) return changed;
             elapsed=Mathf.Min(.24f,elapsed+Mathf.Max(0,seconds));
             float t=elapsed/.24f;Yaw=Mathf.Lerp(startYaw,targetYaw,t*t*(3-2*t));
             return true;
         }
+        private Vector3? followTarget;
+        private float? followZoom;
+        public void Follow(Vector3 target,float? zoom=null) {followTarget=target;if(zoom.HasValue) followZoom=zoom;}
+        public void StopFollowing() {followTarget=null;followZoom=null;}
+        public void ManualZoom() {followZoom=null;}
         public float Zoom = 1;
         public Vector3 Focus;
         public bool Initialized;

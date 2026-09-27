@@ -1,0 +1,6 @@
+{
+  "method": "OS key/mouse injection into verified foreground standalone Player; not human physical input and not UI Toolkit synthetic events",
+  "passed": false,
+  "error": "Player is not foreground; no further input sent.",
+  "checks": []
+}

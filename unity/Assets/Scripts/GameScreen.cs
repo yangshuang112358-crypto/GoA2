@@ -188,7 +188,7 @@ namespace Goa2.Presentation
         {
             if(!spaceGuardInstalled)
             {
-                root.RegisterCallback<KeyDownEvent>(e=> {if(e.keyCode==KeyCode.Space && !IsEditingText()) { e.StopImmediatePropagation();e.PreventDefault(); }},TrickleDown.TrickleDown);
+                root.RegisterCallback<KeyDownEvent>(e=> {if((e.keyCode==KeyCode.Space || e.keyCode==KeyCode.Return || e.keyCode==KeyCode.KeypadEnter) && !IsEditingText()) { e.StopImmediatePropagation();e.PreventDefault(); }},TrickleDown.TrickleDown);
                 spaceGuardInstalled=true;
             }
             root.Query<ScrollView>().ForEach(scroll => { if (scroll.name.StartsWith("goa-scroll-")) scrollPositions[scroll.name] = scroll.scrollOffset; });
@@ -198,6 +198,7 @@ namespace Goa2.Presentation
             renderedView = session.View(seat);
             if (!renderedView.EffectAreas.ContainsKey(effectAreaId)) effectAreaId="";
             BuildLayout(renderedView);
+            BuildCameraOverlays();
             if (galleryOpen) RenderGallery();
             if (publicCardsOpen) RenderPublicCards(renderedView);
             if (historyOpen) RenderHistory(renderedView);

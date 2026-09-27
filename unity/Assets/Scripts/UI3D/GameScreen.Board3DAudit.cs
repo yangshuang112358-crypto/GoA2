@@ -57,6 +57,25 @@ namespace Goa2.Presentation
             Submit(CommandKind.DebugPrepare,"wasp,shargatha,brogan,arien");
             yield return null;yield return null;
             Check(board?.Scene!=null,"Actual GameScreen contains 3D RenderTexture");
+            yield return new WaitForSecondsRealtime(.8f);
+            Check(cameraFollow && !rightExpanded,"Default follow enabled and settings drawer closed");
+            Check(root.Q<Button>("settings-toggle")!=null && root.Q<Button>("follow-toggle")!=null,"Floating settings and follow buttons exist");
+            Check(Vector3.Distance(board3DViewport.Focus,Board3DGeometry.World(renderedView.Units.First(u=>u.Seat==seat).Position))<.03f,"Planning follows own hero");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"follow-planning.png"));yield return new WaitForSecondsRealtime(.25f);
+            long followRevision=renderedView.Revision;int followSeat=seat;
+            SetCameraFollow(false);yield return new WaitForSecondsRealtime(.25f);
+            Check(followToast!=null && followToast.resolvedStyle.opacity>.99f,"Follow toast rises and becomes opaque");
+            Render();yield return null;
+            Check(!cameraFollow && seat==followSeat && renderedView.Revision==followRevision,"Follow toggle survives rebuild without command or identity change");
+            yield return new WaitForSecondsRealtime(1.5f);
+            Check(followToast!.resolvedStyle.display==DisplayStyle.None,"Toast fades out after one second hold");
+            rightExpanded=true;showHotkeys=true;Render();yield return null;yield return null;
+            var drawer=root.Q<VisualElement>("operation-panel");
+            Check(drawer.worldBound.xMax<=Screen.width && drawer.worldBound.yMax<=Screen.height,"Settings drawer stays inside viewport");
+            Check(drawer.Query<Label>().ToList().Any(l=>l.text.Contains("Enter /")),"Hotkey list documents Enter confirm");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"settings-hotkeys.png"));yield return new WaitForSecondsRealtime(.25f);
+            showHotkeys=false;rightExpanded=false;Render();yield return null;yield return null;
+
             foreach(var unit in renderedView.Units)
             {
                 var token=board!.Scene!.Labels.Single(t=>t.cell==unit.Position);
@@ -138,12 +157,21 @@ namespace Goa2.Presentation
                 session=DebugPositions.Open(catalog,position!);seat=session.View(0).Pending?.ChooserSeat ?? 0;ClearPending();Render();
                 yield return null;yield return null;
                 Check(renderedView.Phase==position!.Phase,"Preset "+id+" renders original phase");
+                SetCameraFollow(true);yield return new WaitForSecondsRealtime(.8f);
+                var expected=CameraFollowPolicy.Target(renderedView,seat);
+                Check(board!=null && board.worldBound.height>=59,"Board remains visible in "+id);
+                if(expected.HasValue) Check(Vector3.Distance(board3DViewport.Focus,Board3DGeometry.World(expected.Value))<.03f,"Live phase camera target: "+id);
+                else Check(followOverview,"Live phase overview: "+id);
+                SetCameraFollow(false);
                 ScreenCapture.CaptureScreenshot(Path.Combine(output,"pending-"+id+".png"));yield return new WaitForSecondsRealtime(.25f);
             }
             session=DebugPositions.Open(catalog,positions.Single(p=>p.Id=="axe-ready"));seat=0;ClearPending();Render();
             Submit(CommandKind.BeginPrimary);Submit(CommandKind.ChooseOptionalDiscard,"brogan-00-猛攻");Submit(CommandKind.ChooseAttackTarget,"hero:1");
             seat=1;Render();yield return null;yield return null;
             Check(renderedView.Pending?.Kind=="defense","Live defense choice reached through rules");
+            SetCameraFollow(true);yield return new WaitForSecondsRealtime(.8f);
+            Check(seat==1 && renderedView.ActiveSeat==0 && Vector3.Distance(board3DViewport.Focus,Board3DGeometry.World(renderedView.Units.First(u=>u.Seat==0).Position))<.03f,"Defense response keeps attacker focused without changing defender seat");
+            SetCameraFollow(false);
             int warnings=0;
             foreach(var option in renderedView.DefenseOptions)
             {

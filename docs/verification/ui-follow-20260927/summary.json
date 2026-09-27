@@ -1,0 +1,43 @@
+{
+  "baseline": "85c264ffb9bc4f7e0972cc059365c302f5acf839",
+  "engine": 97,
+  "editmode": {
+    "passed": 46,
+    "new_follow_cases": 16,
+    "scope": "Goa2.Presentation.Tests;Goa2.UI3D.Tests"
+  },
+  "python_passed": 32,
+  "graphics": [
+    {
+      "path": "artifacts/ui3d/audit-1600x1000-20260927-185805/report.json",
+      "passed": true,
+      "width": 1600,
+      "height": 1000,
+      "assertions": 6281,
+      "sha256": "24e1d0e643c1d57d9dfd53dba422f150b72f1db363e9382f9f0fa60a05a490da"
+    },
+    {
+      "path": "artifacts/ui3d/audit-1280x800-20260927-185725/report.json",
+      "passed": true,
+      "width": 1280,
+      "height": 800,
+      "assertions": 6281,
+      "sha256": "98291b645fd0e4a5ac2180130b9266d8b57738148c52f00d501dc5ab32a6d566"
+    }
+  ],
+  "build_utc": "2026-09-27T10:58:44.4318720Z",
+  "build_info_sha256": "d8bbe0b50b940f6d8d6afa85800aa731e832596a0bfd60b4b246c76186d701b2",
+  "os_input": {
+    "earlier_run_passed": true,
+    "final_run_passed": false,
+    "final_inputs_sent": 0,
+    "limitation": "Earlier standalone OS check passed before the final close-hotkeys fix. Final retry stopped at foreground guard; final source passed EditMode/render/build, not a completed final OS rerun."
+  },
+  "archive": "Goa2V1-e97-ui-follow-final-20260927-110101-828c1d0d.zip",
+  "archive_sha256": "323527bab473160f0bad8c42e4be445ad0cc2ab70ec2c99bd080634519ef7c4a",
+  "source_manifest": {
+    "path": "build-source-manifest.json",
+    "sha256": "5b2f81a1ef7b0fa14caf3f4b4d460064a60be180021c1f39faec2d01d53ebe9e",
+    "file_count": 714
+  }
+}

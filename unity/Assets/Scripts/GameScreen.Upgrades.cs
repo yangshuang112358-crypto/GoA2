@@ -25,7 +25,7 @@ namespace Goa2.Presentation
                 foreach(var card in catalog.Cards.Where(c=>c.HeroId==view.Players[seat].HeroId && c.Color==color && c.Level==level).OrderBy(c=>c.Id,System.StringComparer.Ordinal))
                 {
                     string id=card.Id;var option=view.UpgradeOptions.SingleOrDefault(o=>o.CardId==id);
-                    var tile=Button("",()=>{upgradeCardId=id;upgradeColor=card.Color;showDebug=false;Render();},"upgrade-card","upgrade-card-"+id);
+                    var tile=Button("",()=>{upgradeCardId=id;upgradeColor=card.Color;showDebug=false;showHotkeys=false;Render();},"upgrade-card","upgrade-card-"+id);
                     tile.AddToClassList("color-"+color);tile.SetEnabled(option!=null);
                     tile.style.borderTopColor=CardColor(color);
                     if(upgradeCardId==id) tile.AddToClassList("chosen");

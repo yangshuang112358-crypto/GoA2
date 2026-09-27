@@ -32,6 +32,11 @@ namespace Goa2.Presentation
         private int dragPointer;
         private Vector2 lastPointer;
         public Action? ViewportChanged;
+        public Action? ManualPan;
+        private Vector2? followTarget;
+        private float? followZoom;
+        public void FollowAt(Vector2 target,float? zoom) {followTarget=target;if(zoom.HasValue) followZoom=zoom;}
+        public void StopFollowing() {followTarget=null;followZoom=null;}
         public float HexRadius => radius;
 
         public HexBoard(ContentCatalog catalog, GameView view, IEnumerable<Hex> legal, Hex? selected, Action<Hex> choose, Action<CellDefinition> hover, BoardViewport viewport, IEnumerable<Hex>? effectArea=null)
@@ -42,12 +47,23 @@ namespace Goa2.Presentation
             this.effectArea = new HashSet<Hex>(effectArea ?? Enumerable.Empty<Hex>());
             name = "hex-board"; AddToClassList("hex-board");
             generateVisualContent += Draw;
+            float last=Time.realtimeSinceStartup;
+            schedule.Execute(()=> {
+                float now=Time.realtimeSinceStartup,t=1-Mathf.Exp(-12*Mathf.Max(0,now-last));last=now;
+                if(!followTarget.HasValue) return;
+                var next=Vector2.Lerp(viewport.Focus,followTarget.Value,t);
+                if(Vector2.Distance(next,followTarget.Value)<.001f) next=followTarget.Value;
+                bool changed=next!=viewport.Focus;viewport.Focus=next;
+                if(followZoom.HasValue) {float z=Mathf.Lerp(viewport.Zoom,followZoom.Value,t);if(Mathf.Abs(z-followZoom.Value)<.001f){z=followZoom.Value;followZoom=null;}changed|=z!=viewport.Zoom;viewport.Zoom=z;}
+                if(changed) LayoutBoard();
+            }).Every(16);
             RegisterCallback<GeometryChangedEvent>(_ => LayoutBoard());
             RegisterCallback<PointerMoveEvent>(e =>
             {
                 if (dragging && e.pointerId == dragPointer)
                 {
                     Vector2 pointer = e.localPosition;
+                    if((pointer-lastPointer).sqrMagnitude>0) ManualPan?.Invoke();
                     viewport.Focus -= (pointer - lastPointer) / radius;
                     lastPointer = pointer; LayoutBoard(); e.StopPropagation(); return;
                 }
@@ -96,7 +112,7 @@ namespace Goa2.Presentation
         private void ZoomAround(Vector2 pointer, float factor)
         {
             if (radius <= 1) return;
-            var anchor = (pointer - origin) / radius;
+            followZoom=null;var anchor = (pointer - origin) / radius;
             viewport.Zoom = Mathf.Clamp(viewport.Zoom * factor, .25f, 40f);
             LayoutBoard();
             viewport.Focus = anchor - (pointer - contentRect.center) / radius;

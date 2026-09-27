@@ -47,6 +47,13 @@ try {
  Start-Sleep -Milliseconds 250;Guard
  $uiOrigin=[GoaUI3DInput+POINT]::new();[GoaUI3DInput]::ClientToScreen($uiHandle,[ref]$uiOrigin) | Out-Null
  $initial=State
+ Check ($initial.Follow -and -not $initial.SettingsOpen) 'Follow starts enabled; drawer starts closed'
+ Key 0x20;Check (-not (State).Follow -and (State).Revision -eq $initial.Revision -and -not (State).SettingsOpen) 'Space toggles camera only'
+ Check ((State).Toast -eq '视野跟随模式：关') 'Follow toast reports off'
+ Start-Sleep -Milliseconds 1600;Check ((State).Toast -eq '') 'Toast dismisses without another game command'
+ Key 0x20;Check ((State).Follow) 'Space re-enables follow'
+ ClickButton 'follow-toggle' '';Check (-not (State).Follow) 'Square follow button disables follow'
+ ClickButton 'follow-toggle' '';Check ((State).Follow) 'Square follow button enables follow'
  Key 0x51;Check ((State).Step -eq (($initial.Step+11)%12)) 'Q rotates one step left'
  Key 0x45;Check ((State).Step -eq $initial.Step) 'E reverses Q'
  for($i=1;$i -le 12;$i++) {Key 0x45;Check ((State).Step -eq (($initial.Step+$i)%12)) "E step $i"}
@@ -58,9 +65,25 @@ try {
  try {for($i=1;$i -le 6;$i++){Pointer ($x+$i*10) ($y+$i*5);Start-Sleep -Milliseconds 60}} finally {[GoaUI3DInput]::mouse_event(0x40,0,0,0,[UIntPtr]::Zero)}
  Start-Sleep -Milliseconds 400
  Check ([Math]::Abs((State).Focus.x-$before.Focus.x) -gt .01) 'Middle drag pans camera'
+ Check (-not (State).Follow) 'Middle drag cancels follow'
+ $manual=State;Start-Sleep -Milliseconds 800;Check ([Math]::Abs((State).Focus.x-$manual.Focus.x) -lt .001) 'Released manual pan is not pulled back'
  ClickButton 'toggle-3d' '';Check (-not (State).Is3D) '2D fallback click'
  ClickButton 'toggle-3d' '';Check ((State).Is3D) '2.5D return click'
  Check ((State).Revision -eq $initial.Revision) 'Camera and fallback preserve game revision'
+ ClickButton 'settings-toggle' '';Check ((State).SettingsOpen) 'Stone settings button opens drawer'
+ ClickButton 'hotkeys-tab' '';Check ((State).SettingsOpen) 'Hotkeys are accessible inside drawer'
+ ClickButton '' '行动'
+ ClickButton '' '女武神·黄蜂'
+ $selection=State
+ Key 0x20;Check ((State).Revision -eq $selection.Revision) 'Space cannot confirm selected hero'
+ ClickButton 'hotkeys-tab' ''
+ ClickButton 'settings-toggle' '';Check (-not (State).SettingsOpen) 'Closing hotkeys preserves selected hero and restores confirmation'
+ $layout=Get-Content -LiteralPath (Join-Path $uiOutput 'render.ui.json') -Raw | ConvertFrom-Json
+ Check (@($layout.Buttons | Where-Object {$_.Name -eq 'floating-confirm' -and $_.Visible}).Count -eq 1) 'Closed drawer leaves visible confirmation'
+ Key 0x0D;Check ((State).Revision -eq ($selection.Revision+1)) 'Enter confirms exactly one command with drawer closed'
+ $confirmed=State;Key 0x0D;Check ((State).Revision -eq $confirmed.Revision) 'Second Enter without selection cannot repeat command'
+ Key 0x32;Check ((State).Seat -eq 1) 'Seat 2 hotkey still changes test seat'
+ Key 0x31;Check ((State).Seat -eq 0) 'Seat 1 hotkey returns test seat'
  $uiReport.passed=$true
 } catch {$uiReport.error=$_.Exception.Message;Write-Output $_} finally {
  $uiReport | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $uiOutput 'os-input-report.json') -Encoding utf8

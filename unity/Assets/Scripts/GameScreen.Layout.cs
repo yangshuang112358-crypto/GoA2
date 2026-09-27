@@ -10,24 +10,25 @@ namespace Goa2.Presentation
 {
     public sealed partial class GameScreen
     {
-        private bool leftExpanded = true, rightExpanded = true, topExpanded = Environment.GetCommandLineArgs().Contains("-goa2d"), bottomExpanded = true;
+        private bool leftExpanded = true, rightExpanded = false, topExpanded = Environment.GetCommandLineArgs().Contains("-goa2d"), bottomExpanded = true;
         private bool showDebug;
         private readonly BoardViewport viewport = new BoardViewport();
         private BattlefieldSurface? board;
         private readonly Board3DViewport board3DViewport = new Board3DViewport();
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Escape)) { if(keywordGlossaryOpen) CloseKeywordGlossary();else HideCardPreview();return; }
+            RefreshFollowControls();
+            if(Input.GetKeyDown(KeyCode.Escape)) { if(keywordGlossaryOpen) CloseKeywordGlossary();else if(rightExpanded && !galleryOpen && !historyOpen && !newMatchPending && !debugPresetsOpen) {rightExpanded=false;showHotkeys=false;Render();}else HideCardPreview();return; }
             if(keywordGlossaryOpen) return;
             if(Input.GetKeyDown(KeyCode.F1) && session!=null && !startupFailed && !newMatchPending && !debugPresetsOpen && !IsEditingText()) { OpenKeywordGlossary(previewCard);return; }
             if (session == null || startupFailed || galleryOpen || publicCardsOpen || historyOpen || newMatchPending || debugPresetsOpen || IsEditingText()) return;
-            if (Input.GetKeyDown(KeyCode.Space) && !ScenarioRunning && confirmButton!=null && confirmButton.enabledInHierarchy)
-            { var action=confirmAction;confirmAction=null;action?.Invoke();return; }
+            if(Input.GetKeyDown(KeyCode.Space)) {SetCameraFollow(!cameraFollow);return;}
+            if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) {ConfirmCurrent();return;}
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) SwitchSeat(0);
             if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)) SwitchSeat(1);
             if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)) SwitchSeat(2);
             if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4)) SwitchSeat(3);
-            if (Input.GetKeyDown(KeyCode.Home)) board?.ResetView();
+            if (Input.GetKeyDown(KeyCode.Home)) {SetCameraFollow(false);board?.ResetView();}
             if (Input.GetKeyDown(KeyCode.Q)) board?.Rotate(-1);
             if (Input.GetKeyDown(KeyCode.E)) board?.Rotate(1);
         }
@@ -73,7 +74,7 @@ namespace Goa2.Presentation
             phase.Add(Text("第 " + view.Round + " 轮 · 回合 " + view.Turn + "/4", "muted"));
             var stageTitle=Text(PhaseName(view), "phase-title"); stageTitle.name="match-stage"; phase.Add(stageTitle); header.Add(phase);
             var controls = Box("header-controls"); header.Add(controls);
-            controls.Add(Button(view.Sandbox ? (view.QuickSelection ? "测试 · 选完揭示" : "测试 · 手动确认") : "正式确认", () => { rightExpanded = true; showDebug = true; Render(); }, "mode-button"));
+            controls.Add(Button(view.Sandbox ? (view.QuickSelection ? "测试 · 选完揭示" : "测试 · 手动确认") : "正式确认", () => { rightExpanded = true; showDebug = true; showHotkeys=false; Render(); }, "mode-button"));
             controls.Add(Button("图鉴 108", () => { galleryOpen = true; galleryHero = catalog.Heroes[0].Id; Render(); }, "quiet-button"));
             controls.Add(Button("术语",()=>OpenKeywordGlossary(),"quiet-button","keyword-open"));
             controls.Add(Button("保存", Save, "quiet-button"));
@@ -83,11 +84,12 @@ namespace Goa2.Presentation
             var workspace = Box("workspace"); shell.Add(workspace);
             BuildRoster(workspace, view);
             var center = Box("center-column"); center.name="battlefield-workspace"; workspace.Add(center);
-            if(view.UpgradeOptions.Count==0) { BuildRevealedStrip(center, view); BuildBoard(center, view); }
+            if(view.UpgradeOptions.Count==0) BuildRevealedStrip(center, view);
+            BuildBoard(center, view);
             BuildHand(center, view);
-            BuildRightPanel(workspace, view);
+            BuildRightPanel(root, view);
             var footer = Box("footer"); footer.name="status-bar";footer.Add(Text(notice, "tiny"));
-            footer.Add(Text("1—4 切换角色 · 空格确认 · 悬停卡牌读全文", "tiny")); shell.Add(footer);
+            footer.Add(Text("1—4 切换角色 · Enter确认 · 空格跟随", "tiny")); shell.Add(footer);
         }
         private void BuildRoster(VisualElement parent, GameView view)
         {
@@ -189,10 +191,10 @@ namespace Goa2.Presentation
             var tools = Box("map-controls"); heading.Add(tools);
             tools.Add(Button(board3DViewport.Enabled ? "2.5D / 切2D" : "2D / 切2.5D", () => { board3DViewport.Enabled = !board3DViewport.Enabled; Render(); }, "compact-button", "toggle-3d"));
             var ownUnit=view.Units.SingleOrDefault(u => u.Seat==seat);
-            var focus=Button("定位角色",() => { if (ownUnit!=null) board?.FocusAt(ownUnit.Position); },"compact-button","focus-hero");
+            var focus=Button("定位角色",() => { if (ownUnit!=null) {SetCameraFollow(false);board?.FocusAt(ownUnit.Position);} },"compact-button","focus-hero");
             focus.SetEnabled(ownUnit!=null); tools.Add(focus);
             tools.Add(Button("−", () => board?.ZoomAtCenter(.8f), "compact-button"));
-            tools.Add(Button("全图", () => board?.ResetView(), "compact-button"));
+            tools.Add(Button("全图", () => {SetCameraFollow(false);board?.ResetView();}, "compact-button"));
             tools.Add(Button("＋", () => board?.ZoomAtCenter(1.25f), "compact-button"));
             var targets = LegalCells(view);
             board = new BattlefieldSurface(catalog, view, targets, chosenCell, cell =>
@@ -200,6 +202,7 @@ namespace Goa2.Presentation
                 if (!targets.Contains(cell)) { notice = "此格不可用于当前操作。"; return; }
                 chosenCell = cell; notice = "已选地图格 " + cell + "，确认后应用。"; Render();
             }, cell => cellInfo.text = BoardHint(view,RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : "")), viewport, SelectedEffectArea(view), board3DViewport);
+            board.ManualPan=()=>SetCameraFollow(false);
             board.ViewportChanged = RequestCapture;
             field.Add(board);
             cellInfo = Text(BoardHint(view,targets.Count == 0 ? "滚轮缩放 · 中/右键拖动 · Home全图" : targets.Count + " 个合法目标 · 点击后确认"), "tiny");
@@ -224,8 +227,8 @@ namespace Goa2.Presentation
                 var tile = Button("", () =>
                 {
                     if (view.Pending?.Kind == "defense" && view.Pending.ChooserSeat == seat && view.DefenseOptions.Any(o => o.CardId == card.Id))
-                    { defenseCardId = card.Id; declineDefensePending = false; showDebug = false; Render(); }
-                    else if (view.ForcedDiscardCards.Contains(card.Id) || view.OptionalDiscardCards.Contains(card.Id) || view.MinionProtectionCards.Contains(card.Id) || view.CardSwapOptions.Contains(card.Id)) { discardCardId=card.Id;declineRetaliationPending=false;showDebug=false;Render(); }
+                    { defenseCardId = card.Id; declineDefensePending = false; showDebug = false; showHotkeys=false; Render(); }
+                    else if (view.ForcedDiscardCards.Contains(card.Id) || view.OptionalDiscardCards.Contains(card.Id) || view.MinionProtectionCards.Contains(card.Id) || view.CardSwapOptions.Contains(card.Id)) { discardCardId=card.Id;declineRetaliationPending=false;showDebug=false;showHotkeys=false;Render(); }
                     else if (view.Phase == Phase.Planning && !view.Players[seat].Confirmed && (instance.Zone == CardZone.InHand || instance.Zone == CardZone.Selected)) Submit(CommandKind.SelectCard, card.Id);
                     else { galleryHero = card.HeroId; galleryOpen = true; Render(); }
                 }, "hand-card");
@@ -245,14 +248,15 @@ namespace Goa2.Presentation
         }
         private void BuildRightPanel(VisualElement parent, GameView view)
         {
-            var panel = Box(rightExpanded ? "right-panel" : "collapsed-side");panel.name="operation-panel"; parent.Add(panel);
-            if (!rightExpanded) { panel.Add(Button("◀", () => { rightExpanded = true; Render(); }, "edge-button", "toggle-right")); return; }
+            var panel = Box("settings-drawer");panel.name="operation-panel";parent.Add(panel);
+            panel.style.display=rightExpanded ? DisplayStyle.Flex : DisplayStyle.None;
             var heading = Box("panel-heading"); panel.Add(heading);
-            heading.Add(Button("行动", () => { showDebug = false; debugTeleport = false; ClearPending(); Render(); }, showDebug ? "tab-button" : "active-tab"));
-            heading.Add(Button("调试", () => { showDebug = true; Render(); }, showDebug ? "active-tab" : "tab-button"));
-            heading.Add(Button("▶", () => { rightExpanded = false; Render(); }, "edge-button", "toggle-right"));
+            heading.Add(Button("行动", () => { showDebug = false; showHotkeys=false; debugTeleport = false; ClearPending(); Render(); }, !showDebug && !showHotkeys ? "active-tab" : "tab-button"));
+            heading.Add(Button("调试", () => { showDebug = true; showHotkeys=false; Render(); }, showDebug && !showHotkeys ? "active-tab" : "tab-button"));
+            heading.Add(Button("热键",()=>{showHotkeys=true;Render();},showHotkeys ? "active-tab" : "tab-button","hotkeys-tab"));
+            heading.Add(Button("×", () => { rightExpanded = false; showHotkeys=false; Render(); }, "edge-button", "toggle-right"));
             var scroll = new ScrollView { name = "goa-scroll-right-" + (showDebug ? "debug" : "action") }; scroll.AddToClassList("sidebar"); panel.Add(scroll);
-            if (showDebug) RenderDebugPanel(scroll, view); else RenderSidebar(scroll, view);
+            if(showHotkeys) RenderHotkeys(scroll);else if (showDebug) RenderDebugPanel(scroll, view); else RenderSidebar(scroll, view);
         }
     }
 }
