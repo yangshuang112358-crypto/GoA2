@@ -837,6 +837,15 @@
       "input": "tests/fixtures/engine93-binding-defense-scenario.json",
       "input_sha256": "56b7a85681f1a3955b63d35af938d48289cc27f63b7859ce371f69049ba10d82",
       "provenance": "tests/fixtures/engine93-binding-defense.md"
+    },
+    {
+      "engine_version": 94,
+      "accepted_commands": 20,
+      "save": "tests/fixtures/engine94-death-grasp-defense.json",
+      "save_sha256": "247560572540b4775d838d08d0b4b48053b48525c44e074debd6cae26469baf2",
+      "input": "tests/fixtures/engine94-death-grasp-defense-scenario.json",
+      "input_sha256": "03de99599a2f5f244ecd24636778d31bffe639c4f4a71c133eb550660f4fd4c7",
+      "provenance": "tests/fixtures/engine94-death-grasp-defense.md"
     }
   ]
 }

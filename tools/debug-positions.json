@@ -1402,5 +1402,32 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：2号虎爪蓝牌无移动落点；用调试传送把1号来源从(3,-8)移到(2,-8)，2号即可移动。分支：来源被击败也解除；源牌取回沿普通持续规则取消。"
+  },
+  {
+    "id": "death-grasp-cast",
+    "title": "死亡缠绕：主要移动起点",
+    "scenario": "death-grasp-gold",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号主要移动或0格，效果在下回合生效；下回合相邻敌英雄只允许金牌上的移动。移开来源或让目标离开相邻后，后续移动重新判断；推动/放置不受禁移条款限制。"
+  },
+  {
+    "id": "death-grasp-gold",
+    "title": "死亡缠绕：金牌移动例外",
+    "scenario": "death-grasp-gold",
+    "through_step": 18,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号虎爪执行金牌，穿过(3,-8)夏尔加萨移动至(2,-8)，正常攻击。切1号防御；金牌内的必需移动允许。"
+  },
+  {
+    "id": "death-grasp-red",
+    "title": "死亡缠绕：红牌禁移与攻击后移动",
+    "scenario": "death-grasp-red",
+    "through_step": 20,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号虎爪红牌不能次要移动，但可攻击邻接的1号夏尔加萨。1号用石化卡的次要防御挡住后，虎爪的攻击后1格移动仍被禁止。分支：1号选择不防御而被击败，束缚立即取消，此次攻击后的移动重新可选。"
   }
 ]

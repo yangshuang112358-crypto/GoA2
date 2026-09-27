@@ -36,6 +36,7 @@ namespace Goa2.Presentation
                     if(effect.Kind==EffectKind.AttackActionImmunity)meaning="本回合免疫攻击行动及其附带效果；技能、防御和紫卡仍按各自规则处理。";
                     if(effect.Kind==EffectKind.AttackFromDiscard)meaning="本回合每弃一张牌，待导致弃牌的行动结束后，从弃牌堆执行一张可执行的攻击牌。";
                     if(effect.Kind==EffectKind.EnemyMeleeFriendlyForOwnDefense)meaning="仅本人防御时，范围内敌方近战小兵视为友方；棋子的实际阵营不变。";
+                    if(effect.Kind==EffectKind.EnemyMovementGoldOnly)meaning="下回合每次移动时，动态相邻的敌英雄只能执行金牌上的移动；推动、放置、换位另计。";
                     if(effect.Kind==EffectKind.EnemyMovementGoldOrRedOnly)meaning="下回合每次移动时，动态相邻的敌英雄只能执行金色或红色牌上的移动；推动、放置、换位另计。";
                     if(effect.Kind==EffectKind.EnemyActionMovementLimitOne)meaning="敌方主要、次要、快速移动若从范围内开始，最多1格；牌内移动不受此限。";
                     if(effect.Kind==EffectKind.EnemyAllMinionsFriendlyForOwnDefense)meaning="仅本人防御时，范围内所有敌方小兵（含免疫）视为友方；不改变真实阵营及移除保护。";

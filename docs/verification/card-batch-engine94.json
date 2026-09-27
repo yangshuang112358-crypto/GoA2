@@ -1,0 +1,92 @@
+{
+  "engine": 94,
+  "implemented_cards": 105,
+  "data_only_cards": 3,
+  "build_utc": "2026-09-27T07:19:57.9613867Z",
+  "assemblies": {
+    "Goa2.Application.dll": "ae7ae13394451f0cd9c423fce1fb1d0e5bec1c52554f02ccd5c905506d224fd5",
+    "Goa2.Domain.dll": "52d023e50b747fceea8f7ad7db2c38a318791964e4f3ecbaec5c1ae1e82ba176",
+    "Goa2.Editor.dll": "472d632bd5c7a384bd0bb37f5480b94e5d0e9645e99f33b5e72b0cf95cdcbec3",
+    "Goa2.Infrastructure.dll": "aed42958359055a168552f2752ed51df1d2b597b73b07779556b00a1e932d508",
+    "Goa2.Rules.dll": "cb7cd5c3238467cbc0d305219109cd58a2da82733598e9fcbf03bff0b6f03b32"
+  },
+  "core": {
+    "passed": 81,
+    "failed": 0,
+    "report": "artifacts/tests/death-grasp-unity-0.xml",
+    "card_specific": 9,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/death-grasp-unity-0.xml",
+      "artifacts/tests/death-grasp-unity-1.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/death-grasp-gold.json",
+        "input_sha256": "7b541fac8de46cedaaf79d2cd8d1456e18dc5d4f049dbace15a9aaa8ab43caa6",
+        "report": "artifacts/editor-scenarios/death-grasp-gold/c505844df8094853a635efbdb3ab408a/report.json",
+        "steps": 21,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/death-grasp-red.json",
+        "input_sha256": "3bbc0923408b8821577eeb20b97ee3c5eb7786af7edf8af7e6def08bb0a85ea9",
+        "report": "artifacts/editor-scenarios/death-grasp-red/e219ddd080b14f079f95499a1f50c7f5/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/death-grasp-blue.json",
+        "input_sha256": "56ba0cdf3d5c9fef49e11ca132bbfaadb9ce32dbe4347edea5b0590c08a6a3d4",
+        "report": "artifacts/editor-scenarios/death-grasp-blue/93104b5735274a1480bfb0477f4862e9/report.json",
+        "steps": 22,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/death-grasp-source-defeat.json",
+        "input_sha256": "5125dbe781d96bb87c14fcb4a3bbe1c6170fe01414cc864714b9e70e5e36a2c5",
+        "report": "artifacts/editor-scenarios/death-grasp-source-defeat/d385b3b5659b42b7a3d48e21a9d12439/report.json",
+        "steps": 24,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine94-death-grasp-defense-scenario.json",
+        "input_sha256": "03de99599a2f5f244ecd24636778d31bffe639c4f4a71c133eb550660f4fd4c7",
+        "report": "artifacts/editor-scenarios/engine94-death-grasp-defense-scenario/a67b6f1700f44e09b6b142e2abfb59b5/report.json",
+        "steps": 20,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 111
+  },
+  "manual_presets": [
+    "death-grasp-cast",
+    "death-grasp-gold",
+    "death-grasp-red"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/death-grasp-red.xml",
+    "passed": 1,
+    "failed": 7
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e94-death-grasp-20260927-072059-753dc096.zip",
+    "sha256": "e8a3547ac3c2e539ab7e556d4e246fa20a4df0f0c0a1a3441f3018836293fe0a"
+  }
+}

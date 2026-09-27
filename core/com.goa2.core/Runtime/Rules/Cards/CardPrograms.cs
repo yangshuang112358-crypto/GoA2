@@ -227,6 +227,7 @@ namespace Goa2.Rules.Cards
         };
         private static readonly Dictionary<string,(string text,int minimumEngine,string? subtype,PrimaryProgram program)> Movements = new Dictionary<string,(string,int,string?,PrimaryProgram)>
         {
+            ["shargatha-11-死亡缠绕"] = ("下回合：与你相邻的敌方英雄无法移动，只能执行金色卡牌上的移动。",94,null,new PrimaryProgram("primary_move_next_turn_adjacent_enemy_gold_only",0,effect:EffectKind.EnemyMovementGoldOnly,areaKind:EffectAreaKind.Adjacent,duration:EffectDuration.NextTurn,instructions:new[]{InstructionKind.PrimaryMovement,InstructionKind.ApplyEffect,InstructionKind.End})),
             ["shargatha-09-致命束缚"] = ("下回合：与你相邻的所有敌方英雄无法移动，只能执行金色或红色卡牌上的移动。",93,null,new PrimaryProgram("primary_move_next_turn_adjacent_enemy_gold_red_only",0,effect:EffectKind.EnemyMovementGoldOrRedOnly,areaKind:EffectAreaKind.Adjacent,duration:EffectDuration.NextTurn,instructions:new[]{InstructionKind.PrimaryMovement,InstructionKind.ApplyEffect,InstructionKind.End})),
 
             ["shargatha-10-独霸一方"] = ("本轮：计算防御总值时，技能范围内所有敌方小兵（包括免疫的小兵）视为友方单位。",88,"范围",new PrimaryProgram("primary_move_round_enemy_all_minions_friendly_for_own_defense",EffectKind.EnemyAllMinionsFriendlyForOwnDefense,EffectDuration.ThisRound,primaryMovement:true)),

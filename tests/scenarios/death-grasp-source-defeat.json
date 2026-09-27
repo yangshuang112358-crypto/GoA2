@@ -1,0 +1,152 @@
+{
+  "SchemaVersion": 1,
+  "Id": "death-grasp-source-defeat",
+  "Name": "死亡缠绕：red",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "shargatha,tigerclaw,arien,wasp"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Target": "p1",
+      "Value": "shargatha-11-死亡缠绕"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 3,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 4,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "shargatha-11-死亡缠绕"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "tigerclaw-07-伺机待发"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "arien-13-挑战者"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p3"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p1",
+      "Value": "skip"
+    },
+    {
+      "Command": "DebugAdvance",
+      "Actor": "p1",
+      "Value": "turn"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "shargatha-00-反击"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "tigerclaw-02-偷袭"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "wasp-13-控物"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseInitiative",
+      "Actor": "p2",
+      "Target": "p2"
+    },
+    {
+      "Command": "Move",
+      "Actor": "p2",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      },
+      "Expect": {
+        "Code": "invalid_move"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p2"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p2",
+      "Value": "hero:0"
+    },
+    {
+      "Command": "DeclineDefense",
+      "Actor": "p1",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p2",
+        "EffectCounts": {
+          "shargatha-11-死亡缠绕": 0
+        }
+      }
+    }
+  ]
+}

@@ -441,7 +441,7 @@
         "continuous",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/shargatha-11-死亡缠绕.md",
       "question_candidates": [
         "U-011"

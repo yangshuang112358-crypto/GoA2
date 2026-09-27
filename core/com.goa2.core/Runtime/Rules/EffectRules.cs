@@ -137,10 +137,12 @@ namespace Goa2.Rules
         {
             if(state.EngineVersion<93 || unit.Kind!="hero")return true;
             string color=sourceCard==null ? "" : catalog.Card(sourceCard).Color;
-            foreach(var effect in Current(state,EffectKind.EnemyMovementGoldOrRedOnly))
+            var restrictions=Current(state,EffectKind.EnemyMovementGoldOrRedOnly);
+            if(state.EngineVersion>=94)restrictions=restrictions.Concat(Current(state,EffectKind.EnemyMovementGoldOnly));
+            foreach(var effect in restrictions)
             {
                 var source=Source(state,effect);
-                if(source!=null && source.Team!=unit.Team && source.Position.Distance(unit.Position)==1 && CanAffect(state,effect.ControllerSeat,unit) && color!="gold" && color!="red")return false;
+                if(source!=null && source.Team!=unit.Team && source.Position.Distance(unit.Position)==1 && CanAffect(state,effect.ControllerSeat,unit) && color!="gold" && !(effect.Kind==EffectKind.EnemyMovementGoldOrRedOnly && color=="red"))return false;
             }
             return true;
         }
