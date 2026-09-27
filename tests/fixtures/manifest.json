@@ -729,6 +729,15 @@
       "input": "tests/fixtures/engine81-torrent-payment-scenario.json",
       "input_sha256": "02dd33f49e0528b44a81f706bfe3a6348bb43bb3ad082211cd2edf3d20d2e773",
       "provenance": "tests/fixtures/engine81-torrent-payment.md"
+    },
+    {
+      "engine_version": 82,
+      "accepted_commands": 17,
+      "save": "tests/fixtures/engine82-tidal-wave-repeat.json",
+      "save_sha256": "a2aa281243619dffbae0bcd7ee82ec039a74eb72d10fd7b1f2adb121e641c6eb",
+      "input": "tests/fixtures/engine82-tidal-wave-repeat-scenario.json",
+      "input_sha256": "2624b5208d8f61acfb56348a0641e59d875ea8f6d20a262ee2aac549ba222878",
+      "provenance": "tests/fixtures/engine82-tidal-wave-repeat.md"
     }
   ]
 }

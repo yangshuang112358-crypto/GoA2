@@ -1132,5 +1132,32 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：4号夏尔加萨先攻击(5,-9)蓝兵开启反击，再由1号攻击(4,-8)萨彼娜并要求4号弃劈砍。先由2号完成防御，4号才用弃牌劈砍反击(5,-7)布罗根。分支：4号拒绝支付会被击败并取消反击效果。"
+  },
+  {
+    "id": "tidal-wave-pay",
+    "title": "惊涛骇浪：完整攻击重复",
+    "scenario": "tidal-wave-pay",
+    "through_step": 12,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号攻击(4,-8)萨彼娜，选后方(5,-8)夏尔加萨支付，2号完成防御后，可再攻击(3,-7)红兵或不重复；第二次重新检查后方，最多两次攻击。"
+  },
+  {
+    "id": "tidal-wave-two-payments",
+    "title": "惊涛骇浪：两次不同方向支付",
+    "scenario": "tidal-wave-two-payments",
+    "through_step": 13,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号先攻击(3,-7)红兵，选择后方(3,-6)萨彼娜，2号弃牌；再选(4,-8)红兵，选择后方(5,-8)夏尔加萨，4号弃牌。任意支付可改为主动被击败。"
+  },
+  {
+    "id": "tidal-wave-counterattack",
+    "title": "惊涛骇浪：两次攻击之间先结算反击",
+    "scenario": "tidal-wave-counterattack",
+    "through_step": 12,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：4号先攻击(5,-9)蓝兵开启反击。1号攻击萨彼娜并让4号弃劈砍；2号防御结束后，4号劈砍(5,-7)布罗根，完成后才由1号选择是否攻击(3,-7)红兵。"
   }
 ]

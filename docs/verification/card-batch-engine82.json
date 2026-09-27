@@ -1,0 +1,92 @@
+{
+  "engine": 82,
+  "implemented_cards": 93,
+  "data_only_cards": 15,
+  "build_utc": "2026-09-27T05:40:52.0378187Z",
+  "assemblies": {
+    "Goa2.Application.dll": "5144aa29338be85dc08beb103c36e04370e7a2f134b0990316fac1b8597da109",
+    "Goa2.Domain.dll": "792fd106c5e76f4bf7df4ea5729427ef5bd1125f11f923b98c8a0c958426810e",
+    "Goa2.Editor.dll": "dbccb731300d20c180a1a028f122b38d1848cd6475b46168fe1254ccad8698b9",
+    "Goa2.Infrastructure.dll": "bbc683d743f8c71d436e30690f26838b0a753200c9ba906b5277df06178fce52",
+    "Goa2.Rules.dll": "c1649fc8b9f3b29a48f68aafa4f8fc6063ae8a11a980fae7b6cf0e3b255850c9"
+  },
+  "core": {
+    "passed": 146,
+    "failed": 0,
+    "report": "artifacts/tests/tidal-wave-unity-0.xml",
+    "card_specific": 10,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/tidal-wave-unity-0.xml",
+      "artifacts/tests/tidal-wave-unity-1.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/tidal-wave-pay.json",
+        "input_sha256": "604dff41f2902bc79017536090a849f4dac446205185ea6329acfa55391c5af7",
+        "report": "artifacts/editor-scenarios/tidal-wave-pay/5bf50a86044b408eba79386a52e49e43/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/tidal-wave-skip.json",
+        "input_sha256": "5894c73de4279257371f70ac084f133cc17e75c0a5c4499489820db6771203cc",
+        "report": "artifacts/editor-scenarios/tidal-wave-skip/7602527fd5c9482281be090d331a08b8/report.json",
+        "steps": 18,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/tidal-wave-two-payments.json",
+        "input_sha256": "31b60b3916fb4779fee30380f49de25726218b159334240711d71013e9034acc",
+        "report": "artifacts/editor-scenarios/tidal-wave-two-payments/a0e9210b28b14a4f8a0c25e11d82986b/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/tidal-wave-counterattack.json",
+        "input_sha256": "b84d95cc89722a7b85dc753c1b52eddf86a358c891285666a5d3bc2bc2be8335",
+        "report": "artifacts/editor-scenarios/tidal-wave-counterattack/7fda459e5d0a42c7a14b94a0aea5da18/report.json",
+        "steps": 23,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine82-tidal-wave-repeat-scenario.json",
+        "input_sha256": "2624b5208d8f61acfb56348a0641e59d875ea8f6d20a262ee2aac549ba222878",
+        "report": "artifacts/editor-scenarios/engine82-tidal-wave-repeat-scenario/3d0062bf80704e0aa657ba600717db63/report.json",
+        "steps": 17,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 96
+  },
+  "manual_presets": [
+    "tidal-wave-pay",
+    "tidal-wave-two-payments",
+    "tidal-wave-counterattack"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/tidal-wave-red.xml",
+    "passed": 1,
+    "failed": 6
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e82-tidal-wave-20260927-054136-750bf87c.zip",
+    "sha256": "c18611084a0adf49c794a174111bb86285f64741ee3247f1c8b72863ebb88adf"
+  }
+}

@@ -70,11 +70,12 @@ namespace Goa2.Rules
                         execution.Cursor++;
                         break;
                     case InstructionKind.OptionalDifferentAttackIfAdjacentEnemy:
+                    case InstructionKind.OptionalDifferentFullAttack:
                         if(execution.DefenseResponse!=null && !ContinueDefenseResponse(catalog,state,command)) return;
                         if(BeginMinionReturns(catalog,state,command))return;
                         if(BeginDiscardReactions(catalog,state,command))return;
                         if(BeginDifferentAttackRepeat(catalog,state,command,execution,card,program)) return;
-                        execution.Cursor+=2;
+                        execution.Cursor+=program.Instructions[execution.Cursor]==InstructionKind.OptionalDifferentFullAttack?3:2;
                         break;
                     case InstructionKind.OptionalMinionRemovalAfterDefeat:
                         if(BeginEffectMinionRemoval(catalog,state,command,execution,program)) return;
@@ -210,12 +211,13 @@ namespace Goa2.Rules
             Require(state.Pending?.Kind == "attack_target" && state.Pending.ChooserSeat == command.ActorSeat && state.Execution != null,
                 "invalid_attack_target", "请选择当前合法敌方目标。");
             bool repeat=state.Pending!.Optional && state.Pending.ResumeAt=="repeat_attack";
-            bool once=state.Pending.Optional && state.Pending.ResumeAt=="repeat_once_different";
+            bool full=state.EngineVersion>=82 && state.Pending.Optional && state.Pending.ResumeAt=="repeat_once_different_full";
+            bool once=state.Pending.Optional && (state.Pending.ResumeAt=="repeat_once_different" || full);
             if(command.Value=="skip")
             {
                 Require(repeat || once,"invalid_attack_target","首次攻击必须选择合法目标。");
                 Emit(state,command,"AttackRepeatSkipped",command.ActorSeat,state.Execution!.CardId);
-                state.Execution.Cursor+=once?2:1;state.Pending=null;state.Phase=Phase.Action;
+                state.Execution.Cursor+=full?3:once?2:1;state.Pending=null;state.Phase=Phase.Action;
                 ContinueCard(catalog,state,command);return;
             }
             Require(CombatRules.AttackTargets(catalog,state,command.ActorSeat).Contains(command.Value),"invalid_attack_target","请选择当前合法敌方目标。");
@@ -334,6 +336,7 @@ namespace Goa2.Rules
             if(BeginMinionReturns(catalog,state,command))return;
             var program=CardPrograms.Primary(catalog.Card(state.Execution.CardId),state.EngineVersion);
             if(program!=null && (program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalDifferentAttackIfAdjacentEnemy ||
+                program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalDifferentFullAttack ||
                 program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatAttackAfterHeroDefeat ||
                 program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatFriendlyMinionMove ||
                 program.Instructions[state.Execution.Cursor]==InstructionKind.OptionalRepeatApproach ||

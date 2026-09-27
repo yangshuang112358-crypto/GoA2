@@ -17,7 +17,7 @@ namespace Goa2.Rules
             state.Pending=new PendingChoice
             {
                 Id="attack-repeat:"+(state.Events.Count+1),Kind="attack_target",ChooserSeat=execution.ControllerSeat,
-                CandidateUnits=targets,Source=execution.CardId,ResumeAt="repeat_once_different",Optional=true
+                CandidateUnits=targets,Source=execution.CardId,ResumeAt=program.Instructions[execution.Cursor]==InstructionKind.OptionalDifferentFullAttack ? "repeat_once_different_full" : "repeat_once_different",Optional=true
             };
             Emit(state,command,"AttackRepeatChoiceRequired",execution.ControllerSeat,execution.CardId);
             return true;

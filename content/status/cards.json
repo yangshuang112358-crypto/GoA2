@@ -993,11 +993,23 @@
     },
     {
       "card_id": "arien-04-惊涛骇浪",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-04-惊涛骇浪.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/TidalWaveTests.cs",
+        "tests/scenarios/tidal-wave-pay.json",
+        "tests/scenarios/tidal-wave-skip.json",
+        "tests/scenarios/tidal-wave-two-payments.json",
+        "tests/scenarios/tidal-wave-counterattack.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatRules.cs"
+      ]
     },
     {
       "card_id": "arien-05-巨浪滔天",

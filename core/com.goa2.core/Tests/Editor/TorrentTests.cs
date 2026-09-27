@@ -12,14 +12,15 @@ namespace Goa2.Tests
     public sealed class TorrentTests
     {
         internal const string Card="arien-02-激流";
-        internal static GameSession Ready(ContentCatalog cat,bool counter=false)
+        internal static GameSession Ready(ContentCatalog cat,bool counter=false,string card=Card,bool defended=false)
         {
             var g=LocalGameFactory.Create(cat,"torrent",new[]{"A","B","C","D"},42,true);
-            Apply(g,0,CommandKind.DebugPrepare,"arien,sabina,brogan,shargatha");Apply(g,0,CommandKind.DebugEquipCard,Card,target:0);
+            Apply(g,0,CommandKind.DebugPrepare,"arien,sabina,brogan,shargatha");Apply(g,0,CommandKind.DebugEquipCard,card,target:0);
+            if(defended)Apply(g,0,CommandKind.DebugEquipCard,"sabina-08-带头冲锋",target:1);
             var pos=new[]{new Hex(3,-8),new Hex(4,-8),counter?new Hex(5,-7):new Hex(3,-9),new Hex(5,-8)};
             for(int i=0;i<4;i++)Apply(g,0,CommandKind.DebugTeleport,"hero:"+i,cell:pos[i]);
             if(counter)Apply(g,0,CommandKind.DebugTeleport,"minion:1,0",cell:new Hex(5,-9));
-            string[] cards={Card,"sabina-07-指挥","brogan-06-铜墙铁壁",CounterattackTests.Card};for(int i=0;i<4;i++)Apply(g,i,CommandKind.SelectCard,cards[i]);
+            string[] cards={card,defended?"sabina-00-近身射击":"sabina-07-指挥","brogan-06-铜墙铁壁",CounterattackTests.Card};for(int i=0;i<4;i++)Apply(g,i,CommandKind.SelectCard,cards[i]);
             if(counter){Apply(g,3,CommandKind.BeginPrimary);Apply(g,3,CommandKind.ChooseAttackTarget,"minion:1,0");}
             OpportuneMomentTests.AdvanceTo(g,0);return g;
         }
