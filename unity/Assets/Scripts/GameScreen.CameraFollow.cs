@@ -9,13 +9,14 @@ namespace Goa2.Presentation
     {
         private bool cameraFollow=true,followOverview,followInitialized,showHotkeys;
         private float heroZoom=3,heroZoom2D=2,toastStarted=-100;
+        private float? cinematicResumeZoom;
         private Label? followToast;
         private Button? followButton;
         private void SetCameraFollow(bool enabled)
         {
             if(cameraFollow==enabled) return;
             cameraFollow=enabled;toastStarted=Time.realtimeSinceStartup;
-            if(enabled) ApplyCameraFollow(true);else board?.StopFollowing();
+            if(enabled) ApplyCameraFollow(true);else {cinematicResumeZoom=null;board?.StopFollowing();}
             RefreshFollowControls();RequestCapture();
         }
         private void RefreshFollowControls()
@@ -38,9 +39,28 @@ namespace Goa2.Presentation
             if(overview && (reenabled || !followInitialized || !followOverview)) {
                 if(followInitialized && !followOverview) {heroZoom=board3DViewport.Zoom;heroZoom2D=viewport.Zoom;}zoom=1;
             } else if(!overview && followInitialized && followOverview) zoom=board3DViewport.Enabled ? heroZoom : heroZoom2D;
-            var points=catalog.Cells.Select(c=>Board3DGeometry.World(c.Position)).ToList();
+            bool regional=renderedView.RoundEndStage!="upgrades" && (renderedView.Phase==Goa2.Domain.Phase.RoundEnd || renderedView.Pending?.Kind=="round_minion_removal" || renderedView.Pending?.Kind=="action_minion_removal" || renderedView.Pending?.Kind=="minion_spawn" || renderedView.Pending?.Kind=="minion_return");
+            var points=catalog.Cells.Where(c=>!regional || c.Region==renderedView.CombatRegion).Select(c=>Board3DGeometry.World(c.Position)).ToList();
+            if(points.Count==0)points=catalog.Cells.Select(c=>Board3DGeometry.World(c.Position)).ToList();
             var focus=target.HasValue ? Board3DGeometry.World(target.Value) : new Vector3((points.Min(p=>p.x)+points.Max(p=>p.x))*.5f,0,(points.Min(p=>p.z)+points.Max(p=>p.z))*.5f);
+            if(regional)zoom=board.Scene?.ZoomForRegion(catalog.Cells.Where(c=>c.Region==renderedView.CombatRegion).Select(c=>c.Position)) ?? 2.2f;
+            if(renderedView.Pending?.Kind=="hero_respawn") {
+                var team=renderedView.Players.Single(p=>p.Seat==renderedView.Pending.ChooserSeat).Team;
+                var spawn=catalog.Cells.Where(c=>c.Spawn==(team==Goa2.Domain.Team.Blue ? "blueHeroSpawn" : "redHeroSpawn")).Select(c=>Board3DGeometry.World(c.Position)).ToList();
+                if(spawn.Count>0) {focus=spawn.Aggregate(Vector3.zero,(a,b)=>a+b)/spawn.Count;zoom=2.5f;}
+            }
+            var fx=board3DViewport.Presentation;float now=Time.realtimeSinceStartup;
+            if(now<fx.DeathUntil || now-fx.CoinStarted<2.4f) {if(zoom.HasValue || !cinematicResumeZoom.HasValue)cinematicResumeZoom=zoom ?? (board3DViewport.Enabled ? board3DViewport.Zoom : viewport.Zoom);}
+            else if(cinematicResumeZoom.HasValue) {zoom=zoom ?? cinematicResumeZoom;cinematicResumeZoom=null;}
+            if(now<fx.DeathUntil) {focus=fx.DeathFocus;zoom=2.5f;}
+            else if(now-fx.CoinStarted<2.4f) {focus=BattlePresentationState.Center(catalog);zoom=1.6f;}
             board.FollowAt(focus,zoom);followOverview=overview;followInitialized=true;
+        }
+        private bool wasCinematic;
+        private void UpdatePresentationFocus() {
+            var fx=board3DViewport.Presentation;float now=Time.realtimeSinceStartup;
+            bool active=now<fx.DeathUntil || now-fx.CoinStarted<2.4f;
+            if(active!=wasCinematic) {wasCinematic=active;if(cameraFollow && board!=null)ApplyCameraFollow();}
         }
         private void ConfirmCurrent()
         {
@@ -64,6 +84,11 @@ namespace Goa2.Presentation
             followToast=Text("","follow-toast");followToast.name="follow-toast";followToast.pickingMode=PickingMode.Ignore;root.Add(followToast);
             if(!rightExpanded && confirmAction!=null && confirmButton!=null) {
                 var confirm=Button(confirmButton.text+" · Enter",ConfirmCurrent,"floating-confirm","floating-confirm");root.Add(confirm);
+            }
+            if(renderedView.Winner.HasValue) {
+                var victory=Text((renderedView.Winner==Goa2.Domain.Team.Blue ? "蓝队" : "红队")+"获胜","world-victory");victory.name="world-victory";victory.pickingMode=PickingMode.Ignore;victory.style.display=DisplayStyle.None;root.Add(victory);
+                float until=board3DViewport.Presentation.Crowns.Select(c=>c.Started+2.4f).DefaultIfEmpty(Time.realtimeSinceStartup).Max();
+                victory.schedule.Execute(()=>victory.style.display=DisplayStyle.Flex).StartingIn((long)(Mathf.Max(0,until-Time.realtimeSinceStartup)*1000));
             }
             RefreshFollowControls();
             var current=board;

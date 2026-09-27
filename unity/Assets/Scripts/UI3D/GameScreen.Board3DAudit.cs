@@ -57,11 +57,16 @@ namespace Goa2.Presentation
             Submit(CommandKind.DebugPrepare,"wasp,shargatha,brogan,arien");
             yield return null;yield return null;
             Check(board?.Scene!=null,"Actual GameScreen contains 3D RenderTexture");
-            yield return new WaitForSecondsRealtime(.8f);
+            yield return new WaitForSecondsRealtime(9f);
             Check(cameraFollow && !rightExpanded,"Default follow enabled and settings drawer closed");
             Check(root.Q<Button>("settings-toggle")!=null && root.Q<Button>("follow-toggle")!=null,"Floating settings and follow buttons exist");
             Check(Vector3.Distance(board3DViewport.Focus,Board3DGeometry.World(renderedView.Units.First(u=>u.Seat==seat).Position))<.03f,"Planning follows own hero");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"follow-planning.png"));yield return new WaitForSecondsRealtime(.25f);
+            ShowHeroHover(seat,new Vector2(Screen.width*.6f,Screen.height*.5f));yield return null;yield return null;
+            Check(root.Q<VisualElement>("hero-hover")!=null,"Own hero hover opens full card information");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"hero-hover-own.png"));yield return new WaitForSecondsRealtime(.25f);HideHeroHover();
+            ShowHeroHover(1,new Vector2(Screen.width*.6f,Screen.height*.5f));yield return null;yield return null;
+            Check(root.Q<VisualElement>("hero-hover").Query<Label>().ToList().Any(l=>l.text=="未公开手牌隐藏"),"Opponent hover preserves hidden hand privacy");HideHeroHover();
             long followRevision=renderedView.Revision;int followSeat=seat;
             SetCameraFollow(false);yield return new WaitForSecondsRealtime(.25f);
             Check(followToast!=null && followToast.resolvedStyle.opacity>.99f,"Follow toast rises and becomes opaque");
@@ -123,7 +128,7 @@ namespace Goa2.Presentation
             board.FocusAt(renderedView.Units.First(u=>u.Seat==0).Position);yield return null;
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"hero-full-name.png"));yield return new WaitForSecondsRealtime(.25f);
             board.ResetView();board.Rotate(-1);yield return new WaitForSecondsRealtime(.3f);
-            Check(root.Q<Button>("toggle-left")!=null && root.Q<Button>("toggle-right")!=null,"Panel collapse controls retained");
+            Check(root.Q<VisualElement>("hero-roster")==null && root.Q<Button>("toggle-right")!=null,"Panel collapse controls retained");
             leftExpanded=rightExpanded=topExpanded=bottomExpanded=true;Render();yield return null;yield return null;
             var source=root.Q<VisualElement>("hand-zone");var longest=catalog.Cards.OrderByDescending(c=>c.Text.Length).First();
             ShowCardPreview(source,longest,null);yield return null;yield return null;
@@ -157,11 +162,14 @@ namespace Goa2.Presentation
                 session=DebugPositions.Open(catalog,position!);seat=session.View(0).Pending?.ChooserSeat ?? 0;ClearPending();Render();
                 yield return null;yield return null;
                 Check(renderedView.Phase==position!.Phase,"Preset "+id+" renders original phase");
-                SetCameraFollow(true);yield return new WaitForSecondsRealtime(.8f);
+                SetCameraFollow(true);yield return new WaitForSecondsRealtime(9f);
                 var expected=CameraFollowPolicy.Target(renderedView,seat);
                 Check(board!=null && board.worldBound.height>=59,"Board remains visible in "+id);
                 if(expected.HasValue) Check(Vector3.Distance(board3DViewport.Focus,Board3DGeometry.World(expected.Value))<.03f,"Live phase camera target: "+id);
-                else Check(followOverview,"Live phase overview: "+id);
+                else {
+                    Check(followOverview,"Live phase overview: "+id);
+                    if(id=="occupied-spawn") Check(Vector3.Distance(board3DViewport.Focus,BattlePresentationState.Center(catalog,renderedView.CombatRegion))<.03f,"Captain spawn camera centers actual combat region");
+                }
                 SetCameraFollow(false);
                 ScreenCapture.CaptureScreenshot(Path.Combine(output,"pending-"+id+".png"));yield return new WaitForSecondsRealtime(.25f);
             }
@@ -169,8 +177,8 @@ namespace Goa2.Presentation
             Submit(CommandKind.BeginPrimary);Submit(CommandKind.ChooseOptionalDiscard,"brogan-00-猛攻");Submit(CommandKind.ChooseAttackTarget,"hero:1");
             seat=1;Render();yield return null;yield return null;
             Check(renderedView.Pending?.Kind=="defense","Live defense choice reached through rules");
-            SetCameraFollow(true);yield return new WaitForSecondsRealtime(.8f);
-            Check(seat==1 && renderedView.ActiveSeat==0 && Vector3.Distance(board3DViewport.Focus,Board3DGeometry.World(renderedView.Units.First(u=>u.Seat==0).Position))<.03f,"Defense response keeps attacker focused without changing defender seat");
+            SetCameraFollow(true);yield return new WaitForSecondsRealtime(9f);
+            Check(seat==1 && renderedView.ActiveSeat==0 && Vector3.Distance(board3DViewport.Focus,Board3DGeometry.World(renderedView.Units.First(u=>u.Seat==1).Position))<.03f,"Defense response focuses defender without changing identity");
             SetCameraFollow(false);
             int warnings=0;
             foreach(var option in renderedView.DefenseOptions)
@@ -188,6 +196,31 @@ namespace Goa2.Presentation
             Check(board?.Scene==null,"2D fallback retained");
             board3DViewport.Enabled=true;Render();yield return null;yield return null;
             Check(board?.Scene!=null,"Return to 2.5D");
+            topExpanded=false;bottomExpanded=false;rightExpanded=false;Render();yield return null;yield return null;
+            SetCameraFollow(false);board!.ResetView();yield return null;
+            var opposite=renderedView.DecisionCoin==Team.Blue ? "red" : "blue";
+            Submit(CommandKind.DebugSetCoin,opposite);yield return new WaitForSecondsRealtime(.7f);
+            Check(board3DViewport.Presentation.CoinTo==renderedView.DecisionCoin,"Coin animation consumes authoritative side");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"coin-flipping.png"));yield return new WaitForSecondsRealtime(2f);
+            int crystalBefore=renderedView.RedCrystal;
+            Submit(CommandKind.DebugDefeatHero,"hero:1",target:0);yield return new WaitForSecondsRealtime(.35f);
+            Check(renderedView.RedCrystal==crystalBefore-1 && board3DViewport.Presentation.Shards.Count>0,"Live hero defeat drives crystal shards from actual damage");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"crystal-shatter.png"));yield return new WaitForSecondsRealtime(2f);
+            var heavy=renderedView.Units.First(u=>u.Team==Team.Red && u.Kind=="heavy");var from=heavy.Position;int marks=renderedView.BlueMarks;
+            Submit(CommandKind.DebugDefeatMinion,heavy.Id,target:0);yield return new WaitForSecondsRealtime(.8f);
+            Check(renderedView.BlueMarks==marks+1 && board3DViewport.Presentation.Crowns.Any(c=>c.From==Board3DGeometry.World(from,1)),"Live heavy defeat drives crown from removed unit to winning team");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"crown-flight.png"));yield return new WaitForSecondsRealtime(2f);
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"crown-arrived.png"));yield return new WaitForSecondsRealtime(.25f);
+            // Explicit presentation fixture: level-eight art and card-zone palette, not a fabricated rules playthrough.
+            var showcase=session.View(0);showcase.Players[0].Level=8;showcase.Players[0].Gold=99;
+            showcase.OwnCards[0].Zone=CardZone.PlayedResolved;showcase.OwnCards[1].Zone=CardZone.Discarded;
+            var showcaseHero=showcase.Units.First(u=>u.Seat==0);
+            var art=new BattlefieldSurface(catalog,showcase,Array.Empty<Hex>(),null,_=>{},_=>{},new BoardViewport(),Array.Empty<Hex>(),new Board3DViewport{Enabled=true,Initialized=true,Focus=Board3DGeometry.World(showcaseHero.Position),Zoom=4},0);
+            art.style.position=Position.Absolute;art.style.left=0;art.style.top=0;art.style.width=Screen.width;art.style.height=Screen.height;root.Add(art);
+            yield return null;yield return null;
+            Check(art.Query<HeroPlate>().ToList().Count==showcase.Units.Count(u=>u.Seat.HasValue),"World nameplates replace roster for every on-board hero");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"level8-art-fixture-a.png"));yield return new WaitForSecondsRealtime(.4f);
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"level8-art-fixture-b.png"));yield return new WaitForSecondsRealtime(.25f);art.RemoveFromHierarchy();
         }
     }
 }

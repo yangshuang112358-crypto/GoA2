@@ -25,6 +25,7 @@ namespace Goa2.Domain
         public Dictionary<string, int> PermanentBonuses = new Dictionary<string, int>();
         public List<CardInstance> Revealed = new List<CardInstance>();
         public List<PublicPlay> Plays = new List<PublicPlay>();
+        public List<CardInstance> PublicDiscards = new List<CardInstance>();
         public List<string> DiscardColors = new List<string>();
     }
     public sealed class PublicPlay

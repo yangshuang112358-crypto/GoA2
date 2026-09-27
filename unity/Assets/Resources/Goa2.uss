@@ -279,3 +279,8 @@ Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
 .follow-toast { position: absolute; left: 35%; right: 35%; height: 54px; font-size: 26px; -unity-text-align: middle-center; color: #ffeac2; background-color: rgba(25,32,40,0.94); border-width: 2px; border-color: #9e8a63; border-radius: 8px; }
 .floating-confirm { position: absolute; bottom: 18px; left: 33%; max-width: 58%; min-height: 54px; font-size: 26px; white-space: normal; background-color: #426653; color: #fff0cd; border-width: 2px; border-color: #b6bd82; }
 .hand.upgrade-panel { height: 460px; min-height: 320px; max-height: 50%; flex-shrink: 1; }
+
+.hero-hover { padding: 18px; background-color: rgba(17,25,35,0.98); border-width: 2px; border-color: #b4a172; border-radius: 10px; }
+.hero-hover-card { margin-bottom: 8px; }
+
+.world-victory { position: absolute; left: 35%; right: 35%; top: 30%; height: 100px; -unity-text-align: middle-center; font-size: 44px; color: #ffe19d; background-color: rgba(24,29,45,0.95); border-width: 3px; border-color: #b69a57; }

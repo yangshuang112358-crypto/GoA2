@@ -10,7 +10,7 @@ namespace Goa2.Presentation.UI3D
 {
     // Receives ONLY a seat projection and public map. Never owns a GameSession.
     // Camera and meshes are isolated from the host scene and contain no colliders.
-    public sealed class Board3DScene : IDisposable
+    public sealed partial class Board3DScene : IDisposable
     {
         private const int Layer = 30;
         public const float WallHeight = 1.05f, HeroHeight = WallHeight * 2;
@@ -63,11 +63,12 @@ namespace Goa2.Presentation.UI3D
                     ColorOf(unit.Seat.HasValue && unit.Seat==view.ActiveSeat ? "#FFE39A" : "#DDE8EA"),"token rim");
                 tokens.Add((unit.Position,radius,height+.055f,text));
             }
+            BuildWorldHud(catalog,view);
             if (!state.Initialized) { Reset();state.Zoom=1.6f; }
         }
 
         private T Own<T>(T value) where T:Object { value.hideFlags=HideFlags.HideAndDontSave; owned.Add(value); return value; }
-        private void Add(Mesh mesh,Vector3 at,Vector3 scale,Color color,string name)
+        private GameObject Add(Mesh mesh,Vector3 at,Vector3 scale,Color color,string name)
         {
             var go=new GameObject(name) { layer=Layer, hideFlags=HideFlags.HideAndDontSave };
             go.transform.SetParent(host.transform,false); go.transform.localPosition=at; go.transform.localScale=scale;
@@ -79,7 +80,7 @@ namespace Goa2.Presentation.UI3D
                 material=Own(new Material(shader) {color=color}); materials.Add(color,material);
                 if(name=="legal" || name=="selected") { material.SetInt("_ZTest",8);material.renderQueue=4000; }
             }
-            go.AddComponent<MeshRenderer>().sharedMaterial=material;
+            go.AddComponent<MeshRenderer>().sharedMaterial=material;return go;
         }
         public static Color ColorOf(string html) { ColorUtility.TryParseHtmlString(html,out var c);return c; }
         private static Color RegionColor(CellDefinition cell)
@@ -115,12 +116,19 @@ namespace Goa2.Presentation.UI3D
             Camera.transform.position=state.Focus-Camera.transform.forward*80;
             // Fit all twelve orientations at zoom 1; pan does not silently change scale.
             var inverse=Quaternion.Inverse(Camera.transform.rotation);
-            var points=cells.Keys.Select(h=>inverse*Board3DGeometry.World(h)).ToList();
+            var points=cells.Keys.Select(h=>inverse*Board3DGeometry.World(h)).Concat(framingPoints.Select(p=>inverse*p)).ToList();
             float extentX=points.Count==0 ? 1 : (points.Max(p=>p.x)-points.Min(p=>p.x))*.5f+1.6f;
             float extentY=points.Count==0 ? 1 : (points.Max(p=>p.y)-points.Min(p=>p.y))*.5f+3;
             float fittedSize=Mathf.Max(extentY,extentX/Camera.aspect);
             Camera.orthographicSize=fittedSize/state.Zoom;
-            Camera.Render();
+            AnimateWorldHud();Camera.Render();
+        }
+        public float ZoomForRegion(IEnumerable<Hex> region)
+        {
+            var inverse=Quaternion.Inverse(Camera.transform.rotation);
+            var points=region.Select(h=>inverse*Board3DGeometry.World(h)).ToList();if(points.Count==0)return 1;
+            float extent=Mathf.Max((points.Max(p=>p.y)-points.Min(p=>p.y))*.5f+4,((points.Max(p=>p.x)-points.Min(p=>p.x))*.5f+2)/Mathf.Max(.1f,Camera.aspect));
+            return Mathf.Clamp(Camera.orthographicSize*state.Zoom/extent,.6f,8);
         }
         public Vector2 Project(Hex hex,Vector2 size,float height=0)
         {

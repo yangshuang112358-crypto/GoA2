@@ -17,6 +17,8 @@ namespace Goa2.Presentation.UI3D
         private readonly Image? image;
         private Board3DScene? scene;
         private readonly List<(Label label,Hex cell,float top)> labels=new List<(Label,Hex,float)>();
+        private readonly List<(Vector2 from,Vector2 to)> leaders=new List<(Vector2,Vector2)>();
+        private VisualElement? leaderLayer;
         private readonly Label compass=new Label();
         private readonly HashSet<Hex> legal;
         private readonly Action<Hex> choose;
@@ -26,37 +28,49 @@ namespace Goa2.Presentation.UI3D
         private float lastAnimationTime;
         public Action? ViewportChanged;
         public Action? ManualPan;
+        public Action<int?,Vector2>? HeroHover;
+        private readonly List<(HeroPlate plate,Hex cell)> heroPlates=new List<(HeroPlate,Hex)>();
         public int RotationStep => state.Step;
         public bool Connected => connected;
         public Board3DScene? Scene => scene;
         public float HexRadius => fallback?.HexRadius ?? (scene==null ? 0 : contentRect.height/(2*scene.Camera.orthographicSize));
 
         public BattlefieldSurface(ContentCatalog catalog,GameView view,IEnumerable<Hex> legal,Hex? selected,
-            Action<Hex> choose,Action<CellDefinition> hover,BoardViewport oldState,IEnumerable<Hex> effectArea,Board3DViewport state)
+            Action<Hex> choose,Action<CellDefinition> hover,BoardViewport oldState,IEnumerable<Hex> effectArea,Board3DViewport state,int ownSeat=0)
         {
             this.state=state;this.legal=new HashSet<Hex>(legal);this.choose=choose;
             name="hex-board";AddToClassList("hex-board"); style.overflow=Overflow.Hidden;
             if(!state.Enabled)
             {
-                fallback=new HexBoard(catalog,view,legal,selected,h=> {if(connected) choose(h);},hover,oldState,effectArea);
-                fallback.ManualPan=()=>ManualPan?.Invoke();fallback.ViewportChanged=()=>ViewportChanged?.Invoke();Add(fallback);return;
+                fallback=new HexBoard(catalog,view,legal,selected,h=> {if(connected) choose(h);},hover,oldState,effectArea,ownSeat);
+                fallback.HeroHover=(who,at)=>HeroHover?.Invoke(who,at);fallback.ManualPan=()=>ManualPan?.Invoke();fallback.ViewportChanged=()=>ViewportChanged?.Invoke();Add(fallback);AddTeamStatus(view);return;
             }
             image=new Image {pickingMode=PickingMode.Ignore,scaleMode=ScaleMode.StretchToFill};
             image.StretchToParentSize();Add(image);
+            leaderLayer=new VisualElement{pickingMode=PickingMode.Ignore};leaderLayer.StretchToParentSize();Add(leaderLayer);
+            leaderLayer.generateVisualContent+=c=>{var p=c.painter2D;p.strokeColor=new Color(.8f,.84f,.88f,.7f);p.lineWidth=1;foreach(var line in leaders){p.BeginPath();p.MoveTo(line.from);p.LineTo(line.to);p.Stroke();}};
             schedule.Execute(()=>
             {
                 float now=Time.realtimeSinceStartup;
-                if(state.Advance(now-lastAnimationTime)) Repaint();
+                bool moved=state.Advance(now-lastAnimationTime);
+                if(scene!=null)Repaint(moved);
                 lastAnimationTime=now;
             }).Every(16);
             compass.pickingMode=PickingMode.Ignore;compass.style.position=Position.Absolute;compass.style.left=8;compass.style.top=6;
             compass.style.fontSize=20;compass.style.color=Board3DScene.ColorOf("#DEE8EC");
             compass.style.backgroundColor=new Color(.06f,.11f,.16f,.88f);Add(compass);
+            AddTeamStatus(view);
             RegisterCallback<AttachToPanelEvent>(_=>
             {
                 scene=new Board3DScene(catalog,view,this.legal,connected ? selected : null,effectArea,state);
                 foreach(var token in scene.Labels)
                 {
+                    var hero=view.Units.FirstOrDefault(u=>u.Seat.HasValue && u.Position==token.cell);
+                    if(hero!=null) {var plate=new HeroPlate(catalog,view,view.Players.Single(p=>p.Seat==hero.Seat),ownSeat);plate.pickingMode=PickingMode.Position;var heroCell=token.cell;int heroSeat=hero.Seat!.Value;
+                        plate.RegisterCallback<PointerEnterEvent>(e=>HeroHover?.Invoke(heroSeat,e.position));
+                        plate.RegisterCallback<PointerLeaveEvent>(e=>HeroHover?.Invoke(null,e.position));
+                        plate.RegisterCallback<PointerDownEvent>(e=>{if(e.button==0){if(connected && this.legal.Contains(heroCell))choose(heroCell);e.StopPropagation();}});
+                        Add(plate);heroPlates.Add((plate,token.cell));continue;}
                     var label=new Label(token.text.Replace("·","\n")) {pickingMode=PickingMode.Ignore};label.AddToClassList("unit-label");
                     label.style.color=Color.white;label.style.unityTextOutlineColor=new Color(.04f,.07f,.12f);label.style.unityTextOutlineWidth=.45f;
                     Add(label);labels.Add((label,token.cell,token.top));
@@ -66,7 +80,7 @@ namespace Goa2.Presentation.UI3D
             RegisterCallback<DetachFromPanelEvent>(_=>
             {
                 image.image=null;scene?.Dispose();scene=null;
-                foreach(var entry in labels) entry.label.RemoveFromHierarchy();labels.Clear();dragging=false;
+                foreach(var entry in labels) entry.label.RemoveFromHierarchy();labels.Clear();foreach(var plate in heroPlates)plate.plate.RemoveFromHierarchy();heroPlates.Clear();dragging=false;
             });
             RegisterCallback<GeometryChangedEvent>(_=>Repaint());
             RegisterCallback<PointerDownEvent>(e=>
@@ -80,10 +94,17 @@ namespace Goa2.Presentation.UI3D
                 if(dragging && e.pointerId==pointerId)
                 {if(((Vector2)e.localPosition-lastPointer).sqrMagnitude>0) ManualPan?.Invoke();state.Focus+=scene.Ground(lastPointer,contentRect.size)-scene.Ground(e.localPosition,contentRect.size);lastPointer=e.localPosition;Repaint();e.StopPropagation();return;}
                 var cell=scene.Hit(e.localPosition,contentRect.size);if(cell!=null) hover(cell);
+                HeroHover?.Invoke(cell==null ? null : view.Units.FirstOrDefault(u=>u.Position==cell.Position && u.Seat.HasValue)?.Seat,e.position);
             });
+            RegisterCallback<PointerLeaveEvent>(e=>{if(!dragging)HeroHover?.Invoke(null,e.position);});
             RegisterCallback<PointerUpEvent>(e=> {if(dragging && pointerId==e.pointerId) {dragging=false;this.ReleasePointer(pointerId);e.StopPropagation();}});
             RegisterCallback<PointerCaptureOutEvent>(_=>dragging=false);
             RegisterCallback<WheelEvent>(e=> {Zoom(e.localMousePosition,Mathf.Pow(1.12f,-e.delta.y/3));e.StopPropagation();});
+        }
+        private void AddTeamStatus(GameView view)
+        {
+            var status=new Label($"水晶 蓝{Mathf.Max(0,view.BlueCrystal)} / 红{Mathf.Max(0,view.RedCrystal)}   皇冠 蓝{view.BlueMarks} / 红{view.RedMarks}（{view.VictoryMarksRequired}胜）   决策币 {(view.DecisionCoin==Team.Blue ? "蓝" : "红")}") {name="world-team-status",pickingMode=PickingMode.Ignore};
+            status.style.position=Position.Absolute;status.style.top=6;status.style.right=8;status.style.fontSize=20;status.style.color=Color.white;status.style.backgroundColor=new Color(.04f,.07f,.1f,.82f);Add(status);
         }
         public bool SelectAt(Vector2 local)
         {
@@ -116,10 +137,30 @@ namespace Goa2.Presentation.UI3D
             state.ManualZoom();var before=scene.Ground(pointer,contentRect.size);state.Zoom=Mathf.Clamp(state.Zoom*factor,.6f,8);Repaint();
             state.Focus+=before-scene.Ground(pointer,contentRect.size);Repaint();
         }
-        private void Repaint()
+        private void Repaint(bool notify=true)
         {
             if(scene==null || image==null || contentRect.width<=0 || contentRect.height<=0) return;
             scene.Render(Mathf.CeilToInt(contentRect.width),Mathf.CeilToInt(contentRect.height));image.image=scene.Texture;
+            var placed=new List<Rect>();leaders.Clear();
+            foreach(var entry in heroPlates.OrderByDescending(e=>scene.Project(e.cell,contentRect.size,Board3DScene.HeroHeight).y)) {
+                var p=scene.Project(entry.cell,contentRect.size,Board3DScene.HeroHeight+.12f);
+                bool visible=p.x>=0 && p.x<=contentRect.width && p.y>=0 && p.y<=contentRect.height;
+                entry.plate.style.display=visible ? DisplayStyle.Flex : DisplayStyle.None;if(!visible)continue;
+                var offsets=new List<Vector2>{new Vector2(-112,-94),new Vector2(-234,-65),new Vector2(10,-65),new Vector2(-112,8),new Vector2(-112,-190)};
+                foreach(var occupied in placed) {
+                    offsets.Add(new Vector2(occupied.x-226-p.x,-94));offsets.Add(new Vector2(occupied.xMax+2-p.x,-94));
+                    offsets.Add(new Vector2(-112,occupied.y-94-p.y));offsets.Add(new Vector2(-112,occupied.yMax+2-p.y));
+                }
+                Rect rect=default;float best=float.PositiveInfinity;
+                foreach(var offset in offsets) {
+                    var candidate=new Rect(Mathf.Clamp(p.x+offset.x,0,Mathf.Max(0,contentRect.width-224)),Mathf.Clamp(p.y+offset.y,0,Mathf.Max(0,contentRect.height-92)),224,92);
+                    float cost=placed.Count(r=>r.Overlaps(candidate))*100000+Vector2.Distance(new Vector2(candidate.center.x,candidate.yMax),p);
+                    if(cost<best) {best=cost;rect=candidate;}
+                }
+                leaders.Add((p,new Vector2(Mathf.Clamp(p.x,rect.x,rect.xMax),Mathf.Clamp(p.y,rect.y,rect.yMax))));
+                placed.Add(rect);entry.plate.style.left=rect.x;entry.plate.style.top=rect.y;
+            }
+            leaderLayer?.MarkDirtyRepaint();
             foreach(var entry in labels)
             {
                 var p=scene.Project(entry.cell,contentRect.size,entry.top);
@@ -136,7 +177,7 @@ namespace Goa2.Presentation.UI3D
                 entry.label.style.width=width;entry.label.style.height=height;entry.label.style.fontSize=size;
             }
             compass.text=connected ? $"Q ↶  {state.Step*30}°  ↷ E" : "连接已断开 · 禁止选择";
-            ViewportChanged?.Invoke();
+            if(notify)ViewportChanged?.Invoke();
         }
     }
 }

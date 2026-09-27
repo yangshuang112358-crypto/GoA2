@@ -135,6 +135,7 @@ namespace Goa2.Application
                     }.Where(b => b.Value!=0).ToDictionary(b => b.Key,b => b.Value),
                     HandCount = p.Cards.Count(c => c.Zone == CardZone.InHand || c.Zone == CardZone.Selected),
                     Revealed = p.Cards.Where(c => c.Zone == CardZone.PlayedUnresolved || c.Zone == CardZone.PlayedResolved).ToList(),
+                    PublicDiscards = p.Cards.Where(c => c.Zone == CardZone.Discarded).ToList(),
                     DiscardColors = p.Cards.Where(c => c.Zone == CardZone.Discarded).Select(c => catalog.Card(c.CardId).Color).ToList()
                 }).ToList(),
                 OwnCards = seat.HasValue && seat >= 0 && seat < 4 ? snapshot.Players[seat.Value].Cards : new System.Collections.Generic.List<CardInstance>(),

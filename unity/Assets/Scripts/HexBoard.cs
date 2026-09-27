@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Goa2.Domain;
+using Goa2.Presentation.UI3D;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -33,13 +34,16 @@ namespace Goa2.Presentation
         private Vector2 lastPointer;
         public Action? ViewportChanged;
         public Action? ManualPan;
+        public Action<int?,Vector2>? HeroHover;
+        private Vector2 followVelocity;
+        private readonly List<(HeroPlate plate,UnitState unit)> heroPlates=new List<(HeroPlate,UnitState)>();
         private Vector2? followTarget;
         private float? followZoom;
         public void FollowAt(Vector2 target,float? zoom) {followTarget=target;if(zoom.HasValue) followZoom=zoom;}
-        public void StopFollowing() {followTarget=null;followZoom=null;}
+        public void StopFollowing() {followTarget=null;followZoom=null;followVelocity=Vector2.zero;}
         public float HexRadius => radius;
 
-        public HexBoard(ContentCatalog catalog, GameView view, IEnumerable<Hex> legal, Hex? selected, Action<Hex> choose, Action<CellDefinition> hover, BoardViewport viewport, IEnumerable<Hex>? effectArea=null)
+        public HexBoard(ContentCatalog catalog, GameView view, IEnumerable<Hex> legal, Hex? selected, Action<Hex> choose, Action<CellDefinition> hover, BoardViewport viewport, IEnumerable<Hex>? effectArea=null,int ownSeat=0)
         {
             this.catalog = catalog; this.view = view; this.legal = new HashSet<Hex>(legal);
             this.selected = selected; this.choose = choose; this.hover = hover;
@@ -49,9 +53,9 @@ namespace Goa2.Presentation
             generateVisualContent += Draw;
             float last=Time.realtimeSinceStartup;
             schedule.Execute(()=> {
-                float now=Time.realtimeSinceStartup,t=1-Mathf.Exp(-12*Mathf.Max(0,now-last));last=now;
+                float now=Time.realtimeSinceStartup,dt=Mathf.Max(0,now-last),t=1-Mathf.Exp(-3*dt);last=now;
                 if(!followTarget.HasValue) return;
-                var next=Vector2.Lerp(viewport.Focus,followTarget.Value,t);
+                var next=Vector2.SmoothDamp(viewport.Focus,followTarget.Value,ref followVelocity,.85f,18,dt);
                 if(Vector2.Distance(next,followTarget.Value)<.001f) next=followTarget.Value;
                 bool changed=next!=viewport.Focus;viewport.Focus=next;
                 if(followZoom.HasValue) {float z=Mathf.Lerp(viewport.Zoom,followZoom.Value,t);if(Mathf.Abs(z-followZoom.Value)<.001f){z=followZoom.Value;followZoom=null;}changed|=z!=viewport.Zoom;viewport.Zoom=z;}
@@ -69,6 +73,7 @@ namespace Goa2.Presentation
                 }
                 var cell = Hit(e.localPosition);
                 if (cell != null) hover(cell);
+                HeroHover?.Invoke(cell==null ? null : view.Units.FirstOrDefault(u=>u.Position==cell.Position && u.Seat.HasValue)?.Seat,e.position);
             });
             RegisterCallback<PointerDownEvent>(e =>
             {
@@ -86,6 +91,7 @@ namespace Goa2.Presentation
                 if (!dragging || e.pointerId != dragPointer) return;
                 dragging = false; this.ReleasePointer(e.pointerId); e.StopPropagation();
             });
+            RegisterCallback<PointerLeaveEvent>(e=>HeroHover?.Invoke(null,e.position));
             RegisterCallback<PointerCaptureOutEvent>(_ => dragging = false);
             RegisterCallback<WheelEvent>(e =>
             {
@@ -93,6 +99,9 @@ namespace Goa2.Presentation
             });
             foreach (var unit in view.Units)
             {
+                if(unit.Seat.HasValue) {
+                    var plate=new HeroPlate(catalog,view,view.Players.Single(p=>p.Seat==unit.Seat),ownSeat);Add(plate);heroPlates.Add((plate,unit));continue;
+                }
                 var label = new Label(unit.Seat.HasValue ? (unit.Seat.Value + 1).ToString() : unit.Kind == "heavy" ? "重" : unit.Kind == "ranged" ? "弓" : "兵");
                 label.AddToClassList("unit-label"); label.pickingMode = PickingMode.Ignore;
                 Add(label); labels.Add((label, unit));
@@ -134,6 +143,7 @@ namespace Goa2.Presentation
             }
             radius = fittedRadius * viewport.Zoom;
             origin = contentRect.center - viewport.Focus * radius;
+            foreach(var entry in heroPlates) {var point=Center(entry.unit.Position);entry.plate.style.left=point.x-112;entry.plate.style.top=point.y-95;entry.plate.style.display=point.x>=0 && point.x<=contentRect.width && point.y>=0 && point.y<=contentRect.height ? DisplayStyle.Flex : DisplayStyle.None;}
             foreach (var pair in labels)
             {
                 var center = Center(pair.unit.Position);

@@ -193,9 +193,10 @@ namespace Goa2.Presentation
             }
             root.Query<ScrollView>().ForEach(scroll => { if (scroll.name.StartsWith("goa-scroll-")) scrollPositions[scroll.name] = scroll.scrollOffset; });
             HideCardPreview();
-            root.Clear();
+            HideHeroHover();root.Clear();
             confirmAction=null; confirmButton=null;
             renderedView = session.View(seat);
+            board3DViewport.Presentation.Observe(catalog,renderedView,Time.realtimeSinceStartup,cameraFollow ? board3DViewport.Focus : (Vector3?)null);
             if (!renderedView.EffectAreas.ContainsKey(effectAreaId)) effectAreaId="";
             BuildLayout(renderedView);
             BuildCameraOverlays();

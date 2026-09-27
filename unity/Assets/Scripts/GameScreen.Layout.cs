@@ -18,6 +18,7 @@ namespace Goa2.Presentation
         private void Update()
         {
             RefreshFollowControls();
+            UpdatePresentationFocus();
             if(Input.GetKeyDown(KeyCode.Escape)) { if(keywordGlossaryOpen) CloseKeywordGlossary();else if(rightExpanded && !galleryOpen && !historyOpen && !newMatchPending && !debugPresetsOpen) {rightExpanded=false;showHotkeys=false;Render();}else HideCardPreview();return; }
             if(keywordGlossaryOpen) return;
             if(Input.GetKeyDown(KeyCode.F1) && session!=null && !startupFailed && !newMatchPending && !debugPresetsOpen && !IsEditingText()) { OpenKeywordGlossary(previewCard);return; }
@@ -82,7 +83,7 @@ namespace Goa2.Presentation
             var newGame = Button("新对局", () => { newMatchPending = true; Render(); }, "quiet-button"); newGame.SetEnabled(!ScenarioRunning); controls.Add(newGame);
             BuildScenarioBar(shell);
             var workspace = Box("workspace"); shell.Add(workspace);
-            BuildRoster(workspace, view);
+            // Hero roster now lives on the battlefield.
             var center = Box("center-column"); center.name="battlefield-workspace"; workspace.Add(center);
             if(view.UpgradeOptions.Count==0) BuildRevealedStrip(center, view);
             BuildBoard(center, view);
@@ -90,68 +91,6 @@ namespace Goa2.Presentation
             BuildRightPanel(root, view);
             var footer = Box("footer"); footer.name="status-bar";footer.Add(Text(notice, "tiny"));
             footer.Add(Text("1—4 切换角色 · Enter确认 · 空格跟随", "tiny")); shell.Add(footer);
-        }
-        private void BuildRoster(VisualElement parent, GameView view)
-        {
-            var panel = Box(leftExpanded ? "left-panel" : "collapsed-side"); panel.name="hero-roster";parent.Add(panel);
-            if (!leftExpanded)
-            {
-                panel.Add(Button("▶", () => { leftExpanded = true; Render(); }, "edge-button", "toggle-left"));
-                for (int i = 0; i < 4; i++) { int next = i; panel.Add(Button((i + 1).ToString(), () => SwitchSeat(next), "edge-button")); }
-                return;
-            }
-            var heading = Box("panel-heading"); heading.Add(Text("角色 · 1 2 3 4", "section-title"));
-            heading.Add(Button("◀", () => { leftExpanded = false; Render(); }, "edge-button", "toggle-left")); panel.Add(heading);
-            var scroll = new ScrollView { name = "goa-scroll-roster" }; scroll.AddToClassList("roster-scroll"); panel.Add(scroll);
-            foreach (var player in view.Players)
-            {
-                int target = player.Seat;
-                var card = Button("", () => SwitchSeat(target), "seat-card");
-                card.name = "seat-" + (target + 1);
-                var displayedBonuses=player.EffectiveBonuses??player.PermanentBonuses;
-                int bonusHeight=((displayedBonuses.Count+1)/2)*34;
-                card.style.height = (player.DiscardColors.Count > 0 ? 254 : 214)+bonusHeight;
-                card.style.minHeight = (player.DiscardColors.Count > 0 ? 254 : 214)+bonusHeight;
-                card.AddToClassList(player.Team == Team.Blue ? "blue-seat" : "red-seat");
-                if (seat == target) card.AddToClassList("selected-seat");
-                string captain = target == view.BlueCaptain || target == view.RedCaptain ? " · 队长" : "";
-                SeatLabel(card, (player.Team == Team.Blue ? "蓝队" : "红队") + " / " + (target + 1) + captain, "eyebrow", 5, 34);
-                SeatLabel(card, HeroName(player.HeroId) + (player.IsPoisoned ? " · 中毒" : "") + (player.IsPetrified ? " · 石化" : "") + (player.AwaitingRespawn ? " · 待复活" : view.UpgradingSeats.Contains(target) ? " · 待升级" : view.ActiveSeat == target ? " · 行动" : ""), "seat-name", 43, 70);
-                SeatLabel(card, "Lv." + player.Level + "  " + player.Gold + " 金 · 手牌 " + player.HandCount, "tiny", 117, 34);
-                if (bonusHeight>0)
-                {
-                    var bonuses=displayedBonuses.Select(p => p.Key + (p.Value>0?"+":"") + p.Value).ToList();
-                    for(int line=0;line*2<bonuses.Count;line++) SeatLabel(card,string.Join(" · ",bonuses.Skip(line*2).Take(2)),"bonus-line",155+line*34,34);
-                }
-                var rounds = Box("round-dots"); card.Add(rounds);
-                rounds.style.top=164+bonusHeight;
-                for (int turn = 1; turn <= 4; turn++)
-                {
-                    int cycle = turn;
-                    var play = player.Plays.LastOrDefault(p => p.Round == view.Round && p.Turn == cycle);
-                    var dot = Box("round-dot");
-                    dot.tooltip = play == null ? "第 " + turn + " 回合 · 尚未出牌" : "第 " + turn + " 回合 · " + catalog.Card(play.CardId).Name;
-                    if (play != null) { dot.style.backgroundColor = CardColor(play.Color); dot.AddToClassList("filled-dot"); }
-                    rounds.Add(dot);
-                }
-                AddPurpleDot(rounds,player);
-                if (player.DiscardColors.Count > 0)
-                {
-                    var discards = Box("discard-dots"); card.Add(discards); discards.Add(Text("弃", "tiny"));
-                    discards.style.top=211+bonusHeight;
-                    foreach (string color in player.DiscardColors)
-                    {
-                        var dot = Box("discard-dot"); dot.style.backgroundColor = CardColor(color); dot.tooltip = "弃牌 · " + ColorName(color); discards.Add(dot);
-                    }
-                }
-                scroll.Add(card);
-            }
-            var team = Box("team-info");team.name="team-status";
-            team.Add(Text("水晶   蓝 " + view.BlueCrystal + " : " + view.RedCrystal + " 红", "section-title"));
-            team.Add(Text("决策币 · " + (view.DecisionCoin == Team.Blue ? "蓝队" : "红队"), "body"));
-            team.Add(Text("战区 · " + RegionName(view.CombatRegion), "body")); scroll.Add(team);
-            team.Add(Text("推进   蓝 " + view.BlueMarks + " : " + view.RedMarks + " 红 / " + view.VictoryMarksRequired, "body"));
-            if (view.Winner.HasValue) team.Add(Text((view.Winner == Team.Blue ? "蓝队" : "红队") + "获胜", "section-title"));
         }
         private static string ColorName(string color) => color switch { "gold" => "金", "silver" => "银", "red" => "红", "green" => "绿", "blue" => "蓝", _ => "紫" };
         private void BuildRevealedStrip(VisualElement parent, GameView view)
@@ -187,9 +126,10 @@ namespace Goa2.Presentation
         {
             var field = Box("field");field.name="battlefield-map"; parent.Add(field);
             var heading = Box("field-header"); field.Add(heading);
-            heading.Add(Text("亚特兰蒂斯 · 254格", "section-title"));
+            heading.Add(Text("亚特兰蒂斯 · "+RegionName(view.CombatRegion), "section-title"));
             var tools = Box("map-controls"); heading.Add(tools);
             tools.Add(Button(board3DViewport.Enabled ? "2.5D / 切2D" : "2D / 切2.5D", () => { board3DViewport.Enabled = !board3DViewport.Enabled; Render(); }, "compact-button", "toggle-3d"));
+            for(int i=0;i<4;i++){int target=i;var seatButton=Button((i+1).ToString(),()=>SwitchSeat(target),"compact-button","seat-"+(i+1));seatButton.tooltip=PlayerName(i);tools.Add(seatButton);}
             var ownUnit=view.Units.SingleOrDefault(u => u.Seat==seat);
             var focus=Button("定位角色",() => { if (ownUnit!=null) {SetCameraFollow(false);board?.FocusAt(ownUnit.Position);} },"compact-button","focus-hero");
             focus.SetEnabled(ownUnit!=null); tools.Add(focus);
@@ -201,7 +141,8 @@ namespace Goa2.Presentation
             {
                 if (!targets.Contains(cell)) { notice = "此格不可用于当前操作。"; return; }
                 chosenCell = cell; notice = "已选地图格 " + cell + "，确认后应用。"; Render();
-            }, cell => cellInfo.text = BoardHint(view,RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : "")), viewport, SelectedEffectArea(view), board3DViewport);
+            }, cell => cellInfo.text = BoardHint(view,RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : "")), viewport, SelectedEffectArea(view), board3DViewport, seat);
+            board.HeroHover=ShowHeroHover;
             board.ManualPan=()=>SetCameraFollow(false);
             board.ViewportChanged = RequestCapture;
             field.Add(board);

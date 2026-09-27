@@ -1,0 +1,14 @@
+[
+  {
+    "path": "artifacts\\ui3d\\audit-1280x800-20260927-201540",
+    "passed": true,
+    "checks": 6288,
+    "method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard"
+  },
+  {
+    "path": "artifacts\\ui3d\\audit-1600x1000-20260927-201708",
+    "passed": true,
+    "checks": 6288,
+    "method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard"
+  }
+]

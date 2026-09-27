@@ -66,6 +66,7 @@ namespace Goa2.Presentation.UI3D
     // View preferences only. Not part of saves, commands, authentication or GameState.
     public sealed class Board3DViewport
     {
+        public readonly BattlePresentationState Presentation=new BattlePresentationState();
         public bool Enabled = !Array.Exists(Environment.GetCommandLineArgs(), a => a == "-goa2d");
         public int Step;
         public float Yaw { get; private set; }
@@ -81,10 +82,11 @@ namespace Goa2.Presentation.UI3D
             bool changed=false;
             if(followTarget.HasValue)
             {
-                float followT=1-Mathf.Exp(-12*Mathf.Max(0,seconds));
-                var next=Vector3.Lerp(Focus,followTarget.Value,followT);
-                if(Vector3.Distance(next,followTarget.Value)<.001f) next=followTarget.Value;
+                float dt=Mathf.Max(0,seconds);
+                var next=Vector3.SmoothDamp(Focus,followTarget.Value,ref followVelocity,.85f,18,dt);
+                if(Vector3.Distance(next,followTarget.Value)<.005f && followVelocity.sqrMagnitude<.001f) {next=followTarget.Value;followVelocity=Vector3.zero;}
                 changed=next!=Focus;Focus=next;
+                float followT=1-Mathf.Exp(-3*dt);
                 if(followZoom.HasValue) {
                     float zoom=Mathf.Lerp(Zoom,followZoom.Value,followT);
                     if(Mathf.Abs(zoom-followZoom.Value)<.001f) {zoom=followZoom.Value;followZoom=null;}
@@ -97,9 +99,10 @@ namespace Goa2.Presentation.UI3D
             return true;
         }
         private Vector3? followTarget;
+        private Vector3 followVelocity;
         private float? followZoom;
         public void Follow(Vector3 target,float? zoom=null) {followTarget=target;if(zoom.HasValue) followZoom=zoom;}
-        public void StopFollowing() {followTarget=null;followZoom=null;}
+        public void StopFollowing() {followTarget=null;followZoom=null;followVelocity=Vector3.zero;}
         public void ManualZoom() {followZoom=null;}
         public float Zoom = 1;
         public Vector3 Focus;
