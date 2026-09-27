@@ -1,0 +1,110 @@
+{
+  "SchemaVersion": 1,
+  "Id": "surge-same-target",
+  "Name": "汹涌：成功防御后推原目标",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "arien,shargatha,brogan,wasp"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "arien-01-汹涌",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 0,
+        "Y": -5
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 0,
+        "Y": -4
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": -1,
+        "Y": -4
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "arien-01-汹涌"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "shargatha-13-石化"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2",
+      "Expect": {
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p1",
+      "Value": "hero:1"
+    },
+    {
+      "Command": "Defend",
+      "Actor": "p2",
+      "Value": "shargatha-01-劈砍",
+      "Expect": {
+        "PendingKind": "effect_target",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Expect": {
+        "EventCounts": {
+          "UnitPushed": 1,
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

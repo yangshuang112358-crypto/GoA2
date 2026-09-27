@@ -594,6 +594,114 @@
       "input": "tests/fixtures/engine66-legendary-duelist-respawn-scenario.json",
       "input_sha256": "56b1883a4a6c8371e23a90738d3002eda8cf1756cecf4d2d95903144265fe4de",
       "provenance": "tests/fixtures/engine66-legendary-duelist-respawn.md"
+    },
+    {
+      "engine_version": 67,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine67-siren-repeat.json",
+      "save_sha256": "2d662de07d50b4f3c766769f7f4e97b6741822b625be14a5aa7b3485516924e2",
+      "input": "tests/fixtures/engine67-siren-repeat-scenario.json",
+      "input_sha256": "aa57a2dba6ebe5d5884e69453a9045fb90829ab15bfbd6c731bf90a9e14a5f39",
+      "provenance": "tests/fixtures/engine67-siren-repeat.md"
+    },
+    {
+      "engine_version": 68,
+      "accepted_commands": 11,
+      "save": "tests/fixtures/engine68-tide-placement.json",
+      "save_sha256": "300661b90d5d250a0873a936a56b71e8c1721a6a39dbbd53777ebbfdd0b94480",
+      "input": "tests/fixtures/engine68-tide-placement-scenario.json",
+      "input_sha256": "5303489090b92df6d1ceb8c303f20d6bb1a408b965855784904400a253a8a283",
+      "provenance": "tests/fixtures/engine68-tide-placement.md"
+    },
+    {
+      "engine_version": 69,
+      "accepted_commands": 11,
+      "save": "tests/fixtures/engine69-magic-water-placement.json",
+      "save_sha256": "0118e5349fd15e0d732ec552cb6fef7da723c452bec64d300b84d01a7a6f7216",
+      "input": "tests/fixtures/engine69-magic-water-placement-scenario.json",
+      "input_sha256": "ff5611de11f81b17c96cd8841a5cc596f649ad4057e3ec5e1638256d7bc9dfd8",
+      "provenance": "tests/fixtures/engine69-magic-water-placement.md"
+    },
+    {
+      "engine_version": 70,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine70-covering-fire-payment.json",
+      "save_sha256": "101a92f634ac5a0e92c99f48a316797c2c78de00a4ab96e48c740541a055e055",
+      "input": "tests/fixtures/engine70-covering-fire-payment-scenario.json",
+      "input_sha256": "ed8bb456c829394cef045564cd2700e617cb14657d55572fd68cb3304ad421ab",
+      "provenance": "tests/fixtures/engine70-covering-fire-payment.md"
+    },
+    {
+      "engine_version": 71,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine71-energy-explosion-payment.json",
+      "save_sha256": "938a57a1d66445ae58413830a800d684a072f27f7d0299fb6a0616bc138ec336",
+      "input": "tests/fixtures/engine71-energy-explosion-payment-scenario.json",
+      "input_sha256": "9c11ad29d6304b4a4d62ede1f4e8a4443ef0cdad03e78336cf0922827a989a9d",
+      "provenance": "tests/fixtures/engine71-energy-explosion-payment.md"
+    },
+    {
+      "engine_version": 72,
+      "accepted_commands": 13,
+      "save": "tests/fixtures/engine72-punch-distance.json",
+      "save_sha256": "ae6a684768857fbb82930345f540e9b5d035f7cf9cfe3dbf7cd6aaaa9bdf5a96",
+      "input": "tests/fixtures/engine72-punch-distance-scenario.json",
+      "input_sha256": "dbde0652419c4c56deb3c23663b505d4d7602a7fd32d0756fd90d66304f94e84",
+      "provenance": "tests/fixtures/engine72-punch-distance.md"
+    },
+    {
+      "engine_version": 73,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine73-crushing-punch-distance.json",
+      "save_sha256": "c93da6efa40d5ceb0f6842d51e0ecdc62e33e52d1eed485c6c4bbff2663a8acb",
+      "input": "tests/fixtures/engine73-crushing-punch-distance-scenario.json",
+      "input_sha256": "be409aba7ac6960ac121db8804b4ceb9477cb69312f244741910d0fa9c3b3d85",
+      "provenance": "tests/fixtures/engine73-crushing-punch-distance.md"
+    },
+    {
+      "engine_version": 74,
+      "accepted_commands": 24,
+      "save": "tests/fixtures/engine74-savage-kick-phantasm.json",
+      "save_sha256": "349eace78ba5f74ef882ee2ef2d52841682fd5d2bb63b1a4795193417e5277fe",
+      "input": "tests/fixtures/engine74-savage-kick-phantasm-scenario.json",
+      "input_sha256": "eea7322e5d15eec81bebb5b77a760950dfb587f7a118cd3e4cf3b1203e1c4259",
+      "provenance": "tests/fixtures/engine74-savage-kick-phantasm.md"
+    },
+    {
+      "engine_version": 75,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine75-surge-push-choice.json",
+      "save_sha256": "b846b407e91f86242b043bf6a28d3860e5da9d45358542848f202e93d91df8af",
+      "input": "tests/fixtures/engine75-surge-push-choice-scenario.json",
+      "input_sha256": "15a97d2d22107d2cac5d2cc67fe9b7cd7aec891cefbab17cc468fd9a317f0c4e",
+      "provenance": "tests/fixtures/engine75-surge-push-choice.md"
+    },
+    {
+      "engine_version": 76,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine76-rising-tide-choice.json",
+      "save_sha256": "cec98cbbed56b6bc2889064a2fabdfb157067cc8261a21031dbf6e0155993c32",
+      "input": "tests/fixtures/engine76-rising-tide-choice-scenario.json",
+      "input_sha256": "59ccc17510e0250a75c7624a62bb2ad9c5647852f1dbddf45deffa0ce0df053b",
+      "provenance": "tests/fixtures/engine76-rising-tide-choice.md"
+    },
+    {
+      "engine_version": 77,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine77-tsunami-target-move.json",
+      "save_sha256": "0bc26f2d1938c56b55242bf07400f68d4bcefeacdbf4c56051d9cc3eae9a5824",
+      "input": "tests/fixtures/engine77-tsunami-target-move-scenario.json",
+      "input_sha256": "5c5fbcf0f9fb30be0c165eb3bf65363a0aa4271f6a33b9bae44991ac381fec8e",
+      "provenance": "tests/fixtures/engine77-tsunami-target-move.md"
+    },
+    {
+      "engine_version": 78,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine78-mind-control-placement.json",
+      "save_sha256": "3f5351b7c531786eca0e80910bf3779717a6ba3a1bf7c5b8b370f15ec2b437d0",
+      "input": "tests/fixtures/engine78-mind-control-placement-scenario.json",
+      "input_sha256": "affd7d2c5aa61799529d814dc7ac64c6dceb6bb0f228ca75721ff74a7d0972f0",
+      "provenance": "tests/fixtures/engine78-mind-control-placement.md"
     }
   ]
 }

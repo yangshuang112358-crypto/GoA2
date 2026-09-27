@@ -26,11 +26,17 @@ namespace Goa2.Rules
    state.Phase=Phase.EffectChoice;state.Pending=new PendingChoice{Id="minion-move-target:"+(state.Events.Count+1),Kind="effect_target",ChooserSeat=e.ControllerSeat,Source=e.CardId,ResumeAt=repeat?"friendly_minion_repeat":"friendly_minion_move",Optional=repeat,CandidateUnits=targets};
    Emit(state,command,repeat?"ActionRepeatChoiceRequired":"EffectTargetChoiceRequired",e.ControllerSeat,e.CardId);return true;
   }
+  private static List<MoveOption> TargetUnitMoveOptions(ContentCatalog catalog,GameState state,UnitState unit,PrimaryProgram p)
+  {
+   var e=state.Execution!;
+   if(state.EngineVersion>=77 && !EffectRules.CanDisplace(catalog,state,e.ControllerSeat,unit,attackAction:catalog.Card(e.CardId).PrimaryFamily=="attack"))return new List<MoveOption>();
+   return MovementRules.Reachable(catalog,state,unit,p.TextMoveDistance);
+  }
   private static bool BeginTargetUnitMove(ContentCatalog catalog,GameState state,Command command)
   {
    var p=MinionMoveProgram(catalog,state,InstructionKind.OptionalTargetUnitMove);var e=state.Execution!;var unit=state.Units.SingleOrDefault(u=>u.Id==e.TargetUnitId);
    if(p==null || unit==null)return false;
-   var moves=MovementRules.Reachable(catalog,state,unit,p.TextMoveDistance);
+   var moves=TargetUnitMoveOptions(catalog,state,unit,p);
    if(moves.Count==0){Emit(state,command,"EffectMoveSkipped",e.ControllerSeat,e.CardId,detail:"no_destinations");return false;}
    state.Phase=Phase.EffectChoice;state.Pending=new PendingChoice{Id="target-unit-move:"+(state.Events.Count+1),Kind="effect_move",ChooserSeat=e.ControllerSeat,Source=e.CardId,UnitId=unit.Id,ResumeAt="target_unit_move",Optional=true,CandidateCells=moves.Select(m=>m.Destination).ToList()};
    Emit(state,command,"EffectMoveChoiceRequired",e.ControllerSeat,e.CardId,detail:p.TextMoveDistance.ToString());return true;
@@ -39,16 +45,16 @@ namespace Goa2.Rules
   {
    if(state.Phase!=Phase.EffectChoice || state.Pending?.Kind!="effect_move" || state.Pending.ResumeAt!="target_unit_move" || state.Pending.ChooserSeat!=seat || state.Execution?.ControllerSeat!=seat)return new List<MoveOption>();
    var p=MinionMoveProgram(catalog,state,InstructionKind.OptionalTargetUnitMove);var unit=state.Units.SingleOrDefault(u=>u.Id==state.Pending.UnitId && u.Id==state.Execution.TargetUnitId);
-   return p!=null && unit!=null?MovementRules.Reachable(catalog,state,unit,p.TextMoveDistance):new List<MoveOption>();
+   return p!=null && unit!=null?TargetUnitMoveOptions(catalog,state,unit,p):new List<MoveOption>();
   }
   private static void ChooseTargetUnitMove(ContentCatalog catalog,GameState state,Command command)
   {
-   Require(state.Phase==Phase.EffectChoice && state.Pending?.Kind=="effect_move" && state.Pending.ResumeAt=="target_unit_move" && state.Pending.ChooserSeat==command.ActorSeat && state.Execution?.ControllerSeat==command.ActorSeat && MinionMoveProgram(catalog,state,InstructionKind.OptionalTargetUnitMove)!=null && (command.Value=="" || command.Value=="skip") && command.MoveMode==MoveMode.Secondary,"invalid_effect_move","请由技能来源英雄选择小兵普通移动落点，或不移动。");
+   Require(state.Phase==Phase.EffectChoice && state.Pending?.Kind=="effect_move" && state.Pending.ResumeAt=="target_unit_move" && state.Pending.ChooserSeat==command.ActorSeat && state.Execution?.ControllerSeat==command.ActorSeat && MinionMoveProgram(catalog,state,InstructionKind.OptionalTargetUnitMove)!=null && (command.Value=="" || command.Value=="skip") && command.MoveMode==MoveMode.Secondary,"invalid_effect_move","请由行动来源英雄选择目标单位的普通移动落点，或不移动。");
    var e=state.Execution!;
    if(command.Value=="skip")Emit(state,command,"EffectMoveSkipped",command.ActorSeat,e.CardId,detail:"declined");
    else
    {
-    var move=LegalTargetUnitMoves(catalog,state,command.ActorSeat).SingleOrDefault(m=>m.Destination==command.Destination);Require(move!=null,"invalid_effect_move","该格不是当前小兵的合法移动落点。");
+    var move=LegalTargetUnitMoves(catalog,state,command.ActorSeat).SingleOrDefault(m=>m.Destination==command.Destination);Require(move!=null,"invalid_effect_move","该格不是当前目标单位的合法移动落点。");
     var unit=state.Units.Single(u=>u.Id==state.Pending!.UnitId);var origin=unit.Position;unit.Position=command.Destination;RecordDisplacedMinion(state,unit);
     Emit(state,command,"UnitMoved",unit.Seat,e.CardId,detail:"by:"+command.ActorSeat+"|unit:"+unit.Id);var moved=state.Events.Last();moved.From=origin;moved.To=unit.Position;moved.Path=move!.Path;
    }

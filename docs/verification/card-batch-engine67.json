@@ -1,0 +1,84 @@
+{
+  "engine": 67,
+  "implemented_cards": 78,
+  "data_only_cards": 30,
+  "build_utc": "2026-09-26T06:23:41.7721529Z",
+  "assemblies": {
+    "Goa2.Application.dll": "0943c3a72d6af9e7fde2b0d8301771a103dd7f191073ee66c106f4ec5a8a77db",
+    "Goa2.Domain.dll": "abf25f3861b43e5ec9a65e26a72a447979b36fb6941def5ae2e3703892216080",
+    "Goa2.Editor.dll": "98545427206fc9e037bf94c40f3bbd63fde8526a309a578d094f98a63a494721",
+    "Goa2.Infrastructure.dll": "9f10623d272a29a3ad68429b8837f164a290d0c7ff9653016a653411e1affff3",
+    "Goa2.Rules.dll": "c2133371a324c80a437ad13e7213ea15d2acea2cc523c809b9c739eb534436d6"
+  },
+  "core": {
+    "passed": 1681,
+    "failed": 0,
+    "report": "artifacts/tests/siren-song-unity-0.xml",
+    "card_specific": 14,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/siren-song-unity-0.xml",
+      "artifacts/tests/siren-song-unity-1.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/siren-song-two-targets.json",
+        "input_sha256": "5aae05a6867d51b8ee9786a56fa678fa47a0bafaffd9259f2208894b2a36c292",
+        "report": "artifacts/editor-scenarios/siren-song-two-targets/ae4f124bd0ff4d5ea230911b8dd5f4c0/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/siren-song-zero-move.json",
+        "input_sha256": "8dd178462bf8c19ef04ad16ed0f093ac2037fd5e807841c27c0e6e5b75c8eceb",
+        "report": "artifacts/editor-scenarios/siren-song-zero-move/4277640484994faeadf769ad1780894d/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/siren-song-minion-return.json",
+        "input_sha256": "3de78f2cf4e493c1bfac8b3e32199b19721f500bcc0c0f07eb6dec40a2cf650e",
+        "report": "artifacts/editor-scenarios/siren-song-minion-return/808d1009f62a4db49f960379c5ee8ea8/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine67-siren-repeat-scenario.json",
+        "input_sha256": "aa57a2dba6ebe5d5884e69453a9045fb90829ab15bfbd6c731bf90a9e14a5f39",
+        "report": "artifacts/editor-scenarios/engine67-siren-repeat-scenario/f9eafb7d2a5b40a681dee11ec9b234e5/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 66
+  },
+  "manual_presets": [
+    "siren-song-two-targets",
+    "siren-song-minion-return"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/siren-song-red.xml",
+    "passed": 1,
+    "failed": 7
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e67-siren-song-20260926-062417-321de851.zip",
+    "sha256": "712bd81c5ecc709b8bdf71e9a31f3761691e29f63b6b0ce1a668ebc50257ba18"
+  }
+}

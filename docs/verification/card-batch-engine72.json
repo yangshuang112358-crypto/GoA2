@@ -1,0 +1,84 @@
+{
+  "engine": 72,
+  "implemented_cards": 83,
+  "data_only_cards": 25,
+  "build_utc": "2026-09-26T06:59:48.9596278Z",
+  "assemblies": {
+    "Goa2.Application.dll": "88c5f684400401d1ce2815a7ccb83c2a0022b978dfc534993545da7be2ef3653",
+    "Goa2.Domain.dll": "eaa1e50928218e4cc4cb644e227986ff00715f5ed05a7832eb09a0619b0aa52e",
+    "Goa2.Editor.dll": "aa5a5176572df2fbde19ab865f0370eb4f40a43826790aadbcc1449ad9e2b2c0",
+    "Goa2.Infrastructure.dll": "3ed0c42c8c2c51e7cebd095cdab37d4ebd98cd6750e9e887659564ad3f427853",
+    "Goa2.Rules.dll": "1a8d3e655a82949ae893f5bae165bc3e397367e726f32cdcc0bae400b291a314"
+  },
+  "core": {
+    "passed": 184,
+    "failed": 0,
+    "report": "artifacts/tests/punch-unity-0.xml",
+    "card_specific": 13,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/punch-unity-0.xml",
+      "artifacts/tests/punch-unity-1.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/punch-two-steps.json",
+        "input_sha256": "9840da0d2ba9710480649d711e5d55dcd5cf31afd0170baa961365ee7a5f1d15",
+        "report": "artifacts/editor-scenarios/punch-two-steps/d533a82cec9d4f62bb8d5485093a6d47/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/punch-skip.json",
+        "input_sha256": "e0c00ef319ee85a51ec1f153652cdb14550bb33dc668db9d229936b787ba6f2f",
+        "report": "artifacts/editor-scenarios/punch-skip/9898b5180f8c48848f9ae4029ee339c4/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/punch-minion-return.json",
+        "input_sha256": "c25e6b7e84522acc41eedbb3ff8c55f33e31b5cb8d5cb88e20b7a8560e84581e",
+        "report": "artifacts/editor-scenarios/punch-minion-return/eebd9f23b87c4d36ac280dd29cc46d69/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine72-punch-distance-scenario.json",
+        "input_sha256": "dbde0652419c4c56deb3c23663b505d4d7602a7fd32d0756fd90d66304f94e84",
+        "report": "artifacts/editor-scenarios/engine72-punch-distance-scenario/c89083852e7d49d08d9fd9fb2fb913b3/report.json",
+        "steps": 13,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 57
+  },
+  "manual_presets": [
+    "punch-two-steps",
+    "punch-minion-return"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/punch-red.xml",
+    "passed": 1,
+    "failed": 12
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e72-punch-20260926-070016-9d3e1929.zip",
+    "sha256": "dc4fe8a038b33b2eb626a1b3528d9d9d53d34a53dc83a8f4a01170efddeed428"
+  }
+}

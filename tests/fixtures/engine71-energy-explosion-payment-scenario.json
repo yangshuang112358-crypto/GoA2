@@ -1,0 +1,96 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine71-energy-explosion-payment-scenario",
+  "Name": "电能爆炸：额外英雄支付，原攻击尚未执行",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "wasp,sabina,brogan,shargatha"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "wasp-05-电能爆炸",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 6,
+        "Y": -6
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "wasp-05-电能爆炸"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "sabina-07-指挥"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "shargatha-00-反击"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p4"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p1",
+      "Value": "hero:1"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Expect": {
+        "PendingKind": "forced_discard",
+        "PendingChooser": "p4"
+      }
+    }
+  ]
+}

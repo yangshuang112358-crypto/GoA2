@@ -1,0 +1,116 @@
+{
+  "SchemaVersion": 1,
+  "Id": "mind-control-friendly",
+  "Name": "意念操控：放置友方英雄",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "wasp,brogan,arien,shargatha"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "wasp-09-意念操控",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 0,
+        "Y": -5
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 1,
+        "Y": -4
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": -2,
+        "Y": -4
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "wasp-09-意念操控"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "arien-01-汹涌"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "shargatha-00-反击"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p4"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p3"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Actor": "p1",
+      "Value": "hero:2"
+    },
+    {
+      "Command": "ChoosePlacement",
+      "Actor": "p1",
+      "Destination": {
+        "X": 1,
+        "Y": -6
+      },
+      "Expect": {
+        "Positions": {
+          "hero:2": {
+            "X": 1,
+            "Y": -6
+          }
+        },
+        "EventCounts": {
+          "UnitPlaced": 1,
+          "UnitMoved": 0,
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

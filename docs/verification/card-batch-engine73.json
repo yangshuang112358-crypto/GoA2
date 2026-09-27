@@ -1,0 +1,82 @@
+{
+  "engine": 73,
+  "implemented_cards": 84,
+  "data_only_cards": 24,
+  "build_utc": "2026-09-26T07:05:03.4959082Z",
+  "assemblies": {
+    "Goa2.Application.dll": "3c18140dd8b0da73acd98b311170ad42160dc3918f8da216ab1dcafc7398c43a",
+    "Goa2.Domain.dll": "2b0b0e920500e0967107f3ea1248ca1d08f9bce10d07e06ec8191c29452965ab",
+    "Goa2.Editor.dll": "88e60f632be4ed24ee4a11833f70e0aaf4e3e0c740f7b211d421d9b0acb21122",
+    "Goa2.Infrastructure.dll": "496d48c7c7c34ae568745f822cab956572af8db97a744b7cf6216870c46b78be",
+    "Goa2.Rules.dll": "e1683847b3e77868b85571999601d0986c4174437d90fab9d28ff2d6a0a4630f"
+  },
+  "core": {
+    "passed": 65,
+    "failed": 0,
+    "report": "artifacts/tests/crushing-punch-unity-0.xml",
+    "card_specific": 7,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/crushing-punch-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/crushing-punch-stay.json",
+        "input_sha256": "fc65bb0bd5a6b747dea06257288896487de6c44d1b8d10a486b915e3f14da60a",
+        "report": "artifacts/editor-scenarios/crushing-punch-stay/7acde9ba0fa749519e7c3a296bf6fa71/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/crushing-punch-skip.json",
+        "input_sha256": "376995c51bd41f8cead5f0b0aac680cfe2e5da0b0b7c46f80dd64a2ffb26c682",
+        "report": "artifacts/editor-scenarios/crushing-punch-skip/5ae2f939b18345fb997dbe642f19ebb9/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/crushing-punch-move.json",
+        "input_sha256": "81871801af4e9eaefcbc5445036361dd8e3045f954d0e8d8207bffd7b34d45f0",
+        "report": "artifacts/editor-scenarios/crushing-punch-move/92955f1aec044431b18040e08c55bdaa/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine73-crushing-punch-distance-scenario.json",
+        "input_sha256": "be409aba7ac6960ac121db8804b4ceb9477cb69312f244741910d0fa9c3b3d85",
+        "report": "artifacts/editor-scenarios/engine73-crushing-punch-distance-scenario/b9e277cd7d0341caab7eca48071dde3d/report.json",
+        "steps": 14,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 60
+  },
+  "manual_presets": [
+    "crushing-punch-move"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/crushing-punch-red.xml",
+    "passed": 1,
+    "failed": 6
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e73-crushing-punch-20260926-070547-80cc3f97.zip",
+    "sha256": "589719699f4c64e464170f218c8e840a74c6c8b1582ca3d89ebf403f58570c49"
+  }
+}

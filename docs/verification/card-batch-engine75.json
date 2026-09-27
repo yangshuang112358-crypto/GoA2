@@ -1,0 +1,93 @@
+{
+  "engine": 75,
+  "implemented_cards": 86,
+  "data_only_cards": 22,
+  "build_utc": "2026-09-26T07:16:41.8312574Z",
+  "assemblies": {
+    "Goa2.Application.dll": "addfd3b0a918b1c6ee231ce026099d52fa12b49026b3dd342eb3d38a97379145",
+    "Goa2.Domain.dll": "a71abf9f30da614f6bb06a84407f1686ff0c5385c896e621f110d230e9e77db3",
+    "Goa2.Editor.dll": "8eef582ae7c9d2c58d505527796e36f94e2ad950e8aa7617e8dd1287100f8a00",
+    "Goa2.Infrastructure.dll": "9f62c8a844eed9abd82dba80d76d28aa5c3e907609cc5d13ed2ed4edd51fba0c",
+    "Goa2.Rules.dll": "c941e3fcf4f0d88141f29f44ec834c69748991307fbdd26ab619b7b134f8fa1c"
+  },
+  "core": {
+    "passed": 95,
+    "failed": 0,
+    "report": "artifacts/tests/surge-unity-0.xml",
+    "card_specific": 11,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/surge-unity-0.xml",
+      "artifacts/tests/surge-unity-1.xml"
+    ],
+    "replaced_failed_tests": [
+      "Goa2.Tests.ScenarioTests.PublishedScenarioPassesAgainstTheFormalCatalog(\"surge-defeat-other.json\")"
+    ],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/surge-same-target.json",
+        "input_sha256": "c5b7e69deaaa9537a392b11417cddf09f0fd1b26e2b6269106c3ca44cfcc3600",
+        "report": "artifacts/editor-scenarios/surge-same-target/4d32ca0bbdb94d43aa12e49ce836d37e/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/surge-skip.json",
+        "input_sha256": "4fd44f48a4e91b519331419f2b3a6341f5113ff309b22c900c39f8cfb47c7958",
+        "report": "artifacts/editor-scenarios/surge-skip/3bf89580d68941048032225729de83a9/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/surge-defeat-other.json",
+        "input_sha256": "7cc1f2a229702cefd1fa993868552c3bbb200a66722b665a19e165b432c8d805",
+        "report": "artifacts/editor-scenarios/surge-defeat-other/d1fd5c2ea176451d8212b6dbaaf9fdcf/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/surge-counter.json",
+        "input_sha256": "faa02eb80ccb93853185dea1072e8de2bbcf9ad6638df825443c9cbda08e2f6a",
+        "report": "artifacts/editor-scenarios/surge-counter/533db375d8d94c2482caf327d01d6d1a/report.json",
+        "steps": 20,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine75-surge-push-choice-scenario.json",
+        "input_sha256": "15a97d2d22107d2cac5d2cc67fe9b7cd7aec891cefbab17cc468fd9a317f0c4e",
+        "report": "artifacts/editor-scenarios/engine75-surge-push-choice-scenario/ef6deb1cbf894700bfc4a82c78c9fdcb/report.json",
+        "steps": 14,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 79
+  },
+  "manual_presets": [
+    "surge-same-target",
+    "surge-counter"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/surge-red.xml",
+    "passed": 1,
+    "failed": 10
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e75-surge-20260926-071736-2c6454e6.zip",
+    "sha256": "afcd21f7a99aed5a995095ea6122e4ba276c4bc8a0f283cfdcd132235c3f39ee"
+  }
+}

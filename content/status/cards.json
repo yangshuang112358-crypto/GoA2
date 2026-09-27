@@ -102,11 +102,22 @@
     },
     {
       "card_id": "wasp-05-电能爆炸",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-05-电能爆炸.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/EnergyExplosionTests.cs",
+        "tests/scenarios/energy-explosion-pay.json",
+        "tests/scenarios/energy-explosion-decline.json",
+        "tests/scenarios/energy-explosion-skip.json",
+        "tests/scenarios/energy-explosion-counterattack.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "wasp-06-静电封锁",
@@ -164,11 +175,20 @@
     },
     {
       "card_id": "wasp-09-意念操控",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-09-意念操控.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/MindControlTests.cs",
+        "tests/scenarios/mind-control-enemy.json",
+        "tests/scenarios/mind-control-friendly.json",
+        "tests/scenarios/mind-control-minion.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "wasp-10-反射屏障",
@@ -393,11 +413,23 @@
     },
     {
       "card_id": "shargatha-06-海妖之歌",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-06-海妖之歌.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/SirenSongTests.cs",
+        "tests/scenarios/siren-song-two-targets.json",
+        "tests/scenarios/siren-song-zero-move.json",
+        "tests/scenarios/siren-song-minion-return.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs"
+      ]
     },
     {
       "card_id": "shargatha-07-魅惑",
@@ -788,19 +820,37 @@
     },
     {
       "card_id": "brogan-13-冲拳",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-13-冲拳.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/PunchTests.cs",
+        "tests/scenarios/punch-two-steps.json",
+        "tests/scenarios/punch-skip.json",
+        "tests/scenarios/punch-minion-return.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/PushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "brogan-14-碾压重拳",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-14-碾压重拳.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CrushingPunchTests.cs",
+        "tests/scenarios/crushing-punch-stay.json",
+        "tests/scenarios/crushing-punch-skip.json",
+        "tests/scenarios/crushing-punch-move.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "brogan-15-盾牌猛击",
@@ -823,11 +873,21 @@
     },
     {
       "card_id": "brogan-16-野蛮飞踢",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/brogan-16-野蛮飞踢.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/SavageKickTests.cs",
+        "tests/scenarios/savage-kick-hero.json",
+        "tests/scenarios/savage-kick-skip.json",
+        "tests/scenarios/savage-kick-minion.json",
+        "tests/scenarios/savage-kick-phantasm.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/PushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "brogan-17-防守反击",
@@ -873,11 +933,20 @@
     },
     {
       "card_id": "arien-01-汹涌",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-01-汹涌.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/SurgeTests.cs",
+        "tests/scenarios/surge-same-target.json",
+        "tests/scenarios/surge-skip.json",
+        "tests/scenarios/surge-defeat-other.json",
+        "tests/scenarios/surge-counter.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "arien-02-激流",
@@ -889,11 +958,19 @@
     },
     {
       "card_id": "arien-03-潮起",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-03-潮起.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/RisingTideTests.cs",
+        "tests/scenarios/rising-tide-push.json",
+        "tests/scenarios/rising-tide-skip.json",
+        "tests/scenarios/rising-tide-defeat.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "arien-04-惊涛骇浪",
@@ -905,11 +982,21 @@
     },
     {
       "card_id": "arien-05-巨浪滔天",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-05-巨浪滔天.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/TsunamiTests.cs",
+        "tests/scenarios/tsunami-move-push.json",
+        "tests/scenarios/tsunami-skip.json",
+        "tests/scenarios/tsunami-defeat.json",
+        "tests/scenarios/tsunami-counter.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "arien-06-打断施法",
@@ -934,11 +1021,19 @@
     },
     {
       "card_id": "arien-07-潮水",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-07-潮水.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/TideTests.cs",
+        "tests/scenarios/tide-static-boundary.json",
+        "tests/scenarios/tide-vacated-hero-spawn.json",
+        "tests/scenarios/tide-vacated-minion-spawn.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "arien-08-奥术换位",
@@ -963,11 +1058,19 @@
     },
     {
       "card_id": "arien-09-魔法水流",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-09-魔法水流.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/MagicWaterTests.cs",
+        "tests/scenarios/magic-water-third-ring.json",
+        "tests/scenarios/magic-water-vacated-hero-spawn.json",
+        "tests/scenarios/magic-water-vacated-minion-spawn.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "arien-10-移形换步",
@@ -1734,11 +1837,20 @@
     },
     {
       "card_id": "sabina-15-火力掩护",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/sabina-15-火力掩护.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CoveringFireTests.cs",
+        "tests/scenarios/covering-fire-pay.json",
+        "tests/scenarios/covering-fire-decline.json",
+        "tests/scenarios/covering-fire-counterattack.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs",
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs"
+      ]
     },
     {
       "card_id": "sabina-16-战斗武装",

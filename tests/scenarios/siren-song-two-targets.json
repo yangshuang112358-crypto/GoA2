@@ -1,0 +1,120 @@
+{
+  "SchemaVersion": 1,
+  "Id": "siren-song-two-targets",
+  "Name": "海妖之歌：两次分别选择当前最近敌人",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "shargatha,wasp,brogan,sabina"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 6,
+        "Y": -6
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 8,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 4,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "shargatha-06-海妖之歌"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "wasp-06-静电封锁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "sabina-07-指挥"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p3"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p4"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Actor": "p1",
+      "Value": "hero:1"
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p1",
+      "Destination": {
+        "X": 6,
+        "Y": -7
+      },
+      "Expect": {
+        "PendingKind": "effect_target",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Actor": "p1",
+      "Value": "hero:3"
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p1",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      },
+      "Expect": {
+        "EventCounts": {
+          "CardResolved": 1,
+          "UnitMoved": 1
+        }
+      }
+    }
+  ]
+}

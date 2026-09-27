@@ -86,7 +86,7 @@
         "choice_wording",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/wasp-05-电能爆炸.md",
       "question_candidates": [
         "U-011",
@@ -142,7 +142,7 @@
         "place",
         "marker"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/wasp-09-意念操控.md",
       "question_candidates": [
         "U-011",
@@ -370,7 +370,7 @@
         "choice_wording",
         "immunity"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/shargatha-06-海妖之歌.md",
       "question_candidates": [
         "U-011",
@@ -760,7 +760,7 @@
         "choice_wording",
         "marker"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/brogan-13-冲拳.md",
       "question_candidates": [
         "U-011",
@@ -778,7 +778,7 @@
         "choice_wording",
         "marker"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/brogan-14-碾压重拳.md",
       "question_candidates": [
         "U-011",
@@ -811,7 +811,7 @@
         "choice_wording",
         "marker"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/brogan-16-野蛮飞踢.md",
       "question_candidates": [
         "U-011",
@@ -860,7 +860,7 @@
         "trigger",
         "marker"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/arien-01-汹涌.md",
       "question_candidates": [
         "U-011",
@@ -893,7 +893,7 @@
         "trigger",
         "marker"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/arien-03-潮起.md",
       "question_candidates": [
         "U-011",
@@ -930,7 +930,7 @@
         "trigger",
         "marker"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/arien-05-巨浪滔天.md",
       "question_candidates": [
         "U-011",
@@ -959,7 +959,7 @@
       "keyword_hints": [
         "place"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/arien-07-潮水.md",
       "question_candidates": [
         "U-011"
@@ -986,7 +986,7 @@
       "keyword_hints": [
         "place"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/arien-09-魔法水流.md",
       "question_candidates": [
         "U-011"
@@ -1619,7 +1619,7 @@
         "discard",
         "conditional"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/sabina-15-火力掩护.md",
       "question_candidates": [
         "U-011"

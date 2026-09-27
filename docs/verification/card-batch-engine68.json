@@ -1,0 +1,84 @@
+{
+  "engine": 68,
+  "implemented_cards": 79,
+  "data_only_cards": 29,
+  "build_utc": "2026-09-26T06:29:06.3266320Z",
+  "assemblies": {
+    "Goa2.Application.dll": "30baa119419e205687825df2312d41f1ccb4eee24845894e7814ffa949222492",
+    "Goa2.Domain.dll": "c2de961ce82cea6df601777b4cdfcb4fcb2532d693fc2d72d69c7107ff42587e",
+    "Goa2.Editor.dll": "aecd67955a019a8a82a0fa8ae1870252e32d0beb242cf7f620f9481db9eb505a",
+    "Goa2.Infrastructure.dll": "45e1dedc501c9bbf7b26082cd3cabad153614f931f19f13916c9ea558195967b",
+    "Goa2.Rules.dll": "beb2d706133db6d9e21146129c0723254277cd00b4c6063bf1a3ddff2939e917"
+  },
+  "core": {
+    "passed": 115,
+    "failed": 0,
+    "report": "artifacts/tests/tide-unity-0.xml",
+    "card_specific": 11,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/tide-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/tide-static-boundary.json",
+        "input_sha256": "3de5356655342f54ae78ebfed4f9d5dcc1c20f7a9e15c720dae5e278dbdc5988",
+        "report": "artifacts/editor-scenarios/tide-static-boundary/d7b0aab796a4404b9012d1fb43d2f671/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/tide-vacated-hero-spawn.json",
+        "input_sha256": "87f5d151a293095a60554adbc4d3f0707a08e415c7d19c47ab5807661f6aa310",
+        "report": "artifacts/editor-scenarios/tide-vacated-hero-spawn/004808b2e13f4dbcb49147cca3ce8a11/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/tide-vacated-minion-spawn.json",
+        "input_sha256": "c2c2eb76df410582ddd76fd47a5a26b2d0aab3ca2fbe8dfa7ad0563af7a293da",
+        "report": "artifacts/editor-scenarios/tide-vacated-minion-spawn/d732b78fbca245958e438eafcd40fe3b/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine68-tide-placement-scenario.json",
+        "input_sha256": "5303489090b92df6d1ceb8c303f20d6bb1a408b965855784904400a253a8a283",
+        "report": "artifacts/editor-scenarios/engine68-tide-placement-scenario/7d1adf2c9fb04511bbd310f008aa9d31/report.json",
+        "steps": 11,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 48
+  },
+  "manual_presets": [
+    "tide-static-boundary",
+    "tide-vacated-hero-spawn",
+    "tide-vacated-minion-spawn"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/tide-red-valid-fixture.xml",
+    "passed": 2,
+    "failed": 9
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e68-tide-20260926-062940-ffb687e1.zip",
+    "sha256": "6f33321e6e7fa404cca0b61e342ab3baaf937f83a8d6488b5b025f3dcd2cdf9a"
+  }
+}

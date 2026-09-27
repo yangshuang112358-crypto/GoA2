@@ -1,0 +1,83 @@
+{
+  "engine": 69,
+  "implemented_cards": 80,
+  "data_only_cards": 28,
+  "build_utc": "2026-09-26T06:31:46.4507087Z",
+  "assemblies": {
+    "Goa2.Application.dll": "f613f0dcdd5536bb0800f5e021d821cb310b562949b97d3ff99c22b6718b147e",
+    "Goa2.Domain.dll": "fc06a81ffaada74e3d130f3bde2d51c25fe2412dc14fcbf3ca7baaeedddaaedc",
+    "Goa2.Editor.dll": "a6050ee7867c183a90b906044edaf023fb0645f06d43c86a0f1e4205479d6bea",
+    "Goa2.Infrastructure.dll": "a0fe85244209385231e5e8f774ee6ce0aac30060bfc7a20127f476b7beb21a28",
+    "Goa2.Rules.dll": "0d30ffcafffb19530d69c214a7e64172cf808108e74baf5416d2b8fc4c8ebc8d"
+  },
+  "core": {
+    "passed": 61,
+    "failed": 0,
+    "report": "artifacts/tests/magic-water-unity-0.xml",
+    "card_specific": 7,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/magic-water-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/magic-water-third-ring.json",
+        "input_sha256": "9f1ae97f7594124b3d865fe5ceede82d9cf51a3af928cef0dfa50d70c39f5f22",
+        "report": "artifacts/editor-scenarios/magic-water-third-ring/965eb260aef04275baeb16899af35e6d/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/magic-water-vacated-hero-spawn.json",
+        "input_sha256": "4725262b42cb565f2db0aa51f8f6cd7162ce79a116d18553b8ce756d4be355e4",
+        "report": "artifacts/editor-scenarios/magic-water-vacated-hero-spawn/b482e8cb49ba4540a295c11e3fe16157/report.json",
+        "steps": 13,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/magic-water-vacated-minion-spawn.json",
+        "input_sha256": "e587a05c69a79379777a0d0a249cd2c855f868436674da814bff67626a90cf7e",
+        "report": "artifacts/editor-scenarios/magic-water-vacated-minion-spawn/e1fdf989f7944a5c86226541b4196f69/report.json",
+        "steps": 12,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine69-magic-water-placement-scenario.json",
+        "input_sha256": "ff5611de11f81b17c96cd8841a5cc596f649ad4057e3ec5e1638256d7bc9dfd8",
+        "report": "artifacts/editor-scenarios/engine69-magic-water-placement-scenario/08c61954cc0d4cbf85719cac1904f802/report.json",
+        "steps": 11,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 48
+  },
+  "manual_presets": [
+    "magic-water-third-ring",
+    "magic-water-vacated-minion-spawn"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/magic-water-red.xml",
+    "passed": 1,
+    "failed": 6
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e69-magic-water-20260926-063230-c059b9fd.zip",
+    "sha256": "106a05cd01db7710f3482a9d5cbdc07021af7d897fdd02b4b9450f3902d1a563"
+  }
+}

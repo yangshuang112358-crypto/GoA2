@@ -1,0 +1,149 @@
+{
+  "SchemaVersion": 1,
+  "Id": "engine74-savage-kick-phantasm-scenario",
+  "Name": "野蛮飞踢：等待幻化目标推动",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "brogan,shargatha,sabina,arien"
+    },
+    {
+      "Command": "DebugSetGold",
+      "Actor": "p1",
+      "Value": "28",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugAdvance",
+      "Actor": "p1",
+      "Value": "round"
+    },
+    {
+      "Command": "ResolveRoundEnd",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p2",
+      "Value": "shargatha-02-快速突刺"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p2",
+      "Value": "shargatha-08-统治领域"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p2",
+      "Value": "shargatha-14-石化之眼"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p2",
+      "Value": "shargatha-04-横枪跃马"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p2",
+      "Value": "shargatha-10-独霸一方"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p2",
+      "Value": "shargatha-16-石化凝视"
+    },
+    {
+      "Command": "ChooseUpgrade",
+      "Actor": "p2",
+      "Value": "shargatha-12-幻化"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "brogan-16-野蛮飞踢",
+      "Target": "p1"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 0,
+        "Y": -5
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 0,
+        "Y": -4
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 0,
+        "Y": -3
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "brogan-16-野蛮飞踢"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "shargatha-00-反击"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "sabina-07-指挥"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "arien-07-潮水"
+    },
+    {
+      "Command": "Pass",
+      "Actor": "p2",
+      "Expect": {
+        "Active": "p1"
+      }
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseEffectMove",
+      "Actor": "p1",
+      "Value": "skip"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Expect": {
+        "PendingKind": "effect_move",
+        "PendingChooser": "p1"
+      }
+    }
+  ]
+}

@@ -262,7 +262,7 @@ namespace Goa2.Tests
         [Test]
         public void TraversalDoesNotBypassStaticBoundaryOrTurnPushIntoMovement()
         {
-            // Isolated geometry policy: Phantasm changes traversal, not movement prohibitions or push.
+            // Traversal does not bypass movement prohibitions. Push traversal was corrected in engine 74.
             var catalog=BattlefieldTests.Catalog();var state=new JsonStateCodec().Read(Setup(catalog).ExportSave());
             var mage=state.Units.Single(u=>u.Seat==0);var enemy=state.Units.Single(u=>u.Seat==1);
             state.Effects.Add(new ActiveEffect {SourceCardId="wasp-06-静电封锁",SourceUnitId=enemy.Id,ControllerSeat=1,
@@ -272,6 +272,8 @@ namespace Goa2.Tests
             Assert.That(MovementRules.LegalMoves(catalog,state,0,MoveMode.Secondary).All(m=>m.Destination.Distance(enemy.Position)<=1),Is.True);
             state.Effects.Clear();state.Units.Single(u=>u.Seat==2).Position=new Hex(5,-8);
             var push=PushRules.AwayFromAdjacent(catalog,state,enemy,mage,2);
+            Assert.That(push.Path.Count,Is.EqualTo(3));Assert.That(push.StopReason,Is.Empty);
+            state.EngineVersion=73;push=PushRules.AwayFromAdjacent(catalog,state,enemy,mage,2);
             Assert.That(push.Path.Count,Is.EqualTo(1));Assert.That(push.StopReason,Is.EqualTo("occupied"));
         }
 

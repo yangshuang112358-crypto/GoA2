@@ -1,0 +1,138 @@
+{
+  "SchemaVersion": 1,
+  "Id": "covering-fire-counterattack",
+  "Name": "火力掩护：实际弃牌触发反击",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Actor": "p1",
+      "Value": "shargatha,sabina,brogan,wasp"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Actor": "p1",
+      "Value": "sabina-15-火力掩护",
+      "Target": "p2"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:1",
+      "Destination": {
+        "X": 7,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:2",
+      "Destination": {
+        "X": 4,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 6,
+        "Y": -9
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "minion:-1,-3",
+      "Destination": {
+        "X": 5,
+        "Y": -8
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Actor": "p1",
+      "Value": "minion:1,-1",
+      "Destination": {
+        "X": 7,
+        "Y": -7
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "shargatha-00-反击"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "sabina-15-火力掩护"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "brogan-06-铜墙铁壁"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p4",
+      "Value": "wasp-07-抵挡屏障"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p1"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p1",
+      "Value": "minion:-1,-3"
+    },
+    {
+      "Command": "BeginPrimary",
+      "Actor": "p2"
+    },
+    {
+      "Command": "ChooseEffectTarget",
+      "Actor": "p2",
+      "Value": "hero:0"
+    },
+    {
+      "Command": "ForcedDiscard",
+      "Actor": "p1",
+      "Value": "shargatha-01-劈砍",
+      "Expect": {
+        "PendingKind": "discard_attack",
+        "PendingChooser": "p1"
+      }
+    },
+    {
+      "Command": "ChooseDiscardAttack",
+      "Actor": "p1",
+      "Value": "shargatha-01-劈砍"
+    },
+    {
+      "Command": "ChooseAttackTarget",
+      "Actor": "p1",
+      "Value": "hero:3"
+    },
+    {
+      "Command": "DeclineDefense",
+      "Actor": "p4",
+      "Expect": {
+        "EventCounts": {
+          "CardResolved": 1
+        }
+      }
+    }
+  ]
+}

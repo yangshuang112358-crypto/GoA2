@@ -1,0 +1,91 @@
+{
+  "engine": 71,
+  "implemented_cards": 82,
+  "data_only_cards": 26,
+  "build_utc": "2026-09-26T06:54:35.0596262Z",
+  "assemblies": {
+    "Goa2.Application.dll": "8d0955f9c1630cb0e0e57765eb1bfa20847b2ed1caa0e5e25a158baf27b220e5",
+    "Goa2.Domain.dll": "161d0a60920dc08ca2a5354e56fc3da39ae82f0d90281bd42ab0f970e8e1243c",
+    "Goa2.Editor.dll": "dc1c69b3d7c5ecea2bb864d2760f291c324719719ee58c8a846a1bc7314a5e83",
+    "Goa2.Infrastructure.dll": "c37da078a8b51676672ccdd8f7f428c6e2b5be5a37513caf582a911fa99d2bd8",
+    "Goa2.Rules.dll": "7e2bee3fde813c556ae2d634e4c54cc192b940f6ef36029c01751fead45235dd"
+  },
+  "core": {
+    "passed": 1746,
+    "failed": 0,
+    "report": "artifacts/tests/energy-explosion-unity-0.xml",
+    "card_specific": 14,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/energy-explosion-unity-0.xml",
+      "artifacts/tests/energy-explosion-unity-1.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/energy-explosion-pay.json",
+        "input_sha256": "4961190f8a451d0a5406f6da73cd66ea59e168659fce8ea0bd053d1a3e016d89",
+        "report": "artifacts/editor-scenarios/energy-explosion-pay/756c3896dbe94ae9bb0fcf61e7e1d3f0/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/energy-explosion-decline.json",
+        "input_sha256": "58a89bc976112d0c777a2e344698539ae7d75426ffaa4e3d062eff65f031a4c3",
+        "report": "artifacts/editor-scenarios/energy-explosion-decline/71bc792d0c2e416ca8a199350a3ae2ff/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/energy-explosion-skip.json",
+        "input_sha256": "52e172c0b5ac48cbbd2d7779eef67a440306469bb646a6da5a014611d16ae8fd",
+        "report": "artifacts/editor-scenarios/energy-explosion-skip/150ccb1f0db4436e9db8220d323faf46/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/energy-explosion-counterattack.json",
+        "input_sha256": "8730bf5f52d3982050390f3094cd0de96e2a88b80a211e2d115aed862d96f5ea",
+        "report": "artifacts/editor-scenarios/energy-explosion-counterattack/05751dfa64324d6caaa547b450690e86/report.json",
+        "steps": 21,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine71-energy-explosion-payment-scenario.json",
+        "input_sha256": "9c11ad29d6304b4a4d62ede1f4e8a4443ef0cdad03e78336cf0922827a989a9d",
+        "report": "artifacts/editor-scenarios/engine71-energy-explosion-payment-scenario/e50ca6bfafe446c7829694de08d43ddc/report.json",
+        "steps": 14,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 82
+  },
+  "manual_presets": [
+    "energy-explosion-pay",
+    "energy-explosion-counterattack"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/energy-explosion-red.xml",
+    "passed": 1,
+    "failed": 11
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e71-energy-explosion-20260926-065518-b690960a.zip",
+    "sha256": "c4bbe1581513acf1c26f10f99995f1de244bb213a588ee2abbf72753ae69c1ab"
+  }
+}
