@@ -1,0 +1,31 @@
+{
+  "Method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard",
+  "UnityVersion": "6000.3.23f1",
+  "Error": "",
+  "Width": 1600,
+  "Height": 1000,
+  "Passed": true,
+  "checkCount": 6313,
+  "checks": [
+    "Planning opens five skill discs",
+    "Wheel selects a real card",
+    "Wheel changes selection before reveal",
+    "Click selected skill again cancels authority selection",
+    "Right-click skill reads without command",
+    "Other hero wheel cannot act or change identity",
+    "Disconnected board blocks selection",
+    "Optional discard moved into battlefield wheel",
+    "Discard preselection emits no command",
+    "Local magic confirmation appears after discard preselection",
+    "Discard wheel fits board viewport: (x:702.00, y:486.00, width:388.00, height:388.00) in (x:15.00, y:480.00, width:1552.00, height:400.00)",
+    "Discard alternative does not overlap confirm or skill controls",
+    "Discard wheel remains on screen and outside settings drawer",
+    "Closing discard wheel does not commit",
+    "Confirmed discard queues public result animation",
+    "Public discard animation does not restore legacy hand panel",
+    "Public discard animation closes without another command",
+    "Coin animation consumes authoritative side",
+    "Coin diameter equals central shared terrain edge",
+    "Settled coin does not hover"
+  ]
+}

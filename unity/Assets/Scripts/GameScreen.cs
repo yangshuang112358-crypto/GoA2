@@ -193,13 +193,15 @@ namespace Goa2.Presentation
             }
             root.Query<ScrollView>().ForEach(scroll => { if (scroll.name.StartsWith("goa-scroll-")) scrollPositions[scroll.name] = scroll.scrollOffset; });
             HideCardPreview();
-            HideHeroHover();root.Clear();
+            HideHeroHover();skillPopup=null;root.Clear();
             confirmAction=null; confirmButton=null;
             renderedView = session.View(seat);
             board3DViewport.Presentation.Observe(catalog,renderedView,Time.realtimeSinceStartup,cameraFollow ? board3DViewport.Focus : (Vector3?)null);
             if (!renderedView.EffectAreas.ContainsKey(effectAreaId)) effectAreaId="";
+            ObserveWheel();
             BuildLayout(renderedView);
             BuildCameraOverlays();
+            BuildSkillWheel();
             if (galleryOpen) RenderGallery();
             if (publicCardsOpen) RenderPublicCards(renderedView);
             if (historyOpen) RenderHistory(renderedView);
@@ -401,17 +403,7 @@ namespace Goa2.Presentation
                         sidebar.Add(Text("此存档使用先前的规则能力。选牌前可采用当前版本，保留已有对局历史。", "body"));
                         sidebar.Add(Button("采用当前规则", () => Submit(CommandKind.UpgradeEngine, GameState.CurrentEngineVersion.ToString()), "quiet-button", "upgrade-engine"));
                     }
-                    if (view.Players[seat].Confirmed) sidebar.Add(Text("你已确认。等待其他有手牌的玩家确认后，自动翻牌。", "body"));
-                    else
-                    {
-                        sidebar.Add(Text(view.QuickSelection ? "从下方选一张牌；四人选完立即揭示，之前可改选。" : "从下方手牌选一张。确认前可点击其他手牌改选。", "body"));
-                        var selected = view.OwnCards.FirstOrDefault(c => c.Zone == CardZone.Selected);
-                        if (selected != null)
-                        {
-                            RenderCardDetail(sidebar, catalog.Card(selected.CardId));
-                            if (!view.QuickSelection) Confirm(sidebar,"确认出牌", () => Submit(CommandKind.ConfirmCard));
-                        }
-                    }
+                    sidebar.Add(Text("选牌已迁至英雄圆环。左键英雄展开，右键技能查看说明。", "muted"));
                     break;
                 case Phase.InitiativeChoice:
                     var pending = view.Pending!;
@@ -474,6 +466,8 @@ namespace Goa2.Presentation
         private void RenderCardDetail(VisualElement parent, CardDefinition card, bool showTerms=true)
         {
             var box = Box("card-detail");
+            var rim=CardColor(card.Color);box.style.borderLeftColor=rim;box.style.borderRightColor=rim;box.style.borderTopColor=rim;box.style.borderBottomColor=rim;
+            box.style.borderLeftWidth=2;box.style.borderRightWidth=2;box.style.borderTopWidth=2;box.style.borderBottomWidth=2;
             box.Add(Text(card.Name + "    先攻 " + card.Initiative, "section-title"));
             box.Add(RulesText(CardTextMarkup.Description(card), "card-rules"));
             if(showTerms) box.Add(Button("本牌术语",()=>OpenKeywordGlossary(card),"quiet-button","card-keywords"));

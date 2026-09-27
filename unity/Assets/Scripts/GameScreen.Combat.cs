@@ -236,70 +236,8 @@ namespace Goa2.Presentation
                 if(choice.Source!="")RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
             }
-            if (choice.Kind == "optional_discard")
-            {
-                parent.Add(Text(PlayerName(choice.ChooserSeat) + "选择是否在攻击前弃置一张手牌。", "section-title"));
-                RenderCardDetail(parent,catalog.Card(choice.Source));
-                if (choice.ChooserSeat != seat) { parent.Add(Text("切换至对应角色选择。", "body")); return true; }
-                parent.Add(Text("弃牌后再选择攻击目标。也可直接继续攻击。", "body"));
-                foreach (string id in view.OptionalDiscardCards)
-                {
-                    string selected=id;
-                    var button=Button(catalog.Card(id).Name,() => { discardCardId=selected; Render(); },"choice-button","optional-discard-"+catalog.Card(id).Color);
-                    if (discardCardId==id) button.AddToClassList("chosen"); parent.Add(button);
-                }
-                if (view.OptionalDiscardCards.Contains(discardCardId))
-                {
-                    RenderCardDetail(parent,catalog.Card(discardCardId));
-                    Confirm(parent,"确认弃置 "+catalog.Card(discardCardId).Name,() => Submit(CommandKind.ChooseOptionalDiscard,discardCardId));
-                }
-                parent.Add(Button("不弃牌，继续攻击",() => Submit(CommandKind.ChooseOptionalDiscard,"skip"),"quiet-button","optional-discard-skip"));
-                return true;
-            }
-            if(choice.Kind=="minion_protection")
-            {
-                parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择是否保护小兵", "section-title"));
-                parent.Add(Text("弃置一张手牌可防止此次击败；也可以不保护。完成后原行动继续。", "body"));
-                if(choice.ChooserSeat!=seat){parent.Add(Text("切换至保护者选择。","body"));return true;}
-                foreach(string id in view.MinionProtectionCards)
-                {
-                    string selected=id;var button=Button(catalog.Card(id).Name,()=>{discardCardId=selected;Render();},"choice-button","minion-protection-"+catalog.Card(id).Color);
-                    if(discardCardId==id)button.AddToClassList("chosen");parent.Add(button);
-                }
-                if(view.MinionProtectionCards.Contains(discardCardId))
-                {
-                    RenderCardDetail(parent,catalog.Card(discardCardId));
-                    Confirm(parent,"确认弃牌并保护小兵",()=>Submit(CommandKind.ChooseMinionProtection,discardCardId));
-                }
-                parent.Add(Button("不保护，继续结算击败",()=>Submit(CommandKind.ChooseMinionProtection,"skip"),"quiet-button","minion-protection-skip"));
-                return true;
-            }
-            if (choice.Kind == "forced_discard")
-            {
-                var title=Text(PlayerName(choice.ChooserSeat) + (choice.ResumeAt=="card_forced_payment" ? "选择弃牌或被击败。" : ((choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard" || choice.ResumeAt=="push_blocked_discard" || choice.ResumeAt=="primary_completion_discard" || choice.ResumeAt=="before_action_discard" || choice.ResumeAt=="card_forced_payment") ? "按牌文丢弃一张手牌。" : "处理反制选择。")), "section-title");title.name="forced-discard-choice";parent.Add(title);
-                parent.Add(Text(choice.ResumeAt=="before_action_discard" ? "原行动已暂停；弃牌后继续原来的攻击、移动或防御。这次弃牌本身不算防御，也不能选择被击败代替。" : choice.ResumeAt=="card_forced_payment" ? "来源卡牌的流程已暂停；完成弃牌或被击败选择后，再继续尚未结算的步骤。" : (choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard" || choice.ResumeAt=="push_blocked_discard" || choice.ResumeAt=="primary_completion_discard" || choice.ResumeAt=="before_action_discard" || choice.ResumeAt=="card_forced_payment") ? (choice.ResumeAt=="attack_before_discard" ? "完成弃牌后，来源英雄继续攻击原先选定的目标。" : "完成弃牌后继续来源卡牌；这不是攻击或防御。") : "本次攻击已结算，完成反制后继续下一次行动。", "body"));
-                if (choice.Source!="" && (choice.ResumeAt!="primary_discard" && choice.ResumeAt!="attack_before_discard" && choice.ResumeAt!="push_blocked_discard" && choice.ResumeAt!="primary_completion_discard" && choice.ResumeAt!="before_action_discard" && choice.ResumeAt!="card_forced_payment")) RenderCardDetail(parent,catalog.Card(choice.Source));
-                if (choice.ChooserSeat != seat) { parent.Add(Text("切换至对应角色选择弃牌。", "body")); return true; }
-                parent.Add(Text(view.CanDeclineRetaliationDiscard ? "选择一张手牌弃置，或不弃牌、直接被击败。" : "点击下方手牌或以下选项，再确认弃置。此选择不能跳过。", "body"));
-                foreach (string id in view.ForcedDiscardCards)
-                {
-                    string selected=id;
-                    var button=Button(catalog.Card(id).Name,() => { discardCardId=selected;declineRetaliationPending=false;Render(); },"choice-button","forced-discard-"+catalog.Card(id).Color);
-                    if (discardCardId==id) button.AddToClassList("chosen"); parent.Add(button);
-                }
-                if(view.CanDeclineRetaliationDiscard)
-                {
-                    var defeat=Button("不弃牌，直接被击败",()=> { discardCardId="";declineRetaliationPending=true;Render(); },"choice-button","retaliation-decline");
-                    if(declineRetaliationPending) defeat.AddToClassList("chosen");parent.Add(defeat);
-                }
-                if(declineRetaliationPending && view.CanDeclineRetaliationDiscard)
-                    Confirm(parent,"确认不弃牌并被击败",()=>Submit(CommandKind.DeclineRetaliationDiscard));
-                else if (view.ForcedDiscardCards.Contains(discardCardId))
-                {
-                    RenderCardDetail(parent,catalog.Card(discardCardId));
-                    Confirm(parent,"确认弃置 "+catalog.Card(discardCardId).Name,() => Submit(CommandKind.ForcedDiscard,discardCardId));
-                }
-                if(choice.Source!="" && (choice.ResumeAt=="primary_discard" || choice.ResumeAt=="attack_before_discard" || choice.ResumeAt=="push_blocked_discard" || choice.ResumeAt=="primary_completion_discard" || choice.ResumeAt=="before_action_discard" || choice.ResumeAt=="card_forced_payment")) RenderCardDetail(parent,catalog.Card(choice.Source));
+            if (WheelDiscard(view)) {
+                parent.Add(Text("弃牌操作已迁至该英雄的战场圆环。选择图标，再点击中央确认。", "body"));
                 return true;
             }
             if (choice.Kind == "hero_respawn")

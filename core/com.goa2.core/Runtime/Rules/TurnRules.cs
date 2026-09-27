@@ -49,6 +49,16 @@ namespace Goa2.Rules
             Emit(state, command, "CardSelected", player.Seat, card.CardId, player.Seat);
             if (state.QuickSelection) TryReveal(catalog, state, command);
         }
+        private static void CancelCardSelection(GameState state, Command command)
+        {
+            Require(state.Phase == Phase.Planning, "wrong_phase", "当前不是暗选阶段。");
+            var player=state.Players[command.ActorSeat];
+            Require(!player.Confirmed,"selection_locked","已经确认的选择不能更改。");
+            var selected=player.Cards.SingleOrDefault(c=>c.Zone==CardZone.Selected);
+            Require(selected!=null,"nothing_to_cancel","当前没有已选牌。");
+            selected!.Zone=CardZone.InHand;
+            Emit(state,command,"CardSelectionCancelled",player.Seat,selected.CardId,player.Seat);
+        }
         private static void ConfirmCard(ContentCatalog catalog, GameState state, Command command)
         {
             Require(state.Phase == Phase.Planning, "wrong_phase", "当前不是暗选阶段。");

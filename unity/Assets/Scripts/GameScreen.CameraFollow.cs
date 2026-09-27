@@ -49,17 +49,19 @@ namespace Goa2.Presentation
                 var spawn=catalog.Cells.Where(c=>c.Spawn==(team==Goa2.Domain.Team.Blue ? "blueHeroSpawn" : "redHeroSpawn")).Select(c=>Board3DGeometry.World(c.Position)).ToList();
                 if(spawn.Count>0) {focus=spawn.Aggregate(Vector3.zero,(a,b)=>a+b)/spawn.Count;zoom=2.5f;}
             }
+            var wheelUnit=wheelSeat.HasValue ? renderedView.Units.FirstOrDefault(u=>u.Seat==wheelSeat.Value) : null;
+            if(wheelUnit!=null && (WheelDiscard(renderedView) || wheelState.Discards.Count>0))focus=Board3DGeometry.World(wheelUnit.Position);
             var fx=board3DViewport.Presentation;float now=Time.realtimeSinceStartup;
-            if(now<fx.DeathUntil || now-fx.CoinStarted<2.4f) {if(zoom.HasValue || !cinematicResumeZoom.HasValue)cinematicResumeZoom=zoom ?? (board3DViewport.Enabled ? board3DViewport.Zoom : viewport.Zoom);}
+            if(now<fx.DeathUntil || now-fx.CoinStarted<fx.CoinDuration) {if(zoom.HasValue || !cinematicResumeZoom.HasValue)cinematicResumeZoom=zoom ?? (board3DViewport.Enabled ? board3DViewport.Zoom : viewport.Zoom);}
             else if(cinematicResumeZoom.HasValue) {zoom=zoom ?? cinematicResumeZoom;cinematicResumeZoom=null;}
             if(now<fx.DeathUntil) {focus=fx.DeathFocus;zoom=2.5f;}
-            else if(now-fx.CoinStarted<2.4f) {focus=BattlePresentationState.Center(catalog);zoom=1.6f;}
+            else if(now-fx.CoinStarted<fx.CoinDuration) {focus=BattlePresentationState.Center(catalog);zoom=1.6f;}
             board.FollowAt(focus,zoom);followOverview=overview;followInitialized=true;
         }
         private bool wasCinematic;
         private void UpdatePresentationFocus() {
             var fx=board3DViewport.Presentation;float now=Time.realtimeSinceStartup;
-            bool active=now<fx.DeathUntil || now-fx.CoinStarted<2.4f;
+            bool active=now<fx.DeathUntil || now-fx.CoinStarted<fx.CoinDuration;
             if(active!=wasCinematic) {wasCinematic=active;if(cameraFollow && board!=null)ApplyCameraFollow();}
         }
         private void ConfirmCurrent()
@@ -97,7 +99,7 @@ namespace Goa2.Presentation
         private void RenderHotkeys(VisualElement parent)
         {
             parent.Add(Text("热键与鼠标","section-title"));
-            foreach(string line in new[]{"Enter / 小键盘Enter：确认当前选择","空格：开关视野跟随","1—4 / 小键盘1—4：切换本机测试席位","Q / E：向左 / 向右旋转30°","滚轮：以鼠标位置缩放","中键 / 空白处右键拖动：平移并取消跟随","右键英雄：查看卡牌、状态与永久加成","Home：全图并取消跟随","F1：关键词说明","Esc：关闭英雄信息、术语、设置或卡牌预览","悬停卡牌：查看完整描述"}) parent.Add(Text(line,"body"));
+            foreach(string line in new[]{"Enter / 小键盘Enter：确认当前选择","空格：开关视野跟随","1—4 / 小键盘1—4：切换本机测试席位","Q / E：向左 / 向右旋转30°","滚轮：以鼠标位置缩放","中键 / 空白处右键拖动：平移并取消跟随","左键英雄：开关技能圆环（合法目标优先）","右键英雄：查看卡牌、状态与永久加成","右键圆环技能：查看卡牌说明","Home：全图并取消跟随","F1：关键词说明","Esc：关闭英雄信息、术语、设置或卡牌预览","悬停卡牌：查看完整描述"}) parent.Add(Text(line,"body"));
             parent.Add(Text("输入文字或打开独立弹窗时，游戏热键暂停。相机跟随不改变操控身份。","muted"));
         }
     }

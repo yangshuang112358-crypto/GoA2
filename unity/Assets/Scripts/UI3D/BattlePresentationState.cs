@@ -13,6 +13,8 @@ namespace Goa2.Presentation.UI3D
   public readonly List<Shatter> Shards=new List<Shatter>();
   public int BlueCapacity,RedCapacity;
   public float CoinStarted=-100,DeathUntil=-100;
+  public bool CoinOpening;
+  public float CoinDuration => CoinOpening ? 2.4f : .32f;
   public Team CoinFrom, CoinTo;
   public Vector3 DeathFocus;
   private string match="";
@@ -27,7 +29,7 @@ namespace Goa2.Presentation.UI3D
   {
    bool fresh=!initialized || match!=view.MatchId || view.Revision<lastRevision;
    lastRevision=view.Revision;
-   if(fresh) {initialized=true;match=view.MatchId;sequence=0;Crowns.Clear();Shards.Clear();DeathUntil=-100;CoinFrom=CoinTo=view.DecisionCoin;CoinStarted=view.Revision==0 ? now+Travel(cameraPosition,Center(catalog)) : -100;}
+   if(fresh) {initialized=true;match=view.MatchId;sequence=0;Crowns.Clear();Shards.Clear();DeathUntil=-100;CoinFrom=CoinTo=view.DecisionCoin;CoinOpening=view.Revision==0;CoinStarted=view.Revision==0 ? now+Travel(cameraPosition,Center(catalog)) : -100;}
    BlueCapacity=RedCapacity=catalog.Rules.StartingCrystalLife;
    int blue=BlueCapacity,red=RedCapacity;Hex? removed=null;
    int blueMark=0,redMark=0;
@@ -50,7 +52,7 @@ namespace Goa2.Presentation.UI3D
      if(added)Crowns.Add(new CrownFlight{Team=team,Index=index,From=removed.HasValue ? Board3DGeometry.World(removed.Value,1) : Center(catalog,view.CombatRegion),Started=now});
     }
    }
-   if(!fresh && CoinTo!=view.DecisionCoin) {CoinFrom=CoinTo;CoinTo=view.DecisionCoin;CoinStarted=now+Travel(cameraPosition,Center(catalog));}
+   if(!fresh && CoinTo!=view.DecisionCoin) {CoinOpening=false;CoinFrom=CoinTo;CoinTo=view.DecisionCoin;CoinStarted=now+Travel(cameraPosition,Center(catalog));}
    sequence=view.Events.Count==0 ? sequence : System.Math.Max(sequence,view.Events.Max(e=>e.Sequence));
    BlueCapacity=Mathf.Max(BlueCapacity,view.BlueCrystal);RedCapacity=Mathf.Max(RedCapacity,view.RedCrystal);
    Crowns.RemoveAll(c=>now-c.Started>4);Shards.RemoveAll(c=>now-c.Started>2);

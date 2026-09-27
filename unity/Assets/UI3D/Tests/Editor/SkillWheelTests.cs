@@ -1,0 +1,14 @@
+using System.Linq;
+using Goa2.Domain;
+using Goa2.Presentation.UI3D;
+using NUnit.Framework;
+namespace Goa2.UI3D.Tests {
+ public sealed class SkillWheelTests {
+  private GameView View()=>new GameView{MatchId="wheel",Revision=1,Players={new PlayerView{Seat=0},new PlayerView{Seat=1}}};
+  [Test] public void DiscardAnimationIsPublicResultOnlyAndConsumedOnce(){var v=View();var s=new SkillWheelState();s.Observe(v,0);v.Events.Add(new GameEvent{Sequence=1,Kind="CardSelected",Seat=0,CardId="secret"});s.Observe(v,1);Assert.That(s.Discards,Is.Empty);v.Events.Add(new GameEvent{Sequence=2,Kind="DiscardColorShown",Seat=1,Detail="red"});s.Observe(v,2);s.Observe(v,3);Assert.That(s.Discards.Count,Is.EqualTo(1));Assert.That(s.Discards.Peek().Color,Is.EqualTo("red"));}
+  [Test] public void RestoreDoesNotReplayHistoryAndRewindClearsFuture(){var v=View();v.Events.Add(new GameEvent{Sequence=1,Kind="DiscardColorShown",Seat=1,Detail="blue"});var s=new SkillWheelState();s.Observe(v,0);Assert.That(s.Discards,Is.Empty);v.Revision=2;v.Events.Add(new GameEvent{Sequence=2,Kind="DiscardColorShown",Seat=1,Detail="red"});s.Observe(v,1);Assert.That(s.Discards.Count,Is.EqualTo(1));v.Revision=1;v.Events.RemoveAt(1);s.Observe(v,2);Assert.That(s.Discards,Is.Empty);}
+  [Test] public void DiscardBeatsRemainSequential(){var v=View();var s=new SkillWheelState();s.Observe(v,0);v.Events.Add(new GameEvent{Sequence=1,Kind="DiscardColorShown",Seat=1,Detail="blue"});v.Events.Add(new GameEvent{Sequence=2,Kind="DiscardColorShown",Seat=0,Detail="red"});s.Observe(v,2);Assert.That(s.Discards.Last().Start-s.Discards.First().Start,Is.EqualTo(2.4f).Within(.001));}
+  [Test] public void OtherHeroSlotNeverUsesPrivateHand(){var c=new ContentCatalog();c.Cards.Add(new CardDefinition{Id="secret",Color="gold"});var v=View();v.OwnCards.Add(new CardInstance{CardId="secret",Zone=CardZone.Selected});Assert.That(SkillWheelState.KnownCard(c,v,0,1,"gold"),Is.Null);Assert.That(SkillWheelState.KnownCard(c,v,0,0,"gold")!.CardId,Is.EqualTo("secret"));v.Players[1].PublicDiscards.Add(new CardInstance{CardId="secret",Zone=CardZone.Discarded});Assert.That(SkillWheelState.KnownCard(c,v,0,1,"gold"),Is.Not.Null);}
+  [Test] public void MidGameCoinUsesFastHalfTurnTiming(){var c=new ContentCatalog();var v=View();v.Revision=0;var s=new BattlePresentationState();s.Observe(c,v,0);Assert.That(s.CoinOpening,Is.True);Assert.That(s.CoinDuration,Is.EqualTo(2.4f));v.Revision=1;v.DecisionCoin=Team.Red;s.Observe(c,v,1);Assert.That(s.CoinOpening,Is.False);Assert.That(s.CoinDuration,Is.EqualTo(.32f));Assert.That(s.CoinFrom,Is.EqualTo(Team.Blue));Assert.That(s.CoinTo,Is.EqualTo(Team.Red));}
+ }
+}

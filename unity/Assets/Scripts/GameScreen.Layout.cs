@@ -19,7 +19,7 @@ namespace Goa2.Presentation
         {
             RefreshFollowControls();
             UpdatePresentationFocus();
-            if(Input.GetKeyDown(KeyCode.Escape)) { if(heroPopup!=null)HideHeroHover();else if(keywordGlossaryOpen) CloseKeywordGlossary();else if(rightExpanded && !galleryOpen && !historyOpen && !newMatchPending && !debugPresetsOpen) {rightExpanded=false;showHotkeys=false;Render();}else HideCardPreview();return; }
+            if(Input.GetKeyDown(KeyCode.Escape)) { if(skillPopup!=null){skillPopup.RemoveFromHierarchy();skillPopup=null;}else if(heroPopup!=null)HideHeroHover();else if(keywordGlossaryOpen) CloseKeywordGlossary();else if(rightExpanded && !galleryOpen && !historyOpen && !newMatchPending && !debugPresetsOpen) {rightExpanded=false;showHotkeys=false;Render();}else if(wheelSeat.HasValue)ToggleHeroWheel(wheelSeat.Value);else HideCardPreview();return; }
             if(keywordGlossaryOpen) return;
             if(Input.GetKeyDown(KeyCode.F1) && session!=null && !startupFailed && !newMatchPending && !debugPresetsOpen && !IsEditingText()) { OpenKeywordGlossary(previewCard);return; }
             if (session == null || startupFailed || galleryOpen || publicCardsOpen || historyOpen || newMatchPending || debugPresetsOpen || IsEditingText()) return;
@@ -143,6 +143,7 @@ namespace Goa2.Presentation
                 chosenCell = cell; notice = "已选地图格 " + cell + "，确认后应用。"; Render();
             }, cell => cellInfo.text = BoardHint(view,RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : "")), viewport, SelectedEffectArea(view), board3DViewport, seat);
             board.HeroHover=ShowHeroHover;
+            board.HeroClick=ToggleHeroWheel;
             board.ManualPan=()=>SetCameraFollow(false);
             board.ViewportChanged = RequestCapture;
             field.Add(board);
@@ -151,6 +152,7 @@ namespace Goa2.Presentation
         }
         private void BuildHand(VisualElement parent, GameView view)
         {
+            if(wheelState.Discards.Count>0 || (view.UpgradeOptions.Count==0 && view.Pending?.Kind!="defense" && view.CardSwapOptions.Count==0)) return;
             PrepareUpgradeSelection(view);
             var panel = Box(bottomExpanded ? "hand" : "collapsed-row");panel.name=view.UpgradeOptions.Count>0 ? "upgrade-zone" : "hand-zone"; parent.Add(panel);
             if(view.UpgradeOptions.Count>0) panel.AddToClassList("upgrade-panel");

@@ -29,6 +29,7 @@ namespace Goa2.Presentation.UI3D
         public Action? ViewportChanged;
         public Action? ManualPan;
         public Action<int?,Vector2>? HeroHover;
+        public Action<int>? HeroClick;
         private readonly List<(HeroPlate plate,Hex cell)> heroPlates=new List<(HeroPlate,Hex)>();
         public int RotationStep => state.Step;
         public bool Connected => connected;
@@ -43,7 +44,7 @@ namespace Goa2.Presentation.UI3D
             if(!state.Enabled)
             {
                 fallback=new HexBoard(catalog,view,legal,selected,h=> {if(connected) choose(h);},hover,oldState,effectArea,ownSeat);
-                fallback.HeroHover=(who,at)=>HeroHover?.Invoke(who,at);fallback.ManualPan=()=>ManualPan?.Invoke();fallback.ViewportChanged=()=>ViewportChanged?.Invoke();Add(fallback);AddTeamStatus(view);return;
+                fallback.HeroClick=who=>HeroClick?.Invoke(who);fallback.HeroHover=(who,at)=>HeroHover?.Invoke(who,at);fallback.ManualPan=()=>ManualPan?.Invoke();fallback.ViewportChanged=()=>ViewportChanged?.Invoke();Add(fallback);AddTeamStatus(view);return;
             }
             image=new Image {pickingMode=PickingMode.Ignore,scaleMode=ScaleMode.StretchToFill};
             image.StretchToParentSize();Add(image);
@@ -68,7 +69,7 @@ namespace Goa2.Presentation.UI3D
                     var hero=view.Units.FirstOrDefault(u=>u.Seat.HasValue && u.Position==token.cell);
                     if(hero!=null) {var plate=new HeroPlate(catalog,view,view.Players.Single(p=>p.Seat==hero.Seat),ownSeat);plate.pickingMode=PickingMode.Position;var heroCell=token.cell;int heroSeat=hero.Seat!.Value;
                         plate.RegisterCallback<PointerDownEvent>(e=>{if(e.button==1){HeroHover?.Invoke(heroSeat,e.position);e.StopPropagation();}});
-                        plate.RegisterCallback<PointerDownEvent>(e=>{if(e.button==0){if(connected && this.legal.Contains(heroCell))choose(heroCell);e.StopPropagation();}});
+                        plate.RegisterCallback<PointerDownEvent>(e=>{if(e.button==0){if(connected && this.legal.Contains(heroCell))choose(heroCell);else HeroClick?.Invoke(heroSeat);e.StopPropagation();}});
                         Add(plate);heroPlates.Add((plate,token.cell));continue;}
                     var label=new Label(token.text.Replace("·","\n")) {pickingMode=PickingMode.Ignore};label.AddToClassList("unit-label");
                     label.style.color=Color.white;label.style.unityTextOutlineColor=new Color(.04f,.07f,.12f);label.style.unityTextOutlineWidth=.45f;
@@ -86,7 +87,7 @@ namespace Goa2.Presentation.UI3D
             {
                 if(e.button==1 && scene!=null) {var hit=scene.Hit(e.localPosition,contentRect.size);var hero=hit==null ? null : view.Units.FirstOrDefault(u=>u.Position==hit.Position && u.Seat.HasValue);if(hero!=null){HeroHover?.Invoke(hero.Seat,e.position);e.StopPropagation();return;}}
                 if(e.button==1 || e.button==2) {dragging=true;pointerId=e.pointerId;lastPointer=e.localPosition;this.CapturePointer(pointerId);e.StopPropagation();return;}
-                if(e.button==0) SelectAt(e.localPosition);
+                if(e.button==0) {if(!SelectAt(e.localPosition) && scene!=null){var hit=scene.Hit(e.localPosition,contentRect.size);var hero=hit==null?null:view.Units.FirstOrDefault(u=>u.Position==hit.Position && u.Seat.HasValue);if(hero!=null)HeroClick?.Invoke(hero.Seat!.Value);}}
             });
             RegisterCallback<PointerMoveEvent>(e=>
             {
@@ -106,6 +107,7 @@ namespace Goa2.Presentation.UI3D
             var status=new Label($"水晶 蓝{Mathf.Max(0,view.BlueCrystal)} / 红{Mathf.Max(0,view.RedCrystal)}   皇冠 蓝{view.BlueMarks} / 红{view.RedMarks}（{view.VictoryMarksRequired}胜）   决策币 {(view.DecisionCoin==Team.Blue ? "蓝" : "红")}") {name="world-team-status",pickingMode=PickingMode.Ignore};
             status.style.position=Position.Absolute;status.style.top=6;status.style.right=8;status.style.fontSize=20;status.style.color=Color.white;status.style.backgroundColor=new Color(.04f,.07f,.1f,.82f);Add(status);
         }
+        public Vector2 ProjectHero(Hex cell)=>fallback!=null ? this.WorldToLocal(fallback.PanelCenter(cell)) : scene?.Project(cell,contentRect.size,1) ?? contentRect.size*.5f;
         public bool SelectAt(Vector2 local)
         {
             if(!connected || dragging || scene==null) return false;

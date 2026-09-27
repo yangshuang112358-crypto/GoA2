@@ -62,6 +62,20 @@ namespace Goa2.Presentation
             Check(root.Q<Button>("settings-toggle")!=null && root.Q<Button>("follow-toggle")!=null,"Floating settings and follow buttons exist");
             Check(Vector3.Distance(board3DViewport.Focus,Board3DGeometry.World(renderedView.Units.First(u=>u.Seat==seat).Position))<.03f,"Planning follows own hero");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"follow-planning.png"));yield return new WaitForSecondsRealtime(.25f);
+            Check(root.Q<SkillWheel>("skill-wheel")!=null && root.Query<SkillDisc>().ToList().Count==5,"Planning opens five skill discs");
+            Check(root.Q<VisualElement>("hand-zone")==null,"Migrated planning hand panel removed");
+            string wheelGold=renderedView.OwnCards.First(c=>catalog.Card(c.CardId).Color=="gold").CardId;
+            string wheelSilver=renderedView.OwnCards.First(c=>catalog.Card(c.CardId).Color=="silver").CardId;
+            WheelPick(wheelGold);Check(renderedView.OwnCards.Any(c=>c.CardId==wheelGold && c.Zone==CardZone.Selected),"Wheel selects a real card");
+            WheelPick(wheelSilver);Check(renderedView.OwnCards.Any(c=>c.CardId==wheelSilver && c.Zone==CardZone.Selected),"Wheel changes selection before reveal");
+            WheelPick(wheelSilver);Check(!renderedView.OwnCards.Any(c=>c.Zone==CardZone.Selected),"Click selected skill again cancels authority selection");
+            yield return null;yield return null;
+            var goldDisc=root.Q<SkillDisc>("skill-gold");long previewRevision=renderedView.Revision;
+            using(var skillRight=PointerDownEvent.GetPooled(new Event{type=EventType.MouseDown,button=1,mousePosition=goldDisc.worldBound.center})){skillRight.target=goldDisc;goldDisc.SendEvent(skillRight);}
+            Check(root.Q<VisualElement>("skill-description")!=null && renderedView.Revision==previewRevision,"Right-click skill reads without command");skillPopup?.RemoveFromHierarchy();skillPopup=null;
+            ToggleHeroWheel(1);yield return null;yield return null;long readOnlyRevision=renderedView.Revision;
+            var otherDisc=root.Q<SkillDisc>("skill-gold");using(var otherClick=PointerDownEvent.GetPooled(new Event{type=EventType.MouseDown,button=0,mousePosition=otherDisc.worldBound.center})){otherClick.target=otherDisc;otherDisc.SendEvent(otherClick);}
+            Check(renderedView.Revision==readOnlyRevision && seat==0,"Other hero wheel cannot act or change identity");ToggleHeroWheel(0);yield return null;yield return null;
             var ownPlate=board!.Q<HeroPlate>("hero-plate-"+(seat+1));
             using(var hoverEvent=PointerMoveEvent.GetPooled(new Event{type=EventType.MouseMove,mousePosition=ownPlate.worldBound.center}))ownPlate.SendEvent(hoverEvent);
             Check(root.Q<VisualElement>("hero-hover")==null,"Hovering hero does not open inspection");
@@ -134,7 +148,7 @@ namespace Goa2.Presentation
             board.ResetView();board.Rotate(-1);yield return new WaitForSecondsRealtime(.3f);
             Check(root.Q<VisualElement>("hero-roster")==null && root.Q<Button>("toggle-right")!=null,"Panel collapse controls retained");
             leftExpanded=rightExpanded=topExpanded=bottomExpanded=true;Render();yield return null;yield return null;
-            var source=root.Q<VisualElement>("hand-zone");var longest=catalog.Cards.OrderByDescending(c=>c.Text.Length).First();
+            var source=root.Q<VisualElement>("hand-zone") ?? root.Q<VisualElement>("skill-wheel");var longest=catalog.Cards.OrderByDescending(c=>c.Text.Length).First();
             ShowCardPreview(source,longest,null);yield return null;yield return null;
             var preview=root.Q<VisualElement>("card-preview");var rules=preview?.Q<Label>("card-preview-rules");
             Check(rules!=null && CardTextMarkup.PlainText(rules.text)==CardTextMarkup.Description(longest),"Longest card full text retained");
@@ -178,7 +192,22 @@ namespace Goa2.Presentation
                 ScreenCapture.CaptureScreenshot(Path.Combine(output,"pending-"+id+".png"));yield return new WaitForSecondsRealtime(.25f);
             }
             session=DebugPositions.Open(catalog,positions.Single(p=>p.Id=="axe-ready"));seat=0;ClearPending();Render();
-            Submit(CommandKind.BeginPrimary);Submit(CommandKind.ChooseOptionalDiscard,"brogan-00-猛攻");Submit(CommandKind.ChooseAttackTarget,"hero:1");
+            Submit(CommandKind.BeginPrimary);yield return null;yield return null;
+            Check(WheelDiscard(renderedView) && root.Q<VisualElement>("hand-zone")==null,"Optional discard moved into battlefield wheel");
+            string wheelBefore=session.ExportSave();WheelPick("brogan-00-猛攻");Check(session.ExportSave()==wheelBefore,"Discard preselection emits no command");
+            Check(root.Q<Button>("wheel-confirm").enabledInHierarchy,"Local magic confirmation appears after discard preselection");
+            yield return new WaitForSecondsRealtime(.5f);
+            var wheelBounds=wheelFrame!.worldBound;var boardBounds=board!.worldBound;
+            Check(wheelBounds.xMin>=boardBounds.xMin && wheelBounds.xMax<=boardBounds.xMax && wheelBounds.yMin>=boardBounds.yMin && wheelBounds.yMax<=boardBounds.yMax,"Discard wheel fits board viewport: "+wheelBounds+" in "+boardBounds);
+            var alternativeBounds=skillWheel!.Alternative.worldBound;
+            Check(!skillWheel.Confirm.worldBound.Overlaps(alternativeBounds) && !skillWheel.Query<SkillDisc>().ToList().Any(d=>d.worldBound.Overlaps(alternativeBounds)),"Discard alternative does not overlap confirm or skill controls");
+            Check(wheelBounds.yMax<=Screen.height && (!rightExpanded || wheelBounds.xMax<root.Q<VisualElement>("operation-panel").worldBound.xMin),"Discard wheel remains on screen and outside settings drawer");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"wheel-discard-confirm.png"));yield return new WaitForSecondsRealtime(.25f);
+            ToggleHeroWheel(0);Check(session.ExportSave()==wheelBefore,"Closing discard wheel does not commit");ToggleHeroWheel(0);WheelPick("brogan-00-猛攻");WheelConfirm();
+            Check(wheelState.Discards.Count>0 && renderedView.Players[0].PublicDiscards.Any(c=>c.CardId=="brogan-00-猛攻"),"Confirmed discard queues public result animation");
+            yield return new WaitForSecondsRealtime(1.7f);Check(root.Q<VisualElement>("hand-zone")==null,"Public discard animation does not restore legacy hand panel");ScreenCapture.CaptureScreenshot(Path.Combine(output,"wheel-discard-back.png"));yield return new WaitForSecondsRealtime(1f);
+            Check(wheelState.Discards.Count==0,"Public discard animation closes without another command");
+            Submit(CommandKind.ChooseAttackTarget,"hero:1");
             seat=1;Render();yield return null;yield return null;
             Check(renderedView.Pending?.Kind=="defense","Live defense choice reached through rules");
             SetCameraFollow(true);yield return new WaitForSecondsRealtime(9f);
@@ -203,7 +232,7 @@ namespace Goa2.Presentation
             topExpanded=false;bottomExpanded=false;rightExpanded=false;Render();yield return null;yield return null;
             SetCameraFollow(false);board!.ResetView();yield return null;
             var opposite=renderedView.DecisionCoin==Team.Blue ? "red" : "blue";
-            Submit(CommandKind.DebugSetCoin,opposite);yield return new WaitForSecondsRealtime(.7f);
+            Submit(CommandKind.DebugSetCoin,opposite);yield return new WaitForSecondsRealtime(.13f);
             Check(board3DViewport.Presentation.CoinTo==renderedView.DecisionCoin,"Coin animation consumes authoritative side");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"coin-flipping.png"));yield return new WaitForSecondsRealtime(2f);
             board3DViewport.Focus=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f;board3DViewport.Zoom=8;yield return new WaitForSecondsRealtime(.25f);

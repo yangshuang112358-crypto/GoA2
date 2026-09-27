@@ -35,6 +35,7 @@ namespace Goa2.Presentation
         public Action? ViewportChanged;
         public Action? ManualPan;
         public Action<int?,Vector2>? HeroHover;
+        public Action<int>? HeroClick;
         private Vector2 followVelocity;
         private readonly List<(HeroPlate plate,UnitState unit)> heroPlates=new List<(HeroPlate,UnitState)>();
         private Vector2? followTarget;
@@ -85,7 +86,7 @@ namespace Goa2.Presentation
                 }
                 if (e.button != 0) return;
                 var cell = Hit(e.localPosition);
-                if (cell != null) choose(cell.Position);
+                if (cell != null) {var hero=view.Units.FirstOrDefault(u=>u.Position==cell.Position && u.Seat.HasValue);if(this.legal.Contains(cell.Position))choose(cell.Position);else if(hero!=null)HeroClick?.Invoke(hero.Seat!.Value);}
             });
             RegisterCallback<PointerUpEvent>(e =>
             {

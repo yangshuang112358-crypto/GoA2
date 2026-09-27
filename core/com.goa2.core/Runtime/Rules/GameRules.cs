@@ -30,6 +30,7 @@ namespace Goa2.Rules
             {
                 case CommandKind.ChooseHero: ChooseHero(catalog, state, command); break;
                 case CommandKind.DeployHero: DeployHero(catalog, state, command); break;
+                case CommandKind.CancelCardSelection: CancelCardSelection(state, command); break;
                 case CommandKind.SelectCard: SelectCard(catalog, state, command); break;
                 case CommandKind.ConfirmCard: ConfirmCard(catalog, state, command); break;
                 case CommandKind.ChooseInitiative: ChooseInitiative(catalog, state, command); break;

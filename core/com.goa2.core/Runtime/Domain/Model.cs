@@ -17,7 +17,7 @@ namespace Goa2.Domain
         DebugRemoveMinion, DebugDefeatMinion, DebugSetCrystal, ChooseMinionSpawn,
         BeginPrimary, ChooseAttackTarget, Defend, DeclineDefense, RespawnHero, DebugDefeatHero,
         ResolveRoundEnd, ChooseRoundMinionRemoval, ChooseUpgrade, UpgradeEngine, ForcedDiscard, ChooseOptionalDiscard, DebugAttack,
-        DeclineRetaliationDiscard, ChooseEffectMove, ChooseRecoveredCard, ChooseEffectTarget, ChooseCardSwap, ChooseGoldTransfer, ChoosePlacement, ChooseMinionReturn, ChoosePrimaryOption, ChooseMinionProtection, ChooseDiscardAttack
+        DeclineRetaliationDiscard, ChooseEffectMove, ChooseRecoveredCard, ChooseEffectTarget, ChooseCardSwap, ChooseGoldTransfer, ChoosePlacement, ChooseMinionReturn, ChoosePrimaryOption, ChooseMinionProtection, ChooseDiscardAttack, CancelCardSelection
     }
     public enum MoveMode { Secondary, Fast }
 
