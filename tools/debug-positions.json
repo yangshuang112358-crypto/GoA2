@@ -1087,5 +1087,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：黄蜂把(-1,-3)红方小兵放到(0,-4)，2号队长先回归到(-1,-3)；此时黄蜂可以再次选同一兵放到(0,-4)，再由2号归区到(0,-3)。分支：第一次归区到(0,-3)后该兵与黄蜂同轴，不能再选；也可选择不重复。"
+  },
+  {
+    "id": "shifting-step-enemy",
+    "title": "移形换步：双方英雄换位",
+    "scenario": "shifting-step-enemy",
+    "through_step": 13,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号阿连发动技能，选择(0,-4)敌方夏尔加萨换位。分支：也可选(1,-4)友方布罗根，或(-1,-3)敌兵；不能选自己。换位不是移动，地图标志物待扩展。"
+  },
+  {
+    "id": "shifting-step-minion",
+    "title": "移形换步：小兵换位后回归",
+    "scenario": "shifting-step-minion",
+    "through_step": 13,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号阿连发动技能，选(-1,-3)红方小兵；2号队长依次选(0,-4)、(0,-3)回归。分支：可改选(2,-4)敌英雄或(1,-4)友英雄，无需小兵回归。"
   }
 ]

@@ -15,9 +15,10 @@ namespace Goa2.Rules
   private static List<string> UnitSwapTargets(ContentCatalog catalog,GameState state)
   {
    if(!IsUnitSwapStep(catalog,state))return new List<string>();var e=state.Execution!;var source=state.Units.SingleOrDefault(u=>u.Seat==e.ControllerSeat);if(source==null)return new List<string>();
-   bool adjacent=CardPrograms.Primary(catalog.Card(e.CardId),state.EngineVersion)!.UnitSwapTarget==UnitSwapTargetKind.AdjacentFriendlyMinion;
+   var policy=CardPrograms.Primary(catalog.Card(e.CardId),state.EngineVersion)!.UnitSwapTarget;
+   bool adjacent=policy==UnitSwapTargetKind.AdjacentFriendlyMinion;
    int range=adjacent?1:(catalog.Card(e.CardId).SubtypeValue??0)+state.Players[e.ControllerSeat].RangedBonus;var minions=new HashSet<string>(LegalMinionRemovals(state));
-   return state.Units.Where(u=>u.Id!=source.Id && EffectRules.CanDisplace(catalog,state,e.ControllerSeat,u) && u.Position.Distance(source.Position)<=range && (adjacent ? u.Team==source.Team && minions.Contains(u.Id) : u.Kind=="hero" && u.Team==source.Team || minions.Contains(u.Id))).Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
+   return state.Units.Where(u=>u.Id!=source.Id && EffectRules.CanDisplace(catalog,state,e.ControllerSeat,u) && u.Position.Distance(source.Position)<=range && (adjacent ? u.Team==source.Team && minions.Contains(u.Id) : u.Kind=="hero" && (u.Team==source.Team || policy==UnitSwapTargetKind.AnyUnitInAttackRange) || minions.Contains(u.Id))).Select(u=>u.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
   }
   private static bool BeginUnitSwapTarget(ContentCatalog catalog,GameState state,Command command)
   {

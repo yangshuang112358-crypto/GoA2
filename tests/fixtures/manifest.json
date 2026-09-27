@@ -711,6 +711,15 @@
       "input": "tests/fixtures/engine79-heart-control-repeat-scenario.json",
       "input_sha256": "e94233d0188dfe7533ba4f5516735407a9919af383967d504073be949501dc5e",
       "provenance": "tests/fixtures/engine79-heart-control-repeat.md"
+    },
+    {
+      "engine_version": 80,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine80-shifting-step-choice.json",
+      "save_sha256": "5da730f5e427378b794d74bc2d102b330a363b44d3afef88c69fd615efaf11fb",
+      "input": "tests/fixtures/engine80-shifting-step-choice-scenario.json",
+      "input_sha256": "6a4f42867ffdd61bb437236400639096970e9dc6b259088080e56a3f3e61df73",
+      "provenance": "tests/fixtures/engine80-shifting-step-choice.md"
     }
   ]
 }

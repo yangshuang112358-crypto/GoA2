@@ -1,0 +1,83 @@
+{
+  "engine": 80,
+  "implemented_cards": 91,
+  "data_only_cards": 17,
+  "build_utc": "2026-09-27T05:16:18.2641388Z",
+  "assemblies": {
+    "Goa2.Application.dll": "13c633308b710410140ec6b3e4e63dc9940f05714eeb34868b062d5914ad030d",
+    "Goa2.Domain.dll": "2c25ce70cb4925794ba916ee6ccf9659a16ae8e97098ac64044ff02c0b25067d",
+    "Goa2.Editor.dll": "25363ae1d4ce41eff7c32d21473a417769069951e641c7db13055a87f23eca2c",
+    "Goa2.Infrastructure.dll": "90e3dc5f2c2f3db7ee8d2372e581d58172e2aceec3214a9bfc45cefa9fcd62ae",
+    "Goa2.Rules.dll": "de1e0cb6f6881d3de9069a7b09537c0d572db995b8bd64a4a65cfa8a172c7aea"
+  },
+  "core": {
+    "passed": 89,
+    "failed": 0,
+    "report": "artifacts/tests/shifting-step-unity-0.xml",
+    "card_specific": 10,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/shifting-step-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/shifting-step-enemy.json",
+        "input_sha256": "d9c1ab3ee0b2c12d0e1135f35c828933343fb73d00a5fabc37209088f3b27ffb",
+        "report": "artifacts/editor-scenarios/shifting-step-enemy/ef58e510347342dc9eb393d7c55de64a/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shifting-step-friendly.json",
+        "input_sha256": "4629fc7048d96f71b580d2554415e5e0a5aba22383aaf3ac5179e358640f2404",
+        "report": "artifacts/editor-scenarios/shifting-step-friendly/667487f5da10427890089892b297efca/report.json",
+        "steps": 15,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/shifting-step-minion.json",
+        "input_sha256": "7cf9c6eff2229fcd13f129e1f84bf0b2ae2e054c2e3962eda9a2ca5749724878",
+        "report": "artifacts/editor-scenarios/shifting-step-minion/f52bc7ca69734f409b82cdb9e6fb1281/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine80-shifting-step-choice-scenario.json",
+        "input_sha256": "6a4f42867ffdd61bb437236400639096970e9dc6b259088080e56a3f3e61df73",
+        "report": "artifacts/editor-scenarios/engine80-shifting-step-choice-scenario/dda1d1083a994e9689342d5f8bd06b3a/report.json",
+        "steps": 14,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 61
+  },
+  "manual_presets": [
+    "shifting-step-enemy",
+    "shifting-step-minion"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/shifting-step-red.xml",
+    "passed": 1,
+    "failed": 7
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e80-shifting-step-20260927-051802-39d677ae.zip",
+    "sha256": "bf5c33171a2eb9b36d3dafe3d6f87506c0c26ca723f4f297e3029bf8429620f1"
+  }
+}
