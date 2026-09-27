@@ -191,6 +191,8 @@ namespace Goa2.Rules
                     case InstructionKind.ApplyEffectIfRecovered:
                         if(execution.RecoveredCard)ApplyTimedEffect(catalog,state,command,execution,program);
                         execution.Cursor++;break;
+                    case InstructionKind.ApplyDefensePoison:
+                        ApplyPoison(state,command,execution,true);execution.Cursor++;break;
                     case InstructionKind.ApplyPoison:
                         ApplyPoison(state,command,execution,false);execution.Cursor++;break;
                     case InstructionKind.ApplyEffect:

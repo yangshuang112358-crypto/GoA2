@@ -1,0 +1,83 @@
+{
+  "engine": 92,
+  "implemented_cards": 103,
+  "data_only_cards": 5,
+  "build_utc": "2026-09-27T07:08:30.2343992Z",
+  "assemblies": {
+    "Goa2.Application.dll": "e870c0fcf10af1d75330a0c4e77a80bb1eddcbddf6eb45af0783374c3b7af306",
+    "Goa2.Domain.dll": "50d708fa850eb0d0ea122e7b32a12d80a0221f0fcadd0959dceb227634418ce0",
+    "Goa2.Editor.dll": "4d705218b794c06b3175bbbb19e031a50f57371e8b300d3d6ef68d4f66a16c0f",
+    "Goa2.Infrastructure.dll": "7a1e95056623d4261982a7f5581418b28e750142953ab682d927b71d2db77b8d",
+    "Goa2.Rules.dll": "85f91854cd48cee44320b0a8ae656e79ad8ef81ad38d9bc0b34085003d78e71c"
+  },
+  "core": {
+    "passed": 2095,
+    "failed": 0,
+    "report": "artifacts/tests/poison-dart-unity-0.xml",
+    "card_specific": 7,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/poison-dart-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/poison-dart-attack.json",
+        "input_sha256": "048b74192090669cccbd575dfec549503d793711f5e96c54c89bc7c360721f5e",
+        "report": "artifacts/editor-scenarios/poison-dart-attack/da41ff916a034a7eb7172d0b375df7e4/report.json",
+        "steps": 30,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/poison-dart-self.json",
+        "input_sha256": "f7b8055e19d84d5c6df4132381ee4b61e0b6ce48f09d0349fe2d704d5f2a8281",
+        "report": "artifacts/editor-scenarios/poison-dart-self/72f314385b38406f93dadfb650012b0a/report.json",
+        "steps": 22,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/poison-dart-ally.json",
+        "input_sha256": "766a98a77d9c410b1ae8afe54d097ebab14b1b00ddd7298f72587045eb5054fc",
+        "report": "artifacts/editor-scenarios/poison-dart-ally/33e1a5b334f0425cbe59959db5121388/report.json",
+        "steps": 22,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine92-poison-dart-defense-scenario.json",
+        "input_sha256": "36a9c4b9284acd7cc86a28da9bcaae60765aff88dd47193d521e4dadf9b46e9c",
+        "report": "artifacts/editor-scenarios/engine92-poison-dart-defense-scenario/c239d49bd91b4cadbb154b0b9f70ace5/report.json",
+        "steps": 29,
+        "passed": true
+      }
+    ],
+    "scenarios": 4,
+    "steps": 103
+  },
+  "manual_presets": [
+    "poison-dart-cast",
+    "poison-dart-attack"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/poison-dart-red.xml",
+    "passed": 1,
+    "failed": 6
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e92-poison-dart-20260927-070855-c5b37b04.zip",
+    "sha256": "5338c55b7a7530ce5a0c9d40f67c479b59823ef4ba784c661ee0b1dda95a78d0"
+  }
+}

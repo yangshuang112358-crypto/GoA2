@@ -819,6 +819,15 @@
       "input": "tests/fixtures/engine91-poison-dagger-defense-scenario.json",
       "input_sha256": "7e75580ac55473897aef076ce21d3ebf7259f6774b0d8da6f03fe280bc88e41c",
       "provenance": "tests/fixtures/engine91-poison-dagger-defense.md"
+    },
+    {
+      "engine_version": 92,
+      "accepted_commands": 29,
+      "save": "tests/fixtures/engine92-poison-dart-defense.json",
+      "save_sha256": "b96bde7644cdd5371c35bae7c79b7e5c278ec4e0537105f34e4f25fb1a945eb2",
+      "input": "tests/fixtures/engine92-poison-dart-defense-scenario.json",
+      "input_sha256": "36a9c4b9284acd7cc86a28da9bcaae60765aff88dd47193d521e4dadf9b46e9c",
+      "provenance": "tests/fixtures/engine92-poison-dart-defense.md"
     }
   ]
 }

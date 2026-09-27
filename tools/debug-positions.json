@@ -1348,5 +1348,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：2号中毒黄蜂用闪耀之刃攻击(3,-8)虎爪，印刷攻击3，攻击被动-2，总值1。低级毒不反转防御被动；左栏标明中毒，卡牌数值显示负数。"
+  },
+  {
+    "id": "poison-dart-cast",
+    "title": "剧毒飞镖：施毒整次行动",
+    "scenario": "poison-dart-attack",
+    "through_step": 20,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号虎爪施毒选择(4,-8)黄蜂。黄蜂合法升级获得攻击+1、先攻+1、防御+1，均改为-1。分支：友方或自身也能成为目标；取回、击败不移除，轮末清除，重复不叠加。"
+  },
+  {
+    "id": "poison-dart-attack",
+    "title": "剧毒飞镖：中毒英雄攻击起点",
+    "scenario": "poison-dart-attack",
+    "through_step": 27,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号中毒黄蜂攻击(3,-8)虎爪，基础3加攻击被动-1，总值2。黄蜂防御时其防御被动也为-1；∞抵挡本身不被中毒改成数值防御。"
   }
 ]
