@@ -1,0 +1,91 @@
+{
+  "engine": 86,
+  "implemented_cards": 97,
+  "data_only_cards": 11,
+  "build_utc": "2026-09-27T06:07:55.1350317Z",
+  "assemblies": {
+    "Goa2.Application.dll": "694982ce08d36134d03caa7cd7aa1131f6604e044f4746f916cc733d5cd0e32f",
+    "Goa2.Domain.dll": "dca065f3690707c18cb770f82b18100774b27b4db78e0b8f0dc346edbe5e3c1f",
+    "Goa2.Editor.dll": "52a2afd00f5282a12dac1dc6fab773464a749a2b453ab260a976e7c4858a0712",
+    "Goa2.Infrastructure.dll": "f3d0831decd5819dae06f125b671e6868b05b00a2728df03eb83ce11c8bc63b2",
+    "Goa2.Rules.dll": "ab00fbe505bf7da8ad15458cc7220e515bcc0e65a582ee5f8970f50b99e83d8e"
+  },
+  "core": {
+    "passed": 113,
+    "failed": 0,
+    "report": "artifacts/tests/charm-unity-0.xml",
+    "card_specific": 15,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/charm-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/charm-self.json",
+        "input_sha256": "35d22f1de1dd1af317be25f7e9c029fa3d71f42b908851882fd958b9602ccbe3",
+        "report": "artifacts/editor-scenarios/charm-self/02262283e3dd496eb58f2ddc48927d3c/report.json",
+        "steps": 22,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/charm-ally.json",
+        "input_sha256": "4dc20f27a3c57c49bcd3ebd6335f1d43d051d0bb43a43a253fbf8da3bccf2425",
+        "report": "artifacts/editor-scenarios/charm-ally/b875745b12644af0b7f4940dac55332e/report.json",
+        "steps": 22,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/charm-ranged.json",
+        "input_sha256": "56f54f1f1cf6c672172d06fce0f2a0e82820e5fa519a8bd9347a441b3e2ace47",
+        "report": "artifacts/editor-scenarios/charm-ranged/402ad83b813642929a26c89376722b54/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/charm-dual.json",
+        "input_sha256": "7efdba06c314467802735668f2cb0b388644c522ae9591dad22e661eaf11db16",
+        "report": "artifacts/editor-scenarios/charm-dual/b11721856bc64060a5ce5cd8d8291850/report.json",
+        "steps": 25,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine86-charm-defense-scenario.json",
+        "input_sha256": "90185728a166a60f8ec2185df75d70535bf2b118ab42f7d4d73d97b5762d87d8",
+        "report": "artifacts/editor-scenarios/engine86-charm-defense-scenario/0d0b42ca1dda473c9dc3677dfd783abc/report.json",
+        "steps": 21,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 115
+  },
+  "manual_presets": [
+    "charm-activate",
+    "charm-defense",
+    "charm-dual"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/charm-red.xml",
+    "passed": 2,
+    "failed": 13
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e86-charm-20260927-060921-7fad1545.zip",
+    "sha256": "a879928e5389f1e76d378ca793856aa0ec7a797ece1fbadbdb160195711b46fb"
+  }
+}

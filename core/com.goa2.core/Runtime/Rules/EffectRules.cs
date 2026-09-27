@@ -25,6 +25,25 @@ namespace Goa2.Rules
             }
             return result;
         }
+        public static Dictionary<string,Team> MinionDefenseTeams(ContentCatalog catalog,GameState state,CardDefinition attack,int attackerSeat,string defenderId)
+        {
+            var result=new Dictionary<string,Team>();
+            if(state.EngineVersion<86)return result;
+            var defender=state.Units.SingleOrDefault(u=>u.Id==defenderId && u.Kind=="hero");
+            if(defender==null)return result;
+            var kinds=MinionCombatKinds(catalog,state,attack,attackerSeat);
+            var affectable=new HashSet<string>(GameRules.LegalMinionRemovals(state));
+            foreach(var effect in Current(state,EffectKind.EnemyMeleeFriendlyForOwnDefense).Where(e=>e.SourceUnitId==defenderId && e.ControllerSeat==defender.Seat))
+            {
+                int radius=Radius(catalog,state,effect);
+                foreach(var minion in state.Units.Where(u=>u.Team!=defender.Team && affectable.Contains(u.Id) && u.Position.Distance(defender.Position)<=radius && CanAffect(state,effect.ControllerSeat,u)))
+                {
+                    string kind=kinds.TryGetValue(minion.Id,out var converted)?converted:minion.Kind;
+                    if(kind=="melee" || kind=="melee_ranged")result[minion.Id]=defender.Team;
+                }
+            }
+            return result;
+        }
         private static IEnumerable<ActiveEffect> Current(GameState state, EffectKind kind) => state.Effects.Where(e => e.Kind == kind && EffectTimeline.Active(e.Window,state.Round,state.Turn));
         private static UnitState? Source(GameState state, ActiveEffect effect) => state.Units.SingleOrDefault(u => u.Id == effect.SourceUnitId);
         private static int Radius(ContentCatalog catalog, GameState state, ActiveEffect effect) => effect.AreaKind==EffectAreaKind.Adjacent ? 1 :

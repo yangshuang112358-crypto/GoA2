@@ -1213,5 +1213,32 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：1号选(0,-3)红兵移至(1,-4)，2号队长回归到(0,-3)；可再做两次。每次必须先回归，不能合并成移动3格；可提前不重复。"
+  },
+  {
+    "id": "charm-activate",
+    "title": "魅惑：从主要移动开始",
+    "scenario": "charm-self",
+    "through_step": 12,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号夏尔加萨执行主要移动，可0格；本轮魅惑激活。快进回合后让黄蜂攻击她，邻接红近战兵改为守卫；攻击友方布罗根则仍提供敌方支持。分支：用快速移动替代主要行动，不会激活魅惑。"
+  },
+  {
+    "id": "charm-defense",
+    "title": "魅惑：黄蜂整次攻击起点",
+    "scenario": "charm-self",
+    "through_step": 19,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号黄蜂攻击(3,-8)夏尔加萨，红近战(4,-8)使攻击总值从4变2。分支：改攻击(4,-9)布罗根，总值仍4；敌兵实际阵营不变。"
+  },
+  {
+    "id": "charm-dual",
+    "title": "魅惑联动战斗武装",
+    "scenario": "charm-dual",
+    "through_step": 22,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：2号黄蜂攻击夏尔加萨。红近战受战斗武装视为近战兼远程，魅惑仍把它计作本人友方守卫；若改攻击布罗根，则作为敌方双重支持。先前两个主要移动效果均经正常行动建立。"
   }
 ]

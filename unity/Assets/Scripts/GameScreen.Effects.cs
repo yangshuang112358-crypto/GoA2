@@ -35,6 +35,7 @@ namespace Goa2.Presentation
                     if(effect.Kind==EffectKind.OtherEnemyAttackImmunity)meaning="本回合免疫除原攻击者以外其他敌人的攻击行动；被击败复活仍生效。";
                     if(effect.Kind==EffectKind.AttackActionImmunity)meaning="本回合免疫攻击行动及其附带效果；技能、防御和紫卡仍按各自规则处理。";
                     if(effect.Kind==EffectKind.AttackFromDiscard)meaning="本回合每弃一张牌，待导致弃牌的行动结束后，从弃牌堆执行一张可执行的攻击牌。";
+                    if(effect.Kind==EffectKind.EnemyMeleeFriendlyForOwnDefense)meaning="仅本人防御时，范围内敌方近战小兵视为友方；棋子的实际阵营不变。";
                     box.Add(Text(meaning,"tiny"));
                 }
                 if (effect.AreaKind==EffectAreaKind.None) continue;

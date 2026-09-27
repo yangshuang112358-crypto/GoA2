@@ -765,6 +765,15 @@
       "input": "tests/fixtures/engine85-psychic-vortex-last-repeat-scenario.json",
       "input_sha256": "6ed9effef61897b4f4d40b5b5c9274d17d848a2c26474f49661bfc69057ff6a9",
       "provenance": "tests/fixtures/engine85-psychic-vortex-last-repeat.md"
+    },
+    {
+      "engine_version": 86,
+      "accepted_commands": 21,
+      "save": "tests/fixtures/engine86-charm-defense.json",
+      "save_sha256": "07f0f37f698c06a3feddabcb788a631866330975912b9effea518900356365be",
+      "input": "tests/fixtures/engine86-charm-defense-scenario.json",
+      "input_sha256": "90185728a166a60f8ec2185df75d70535bf2b118ab42f7d4d73d97b5762d87d8",
+      "provenance": "tests/fixtures/engine86-charm-defense.md"
     }
   ]
 }

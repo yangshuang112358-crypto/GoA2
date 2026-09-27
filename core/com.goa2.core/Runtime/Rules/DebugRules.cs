@@ -125,7 +125,7 @@ namespace Goa2.Rules
             var sourceCard=catalog.Cards.First(c=>c.HeroId==state.Players[command.ActorSeat].HeroId && c.PrimaryFamily=="attack");
             var basic=new CardDefinition { Id=sourceCard.Id, PrimaryValue=power,PrimaryCategory="基础攻击",PrimaryFamily="attack" };
             state.Execution=new CardExecution { CardId=sourceCard.Id, ProgramId="debug-attack-v1", ProgramVersion=1, ControllerSeat=command.ActorSeat, ActionInstanceId=state.EngineVersion>=63?NewActionInstance(state):null,
-                TargetUnitId=target.Id, Attack=CombatMath.Attack(state,basic,command.ActorSeat,target.Id,minionKinds:EffectRules.MinionCombatKinds(catalog,state,basic,command.ActorSeat),ultimateAttack:UltimateRules.AttackBonus(catalog,state,basic,command.ActorSeat)) };
+                TargetUnitId=target.Id, Attack=CombatMath.Attack(state,basic,command.ActorSeat,target.Id,minionKinds:EffectRules.MinionCombatKinds(catalog,state,basic,command.ActorSeat),ultimateAttack:UltimateRules.AttackBonus(catalog,state,basic,command.ActorSeat),minionTeams:EffectRules.MinionDefenseTeams(catalog,state,basic,command.ActorSeat,target.Id)) };
             Emit(state,command,"AttackCalculated",command.ActorSeat,sourceCard.Id);
             state.Events.Last().AttackValues=state.Execution.Attack;
             state.Phase=Phase.EffectChoice;

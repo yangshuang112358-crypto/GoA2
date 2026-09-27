@@ -8,12 +8,13 @@ namespace Goa2.Rules
 {
     public static class CombatMath
     {
-        public static AttackBreakdown Attack(GameState state, CardDefinition card, int attackerSeat, string targetUnitId, int extraAttack = 0, bool unblockable = false,IReadOnlyDictionary<string,string>? minionKinds=null, int ultimateAttack=0)
+        public static AttackBreakdown Attack(GameState state, CardDefinition card, int attackerSeat, string targetUnitId, int extraAttack = 0, bool unblockable = false,IReadOnlyDictionary<string,string>? minionKinds=null, int ultimateAttack=0,IReadOnlyDictionary<string,Team>? minionTeams=null)
         {
             GameRules.Require(attackerSeat >= 0 && attackerSeat < state.Players.Count, "invalid_attacker", "攻击者不存在。");
             var target = state.Units.FirstOrDefault(u => u.Id == targetUnitId && u.Kind == "hero" && u.Seat.HasValue);
             GameRules.Require(target != null, "invalid_defender", "英雄防御目标不存在。");
             string Kind(UnitState unit) => minionKinds!=null && minionKinds.TryGetValue(unit.Id,out var kind) ? kind : unit.Kind;
+            Team TeamOf(UnitState unit) => minionTeams!=null && minionTeams.TryGetValue(unit.Id,out var team) ? team : unit.Team;
             int Support(UnitState unit)
             {
                 string kind=Kind(unit);int distance=unit.Position.Distance(target!.Position);
@@ -27,9 +28,9 @@ namespace Goa2.Rules
                 UltimateBonus = ultimateAttack,
                 CardTextBonus = extraAttack,
                 Ranged = card.Subtype == "远程", Unblockable = unblockable,
-                EnemySupportSources = state.Units.Where(u => u.Team != target.Team)
+                EnemySupportSources = state.Units.Where(u => TeamOf(u) != target.Team)
                     .SelectMany(u=>Enumerable.Repeat(u.Id,Support(u))).OrderBy(id => id, StringComparer.Ordinal).ToList(),
-                FriendlyGuardSources = state.Units.Where(u => u.Team == target.Team && (Kind(u) == "melee" || Kind(u)=="melee_ranged") && u.Position.Distance(target.Position) == 1)
+                FriendlyGuardSources = state.Units.Where(u => TeamOf(u) == target.Team && (Kind(u) == "melee" || Kind(u)=="melee_ranged") && u.Position.Distance(target.Position) == 1)
                     .Select(u => u.Id).OrderBy(id => id, StringComparer.Ordinal).ToList()
             };
             result.EnemySupport = result.EnemySupportSources.Count; result.FriendlyGuard = result.FriendlyGuardSources.Count;

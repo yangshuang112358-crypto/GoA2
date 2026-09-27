@@ -264,7 +264,8 @@ namespace Goa2.Rules
             var modifier=CombatRules.CardTextModifier(catalog,state,card,source,target);
             execution.Attack = CombatMath.Attack(state, card, execution.ControllerSeat, target.Id,modifier.Amount,modifier.Unblockable,
                 EffectRules.MinionCombatKinds(catalog,state,card,execution.ControllerSeat),
-                UltimateRules.AttackBonus(catalog,state,card,execution.ControllerSeat));
+                UltimateRules.AttackBonus(catalog,state,card,execution.ControllerSeat),
+                EffectRules.MinionDefenseTeams(catalog,state,card,execution.ControllerSeat,target.Id));
             execution.Attack.CardTextReason=modifier.Reason; execution.Attack.CardTextSourceUnits=modifier.UnitSources;
             Emit(state, command, "AttackCalculated", execution.ControllerSeat, card.Id);
             state.Events.Last().AttackValues = execution.Attack;

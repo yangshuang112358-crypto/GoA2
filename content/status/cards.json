@@ -472,11 +472,23 @@
     },
     {
       "card_id": "shargatha-07-魅惑",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/shargatha-07-魅惑.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/CharmTests.cs",
+        "tests/scenarios/charm-self.json",
+        "tests/scenarios/charm-ally.json",
+        "tests/scenarios/charm-ranged.json",
+        "tests/scenarios/charm-dual.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CombatMath.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+        "core/com.goa2.core/Runtime/Rules/DebugRules.cs"
+      ]
     },
     {
       "card_id": "shargatha-08-统治领域",
