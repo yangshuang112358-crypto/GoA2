@@ -14,7 +14,7 @@ namespace Goa2.Presentation.UI3D
         {
             if(player.Seat==ownSeat) {
                 var card=view.OwnCards.FirstOrDefault(c=>catalog.Card(c.CardId).Color==color);
-                if(card!=null) return card.Zone==CardZone.Discarded ? 2 : card.Zone==CardZone.PlayedResolved || card.Zone==CardZone.PlayedUnresolved ? 1 : 0;
+                if(card!=null) return card.Zone==CardZone.Discarded ? 2 : card.Zone==CardZone.Selected || card.Zone==CardZone.PlayedResolved || card.Zone==CardZone.PlayedUnresolved ? 1 : 0;
             }
             if(player.DiscardColors.Contains(color))return 2;
             return player.Revealed.Any(c=>catalog.Card(c.CardId).Color==color) ? 1 : 0;
@@ -28,10 +28,10 @@ namespace Goa2.Presentation.UI3D
             pickingMode=PickingMode.Ignore;style.position=Position.Absolute;style.width=224;style.height=92;
             title=new Label(catalog.Heroes.FirstOrDefault(h=>h.Id==player.HeroId)?.Name ?? "英雄") {pickingMode=PickingMode.Ignore};
             title.style.fontSize=23;title.style.color=Color.white;title.style.unityTextAlign=TextAnchor.MiddleCenter;
-            title.style.unityFontStyleAndWeight=FontStyle.Bold;title.style.backgroundColor=new Color(.03f,.06f,.09f,.75f);title.style.unityTextOutlineWidth=.25f;title.style.unityTextOutlineColor=Color.black;title.style.height=35;Add(title);
+            title.style.unityFontStyleAndWeight=FontStyle.Bold;title.style.backgroundColor=Color.clear;title.style.unityTextOutlineWidth=.25f;title.style.unityTextOutlineColor=Color.black;title.style.height=35;Add(title);
             var level=new Label(player.Level.ToString()) {pickingMode=PickingMode.Ignore};level.style.position=Position.Absolute;
-            level.style.left=4;level.style.top=40;level.style.width=42;level.style.height=42;level.style.fontSize=26;
-            level.style.color=Color.white;level.style.unityTextAlign=TextAnchor.MiddleCenter;Add(level);
+            level.style.left=4;level.style.top=38;level.style.width=42;level.style.height=42;level.style.fontSize=26;
+            level.style.marginLeft=0;level.style.marginRight=0;level.style.marginTop=0;level.style.marginBottom=0;level.style.paddingLeft=0;level.style.paddingRight=0;level.style.paddingTop=0;level.style.paddingBottom=0;level.style.color=Color.white;level.style.unityTextAlign=TextAnchor.MiddleCenter;Add(level);
             generateVisualContent+=Draw;
             if(player.Level>=8)schedule.Execute(MarkDirtyRepaint).Every(50);
         }
@@ -39,6 +39,9 @@ namespace Goa2.Presentation.UI3D
         {
             var p=c.painter2D;bool max=player.Level>=8;float t=Time.realtimeSinceStartup;
             p.fillColor=new Color(.035f,.04f,.065f,.95f);p.BeginPath();p.Arc(new Vector2(25,61),21,0,360);p.Fill();
+            // Inner beveled rim remains separate from the segmented experience ring.
+            p.strokeColor=new Color(.62f,.67f,.73f,.65f);p.lineWidth=1;p.BeginPath();p.Arc(new Vector2(25,61),15.5f,200,340);p.Stroke();
+            p.strokeColor=new Color(.04f,.06f,.09f);p.BeginPath();p.Arc(new Vector2(25,61),15.5f,20,160);p.Stroke();
             int n=Mathf.Max(1,Mathf.Min(7,player.Level));
             for(int i=0;i<n;i++) {
                 p.strokeColor=max ? new Color(.75f,.36f,1) : i<Mathf.Min(player.Gold,n) ? new Color(1,.77f,.27f) : new Color(.34f,.37f,.41f);
@@ -46,8 +49,10 @@ namespace Goa2.Presentation.UI3D
             }
             var colors=new[]{"#e4c17d","#c5d1d8","#df667a","#62c996","#599eef"};
             for(int i=0;i<5;i++) {
-                p.fillColor=states[i]==2 ? Color.black : states[i]==1 ? new Color(.3f,.32f,.35f) : Board3DScene.ColorOf(colors[i]);
+                var hue=Board3DScene.ColorOf(colors[i]);p.fillColor=states[i]==2 ? new Color(.3f,.32f,.35f) : states[i]==1 ? new Color(hue.r*.42f,hue.g*.42f,hue.b*.42f) : hue;
                 Rect(p,51+i*33,49,31,31);p.Fill();
+                p.fillColor=new Color(1,1,1,.16f);Rect(p,51+i*33,49,31,4);p.Fill();
+                p.fillColor=new Color(0,0,0,.25f);Rect(p,51+i*33,76,31,4);p.Fill();
             }
             p.strokeColor=max ? new Color(.7f+.15f*Mathf.Sin(t*3),.24f,.95f) : player.Team==Team.Blue ? new Color(.3f,.65f,1) : new Color(1,.35f,.35f);
             p.lineWidth=max ? 3 : 1.5f;Rect(p,49,47,168,35);p.Stroke();

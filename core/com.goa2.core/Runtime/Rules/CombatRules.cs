@@ -8,6 +8,17 @@ namespace Goa2.Rules
 {
     public static class CombatRules
     {
+        // Presentation-only availability: do not disable actions with movement or other pre-target work.
+        public static bool PrimaryImmediatelySkips(ContentCatalog catalog,GameState state,int seat)
+        {
+            if(state.Phase!=Phase.Action || state.ActiveSeat!=seat || state.Pending!=null || state.Execution!=null)return false;
+            var card=state.Players[seat].Cards.SingleOrDefault(c=>c.Zone==CardZone.PlayedUnresolved);
+            var program=card==null ? null : CardPrograms.Primary(catalog.Card(card.CardId),state.EngineVersion);
+            if(program==null || program.Instructions.FirstOrDefault()!=InstructionKind.ChooseAttackTarget || AttackTargets(catalog,state,seat).Count>0)return false;
+            if(UltimateRules.HasImmuneActionPrelude(catalog,state,seat))return false;
+            if(UltimateRules.OwnedProgram(catalog,state,seat)?.Trigger==UltimateTrigger.BeforeActionAdjacentDiscard && GameRules.AdjacentPreludeTargets(state,seat).Count>0)return false;
+            return true;
+        }
         public static bool HasPrimaryProgram(CardDefinition card, int engineVersion = GameState.CurrentEngineVersion) => CardPrograms.Primary(card,engineVersion) != null;
         public static bool HasDefenseProgram(CardDefinition card, int engineVersion = GameState.CurrentEngineVersion) => CardPrograms.Defense(card,engineVersion) != null;
         public static CardAttackModifier CardTextModifier(ContentCatalog catalog,GameState state,CardDefinition card,UnitState source,UnitState target)

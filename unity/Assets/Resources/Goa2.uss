@@ -284,3 +284,15 @@ Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
 .hero-hover-card { margin-bottom: 8px; }
 
 .world-victory { position: absolute; left: 35%; right: 35%; top: 30%; height: 100px; -unity-text-align: middle-center; font-size: 44px; color: #ffe19d; background-color: rgba(24,29,45,0.95); border-width: 3px; border-color: #b69a57; }
+
+.hero-hover .card-detail { padding: 8px; margin-bottom: 3px; }
+.hero-hover .card-detail .section-title { font-size: 23px; }
+.hero-hover .card-rules { font-size: 22px; }
+.hero-hover .card-detail .muted, .hero-hover .card-detail .tiny, .hero-hover .card-zone { font-size: 20px; }
+.hero-hover .body { font-size: 22px; }
+.hero-hover-card { border-bottom-width: 1px; border-bottom-color: #655a43; }
+
+.hero-hover-card Label { margin: 0; padding: 0; }
+.hero-hover-card .card-detail .section-title { margin-bottom: 6px; }
+.hero-hover-card .card-rules { margin-bottom: 6px; }
+.hero-hover-card .card-zone { padding-top: 4px; padding-bottom: 4px; }

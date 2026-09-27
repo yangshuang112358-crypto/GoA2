@@ -1,0 +1,14 @@
+[
+  {
+    "folder": "audit-1280x800-20260927-220424",
+    "passed": true,
+    "assertions": 6296,
+    "method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard"
+  },
+  {
+    "folder": "audit-1600x1000-20260927-220552",
+    "passed": true,
+    "assertions": 6296,
+    "method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard"
+  }
+]

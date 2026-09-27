@@ -97,7 +97,7 @@ namespace Goa2.Presentation
         private void RenderHotkeys(VisualElement parent)
         {
             parent.Add(Text("热键与鼠标","section-title"));
-            foreach(string line in new[]{"Enter / 小键盘Enter：确认当前选择","空格：开关视野跟随","1—4 / 小键盘1—4：切换本机测试席位","Q / E：向左 / 向右旋转30°","滚轮：以鼠标位置缩放","中键 / 右键拖动：平移并取消跟随","Home：全图并取消跟随","F1：关键词说明","Esc：关闭术语、设置或卡牌预览","悬停卡牌：查看完整描述"}) parent.Add(Text(line,"body"));
+            foreach(string line in new[]{"Enter / 小键盘Enter：确认当前选择","空格：开关视野跟随","1—4 / 小键盘1—4：切换本机测试席位","Q / E：向左 / 向右旋转30°","滚轮：以鼠标位置缩放","中键 / 空白处右键拖动：平移并取消跟随","右键英雄：查看卡牌、状态与永久加成","Home：全图并取消跟随","F1：关键词说明","Esc：关闭英雄信息、术语、设置或卡牌预览","悬停卡牌：查看完整描述"}) parent.Add(Text(line,"body"));
             parent.Add(Text("输入文字或打开独立弹窗时，游戏热键暂停。相机跟随不改变操控身份。","muted"));
         }
     }

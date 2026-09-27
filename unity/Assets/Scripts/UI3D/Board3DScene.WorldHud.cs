@@ -51,7 +51,7 @@ namespace Goa2.Presentation.UI3D
     }
     framingPoints.Add(CrystalPosition(catalog,team,0,capacity));framingPoints.Add(CrystalPosition(catalog,team,Mathf.Max(0,capacity-1),capacity));
     var crystalBase=CrystalPosition(catalog,team,capacity/2,capacity);crystalBase.y=.1f;
-    Add(gem,crystalBase,new Vector3(1.1f,1.7f,1.1f),ColorOf(team==Team.Blue ? "#3D79CF" : "#B94460"),"team crystal "+team);
+    // No extra decorative crystal: every visible gem represents one remaining life.
     int marks=team==Team.Blue ? view.BlueMarks : view.RedMarks;
     for(int i=0;i<marks;i++) {
      var at=crystalBase+new Vector3((i-(view.VictoryMarksRequired-1)*.5f)*1.3f,0,team==Team.Blue ? 2 : -2);
@@ -69,14 +69,41 @@ namespace Goa2.Presentation.UI3D
      fragments.Add((tr,effect,at,new Vector3(Mathf.Cos(a)*2,2+i*.23f,Mathf.Sin(a)*2)));
     }
    }
-   coinOrigin=BattlePresentationState.Center(catalog)+Vector3.up*3.2f;
-   var coinMesh=Own(Board3DGeometry.Prism(48,0));var cv=coinMesh.vertices;for(int i=0;i<cv.Length;i++)cv[i].y-=.5f;coinMesh.vertices=cv;coinMesh.RecalculateBounds();
-   decisionCoin=Add(coinMesh,coinOrigin,new Vector3(1.05f,.18f,1.05f),ColorOf("#DCAE55"),"decision coin").transform;
+   // The shared edge of the two central radius-.965 hexes is .965 units long.
+   coinOrigin=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f+Vector3.up*(WallHeight+.053f);
+   decisionCoin=Add(Own(BeveledCoin()),coinOrigin,new Vector3(.4825f,.12f,.4825f),ColorOf("#BD873B"),"decision coin").transform;
+   Polish(decisionCoin,.85f);
    foreach(var side in new[]{-1,1}) {
-    var face=Add(Own(Board3DGeometry.Ring(48,.83f)),Vector3.zero,Vector3.one*.9f,ColorOf("#FFE6A0"),"coin rim").transform;face.SetParent(decisionCoin,false);face.localPosition=new Vector3(0,side*.55f,0);if(side<0)face.localRotation=Quaternion.Euler(180,0,0);
-    var jewel=Add(gem,Vector3.zero,new Vector3(.5f,.35f,.5f),ColorOf(side==1 ? "#D9304A" : "#367FE7"),"hexagonal jewel").transform;jewel.SetParent(decisionCoin,false);jewel.localPosition=new Vector3(0,side*.68f,0);
+    foreach(float radius in new[]{.94f,.78f,.6f}) {
+     var face=Add(Own(Board3DGeometry.Ring(96,.96f)),Vector3.zero,Vector3.one*radius,ColorOf(radius>.8f ? "#F6D88C" : "#785021"),"engraved coin rim").transform;
+     face.SetParent(decisionCoin,false);face.localPosition=new Vector3(0,side*.43f,0);if(side<0)face.localRotation=Quaternion.Euler(180,0,0);Polish(face,.8f);
+    }
+    for(int i=0;i<24;i++) {
+     float a=i*Mathf.PI/12;
+     var stud=Add(gem,Vector3.zero,new Vector3(.022f,.06f,.05f),ColorOf("#F7D57E"),"minted rim detail").transform;
+     stud.SetParent(decisionCoin,false);stud.localPosition=new Vector3(Mathf.Cos(a)*.86f,side*.45f,Mathf.Sin(a)*.86f);stud.localRotation=Quaternion.Euler(0,-i*15,0);Polish(stud,.8f);
+    }
+    var socket=Add(Own(Board3DGeometry.Prism(6,0)),Vector3.zero,new Vector3(.57f,.12f,.57f),ColorOf("#503416"),"jewel setting").transform;
+    socket.SetParent(decisionCoin,false);socket.localPosition=new Vector3(0,side*.43f,0);if(side<0)socket.localRotation=Quaternion.Euler(180,0,0);Polish(socket,.65f);
+    var jewel=Add(gem,Vector3.zero,new Vector3(.5f,.3f,.5f),ColorOf(side==1 ? "#C82642" : "#236BD6"),"hexagonal jewel").transform;
+    jewel.SetParent(decisionCoin,false);jewel.localPosition=new Vector3(0,side*.66f,0);Polish(jewel,.18f);
    }
   }
+  private void Polish(Transform item,float metallic) {
+   var shader=Resources.Load<Shader>("UI3D/Coin");if(shader==null)return;
+   var renderer=item.GetComponent<MeshRenderer>();var material=Own(new Material(shader));material.color=renderer.sharedMaterial.color;material.SetFloat("_Metallic",metallic);renderer.sharedMaterial=material;
+  }
+  private static Mesh BeveledCoin() {
+   var v=new List<Vector3>();var t=new List<int>();
+   var profile=new[]{new Vector2(0,-.43f),new Vector2(.91f,-.43f),new Vector2(1,-.24f),new Vector2(1,.24f),new Vector2(.91f,.43f),new Vector2(0,.43f)};
+   for(int j=0;j<profile.Length-1;j++)for(int i=0;i<96;i++) {
+    float a=i*Mathf.PI/48,b=(i+1)*Mathf.PI/48;int k=v.Count;
+    foreach(var p in new[]{profile[j],profile[j+1]}){v.Add(new Vector3(Mathf.Cos(a)*p.x,p.y,Mathf.Sin(a)*p.x));v.Add(new Vector3(Mathf.Cos(b)*p.x,p.y,Mathf.Sin(b)*p.x));}
+    t.AddRange(new[]{k,k+2,k+3,k,k+3,k+1});
+   }
+   var m=new Mesh{name="beveled minted coin"};m.SetVertices(v);m.SetTriangles(t,0);m.RecalculateNormals();return m;
+  }
+
   private void AnimateWorldHud()
   {
    float now=Time.realtimeSinceStartup;
@@ -85,9 +112,9 @@ namespace Goa2.Presentation.UI3D
    foreach(var p in pendingCrystals)p.transform.gameObject.SetActive(now<p.until);
    foreach(var f in fragments) {float t=now-f.effect.Started;f.transform.gameObject.SetActive(t>=0 && t<1.5f);if(t>=0){f.transform.localPosition=f.origin+f.velocity*t-Vector3.up*3*t*t;f.transform.localScale=Vector3.one*.18f*Mathf.Clamp01(1-t/1.5f);}}
    if(decisionCoin!=null) {float t=Mathf.Clamp01((now-presentation.CoinStarted)/2.4f);float turn=presentation.CoinTo==Team.Blue ? 180 : 0;
-    decisionCoin.localPosition=coinOrigin+Vector3.up*(Mathf.Sin(t*Mathf.PI)*4+.08f*Mathf.Sin(now));
+    decisionCoin.localPosition=coinOrigin+Vector3.up*(Mathf.Sin(t*Mathf.PI)*1.5f);
     float from=presentation.CoinFrom==Team.Blue ? 180 : 0;float ease=t*t*(3-2*t);
-    decisionCoin.localRotation=Quaternion.Euler(18,0,from+(turn-from+720)*ease);}
+    decisionCoin.localRotation=Quaternion.Euler(0,0,from+(turn-from+720)*ease);}
   }
  }
 }

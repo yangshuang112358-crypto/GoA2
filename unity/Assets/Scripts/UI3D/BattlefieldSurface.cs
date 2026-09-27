@@ -67,8 +67,7 @@ namespace Goa2.Presentation.UI3D
                 {
                     var hero=view.Units.FirstOrDefault(u=>u.Seat.HasValue && u.Position==token.cell);
                     if(hero!=null) {var plate=new HeroPlate(catalog,view,view.Players.Single(p=>p.Seat==hero.Seat),ownSeat);plate.pickingMode=PickingMode.Position;var heroCell=token.cell;int heroSeat=hero.Seat!.Value;
-                        plate.RegisterCallback<PointerEnterEvent>(e=>HeroHover?.Invoke(heroSeat,e.position));
-                        plate.RegisterCallback<PointerLeaveEvent>(e=>HeroHover?.Invoke(null,e.position));
+                        plate.RegisterCallback<PointerDownEvent>(e=>{if(e.button==1){HeroHover?.Invoke(heroSeat,e.position);e.StopPropagation();}});
                         plate.RegisterCallback<PointerDownEvent>(e=>{if(e.button==0){if(connected && this.legal.Contains(heroCell))choose(heroCell);e.StopPropagation();}});
                         Add(plate);heroPlates.Add((plate,token.cell));continue;}
                     var label=new Label(token.text.Replace("·","\n")) {pickingMode=PickingMode.Ignore};label.AddToClassList("unit-label");
@@ -85,6 +84,7 @@ namespace Goa2.Presentation.UI3D
             RegisterCallback<GeometryChangedEvent>(_=>Repaint());
             RegisterCallback<PointerDownEvent>(e=>
             {
+                if(e.button==1 && scene!=null) {var hit=scene.Hit(e.localPosition,contentRect.size);var hero=hit==null ? null : view.Units.FirstOrDefault(u=>u.Position==hit.Position && u.Seat.HasValue);if(hero!=null){HeroHover?.Invoke(hero.Seat,e.position);e.StopPropagation();return;}}
                 if(e.button==1 || e.button==2) {dragging=true;pointerId=e.pointerId;lastPointer=e.localPosition;this.CapturePointer(pointerId);e.StopPropagation();return;}
                 if(e.button==0) SelectAt(e.localPosition);
             });
@@ -94,9 +94,9 @@ namespace Goa2.Presentation.UI3D
                 if(dragging && e.pointerId==pointerId)
                 {if(((Vector2)e.localPosition-lastPointer).sqrMagnitude>0) ManualPan?.Invoke();state.Focus+=scene.Ground(lastPointer,contentRect.size)-scene.Ground(e.localPosition,contentRect.size);lastPointer=e.localPosition;Repaint();e.StopPropagation();return;}
                 var cell=scene.Hit(e.localPosition,contentRect.size);if(cell!=null) hover(cell);
-                HeroHover?.Invoke(cell==null ? null : view.Units.FirstOrDefault(u=>u.Position==cell.Position && u.Seat.HasValue)?.Seat,e.position);
+
             });
-            RegisterCallback<PointerLeaveEvent>(e=>{if(!dragging)HeroHover?.Invoke(null,e.position);});
+
             RegisterCallback<PointerUpEvent>(e=> {if(dragging && pointerId==e.pointerId) {dragging=false;this.ReleasePointer(pointerId);e.StopPropagation();}});
             RegisterCallback<PointerCaptureOutEvent>(_=>dragging=false);
             RegisterCallback<WheelEvent>(e=> {Zoom(e.localMousePosition,Mathf.Pow(1.12f,-e.delta.y/3));e.StopPropagation();});

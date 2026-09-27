@@ -44,7 +44,7 @@ namespace Goa2.Rules
             return true;
         }
 
-        private static List<string> AdjacentPreludeTargets(GameState state, int seat)
+        internal static List<string> AdjacentPreludeTargets(GameState state, int seat)
         {
             var source = state.Units.SingleOrDefault(u => u.Kind == "hero" && u.Seat == seat);
             if (source == null) return new List<string>();

@@ -62,11 +62,15 @@ namespace Goa2.Presentation
             Check(root.Q<Button>("settings-toggle")!=null && root.Q<Button>("follow-toggle")!=null,"Floating settings and follow buttons exist");
             Check(Vector3.Distance(board3DViewport.Focus,Board3DGeometry.World(renderedView.Units.First(u=>u.Seat==seat).Position))<.03f,"Planning follows own hero");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"follow-planning.png"));yield return new WaitForSecondsRealtime(.25f);
-            ShowHeroHover(seat,new Vector2(Screen.width*.6f,Screen.height*.5f));yield return null;yield return null;
-            Check(root.Q<VisualElement>("hero-hover")!=null,"Own hero hover opens full card information");
+            var ownPlate=board!.Q<HeroPlate>("hero-plate-"+(seat+1));
+            using(var hoverEvent=PointerMoveEvent.GetPooled(new Event{type=EventType.MouseMove,mousePosition=ownPlate.worldBound.center}))ownPlate.SendEvent(hoverEvent);
+            Check(root.Q<VisualElement>("hero-hover")==null,"Hovering hero does not open inspection");
+            using(var clickEvent=PointerDownEvent.GetPooled(new Event{type=EventType.MouseDown,button=1,mousePosition=ownPlate.worldBound.center})){clickEvent.target=ownPlate;ownPlate.SendEvent(clickEvent);}
+            yield return null;yield return null;
+            Check(root.Q<VisualElement>("hero-hover")!=null,"Right-click hero opens full card information");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"hero-hover-own.png"));yield return new WaitForSecondsRealtime(.25f);HideHeroHover();
             ShowHeroHover(1,new Vector2(Screen.width*.6f,Screen.height*.5f));yield return null;yield return null;
-            Check(root.Q<VisualElement>("hero-hover").Query<Label>().ToList().Any(l=>l.text=="未公开手牌隐藏"),"Opponent hover preserves hidden hand privacy");HideHeroHover();
+            Check(!root.Q<VisualElement>("hero-hover").Query<Label>().ToList().Any(l=>l.text=="未公开手牌隐藏"),"Opponent inspection omits hidden-hand notice");Check(root.Q<VisualElement>("hero-card-grid")!=null,"Two-column hero inspection grid exists");Check(root.Q<VisualElement>("hero-hover").Q<Button>("card-keywords")==null,"Inspection has no glossary button");HideHeroHover();
             long followRevision=renderedView.Revision;int followSeat=seat;
             SetCameraFollow(false);yield return new WaitForSecondsRealtime(.25f);
             Check(followToast!=null && followToast.resolvedStyle.opacity>.99f,"Follow toast rises and becomes opaque");
@@ -202,6 +206,16 @@ namespace Goa2.Presentation
             Submit(CommandKind.DebugSetCoin,opposite);yield return new WaitForSecondsRealtime(.7f);
             Check(board3DViewport.Presentation.CoinTo==renderedView.DecisionCoin,"Coin animation consumes authoritative side");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"coin-flipping.png"));yield return new WaitForSecondsRealtime(2f);
+            board3DViewport.Focus=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f;board3DViewport.Zoom=8;yield return new WaitForSecondsRealtime(.25f);
+            var renderedObjects=board.Scene!.Camera.transform.parent.GetComponentsInChildren<Transform>();
+            var mintedCoin=renderedObjects.Single(t=>t.name=="decision coin");var restingPosition=mintedCoin.localPosition;
+            Check(Mathf.Abs(mintedCoin.localScale.x*2-.965f)<.001f,"Coin diameter equals central shared terrain edge");
+            Check(renderedObjects.Count(t=>t.name.StartsWith("crystal life "))==renderedView.BlueCrystal+renderedView.RedCrystal,"No extra oversized decorative crystal");
+            var life=renderedObjects.First(t=>t.name.StartsWith("crystal life "));var lifePosition=life.localPosition;
+            yield return new WaitForSecondsRealtime(.3f);
+            Check((mintedCoin.localPosition-restingPosition).sqrMagnitude<.000001f,"Settled coin does not hover");
+            Check((life.localPosition-lifePosition).sqrMagnitude>.00000001f,"Life crystals float");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"coin-grounded-closeup.png"));yield return new WaitForSecondsRealtime(.25f);board.ResetView();yield return null;
             int crystalBefore=renderedView.RedCrystal;
             Submit(CommandKind.DebugDefeatHero,"hero:1",target:0);yield return new WaitForSecondsRealtime(.35f);
             Check(renderedView.RedCrystal==crystalBefore-1 && board3DViewport.Presentation.Shards.Count>0,"Live hero defeat drives crystal shards from actual damage");
@@ -221,6 +235,10 @@ namespace Goa2.Presentation
             Check(art.Query<HeroPlate>().ToList().Count==showcase.Units.Count(u=>u.Seat.HasValue),"World nameplates replace roster for every on-board hero");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"level8-art-fixture-a.png"));yield return new WaitForSecondsRealtime(.4f);
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"level8-art-fixture-b.png"));yield return new WaitForSecondsRealtime(.25f);art.RemoveFromHierarchy();
+            var realView=renderedView;renderedView=showcase;showcase.Players[0].PurpleCardId=catalog.Cards.First(c=>c.HeroId==showcase.Players[0].HeroId && c.Color=="purple").Id;
+            ShowHeroHover(0,new Vector2(Screen.width*.5f,0));yield return null;yield return null;
+            Check(root.Q<VisualElement>("hero-card-grid").childCount==6,"Level-eight inspection has six slots in two columns");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"hero-inspection-level8-fixture.png"));yield return new WaitForSecondsRealtime(.25f);HideHeroHover();renderedView=realView;
         }
     }
 }

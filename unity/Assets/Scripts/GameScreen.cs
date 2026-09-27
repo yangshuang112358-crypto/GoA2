@@ -435,7 +435,7 @@ namespace Goa2.Presentation
                     if (view.ActiveSeat == seat)
                     {
                         var primary = Button("执行" + catalog.Card(played.CardId).PrimaryCategory, () => { debugTeleport = false; Submit(CommandKind.BeginPrimary); }, "primary-button", "begin-primary");
-                        primary.SetEnabled(view.CanBeginPrimary); sidebar.Add(primary);
+                        primary.SetEnabled(view.CanBeginPrimary && !view.PrimaryImmediatelySkips);if(view.PrimaryImmediatelySkips)primary.tooltip="没有合法目标，此行动等效跳过"; sidebar.Add(primary);
                         if (view.PrimaryRestriction!="") sidebar.Add(Text("受到“" + catalog.Card(view.PrimaryRestriction).Name + "”影响，当前不能执行技能。可选择其他合法行动或放弃。", "restriction-text"));
                         if (view.PrimarySupported) sidebar.Add(Text("开始后按牌文完成行动；不能再改选次要移动或放弃。", "tiny"));
                         var normal = Button("次要移动" + (moveMode == MoveMode.Secondary ? "  ✓" : ""), () => { debugTeleport = false; if(view.CanStartSecondaryMoveWithPrelude){Submit(CommandKind.Move,"begin",mode:MoveMode.Secondary);return;} moveMode = MoveMode.Secondary; chosenCell = null; passPending = false; Render(); }, "choice-button");
@@ -460,7 +460,7 @@ namespace Goa2.Presentation
                     break;
             }
             RenderActiveEffects(sidebar, view);
-            RenderPermanentStats(sidebar, view);
+            // Permanent bonuses and the ultimate are shown in the hero inspection panel.
             RenderRecentEvents(sidebar, view);
         }
         private void Confirm(VisualElement parent, string caption, Action action)
@@ -471,16 +471,18 @@ namespace Goa2.Presentation
             box.Add(confirmButton);
             box.Add(Button("取消", () => { ClearPending(); Render(); }, "quiet-button"));
         }
-        private void RenderCardDetail(VisualElement parent, CardDefinition card)
+        private void RenderCardDetail(VisualElement parent, CardDefinition card, bool showTerms=true)
         {
             var box = Box("card-detail");
             box.Add(Text(card.Name + "    先攻 " + card.Initiative, "section-title"));
             box.Add(RulesText(CardTextMarkup.Description(card), "card-rules"));
-            box.Add(Button("本牌术语",()=>OpenKeywordGlossary(card),"quiet-button","card-keywords"));
-            box.Add(Text(CardDisplay.Primary(card) + SubtypeText(card), "muted"));
-            box.Add(Text("移 " + Number(card.SecondaryMovement) + "    防 " + Number(card.SecondaryDefense), "tiny"));
+            if(showTerms) box.Add(Button("本牌术语",()=>OpenKeywordGlossary(card),"quiet-button","card-keywords"));
+            if(showTerms) {
+                box.Add(Text(CardDisplay.Primary(card) + SubtypeText(card), "muted"));
+                box.Add(Text("移 " + Number(card.SecondaryMovement) + "    防 " + Number(card.SecondaryDefense), "tiny"));
+            } else box.Add(Text(CardDisplay.Primary(card)+SubtypeText(card)+" · 移 "+Number(card.SecondaryMovement)+" · 防 "+Number(card.SecondaryDefense),"muted"));
             parent.Add(box);
-            AttachCardReading(box,card);
+            if(showTerms) AttachCardReading(box,card);
         }
         private void RenderRecentEvents(VisualElement parent, GameView view)
         {

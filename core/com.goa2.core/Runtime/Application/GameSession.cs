@@ -167,6 +167,7 @@ namespace Goa2.Application
                 view.PrimarySupported = playedCard != null && CombatRules.HasPrimaryProgram(catalog.Card(playedCard.CardId),snapshot.EngineVersion);
                 view.PrimaryRestriction = playedCard == null ? "" : EffectRules.SkillRestriction(catalog,snapshot,seat.Value,catalog.Card(playedCard.CardId));
                 view.CanBeginPrimary = view.CanPass && view.PrimarySupported && view.PrimaryRestriction == "" && snapshot.Units.Any(u => u.Seat == seat);
+                view.PrimaryImmediatelySkips = view.CanBeginPrimary && CombatRules.PrimaryImmediatelySkips(catalog,snapshot,seat.Value);
                 view.AttackTargets = CombatRules.AttackTargets(catalog, snapshot, seat.Value);
                 view.DefenseOptions = CombatRules.DefenseOptions(catalog, snapshot, seat.Value);
                 view.DefenseRestrictions = CombatRules.DefenseRestrictions(catalog,snapshot,seat.Value);

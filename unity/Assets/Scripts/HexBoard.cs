@@ -73,10 +73,11 @@ namespace Goa2.Presentation
                 }
                 var cell = Hit(e.localPosition);
                 if (cell != null) hover(cell);
-                HeroHover?.Invoke(cell==null ? null : view.Units.FirstOrDefault(u=>u.Position==cell.Position && u.Seat.HasValue)?.Seat,e.position);
+
             });
             RegisterCallback<PointerDownEvent>(e =>
             {
+                if(e.button==1) {var hit=Hit(e.localPosition);var hero=hit==null ? null : view.Units.FirstOrDefault(u=>u.Position==hit.Position && u.Seat.HasValue);if(hero!=null){HeroHover?.Invoke(hero.Seat,e.position);e.StopPropagation();return;}}
                 if (e.button == 1 || e.button == 2)
                 {
                     dragging = true; dragPointer = e.pointerId; lastPointer = e.localPosition;
@@ -91,7 +92,7 @@ namespace Goa2.Presentation
                 if (!dragging || e.pointerId != dragPointer) return;
                 dragging = false; this.ReleasePointer(e.pointerId); e.StopPropagation();
             });
-            RegisterCallback<PointerLeaveEvent>(e=>HeroHover?.Invoke(null,e.position));
+
             RegisterCallback<PointerCaptureOutEvent>(_ => dragging = false);
             RegisterCallback<WheelEvent>(e =>
             {
