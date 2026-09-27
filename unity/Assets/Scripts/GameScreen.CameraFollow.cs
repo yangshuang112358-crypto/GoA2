@@ -69,18 +69,10 @@ namespace Goa2.Presentation
             if(ScenarioRunning || confirmButton==null || !confirmButton.enabledInHierarchy) return;
             var action=confirmAction;confirmAction=null;action?.Invoke();
         }
+        private readonly StoneSettingsButton.Motion settingsMotion = new StoneSettingsButton.Motion();
         private void BuildCameraOverlays()
         {
-            var settings=Button("设置",()=>{if(rightExpanded) showHotkeys=false;rightExpanded=!rightExpanded;Render();},"stone-settings","settings-toggle");
-            settings.tooltip="行动 / 调试 / 热键";
-            settings.generateVisualContent+=context=> {
-                var painter=context.painter2D;float w=settings.contentRect.width,h=settings.contentRect.height;
-                painter.strokeColor=new Color(.12f,.15f,.2f,.7f);painter.lineWidth=1.4f;
-                painter.BeginPath();painter.MoveTo(new Vector2(5,0));painter.LineTo(new Vector2(12,7));painter.LineTo(new Vector2(9,13));painter.Stroke();
-                painter.BeginPath();painter.MoveTo(new Vector2(w,h-8));painter.LineTo(new Vector2(w-10,h-12));painter.LineTo(new Vector2(w-15,h-5));painter.Stroke();
-                painter.strokeColor=new Color(.8f,.79f,.73f,.35f);painter.lineWidth=1;
-                painter.BeginPath();painter.MoveTo(new Vector2(3,h-5));painter.LineTo(new Vector2(14,h-6));painter.Stroke();
-            };
+            var settings=new StoneSettingsButton(()=>{if(rightExpanded) showHotkeys=false;rightExpanded=!rightExpanded;Render();},rightExpanded,settingsMotion);
             root.Add(settings);
             followButton=Button("",()=>SetCameraFollow(!cameraFollow),"follow-toggle","follow-toggle");root.Add(followButton);
             followToast=Text("","follow-toast");followToast.name="follow-toast";followToast.pickingMode=PickingMode.Ignore;root.Add(followToast);

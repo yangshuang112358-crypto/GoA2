@@ -1,0 +1,20 @@
+{
+    "Method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard",
+    "UnityVersion": "6000.3.23f1",
+    "Error": "",
+    "Width": 1280,
+    "Height": 800,
+    "Passed": true,
+    "Checks": [
+        "Startup content loaded",
+        "Sculpted button is connected to live GameScreen",
+        "Settings hit area stays inside screen",
+        "Hover animates artwork while preserving the hit area",
+        "Pointer down depresses stone without opening early",
+        "Pointer release opens the existing settings drawer",
+        "Rebuilt button rebounds instead of remaining stuck pressed",
+        "Button remains above drawer",
+        "Second click closes drawer",
+        "All button animations and drawer toggles leave rules and identity unchanged"
+    ]
+}

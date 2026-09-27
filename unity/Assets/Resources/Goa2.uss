@@ -268,9 +268,8 @@ Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
 
 /* Incremental migration: right drawer overlays the map instead of reserving a column. */
 .header-controls { margin-right: 106px; }
-.stone-settings { position: absolute; top: 14px; right: 20px; width: 94px; height: 64px; font-size: 26px; color: #ffe1a3; background-color: #555a61; border-top-color: #a3a8ad; border-left-color: #8d929a; border-right-color: #272b33; border-bottom-color: #1e2229; border-top-width: 5px; border-left-width: 5px; border-right-width: 6px; border-bottom-width: 7px; border-radius: 12px; -unity-font-style: bold; }
-.stone-settings:hover { background-color: #6a717c; color: #fff0cb; }
-.stone-settings:active { border-top-color: #272b33; border-bottom-color: #8d929a; background-color: #454a53; }
+.stone-settings { position: absolute; top: 8px; right: 18px; width: 104px; height: 72px; min-height: 72px; margin: 0; padding: 0; background-color: rgba(0,0,0,0); border-width: 0; overflow: visible; }
+.stone-settings:hover, .stone-settings:active, .stone-settings:focus { background-color: rgba(0,0,0,0); border-width: 0; }
 .settings-drawer { position: absolute; right: 16px; top: 88px; bottom: 92px; width: 480px; padding: 14px; background-color: rgba(24,32,43,0.98); border-width: 3px; border-color: #8c826a; border-radius: 10px; }
 .settings-drawer .panel-heading { flex-shrink: 0; }
 .settings-drawer .sidebar { min-height: 0; flex-grow: 1; }

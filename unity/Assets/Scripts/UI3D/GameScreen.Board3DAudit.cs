@@ -31,7 +31,7 @@ namespace Goa2.Presentation
         {
             Directory.CreateDirectory(output);
             var report=new BoardAuditReport {UnityVersion=UnityEngine.Application.unityVersion,Width=Screen.width,Height=Screen.height};
-            var routine=AuditBoard3D(output,report);
+            var routine=Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
             while(true)
             {
                 object? next=null;bool more=false;
@@ -49,6 +49,43 @@ namespace Goa2.Presentation
             UnityEngine.Application.Quit(report.Passed ? 0 : 1);
 #endif
         }
+        private IEnumerator AuditSettingsButton(string output, BoardAuditReport report)
+        {
+            void Check(bool condition,string text) {if(!condition)throw new InvalidOperationException(text);report.Checks.Add(text);}
+            void Down(StoneSettingsButton button) {
+                using(var e=PointerDownEvent.GetPooled(new Event{type=EventType.MouseDown,button=0,mousePosition=button.worldBound.center})){e.target=button;button.SendEvent(e);}
+            }
+            void Up(StoneSettingsButton button) {
+                using(var e=PointerUpEvent.GetPooled(new Event{type=EventType.MouseUp,button=0,mousePosition=button.worldBound.center})){e.target=button;button.SendEvent(e);}
+            }
+            yield return null;yield return null;
+            Check(!startupFailed,"Startup content loaded");
+            Submit(CommandKind.DebugPrepare,"wasp,shargatha,brogan,arien");
+            yield return new WaitForSecondsRealtime(1.2f);
+            var settings=root.Q<StoneSettingsButton>("settings-toggle");
+            Check(settings!=null,"Sculpted button is connected to live GameScreen");
+            var bounds=settings.worldBound;string before=session.ExportSave();int originalSeat=seat;
+            Check(bounds.xMin>=0 && bounds.yMin>=0 && bounds.xMax<=Screen.width && bounds.yMax<=Screen.height,"Settings hit area stays inside screen");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"settings-normal.png"));yield return new WaitForSecondsRealtime(.15f);
+            Vector2 hoverPoint=new Vector2(bounds.xMax-12,bounds.yMin+16);
+            using(var e=PointerMoveEvent.GetPooled(new Event{type=EventType.MouseMove,mousePosition=hoverPoint})){e.target=settings;settings.SendEvent(e);}
+            yield return new WaitForSecondsRealtime(.3f);
+            Check(settings.HoverAmount>.8f && settings.worldBound==bounds,"Hover animates artwork while preserving the hit area");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"settings-hover.png"));yield return new WaitForSecondsRealtime(.15f);
+            Down(settings);yield return new WaitForSecondsRealtime(.14f);
+            Check(settings.PressAmount>.5f && !rightExpanded,"Pointer down depresses stone without opening early");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"settings-pressed.png"));yield return new WaitForSecondsRealtime(.15f);
+            Up(settings);yield return new WaitForSecondsRealtime(.45f);
+            Check(rightExpanded && root.Q<VisualElement>("operation-panel")!=null,"Pointer release opens the existing settings drawer");
+            var opened=root.Q<StoneSettingsButton>("settings-toggle");
+            Check(opened.PressAmount<.45f,"Rebuilt button rebounds instead of remaining stuck pressed");
+            Check(opened.worldBound.yMax<root.Q<VisualElement>("operation-panel").worldBound.yMin,"Button remains above drawer");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"settings-open.png"));yield return new WaitForSecondsRealtime(.15f);
+            Down(opened);yield return new WaitForSecondsRealtime(.1f);Up(opened);yield return new WaitForSecondsRealtime(.45f);
+            Check(!rightExpanded,"Second click closes drawer");
+            Check(session.ExportSave()==before && seat==originalSeat,"All button animations and drawer toggles leave rules and identity unchanged");
+        }
+
         private IEnumerator AuditBoard3D(string output,BoardAuditReport report)
         {
             void Check(bool condition,string text) {if(!condition) throw new InvalidOperationException(text);report.Checks.Add(text);}
