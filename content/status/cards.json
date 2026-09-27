@@ -959,11 +959,21 @@
     },
     {
       "card_id": "arien-02-激流",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/arien-02-激流.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/TorrentTests.cs",
+        "tests/scenarios/torrent-pay.json",
+        "tests/scenarios/torrent-decline.json",
+        "tests/scenarios/torrent-counterattack.json",
+        "tests/scenarios/torrent-no-rear.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs"
+      ]
     },
     {
       "card_id": "arien-03-潮起",

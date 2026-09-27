@@ -1,0 +1,91 @@
+{
+  "engine": 81,
+  "implemented_cards": 92,
+  "data_only_cards": 16,
+  "build_utc": "2026-09-27T05:29:38.9747986Z",
+  "assemblies": {
+    "Goa2.Application.dll": "e4912860cb556abe14dc005426497c09c01b3a2f40a8604e2320473970e76a42",
+    "Goa2.Domain.dll": "092859cdcc29543c4978031d2349ce6dd9c837f8557fda9cc420880b1d0b3755",
+    "Goa2.Editor.dll": "173f02b8687e0d3592a6a59697f520cda6b16a5df4423bd0a20431e0de3b7c75",
+    "Goa2.Infrastructure.dll": "88373b8e9f22fd883b0b3cea1e61703c3f3c01cbb4af4667179de06e6ed68ff5",
+    "Goa2.Rules.dll": "3b6b22f9f9b9918fb333669ee9c0a66a189389ba667251ec5075a230c16fc159"
+  },
+  "core": {
+    "passed": 62,
+    "failed": 0,
+    "report": "artifacts/tests/torrent-unity-0.xml",
+    "card_specific": 20,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/torrent-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/torrent-pay.json",
+        "input_sha256": "6c5074d0f604ad305a12e2214a83f8aaf8c5fa3eb53953befd210ca4af63b853",
+        "report": "artifacts/editor-scenarios/torrent-pay/c18c4b0acfac4843865d012146463221/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/torrent-decline.json",
+        "input_sha256": "e8fd97eca64253da72411f83566af68aafecb09639ddbb4b29167a4624b38327",
+        "report": "artifacts/editor-scenarios/torrent-decline/0cab4b6338b44738853d48f563bb966d/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/torrent-no-rear.json",
+        "input_sha256": "cb17e68bfb94d1494e21befbf27b24241613c079efe570b6e12fecd96bf403ab",
+        "report": "artifacts/editor-scenarios/torrent-no-rear/f0c059ed9b2840488c28af2c87fea3bb/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/torrent-counterattack.json",
+        "input_sha256": "a18e0bb56689854cc324f7c8e313ddf96b7c55e8e41a77f0551ff83188d6923c",
+        "report": "artifacts/editor-scenarios/torrent-counterattack/c9ab5f3290544e3a9cca510efd6904e3/report.json",
+        "steps": 21,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine81-torrent-payment-scenario.json",
+        "input_sha256": "02dd33f49e0528b44a81f706bfe3a6348bb43bb3ad082211cd2edf3d20d2e773",
+        "report": "artifacts/editor-scenarios/engine81-torrent-payment-scenario/3599935a3d014ce8a915afc8b295b281/report.json",
+        "steps": 14,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 81
+  },
+  "manual_presets": [
+    "torrent-pay",
+    "torrent-no-rear",
+    "torrent-counterattack"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/torrent-red.xml",
+    "passed": 1,
+    "failed": 13
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e81-torrent-20260927-053101-5b1a7414.zip",
+    "sha256": "5a9649d913152975ee6ec0c44506707d021d14a0f47bc0cc7758a6bc1a81d46c"
+  }
+}

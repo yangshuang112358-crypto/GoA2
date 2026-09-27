@@ -877,7 +877,7 @@
         "conditional",
         "trigger"
       ],
-      "analysis_status": "not_specified",
+      "analysis_status": "specified",
       "draft": "docs/cards/drafts/arien-02-激流.md",
       "question_candidates": [
         "U-011"

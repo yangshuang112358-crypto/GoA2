@@ -1105,5 +1105,32 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：1号阿连发动技能，选(-1,-3)红方小兵；2号队长依次选(0,-4)、(0,-3)回归。分支：可改选(2,-4)敌英雄或(1,-4)友英雄，无需小兵回归。"
+  },
+  {
+    "id": "torrent-pay",
+    "title": "激流：后方英雄弃牌或被击败",
+    "scenario": "torrent-pay",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号阿连攻击(4,-8)萨彼娜，选正后方(5,-8)夏尔加萨；切4号弃劈砍或主动被击败，再由2号防御。分支：后方英雄有牌也可以拒绝；错轴友方布罗根不能成为后方目标。"
+  },
+  {
+    "id": "torrent-no-rear",
+    "title": "激流：后方无人",
+    "scenario": "torrent-no-rear",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号阿连攻击(4,-8)萨彼娜，后方无人，直接由2号防御；(5,-7)夏尔加萨不在正后方，不能支付。"
+  },
+  {
+    "id": "torrent-counterattack",
+    "title": "激流：支付触发反击延后",
+    "scenario": "torrent-counterattack",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：4号夏尔加萨先攻击(5,-9)蓝兵开启反击，再由1号攻击(4,-8)萨彼娜并要求4号弃劈砍。先由2号完成防御，4号才用弃牌劈砍反击(5,-7)布罗根。分支：4号拒绝支付会被击败并取消反击效果。"
   }
 ]

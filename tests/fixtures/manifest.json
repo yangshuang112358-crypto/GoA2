@@ -720,6 +720,15 @@
       "input": "tests/fixtures/engine80-shifting-step-choice-scenario.json",
       "input_sha256": "6a4f42867ffdd61bb437236400639096970e9dc6b259088080e56a3f3e61df73",
       "provenance": "tests/fixtures/engine80-shifting-step-choice.md"
+    },
+    {
+      "engine_version": 81,
+      "accepted_commands": 14,
+      "save": "tests/fixtures/engine81-torrent-payment.json",
+      "save_sha256": "90c187281c331468e20d1986b62683ef8c6862642e005963aae35b8fca265a42",
+      "input": "tests/fixtures/engine81-torrent-payment-scenario.json",
+      "input_sha256": "02dd33f49e0528b44a81f706bfe3a6348bb43bb3ad082211cd2edf3d20d2e773",
+      "provenance": "tests/fixtures/engine81-torrent-payment.md"
     }
   ]
 }

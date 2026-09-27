@@ -14,6 +14,15 @@ namespace Goa2.Rules
         {
             var source=state.Units.SingleOrDefault(u=>u.Seat==execution.ControllerSeat);
             if(source==null)return new List<string>();
+            if(program.HeroTarget==HeroTargetKind.EnemyBehindAttackTarget)
+            {
+                var main=state.Units.SingleOrDefault(u=>u.Id==execution.TargetUnitId);
+                if(main==null || main.Position.Distance(source.Position)!=1)return new List<string>();
+                int dx=main.Position.X-source.Position.X,dy=main.Position.Y-source.Position.Y;
+                var ray=Enumerable.Range(1,program.RearTargetDistance).Select(n=>new Hex(main.Position.X+n*dx,main.Position.Y+n*dy)).ToHashSet();
+                return state.Units.Where(t=>t.Kind=="hero" && t.Seat.HasValue && t.Team!=source.Team && ray.Contains(t.Position))
+                    .Select(t=>t.Id).OrderBy(id=>id,System.StringComparer.Ordinal).ToList();
+            }
             if(program.HeroTarget==HeroTargetKind.OtherEnemyInSkillRange)
             {
                 int radius=(catalog.Card(execution.CardId).SubtypeValue??0)+state.Players[execution.ControllerSeat].RangeBonus;
@@ -68,7 +77,7 @@ namespace Goa2.Rules
             if(state.Pending.ResumeAt=="before_attack_other_move")return OtherMoveTargets(catalog,state);
             var program=CardPrograms.Primary(catalog.Card(execution.CardId),state.EngineVersion);
             return program!=null && program.Id==execution.ProgramId && program.Version==execution.ProgramVersion && execution.Cursor>=0 &&
-                execution.Cursor<program.Instructions.Count && (program.Instructions[execution.Cursor]==InstructionKind.ChooseHeroTarget || program.Instructions[execution.Cursor]==InstructionKind.OptionalOtherHeroDiscard || program.Instructions[execution.Cursor]==InstructionKind.OptionalOtherHeroDiscardOrDefeat)
+                execution.Cursor<program.Instructions.Count && (program.Instructions[execution.Cursor]==InstructionKind.ChooseHeroTarget || program.Instructions[execution.Cursor]==InstructionKind.OptionalOtherHeroDiscard || program.Instructions[execution.Cursor]==InstructionKind.OptionalOtherHeroDiscardOrDefeat || program.Instructions[execution.Cursor]==InstructionKind.OtherHeroDiscardOrDefeatIfAvailable)
                 ? HeroTargets(catalog,state,execution,program) : new List<string>();
         }
         private static bool BeginHeroTarget(ContentCatalog catalog,GameState state,Command command,CardExecution execution,PrimaryProgram program)
@@ -78,7 +87,7 @@ namespace Goa2.Rules
             bool optional=program.Instructions[execution.Cursor]==InstructionKind.OptionalOtherHeroDiscard || program.Instructions[execution.Cursor]==InstructionKind.OptionalOtherHeroDiscardOrDefeat;
             state.Phase=Phase.EffectChoice;
             state.Pending=new PendingChoice {Id="effect-target:"+(state.Events.Count+1),Kind="effect_target",ChooserSeat=execution.ControllerSeat,
-                Source=execution.CardId,CandidateUnits=targets,ResumeAt=optional ? "attack_before_optional_discard" : "card_effect_target",Optional=optional};
+                Source=execution.CardId,CandidateUnits=targets,ResumeAt=program.Instructions[execution.Cursor]==InstructionKind.OtherHeroDiscardOrDefeatIfAvailable ? "attack_before_required_discard" : optional ? "attack_before_optional_discard" : "card_effect_target",Optional=optional};
             Emit(state,command,"EffectTargetChoiceRequired",execution.ControllerSeat,execution.CardId);return true;
         }
         private static void ChooseEffectTarget(ContentCatalog catalog,GameState state,Command command,bool allowBeforeAction=true)
@@ -110,14 +119,14 @@ namespace Goa2.Rules
             }
             if(state.Pending?.ResumeAt=="before_attack_other_move"){ChooseOtherMoveTarget(catalog,state,command);return;}
             if(state.Pending?.Kind=="effect_minion") {ChooseEffectMinionRemoval(catalog,state,command);return;}
-            if(state.EngineVersion>=35 && state.Pending?.Kind=="effect_target" && state.Pending.ResumeAt=="attack_before_optional_discard")
+            if(state.EngineVersion>=35 && state.Pending?.Kind=="effect_target" && (state.Pending.ResumeAt=="attack_before_optional_discard" || (state.EngineVersion>=81 && state.Pending.ResumeAt=="attack_before_required_discard")))
             {
-                Require(state.Pending.ChooserSeat==command.ActorSeat && state.Pending.Optional && state.Execution!=null &&
-                    (command.Value=="skip" || LegalEffectTargets(catalog,state,command.ActorSeat).Contains(command.Value)),"invalid_effect_target","请选择另一名合法敌方英雄，或跳过额外弃牌。");
+                Require(state.Pending.ChooserSeat==command.ActorSeat && state.Execution!=null &&
+                    ((command.Value=="skip" && state.Pending.Optional) || LegalEffectTargets(catalog,state,command.ActorSeat).Contains(command.Value)),"invalid_effect_target","请选择另一名合法敌方英雄；仅可选效果可以跳过。");
                 var attack=state.Execution!;state.Pending=null;state.Phase=Phase.Action;
                 Emit(state,command,command.Value=="skip" ? "EffectTargetSkipped" : "EffectTargetChosen",command.ActorSeat,attack.CardId,detail:command.Value);
                 var program=CardPrograms.Primary(catalog.Card(attack.CardId),state.EngineVersion)!;
-                if(program.Instructions[attack.Cursor]==InstructionKind.OptionalOtherHeroDiscardOrDefeat)
+                if(program.Instructions[attack.Cursor]==InstructionKind.OptionalOtherHeroDiscardOrDefeat || program.Instructions[attack.Cursor]==InstructionKind.OtherHeroDiscardOrDefeatIfAvailable)
                 {
                     // Preserve TargetUnitId: the extra payment target is not the attack target.
                     attack.Cursor++;
