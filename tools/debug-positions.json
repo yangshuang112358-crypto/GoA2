@@ -1195,5 +1195,23 @@
     "phase": "Action",
     "pending": "",
     "instructions": "操作：1号黄蜂选(0,-3)红兵移动到(1,-4)，切2号队长回归到(0,-3)，再切1号可重复同样操作。先回归再提供重复，第二次之后结束。"
+  },
+  {
+    "id": "psychic-vortex-three",
+    "title": "意念黑洞：三次完整等距移动",
+    "scenario": "psychic-vortex-three",
+    "through_step": 10,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号依次选择(1,-4)敌布罗根，移动到(2,-5)、(2,-6)、(2,-5)，每次重新选单位和落点。分支：可改选友阿连；每次可0步；第一次或第二次后都可不重复。总计最多三次。"
+  },
+  {
+    "id": "psychic-vortex-minion",
+    "title": "意念黑洞：逐次移动与小兵回归",
+    "scenario": "psychic-vortex-minion",
+    "through_step": 11,
+    "phase": "Action",
+    "pending": "",
+    "instructions": "操作：1号选(0,-3)红兵移至(1,-4)，2号队长回归到(0,-3)；可再做两次。每次必须先回归，不能合并成移动3格；可提前不重复。"
   }
 ]

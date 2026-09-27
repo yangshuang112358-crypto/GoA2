@@ -322,11 +322,21 @@
     },
     {
       "card_id": "wasp-17-意念黑洞",
-      "status": "data_only",
-      "contract": null,
-      "tests": [],
+      "status": "implemented",
+      "contract": "docs/cards/wasp-17-意念黑洞.md",
+      "tests": [
+        "core/com.goa2.core/Tests/Editor/PsychicVortexTests.cs",
+        "tests/scenarios/psychic-vortex-three.json",
+        "tests/scenarios/psychic-vortex-skip-first.json",
+        "tests/scenarios/psychic-vortex-skip-second.json",
+        "tests/scenarios/psychic-vortex-minion.json"
+      ],
       "known_questions": [],
-      "implementation_files": []
+      "implementation_files": [
+        "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+        "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs",
+        "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs"
+      ]
     },
     {
       "card_id": "shargatha-00-反击",

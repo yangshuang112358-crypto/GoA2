@@ -756,6 +756,15 @@
       "input": "tests/fixtures/engine84-gravity-control-repeat-scenario.json",
       "input_sha256": "c9ee2fc25d88ef50adcb7c80837b21e80512fe0c2e9b1dc89e64fb8f0c28af94",
       "provenance": "tests/fixtures/engine84-gravity-control-repeat.md"
+    },
+    {
+      "engine_version": 85,
+      "accepted_commands": 15,
+      "save": "tests/fixtures/engine85-psychic-vortex-last-repeat.json",
+      "save_sha256": "b1a61d2be9404e65992b7d1f0c81fd65af1bca9c61607890c5f947be9cdfbb9f",
+      "input": "tests/fixtures/engine85-psychic-vortex-last-repeat-scenario.json",
+      "input_sha256": "6ed9effef61897b4f4d40b5b5c9274d17d848a2c26474f49661bfc69057ff6a9",
+      "provenance": "tests/fixtures/engine85-psychic-vortex-last-repeat.md"
     }
   ]
 }

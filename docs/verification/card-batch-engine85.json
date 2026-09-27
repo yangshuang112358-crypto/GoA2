@@ -1,0 +1,90 @@
+{
+  "engine": 85,
+  "implemented_cards": 96,
+  "data_only_cards": 12,
+  "build_utc": "2026-09-27T05:58:55.5867831Z",
+  "assemblies": {
+    "Goa2.Application.dll": "7e49c73a524ab44bc5eefaa2b168e1455205ec5e999b6f80e41050d665b68621",
+    "Goa2.Domain.dll": "7130ddbe3e1e90df7ee250951b9f89ca3149d7ce142975d451fa7ea899e009f3",
+    "Goa2.Editor.dll": "0ba0e1fa0c681e022fff47a46343b78d2626474bdc1c40bd796d619c34b1d9fe",
+    "Goa2.Infrastructure.dll": "c824ffe9c169e78a634a25bdc7154bbabe320e190a3688ae98050e3ed23193a8",
+    "Goa2.Rules.dll": "81427e3bbebadd42f38fc5584114891d6e324930c3985783f7b69c0ccf0807cf"
+  },
+  "core": {
+    "passed": 42,
+    "failed": 0,
+    "report": "artifacts/tests/psychic-vortex-unity-0.xml",
+    "card_specific": 8,
+    "runner": "Unity EditMode",
+    "reports": [
+      "artifacts/tests/psychic-vortex-unity-0.xml"
+    ],
+    "replaced_failed_tests": [],
+    "environment_failure": "Historical .NET App Control restriction; no fresh .NET attempt in this batch."
+  },
+  "native": {
+    "results": [],
+    "scenarios": 0,
+    "steps": 0,
+    "status": "not_retested; historical Windows App Control restriction"
+  },
+  "editor_batch": {
+    "results": [
+      {
+        "input": "tests/scenarios/psychic-vortex-three.json",
+        "input_sha256": "f0932baeb328c691b6ee7bc2101c22681227b479ac81a7ceb7ef6022f109ee71",
+        "report": "artifacts/editor-scenarios/psychic-vortex-three/2692157441f448d0a17fb61235d1b2da/report.json",
+        "steps": 17,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/psychic-vortex-skip-first.json",
+        "input_sha256": "7a2e788517264afced564d5d14b55301607b0b733fa190b9a16d3b9e0411f29b",
+        "report": "artifacts/editor-scenarios/psychic-vortex-skip-first/4f7985c0af2a400989ae1bf9ed5b9e23/report.json",
+        "steps": 14,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/psychic-vortex-skip-second.json",
+        "input_sha256": "1e047ca2265693617cba9e98f48acea3ea99e64332b236c405a871e4fa8bc73d",
+        "report": "artifacts/editor-scenarios/psychic-vortex-skip-second/b2f1fcdead3942d481809b19e8bcae17/report.json",
+        "steps": 16,
+        "passed": true
+      },
+      {
+        "input": "tests/scenarios/psychic-vortex-minion.json",
+        "input_sha256": "e383b8d0637b48bd74558a6b33241ad52787ebe066eb3d1aa338436a32c0a0ce",
+        "report": "artifacts/editor-scenarios/psychic-vortex-minion/a62ad3dac449434f90925abb3b756b86/report.json",
+        "steps": 21,
+        "passed": true
+      },
+      {
+        "input": "tests/fixtures/engine85-psychic-vortex-last-repeat-scenario.json",
+        "input_sha256": "6ed9effef61897b4f4d40b5b5c9274d17d848a2c26474f49661bfc69057ff6a9",
+        "report": "artifacts/editor-scenarios/engine85-psychic-vortex-last-repeat-scenario/306c093f13064803919cba53c99e1cf4/report.json",
+        "steps": 15,
+        "passed": true
+      }
+    ],
+    "scenarios": 5,
+    "steps": 83
+  },
+  "manual_presets": [
+    "psychic-vortex-three",
+    "psychic-vortex-minion"
+  ],
+  "note": "Unity Editor batch commands, frozen save and build verified. Native Player not retested; historical App Control restriction. Actual UI and physical input remain unverified.",
+  "red": {
+    "report": "artifacts/unity/tests/psychic-vortex-red.xml",
+    "passed": 1,
+    "failed": 7
+  },
+  "python": {
+    "passed": 32,
+    "failed": 0
+  },
+  "package": {
+    "archive": "artifacts/releases/Goa2V1-e85-psychic-vortex-20260927-055946-5c0427a8.zip",
+    "sha256": "c2e27e457885a9a78751e51902edcbab53786b938b89812ac5fdccf3a8617200"
+  }
+}
