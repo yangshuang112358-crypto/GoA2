@@ -65,7 +65,18 @@ namespace Goa2.Presentation
             Check(vertices.Length>0,"Connected rock mesh present");
             var center=board3DViewport.Focus;
             Check(vertices.All(v=>vertices.Any(w=>(w-new Vector3(2*center.x-v.x,v.y,2*center.z-v.z)).sqrMagnitude<.000001f)),"Rock vertices are centrally symmetric within 1 mm");
-            Check(vertices.Where(v=>v.y>=Board3DScene.WallHeight-.001f && Vector2.Distance(new Vector2(v.x,v.z),new Vector2(center.x,center.z))<.49f).All(v=>Mathf.Abs(v.y-Board3DScene.WallHeight)<.001f),"Coin footprint lies on a flat top");
+            float Surface(Vector3 point){
+                float height=float.NegativeInfinity;
+                for(int i=0;i<vertices.Length;i+=3){
+                    var a=vertices[i];var b=vertices[i+1];var c=vertices[i+2];
+                    float denominator=(b.z-c.z)*(a.x-c.x)+(c.x-b.x)*(a.z-c.z);if(Mathf.Abs(denominator)<.00001f)continue;
+                    float u=((b.z-c.z)*(point.x-c.x)+(c.x-b.x)*(point.z-c.z))/denominator;
+                    float v=((c.z-a.z)*(point.x-c.x)+(a.x-c.x)*(point.z-c.z))/denominator;float w=1-u-v;
+                    if(u>=-.00001f && v>=-.00001f && w>=-.00001f)height=Mathf.Max(height,u*a.y+v*b.y+w*c.y);
+                }return height;
+            }
+            var samples=Enumerable.Range(0,16).Select(i=>center+new Vector3(Mathf.Cos(i*Mathf.PI/8),0,Mathf.Sin(i*Mathf.PI/8))*.4825f).Append(center);
+            Check(samples.All(p=>Mathf.Abs(Surface(p)-Board3DScene.WallHeight)<.001f),"Coin center and 16 perimeter samples lie on a flat covered top");
             Check(filters.Any(f=>f.name=="coin platform engraving"),"Coin platform engraved ring present");
             Check(filters.Count(f=>f.name=="spawn rune backing")==filters.Count(f=>f.name.StartsWith("spawn rune ") && f.name!="spawn rune backing"),"Every spawn rune has contrast backing");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"map-overview.png"));yield return new WaitForSecondsRealtime(.3f);

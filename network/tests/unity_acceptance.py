@@ -1,4 +1,6 @@
 """Four real Windows Players + TCP authority, synthetic UI actions (not OS input)."""
+import ctypes
+from ctypes import wintypes
 import hashlib
 import json
 import os
@@ -41,11 +43,25 @@ class UnityRun(Run):
     def ui(self, actor, op, **args):
         seat = actor
         folder = self.output/f'ui-{seat}'
+        if op=='screen' and '--capture-visible' in sys.argv:
+            callback=ctypes.WINFUNCTYPE(wintypes.BOOL,wintypes.HWND,wintypes.LPARAM)
+            def show(hwnd,_):
+                pid=wintypes.DWORD();ctypes.windll.user32.GetWindowThreadProcessId(hwnd,ctypes.byref(pid))
+                if pid.value==self.clients[seat].pid:ctypes.windll.user32.ShowWindowAsync(hwnd,4)
+                return True
+            ctypes.windll.user32.EnumWindows(callback(show),0)
+            time.sleep(1)
         self.seq[seat] += 1
         message = dict(seq=self.seq[seat],op=op,**args)
         temp = folder/'input.tmp'
         temp.write_text(json.dumps(message,ensure_ascii=False),encoding='utf-8')
-        temp.replace(folder/'input.json')
+        write_deadline=time.monotonic()+3
+        while True:
+            try:
+                temp.replace(folder/'input.json');break
+            except PermissionError:
+                if time.monotonic()>=write_deadline:raise
+                time.sleep(.01)
         deadline = time.monotonic()+45
         while time.monotonic()<deadline:
             if self.clients[seat].poll() is not None:
@@ -136,6 +152,7 @@ class UnityRun(Run):
 
     def pending_ui(self):
         self.start_checks()
+        self.ui(0,'switch',seat=0)
         before=self.view(0)['Revision']
         selected=self.ui(0,'pick',card='brogan-00-猛攻')
         self.check('discard preview stays local without command',selected['wheelPreview']=='brogan-00-猛攻' and selected['view']['Revision']==before)
@@ -163,6 +180,12 @@ class UnityRun(Run):
         for other in range(4):
             if other!=seat:self.check(f'private {candidates} seat {other}',not self.view(other)[candidates])
 
+    def capture_ui(self):
+        self.start_checks();self.ui(0,'switch',seat=0);self.ui(0,'screen');time.sleep(2)
+        from PIL import Image
+        image=Image.open(self.output/'ui-0/screen.png').convert('RGB')
+        self.check('network game screen contains rendered UI',max(channel[1]-channel[0] for channel in image.getextrema())>80)
+
     def finish(self):
         for seat in range(len(self.clients)):
             try:self.ui(seat,'quit')
@@ -173,6 +196,8 @@ class UnityRun(Run):
 
 if __name__=='__main__':
     cases=[(None,0,True,'ordinary'),('tests/scenarios/throwing-axe-reflection.json',11,False,'pending_ui')]
+    if '--pending-only' in sys.argv:cases=cases[1:]
+    if '--capture-only' in sys.argv:cases=[('tests/scenarios/throwing-axe-reflection.json',11,False,'capture_ui')]
     for fixture,steps,faults,method in cases:
         run=UnityRun(fixture,steps,faults)
         try:
