@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "engine_version": 97,
+  "unity_version": "6000.3.23f1",
+  "payload_files": 157,
+  "payload_bytes": 110037462,
+  "primary_cards": 89,
+  "defense_cards": 13,
+  "archive": "Goa2V1-e97-terrain-audio-20260928-100904-f699b73d.zip",
+  "archive_sha256": "f8fbf253e93b42c5e59af10dddc7cdf554b2dedeecd23847bcd40409059a2c27",
+  "source_commit": "acc0e26c212c6916c1cecf8a397a43d1f41c133e",
+  "recorded_production_files_verified": 46,
+  "source_hash_mismatches": []
+}
