@@ -31,7 +31,7 @@ namespace Goa2.Presentation
         {
             Directory.CreateDirectory(output);
             var report=new BoardAuditReport {UnityVersion=UnityEngine.Application.unityVersion,Width=Screen.width,Height=Screen.height};
-            var routine=Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
+            var routine=Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
             while(true)
             {
                 object? next=null;bool more=false;
@@ -49,6 +49,34 @@ namespace Goa2.Presentation
             UnityEngine.Application.Quit(report.Passed ? 0 : 1);
 #endif
         }
+        private IEnumerator AuditSkillBadges(string output,BoardAuditReport report)
+        {
+            void Check(bool condition,string text){if(!condition)throw new InvalidOperationException(text);report.Checks.Add(text);}
+            yield return null;yield return null;
+            Check(!startupFailed,"Startup content loaded");Submit(CommandKind.DebugPrepare,"wasp,shargatha,brogan,arien");
+            yield return new WaitForSecondsRealtime(4);
+            string before=session.ExportSave();
+            var discs=root.Query<SkillDisc>().ToList();Check(discs.Count==5,"Five skill discs visible");
+            foreach(var disc in discs){
+                var init=disc.Q<SkillBadge>("badge-initiative");var primary=disc.Q<SkillBadge>("badge-primary");
+                Check(init!=null && primary!=null,"Initiative and primary badges present: "+disc.name);
+                Check(init.worldBound.center.y>primary.worldBound.center.y && Mathf.Abs(init.worldBound.center.x-disc.worldBound.center.x)<3,"Initiative centered below primary: "+disc.name);
+                foreach(var badge in disc.Query<SkillBadge>().ToList()){
+                    var number=badge.Q<Label>("badge-number");Check(number.worldBound.center.y<badge.worldBound.yMin+5,"Number floats above its symbol: "+disc.name+"/"+badge.name);
+                    Check(number.worldBound.xMin>=0 && number.worldBound.xMax<=Screen.width && number.worldBound.yMin>=0 && badge.worldBound.yMax<=Screen.height,"Badge fits viewport: "+disc.name+"/"+badge.name);
+                }
+                var movement=disc.Q<SkillBadge>("badge-movement");var defense=disc.Q<SkillBadge>("badge-defense");var range=disc.Q<SkillBadge>("badge-range");
+                if(movement!=null)Check(movement.worldBound.center.x<disc.worldBound.center.x && movement.worldBound.center.y<disc.worldBound.center.y,"Movement at upper left: "+disc.name);
+                if(defense!=null)Check(defense.worldBound.center.x>disc.worldBound.center.x && defense.worldBound.center.y<disc.worldBound.center.y,"Defense at upper right: "+disc.name);
+                Check(primary.worldBound.center.x<disc.worldBound.center.x,"Primary at lower left: "+disc.name);
+                if(range!=null)Check(range.worldBound.center.x>disc.worldBound.center.x && range.worldBound.center.y>disc.worldBound.center.y,"Range at lower right: "+disc.name);
+            }
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"skill-badges.png"));yield return new WaitForSecondsRealtime(.25f);
+            var gold=root.Q<SkillDisc>("skill-gold");using(var e=PointerEnterEvent.GetPooled(new Event{type=EventType.MouseMove,mousePosition=gold.worldBound.center})){e.target=gold;gold.SendEvent(e);}
+            yield return new WaitForSecondsRealtime(.4f);ScreenCapture.CaptureScreenshot(Path.Combine(output,"skill-badges-hover.png"));yield return new WaitForSecondsRealtime(.25f);
+            Check(session.ExportSave()==before,"Visual inspection does not alter rules");
+        }
+
         private IEnumerator AuditSettingsButton(string output, BoardAuditReport report)
         {
             void Check(bool condition,string text) {if(!condition)throw new InvalidOperationException(text);report.Checks.Add(text);}

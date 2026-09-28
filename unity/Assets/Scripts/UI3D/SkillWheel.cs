@@ -43,15 +43,16 @@ namespace Goa2.Presentation.UI3D {
    badges=new VisualElement{pickingMode=PickingMode.Ignore};badges.StretchToParentSize();Add(badges);
    if(card!=null){
     int Bonus(string key)=>(player.EffectiveBonuses ?? player.PermanentBonuses).TryGetValue(key,out int b)?b:0;
-    void Badge(string kind,int? value,int bonus,float x,float y,bool infinity=false,float scale=1){if(!value.HasValue && !infinity)return;var b=new SkillBadge(kind,infinity?"∞":kind=="spark" && value==0 ? "" : (value!.Value+bonus).ToString(),bonus);b.style.left=x;b.style.top=y;b.style.scale=new Scale(new Vector3(scale,scale,1));badges.Add(b);}
-    Badge("hourglass",card.Initiative,Bonus("先攻"),0,6);
+    void Badge(string slot,string kind,int? value,int bonus,float x,float y,bool infinity=false){if(!value.HasValue && !infinity)return;var b=new SkillBadge(kind,infinity?"∞":kind=="spark" && value==0 ? "" : (value!.Value+bonus).ToString(),bonus){name="badge-"+slot};b.style.left=x;b.style.top=y;badges.Add(b);}
+    // Fixed semantic positions: movement / defense above, primary / range below, initiative at foot.
+    Badge("movement","boot",card.SecondaryMovement,Bonus("移动"),-8,9);
+    Badge("defense","shield",card.SecondaryDefense,Bonus("防御"),106,9);
     string family=card.PrimaryFamily=="attack"?"sword":card.PrimaryFamily=="defense"?"shield":card.PrimaryFamily=="movement"?"boot":"spark";
     string key=family=="sword"?"攻击":family=="shield"?"防御":family=="boot"?"移动":"";
-    Badge(family,card.PrimaryValue,card.Exclamation?0:Bonus(key)+(card.PrimaryCategory=="基础攻击"?player.BasicAttackBonus:0),0,105,card.Exclamation);
-    Badge(card.Subtype=="远程"?"arrow":"range",card.SubtypeValue,Bonus(card.Subtype=="远程"?"远程":"范围")+(card.PrimaryCategory=="基础攻击"?player.BasicAttackRangeBonus:0),105,105);
-    bool both=card.SecondaryMovement.HasValue && card.SecondaryDefense.HasValue;
-    Badge("boot",card.SecondaryMovement,Bonus("移动"),105,both?0:6,false,both ? .8f : 1);
-    Badge("shield",card.SecondaryDefense,Bonus("防御"),105,both?32:6,false,both ? .8f : 1);
+    Badge("primary",family,card.PrimaryValue,card.Exclamation?0:Bonus(key)+(card.PrimaryCategory=="基础攻击"?player.BasicAttackBonus:0),-8,96,card.Exclamation);
+    Badge("range",card.Subtype=="远程"?"arrow":"range",card.SubtypeValue,Bonus(card.Subtype=="远程"?"远程":"范围")+(card.PrimaryCategory=="基础攻击"?player.BasicAttackRangeBonus:0),106,96);
+    Badge("initiative","hourglass",card.Initiative,Bonus("先攻"),49,121);
+
    }
    RegisterCallback<PointerEnterEvent>(_=>hover=true);RegisterCallback<PointerLeaveEvent>(_=>{hover=false;tilt=Vector2.zero;});
    RegisterCallback<PointerMoveEvent>(e=>tilt=new Vector2((e.localPosition.x-78)/78,(e.localPosition.y-78)/78));
@@ -68,8 +69,8 @@ namespace Goa2.Presentation.UI3D {
  }
  public sealed class SkillBadge : VisualElement {
   public SkillBadge(string kind,string value,int bonus){
-   pickingMode=PickingMode.Ignore;style.position=Position.Absolute;style.width=58;style.height=40;
-   var text=new Label(value){pickingMode=PickingMode.Ignore};text.style.position=Position.Absolute;text.style.left=27;text.style.top=1;text.style.width=29;text.style.height=36;text.style.fontSize=22;text.style.unityTextAlign=TextAnchor.MiddleCenter;text.style.unityFontStyleAndWeight=FontStyle.Bold;text.style.color=bonus>0?new Color(.35f,1,.55f):bonus<0?new Color(1,.32f,.35f):Color.white;text.style.unityTextOutlineColor=new Color(.025f,.025f,.025f);text.style.unityTextOutlineWidth=1;text.style.marginLeft=0;text.style.marginTop=0;text.style.paddingLeft=0;Add(text);
+   pickingMode=PickingMode.Ignore;style.position=Position.Absolute;style.width=58;style.height=40;style.overflow=Overflow.Visible;
+   var text=new Label(value){name="badge-number",pickingMode=PickingMode.Ignore};text.style.position=Position.Absolute;text.style.left=0;text.style.top=-13;text.style.width=58;text.style.height=29;text.style.fontSize=24;text.style.unityTextAlign=TextAnchor.MiddleCenter;text.style.unityFontStyleAndWeight=FontStyle.Bold;text.style.color=bonus>0?new Color(.35f,1,.55f):bonus<0?new Color(1,.32f,.35f):Color.white;text.style.unityTextOutlineColor=new Color(.025f,.025f,.025f);text.style.unityTextOutlineWidth=1;text.style.marginLeft=0;text.style.marginRight=0;text.style.marginTop=0;text.style.marginBottom=0;text.style.paddingLeft=0;text.style.paddingRight=0;text.style.paddingTop=0;text.style.paddingBottom=0;Add(text);
    generateVisualContent+=c=>{var p=c.painter2D;
     void Poly(Color color,params Vector2[] points){p.fillColor=color;p.BeginPath();p.MoveTo(points[0]);for(int i=1;i<points.Length;i++)p.LineTo(points[i]);p.ClosePath();p.Fill();}
     void Line(Color color,float width,params Vector2[] points){p.strokeColor=color;p.lineWidth=width;p.BeginPath();p.MoveTo(points[0]);for(int i=1;i<points.Length;i++)p.LineTo(points[i]);p.Stroke();}
@@ -82,7 +83,6 @@ namespace Goa2.Presentation.UI3D {
     Line(new Color(.31f,.25f,.17f),2,new Vector2(7,32),new Vector2(29,38),new Vector2(52,33));
     // Small feathered metal shoulders, integrated into the plaque rather than text boxes.
     for(int j=0;j<3;j++){float y=22+j*4;Line(gold,1.3f,new Vector2(1+j,y),new Vector2(9+j,y+3));}
-    Line(new Color(.46f,.48f,.45f),1,new Vector2(27,8),new Vector2(27,29));
     Vector2[] glyph;
     if(kind=="sword")glyph=new[]{new Vector2(10,30),new Vector2(7,27),new Vector2(12,21),new Vector2(8,17),new Vector2(10,15),new Vector2(13,18),new Vector2(21,6),new Vector2(23,7),new Vector2(18,22),new Vector2(22,25),new Vector2(20,27),new Vector2(16,24)};
     else if(kind=="shield")glyph=new[]{new Vector2(8,10),new Vector2(16,6),new Vector2(24,10),new Vector2(22,23),new Vector2(16,30),new Vector2(9,23)};
@@ -90,12 +90,13 @@ namespace Goa2.Presentation.UI3D {
     else if(kind=="hourglass")glyph=new[]{new Vector2(8,7),new Vector2(24,7),new Vector2(23,11),new Vector2(18,18),new Vector2(23,25),new Vector2(24,30),new Vector2(8,30),new Vector2(9,25),new Vector2(14,18),new Vector2(9,11)};
     else if(kind=="arrow")glyph=new[]{new Vector2(7,26),new Vector2(17,15),new Vector2(13,12),new Vector2(25,6),new Vector2(23,20),new Vector2(20,17),new Vector2(10,29)};
     else glyph=new[]{new Vector2(16,5),new Vector2(19,14),new Vector2(27,18),new Vector2(19,21),new Vector2(16,31),new Vector2(13,21),new Vector2(5,18),new Vector2(13,14)};
+    for(int i=0;i<glyph.Length;i++)glyph[i]+=new Vector2(13,4);
     var shadow=new Vector2[glyph.Length];for(int i=0;i<glyph.Length;i++)shadow[i]=glyph[i]+new Vector2(1.5f,2);Poly(dark,shadow);Poly(gold,glyph);
     Line(light,1.2f,glyph[0],glyph[1],glyph[2]);
-    if(kind=="shield")Line(dark,1.5f,new Vector2(16,10),new Vector2(16,25));
-    if(kind=="boot")Line(dark,2,new Vector2(11,14),new Vector2(18,14));
-    if(kind=="hourglass"){Poly(new Color(.20f,.28f,.31f),new Vector2(12,10),new Vector2(20,10),new Vector2(16,16));Line(light,1.5f,new Vector2(12,27),new Vector2(20,27));}
-    if(kind=="range"){p.strokeColor=light;p.lineWidth=1;p.BeginPath();p.Arc(new Vector2(16,18),11,0,360);p.Stroke();}
+    if(kind=="shield")Line(dark,1.5f,new Vector2(29,14),new Vector2(29,29));
+    if(kind=="boot")Line(dark,2,new Vector2(24,18),new Vector2(31,18));
+    if(kind=="hourglass"){Poly(new Color(.20f,.28f,.31f),new Vector2(25,14),new Vector2(33,14),new Vector2(29,20));Line(light,1.5f,new Vector2(25,31),new Vector2(33,31));}
+    if(kind=="range"){p.strokeColor=light;p.lineWidth=1;p.BeginPath();p.Arc(new Vector2(29,22),11,0,360);p.Stroke();}
    };
   }
  }
