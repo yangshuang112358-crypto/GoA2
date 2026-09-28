@@ -19,7 +19,6 @@ namespace Goa2.Presentation.UI3D
         private readonly List<(Label label,Hex cell,float top)> labels=new List<(Label,Hex,float)>();
         private readonly List<(Vector2 from,Vector2 to)> leaders=new List<(Vector2,Vector2)>();
         private VisualElement? leaderLayer;
-        private readonly Label compass=new Label();
         private readonly HashSet<Hex> legal;
         private readonly Action<Hex> choose;
         private bool connected=true,dragging;
@@ -58,9 +57,6 @@ namespace Goa2.Presentation.UI3D
                 if(scene!=null)Repaint(moved);
                 lastAnimationTime=now;
             }).Every(16);
-            compass.pickingMode=PickingMode.Ignore;compass.style.position=Position.Absolute;compass.style.left=8;compass.style.top=6;
-            compass.style.fontSize=20;compass.style.color=Board3DScene.ColorOf("#DEE8EC");
-            compass.style.backgroundColor=new Color(.06f,.11f,.16f,.88f);
 
             RegisterCallback<AttachToPanelEvent>(_=>
             {
@@ -174,7 +170,6 @@ namespace Goa2.Presentation.UI3D
                 entry.label.style.top=Mathf.Clamp(p.y-height/2,0,Mathf.Max(0,contentRect.height-height));
                 entry.label.style.width=width;entry.label.style.height=height;entry.label.style.fontSize=size;
             }
-            compass.text=connected ? $"Q ↶  {state.Step*30}°  ↷ E" : "连接已断开 · 禁止选择";
             if(notify)ViewportChanged?.Invoke();
         }
     }
