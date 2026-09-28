@@ -277,36 +277,12 @@ namespace Goa2.Presentation
                     var label=Text("本次攻击不可抵挡；仍可用数值防御。","body");label.name="attack-unblockable";parent.Add(label);
                 }
             }
-            if (choice.ChooserSeat != seat) { parent.Add(Text("切换至对应角色选择防御。", "body")); return true; }
-            parent.Add(Text("使用手牌防御；也可选择不防御并被击败。", "body"));
-            foreach (var option in view.DefenseOptions)
-            {
-                string id = option.CardId;
-                string result = option.Block ? "抵挡" : "防御 " + option.Assessment.FinalDefense + (option.Assessment.Successful ? " ≥ " : " < ") + option.Assessment.AttackCompared;
-                if (option.IgnoresMinions) result += " · 忽略小兵修正";
-                var button = Button(catalog.Card(id).Name + " · " + result, () => { defenseCardId = id; declineDefensePending = false; Render(); }, "choice-button");
-                button.name="defense-option-"+id;
-                if(CardDisplay.WarnDefense(catalog.Card(id),option.Assessment))
-                {
-                    button.style.backgroundColor=new UnityEngine.Color(.48f,.22f,.28f);
-                    button.text+=" · 数值偏低";
-                    button.tooltip="防御数值低于攻击数值；仅作数值警告，不判断牌文能否抵挡。";
-                }
-                if (id == defenseCardId) button.AddToClassList("chosen"); parent.Add(button);
+            parent.Add(Text(choice.ChooserSeat==seat ? "在英雄技能环选择防御牌，或选择不防御，再确认。" : "等待响应方选择防御。","body"));
+            if(choice.ChooserSeat==seat)foreach(var option in view.DefenseOptions) {
+                var label=Text(catalog.Card(option.CardId).Name+" · "+(option.Block ? "抵挡" : "防御 "+option.Assessment.FinalDefense+" / 攻击 "+option.Assessment.AttackCompared),"muted");
+                if(CardDisplay.WarnDefense(catalog.Card(option.CardId),option.Assessment))label.style.color=new UnityEngine.Color(1,.6f,.7f);parent.Add(label);
             }
-            foreach (string id in view.UnimplementedDefenseCards) parent.Add(Text(catalog.Card(id).Name + "：响应文字待实装，已保留等待。", "tiny"));
-            foreach(var restriction in view.DefenseRestrictions)
-            {
-                var card=catalog.Card(restriction.Key);
-                var label=Text(card.Name+"："+DefenseRestrictionText(restriction.Value),"muted"); label.name="defense-restriction-"+card.Color; parent.Add(label);
-            }
-            if (defenseCardId != "" && view.DefenseOptions.Any(o => o.CardId == defenseCardId))
-            {
-                RenderCardDetail(parent,catalog.Card(defenseCardId));
-                Confirm(parent, "确认使用 " + catalog.Card(defenseCardId).Name + " 防御", () => Submit(CommandKind.Defend, defenseCardId));
-            }
-            else if (declineDefensePending) Confirm(parent, "确认不防御并被击败", () => Submit(CommandKind.DeclineDefense));
-            else parent.Add(Button("不防御", () => { defenseCardId = ""; declineDefensePending = true; Render(); }, "quiet-button", "decline-defense"));
+            foreach(var restriction in view.DefenseRestrictions)parent.Add(Text(catalog.Card(restriction.Key).Name+"："+DefenseRestrictionText(restriction.Value),"muted"));
             return true;
         }
     }

@@ -132,6 +132,7 @@ class UnityRun(Run):
                     self.ui(seat,'disconnect')
                     frozen=self.ui(seat,'view')
                     self.check('disconnect disables map and confirmation',not frozen['canAct'] and not frozen['boardConnected'] and not frozen['confirmEnabled'])
+                    self.check('settings reconnect remains enabled while decisions disabled',self.ui(seat,'settings')['reconnectEnabled'])
                     self.ui(seat,'connect')
                     self.check('reconnect preserves selected card',any(c['Zone']=='Selected' for c in self.view(seat)['OwnCards']))
                 self.command(seat,'ConfirmCard')
@@ -167,7 +168,11 @@ class UnityRun(Run):
         time.sleep(3)
         self.command(0,'ChooseAttackTarget',Value='hero:1')
         self.reconnect_pending(1,'defense','DefenseOptions')
-        self.command(1,'Defend',Value='wasp-10-反射屏障')
+        before=self.view(1)['Revision']
+        preview=self.ui(1,'pick',card='wasp-10-反射屏障')
+        self.check('defense wheel preview stays local',preview['wheelPreview']=='wasp-10-反射屏障' and preview['view']['Revision']==before)
+        result=self.ui(1,'confirm');self.revision=result['view']['Revision']
+        self.check('defense wheel confirms through network',result['result']['Accepted'] and self.revision==before+1)
         self.reconnect_pending(0,'forced_discard','ForcedDiscardCards')
         time.sleep(3)
         self.ui(0,'pick',card='brogan-06-铜墙铁壁');result=self.ui(0,'confirm');self.revision=result['view']['Revision']

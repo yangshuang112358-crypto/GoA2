@@ -42,7 +42,8 @@ namespace Goa2.Presentation
                     else if(op=="disconnect")networkSession!.Disconnect();
                     else if(op=="connect")ReconnectNetwork();
                     else if(op=="retry")RetryNetwork();
-                    else if(op=="screen"){rightExpanded=false;Render();ScreenCapture.CaptureScreenshot(Path.Combine(directory,"screen.png"));}
+                    else if(op=="settings"){rightExpanded=true;Render();}
+                    else if(op=="screen"){rightExpanded=false;Render();}
                     else if(op=="quit"){UnityEngine.Application.Quit();yield break;}
                     else if(op!="view")throw new ArgumentException("Unknown QA operation");
                 }
@@ -50,10 +51,12 @@ namespace Goa2.Presentation
                 float until=Time.realtimeSinceStartup+22;
                 while((networkBusy || networkReconnecting || op=="view" && (networkView==null || networkView.Revision<((long?)request["revision"]??0))) && Time.realtimeSinceStartup<until)yield return null;
                 yield return null;yield return null;
+                if(op=="screen"){yield return new WaitForSecondsRealtime(.4f);ScreenCapture.CaptureScreenshot(Path.Combine(directory,"screen.png"));}
                 if(Time.realtimeSinceStartup>=until)error="Timed out";
                 var result=new{seq=last,error,seat,connection=networkSession!.Connection.ToString(),canAct=NetworkCanAct,
                     hasLocalSession=session!=null,hasBoard=board!=null,boardConnected=board?.Connected,
                     confirmEnabled=confirmButton?.enabledInHierarchy??false,wheelPreview,uncertain=uncertainCommand!="",
+                    reconnectEnabled=root.Q<Button>("network-reconnect")?.enabledInHierarchy??false,
                     discardBeats=wheelState.Discards.Count,result=lastNetworkResult,view=networkView};
                 string output=Path.Combine(directory,"result-"+last+".json"),temp=output+".tmp";
                 File.WriteAllText(temp,JsonConvert.SerializeObject(result,settings));

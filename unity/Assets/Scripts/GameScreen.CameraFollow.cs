@@ -11,10 +11,12 @@ namespace Goa2.Presentation
         private float heroZoom=3,heroZoom2D=2,toastStarted=-100;
         private float? cinematicResumeZoom;
         private Label? followToast;
+        private int cameraFocusVersion;
         private Button? followButton;
         private void SetCameraFollow(bool enabled)
         {
-            if(cameraFollow==enabled) return;
+            cameraFocusVersion++;
+            if(cameraFollow==enabled) {if(!enabled)board?.StopFollowing();return;}
             cameraFollow=enabled;toastStarted=Time.realtimeSinceStartup;
             if(enabled) ApplyCameraFollow(true);else {cinematicResumeZoom=null;board?.StopFollowing();}
             RefreshFollowControls();RequestCapture();
@@ -50,7 +52,7 @@ namespace Goa2.Presentation
                 if(spawn.Count>0) {focus=spawn.Aggregate(Vector3.zero,(a,b)=>a+b)/spawn.Count;zoom=2.5f;}
             }
             var wheelUnit=wheelSeat.HasValue ? renderedView.Units.FirstOrDefault(u=>u.Seat==wheelSeat.Value) : null;
-            if(wheelUnit!=null && (WheelDiscard(renderedView) || wheelState.Discards.Count>0))focus=Board3DGeometry.World(wheelUnit.Position);
+            if(wheelUnit!=null && (CameraFollowPolicy.ResponseSeat(renderedView).HasValue || wheelState.Discards.Count>0))focus=Board3DGeometry.World(wheelUnit.Position);
             var fx=board3DViewport.Presentation;float now=Time.realtimeSinceStartup;
             if(now<fx.DeathUntil || now-fx.CoinStarted<fx.CoinDuration) {if(zoom.HasValue || !cinematicResumeZoom.HasValue)cinematicResumeZoom=zoom ?? (board3DViewport.Enabled ? board3DViewport.Zoom : viewport.Zoom);}
             else if(cinematicResumeZoom.HasValue) {zoom=zoom ?? cinematicResumeZoom;cinematicResumeZoom=null;}

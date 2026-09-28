@@ -30,6 +30,7 @@ namespace Goa2.Presentation.UI3D
         public Action? ManualPan;
         public Action<int?,Vector2>? HeroHover;
         public Action<int>? HeroClick;
+        public Action? EmptyClick;
         private readonly List<(HeroPlate plate,Hex cell)> heroPlates=new List<(HeroPlate,Hex)>();
         public int RotationStep => state.Step;
         public bool Connected => connected;
@@ -44,7 +45,7 @@ namespace Goa2.Presentation.UI3D
             if(!state.Enabled)
             {
                 fallback=new HexBoard(catalog,view,legal,selected,h=> {if(connected) choose(h);},hover,oldState,effectArea,ownSeat);
-                fallback.HeroClick=who=>HeroClick?.Invoke(who);fallback.HeroHover=(who,at)=>HeroHover?.Invoke(who,at);fallback.ManualPan=()=>ManualPan?.Invoke();fallback.ViewportChanged=()=>ViewportChanged?.Invoke();Add(fallback);AddTeamStatus(view);return;
+                fallback.EmptyClick=()=>EmptyClick?.Invoke();fallback.HeroClick=who=>HeroClick?.Invoke(who);fallback.HeroHover=(who,at)=>HeroHover?.Invoke(who,at);fallback.ManualPan=()=>ManualPan?.Invoke();fallback.ViewportChanged=()=>ViewportChanged?.Invoke();Add(fallback);return;
             }
             image=new Image {pickingMode=PickingMode.Ignore,scaleMode=ScaleMode.StretchToFill};
             image.StretchToParentSize();Add(image);
@@ -59,8 +60,8 @@ namespace Goa2.Presentation.UI3D
             }).Every(16);
             compass.pickingMode=PickingMode.Ignore;compass.style.position=Position.Absolute;compass.style.left=8;compass.style.top=6;
             compass.style.fontSize=20;compass.style.color=Board3DScene.ColorOf("#DEE8EC");
-            compass.style.backgroundColor=new Color(.06f,.11f,.16f,.88f);Add(compass);
-            AddTeamStatus(view);
+            compass.style.backgroundColor=new Color(.06f,.11f,.16f,.88f);
+
             RegisterCallback<AttachToPanelEvent>(_=>
             {
                 scene=new Board3DScene(catalog,view,this.legal,connected ? selected : null,effectArea,state);
@@ -75,7 +76,7 @@ namespace Goa2.Presentation.UI3D
                     label.style.color=Color.white;label.style.unityTextOutlineColor=new Color(.04f,.07f,.12f);label.style.unityTextOutlineWidth=.45f;
                     Add(label);labels.Add((label,token.cell,token.top));
                 }
-                lastAnimationTime=Time.realtimeSinceStartup;compass.BringToFront();Repaint();
+                lastAnimationTime=Time.realtimeSinceStartup;Repaint();
             });
             RegisterCallback<DetachFromPanelEvent>(_=>
             {
@@ -87,7 +88,7 @@ namespace Goa2.Presentation.UI3D
             {
                 if(e.button==1 && scene!=null) {var hit=scene.Hit(e.localPosition,contentRect.size);var hero=hit==null ? null : view.Units.FirstOrDefault(u=>u.Position==hit.Position && u.Seat.HasValue);if(hero!=null){HeroHover?.Invoke(hero.Seat,e.position);e.StopPropagation();return;}}
                 if(e.button==1 || e.button==2) {dragging=true;pointerId=e.pointerId;lastPointer=e.localPosition;this.CapturePointer(pointerId);e.StopPropagation();return;}
-                if(e.button==0) {if(!SelectAt(e.localPosition) && scene!=null){var hit=scene.Hit(e.localPosition,contentRect.size);var hero=hit==null?null:view.Units.FirstOrDefault(u=>u.Position==hit.Position && u.Seat.HasValue);if(hero!=null)HeroClick?.Invoke(hero.Seat!.Value);}}
+                if(e.button==0) {if(!SelectAt(e.localPosition) && scene!=null){var hit=scene.Hit(e.localPosition,contentRect.size);var hero=hit==null?null:view.Units.FirstOrDefault(u=>u.Position==hit.Position && u.Seat.HasValue);if(hero!=null)HeroClick?.Invoke(hero.Seat!.Value);else if(hit==null || !view.Units.Any(u=>u.Position==hit.Position))EmptyClick?.Invoke();}}
             });
             RegisterCallback<PointerMoveEvent>(e=>
             {
@@ -101,11 +102,6 @@ namespace Goa2.Presentation.UI3D
             RegisterCallback<PointerUpEvent>(e=> {if(dragging && pointerId==e.pointerId) {dragging=false;this.ReleasePointer(pointerId);e.StopPropagation();}});
             RegisterCallback<PointerCaptureOutEvent>(_=>dragging=false);
             RegisterCallback<WheelEvent>(e=> {Zoom(e.localMousePosition,Mathf.Pow(1.12f,-e.delta.y/3));e.StopPropagation();});
-        }
-        private void AddTeamStatus(GameView view)
-        {
-            var status=new Label($"水晶 蓝{Mathf.Max(0,view.BlueCrystal)} / 红{Mathf.Max(0,view.RedCrystal)}   皇冠 蓝{view.BlueMarks} / 红{view.RedMarks}（{view.VictoryMarksRequired}胜）   决策币 {(view.DecisionCoin==Team.Blue ? "蓝" : "红")}") {name="world-team-status",pickingMode=PickingMode.Ignore};
-            status.style.position=Position.Absolute;status.style.top=6;status.style.right=8;status.style.fontSize=20;status.style.color=Color.white;status.style.backgroundColor=new Color(.04f,.07f,.1f,.82f);Add(status);
         }
         public Vector2 ProjectHero(Hex cell)=>fallback!=null ? this.WorldToLocal(fallback.PanelCenter(cell)) : scene?.Project(cell,contentRect.size,1) ?? contentRect.size*.5f;
         public bool SelectAt(Vector2 local)

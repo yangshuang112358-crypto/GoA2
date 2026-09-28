@@ -31,6 +31,7 @@ namespace Goa2.Presentation.UI3D {
   public void AddSkill(SkillDisc disc,int index){float a=(-90+index*72)*Mathf.Deg2Rad;disc.style.left=260+Mathf.Cos(a)*166-78;disc.style.top=260+Mathf.Sin(a)*166-78;Add(disc);}
  }
  public sealed class SkillDisc : VisualElement {
+  public Action<Vector2>? Inspect;
   private readonly SkillWheelState.Motion motion;private readonly Color rim;private readonly Label caption;private readonly VisualElement badges;
   private readonly bool pressed,discarded;private readonly float flipAt;private Vector2 tilt;private bool hover;private float last=Time.realtimeSinceStartup;
   private Vector2 center=>new Vector2(78,78+motion.Press*5-motion.Hover*5);
@@ -56,7 +57,7 @@ namespace Goa2.Presentation.UI3D {
    }
    RegisterCallback<PointerEnterEvent>(_=>hover=true);RegisterCallback<PointerLeaveEvent>(_=>{hover=false;tilt=Vector2.zero;});
    RegisterCallback<PointerMoveEvent>(e=>tilt=new Vector2((e.localPosition.x-78)/78,(e.localPosition.y-78)/78));
-   RegisterCallback<PointerDownEvent>(e=>{if(e.button==1)right();else if(e.button==0 && allowed)click();e.StopPropagation();});
+   RegisterCallback<PointerDownEvent>(e=>{if(e.button==1){right();Inspect?.Invoke(e.position);}else if(e.button==0 && allowed)click();e.StopPropagation();});
    generateVisualContent+=Draw;
    schedule.Execute(()=>{float now=Time.realtimeSinceStartup,dt=Mathf.Min(.05f,now-last);last=now;float blend=1-Mathf.Exp(-15*dt);motion.Hover=Mathf.Lerp(motion.Hover,hover?1:0,blend);motion.Velocity+=((pressed?1:0)-motion.Press)*190*dt-motion.Velocity*20*dt;motion.Press=Mathf.Clamp(motion.Press+motion.Velocity*dt,-.08f,1.08f);motion.Flip=Mathf.Lerp(motion.Flip,discarded && now>=flipAt ? Mathf.PI:0,1-Mathf.Exp(-9*dt));float face=Mathf.Abs(Mathf.Cos(motion.Flip));caption.style.display=Mathf.Cos(motion.Flip)<0?DisplayStyle.None:DisplayStyle.Flex;badges.style.display=caption.style.display;caption.style.opacity=1-.48f*motion.Press;badges.style.opacity=1-.35f*motion.Press;badges.style.translate=new Translate(tilt.x*motion.Hover*3,motion.Press*5-motion.Hover*5);badges.style.rotate=new Rotate(tilt.x*motion.Hover*2);caption.style.translate=new Translate(tilt.x*motion.Hover*3,motion.Press*5-motion.Hover*5+tilt.y*motion.Hover*3);caption.style.scale=new Scale(new Vector3(Mathf.Max(.01f,face),1,1));MarkDirtyRepaint();}).Every(16);
   }

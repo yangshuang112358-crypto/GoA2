@@ -295,3 +295,26 @@ Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
 .hero-hover-card .card-detail .section-title { margin-bottom: 6px; }
 .hero-hover-card .card-rules { margin-bottom: 6px; }
 .hero-hover-card .card-zone { padding-top: 4px; padding-bottom: 4px; }
+
+/* Battlefield-first shell: no reserved top/bottom bars. */
+.battlefield-shell { background-color: #101923; color: #e4eae8; }
+.battlefield-shell .field { margin: 0; border-width: 0; border-radius: 0; min-height: 0; }
+.phase-overlay { position: absolute; left: 12px; top: 10px; width: 294px; padding: 10px; border-radius: 8px; background-color: rgba(17,29,40,0.9); color: #ecede3; }
+.phase-overlay .muted { font-size: 21px; margin: 0; }
+.phase-overlay .phase-title { font-size: 25px; margin: 0; }
+.network-status { font-size: 20px; color: #ffb6aa; white-space: normal; }
+.revealed-rail { position: absolute; left: 12px; top: 106px; bottom: 12px; width: 294px; }
+.revealed-rail .revealed-card { width: 294px; min-width: 0; min-height: 0; height: auto; flex-grow: 1; flex-shrink: 1; flex-basis: 0; margin: 0; margin-bottom: 6px; padding: 6px; padding-top: 0; padding-bottom: 12px; background-color: rgba(24,42,54,0.93); }
+.revealed-rail .public-card-name { height: 28px; min-height: 28px; font-size: 24px; margin: 0; padding: 0; }
+.revealed-hero-name { font-size: 18px; margin: 0; white-space: nowrap; overflow: hidden; color: #bfd0d5; height: 23px; min-height: 23px; }
+.revealed-rail .card-rules-preview { font-size: 20px; height: 60px; min-height: 60px; }
+.revealed-rail .card-compact-stats { margin: 0; }
+.revealed-rail .card-stat-chip { height: 29px; min-height: 29px; }
+.revealed-rail .card-stat-chip .tiny, .revealed-rail .card-stat-chip .passive-plus, .revealed-rail .card-stat-chip .passive-minus { font-size: 22px; }
+.hand-overlay { position: absolute; left: 318px; right: 12px; bottom: 12px; max-height: 70%; }
+.hand-overlay .hand { flex-shrink: 1; max-height: none; }
+.settings-drawer { bottom: 88px; }
+.settings-commands { flex-direction: row; flex-wrap: wrap; margin-bottom: 8px; }
+.settings-commands .quiet-button { font-size: 22px; margin: 3px; }
+.settings-notice { font-size: 21px; color: #e6dab7; white-space: normal; margin-bottom: 12px; }
+.skill-cursor-detail { position: absolute; background-color: rgba(17,25,35,0.98); padding: 12px; border-width: 2px; border-color: #b4a172; border-radius: 8px; }

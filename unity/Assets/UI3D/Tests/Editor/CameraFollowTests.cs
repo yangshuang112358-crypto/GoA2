@@ -12,6 +12,8 @@ namespace Goa2.UI3D.Tests
         [Test] public void UpgradeTracksSelfEvenAfterOwnUpgradeCompleted() {var v=View(Phase.RoundEnd);v.RoundEndStage="upgrades";Assert.That(CameraFollowPolicy.Target(v,0),Is.EqualTo(new Hex(1,2)));}
         [TestCase(Phase.Action)] [TestCase(Phase.EffectChoice)]
         public void AttackResponseFocusesChooser(Phase phase) {var v=View(phase);v.Pending=new PendingChoice{Kind="defense",ChooserSeat=0};Assert.That(CameraFollowPolicy.Target(v,0),Is.EqualTo(new Hex(1,2)));Assert.That(v.ActiveSeat,Is.EqualTo(1));}
+        [TestCase("forced_discard")] [TestCase("optional_discard")] [TestCase("minion_protection")]
+        public void DiscardResponseTracksChooserForEveryViewer(string kind) {var v=View(Phase.EffectChoice);v.Pending=new PendingChoice{Kind=kind,ChooserSeat=0};Assert.That(CameraFollowPolicy.ResponseSeat(v),Is.EqualTo(0));Assert.That(CameraFollowPolicy.Target(v,1),Is.EqualTo(new Hex(1,2)));Assert.That(v.ActiveSeat,Is.EqualTo(1));}
         [TestCase("round_minion_removal")] [TestCase("action_minion_removal")] [TestCase("minion_spawn")] [TestCase("minion_return")] [TestCase("spawn_order_unresolved")]
         public void CaptainBoardChoicesOverrideActor(string kind) {var v=View(Phase.EffectChoice);v.Pending=new PendingChoice {Kind=kind,ChooserSeat=0};Assert.That(CameraFollowPolicy.Target(v,0),Is.Null);}
         [TestCase(Phase.InitiativeChoice)] [TestCase(Phase.Finished)] [TestCase(Phase.HeroSelection)]

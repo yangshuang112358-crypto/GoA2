@@ -32,7 +32,7 @@ namespace Goa2.Presentation
         {
             Directory.CreateDirectory(output);
             var report=new BoardAuditReport {UnityVersion=UnityEngine.Application.unityVersion,Width=Screen.width,Height=Screen.height};
-            var routine=Environment.GetCommandLineArgs().Contains("-goaTerrainAuditOnly") ? AuditTerrain(output,report) : Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
+            var routine=Environment.GetCommandLineArgs().Contains("-goaBattlefieldAuditOnly") ? AuditBattlefieldLayout(output,report) : Environment.GetCommandLineArgs().Contains("-goaTerrainAuditOnly") ? AuditTerrain(output,report) : Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
             while(true)
             {
                 object? next=null;bool more=false;
@@ -50,6 +50,60 @@ namespace Goa2.Presentation
             UnityEngine.Application.Quit(report.Passed ? 0 : 1);
 #endif
         }
+        private IEnumerator AuditBattlefieldLayout(string output,BoardAuditReport report)
+        {
+            void Check(bool condition,string text){if(!condition)throw new InvalidOperationException(text);report.Checks.Add(text);}
+            yield return null;yield return null;Submit(CommandKind.DebugPrepare,"wasp,shargatha,brogan,arien");yield return new WaitForSecondsRealtime(4);
+            Check(board!=null && board.worldBound.width>=Screen.width-2 && board.worldBound.height>=Screen.height-2,"Battlefield fills viewport");
+            Check(root.Q("match-header")==null && root.Q("status-bar")==null && root.Q("world-team-status")==null && root.Q(className:"field-header")==null,"Removed brand, map header, counter and footer bars");
+            Check(root.Q("match-phase")!=null && root.Q("revealed-zone")==null,"Compact phase and no empty revealed rail");
+            string before=session.ExportSave();cameraFollow=false;board3DViewport.StopFollowing();board3DViewport.Focus+=new Vector3(100,0,0);yield return new WaitForSecondsRealtime(.3f);
+            Check(wheelFrame!=null && !wheelFrame.worldBound.Overlaps(board!.worldBound),"Skill wheel can leave viewport with world anchor");
+            board!.EmptyClick?.Invoke();yield return new WaitForSecondsRealtime(.3f);Check(wheelSeat==null,"Empty click closes wheel");
+            Check(session.ExportSave()==before,"Closing and panning do not change card selection or rules");
+            board3DViewport.Focus=Board3DGeometry.World(renderedView.Units.First(u=>u.Seat==seat).Position);
+            ToggleHeroWheel(seat);yield return new WaitForSecondsRealtime(3);
+            Check(wheelFrame!.worldBound.Overlaps(board.worldBound),"Opened wheel is visible at hero");
+            Check(Vector2.Distance(wheelFrame.worldBound.center,board.LocalToWorld(board.ProjectHero(renderedView.Units.First(u=>u.Seat==seat).Position)))<3,"Wheel centered on projected hero");
+            var disc=root.Q<SkillDisc>("skill-gold");var pointer=disc.worldBound.center;
+            using(var e=PointerDownEvent.GetPooled(new Event{type=EventType.MouseDown,button=1,mousePosition=pointer})){e.target=disc;disc.SendEvent(e);}
+            yield return null;yield return null;
+            var popup=root.Q("skill-description");Check(popup!=null && popup.Q<Button>()==null,"Right click shows details with no close button");
+            Check(popup!.worldBound.xMin>=0 && popup.worldBound.xMax<=Screen.width && popup.worldBound.yMax<=Screen.height,"Pointer-side tooltip fits screen");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"skill-details.png"));yield return new WaitForSecondsRealtime(.2f);
+            using(var e=PointerLeaveEvent.GetPooled(new Event{type=EventType.MouseMove,mousePosition=pointer+Vector2.one*200})){e.target=disc;disc.SendEvent(e);}
+            Check(root.Q("skill-description")==null,"Leaving skill immediately closes detail");
+            Submit(CommandKind.DebugSelectAll);yield return new WaitForSecondsRealtime(3);
+            cameraFollow=false;board3DViewport.StopFollowing();board3DViewport.Focus=BattlePresentationState.Center(catalog);board3DViewport.Zoom=1f;CloseHeroWheel();Render();yield return new WaitForSecondsRealtime(.3f);
+            var cards=root.Query<VisualElement>(className:"revealed-card").ToList();Check(cards.Count==4,"Four revealed cards in rail");
+            for(int n=0;n<4;n++){Check(cards[n].worldBound.xMin<20 && cards[n].worldBound.yMax<=Screen.height,"Revealed card visible at left "+n);if(n>0)Check(cards[n].worldBound.yMin>=cards[n-1].worldBound.yMax,"Revealed cards stack vertically "+n);}
+            Check(root.Q("revealed-heading")==null,"No repeated revealed title or round label");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"battlefield.png"));yield return new WaitForSecondsRealtime(.3f);
+            rightExpanded=true;Render();yield return null;yield return null;
+            Check(root.Q("settings-commands")?.Q<Button>("keyword-open")!=null,"Former header commands live in settings");
+            var path=Path.GetFullPath(Path.Combine(UnityEngine.Application.dataPath,"../../tests/scenarios/throwing-axe-reflection.json"));
+            var runner=new Goa2.Infrastructure.Scenarios.ScenarioRunner(catalog,Goa2.Infrastructure.Scenarios.ScenarioRunner.Load(File.ReadAllText(path)));
+            for(int n=0;n<11;n++){var step=runner.Next();Check(step.Passed,"Response fixture step "+n);}
+            session=runner.Session;seat=3;rightExpanded=false;cameraFollow=true;Render();yield return new WaitForSecondsRealtime(3);
+            Check(wheelSeat==0 && seat==3,"Other viewer sees discarder's wheel without identity change");
+            long rev=renderedView.Revision;WheelPick("brogan-00-猛攻");Check(renderedView.Revision==rev && wheelPreview=="","Other hero's wheel remains read-only");
+            seat=0;Render();WheelPick("brogan-00-猛攻");Check(renderedView.Revision==rev,"Discard preview stays local");WheelConfirm();yield return new WaitForSecondsRealtime(3);
+            Submit(CommandKind.ChooseAttackTarget,"hero:1");yield return new WaitForSecondsRealtime(3);
+            Check(renderedView.Pending?.Kind=="defense" && wheelSeat==1,"Attacked hero wheel opens for response");
+            Check(CameraFollowPolicy.Target(renderedView,seat)==renderedView.Units.First(u=>u.Seat==1).Position,"Camera follows defender");
+            string defenseSave=session.ExportSave();seat=1;Render();yield return new WaitForSecondsRealtime(.3f);
+            Check(root.Q("hand-zone")==null,"Old defense hand panel migrated to wheel");
+            WheelPick("wasp-10-反射屏障");Check(wheelPreview=="wasp-10-反射屏障" && confirmButton?.enabledInHierarchy==true,"Defense can be selected and confirmed in ring");
+            yield return new WaitForSecondsRealtime(.3f);
+            Check(Vector2.Distance(wheelFrame!.worldBound.center,board!.LocalToWorld(board.ProjectHero(renderedView.Units.First(u=>u.Seat==1).Position)))<3,"Defense wheel centered on defender");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"defense-wheel.png"));yield return new WaitForSecondsRealtime(.2f);
+            WheelConfirm();yield return new WaitForSecondsRealtime(3);
+            Check(renderedView.Pending?.Kind=="forced_discard" && wheelSeat==0,"Defense resumes forced discard at correct hero");
+            session=LocalGameFactory.Restore(catalog,defenseSave);seat=1;Render();yield return new WaitForSecondsRealtime(3);
+            WheelAlternative();WheelConfirm();yield return null;
+            Check(renderedView.Events.Any(e=>e.Kind=="HeroDefeated"),"Decline defense requires confirmation and resolves through rules");
+        }
+
         private IEnumerator AuditTerrain(string output,BoardAuditReport report)
         {
             void Check(bool condition,string text){if(!condition)throw new InvalidOperationException(text);report.Checks.Add(text);}

@@ -198,7 +198,7 @@ namespace Goa2.Presentation
             }
             root.Query<ScrollView>().ForEach(scroll => { if (scroll.name.StartsWith("goa-scroll-")) scrollPositions[scroll.name] = scroll.scrollOffset; });
             HideCardPreview();
-            HideHeroHover();skillPopup=null;root.Clear();
+            HideHeroHover();HideSkillInfo();root.Clear();
             confirmAction=null; confirmButton=null;
             renderedView = NetworkMode ? networkView! : session.View(seat);
             board3DViewport.Presentation.Observe(catalog,renderedView,Time.realtimeSinceStartup,cameraFollow ? board3DViewport.Focus : (Vector3?)null);
