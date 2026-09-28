@@ -30,7 +30,7 @@ namespace Goa2.Presentation {
    if(unit!=null)root.schedule.Execute(()=>board?.FollowAt(Board3DGeometry.World(unit.Position),board3DViewport.Enabled ? 3f : 2.6f)).StartingIn(30);
   }
   private void WheelPick(string id) {
-   if(wheelState.Discards.Count>0 || wheelSeat!=seat)return;
+   if(!NetworkCanAct || wheelState.Discards.Count>0 || wheelSeat!=seat)return;
    if(renderedView.Phase==Phase.Planning && !renderedView.Players[seat].Confirmed){
     var c=renderedView.OwnCards.Single(x=>x.CardId==id);
     if(c.Zone==CardZone.Selected)Submit(CommandKind.CancelCardSelection);else if(c.Zone==CardZone.InHand)Submit(CommandKind.SelectCard,id);return;
@@ -38,7 +38,7 @@ namespace Goa2.Presentation {
    if(WheelChoices(renderedView).Contains(id)){wheelDecline=false;wheelPreview=wheelPreview==id ? "" : id;Render();}
   }
   private void WheelConfirm() {
-   if(wheelState.Discards.Count>0 || wheelSeat!=seat)return;
+   if(!NetworkCanAct || wheelState.Discards.Count>0 || wheelSeat!=seat)return;
    if(renderedView.Phase==Phase.Planning){if(!renderedView.QuickSelection && !renderedView.Players[seat].Confirmed && renderedView.OwnCards.Any(c=>c.Zone==CardZone.Selected))Submit(CommandKind.ConfirmCard);return;}
    if(wheelDecline && renderedView.CanDeclineRetaliationDiscard){wheelDecline=false;Submit(CommandKind.DeclineRetaliationDiscard);return;}
    if(!WheelChoices(renderedView).Contains(wheelPreview))return;
@@ -46,7 +46,7 @@ namespace Goa2.Presentation {
    string id=wheelPreview;wheelPreview="";Submit(kind,id);
   }
   private void WheelAlternative() {
-   if(wheelSeat!=seat || wheelState.Discards.Count>0)return;
+   if(!NetworkCanAct || wheelSeat!=seat || wheelState.Discards.Count>0)return;
    if(renderedView.Pending?.Kind=="optional_discard")Submit(CommandKind.ChooseOptionalDiscard,"skip");
    else if(renderedView.Pending?.Kind=="minion_protection")Submit(CommandKind.ChooseMinionProtection,"skip");
    else if(renderedView.CanDeclineRetaliationDiscard){wheelPreview="";wheelDecline=!wheelDecline;Render();}

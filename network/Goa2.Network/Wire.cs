@@ -19,7 +19,7 @@ public static class Wire
     public static readonly Dictionary<string, string[]> Fields = new()
     {
         ["ChooseHero"] = ["Value"], ["DeployHero"] = ["TargetSeat", "Destination"],
-        ["SelectCard"] = ["Value"], ["ConfirmCard"] = [], ["ChooseInitiative"] = ["TargetSeat"],
+        ["SelectCard"] = ["Value"], ["ConfirmCard"] = [], ["CancelCardSelection"] = [], ["ChooseInitiative"] = ["TargetSeat"],
         ["Move"] = ["MoveMode", "Destination?", "Value?"], ["Pass"] = [],
         ["ChooseMinionSpawn"] = ["Destination", "Value?"], ["BeginPrimary"] = [],
         ["ChooseAttackTarget"] = ["Value"], ["Defend"] = ["Value"], ["DeclineDefense"] = [],

@@ -9,24 +9,26 @@ public static class Program
 {
     private static async Task<int> Main(string[] args)
     {
-        if (args.Length != 3 || args[0] != "serve")
+        if ((args.Length != 3 && args.Length != 4) || args[0] != "serve")
         {
-            Console.Error.WriteLine("Usage: Goa2.Network serve <repository-root> <new-private-output-directory>"); return 2;
+            Console.Error.WriteLine("Usage: Goa2.Network serve <repository-root> <new-private-output-directory> [local-LAN-IPv4]"); return 2;
         }
         string root = Path.GetFullPath(args[1]);
         var content = ContentLoader.LoadDirectory(root);
-        return await RunServer(new Room(content, Guid.NewGuid().ToString("N")), root, args[2]);
+        return await RunServer(new Room(content, Guid.NewGuid().ToString("N")), root, args[2], args.Length==4 ? args[3] : "127.0.0.1");
     }
-    internal static async Task<int> RunServer(Room room, string root, string outputDirectory)
+    internal static async Task<int> RunServer(Room room, string root, string outputDirectory, string host="127.0.0.1")
     {
+        var address=IPAddress.Parse(host);var bytes=address.GetAddressBytes();
+        if(address.AddressFamily!=AddressFamily.InterNetwork || !(IPAddress.IsLoopback(address) || bytes[0]==10 || bytes[0]==192 && bytes[1]==168 || bytes[0]==172 && bytes[1]>=16 && bytes[1]<=31)) throw new ArgumentException("Bind must be a local private IPv4 address.");
         string output = Path.GetFullPath(outputDirectory);
         if (Directory.Exists(output) || File.Exists(output)) throw new IOException("Output must be new.");
         Directory.CreateDirectory(output);
-        var listener = new TcpListener(IPAddress.Loopback, 0); listener.Start(32);
+        var listener = new TcpListener(address, 0); listener.Start(32);
         int port = ((IPEndPoint)listener.LocalEndpoint).Port;
         // These files are local bearer secrets, not public logs. Give each player only their own file.
         for (int seat = 0; seat < 4; seat++)
-            File.WriteAllBytes(Path.Combine(output, $"seat-{seat}.private.json"), Wire.Encode(new { Host = "127.0.0.1", Port = port,
+            File.WriteAllBytes(Path.Combine(output, $"seat-{seat}.private.json"), Wire.Encode(new { Host = host, Port = port,
                 Type = "Hello", RoomId = room.Id, Credential = room.Credentials[seat], room.Capabilities }));
         File.WriteAllBytes(Path.Combine(output, "ready.json"), Wire.Encode(new { Port = port, ProcessId = Environment.ProcessId, RoomId = room.Id }));
         Console.WriteLine(JsonSerializer.Serialize(new { Type = "Ready", Port = port, ProcessId = Environment.ProcessId }));
@@ -34,6 +36,7 @@ public static class Program
         using var stop = new CancellationTokenSource();
         // Local operator stdin controls shutdown/export; clients have no equivalent message.
         _ = Task.Run(async () => { while (await Console.In.ReadLineAsync() is string line) if (line == "stop") { stop.Cancel(); break; } });
+        _ = Task.Run(async()=>{try{while(!stop.IsCancellationRequested){if(File.Exists(Path.Combine(output,"stop.request"))){stop.Cancel();break;}await Task.Delay(250,stop.Token);}}catch(OperationCanceledException){}});
         using var slots = new SemaphoreSlim(32);
         try
         {

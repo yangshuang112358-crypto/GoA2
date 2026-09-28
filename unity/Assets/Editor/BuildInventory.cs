@@ -29,7 +29,7 @@ namespace Goa2.Editor
     {
         // Keep these input roots aligned with tools/player_package.py. Generated catalog
         // copies are excluded here and covered by the original content and Player payload.
-        private static readonly string[] SourceDirectories={"core/com.goa2.core/Runtime","unity/Assets","unity/Packages","unity/ProjectSettings","content/canonical","tests/scenarios"};
+        private static readonly string[] SourceDirectories={"core/com.goa2.core/Runtime","network/com.goa2.network.client","unity/Assets","unity/Packages","unity/ProjectSettings","content/canonical","tests/scenarios"};
         private static string Relative(string root,string file) => file.Substring(root.TrimEnd(System.IO.Path.DirectorySeparatorChar).Length+1).Replace('\\','/');
         private static BuildFileRecord Record(string root,string path)
         {

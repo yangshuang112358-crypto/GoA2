@@ -21,8 +21,8 @@ namespace Goa2.Presentation
             UpdatePresentationFocus();
             if(Input.GetKeyDown(KeyCode.Escape)) { if(skillPopup!=null){skillPopup.RemoveFromHierarchy();skillPopup=null;}else if(heroPopup!=null)HideHeroHover();else if(keywordGlossaryOpen) CloseKeywordGlossary();else if(rightExpanded && !galleryOpen && !historyOpen && !newMatchPending && !debugPresetsOpen) {rightExpanded=false;showHotkeys=false;Render();}else if(wheelSeat.HasValue)ToggleHeroWheel(wheelSeat.Value);else HideCardPreview();return; }
             if(keywordGlossaryOpen) return;
-            if(Input.GetKeyDown(KeyCode.F1) && session!=null && !startupFailed && !newMatchPending && !debugPresetsOpen && !IsEditingText()) { OpenKeywordGlossary(previewCard);return; }
-            if (session == null || startupFailed || galleryOpen || publicCardsOpen || historyOpen || newMatchPending || debugPresetsOpen || IsEditingText()) return;
+            if(Input.GetKeyDown(KeyCode.F1) && HasGameView && !startupFailed && !newMatchPending && !debugPresetsOpen && !IsEditingText()) { OpenKeywordGlossary(previewCard);return; }
+            if (!HasGameView || startupFailed || galleryOpen || publicCardsOpen || historyOpen || newMatchPending || debugPresetsOpen || IsEditingText()) return;
             if(Input.GetKeyDown(KeyCode.Space)) {SetCameraFollow(!cameraFollow);return;}
             if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) {ConfirmCurrent();return;}
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) SwitchSeat(0);
@@ -42,6 +42,7 @@ namespace Goa2.Presentation
         }
         private void SwitchSeat(int next)
         {
+            if(NetworkMode){ToggleHeroWheel(next);return;}
             seat = next; ClearPending();
             debugUnitId = renderedView.Units.FirstOrDefault(u => u.Seat == seat)?.Id ?? "";
             notice = "正在操控" + PlayerName(seat) + "。"; Render();
@@ -75,12 +76,15 @@ namespace Goa2.Presentation
             phase.Add(Text("第 " + view.Round + " 轮 · 回合 " + view.Turn + "/4", "muted"));
             var stageTitle=Text(PhaseName(view), "phase-title"); stageTitle.name="match-stage"; phase.Add(stageTitle); header.Add(phase);
             var controls = Box("header-controls"); header.Add(controls);
-            controls.Add(Button(view.Sandbox ? (view.QuickSelection ? "测试 · 选完揭示" : "测试 · 手动确认") : "正式确认", () => { rightExpanded = true; showDebug = true; showHotkeys=false; Render(); }, "mode-button"));
+            if(!NetworkMode) controls.Add(Button(view.Sandbox ? (view.QuickSelection ? "测试 · 选完揭示" : "测试 · 手动确认") : "正式确认", () => { rightExpanded = true; showDebug = true; showHotkeys=false; Render(); }, "mode-button"));
             controls.Add(Button("图鉴 108", () => { galleryOpen = true; galleryHero = catalog.Heroes[0].Id; Render(); }, "quiet-button"));
             controls.Add(Button("术语",()=>OpenKeywordGlossary(),"quiet-button","keyword-open"));
+            if(NetworkMode)RenderNetworkControls(controls);
+            else {
             controls.Add(Button("保存", Save, "quiet-button"));
             var load = Button("读取", Load, "quiet-button"); load.SetEnabled(!ScenarioRunning); controls.Add(load);
             var newGame = Button("新对局", () => { newMatchPending = true; Render(); }, "quiet-button"); newGame.SetEnabled(!ScenarioRunning); controls.Add(newGame);
+            }
             BuildScenarioBar(shell);
             var workspace = Box("workspace"); shell.Add(workspace);
             // Hero roster now lives on the battlefield.
@@ -90,7 +94,7 @@ namespace Goa2.Presentation
             BuildHand(center, view);
             BuildRightPanel(root, view);
             var footer = Box("footer"); footer.name="status-bar";footer.Add(Text(notice, "tiny"));
-            footer.Add(Text("1—4 切换角色 · Enter确认 · 空格跟随", "tiny")); shell.Add(footer);
+            footer.Add(Text(NetworkMode ? "1—4 查看英雄 · Enter确认 · 空格跟随" : "1—4 切换角色 · Enter确认 · 空格跟随", "tiny")); shell.Add(footer);
         }
         private static string ColorName(string color) => color switch { "gold" => "金", "silver" => "银", "red" => "红", "green" => "绿", "blue" => "蓝", _ => "紫" };
         private void BuildRevealedStrip(VisualElement parent, GameView view)
@@ -195,7 +199,7 @@ namespace Goa2.Presentation
             panel.style.display=rightExpanded ? DisplayStyle.Flex : DisplayStyle.None;
             var heading = Box("panel-heading"); panel.Add(heading);
             heading.Add(Button("行动", () => { showDebug = false; showHotkeys=false; debugTeleport = false; ClearPending(); Render(); }, !showDebug && !showHotkeys ? "active-tab" : "tab-button"));
-            heading.Add(Button("调试", () => { showDebug = true; showHotkeys=false; Render(); }, showDebug && !showHotkeys ? "active-tab" : "tab-button"));
+            if(!NetworkMode) heading.Add(Button("调试", () => { showDebug = true; showHotkeys=false; Render(); }, showDebug && !showHotkeys ? "active-tab" : "tab-button"));
             heading.Add(Button("热键",()=>{showHotkeys=true;Render();},showHotkeys ? "active-tab" : "tab-button","hotkeys-tab"));
             heading.Add(Button("×", () => { rightExpanded = false; showHotkeys=false; Render(); }, "edge-button", "toggle-right"));
             var scroll = new ScrollView { name = "goa-scroll-right-" + (showDebug ? "debug" : "action") }; scroll.AddToClassList("sidebar"); panel.Add(scroll);

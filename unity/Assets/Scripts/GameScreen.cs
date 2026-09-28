@@ -82,6 +82,8 @@ namespace Goa2.Presentation
                 int saveIndex = Array.IndexOf(arguments, "-goaSavePath");
                 if (saveIndex >= 0 && saveIndex + 1 < arguments.Length) customSavePath = Path.GetFullPath(arguments[saveIndex + 1]);
                 catalog = ContentLoader.LoadDirectory(Path.Combine(UnityApplication.streamingAssetsPath, "Goa2"));
+                int networkIndex=Array.IndexOf(arguments,"-goaNetworkTicket");
+                if(networkIndex>=0 && networkIndex+1<arguments.Length){StartNetwork(arguments[networkIndex+1]);return;}
                 if (arguments.Contains("-goaScenario")) { SetupScenario(arguments); return; }
                 int loadIndex = Array.IndexOf(arguments, "-goaLoad");
                 if (loadIndex >= 0 && loadIndex + 1 < arguments.Length)
@@ -106,6 +108,7 @@ namespace Goa2.Presentation
         }
         private void NewMatch()
         {
+            if(NetworkMode)return;
             startupFailed=false; newMatchError="";
             scenario = null;
             session = LocalGameFactory.Create(catalog, Guid.NewGuid().ToString("N"), new[] { "玩家 1", "玩家 2", "玩家 3", "玩家 4" }, UnityEngine.Random.Range(0, int.MaxValue), true);
@@ -122,6 +125,7 @@ namespace Goa2.Presentation
         }
         private void Submit(CommandKind kind, string value = "", int target = -1, Hex destination = default, MoveMode mode = MoveMode.Secondary)
         {
+            if(NetworkMode){SubmitNetwork(kind,value,target,destination,mode);return;}
             if (ScenarioRunning) { notice = "场景执行期间可查看角色和地图；完成后可转为手工操作。"; Render(); return; }
             var view = session.View(seat);
             var result = session.Execute(seat, new Command
@@ -186,6 +190,7 @@ namespace Goa2.Presentation
         }
         private void Render()
         {
+            if(NetworkMode && networkView==null){RenderNetworkWaiting();return;}
             if(!spaceGuardInstalled)
             {
                 root.RegisterCallback<KeyDownEvent>(e=> {if((e.keyCode==KeyCode.Space || e.keyCode==KeyCode.Return || e.keyCode==KeyCode.KeypadEnter) && !IsEditingText()) { e.StopImmediatePropagation();e.PreventDefault(); }},TrickleDown.TrickleDown);
@@ -195,13 +200,14 @@ namespace Goa2.Presentation
             HideCardPreview();
             HideHeroHover();skillPopup=null;root.Clear();
             confirmAction=null; confirmButton=null;
-            renderedView = session.View(seat);
+            renderedView = NetworkMode ? networkView! : session.View(seat);
             board3DViewport.Presentation.Observe(catalog,renderedView,Time.realtimeSinceStartup,cameraFollow ? board3DViewport.Focus : (Vector3?)null);
             if (!renderedView.EffectAreas.ContainsKey(effectAreaId)) effectAreaId="";
             ObserveWheel();
             BuildLayout(renderedView);
             BuildCameraOverlays();
             BuildSkillWheel();
+            ApplyNetworkInputGate();
             if (galleryOpen) RenderGallery();
             if (publicCardsOpen) RenderPublicCards(renderedView);
             if (historyOpen) RenderHistory(renderedView);
@@ -363,7 +369,7 @@ namespace Goa2.Presentation
         {
             sidebar.Add(Text("当前席位 " + (seat + 1), "eyebrow"));
             sidebar.Add(Text(PhaseName(view), "panel-title"));
-            RenderDebugGuideShortcut(sidebar,view);
+            if(!NetworkMode)RenderDebugGuideShortcut(sidebar,view);
             switch (view.Phase)
             {
                 case Phase.HeroSelection:
@@ -778,6 +784,7 @@ namespace Goa2.Presentation
         }
         private bool SaveCurrent()
         {
+            if(NetworkMode){notice="联机存档由服务端管理。";return false;}
             try
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(SavePath)!);
@@ -792,6 +799,7 @@ namespace Goa2.Presentation
         private void Save() { SaveCurrent(); Render(); }
         private void Load()
         {
+            if(NetworkMode)return;
             try
             {
                 var restored = LocalGameFactory.Restore(catalog, File.ReadAllText(SavePath, System.Text.Encoding.UTF8));

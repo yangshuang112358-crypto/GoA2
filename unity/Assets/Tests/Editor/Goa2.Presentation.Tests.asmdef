@@ -1,9 +1,20 @@
 {
   "name": "Goa2.Presentation.Tests",
-  "references": ["Goa2.Presentation"],
-  "optionalUnityReferences": ["TestAssemblies"],
-  "includePlatforms": ["Editor"],
+  "references": [
+    "Goa2.Presentation",
+    "Goa2.Network.Client",
+    "Goa2.Domain",
+    "Unity.Newtonsoft.Json"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
   "overrideReferences": true,
-  "precompiledReferences": ["nunit.framework.dll"],
+  "precompiledReferences": [
+    "nunit.framework.dll"
+  ],
   "autoReferenced": false
 }

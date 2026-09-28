@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -42,7 +43,9 @@ namespace Goa2.Network.Client
         {
             ticket = JObject.Parse(privateTicketJson);
             context = uiContext ?? SynchronizationContext.Current ?? new SynchronizationContext();
-            if ((string?)ticket["Host"] != "127.0.0.1") throw new ArgumentException("NET-01 accepts loopback only.");
+            if(!IPAddress.TryParse((string?)ticket["Host"],out var address) || address.AddressFamily!=AddressFamily.InterNetwork) throw new ArgumentException("A numeric IPv4 host is required.");
+            var bytes=address.GetAddressBytes();
+            if(!(IPAddress.IsLoopback(address) || bytes[0]==10 || bytes[0]==192 && bytes[1]==168 || bytes[0]==172 && bytes[1]>=16 && bytes[1]<=31)) throw new ArgumentException("Only local or private LAN endpoints are supported.");
         }
         public int? AuthenticatedSeat { get { lock (gate) return seat; } }
         public ConnectionState Connection { get { lock (gate) return connection; } }
@@ -75,7 +78,7 @@ namespace Goa2.Network.Client
                 Notify();
                 try
                 {
-                    var connect = current.ConnectAsync("127.0.0.1", (int)ticket["Port"]!);
+                    var connect = current.ConnectAsync((string)ticket["Host"]!, (int)ticket["Port"]!);
                     if (await Task.WhenAny(connect, Task.Delay(10000, token)).ConfigureAwait(false) != connect)
                         throw new IOException("Connection timed out.");
                     await connect.ConfigureAwait(false);

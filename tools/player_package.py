@@ -59,7 +59,7 @@ def file_digest(path):
         return digest(stream)
 
 
-SOURCE_DIRS = ('core/com.goa2.core/Runtime', 'unity/Assets', 'unity/Packages', 'unity/ProjectSettings', 'content/canonical', 'tests/scenarios')
+SOURCE_DIRS = ('core/com.goa2.core/Runtime', 'network/com.goa2.network.client', 'unity/Assets', 'unity/Packages', 'unity/ProjectSettings', 'content/canonical', 'tests/scenarios')
 
 
 def source_paths(root):

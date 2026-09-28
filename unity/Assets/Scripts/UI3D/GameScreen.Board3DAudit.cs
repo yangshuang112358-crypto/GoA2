@@ -24,6 +24,7 @@ namespace Goa2.Presentation
         }
         private void Start()
         {
+            StartNetworkAudit();
             var args=Environment.GetCommandLineArgs();int index=Array.IndexOf(args,"-goa3dAudit");
             if(index>=0 && index+1<args.Length) StartCoroutine(BoardAuditGuard(args[index+1]));
         }

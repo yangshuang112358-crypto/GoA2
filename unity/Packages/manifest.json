@@ -9,7 +9,8 @@
     "com.unity.modules.screencapture": "1.0.0",
     "com.unity.modules.ui": "1.0.0",
     "com.unity.modules.uielements": "1.0.0",
-    "com.unity.modules.audio": "1.0.0"
+    "com.unity.modules.audio": "1.0.0",
+    "com.goa2.network.client": "file:../../network/com.goa2.network.client"
   },
   "testables": [
     "com.goa2.core"

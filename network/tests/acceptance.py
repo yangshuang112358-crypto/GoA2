@@ -440,7 +440,8 @@ class Run:
         if all(p.poll() is None for p in self.clients):
             self.report["max_response_bytes"] = max(self.rpc(i, "metrics")["max_snapshot_bytes"] for i in range(4))
         for process in self.clients:
-            process.stdin.close()
+            if process.stdin is not None:
+                process.stdin.close()
             try:
                 process.wait(timeout=5)
             except subprocess.TimeoutExpired:

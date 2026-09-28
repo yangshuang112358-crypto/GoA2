@@ -8,6 +8,14 @@
         "com.unity.nuget.newtonsoft-json": "3.2.2"
       }
     },
+    "com.goa2.network.client": {
+      "version": "file:../../network/com.goa2.network.client",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.2"
+      }
+    },
     "com.unity.ext.nunit": {
       "version": "2.0.5",
       "depth": 1,
