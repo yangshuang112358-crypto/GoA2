@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Goa2.Domain;
 using UnityEngine;
 namespace Goa2.Presentation.UI3D {
@@ -16,18 +17,35 @@ namespace Goa2.Presentation.UI3D {
    mesh.SetTriangles(t,0);mesh.RecalculateNormals();mesh.RecalculateBounds();return mesh;
   }
   private static void Tri(List<Vector3> v,Vector3 a,Vector3 b,Vector3 c){v.Add(a);v.Add(b);v.Add(c);}
-  private static Mesh Rock(int seed) {
-   var rng=new System.Random(seed);var v=new List<Vector3>();var rings=new Vector3[4,9];
-   for(int j=0;j<4;j++)for(int i=0;i<9;i++){
-    float a=(i*40+seed%17)*Mathf.Deg2Rad;
-    float r=(j==0?.78f:j==1?.83f:j==2?.66f:.44f)*(float)(.88+rng.NextDouble()*.12);
-    float y=j==0?0:j==1?.19f:j==2?.63f:.78f+(float)rng.NextDouble()*.22f;
-    float lean=j<2?0:(seed%7-3)*.027f;
-    rings[j,i]=new Vector3(Mathf.Cos(a)*r+lean,y+(j==1||j==2?(float)rng.NextDouble()*.16f:0),Mathf.Sin(a)*r-lean*.6f);
+  // A shared top edge and no interior walls make neighboring obstacle cells one rock mass.
+  private void BuildConnectedRocks() {
+   var obstacles=cells.Values.Where(c=>c.Obstacle).ToList();var vertices=new List<Vector3>();
+   var centers=obstacles.Select(c=>Board3DGeometry.World(c.Position)).ToList();
+   Vector3 Bottom(Vector3 top,float inset,float y){var near=centers.Where(c=>Vector2.Distance(new Vector2(c.x,c.z),new Vector2(top.x,top.z))<1.002f).ToList();var average=near.Aggregate(Vector3.zero,(a,b)=>a+b)/near.Count;var p=Vector3.Lerp(top,average,inset);p.y=y;return p;}
+   foreach(var cell in obstacles){
+    var center=Board3DGeometry.World(cell.Position);var top=new Vector3[6];
+    for(int i=0;i<6;i++){float a=(-30+i*60)*Mathf.Deg2Rad;top[i]=center+new Vector3(Mathf.Cos(a),WallHeight,Mathf.Sin(a));}
+    bool central=cell.Position==new Hex(0,0)||cell.Position==new Hex(0,1);
+    // Canonical mirrored coordinates preserve exact 180-degree shape symmetry about (0, .5).
+    var h=cell.Position;int x=h.X,y=h.Y;if(x<0 || x==0 && y<1){x=-x;y=1-y;}
+    float peak=central?WallHeight:WallHeight+.025f+((x*31+y*17)&7)*.012f;
+    for(int i=0;i<6;i++){
+     int j=(i+1)%6;Tri(vertices,center+Vector3.up*peak,top[j],top[i]);
+     var midpoint=(top[i]+top[j])*.5f;var other=Board3DGeometry.HexAt(center+(midpoint-center)*1.1f);
+     if(cells.TryGetValue(other,out var neighbor)&&neighbor.Obstacle)continue;
+     var lowerA=Bottom(top[i],.28f,0);var lowerB=Bottom(top[j],.28f,0);
+     var bevelA=Bottom(top[i],.06f,WallHeight*.70f);var bevelB=Bottom(top[j],.06f,WallHeight*.70f);
+     Tri(vertices,lowerA,bevelA,bevelB);Tri(vertices,lowerA,bevelB,lowerB);
+     Tri(vertices,bevelA,top[i],top[j]);Tri(vertices,bevelA,top[j],bevelB);
+    }
    }
-   for(int j=0;j<3;j++)for(int i=0;i<9;i++){int n=(i+1)%9;Tri(v,rings[j,i],rings[j+1,n],rings[j,n]);Tri(v,rings[j,i],rings[j+1,i],rings[j+1,n]);}
-   for(int i=0;i<9;i++)Tri(v,Vector3.up,rings[3,(i+1)%9],rings[3,i]);
-   return Faces(v,"layered fractured rock");
+   var go=Add(Own(Faces(vertices,"connected symmetric rocks")),Vector3.zero,Vector3.one,ColorOf("#817D70"),"connected rocks");
+   go.GetComponent<MeshRenderer>().sharedMaterial=TerrainMaterial("rock",ColorOf("#817D70"));
+   var origin=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f+Vector3.up*(WallHeight+.003f);
+   var engraving=Add(Own(Board3DGeometry.Ring(64,.94f)),origin,new Vector3(.81f,1,.39f),ColorOf("#39332D"),"coin platform engraving");engraving.transform.localRotation=Quaternion.Euler(0,60,0);
+   var cuts=new List<Vector3>();var rotation=Quaternion.Euler(0,60,0);
+   for(int sign=-1;sign<=1;sign+=2){var tip=origin+rotation*new Vector3(sign*.67f,.001f,0);var a=rotation*new Vector3(.10f,0,0);var b=rotation*new Vector3(0,0,.075f);Tri(cuts,tip-a,tip+b,tip+a);Tri(cuts,tip-a,tip+a,tip-b);}
+   Add(Own(Faces(cuts,"opposed coin glyph cuts")),Vector3.zero,Vector3.one,ColorOf("#39332D"),"coin platform glyph");
   }
   private static Mesh Grass(int seed) {
    var rng=new System.Random(seed);var v=new List<Vector3>();
@@ -43,22 +61,17 @@ namespace Goa2.Presentation.UI3D {
   private void BuildTerrain(CellDefinition cell,Mesh hex) {
    int seed=unchecked(cell.Position.X*73856093^cell.Position.Y*19349663)&int.MaxValue;
    bool grass=cell.Region=="topGrass"||cell.Region=="bottomGrass";
-   Color color=ColorOf(grass?"#586440":cell.Lane?"#9A7955":"#80684D");
+   Color color=ColorOf(grass?"#586440":cell.Region=="redNear"?"#D2A29E":cell.Region=="blueNear"?"#9EBACF":cell.Region=="redFountain"?"#82414E":cell.Region=="blueFountain"?"#365C83":cell.Lane?"#9A7955":"#80684D");
    var tile=Add(hex,Board3DGeometry.World(cell.Position,-.14f),new Vector3(.985f,.14f,.985f),color,"hex "+cell.Position);
    tile.GetComponent<MeshRenderer>().sharedMaterial=TerrainMaterial(grass?"grass":"earth",color);
-   if(cell.Obstacle){
-    var rock=Add(Own(Rock(seed)),Board3DGeometry.World(cell.Position),new Vector3(1,WallHeight,1),ColorOf("#817D70"),"rock "+cell.Position);
-    rock.GetComponent<MeshRenderer>().sharedMaterial=TerrainMaterial("rock",ColorOf("#817D70"));
-    // Low chips soften the silhouette without reaching neighboring cells.
-    var chip=Add(Own(Rock(seed+17)),Board3DGeometry.World(cell.Position)+new Vector3(.5f,0,-.23f),new Vector3(.28f,.22f,.28f),ColorOf("#716C60"),"rock chip");
-    chip.GetComponent<MeshRenderer>().sharedMaterial=TerrainMaterial("rock",ColorOf("#716C60"));
-   } else if(grass){
+   if(!cell.Obstacle && grass){
     var blades=Add(Own(Grass(seed)),Board3DGeometry.World(cell.Position),Vector3.one,ColorOf("#7D9550"),"short grass");
     blades.GetComponent<MeshRenderer>().sharedMaterial=TerrainMaterial("grass",ColorOf("#7D9550"));
    }
    if(cell.Spawn.EndsWith("Spawn",StringComparison.Ordinal))BuildSpawnRune(cell);
   }
   private void BuildSpawnRune(CellDefinition cell) {
+   var backing=Add(Own(Board3DGeometry.Prism(48,0)),Board3DGeometry.World(cell.Position,.004f),new Vector3(.745f,.006f,.745f),ColorOf("#37343C"),"spawn rune backing");
    var v=new List<Vector3>();
    void Stroke(Vector2 a,Vector2 b,float width=.019f){
     var d=(b-a).normalized;var n=new Vector2(-d.y,d.x)*width*.5f;
@@ -88,7 +101,7 @@ namespace Goa2.Presentation.UI3D {
      Path(new Vector2(-.25f*side,-.06f),new Vector2(-.06f*side,-.22f));
     }
    }
-   var rune=Add(Own(Faces(v,"spawn rune "+cell.Spawn)),Board3DGeometry.World(cell.Position),Vector3.one,ColorOf(cell.Spawn.StartsWith("blue")?"#56BFFF":"#FA6970"),"spawn rune "+cell.Spawn);
+   var rune=Add(Own(Faces(v,"spawn rune "+cell.Spawn)),Board3DGeometry.World(cell.Position),Vector3.one,ColorOf(cell.Spawn.StartsWith("blue")?"#87D9FF":"#FFA4A0"),"spawn rune "+cell.Spawn);
    var mat=Own(new Material(Resources.Load<Shader>("UI3D/Crystal")));mat.color=rune.GetComponent<MeshRenderer>().sharedMaterial.color;mat.SetFloat("_Rune",1);rune.GetComponent<MeshRenderer>().sharedMaterial=mat;
   }
  }

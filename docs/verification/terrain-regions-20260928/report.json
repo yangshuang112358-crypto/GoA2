@@ -1,0 +1,17 @@
+{
+    "Method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard",
+    "UnityVersion": "6000.3.23f1",
+    "Error": "",
+    "Width": 1600,
+    "Height": 1000,
+    "Passed": true,
+    "Checks": [
+        "Content loaded",
+        "Connected rock mesh present",
+        "Rock vertices are centrally symmetric within 1 mm",
+        "Coin footprint lies on a flat top",
+        "Coin platform engraved ring present",
+        "Every spawn rune has contrast backing",
+        "Camera and visuals do not mutate game rules"
+    ]
+}

@@ -31,7 +31,7 @@ namespace Goa2.Presentation
         {
             Directory.CreateDirectory(output);
             var report=new BoardAuditReport {UnityVersion=UnityEngine.Application.unityVersion,Width=Screen.width,Height=Screen.height};
-            var routine=Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
+            var routine=Environment.GetCommandLineArgs().Contains("-goaTerrainAuditOnly") ? AuditTerrain(output,report) : Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
             while(true)
             {
                 object? next=null;bool more=false;
@@ -49,6 +49,30 @@ namespace Goa2.Presentation
             UnityEngine.Application.Quit(report.Passed ? 0 : 1);
 #endif
         }
+        private IEnumerator AuditTerrain(string output,BoardAuditReport report)
+        {
+            void Check(bool condition,string text){if(!condition)throw new InvalidOperationException(text);report.Checks.Add(text);}
+            yield return null;yield return null;
+            Check(!startupFailed,"Content loaded");Submit(CommandKind.DebugPrepare,"wasp,shargatha,brogan,arien");
+            yield return new WaitForSecondsRealtime(4);
+            ToggleHeroWheel(0);cameraFollow=false;board3DViewport.StopFollowing();
+            board3DViewport.Focus=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f;
+            board3DViewport.Zoom=1;topExpanded=false;Render();yield return new WaitForSecondsRealtime(.5f);
+            string before=session.ExportSave();
+            var filters=board!.Scene!.Camera.transform.parent.GetComponentsInChildren<MeshFilter>();
+            var rocks=filters.Single(f=>f.name=="connected rocks");var vertices=rocks.sharedMesh.vertices;
+            Check(vertices.Length>0,"Connected rock mesh present");
+            var center=board3DViewport.Focus;
+            Check(vertices.All(v=>vertices.Any(w=>(w-new Vector3(2*center.x-v.x,v.y,2*center.z-v.z)).sqrMagnitude<.000001f)),"Rock vertices are centrally symmetric within 1 mm");
+            Check(vertices.Where(v=>v.y>=Board3DScene.WallHeight-.001f && Vector2.Distance(new Vector2(v.x,v.z),new Vector2(center.x,center.z))<.49f).All(v=>Mathf.Abs(v.y-Board3DScene.WallHeight)<.001f),"Coin footprint lies on a flat top");
+            Check(filters.Any(f=>f.name=="coin platform engraving"),"Coin platform engraved ring present");
+            Check(filters.Count(f=>f.name=="spawn rune backing")==filters.Count(f=>f.name.StartsWith("spawn rune ") && f.name!="spawn rune backing"),"Every spawn rune has contrast backing");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"map-overview.png"));yield return new WaitForSecondsRealtime(.3f);
+            board3DViewport.Zoom=3;Render();yield return new WaitForSecondsRealtime(.5f);
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"central-platform.png"));yield return new WaitForSecondsRealtime(.3f);
+            Check(session.ExportSave()==before,"Camera and visuals do not mutate game rules");
+        }
+
         private IEnumerator AuditSkillBadges(string output,BoardAuditReport report)
         {
             void Check(bool condition,string text){if(!condition)throw new InvalidOperationException(text);report.Checks.Add(text);}

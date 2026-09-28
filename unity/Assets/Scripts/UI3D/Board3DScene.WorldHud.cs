@@ -50,7 +50,7 @@ namespace Goa2.Presentation.UI3D
     if(capacity<=0)capacity=catalog.Rules.StartingCrystalLife;
     int remaining=Mathf.Max(0,team==Team.Blue ? view.BlueCrystal : view.RedCrystal);
     for(int i=0;i<capacity;i++)if(i>=capacity-remaining) {
-     var at=CrystalPosition(catalog,team,i,capacity);framingPoints.Add(at);var tr=Add(gem,at,new Vector3(.4f,.75f,.4f),ColorOf(team==Team.Blue ? "#59BAFF" : "#FF626B"),"crystal life "+team+" "+i).transform;
+     var at=CrystalPosition(catalog,team,i,capacity);framingPoints.Add(at);var tr=Add(gem,at,new Vector3(.4f,.75f,.4f),ColorOf(team==Team.Blue ? "#204B9D" : "#941D39"),"crystal life "+team+" "+i).transform;
      CrystalFinish(tr);
      crystals.Add((tr,at,i*1.37f+(team==Team.Blue ? 0 : 2.5f)));
     }
@@ -67,7 +67,7 @@ namespace Goa2.Presentation.UI3D
    foreach(var effect in presentation.Shards) {
     int capacity=effect.Team==Team.Blue ? presentation.BlueCapacity : presentation.RedCapacity;
     var at=CrystalPosition(catalog,effect.Team,effect.Index,capacity);
-    var intact=Add(gem,at,new Vector3(.4f,.75f,.4f),ColorOf(effect.Team==Team.Blue ? "#59BAFF" : "#FF626B"),"pending shatter").transform;
+    var intact=Add(gem,at,new Vector3(.4f,.75f,.4f),ColorOf(effect.Team==Team.Blue ? "#204B9D" : "#941D39"),"pending shatter").transform;
     pendingCrystals.Add((intact,effect.Started));
     for(int i=0;i<5;i++) {
      float a=i*Mathf.PI*2/5;var tr=Add(gem,at,Vector3.one*.18f,ColorOf(effect.Team==Team.Blue ? "#82D0FF" : "#FF8196"),"crystal shard").transform;

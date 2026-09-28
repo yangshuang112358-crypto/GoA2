@@ -48,6 +48,7 @@ namespace Goa2.Presentation.UI3D
                 if (targets.Contains(cell.Position)) Add(ring,Board3DGeometry.World(cell.Position,.27f),Vector3.one*.94f,ColorOf("#6EF4CD"),"legal");
                 if (selected == cell.Position) Add(ring,Board3DGeometry.World(cell.Position,.29f),Vector3.one,ColorOf("#FFE39A"),"selected");
             }
+            BuildConnectedRocks();
             foreach (var unit in view.Units)
             {
                 float radius=unit.Seat.HasValue ? .55f : .42f, height=unit.Seat.HasValue ? HeroHeight : .34f;
