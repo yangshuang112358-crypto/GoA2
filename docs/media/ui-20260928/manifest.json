@@ -1,0 +1,18 @@
+{
+  "source_commit": "4339f8cd8303e8e290de351382103cbffa03b90d",
+  "capture": "Actual Unity GameView; scripted UI input; silent; 1280x800 H264; settings includes 4x detail inset",
+  "videos": [
+    {
+      "file": "skill-wheel.mp4",
+      "seconds": 30.9,
+      "bytes": 1893328,
+      "sha256": "ab75ed60decf933c1dbc871922aa615eadb1e079f8f83d57535beb6e19479824"
+    },
+    {
+      "file": "settings.mp4",
+      "seconds": 11.366666666666667,
+      "bytes": 672912,
+      "sha256": "613c1e55134f168afd6c2744aba5cff21ce988a9e5e4591b4cb519ef1a1c4457"
+    }
+  ]
+}
