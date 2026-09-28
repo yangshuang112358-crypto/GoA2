@@ -9,7 +9,7 @@
         "Content loaded",
         "Connected rock mesh present",
         "Rock vertices are centrally symmetric within 1 mm",
-        "Coin footprint lies on a flat top",
+        "Coin center and 16 perimeter samples lie on a flat covered top",
         "Coin platform engraved ring present",
         "Every spawn rune has contrast backing",
         "Camera and visuals do not mutate game rules"

@@ -1,0 +1,1674 @@
+[
+  {
+    "run": "20260928-191047-40638b3b",
+    "passed": true,
+    "runner": "TCP: one .NET service and four Python client processes",
+    "checks": [
+      {
+        "name": "N01 unique seat 0",
+        "passed": true
+      },
+      {
+        "name": "N01 unique seat 1",
+        "passed": true
+      },
+      {
+        "name": "N01 unique seat 2",
+        "passed": true
+      },
+      {
+        "name": "N01 unique seat 3",
+        "passed": true
+      },
+      {
+        "name": "N01 fifth credential rejected without snapshot",
+        "passed": true
+      },
+      {
+        "name": "N15 WireVersion",
+        "passed": true
+      },
+      {
+        "name": "N15 EngineVersion",
+        "passed": true
+      },
+      {
+        "name": "N15 ProtocolVersion",
+        "passed": true
+      },
+      {
+        "name": "N15 ContentHash",
+        "passed": true
+      },
+      {
+        "name": "N15 ContentVersion",
+        "passed": true
+      },
+      {
+        "name": "N15 RulesVersion",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 0",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 1",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 2",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 3",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 4",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 5",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 6",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 7",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 8",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 9",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 10",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 11",
+        "passed": true
+      },
+      {
+        "name": "N14 strict input 12",
+        "passed": true
+      },
+      {
+        "name": "N14 bounded frame",
+        "passed": true
+      },
+      {
+        "name": "N14 malformed input did not execute",
+        "passed": true
+      },
+      {
+        "name": "N04 stale revision rejected",
+        "passed": true
+      },
+      {
+        "name": "N02 wrong match",
+        "passed": true
+      },
+      {
+        "name": "N05 same command duplicate",
+        "passed": true
+      },
+      {
+        "name": "N06 changed payload conflicts",
+        "passed": true
+      },
+      {
+        "name": "N11 old connection invalidated by service",
+        "passed": true
+      },
+      {
+        "name": "ordinary match configuration",
+        "passed": true
+      },
+      {
+        "name": "N03 turn 1 waits after confirmation 1",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 1 seat 0 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 1 seat 1 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 1 seat 2 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 1 seat 3 own cards only",
+        "passed": true
+      },
+      {
+        "name": "N03 turn 1 waits after confirmation 2",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 1 seat 0 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 1 seat 1 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 1 seat 2 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 1 seat 3 own cards only",
+        "passed": true
+      },
+      {
+        "name": "N03 turn 1 waits after confirmation 3",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 1 seat 0 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 1 seat 1 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 1 seat 2 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 1 seat 3 own cards only",
+        "passed": true
+      },
+      {
+        "name": "complete turn 1",
+        "passed": true
+      },
+      {
+        "name": "N03 turn 2 waits after confirmation 1",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 2 seat 0 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 2 seat 1 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 2 seat 2 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 2 seat 3 own cards only",
+        "passed": true
+      },
+      {
+        "name": "N03 turn 2 waits after confirmation 2",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 2 seat 0 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 2 seat 1 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 2 seat 2 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 2 seat 3 own cards only",
+        "passed": true
+      },
+      {
+        "name": "N03 turn 2 waits after confirmation 3",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 2 seat 0 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 2 seat 1 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 2 seat 2 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 2 seat 3 own cards only",
+        "passed": true
+      },
+      {
+        "name": "complete turn 2",
+        "passed": true
+      },
+      {
+        "name": "N03 turn 3 waits after confirmation 1",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 3 seat 0 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 3 seat 1 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 3 seat 2 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 3 seat 3 own cards only",
+        "passed": true
+      },
+      {
+        "name": "N03 turn 3 waits after confirmation 2",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 3 seat 0 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 3 seat 1 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 3 seat 2 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 3 seat 3 own cards only",
+        "passed": true
+      },
+      {
+        "name": "N03 turn 3 waits after confirmation 3",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 3 seat 0 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 3 seat 1 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 3 seat 2 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 3 seat 3 own cards only",
+        "passed": true
+      },
+      {
+        "name": "complete turn 3",
+        "passed": true
+      },
+      {
+        "name": "N03 turn 4 waits after confirmation 1",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 4 seat 0 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 4 seat 1 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 4 seat 2 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 4 seat 3 own cards only",
+        "passed": true
+      },
+      {
+        "name": "N03 turn 4 waits after confirmation 2",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 4 seat 0 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 4 seat 1 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 4 seat 2 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 4 seat 3 own cards only",
+        "passed": true
+      },
+      {
+        "name": "N03 turn 4 waits after confirmation 3",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 4 seat 0 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 4 seat 1 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 4 seat 2 own cards only",
+        "passed": true
+      },
+      {
+        "name": "privacy turn 4 seat 3 own cards only",
+        "passed": true
+      },
+      {
+        "name": "complete turn 4",
+        "passed": true
+      },
+      {
+        "name": "one full round returned to planning",
+        "passed": true
+      },
+      {
+        "name": "four clients agree public state",
+        "passed": true
+      }
+    ],
+    "assemblies": {
+      "Goa2.Application.dll": "77b97d94afc4592f4d284c0e796fa8d70cb1c1bff1e1b878f45342c2b24de6ab",
+      "Goa2.Domain.dll": "7adb8ae76717088f2ee959dc473fff903af63f3f434cb4dc792c2492fe374bad",
+      "Goa2.Infrastructure.dll": "771f84b84bc7dd5eda6183ceec7754b56a236191a7d7b4b8c9f04cfe81acb533",
+      "Goa2.Network.dll": "7d931b5de53443ada59c786441017432687529f4bf5fcc9827457cd51fe03558",
+      "Goa2.Rules.dll": "ceef078124864caf876ace445afb0f585e49af4b16f8320b01e594814e07dbc9",
+      "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+    },
+    "restore_verified": true,
+    "source_files": {
+      "network/client/player.py": "934efbbad971ff74657a30bddceb816ac62f332c3f38451abcfa70b9a3d01a61",
+      "network/com.goa2.network.client/package.json": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+      "network/Goa2.Network/Goa2.Network.csproj": "33b7108be48b5e51062a0986e1fc4a7509d1edcc1b37263327a1a450700ca1f7",
+      "network/Goa2.Network/packages.lock.json": "3896b5350eaffa4692cfdce23dcc47ecbdad47ae27f658bf061022d872346d42",
+      "network/Goa2.Network/Program.cs": "7c831931e1998d03da2fd7cb11a7b71241d10d3cc38be3acc42d161878ee8692",
+      "network/Goa2.Network/Room.cs": "5557a37ae3d1345b713cb1b993880586521e80cb4270577e659c69f241a89544",
+      "network/Goa2.Network/TestAccess.cs": "7604e86017a81c6f07b79fdf72591f2afd7c22eb6f200b2cc9f2f81665cb6210",
+      "network/Goa2.Network/Wire.cs": "a5fee1fd193638e2dc96e52d65f660417174a2c299f89f6ac78b4ad792321d9b",
+      "network/Goa2.Network.Client/Goa2.Network.Client.csproj": "b35f8b67a5bbd3b9c91831a7b202913f99fa21291b5a154cf3ecf687e7206238",
+      "network/Goa2.Network.Client/packages.lock.json": "a2b02556d6502e9eefe4756953883d0ab4df0936c55df77778991ce03e4898c2",
+      "network/tests/acceptance.py": "bd0fe19fba82537797e8f9cef3676c9ed45f60d1a7d0f98199a48fce380a48ac",
+      "network/tests/fault_proxy.py": "2842dc2fbbd963e58cf4ded686c4373bf62c23c61d244820bced3601b12025f3",
+      "network/tests/test_client.py": "054198f3138d900aee440812ee11d6d22c3e7d683d0b75b607adc0f0dfe52593",
+      "network/tests/unity_acceptance.py": "cdc83269c9a5b39f21d4378933c5f97ad14fecf1a41fba14e7efa306ddb169a0",
+      "network/com.goa2.network.client/Runtime/IPlayerSession.cs": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+      "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs": "7a94c4310f12869faa13375412fd85f59b7e562845678318f675aa435dc852f6",
+      "network/com.goa2.network.client/Runtime/UiIntent.cs": "994b692563f627718ce009989a5cdd8fd62c9a3a466a35898f8b4f5fa832ea27",
+      "network/tests/fixtures/axe-empty.json": "d2c59cb1b7da15d5aa95cb63de39df915f1ebf5f29137feae3ea40b38358d39d",
+      "network/tests/Goa2.Network.ClientHarness/Goa2.Network.ClientHarness.csproj": "c55af18969bd32d63d7acdf063ea751bcdd29f799935abce4377e1050f105f8a",
+      "network/tests/Goa2.Network.ClientHarness/packages.lock.json": "0136d384c5ca73952f1f999472050751c429e6ee70515ff5345f2a7293f32334",
+      "network/tests/Goa2.Network.ClientHarness/Program.cs": "213adf26e36e64d4ceb021574c651e79e56e6c8bf804b5e38847d6e459c01717",
+      "network/tests/Goa2.Network.TestHost/Goa2.Network.TestHost.csproj": "b6662f8d6ad2ba9b51ab5086fb052f50da25a970859bf279fea66da019225437",
+      "network/tests/Goa2.Network.TestHost/packages.lock.json": "394fd69a40905a514078328e72fbc3507f22fcaff974fe292146c6be15f565ec",
+      "network/tests/Goa2.Network.TestHost/Program.cs": "cd6a6725e123d88433ab912b5a51dcd7cf3ad67246928668acfa5cf286fec862",
+      "core/com.goa2.core/Runtime/Application/GameSession.cs": "dc2ee5d6fd642f80e363319e74adf286a8a3424daf5766ee1b961c258b59f8a1",
+      "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+      "core/com.goa2.core/Runtime/Domain/Combat.cs": "64e805fa02dfd2e6ab832d6015f7fbac88432eae388ee385dc88a3853cd2a617",
+      "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+      "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+      "core/com.goa2.core/Runtime/Domain/Displacement.cs": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+      "core/com.goa2.core/Runtime/Domain/Effects.cs": "641a3587b0e99a80a6ae0aec6b92d7b8aa39538b973201d0120e3664b49ade2e",
+      "core/com.goa2.core/Runtime/Domain/Model.cs": "a195027fc576254b4ab4678459da47eb0c6b46d9d478100f2f07d1ca8fdbf471",
+      "core/com.goa2.core/Runtime/Domain/RoundProgress.cs": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+      "core/com.goa2.core/Runtime/Domain/Views.cs": "21d8b2b409dd5b81e9e929e9d563faf6c307f85d85ecac41e442c3947e48da7b",
+      "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+      "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+      "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs": "db6fe75510c234db7a67ed4b3ebdc07563e7e861c3e30243e63d3773f5269e57",
+      "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+      "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+      "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs": "3d65a10a9ed5ac261c17a3e353add8839e57288b20eecfac2c8bdcaf81ed2a75",
+      "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs": "0522591b0c3a0b1ead83f99991dd98ab3da20678b8a9e037ed024c16b710857d",
+      "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs": "2ff7a7e03d1fa87423e097746c02bd348558ed9da7761cd906f97f76dd8c2113",
+      "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs": "8fbda04e927efb34759e5647c6acb6b51bd131e0fbd86e302bce076c730f1d8c",
+      "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs": "c2a8f5a065ef07e1bef7151dc848c453c56b73b8acf694708a959f9095946c77",
+      "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs": "169ae7680a36999271d6bf928179f0e37f6aeb87242d6f2dc39fbd7a5b115e28",
+      "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs": "72e09f37c1a4c944d2ad6515a190bd234a344d3ee4bd11687e292845972b5cf4",
+      "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+      "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs": "6989a1ccec65bd6ab1b6c6a6cc360e11eb32bbb6eb1a9b994da10d4179d8ff89",
+      "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs": "47ce77eb3e4284371072ca53e98dea0a047ba2fbb10d2f4bfff957d227e416c0",
+      "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs": "f52d8d44517e2c319a84ed5ba89e06320163007f5e4e0540787c240d521c0eb9",
+      "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs": "e4cd6f162f3ea180bee7eb3e42e1e97a37451795081ea214a1983ed928daa76f",
+      "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs": "0c03c3f41c259ad1a95fdec1dbc3314b132ec145d9c337e5d1066fe7822641ea",
+      "core/com.goa2.core/Runtime/Rules/CardPushRules.cs": "455d9ba8a613465890124117a65721eeed3ae66379e1bc8ae17e019cd12e91d9",
+      "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs": "301133dc738dbfef34354653aff5c36b90e01cde9e77423e539d436156f40240",
+      "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs": "a7f623a2f6e3cc16fdf22ba5882702897d443b760894721bcca9f49c8d463ce9",
+      "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+      "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs": "8ec0e99171bc298b4ddab6d95679c6ea788697352688fad1fdb06944bb343ee4",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs": "6f30d9314acf79d6779f92bd7330cb5f2af63e502f2132113c91a08f53f4ce20",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs": "3867631a0f623539dbec140b1994f6b463a72d7061d062dd2408df3c5641c172",
+      "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs": "b5f92ad96f895b4a6edc4d41176aee38fae75c54cbe3de68beebdeffc197687c",
+      "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs": "0b00d6274c5d8c5e06199187e30971c754c4c3ed3adb47df6c916f6cd2164899",
+      "core/com.goa2.core/Runtime/Rules/CombatMath.cs": "ddea04ebddd4cc16e397ae4cf183e46ea3d9c0ad7503fb85ef1b339672683446",
+      "core/com.goa2.core/Runtime/Rules/CombatRules.cs": "ab4afe3b5598d1b540df83a62ca56c353fc2fe28c7dacb581a5281020bd4a700",
+      "core/com.goa2.core/Runtime/Rules/DebugRules.cs": "bfb33bff4fc943ada0787e69b893fb7f3d0739b3e049a0dd7b35b655ff9acfb2",
+      "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs": "96c2191d775dd4410d69534e9f009e96366b7163a63177ab9bda8b9eec8b44af",
+      "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs": "da4bbcf4481a3091b5337bb197f123a626d4fc1b00bb4406f2947a4d3b9be063",
+      "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs": "1ff3ddd263b2c9ede296a694dada54bf610c99e64f344eea45ffdb5443b39932",
+      "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs": "9e964899710aa9a1519e42125c6148ac45625412ff8307623707eb6b4873f753",
+      "core/com.goa2.core/Runtime/Rules/EffectRules.cs": "31393d43e41b748a2925662975cf7f8c4a39699dc775517408623fa81bb6ad08",
+      "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs": "96f2944b3c5195c65a02e92f4704829f26e8a919d1ddac9a122e6c5b0c5d8021",
+      "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs": "766cdd2bebfe4bee993a7110dea717ef46600eced1af298cf6a9ef5eb7381e65",
+      "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+      "core/com.goa2.core/Runtime/Rules/GameRules.cs": "c32eb16b941858b7a8b72451702655d147611cd19456f2caca3658c3e5f0a3cd",
+      "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+      "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+      "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs": "55fa125634a22d32d271855a8eb11106893e946c792f93f988481957f9f7d092",
+      "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs": "deca4a63bf72414ccce28e18c0b7173c6d0c8f9f12d9baedff293563d6e23865",
+      "core/com.goa2.core/Runtime/Rules/MovementRules.cs": "5a0d170ef26005a3d169cd2e198f9a1bea56a967dae5e879541872b0c02a2bd3",
+      "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs": "6fafe9f4bb4ca673d51c6d6bc3a47e63ab8e67e33f92260bf557d75b117fd57e",
+      "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs": "75d3610de13d1c287130bbd431de25da5f43dc4a7aa4ea386fe214f9598969de",
+      "core/com.goa2.core/Runtime/Rules/PoisonRules.cs": "5927f6702eba0289fee8007fcde1e5fb292d67f5226d59224de81a921ac4f1a8",
+      "core/com.goa2.core/Runtime/Rules/PushRules.cs": "625c1c4eae5e84a42b022283e278ddd68b2e2c2b6f52769b11249358c17f7f06",
+      "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs": "9290746928bc86ea19eb667cac5c734b80122eed847bfa146fc6931eb2b6b1cc",
+      "core/com.goa2.core/Runtime/Rules/TurnRules.cs": "add2a9294b109420cf458dafcef0c9afe6bdbe8a5f5be2261c57581b785e069a",
+      "core/com.goa2.core/Runtime/Rules/UltimateRules.cs": "fef62ced21fbffec7638041fc62609c7fc5f21999fadb592d027ba9fb2b569fd",
+      "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+      "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs": "3e7a732c757a5b76eeb886bd86e3c7de24e70802cc28b6494b942a8675bee799",
+      "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs": "9aae026bdbb01ce10f96d66c869fa15f8a7e7ef726b1215650bced28b67582e3"
+    }
+  },
+  {
+    "run": "20260928-191053-9ac82c05",
+    "passed": true,
+    "runner": "TCP: one .NET service and four Python client processes",
+    "checks": [
+      {
+        "name": "N04 simultaneous same revision has one winner",
+        "passed": true
+      },
+      {
+        "name": "N11 old socket cannot commit after replacement",
+        "passed": true
+      },
+      {
+        "name": "gold skip sentinel reaches authority",
+        "passed": true
+      }
+    ],
+    "assemblies": {
+      "Goa2.Application.dll": "77b97d94afc4592f4d284c0e796fa8d70cb1c1bff1e1b878f45342c2b24de6ab",
+      "Goa2.Domain.dll": "7adb8ae76717088f2ee959dc473fff903af63f3f434cb4dc792c2492fe374bad",
+      "Goa2.Infrastructure.dll": "771f84b84bc7dd5eda6183ceec7754b56a236191a7d7b4b8c9f04cfe81acb533",
+      "Goa2.Network.dll": "7d931b5de53443ada59c786441017432687529f4bf5fcc9827457cd51fe03558",
+      "Goa2.Rules.dll": "ceef078124864caf876ace445afb0f585e49af4b16f8320b01e594814e07dbc9",
+      "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+    },
+    "restore_verified": true,
+    "source_files": {
+      "network/client/player.py": "934efbbad971ff74657a30bddceb816ac62f332c3f38451abcfa70b9a3d01a61",
+      "network/com.goa2.network.client/package.json": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+      "network/Goa2.Network/Goa2.Network.csproj": "33b7108be48b5e51062a0986e1fc4a7509d1edcc1b37263327a1a450700ca1f7",
+      "network/Goa2.Network/packages.lock.json": "3896b5350eaffa4692cfdce23dcc47ecbdad47ae27f658bf061022d872346d42",
+      "network/Goa2.Network/Program.cs": "7c831931e1998d03da2fd7cb11a7b71241d10d3cc38be3acc42d161878ee8692",
+      "network/Goa2.Network/Room.cs": "5557a37ae3d1345b713cb1b993880586521e80cb4270577e659c69f241a89544",
+      "network/Goa2.Network/TestAccess.cs": "7604e86017a81c6f07b79fdf72591f2afd7c22eb6f200b2cc9f2f81665cb6210",
+      "network/Goa2.Network/Wire.cs": "a5fee1fd193638e2dc96e52d65f660417174a2c299f89f6ac78b4ad792321d9b",
+      "network/Goa2.Network.Client/Goa2.Network.Client.csproj": "b35f8b67a5bbd3b9c91831a7b202913f99fa21291b5a154cf3ecf687e7206238",
+      "network/Goa2.Network.Client/packages.lock.json": "a2b02556d6502e9eefe4756953883d0ab4df0936c55df77778991ce03e4898c2",
+      "network/tests/acceptance.py": "bd0fe19fba82537797e8f9cef3676c9ed45f60d1a7d0f98199a48fce380a48ac",
+      "network/tests/fault_proxy.py": "2842dc2fbbd963e58cf4ded686c4373bf62c23c61d244820bced3601b12025f3",
+      "network/tests/test_client.py": "054198f3138d900aee440812ee11d6d22c3e7d683d0b75b607adc0f0dfe52593",
+      "network/tests/unity_acceptance.py": "cdc83269c9a5b39f21d4378933c5f97ad14fecf1a41fba14e7efa306ddb169a0",
+      "network/com.goa2.network.client/Runtime/IPlayerSession.cs": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+      "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs": "7a94c4310f12869faa13375412fd85f59b7e562845678318f675aa435dc852f6",
+      "network/com.goa2.network.client/Runtime/UiIntent.cs": "994b692563f627718ce009989a5cdd8fd62c9a3a466a35898f8b4f5fa832ea27",
+      "network/tests/fixtures/axe-empty.json": "d2c59cb1b7da15d5aa95cb63de39df915f1ebf5f29137feae3ea40b38358d39d",
+      "network/tests/Goa2.Network.ClientHarness/Goa2.Network.ClientHarness.csproj": "c55af18969bd32d63d7acdf063ea751bcdd29f799935abce4377e1050f105f8a",
+      "network/tests/Goa2.Network.ClientHarness/packages.lock.json": "0136d384c5ca73952f1f999472050751c429e6ee70515ff5345f2a7293f32334",
+      "network/tests/Goa2.Network.ClientHarness/Program.cs": "213adf26e36e64d4ceb021574c651e79e56e6c8bf804b5e38847d6e459c01717",
+      "network/tests/Goa2.Network.TestHost/Goa2.Network.TestHost.csproj": "b6662f8d6ad2ba9b51ab5086fb052f50da25a970859bf279fea66da019225437",
+      "network/tests/Goa2.Network.TestHost/packages.lock.json": "394fd69a40905a514078328e72fbc3507f22fcaff974fe292146c6be15f565ec",
+      "network/tests/Goa2.Network.TestHost/Program.cs": "cd6a6725e123d88433ab912b5a51dcd7cf3ad67246928668acfa5cf286fec862",
+      "core/com.goa2.core/Runtime/Application/GameSession.cs": "dc2ee5d6fd642f80e363319e74adf286a8a3424daf5766ee1b961c258b59f8a1",
+      "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+      "core/com.goa2.core/Runtime/Domain/Combat.cs": "64e805fa02dfd2e6ab832d6015f7fbac88432eae388ee385dc88a3853cd2a617",
+      "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+      "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+      "core/com.goa2.core/Runtime/Domain/Displacement.cs": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+      "core/com.goa2.core/Runtime/Domain/Effects.cs": "641a3587b0e99a80a6ae0aec6b92d7b8aa39538b973201d0120e3664b49ade2e",
+      "core/com.goa2.core/Runtime/Domain/Model.cs": "a195027fc576254b4ab4678459da47eb0c6b46d9d478100f2f07d1ca8fdbf471",
+      "core/com.goa2.core/Runtime/Domain/RoundProgress.cs": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+      "core/com.goa2.core/Runtime/Domain/Views.cs": "21d8b2b409dd5b81e9e929e9d563faf6c307f85d85ecac41e442c3947e48da7b",
+      "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+      "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+      "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs": "db6fe75510c234db7a67ed4b3ebdc07563e7e861c3e30243e63d3773f5269e57",
+      "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+      "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+      "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs": "3d65a10a9ed5ac261c17a3e353add8839e57288b20eecfac2c8bdcaf81ed2a75",
+      "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs": "0522591b0c3a0b1ead83f99991dd98ab3da20678b8a9e037ed024c16b710857d",
+      "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs": "2ff7a7e03d1fa87423e097746c02bd348558ed9da7761cd906f97f76dd8c2113",
+      "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs": "8fbda04e927efb34759e5647c6acb6b51bd131e0fbd86e302bce076c730f1d8c",
+      "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs": "c2a8f5a065ef07e1bef7151dc848c453c56b73b8acf694708a959f9095946c77",
+      "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs": "169ae7680a36999271d6bf928179f0e37f6aeb87242d6f2dc39fbd7a5b115e28",
+      "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs": "72e09f37c1a4c944d2ad6515a190bd234a344d3ee4bd11687e292845972b5cf4",
+      "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+      "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs": "6989a1ccec65bd6ab1b6c6a6cc360e11eb32bbb6eb1a9b994da10d4179d8ff89",
+      "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs": "47ce77eb3e4284371072ca53e98dea0a047ba2fbb10d2f4bfff957d227e416c0",
+      "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs": "f52d8d44517e2c319a84ed5ba89e06320163007f5e4e0540787c240d521c0eb9",
+      "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs": "e4cd6f162f3ea180bee7eb3e42e1e97a37451795081ea214a1983ed928daa76f",
+      "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs": "0c03c3f41c259ad1a95fdec1dbc3314b132ec145d9c337e5d1066fe7822641ea",
+      "core/com.goa2.core/Runtime/Rules/CardPushRules.cs": "455d9ba8a613465890124117a65721eeed3ae66379e1bc8ae17e019cd12e91d9",
+      "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs": "301133dc738dbfef34354653aff5c36b90e01cde9e77423e539d436156f40240",
+      "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs": "a7f623a2f6e3cc16fdf22ba5882702897d443b760894721bcca9f49c8d463ce9",
+      "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+      "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs": "8ec0e99171bc298b4ddab6d95679c6ea788697352688fad1fdb06944bb343ee4",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs": "6f30d9314acf79d6779f92bd7330cb5f2af63e502f2132113c91a08f53f4ce20",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs": "3867631a0f623539dbec140b1994f6b463a72d7061d062dd2408df3c5641c172",
+      "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs": "b5f92ad96f895b4a6edc4d41176aee38fae75c54cbe3de68beebdeffc197687c",
+      "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs": "0b00d6274c5d8c5e06199187e30971c754c4c3ed3adb47df6c916f6cd2164899",
+      "core/com.goa2.core/Runtime/Rules/CombatMath.cs": "ddea04ebddd4cc16e397ae4cf183e46ea3d9c0ad7503fb85ef1b339672683446",
+      "core/com.goa2.core/Runtime/Rules/CombatRules.cs": "ab4afe3b5598d1b540df83a62ca56c353fc2fe28c7dacb581a5281020bd4a700",
+      "core/com.goa2.core/Runtime/Rules/DebugRules.cs": "bfb33bff4fc943ada0787e69b893fb7f3d0739b3e049a0dd7b35b655ff9acfb2",
+      "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs": "96c2191d775dd4410d69534e9f009e96366b7163a63177ab9bda8b9eec8b44af",
+      "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs": "da4bbcf4481a3091b5337bb197f123a626d4fc1b00bb4406f2947a4d3b9be063",
+      "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs": "1ff3ddd263b2c9ede296a694dada54bf610c99e64f344eea45ffdb5443b39932",
+      "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs": "9e964899710aa9a1519e42125c6148ac45625412ff8307623707eb6b4873f753",
+      "core/com.goa2.core/Runtime/Rules/EffectRules.cs": "31393d43e41b748a2925662975cf7f8c4a39699dc775517408623fa81bb6ad08",
+      "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs": "96f2944b3c5195c65a02e92f4704829f26e8a919d1ddac9a122e6c5b0c5d8021",
+      "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs": "766cdd2bebfe4bee993a7110dea717ef46600eced1af298cf6a9ef5eb7381e65",
+      "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+      "core/com.goa2.core/Runtime/Rules/GameRules.cs": "c32eb16b941858b7a8b72451702655d147611cd19456f2caca3658c3e5f0a3cd",
+      "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+      "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+      "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs": "55fa125634a22d32d271855a8eb11106893e946c792f93f988481957f9f7d092",
+      "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs": "deca4a63bf72414ccce28e18c0b7173c6d0c8f9f12d9baedff293563d6e23865",
+      "core/com.goa2.core/Runtime/Rules/MovementRules.cs": "5a0d170ef26005a3d169cd2e198f9a1bea56a967dae5e879541872b0c02a2bd3",
+      "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs": "6fafe9f4bb4ca673d51c6d6bc3a47e63ab8e67e33f92260bf557d75b117fd57e",
+      "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs": "75d3610de13d1c287130bbd431de25da5f43dc4a7aa4ea386fe214f9598969de",
+      "core/com.goa2.core/Runtime/Rules/PoisonRules.cs": "5927f6702eba0289fee8007fcde1e5fb292d67f5226d59224de81a921ac4f1a8",
+      "core/com.goa2.core/Runtime/Rules/PushRules.cs": "625c1c4eae5e84a42b022283e278ddd68b2e2c2b6f52769b11249358c17f7f06",
+      "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs": "9290746928bc86ea19eb667cac5c734b80122eed847bfa146fc6931eb2b6b1cc",
+      "core/com.goa2.core/Runtime/Rules/TurnRules.cs": "add2a9294b109420cf458dafcef0c9afe6bdbe8a5f5be2261c57581b785e069a",
+      "core/com.goa2.core/Runtime/Rules/UltimateRules.cs": "fef62ced21fbffec7638041fc62609c7fc5f21999fadb592d027ba9fb2b569fd",
+      "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+      "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs": "3e7a732c757a5b76eeb886bd86e3c7de24e70802cc28b6494b942a8675bee799",
+      "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs": "9aae026bdbb01ce10f96d66c869fa15f8a7e7ef726b1215650bced28b67582e3"
+    }
+  },
+  {
+    "run": "20260928-191054-83b43229",
+    "passed": true,
+    "runner": "TCP: one .NET service and four Python client processes",
+    "checks": [
+      {
+        "name": "N05 lost result remains uncertain and pending",
+        "passed": true
+      },
+      {
+        "name": "N05 reconnect retry preserves ID and revision",
+        "passed": true
+      },
+      {
+        "name": "N12 delayed old Result acknowledged without rollback",
+        "passed": true
+      },
+      {
+        "name": "N12 delayed old Snapshot cannot rewind",
+        "passed": true
+      },
+      {
+        "name": "fault proxy succeeded",
+        "passed": true
+      }
+    ],
+    "assemblies": {
+      "Goa2.Application.dll": "77b97d94afc4592f4d284c0e796fa8d70cb1c1bff1e1b878f45342c2b24de6ab",
+      "Goa2.Domain.dll": "7adb8ae76717088f2ee959dc473fff903af63f3f434cb4dc792c2492fe374bad",
+      "Goa2.Infrastructure.dll": "771f84b84bc7dd5eda6183ceec7754b56a236191a7d7b4b8c9f04cfe81acb533",
+      "Goa2.Network.dll": "7d931b5de53443ada59c786441017432687529f4bf5fcc9827457cd51fe03558",
+      "Goa2.Rules.dll": "ceef078124864caf876ace445afb0f585e49af4b16f8320b01e594814e07dbc9",
+      "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+    },
+    "restore_verified": true,
+    "source_files": {
+      "network/client/player.py": "934efbbad971ff74657a30bddceb816ac62f332c3f38451abcfa70b9a3d01a61",
+      "network/com.goa2.network.client/package.json": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+      "network/Goa2.Network/Goa2.Network.csproj": "33b7108be48b5e51062a0986e1fc4a7509d1edcc1b37263327a1a450700ca1f7",
+      "network/Goa2.Network/packages.lock.json": "3896b5350eaffa4692cfdce23dcc47ecbdad47ae27f658bf061022d872346d42",
+      "network/Goa2.Network/Program.cs": "7c831931e1998d03da2fd7cb11a7b71241d10d3cc38be3acc42d161878ee8692",
+      "network/Goa2.Network/Room.cs": "5557a37ae3d1345b713cb1b993880586521e80cb4270577e659c69f241a89544",
+      "network/Goa2.Network/TestAccess.cs": "7604e86017a81c6f07b79fdf72591f2afd7c22eb6f200b2cc9f2f81665cb6210",
+      "network/Goa2.Network/Wire.cs": "a5fee1fd193638e2dc96e52d65f660417174a2c299f89f6ac78b4ad792321d9b",
+      "network/Goa2.Network.Client/Goa2.Network.Client.csproj": "b35f8b67a5bbd3b9c91831a7b202913f99fa21291b5a154cf3ecf687e7206238",
+      "network/Goa2.Network.Client/packages.lock.json": "a2b02556d6502e9eefe4756953883d0ab4df0936c55df77778991ce03e4898c2",
+      "network/tests/acceptance.py": "bd0fe19fba82537797e8f9cef3676c9ed45f60d1a7d0f98199a48fce380a48ac",
+      "network/tests/fault_proxy.py": "2842dc2fbbd963e58cf4ded686c4373bf62c23c61d244820bced3601b12025f3",
+      "network/tests/test_client.py": "054198f3138d900aee440812ee11d6d22c3e7d683d0b75b607adc0f0dfe52593",
+      "network/tests/unity_acceptance.py": "cdc83269c9a5b39f21d4378933c5f97ad14fecf1a41fba14e7efa306ddb169a0",
+      "network/com.goa2.network.client/Runtime/IPlayerSession.cs": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+      "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs": "7a94c4310f12869faa13375412fd85f59b7e562845678318f675aa435dc852f6",
+      "network/com.goa2.network.client/Runtime/UiIntent.cs": "994b692563f627718ce009989a5cdd8fd62c9a3a466a35898f8b4f5fa832ea27",
+      "network/tests/fixtures/axe-empty.json": "d2c59cb1b7da15d5aa95cb63de39df915f1ebf5f29137feae3ea40b38358d39d",
+      "network/tests/Goa2.Network.ClientHarness/Goa2.Network.ClientHarness.csproj": "c55af18969bd32d63d7acdf063ea751bcdd29f799935abce4377e1050f105f8a",
+      "network/tests/Goa2.Network.ClientHarness/packages.lock.json": "0136d384c5ca73952f1f999472050751c429e6ee70515ff5345f2a7293f32334",
+      "network/tests/Goa2.Network.ClientHarness/Program.cs": "213adf26e36e64d4ceb021574c651e79e56e6c8bf804b5e38847d6e459c01717",
+      "network/tests/Goa2.Network.TestHost/Goa2.Network.TestHost.csproj": "b6662f8d6ad2ba9b51ab5086fb052f50da25a970859bf279fea66da019225437",
+      "network/tests/Goa2.Network.TestHost/packages.lock.json": "394fd69a40905a514078328e72fbc3507f22fcaff974fe292146c6be15f565ec",
+      "network/tests/Goa2.Network.TestHost/Program.cs": "cd6a6725e123d88433ab912b5a51dcd7cf3ad67246928668acfa5cf286fec862",
+      "core/com.goa2.core/Runtime/Application/GameSession.cs": "dc2ee5d6fd642f80e363319e74adf286a8a3424daf5766ee1b961c258b59f8a1",
+      "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+      "core/com.goa2.core/Runtime/Domain/Combat.cs": "64e805fa02dfd2e6ab832d6015f7fbac88432eae388ee385dc88a3853cd2a617",
+      "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+      "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+      "core/com.goa2.core/Runtime/Domain/Displacement.cs": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+      "core/com.goa2.core/Runtime/Domain/Effects.cs": "641a3587b0e99a80a6ae0aec6b92d7b8aa39538b973201d0120e3664b49ade2e",
+      "core/com.goa2.core/Runtime/Domain/Model.cs": "a195027fc576254b4ab4678459da47eb0c6b46d9d478100f2f07d1ca8fdbf471",
+      "core/com.goa2.core/Runtime/Domain/RoundProgress.cs": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+      "core/com.goa2.core/Runtime/Domain/Views.cs": "21d8b2b409dd5b81e9e929e9d563faf6c307f85d85ecac41e442c3947e48da7b",
+      "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+      "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+      "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs": "db6fe75510c234db7a67ed4b3ebdc07563e7e861c3e30243e63d3773f5269e57",
+      "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+      "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+      "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs": "3d65a10a9ed5ac261c17a3e353add8839e57288b20eecfac2c8bdcaf81ed2a75",
+      "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs": "0522591b0c3a0b1ead83f99991dd98ab3da20678b8a9e037ed024c16b710857d",
+      "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs": "2ff7a7e03d1fa87423e097746c02bd348558ed9da7761cd906f97f76dd8c2113",
+      "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs": "8fbda04e927efb34759e5647c6acb6b51bd131e0fbd86e302bce076c730f1d8c",
+      "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs": "c2a8f5a065ef07e1bef7151dc848c453c56b73b8acf694708a959f9095946c77",
+      "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs": "169ae7680a36999271d6bf928179f0e37f6aeb87242d6f2dc39fbd7a5b115e28",
+      "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs": "72e09f37c1a4c944d2ad6515a190bd234a344d3ee4bd11687e292845972b5cf4",
+      "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+      "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs": "6989a1ccec65bd6ab1b6c6a6cc360e11eb32bbb6eb1a9b994da10d4179d8ff89",
+      "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs": "47ce77eb3e4284371072ca53e98dea0a047ba2fbb10d2f4bfff957d227e416c0",
+      "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs": "f52d8d44517e2c319a84ed5ba89e06320163007f5e4e0540787c240d521c0eb9",
+      "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs": "e4cd6f162f3ea180bee7eb3e42e1e97a37451795081ea214a1983ed928daa76f",
+      "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs": "0c03c3f41c259ad1a95fdec1dbc3314b132ec145d9c337e5d1066fe7822641ea",
+      "core/com.goa2.core/Runtime/Rules/CardPushRules.cs": "455d9ba8a613465890124117a65721eeed3ae66379e1bc8ae17e019cd12e91d9",
+      "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs": "301133dc738dbfef34354653aff5c36b90e01cde9e77423e539d436156f40240",
+      "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs": "a7f623a2f6e3cc16fdf22ba5882702897d443b760894721bcca9f49c8d463ce9",
+      "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+      "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs": "8ec0e99171bc298b4ddab6d95679c6ea788697352688fad1fdb06944bb343ee4",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs": "6f30d9314acf79d6779f92bd7330cb5f2af63e502f2132113c91a08f53f4ce20",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs": "3867631a0f623539dbec140b1994f6b463a72d7061d062dd2408df3c5641c172",
+      "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs": "b5f92ad96f895b4a6edc4d41176aee38fae75c54cbe3de68beebdeffc197687c",
+      "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs": "0b00d6274c5d8c5e06199187e30971c754c4c3ed3adb47df6c916f6cd2164899",
+      "core/com.goa2.core/Runtime/Rules/CombatMath.cs": "ddea04ebddd4cc16e397ae4cf183e46ea3d9c0ad7503fb85ef1b339672683446",
+      "core/com.goa2.core/Runtime/Rules/CombatRules.cs": "ab4afe3b5598d1b540df83a62ca56c353fc2fe28c7dacb581a5281020bd4a700",
+      "core/com.goa2.core/Runtime/Rules/DebugRules.cs": "bfb33bff4fc943ada0787e69b893fb7f3d0739b3e049a0dd7b35b655ff9acfb2",
+      "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs": "96c2191d775dd4410d69534e9f009e96366b7163a63177ab9bda8b9eec8b44af",
+      "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs": "da4bbcf4481a3091b5337bb197f123a626d4fc1b00bb4406f2947a4d3b9be063",
+      "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs": "1ff3ddd263b2c9ede296a694dada54bf610c99e64f344eea45ffdb5443b39932",
+      "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs": "9e964899710aa9a1519e42125c6148ac45625412ff8307623707eb6b4873f753",
+      "core/com.goa2.core/Runtime/Rules/EffectRules.cs": "31393d43e41b748a2925662975cf7f8c4a39699dc775517408623fa81bb6ad08",
+      "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs": "96f2944b3c5195c65a02e92f4704829f26e8a919d1ddac9a122e6c5b0c5d8021",
+      "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs": "766cdd2bebfe4bee993a7110dea717ef46600eced1af298cf6a9ef5eb7381e65",
+      "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+      "core/com.goa2.core/Runtime/Rules/GameRules.cs": "c32eb16b941858b7a8b72451702655d147611cd19456f2caca3658c3e5f0a3cd",
+      "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+      "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+      "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs": "55fa125634a22d32d271855a8eb11106893e946c792f93f988481957f9f7d092",
+      "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs": "deca4a63bf72414ccce28e18c0b7173c6d0c8f9f12d9baedff293563d6e23865",
+      "core/com.goa2.core/Runtime/Rules/MovementRules.cs": "5a0d170ef26005a3d169cd2e198f9a1bea56a967dae5e879541872b0c02a2bd3",
+      "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs": "6fafe9f4bb4ca673d51c6d6bc3a47e63ab8e67e33f92260bf557d75b117fd57e",
+      "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs": "75d3610de13d1c287130bbd431de25da5f43dc4a7aa4ea386fe214f9598969de",
+      "core/com.goa2.core/Runtime/Rules/PoisonRules.cs": "5927f6702eba0289fee8007fcde1e5fb292d67f5226d59224de81a921ac4f1a8",
+      "core/com.goa2.core/Runtime/Rules/PushRules.cs": "625c1c4eae5e84a42b022283e278ddd68b2e2c2b6f52769b11249358c17f7f06",
+      "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs": "9290746928bc86ea19eb667cac5c734b80122eed847bfa146fc6931eb2b6b1cc",
+      "core/com.goa2.core/Runtime/Rules/TurnRules.cs": "add2a9294b109420cf458dafcef0c9afe6bdbe8a5f5be2261c57581b785e069a",
+      "core/com.goa2.core/Runtime/Rules/UltimateRules.cs": "fef62ced21fbffec7638041fc62609c7fc5f21999fadb592d027ba9fb2b569fd",
+      "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+      "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs": "3e7a732c757a5b76eeb886bd86e3c7de24e70802cc28b6494b942a8675bee799",
+      "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs": "9aae026bdbb01ce10f96d66c869fa15f8a7e7ef726b1215650bced28b67582e3"
+    }
+  },
+  {
+    "run": "20260928-191137-4b7d2cdf",
+    "passed": true,
+    "runner": "TCP: one .NET service and four Python client processes",
+    "checks": [
+      {
+        "name": "optional_discard pending before disconnect",
+        "passed": true
+      },
+      {
+        "name": "N13 disconnected state optional_discard",
+        "passed": true
+      },
+      {
+        "name": "resume optional_discard",
+        "passed": true
+      },
+      {
+        "name": "private candidates optional_discard1",
+        "passed": true
+      },
+      {
+        "name": "private candidates optional_discard2",
+        "passed": true
+      },
+      {
+        "name": "private candidates optional_discard3",
+        "passed": true
+      },
+      {
+        "name": "N05 lost Result retry ChooseOptionalDiscard",
+        "passed": true
+      },
+      {
+        "name": "defense pending before disconnect",
+        "passed": true
+      },
+      {
+        "name": "N13 disconnected state defense",
+        "passed": true
+      },
+      {
+        "name": "resume defense",
+        "passed": true
+      },
+      {
+        "name": "private candidates defense0",
+        "passed": true
+      },
+      {
+        "name": "private candidates defense2",
+        "passed": true
+      },
+      {
+        "name": "private candidates defense3",
+        "passed": true
+      },
+      {
+        "name": "forced_discard pending before disconnect",
+        "passed": true
+      },
+      {
+        "name": "N13 disconnected state forced_discard",
+        "passed": true
+      },
+      {
+        "name": "resume forced_discard",
+        "passed": true
+      },
+      {
+        "name": "private candidates forced_discard1",
+        "passed": true
+      },
+      {
+        "name": "private candidates forced_discard2",
+        "passed": true
+      },
+      {
+        "name": "private candidates forced_discard3",
+        "passed": true
+      },
+      {
+        "name": "N08 optional cost preserved",
+        "passed": true
+      },
+      {
+        "name": "N05 lost Result retry ForcedDiscard",
+        "passed": true
+      },
+      {
+        "name": "N08 two distinct discards once",
+        "passed": true
+      },
+      {
+        "name": "N08 parent resumes",
+        "passed": true
+      }
+    ],
+    "assemblies": {
+      "Goa2.Application.dll": "77b97d94afc4592f4d284c0e796fa8d70cb1c1bff1e1b878f45342c2b24de6ab",
+      "Goa2.Domain.dll": "7adb8ae76717088f2ee959dc473fff903af63f3f434cb4dc792c2492fe374bad",
+      "Goa2.Infrastructure.dll": "771f84b84bc7dd5eda6183ceec7754b56a236191a7d7b4b8c9f04cfe81acb533",
+      "Goa2.Network.dll": "7d931b5de53443ada59c786441017432687529f4bf5fcc9827457cd51fe03558",
+      "Goa2.Rules.dll": "ceef078124864caf876ace445afb0f585e49af4b16f8320b01e594814e07dbc9",
+      "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+    },
+    "restore_verified": true,
+    "source_files": {
+      "network/client/player.py": "934efbbad971ff74657a30bddceb816ac62f332c3f38451abcfa70b9a3d01a61",
+      "network/com.goa2.network.client/package.json": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+      "network/Goa2.Network/Goa2.Network.csproj": "33b7108be48b5e51062a0986e1fc4a7509d1edcc1b37263327a1a450700ca1f7",
+      "network/Goa2.Network/packages.lock.json": "3896b5350eaffa4692cfdce23dcc47ecbdad47ae27f658bf061022d872346d42",
+      "network/Goa2.Network/Program.cs": "7c831931e1998d03da2fd7cb11a7b71241d10d3cc38be3acc42d161878ee8692",
+      "network/Goa2.Network/Room.cs": "5557a37ae3d1345b713cb1b993880586521e80cb4270577e659c69f241a89544",
+      "network/Goa2.Network/TestAccess.cs": "7604e86017a81c6f07b79fdf72591f2afd7c22eb6f200b2cc9f2f81665cb6210",
+      "network/Goa2.Network/Wire.cs": "a5fee1fd193638e2dc96e52d65f660417174a2c299f89f6ac78b4ad792321d9b",
+      "network/Goa2.Network.Client/Goa2.Network.Client.csproj": "b35f8b67a5bbd3b9c91831a7b202913f99fa21291b5a154cf3ecf687e7206238",
+      "network/Goa2.Network.Client/packages.lock.json": "a2b02556d6502e9eefe4756953883d0ab4df0936c55df77778991ce03e4898c2",
+      "network/tests/acceptance.py": "bd0fe19fba82537797e8f9cef3676c9ed45f60d1a7d0f98199a48fce380a48ac",
+      "network/tests/fault_proxy.py": "2842dc2fbbd963e58cf4ded686c4373bf62c23c61d244820bced3601b12025f3",
+      "network/tests/test_client.py": "054198f3138d900aee440812ee11d6d22c3e7d683d0b75b607adc0f0dfe52593",
+      "network/tests/unity_acceptance.py": "cdc83269c9a5b39f21d4378933c5f97ad14fecf1a41fba14e7efa306ddb169a0",
+      "network/com.goa2.network.client/Runtime/IPlayerSession.cs": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+      "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs": "7a94c4310f12869faa13375412fd85f59b7e562845678318f675aa435dc852f6",
+      "network/com.goa2.network.client/Runtime/UiIntent.cs": "994b692563f627718ce009989a5cdd8fd62c9a3a466a35898f8b4f5fa832ea27",
+      "network/tests/fixtures/axe-empty.json": "d2c59cb1b7da15d5aa95cb63de39df915f1ebf5f29137feae3ea40b38358d39d",
+      "network/tests/Goa2.Network.ClientHarness/Goa2.Network.ClientHarness.csproj": "c55af18969bd32d63d7acdf063ea751bcdd29f799935abce4377e1050f105f8a",
+      "network/tests/Goa2.Network.ClientHarness/packages.lock.json": "0136d384c5ca73952f1f999472050751c429e6ee70515ff5345f2a7293f32334",
+      "network/tests/Goa2.Network.ClientHarness/Program.cs": "213adf26e36e64d4ceb021574c651e79e56e6c8bf804b5e38847d6e459c01717",
+      "network/tests/Goa2.Network.TestHost/Goa2.Network.TestHost.csproj": "b6662f8d6ad2ba9b51ab5086fb052f50da25a970859bf279fea66da019225437",
+      "network/tests/Goa2.Network.TestHost/packages.lock.json": "394fd69a40905a514078328e72fbc3507f22fcaff974fe292146c6be15f565ec",
+      "network/tests/Goa2.Network.TestHost/Program.cs": "cd6a6725e123d88433ab912b5a51dcd7cf3ad67246928668acfa5cf286fec862",
+      "core/com.goa2.core/Runtime/Application/GameSession.cs": "dc2ee5d6fd642f80e363319e74adf286a8a3424daf5766ee1b961c258b59f8a1",
+      "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+      "core/com.goa2.core/Runtime/Domain/Combat.cs": "64e805fa02dfd2e6ab832d6015f7fbac88432eae388ee385dc88a3853cd2a617",
+      "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+      "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+      "core/com.goa2.core/Runtime/Domain/Displacement.cs": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+      "core/com.goa2.core/Runtime/Domain/Effects.cs": "641a3587b0e99a80a6ae0aec6b92d7b8aa39538b973201d0120e3664b49ade2e",
+      "core/com.goa2.core/Runtime/Domain/Model.cs": "a195027fc576254b4ab4678459da47eb0c6b46d9d478100f2f07d1ca8fdbf471",
+      "core/com.goa2.core/Runtime/Domain/RoundProgress.cs": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+      "core/com.goa2.core/Runtime/Domain/Views.cs": "21d8b2b409dd5b81e9e929e9d563faf6c307f85d85ecac41e442c3947e48da7b",
+      "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+      "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+      "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs": "db6fe75510c234db7a67ed4b3ebdc07563e7e861c3e30243e63d3773f5269e57",
+      "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+      "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+      "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs": "3d65a10a9ed5ac261c17a3e353add8839e57288b20eecfac2c8bdcaf81ed2a75",
+      "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs": "0522591b0c3a0b1ead83f99991dd98ab3da20678b8a9e037ed024c16b710857d",
+      "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs": "2ff7a7e03d1fa87423e097746c02bd348558ed9da7761cd906f97f76dd8c2113",
+      "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs": "8fbda04e927efb34759e5647c6acb6b51bd131e0fbd86e302bce076c730f1d8c",
+      "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs": "c2a8f5a065ef07e1bef7151dc848c453c56b73b8acf694708a959f9095946c77",
+      "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs": "169ae7680a36999271d6bf928179f0e37f6aeb87242d6f2dc39fbd7a5b115e28",
+      "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs": "72e09f37c1a4c944d2ad6515a190bd234a344d3ee4bd11687e292845972b5cf4",
+      "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+      "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs": "6989a1ccec65bd6ab1b6c6a6cc360e11eb32bbb6eb1a9b994da10d4179d8ff89",
+      "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs": "47ce77eb3e4284371072ca53e98dea0a047ba2fbb10d2f4bfff957d227e416c0",
+      "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs": "f52d8d44517e2c319a84ed5ba89e06320163007f5e4e0540787c240d521c0eb9",
+      "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs": "e4cd6f162f3ea180bee7eb3e42e1e97a37451795081ea214a1983ed928daa76f",
+      "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs": "0c03c3f41c259ad1a95fdec1dbc3314b132ec145d9c337e5d1066fe7822641ea",
+      "core/com.goa2.core/Runtime/Rules/CardPushRules.cs": "455d9ba8a613465890124117a65721eeed3ae66379e1bc8ae17e019cd12e91d9",
+      "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs": "301133dc738dbfef34354653aff5c36b90e01cde9e77423e539d436156f40240",
+      "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs": "a7f623a2f6e3cc16fdf22ba5882702897d443b760894721bcca9f49c8d463ce9",
+      "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+      "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs": "8ec0e99171bc298b4ddab6d95679c6ea788697352688fad1fdb06944bb343ee4",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs": "6f30d9314acf79d6779f92bd7330cb5f2af63e502f2132113c91a08f53f4ce20",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs": "3867631a0f623539dbec140b1994f6b463a72d7061d062dd2408df3c5641c172",
+      "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs": "b5f92ad96f895b4a6edc4d41176aee38fae75c54cbe3de68beebdeffc197687c",
+      "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs": "0b00d6274c5d8c5e06199187e30971c754c4c3ed3adb47df6c916f6cd2164899",
+      "core/com.goa2.core/Runtime/Rules/CombatMath.cs": "ddea04ebddd4cc16e397ae4cf183e46ea3d9c0ad7503fb85ef1b339672683446",
+      "core/com.goa2.core/Runtime/Rules/CombatRules.cs": "ab4afe3b5598d1b540df83a62ca56c353fc2fe28c7dacb581a5281020bd4a700",
+      "core/com.goa2.core/Runtime/Rules/DebugRules.cs": "bfb33bff4fc943ada0787e69b893fb7f3d0739b3e049a0dd7b35b655ff9acfb2",
+      "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs": "96c2191d775dd4410d69534e9f009e96366b7163a63177ab9bda8b9eec8b44af",
+      "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs": "da4bbcf4481a3091b5337bb197f123a626d4fc1b00bb4406f2947a4d3b9be063",
+      "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs": "1ff3ddd263b2c9ede296a694dada54bf610c99e64f344eea45ffdb5443b39932",
+      "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs": "9e964899710aa9a1519e42125c6148ac45625412ff8307623707eb6b4873f753",
+      "core/com.goa2.core/Runtime/Rules/EffectRules.cs": "31393d43e41b748a2925662975cf7f8c4a39699dc775517408623fa81bb6ad08",
+      "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs": "96f2944b3c5195c65a02e92f4704829f26e8a919d1ddac9a122e6c5b0c5d8021",
+      "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs": "766cdd2bebfe4bee993a7110dea717ef46600eced1af298cf6a9ef5eb7381e65",
+      "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+      "core/com.goa2.core/Runtime/Rules/GameRules.cs": "c32eb16b941858b7a8b72451702655d147611cd19456f2caca3658c3e5f0a3cd",
+      "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+      "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+      "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs": "55fa125634a22d32d271855a8eb11106893e946c792f93f988481957f9f7d092",
+      "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs": "deca4a63bf72414ccce28e18c0b7173c6d0c8f9f12d9baedff293563d6e23865",
+      "core/com.goa2.core/Runtime/Rules/MovementRules.cs": "5a0d170ef26005a3d169cd2e198f9a1bea56a967dae5e879541872b0c02a2bd3",
+      "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs": "6fafe9f4bb4ca673d51c6d6bc3a47e63ab8e67e33f92260bf557d75b117fd57e",
+      "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs": "75d3610de13d1c287130bbd431de25da5f43dc4a7aa4ea386fe214f9598969de",
+      "core/com.goa2.core/Runtime/Rules/PoisonRules.cs": "5927f6702eba0289fee8007fcde1e5fb292d67f5226d59224de81a921ac4f1a8",
+      "core/com.goa2.core/Runtime/Rules/PushRules.cs": "625c1c4eae5e84a42b022283e278ddd68b2e2c2b6f52769b11249358c17f7f06",
+      "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs": "9290746928bc86ea19eb667cac5c734b80122eed847bfa146fc6931eb2b6b1cc",
+      "core/com.goa2.core/Runtime/Rules/TurnRules.cs": "add2a9294b109420cf458dafcef0c9afe6bdbe8a5f5be2261c57581b785e069a",
+      "core/com.goa2.core/Runtime/Rules/UltimateRules.cs": "fef62ced21fbffec7638041fc62609c7fc5f21999fadb592d027ba9fb2b569fd",
+      "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+      "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs": "3e7a732c757a5b76eeb886bd86e3c7de24e70802cc28b6494b942a8675bee799",
+      "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs": "9aae026bdbb01ce10f96d66c869fa15f8a7e7ef726b1215650bced28b67582e3"
+    }
+  },
+  {
+    "run": "20260928-191139-d85f908d",
+    "passed": true,
+    "runner": "TCP: one .NET service and four Python client processes",
+    "checks": [
+      {
+        "name": "hero_respawn pending before disconnect",
+        "passed": true
+      },
+      {
+        "name": "N13 disconnected state hero_respawn",
+        "passed": true
+      },
+      {
+        "name": "resume hero_respawn",
+        "passed": true
+      },
+      {
+        "name": "private candidates hero_respawn0",
+        "passed": true
+      },
+      {
+        "name": "private candidates hero_respawn2",
+        "passed": true
+      },
+      {
+        "name": "private candidates hero_respawn3",
+        "passed": true
+      },
+      {
+        "name": "N05 lost Result retry RespawnHero",
+        "passed": true
+      },
+      {
+        "name": "N10 respawn resumes parent",
+        "passed": true
+      }
+    ],
+    "assemblies": {
+      "Goa2.Application.dll": "77b97d94afc4592f4d284c0e796fa8d70cb1c1bff1e1b878f45342c2b24de6ab",
+      "Goa2.Domain.dll": "7adb8ae76717088f2ee959dc473fff903af63f3f434cb4dc792c2492fe374bad",
+      "Goa2.Infrastructure.dll": "771f84b84bc7dd5eda6183ceec7754b56a236191a7d7b4b8c9f04cfe81acb533",
+      "Goa2.Network.dll": "7d931b5de53443ada59c786441017432687529f4bf5fcc9827457cd51fe03558",
+      "Goa2.Rules.dll": "ceef078124864caf876ace445afb0f585e49af4b16f8320b01e594814e07dbc9",
+      "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+    },
+    "restore_verified": true,
+    "source_files": {
+      "network/client/player.py": "934efbbad971ff74657a30bddceb816ac62f332c3f38451abcfa70b9a3d01a61",
+      "network/com.goa2.network.client/package.json": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+      "network/Goa2.Network/Goa2.Network.csproj": "33b7108be48b5e51062a0986e1fc4a7509d1edcc1b37263327a1a450700ca1f7",
+      "network/Goa2.Network/packages.lock.json": "3896b5350eaffa4692cfdce23dcc47ecbdad47ae27f658bf061022d872346d42",
+      "network/Goa2.Network/Program.cs": "7c831931e1998d03da2fd7cb11a7b71241d10d3cc38be3acc42d161878ee8692",
+      "network/Goa2.Network/Room.cs": "5557a37ae3d1345b713cb1b993880586521e80cb4270577e659c69f241a89544",
+      "network/Goa2.Network/TestAccess.cs": "7604e86017a81c6f07b79fdf72591f2afd7c22eb6f200b2cc9f2f81665cb6210",
+      "network/Goa2.Network/Wire.cs": "a5fee1fd193638e2dc96e52d65f660417174a2c299f89f6ac78b4ad792321d9b",
+      "network/Goa2.Network.Client/Goa2.Network.Client.csproj": "b35f8b67a5bbd3b9c91831a7b202913f99fa21291b5a154cf3ecf687e7206238",
+      "network/Goa2.Network.Client/packages.lock.json": "a2b02556d6502e9eefe4756953883d0ab4df0936c55df77778991ce03e4898c2",
+      "network/tests/acceptance.py": "bd0fe19fba82537797e8f9cef3676c9ed45f60d1a7d0f98199a48fce380a48ac",
+      "network/tests/fault_proxy.py": "2842dc2fbbd963e58cf4ded686c4373bf62c23c61d244820bced3601b12025f3",
+      "network/tests/test_client.py": "054198f3138d900aee440812ee11d6d22c3e7d683d0b75b607adc0f0dfe52593",
+      "network/tests/unity_acceptance.py": "cdc83269c9a5b39f21d4378933c5f97ad14fecf1a41fba14e7efa306ddb169a0",
+      "network/com.goa2.network.client/Runtime/IPlayerSession.cs": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+      "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs": "7a94c4310f12869faa13375412fd85f59b7e562845678318f675aa435dc852f6",
+      "network/com.goa2.network.client/Runtime/UiIntent.cs": "994b692563f627718ce009989a5cdd8fd62c9a3a466a35898f8b4f5fa832ea27",
+      "network/tests/fixtures/axe-empty.json": "d2c59cb1b7da15d5aa95cb63de39df915f1ebf5f29137feae3ea40b38358d39d",
+      "network/tests/Goa2.Network.ClientHarness/Goa2.Network.ClientHarness.csproj": "c55af18969bd32d63d7acdf063ea751bcdd29f799935abce4377e1050f105f8a",
+      "network/tests/Goa2.Network.ClientHarness/packages.lock.json": "0136d384c5ca73952f1f999472050751c429e6ee70515ff5345f2a7293f32334",
+      "network/tests/Goa2.Network.ClientHarness/Program.cs": "213adf26e36e64d4ceb021574c651e79e56e6c8bf804b5e38847d6e459c01717",
+      "network/tests/Goa2.Network.TestHost/Goa2.Network.TestHost.csproj": "b6662f8d6ad2ba9b51ab5086fb052f50da25a970859bf279fea66da019225437",
+      "network/tests/Goa2.Network.TestHost/packages.lock.json": "394fd69a40905a514078328e72fbc3507f22fcaff974fe292146c6be15f565ec",
+      "network/tests/Goa2.Network.TestHost/Program.cs": "cd6a6725e123d88433ab912b5a51dcd7cf3ad67246928668acfa5cf286fec862",
+      "core/com.goa2.core/Runtime/Application/GameSession.cs": "dc2ee5d6fd642f80e363319e74adf286a8a3424daf5766ee1b961c258b59f8a1",
+      "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+      "core/com.goa2.core/Runtime/Domain/Combat.cs": "64e805fa02dfd2e6ab832d6015f7fbac88432eae388ee385dc88a3853cd2a617",
+      "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+      "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+      "core/com.goa2.core/Runtime/Domain/Displacement.cs": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+      "core/com.goa2.core/Runtime/Domain/Effects.cs": "641a3587b0e99a80a6ae0aec6b92d7b8aa39538b973201d0120e3664b49ade2e",
+      "core/com.goa2.core/Runtime/Domain/Model.cs": "a195027fc576254b4ab4678459da47eb0c6b46d9d478100f2f07d1ca8fdbf471",
+      "core/com.goa2.core/Runtime/Domain/RoundProgress.cs": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+      "core/com.goa2.core/Runtime/Domain/Views.cs": "21d8b2b409dd5b81e9e929e9d563faf6c307f85d85ecac41e442c3947e48da7b",
+      "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+      "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+      "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs": "db6fe75510c234db7a67ed4b3ebdc07563e7e861c3e30243e63d3773f5269e57",
+      "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+      "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+      "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs": "3d65a10a9ed5ac261c17a3e353add8839e57288b20eecfac2c8bdcaf81ed2a75",
+      "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs": "0522591b0c3a0b1ead83f99991dd98ab3da20678b8a9e037ed024c16b710857d",
+      "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs": "2ff7a7e03d1fa87423e097746c02bd348558ed9da7761cd906f97f76dd8c2113",
+      "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs": "8fbda04e927efb34759e5647c6acb6b51bd131e0fbd86e302bce076c730f1d8c",
+      "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs": "c2a8f5a065ef07e1bef7151dc848c453c56b73b8acf694708a959f9095946c77",
+      "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs": "169ae7680a36999271d6bf928179f0e37f6aeb87242d6f2dc39fbd7a5b115e28",
+      "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs": "72e09f37c1a4c944d2ad6515a190bd234a344d3ee4bd11687e292845972b5cf4",
+      "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+      "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs": "6989a1ccec65bd6ab1b6c6a6cc360e11eb32bbb6eb1a9b994da10d4179d8ff89",
+      "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs": "47ce77eb3e4284371072ca53e98dea0a047ba2fbb10d2f4bfff957d227e416c0",
+      "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs": "f52d8d44517e2c319a84ed5ba89e06320163007f5e4e0540787c240d521c0eb9",
+      "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs": "e4cd6f162f3ea180bee7eb3e42e1e97a37451795081ea214a1983ed928daa76f",
+      "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs": "0c03c3f41c259ad1a95fdec1dbc3314b132ec145d9c337e5d1066fe7822641ea",
+      "core/com.goa2.core/Runtime/Rules/CardPushRules.cs": "455d9ba8a613465890124117a65721eeed3ae66379e1bc8ae17e019cd12e91d9",
+      "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs": "301133dc738dbfef34354653aff5c36b90e01cde9e77423e539d436156f40240",
+      "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs": "a7f623a2f6e3cc16fdf22ba5882702897d443b760894721bcca9f49c8d463ce9",
+      "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+      "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs": "8ec0e99171bc298b4ddab6d95679c6ea788697352688fad1fdb06944bb343ee4",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs": "6f30d9314acf79d6779f92bd7330cb5f2af63e502f2132113c91a08f53f4ce20",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs": "3867631a0f623539dbec140b1994f6b463a72d7061d062dd2408df3c5641c172",
+      "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs": "b5f92ad96f895b4a6edc4d41176aee38fae75c54cbe3de68beebdeffc197687c",
+      "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs": "0b00d6274c5d8c5e06199187e30971c754c4c3ed3adb47df6c916f6cd2164899",
+      "core/com.goa2.core/Runtime/Rules/CombatMath.cs": "ddea04ebddd4cc16e397ae4cf183e46ea3d9c0ad7503fb85ef1b339672683446",
+      "core/com.goa2.core/Runtime/Rules/CombatRules.cs": "ab4afe3b5598d1b540df83a62ca56c353fc2fe28c7dacb581a5281020bd4a700",
+      "core/com.goa2.core/Runtime/Rules/DebugRules.cs": "bfb33bff4fc943ada0787e69b893fb7f3d0739b3e049a0dd7b35b655ff9acfb2",
+      "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs": "96c2191d775dd4410d69534e9f009e96366b7163a63177ab9bda8b9eec8b44af",
+      "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs": "da4bbcf4481a3091b5337bb197f123a626d4fc1b00bb4406f2947a4d3b9be063",
+      "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs": "1ff3ddd263b2c9ede296a694dada54bf610c99e64f344eea45ffdb5443b39932",
+      "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs": "9e964899710aa9a1519e42125c6148ac45625412ff8307623707eb6b4873f753",
+      "core/com.goa2.core/Runtime/Rules/EffectRules.cs": "31393d43e41b748a2925662975cf7f8c4a39699dc775517408623fa81bb6ad08",
+      "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs": "96f2944b3c5195c65a02e92f4704829f26e8a919d1ddac9a122e6c5b0c5d8021",
+      "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs": "766cdd2bebfe4bee993a7110dea717ef46600eced1af298cf6a9ef5eb7381e65",
+      "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+      "core/com.goa2.core/Runtime/Rules/GameRules.cs": "c32eb16b941858b7a8b72451702655d147611cd19456f2caca3658c3e5f0a3cd",
+      "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+      "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+      "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs": "55fa125634a22d32d271855a8eb11106893e946c792f93f988481957f9f7d092",
+      "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs": "deca4a63bf72414ccce28e18c0b7173c6d0c8f9f12d9baedff293563d6e23865",
+      "core/com.goa2.core/Runtime/Rules/MovementRules.cs": "5a0d170ef26005a3d169cd2e198f9a1bea56a967dae5e879541872b0c02a2bd3",
+      "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs": "6fafe9f4bb4ca673d51c6d6bc3a47e63ab8e67e33f92260bf557d75b117fd57e",
+      "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs": "75d3610de13d1c287130bbd431de25da5f43dc4a7aa4ea386fe214f9598969de",
+      "core/com.goa2.core/Runtime/Rules/PoisonRules.cs": "5927f6702eba0289fee8007fcde1e5fb292d67f5226d59224de81a921ac4f1a8",
+      "core/com.goa2.core/Runtime/Rules/PushRules.cs": "625c1c4eae5e84a42b022283e278ddd68b2e2c2b6f52769b11249358c17f7f06",
+      "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs": "9290746928bc86ea19eb667cac5c734b80122eed847bfa146fc6931eb2b6b1cc",
+      "core/com.goa2.core/Runtime/Rules/TurnRules.cs": "add2a9294b109420cf458dafcef0c9afe6bdbe8a5f5be2261c57581b785e069a",
+      "core/com.goa2.core/Runtime/Rules/UltimateRules.cs": "fef62ced21fbffec7638041fc62609c7fc5f21999fadb592d027ba9fb2b569fd",
+      "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+      "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs": "3e7a732c757a5b76eeb886bd86e3c7de24e70802cc28b6494b942a8675bee799",
+      "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs": "9aae026bdbb01ce10f96d66c869fa15f8a7e7ef726b1215650bced28b67582e3"
+    }
+  },
+  {
+    "run": "20260928-191140-4dae7cf0",
+    "passed": true,
+    "runner": "TCP: one .NET service and four Python client processes",
+    "checks": [
+      {
+        "name": "minion_spawn pending before disconnect",
+        "passed": true
+      },
+      {
+        "name": "N13 disconnected state minion_spawn",
+        "passed": true
+      },
+      {
+        "name": "resume minion_spawn",
+        "passed": true
+      },
+      {
+        "name": "private candidates minion_spawn0",
+        "passed": true
+      },
+      {
+        "name": "private candidates minion_spawn2",
+        "passed": true
+      },
+      {
+        "name": "private candidates minion_spawn3",
+        "passed": true
+      },
+      {
+        "name": "N05 lost Result retry ChooseMinionSpawn",
+        "passed": true
+      },
+      {
+        "name": "N10 spawn resumes round end",
+        "passed": true
+      }
+    ],
+    "assemblies": {
+      "Goa2.Application.dll": "77b97d94afc4592f4d284c0e796fa8d70cb1c1bff1e1b878f45342c2b24de6ab",
+      "Goa2.Domain.dll": "7adb8ae76717088f2ee959dc473fff903af63f3f434cb4dc792c2492fe374bad",
+      "Goa2.Infrastructure.dll": "771f84b84bc7dd5eda6183ceec7754b56a236191a7d7b4b8c9f04cfe81acb533",
+      "Goa2.Network.dll": "7d931b5de53443ada59c786441017432687529f4bf5fcc9827457cd51fe03558",
+      "Goa2.Rules.dll": "ceef078124864caf876ace445afb0f585e49af4b16f8320b01e594814e07dbc9",
+      "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+    },
+    "restore_verified": true,
+    "source_files": {
+      "network/client/player.py": "934efbbad971ff74657a30bddceb816ac62f332c3f38451abcfa70b9a3d01a61",
+      "network/com.goa2.network.client/package.json": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+      "network/Goa2.Network/Goa2.Network.csproj": "33b7108be48b5e51062a0986e1fc4a7509d1edcc1b37263327a1a450700ca1f7",
+      "network/Goa2.Network/packages.lock.json": "3896b5350eaffa4692cfdce23dcc47ecbdad47ae27f658bf061022d872346d42",
+      "network/Goa2.Network/Program.cs": "7c831931e1998d03da2fd7cb11a7b71241d10d3cc38be3acc42d161878ee8692",
+      "network/Goa2.Network/Room.cs": "5557a37ae3d1345b713cb1b993880586521e80cb4270577e659c69f241a89544",
+      "network/Goa2.Network/TestAccess.cs": "7604e86017a81c6f07b79fdf72591f2afd7c22eb6f200b2cc9f2f81665cb6210",
+      "network/Goa2.Network/Wire.cs": "a5fee1fd193638e2dc96e52d65f660417174a2c299f89f6ac78b4ad792321d9b",
+      "network/Goa2.Network.Client/Goa2.Network.Client.csproj": "b35f8b67a5bbd3b9c91831a7b202913f99fa21291b5a154cf3ecf687e7206238",
+      "network/Goa2.Network.Client/packages.lock.json": "a2b02556d6502e9eefe4756953883d0ab4df0936c55df77778991ce03e4898c2",
+      "network/tests/acceptance.py": "bd0fe19fba82537797e8f9cef3676c9ed45f60d1a7d0f98199a48fce380a48ac",
+      "network/tests/fault_proxy.py": "2842dc2fbbd963e58cf4ded686c4373bf62c23c61d244820bced3601b12025f3",
+      "network/tests/test_client.py": "054198f3138d900aee440812ee11d6d22c3e7d683d0b75b607adc0f0dfe52593",
+      "network/tests/unity_acceptance.py": "cdc83269c9a5b39f21d4378933c5f97ad14fecf1a41fba14e7efa306ddb169a0",
+      "network/com.goa2.network.client/Runtime/IPlayerSession.cs": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+      "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs": "7a94c4310f12869faa13375412fd85f59b7e562845678318f675aa435dc852f6",
+      "network/com.goa2.network.client/Runtime/UiIntent.cs": "994b692563f627718ce009989a5cdd8fd62c9a3a466a35898f8b4f5fa832ea27",
+      "network/tests/fixtures/axe-empty.json": "d2c59cb1b7da15d5aa95cb63de39df915f1ebf5f29137feae3ea40b38358d39d",
+      "network/tests/Goa2.Network.ClientHarness/Goa2.Network.ClientHarness.csproj": "c55af18969bd32d63d7acdf063ea751bcdd29f799935abce4377e1050f105f8a",
+      "network/tests/Goa2.Network.ClientHarness/packages.lock.json": "0136d384c5ca73952f1f999472050751c429e6ee70515ff5345f2a7293f32334",
+      "network/tests/Goa2.Network.ClientHarness/Program.cs": "213adf26e36e64d4ceb021574c651e79e56e6c8bf804b5e38847d6e459c01717",
+      "network/tests/Goa2.Network.TestHost/Goa2.Network.TestHost.csproj": "b6662f8d6ad2ba9b51ab5086fb052f50da25a970859bf279fea66da019225437",
+      "network/tests/Goa2.Network.TestHost/packages.lock.json": "394fd69a40905a514078328e72fbc3507f22fcaff974fe292146c6be15f565ec",
+      "network/tests/Goa2.Network.TestHost/Program.cs": "cd6a6725e123d88433ab912b5a51dcd7cf3ad67246928668acfa5cf286fec862",
+      "core/com.goa2.core/Runtime/Application/GameSession.cs": "dc2ee5d6fd642f80e363319e74adf286a8a3424daf5766ee1b961c258b59f8a1",
+      "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+      "core/com.goa2.core/Runtime/Domain/Combat.cs": "64e805fa02dfd2e6ab832d6015f7fbac88432eae388ee385dc88a3853cd2a617",
+      "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+      "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+      "core/com.goa2.core/Runtime/Domain/Displacement.cs": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+      "core/com.goa2.core/Runtime/Domain/Effects.cs": "641a3587b0e99a80a6ae0aec6b92d7b8aa39538b973201d0120e3664b49ade2e",
+      "core/com.goa2.core/Runtime/Domain/Model.cs": "a195027fc576254b4ab4678459da47eb0c6b46d9d478100f2f07d1ca8fdbf471",
+      "core/com.goa2.core/Runtime/Domain/RoundProgress.cs": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+      "core/com.goa2.core/Runtime/Domain/Views.cs": "21d8b2b409dd5b81e9e929e9d563faf6c307f85d85ecac41e442c3947e48da7b",
+      "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+      "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+      "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs": "db6fe75510c234db7a67ed4b3ebdc07563e7e861c3e30243e63d3773f5269e57",
+      "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+      "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+      "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs": "3d65a10a9ed5ac261c17a3e353add8839e57288b20eecfac2c8bdcaf81ed2a75",
+      "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs": "0522591b0c3a0b1ead83f99991dd98ab3da20678b8a9e037ed024c16b710857d",
+      "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs": "2ff7a7e03d1fa87423e097746c02bd348558ed9da7761cd906f97f76dd8c2113",
+      "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs": "8fbda04e927efb34759e5647c6acb6b51bd131e0fbd86e302bce076c730f1d8c",
+      "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs": "c2a8f5a065ef07e1bef7151dc848c453c56b73b8acf694708a959f9095946c77",
+      "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs": "169ae7680a36999271d6bf928179f0e37f6aeb87242d6f2dc39fbd7a5b115e28",
+      "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs": "72e09f37c1a4c944d2ad6515a190bd234a344d3ee4bd11687e292845972b5cf4",
+      "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+      "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs": "6989a1ccec65bd6ab1b6c6a6cc360e11eb32bbb6eb1a9b994da10d4179d8ff89",
+      "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs": "47ce77eb3e4284371072ca53e98dea0a047ba2fbb10d2f4bfff957d227e416c0",
+      "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs": "f52d8d44517e2c319a84ed5ba89e06320163007f5e4e0540787c240d521c0eb9",
+      "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs": "e4cd6f162f3ea180bee7eb3e42e1e97a37451795081ea214a1983ed928daa76f",
+      "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs": "0c03c3f41c259ad1a95fdec1dbc3314b132ec145d9c337e5d1066fe7822641ea",
+      "core/com.goa2.core/Runtime/Rules/CardPushRules.cs": "455d9ba8a613465890124117a65721eeed3ae66379e1bc8ae17e019cd12e91d9",
+      "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs": "301133dc738dbfef34354653aff5c36b90e01cde9e77423e539d436156f40240",
+      "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs": "a7f623a2f6e3cc16fdf22ba5882702897d443b760894721bcca9f49c8d463ce9",
+      "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+      "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs": "8ec0e99171bc298b4ddab6d95679c6ea788697352688fad1fdb06944bb343ee4",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs": "6f30d9314acf79d6779f92bd7330cb5f2af63e502f2132113c91a08f53f4ce20",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs": "3867631a0f623539dbec140b1994f6b463a72d7061d062dd2408df3c5641c172",
+      "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs": "b5f92ad96f895b4a6edc4d41176aee38fae75c54cbe3de68beebdeffc197687c",
+      "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs": "0b00d6274c5d8c5e06199187e30971c754c4c3ed3adb47df6c916f6cd2164899",
+      "core/com.goa2.core/Runtime/Rules/CombatMath.cs": "ddea04ebddd4cc16e397ae4cf183e46ea3d9c0ad7503fb85ef1b339672683446",
+      "core/com.goa2.core/Runtime/Rules/CombatRules.cs": "ab4afe3b5598d1b540df83a62ca56c353fc2fe28c7dacb581a5281020bd4a700",
+      "core/com.goa2.core/Runtime/Rules/DebugRules.cs": "bfb33bff4fc943ada0787e69b893fb7f3d0739b3e049a0dd7b35b655ff9acfb2",
+      "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs": "96c2191d775dd4410d69534e9f009e96366b7163a63177ab9bda8b9eec8b44af",
+      "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs": "da4bbcf4481a3091b5337bb197f123a626d4fc1b00bb4406f2947a4d3b9be063",
+      "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs": "1ff3ddd263b2c9ede296a694dada54bf610c99e64f344eea45ffdb5443b39932",
+      "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs": "9e964899710aa9a1519e42125c6148ac45625412ff8307623707eb6b4873f753",
+      "core/com.goa2.core/Runtime/Rules/EffectRules.cs": "31393d43e41b748a2925662975cf7f8c4a39699dc775517408623fa81bb6ad08",
+      "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs": "96f2944b3c5195c65a02e92f4704829f26e8a919d1ddac9a122e6c5b0c5d8021",
+      "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs": "766cdd2bebfe4bee993a7110dea717ef46600eced1af298cf6a9ef5eb7381e65",
+      "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+      "core/com.goa2.core/Runtime/Rules/GameRules.cs": "c32eb16b941858b7a8b72451702655d147611cd19456f2caca3658c3e5f0a3cd",
+      "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+      "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+      "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs": "55fa125634a22d32d271855a8eb11106893e946c792f93f988481957f9f7d092",
+      "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs": "deca4a63bf72414ccce28e18c0b7173c6d0c8f9f12d9baedff293563d6e23865",
+      "core/com.goa2.core/Runtime/Rules/MovementRules.cs": "5a0d170ef26005a3d169cd2e198f9a1bea56a967dae5e879541872b0c02a2bd3",
+      "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs": "6fafe9f4bb4ca673d51c6d6bc3a47e63ab8e67e33f92260bf557d75b117fd57e",
+      "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs": "75d3610de13d1c287130bbd431de25da5f43dc4a7aa4ea386fe214f9598969de",
+      "core/com.goa2.core/Runtime/Rules/PoisonRules.cs": "5927f6702eba0289fee8007fcde1e5fb292d67f5226d59224de81a921ac4f1a8",
+      "core/com.goa2.core/Runtime/Rules/PushRules.cs": "625c1c4eae5e84a42b022283e278ddd68b2e2c2b6f52769b11249358c17f7f06",
+      "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs": "9290746928bc86ea19eb667cac5c734b80122eed847bfa146fc6931eb2b6b1cc",
+      "core/com.goa2.core/Runtime/Rules/TurnRules.cs": "add2a9294b109420cf458dafcef0c9afe6bdbe8a5f5be2261c57581b785e069a",
+      "core/com.goa2.core/Runtime/Rules/UltimateRules.cs": "fef62ced21fbffec7638041fc62609c7fc5f21999fadb592d027ba9fb2b569fd",
+      "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+      "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs": "3e7a732c757a5b76eeb886bd86e3c7de24e70802cc28b6494b942a8675bee799",
+      "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs": "9aae026bdbb01ce10f96d66c869fa15f8a7e7ef726b1215650bced28b67582e3"
+    }
+  },
+  {
+    "run": "20260928-191142-cab52320",
+    "passed": true,
+    "runner": "TCP: one .NET service and four Python client processes",
+    "checks": [
+      {
+        "name": "N09 both players have own upgrades",
+        "passed": true
+      },
+      {
+        "name": "N09 finished chooser clears options",
+        "passed": true
+      },
+      {
+        "name": "N09 offline chooser recovers options",
+        "passed": true
+      },
+      {
+        "name": "N09 resumes next round",
+        "passed": true
+      }
+    ],
+    "assemblies": {
+      "Goa2.Application.dll": "77b97d94afc4592f4d284c0e796fa8d70cb1c1bff1e1b878f45342c2b24de6ab",
+      "Goa2.Domain.dll": "7adb8ae76717088f2ee959dc473fff903af63f3f434cb4dc792c2492fe374bad",
+      "Goa2.Infrastructure.dll": "771f84b84bc7dd5eda6183ceec7754b56a236191a7d7b4b8c9f04cfe81acb533",
+      "Goa2.Network.dll": "7d931b5de53443ada59c786441017432687529f4bf5fcc9827457cd51fe03558",
+      "Goa2.Rules.dll": "ceef078124864caf876ace445afb0f585e49af4b16f8320b01e594814e07dbc9",
+      "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+    },
+    "restore_verified": true,
+    "source_files": {
+      "network/client/player.py": "934efbbad971ff74657a30bddceb816ac62f332c3f38451abcfa70b9a3d01a61",
+      "network/com.goa2.network.client/package.json": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+      "network/Goa2.Network/Goa2.Network.csproj": "33b7108be48b5e51062a0986e1fc4a7509d1edcc1b37263327a1a450700ca1f7",
+      "network/Goa2.Network/packages.lock.json": "3896b5350eaffa4692cfdce23dcc47ecbdad47ae27f658bf061022d872346d42",
+      "network/Goa2.Network/Program.cs": "7c831931e1998d03da2fd7cb11a7b71241d10d3cc38be3acc42d161878ee8692",
+      "network/Goa2.Network/Room.cs": "5557a37ae3d1345b713cb1b993880586521e80cb4270577e659c69f241a89544",
+      "network/Goa2.Network/TestAccess.cs": "7604e86017a81c6f07b79fdf72591f2afd7c22eb6f200b2cc9f2f81665cb6210",
+      "network/Goa2.Network/Wire.cs": "a5fee1fd193638e2dc96e52d65f660417174a2c299f89f6ac78b4ad792321d9b",
+      "network/Goa2.Network.Client/Goa2.Network.Client.csproj": "b35f8b67a5bbd3b9c91831a7b202913f99fa21291b5a154cf3ecf687e7206238",
+      "network/Goa2.Network.Client/packages.lock.json": "a2b02556d6502e9eefe4756953883d0ab4df0936c55df77778991ce03e4898c2",
+      "network/tests/acceptance.py": "bd0fe19fba82537797e8f9cef3676c9ed45f60d1a7d0f98199a48fce380a48ac",
+      "network/tests/fault_proxy.py": "2842dc2fbbd963e58cf4ded686c4373bf62c23c61d244820bced3601b12025f3",
+      "network/tests/test_client.py": "054198f3138d900aee440812ee11d6d22c3e7d683d0b75b607adc0f0dfe52593",
+      "network/tests/unity_acceptance.py": "cdc83269c9a5b39f21d4378933c5f97ad14fecf1a41fba14e7efa306ddb169a0",
+      "network/com.goa2.network.client/Runtime/IPlayerSession.cs": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+      "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs": "7a94c4310f12869faa13375412fd85f59b7e562845678318f675aa435dc852f6",
+      "network/com.goa2.network.client/Runtime/UiIntent.cs": "994b692563f627718ce009989a5cdd8fd62c9a3a466a35898f8b4f5fa832ea27",
+      "network/tests/fixtures/axe-empty.json": "d2c59cb1b7da15d5aa95cb63de39df915f1ebf5f29137feae3ea40b38358d39d",
+      "network/tests/Goa2.Network.ClientHarness/Goa2.Network.ClientHarness.csproj": "c55af18969bd32d63d7acdf063ea751bcdd29f799935abce4377e1050f105f8a",
+      "network/tests/Goa2.Network.ClientHarness/packages.lock.json": "0136d384c5ca73952f1f999472050751c429e6ee70515ff5345f2a7293f32334",
+      "network/tests/Goa2.Network.ClientHarness/Program.cs": "213adf26e36e64d4ceb021574c651e79e56e6c8bf804b5e38847d6e459c01717",
+      "network/tests/Goa2.Network.TestHost/Goa2.Network.TestHost.csproj": "b6662f8d6ad2ba9b51ab5086fb052f50da25a970859bf279fea66da019225437",
+      "network/tests/Goa2.Network.TestHost/packages.lock.json": "394fd69a40905a514078328e72fbc3507f22fcaff974fe292146c6be15f565ec",
+      "network/tests/Goa2.Network.TestHost/Program.cs": "cd6a6725e123d88433ab912b5a51dcd7cf3ad67246928668acfa5cf286fec862",
+      "core/com.goa2.core/Runtime/Application/GameSession.cs": "dc2ee5d6fd642f80e363319e74adf286a8a3424daf5766ee1b961c258b59f8a1",
+      "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+      "core/com.goa2.core/Runtime/Domain/Combat.cs": "64e805fa02dfd2e6ab832d6015f7fbac88432eae388ee385dc88a3853cd2a617",
+      "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+      "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+      "core/com.goa2.core/Runtime/Domain/Displacement.cs": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+      "core/com.goa2.core/Runtime/Domain/Effects.cs": "641a3587b0e99a80a6ae0aec6b92d7b8aa39538b973201d0120e3664b49ade2e",
+      "core/com.goa2.core/Runtime/Domain/Model.cs": "a195027fc576254b4ab4678459da47eb0c6b46d9d478100f2f07d1ca8fdbf471",
+      "core/com.goa2.core/Runtime/Domain/RoundProgress.cs": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+      "core/com.goa2.core/Runtime/Domain/Views.cs": "21d8b2b409dd5b81e9e929e9d563faf6c307f85d85ecac41e442c3947e48da7b",
+      "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+      "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+      "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs": "db6fe75510c234db7a67ed4b3ebdc07563e7e861c3e30243e63d3773f5269e57",
+      "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+      "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+      "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs": "3d65a10a9ed5ac261c17a3e353add8839e57288b20eecfac2c8bdcaf81ed2a75",
+      "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs": "0522591b0c3a0b1ead83f99991dd98ab3da20678b8a9e037ed024c16b710857d",
+      "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs": "2ff7a7e03d1fa87423e097746c02bd348558ed9da7761cd906f97f76dd8c2113",
+      "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs": "8fbda04e927efb34759e5647c6acb6b51bd131e0fbd86e302bce076c730f1d8c",
+      "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs": "c2a8f5a065ef07e1bef7151dc848c453c56b73b8acf694708a959f9095946c77",
+      "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs": "169ae7680a36999271d6bf928179f0e37f6aeb87242d6f2dc39fbd7a5b115e28",
+      "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs": "72e09f37c1a4c944d2ad6515a190bd234a344d3ee4bd11687e292845972b5cf4",
+      "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+      "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs": "6989a1ccec65bd6ab1b6c6a6cc360e11eb32bbb6eb1a9b994da10d4179d8ff89",
+      "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs": "47ce77eb3e4284371072ca53e98dea0a047ba2fbb10d2f4bfff957d227e416c0",
+      "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs": "f52d8d44517e2c319a84ed5ba89e06320163007f5e4e0540787c240d521c0eb9",
+      "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs": "e4cd6f162f3ea180bee7eb3e42e1e97a37451795081ea214a1983ed928daa76f",
+      "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs": "0c03c3f41c259ad1a95fdec1dbc3314b132ec145d9c337e5d1066fe7822641ea",
+      "core/com.goa2.core/Runtime/Rules/CardPushRules.cs": "455d9ba8a613465890124117a65721eeed3ae66379e1bc8ae17e019cd12e91d9",
+      "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs": "301133dc738dbfef34354653aff5c36b90e01cde9e77423e539d436156f40240",
+      "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs": "a7f623a2f6e3cc16fdf22ba5882702897d443b760894721bcca9f49c8d463ce9",
+      "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+      "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs": "8ec0e99171bc298b4ddab6d95679c6ea788697352688fad1fdb06944bb343ee4",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs": "6f30d9314acf79d6779f92bd7330cb5f2af63e502f2132113c91a08f53f4ce20",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs": "3867631a0f623539dbec140b1994f6b463a72d7061d062dd2408df3c5641c172",
+      "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs": "b5f92ad96f895b4a6edc4d41176aee38fae75c54cbe3de68beebdeffc197687c",
+      "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs": "0b00d6274c5d8c5e06199187e30971c754c4c3ed3adb47df6c916f6cd2164899",
+      "core/com.goa2.core/Runtime/Rules/CombatMath.cs": "ddea04ebddd4cc16e397ae4cf183e46ea3d9c0ad7503fb85ef1b339672683446",
+      "core/com.goa2.core/Runtime/Rules/CombatRules.cs": "ab4afe3b5598d1b540df83a62ca56c353fc2fe28c7dacb581a5281020bd4a700",
+      "core/com.goa2.core/Runtime/Rules/DebugRules.cs": "bfb33bff4fc943ada0787e69b893fb7f3d0739b3e049a0dd7b35b655ff9acfb2",
+      "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs": "96c2191d775dd4410d69534e9f009e96366b7163a63177ab9bda8b9eec8b44af",
+      "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs": "da4bbcf4481a3091b5337bb197f123a626d4fc1b00bb4406f2947a4d3b9be063",
+      "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs": "1ff3ddd263b2c9ede296a694dada54bf610c99e64f344eea45ffdb5443b39932",
+      "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs": "9e964899710aa9a1519e42125c6148ac45625412ff8307623707eb6b4873f753",
+      "core/com.goa2.core/Runtime/Rules/EffectRules.cs": "31393d43e41b748a2925662975cf7f8c4a39699dc775517408623fa81bb6ad08",
+      "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs": "96f2944b3c5195c65a02e92f4704829f26e8a919d1ddac9a122e6c5b0c5d8021",
+      "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs": "766cdd2bebfe4bee993a7110dea717ef46600eced1af298cf6a9ef5eb7381e65",
+      "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+      "core/com.goa2.core/Runtime/Rules/GameRules.cs": "c32eb16b941858b7a8b72451702655d147611cd19456f2caca3658c3e5f0a3cd",
+      "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+      "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+      "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs": "55fa125634a22d32d271855a8eb11106893e946c792f93f988481957f9f7d092",
+      "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs": "deca4a63bf72414ccce28e18c0b7173c6d0c8f9f12d9baedff293563d6e23865",
+      "core/com.goa2.core/Runtime/Rules/MovementRules.cs": "5a0d170ef26005a3d169cd2e198f9a1bea56a967dae5e879541872b0c02a2bd3",
+      "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs": "6fafe9f4bb4ca673d51c6d6bc3a47e63ab8e67e33f92260bf557d75b117fd57e",
+      "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs": "75d3610de13d1c287130bbd431de25da5f43dc4a7aa4ea386fe214f9598969de",
+      "core/com.goa2.core/Runtime/Rules/PoisonRules.cs": "5927f6702eba0289fee8007fcde1e5fb292d67f5226d59224de81a921ac4f1a8",
+      "core/com.goa2.core/Runtime/Rules/PushRules.cs": "625c1c4eae5e84a42b022283e278ddd68b2e2c2b6f52769b11249358c17f7f06",
+      "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs": "9290746928bc86ea19eb667cac5c734b80122eed847bfa146fc6931eb2b6b1cc",
+      "core/com.goa2.core/Runtime/Rules/TurnRules.cs": "add2a9294b109420cf458dafcef0c9afe6bdbe8a5f5be2261c57581b785e069a",
+      "core/com.goa2.core/Runtime/Rules/UltimateRules.cs": "fef62ced21fbffec7638041fc62609c7fc5f21999fadb592d027ba9fb2b569fd",
+      "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+      "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs": "3e7a732c757a5b76eeb886bd86e3c7de24e70802cc28b6494b942a8675bee799",
+      "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs": "9aae026bdbb01ce10f96d66c869fa15f8a7e7ef726b1215650bced28b67582e3"
+    }
+  },
+  {
+    "run": "20260928-191143-8f8018e0",
+    "passed": true,
+    "runner": "TCP: one .NET service and four Python client processes",
+    "checks": [
+      {
+        "name": "optional_discard pending before disconnect",
+        "passed": true
+      },
+      {
+        "name": "N13 disconnected state optional_discard",
+        "passed": true
+      },
+      {
+        "name": "resume optional_discard",
+        "passed": true
+      },
+      {
+        "name": "private candidates optional_discard1",
+        "passed": true
+      },
+      {
+        "name": "private candidates optional_discard2",
+        "passed": true
+      },
+      {
+        "name": "private candidates optional_discard3",
+        "passed": true
+      },
+      {
+        "name": "N05 lost Result retry ChooseOptionalDiscard",
+        "passed": true
+      },
+      {
+        "name": "N08 optional skip preserves cards",
+        "passed": true
+      },
+      {
+        "name": "N08 no target after skip resumes",
+        "passed": true
+      }
+    ],
+    "assemblies": {
+      "Goa2.Application.dll": "77b97d94afc4592f4d284c0e796fa8d70cb1c1bff1e1b878f45342c2b24de6ab",
+      "Goa2.Domain.dll": "7adb8ae76717088f2ee959dc473fff903af63f3f434cb4dc792c2492fe374bad",
+      "Goa2.Infrastructure.dll": "771f84b84bc7dd5eda6183ceec7754b56a236191a7d7b4b8c9f04cfe81acb533",
+      "Goa2.Network.dll": "7d931b5de53443ada59c786441017432687529f4bf5fcc9827457cd51fe03558",
+      "Goa2.Rules.dll": "ceef078124864caf876ace445afb0f585e49af4b16f8320b01e594814e07dbc9",
+      "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+    },
+    "restore_verified": true,
+    "source_files": {
+      "network/client/player.py": "934efbbad971ff74657a30bddceb816ac62f332c3f38451abcfa70b9a3d01a61",
+      "network/com.goa2.network.client/package.json": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+      "network/Goa2.Network/Goa2.Network.csproj": "33b7108be48b5e51062a0986e1fc4a7509d1edcc1b37263327a1a450700ca1f7",
+      "network/Goa2.Network/packages.lock.json": "3896b5350eaffa4692cfdce23dcc47ecbdad47ae27f658bf061022d872346d42",
+      "network/Goa2.Network/Program.cs": "7c831931e1998d03da2fd7cb11a7b71241d10d3cc38be3acc42d161878ee8692",
+      "network/Goa2.Network/Room.cs": "5557a37ae3d1345b713cb1b993880586521e80cb4270577e659c69f241a89544",
+      "network/Goa2.Network/TestAccess.cs": "7604e86017a81c6f07b79fdf72591f2afd7c22eb6f200b2cc9f2f81665cb6210",
+      "network/Goa2.Network/Wire.cs": "a5fee1fd193638e2dc96e52d65f660417174a2c299f89f6ac78b4ad792321d9b",
+      "network/Goa2.Network.Client/Goa2.Network.Client.csproj": "b35f8b67a5bbd3b9c91831a7b202913f99fa21291b5a154cf3ecf687e7206238",
+      "network/Goa2.Network.Client/packages.lock.json": "a2b02556d6502e9eefe4756953883d0ab4df0936c55df77778991ce03e4898c2",
+      "network/tests/acceptance.py": "bd0fe19fba82537797e8f9cef3676c9ed45f60d1a7d0f98199a48fce380a48ac",
+      "network/tests/fault_proxy.py": "2842dc2fbbd963e58cf4ded686c4373bf62c23c61d244820bced3601b12025f3",
+      "network/tests/test_client.py": "054198f3138d900aee440812ee11d6d22c3e7d683d0b75b607adc0f0dfe52593",
+      "network/tests/unity_acceptance.py": "cdc83269c9a5b39f21d4378933c5f97ad14fecf1a41fba14e7efa306ddb169a0",
+      "network/com.goa2.network.client/Runtime/IPlayerSession.cs": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+      "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs": "7a94c4310f12869faa13375412fd85f59b7e562845678318f675aa435dc852f6",
+      "network/com.goa2.network.client/Runtime/UiIntent.cs": "994b692563f627718ce009989a5cdd8fd62c9a3a466a35898f8b4f5fa832ea27",
+      "network/tests/fixtures/axe-empty.json": "d2c59cb1b7da15d5aa95cb63de39df915f1ebf5f29137feae3ea40b38358d39d",
+      "network/tests/Goa2.Network.ClientHarness/Goa2.Network.ClientHarness.csproj": "c55af18969bd32d63d7acdf063ea751bcdd29f799935abce4377e1050f105f8a",
+      "network/tests/Goa2.Network.ClientHarness/packages.lock.json": "0136d384c5ca73952f1f999472050751c429e6ee70515ff5345f2a7293f32334",
+      "network/tests/Goa2.Network.ClientHarness/Program.cs": "213adf26e36e64d4ceb021574c651e79e56e6c8bf804b5e38847d6e459c01717",
+      "network/tests/Goa2.Network.TestHost/Goa2.Network.TestHost.csproj": "b6662f8d6ad2ba9b51ab5086fb052f50da25a970859bf279fea66da019225437",
+      "network/tests/Goa2.Network.TestHost/packages.lock.json": "394fd69a40905a514078328e72fbc3507f22fcaff974fe292146c6be15f565ec",
+      "network/tests/Goa2.Network.TestHost/Program.cs": "cd6a6725e123d88433ab912b5a51dcd7cf3ad67246928668acfa5cf286fec862",
+      "core/com.goa2.core/Runtime/Application/GameSession.cs": "dc2ee5d6fd642f80e363319e74adf286a8a3424daf5766ee1b961c258b59f8a1",
+      "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+      "core/com.goa2.core/Runtime/Domain/Combat.cs": "64e805fa02dfd2e6ab832d6015f7fbac88432eae388ee385dc88a3853cd2a617",
+      "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+      "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+      "core/com.goa2.core/Runtime/Domain/Displacement.cs": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+      "core/com.goa2.core/Runtime/Domain/Effects.cs": "641a3587b0e99a80a6ae0aec6b92d7b8aa39538b973201d0120e3664b49ade2e",
+      "core/com.goa2.core/Runtime/Domain/Model.cs": "a195027fc576254b4ab4678459da47eb0c6b46d9d478100f2f07d1ca8fdbf471",
+      "core/com.goa2.core/Runtime/Domain/RoundProgress.cs": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+      "core/com.goa2.core/Runtime/Domain/Views.cs": "21d8b2b409dd5b81e9e929e9d563faf6c307f85d85ecac41e442c3947e48da7b",
+      "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+      "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+      "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs": "db6fe75510c234db7a67ed4b3ebdc07563e7e861c3e30243e63d3773f5269e57",
+      "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+      "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+      "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs": "3d65a10a9ed5ac261c17a3e353add8839e57288b20eecfac2c8bdcaf81ed2a75",
+      "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs": "0522591b0c3a0b1ead83f99991dd98ab3da20678b8a9e037ed024c16b710857d",
+      "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs": "2ff7a7e03d1fa87423e097746c02bd348558ed9da7761cd906f97f76dd8c2113",
+      "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs": "8fbda04e927efb34759e5647c6acb6b51bd131e0fbd86e302bce076c730f1d8c",
+      "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs": "c2a8f5a065ef07e1bef7151dc848c453c56b73b8acf694708a959f9095946c77",
+      "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs": "169ae7680a36999271d6bf928179f0e37f6aeb87242d6f2dc39fbd7a5b115e28",
+      "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs": "72e09f37c1a4c944d2ad6515a190bd234a344d3ee4bd11687e292845972b5cf4",
+      "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+      "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs": "6989a1ccec65bd6ab1b6c6a6cc360e11eb32bbb6eb1a9b994da10d4179d8ff89",
+      "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs": "47ce77eb3e4284371072ca53e98dea0a047ba2fbb10d2f4bfff957d227e416c0",
+      "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs": "f52d8d44517e2c319a84ed5ba89e06320163007f5e4e0540787c240d521c0eb9",
+      "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs": "e4cd6f162f3ea180bee7eb3e42e1e97a37451795081ea214a1983ed928daa76f",
+      "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs": "0c03c3f41c259ad1a95fdec1dbc3314b132ec145d9c337e5d1066fe7822641ea",
+      "core/com.goa2.core/Runtime/Rules/CardPushRules.cs": "455d9ba8a613465890124117a65721eeed3ae66379e1bc8ae17e019cd12e91d9",
+      "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs": "301133dc738dbfef34354653aff5c36b90e01cde9e77423e539d436156f40240",
+      "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs": "a7f623a2f6e3cc16fdf22ba5882702897d443b760894721bcca9f49c8d463ce9",
+      "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+      "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs": "8ec0e99171bc298b4ddab6d95679c6ea788697352688fad1fdb06944bb343ee4",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs": "6f30d9314acf79d6779f92bd7330cb5f2af63e502f2132113c91a08f53f4ce20",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs": "3867631a0f623539dbec140b1994f6b463a72d7061d062dd2408df3c5641c172",
+      "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs": "b5f92ad96f895b4a6edc4d41176aee38fae75c54cbe3de68beebdeffc197687c",
+      "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs": "0b00d6274c5d8c5e06199187e30971c754c4c3ed3adb47df6c916f6cd2164899",
+      "core/com.goa2.core/Runtime/Rules/CombatMath.cs": "ddea04ebddd4cc16e397ae4cf183e46ea3d9c0ad7503fb85ef1b339672683446",
+      "core/com.goa2.core/Runtime/Rules/CombatRules.cs": "ab4afe3b5598d1b540df83a62ca56c353fc2fe28c7dacb581a5281020bd4a700",
+      "core/com.goa2.core/Runtime/Rules/DebugRules.cs": "bfb33bff4fc943ada0787e69b893fb7f3d0739b3e049a0dd7b35b655ff9acfb2",
+      "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs": "96c2191d775dd4410d69534e9f009e96366b7163a63177ab9bda8b9eec8b44af",
+      "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs": "da4bbcf4481a3091b5337bb197f123a626d4fc1b00bb4406f2947a4d3b9be063",
+      "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs": "1ff3ddd263b2c9ede296a694dada54bf610c99e64f344eea45ffdb5443b39932",
+      "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs": "9e964899710aa9a1519e42125c6148ac45625412ff8307623707eb6b4873f753",
+      "core/com.goa2.core/Runtime/Rules/EffectRules.cs": "31393d43e41b748a2925662975cf7f8c4a39699dc775517408623fa81bb6ad08",
+      "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs": "96f2944b3c5195c65a02e92f4704829f26e8a919d1ddac9a122e6c5b0c5d8021",
+      "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs": "766cdd2bebfe4bee993a7110dea717ef46600eced1af298cf6a9ef5eb7381e65",
+      "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+      "core/com.goa2.core/Runtime/Rules/GameRules.cs": "c32eb16b941858b7a8b72451702655d147611cd19456f2caca3658c3e5f0a3cd",
+      "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+      "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+      "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs": "55fa125634a22d32d271855a8eb11106893e946c792f93f988481957f9f7d092",
+      "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs": "deca4a63bf72414ccce28e18c0b7173c6d0c8f9f12d9baedff293563d6e23865",
+      "core/com.goa2.core/Runtime/Rules/MovementRules.cs": "5a0d170ef26005a3d169cd2e198f9a1bea56a967dae5e879541872b0c02a2bd3",
+      "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs": "6fafe9f4bb4ca673d51c6d6bc3a47e63ab8e67e33f92260bf557d75b117fd57e",
+      "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs": "75d3610de13d1c287130bbd431de25da5f43dc4a7aa4ea386fe214f9598969de",
+      "core/com.goa2.core/Runtime/Rules/PoisonRules.cs": "5927f6702eba0289fee8007fcde1e5fb292d67f5226d59224de81a921ac4f1a8",
+      "core/com.goa2.core/Runtime/Rules/PushRules.cs": "625c1c4eae5e84a42b022283e278ddd68b2e2c2b6f52769b11249358c17f7f06",
+      "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs": "9290746928bc86ea19eb667cac5c734b80122eed847bfa146fc6931eb2b6b1cc",
+      "core/com.goa2.core/Runtime/Rules/TurnRules.cs": "add2a9294b109420cf458dafcef0c9afe6bdbe8a5f5be2261c57581b785e069a",
+      "core/com.goa2.core/Runtime/Rules/UltimateRules.cs": "fef62ced21fbffec7638041fc62609c7fc5f21999fadb592d027ba9fb2b569fd",
+      "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+      "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs": "3e7a732c757a5b76eeb886bd86e3c7de24e70802cc28b6494b942a8675bee799",
+      "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs": "9aae026bdbb01ce10f96d66c869fa15f8a7e7ef726b1215650bced28b67582e3"
+    }
+  },
+  {
+    "run": "20260928-191145-d1d28df9",
+    "passed": true,
+    "runner": "TCP: one .NET service and four Python client processes",
+    "checks": [
+      {
+        "name": "optional_discard pending before disconnect",
+        "passed": true
+      },
+      {
+        "name": "N13 disconnected state optional_discard",
+        "passed": true
+      },
+      {
+        "name": "resume optional_discard",
+        "passed": true
+      },
+      {
+        "name": "private candidates optional_discard1",
+        "passed": true
+      },
+      {
+        "name": "private candidates optional_discard2",
+        "passed": true
+      },
+      {
+        "name": "private candidates optional_discard3",
+        "passed": true
+      },
+      {
+        "name": "N08 last hand card is optional cost",
+        "passed": true
+      },
+      {
+        "name": "N05 lost Result retry ChooseOptionalDiscard",
+        "passed": true
+      },
+      {
+        "name": "defense pending before disconnect",
+        "passed": true
+      },
+      {
+        "name": "N13 disconnected state defense",
+        "passed": true
+      },
+      {
+        "name": "resume defense",
+        "passed": true
+      },
+      {
+        "name": "private candidates defense0",
+        "passed": true
+      },
+      {
+        "name": "private candidates defense2",
+        "passed": true
+      },
+      {
+        "name": "private candidates defense3",
+        "passed": true
+      },
+      {
+        "name": "N05 lost Result retry Defend",
+        "passed": true
+      },
+      {
+        "name": "N08 empty forced discard has no waiting candidate",
+        "passed": true
+      },
+      {
+        "name": "N08 empty hand auto resumes parent",
+        "passed": true
+      }
+    ],
+    "assemblies": {
+      "Goa2.Application.dll": "77b97d94afc4592f4d284c0e796fa8d70cb1c1bff1e1b878f45342c2b24de6ab",
+      "Goa2.Domain.dll": "7adb8ae76717088f2ee959dc473fff903af63f3f434cb4dc792c2492fe374bad",
+      "Goa2.Infrastructure.dll": "771f84b84bc7dd5eda6183ceec7754b56a236191a7d7b4b8c9f04cfe81acb533",
+      "Goa2.Network.dll": "7d931b5de53443ada59c786441017432687529f4bf5fcc9827457cd51fe03558",
+      "Goa2.Rules.dll": "ceef078124864caf876ace445afb0f585e49af4b16f8320b01e594814e07dbc9",
+      "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+    },
+    "restore_verified": true,
+    "source_files": {
+      "network/client/player.py": "934efbbad971ff74657a30bddceb816ac62f332c3f38451abcfa70b9a3d01a61",
+      "network/com.goa2.network.client/package.json": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+      "network/Goa2.Network/Goa2.Network.csproj": "33b7108be48b5e51062a0986e1fc4a7509d1edcc1b37263327a1a450700ca1f7",
+      "network/Goa2.Network/packages.lock.json": "3896b5350eaffa4692cfdce23dcc47ecbdad47ae27f658bf061022d872346d42",
+      "network/Goa2.Network/Program.cs": "7c831931e1998d03da2fd7cb11a7b71241d10d3cc38be3acc42d161878ee8692",
+      "network/Goa2.Network/Room.cs": "5557a37ae3d1345b713cb1b993880586521e80cb4270577e659c69f241a89544",
+      "network/Goa2.Network/TestAccess.cs": "7604e86017a81c6f07b79fdf72591f2afd7c22eb6f200b2cc9f2f81665cb6210",
+      "network/Goa2.Network/Wire.cs": "a5fee1fd193638e2dc96e52d65f660417174a2c299f89f6ac78b4ad792321d9b",
+      "network/Goa2.Network.Client/Goa2.Network.Client.csproj": "b35f8b67a5bbd3b9c91831a7b202913f99fa21291b5a154cf3ecf687e7206238",
+      "network/Goa2.Network.Client/packages.lock.json": "a2b02556d6502e9eefe4756953883d0ab4df0936c55df77778991ce03e4898c2",
+      "network/tests/acceptance.py": "bd0fe19fba82537797e8f9cef3676c9ed45f60d1a7d0f98199a48fce380a48ac",
+      "network/tests/fault_proxy.py": "2842dc2fbbd963e58cf4ded686c4373bf62c23c61d244820bced3601b12025f3",
+      "network/tests/test_client.py": "054198f3138d900aee440812ee11d6d22c3e7d683d0b75b607adc0f0dfe52593",
+      "network/tests/unity_acceptance.py": "cdc83269c9a5b39f21d4378933c5f97ad14fecf1a41fba14e7efa306ddb169a0",
+      "network/com.goa2.network.client/Runtime/IPlayerSession.cs": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+      "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs": "7a94c4310f12869faa13375412fd85f59b7e562845678318f675aa435dc852f6",
+      "network/com.goa2.network.client/Runtime/UiIntent.cs": "994b692563f627718ce009989a5cdd8fd62c9a3a466a35898f8b4f5fa832ea27",
+      "network/tests/fixtures/axe-empty.json": "d2c59cb1b7da15d5aa95cb63de39df915f1ebf5f29137feae3ea40b38358d39d",
+      "network/tests/Goa2.Network.ClientHarness/Goa2.Network.ClientHarness.csproj": "c55af18969bd32d63d7acdf063ea751bcdd29f799935abce4377e1050f105f8a",
+      "network/tests/Goa2.Network.ClientHarness/packages.lock.json": "0136d384c5ca73952f1f999472050751c429e6ee70515ff5345f2a7293f32334",
+      "network/tests/Goa2.Network.ClientHarness/Program.cs": "213adf26e36e64d4ceb021574c651e79e56e6c8bf804b5e38847d6e459c01717",
+      "network/tests/Goa2.Network.TestHost/Goa2.Network.TestHost.csproj": "b6662f8d6ad2ba9b51ab5086fb052f50da25a970859bf279fea66da019225437",
+      "network/tests/Goa2.Network.TestHost/packages.lock.json": "394fd69a40905a514078328e72fbc3507f22fcaff974fe292146c6be15f565ec",
+      "network/tests/Goa2.Network.TestHost/Program.cs": "cd6a6725e123d88433ab912b5a51dcd7cf3ad67246928668acfa5cf286fec862",
+      "core/com.goa2.core/Runtime/Application/GameSession.cs": "dc2ee5d6fd642f80e363319e74adf286a8a3424daf5766ee1b961c258b59f8a1",
+      "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+      "core/com.goa2.core/Runtime/Domain/Combat.cs": "64e805fa02dfd2e6ab832d6015f7fbac88432eae388ee385dc88a3853cd2a617",
+      "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+      "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+      "core/com.goa2.core/Runtime/Domain/Displacement.cs": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+      "core/com.goa2.core/Runtime/Domain/Effects.cs": "641a3587b0e99a80a6ae0aec6b92d7b8aa39538b973201d0120e3664b49ade2e",
+      "core/com.goa2.core/Runtime/Domain/Model.cs": "a195027fc576254b4ab4678459da47eb0c6b46d9d478100f2f07d1ca8fdbf471",
+      "core/com.goa2.core/Runtime/Domain/RoundProgress.cs": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+      "core/com.goa2.core/Runtime/Domain/Views.cs": "21d8b2b409dd5b81e9e929e9d563faf6c307f85d85ecac41e442c3947e48da7b",
+      "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+      "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+      "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs": "db6fe75510c234db7a67ed4b3ebdc07563e7e861c3e30243e63d3773f5269e57",
+      "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+      "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+      "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs": "3d65a10a9ed5ac261c17a3e353add8839e57288b20eecfac2c8bdcaf81ed2a75",
+      "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs": "0522591b0c3a0b1ead83f99991dd98ab3da20678b8a9e037ed024c16b710857d",
+      "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs": "2ff7a7e03d1fa87423e097746c02bd348558ed9da7761cd906f97f76dd8c2113",
+      "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs": "8fbda04e927efb34759e5647c6acb6b51bd131e0fbd86e302bce076c730f1d8c",
+      "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs": "c2a8f5a065ef07e1bef7151dc848c453c56b73b8acf694708a959f9095946c77",
+      "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs": "169ae7680a36999271d6bf928179f0e37f6aeb87242d6f2dc39fbd7a5b115e28",
+      "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs": "72e09f37c1a4c944d2ad6515a190bd234a344d3ee4bd11687e292845972b5cf4",
+      "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+      "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs": "6989a1ccec65bd6ab1b6c6a6cc360e11eb32bbb6eb1a9b994da10d4179d8ff89",
+      "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs": "47ce77eb3e4284371072ca53e98dea0a047ba2fbb10d2f4bfff957d227e416c0",
+      "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs": "f52d8d44517e2c319a84ed5ba89e06320163007f5e4e0540787c240d521c0eb9",
+      "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs": "e4cd6f162f3ea180bee7eb3e42e1e97a37451795081ea214a1983ed928daa76f",
+      "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs": "0c03c3f41c259ad1a95fdec1dbc3314b132ec145d9c337e5d1066fe7822641ea",
+      "core/com.goa2.core/Runtime/Rules/CardPushRules.cs": "455d9ba8a613465890124117a65721eeed3ae66379e1bc8ae17e019cd12e91d9",
+      "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs": "301133dc738dbfef34354653aff5c36b90e01cde9e77423e539d436156f40240",
+      "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs": "a7f623a2f6e3cc16fdf22ba5882702897d443b760894721bcca9f49c8d463ce9",
+      "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+      "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs": "8ec0e99171bc298b4ddab6d95679c6ea788697352688fad1fdb06944bb343ee4",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs": "6f30d9314acf79d6779f92bd7330cb5f2af63e502f2132113c91a08f53f4ce20",
+      "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs": "3867631a0f623539dbec140b1994f6b463a72d7061d062dd2408df3c5641c172",
+      "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs": "b5f92ad96f895b4a6edc4d41176aee38fae75c54cbe3de68beebdeffc197687c",
+      "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs": "0b00d6274c5d8c5e06199187e30971c754c4c3ed3adb47df6c916f6cd2164899",
+      "core/com.goa2.core/Runtime/Rules/CombatMath.cs": "ddea04ebddd4cc16e397ae4cf183e46ea3d9c0ad7503fb85ef1b339672683446",
+      "core/com.goa2.core/Runtime/Rules/CombatRules.cs": "ab4afe3b5598d1b540df83a62ca56c353fc2fe28c7dacb581a5281020bd4a700",
+      "core/com.goa2.core/Runtime/Rules/DebugRules.cs": "bfb33bff4fc943ada0787e69b893fb7f3d0739b3e049a0dd7b35b655ff9acfb2",
+      "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs": "96c2191d775dd4410d69534e9f009e96366b7163a63177ab9bda8b9eec8b44af",
+      "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs": "da4bbcf4481a3091b5337bb197f123a626d4fc1b00bb4406f2947a4d3b9be063",
+      "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs": "1ff3ddd263b2c9ede296a694dada54bf610c99e64f344eea45ffdb5443b39932",
+      "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs": "9e964899710aa9a1519e42125c6148ac45625412ff8307623707eb6b4873f753",
+      "core/com.goa2.core/Runtime/Rules/EffectRules.cs": "31393d43e41b748a2925662975cf7f8c4a39699dc775517408623fa81bb6ad08",
+      "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs": "96f2944b3c5195c65a02e92f4704829f26e8a919d1ddac9a122e6c5b0c5d8021",
+      "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs": "766cdd2bebfe4bee993a7110dea717ef46600eced1af298cf6a9ef5eb7381e65",
+      "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+      "core/com.goa2.core/Runtime/Rules/GameRules.cs": "c32eb16b941858b7a8b72451702655d147611cd19456f2caca3658c3e5f0a3cd",
+      "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+      "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+      "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs": "55fa125634a22d32d271855a8eb11106893e946c792f93f988481957f9f7d092",
+      "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs": "deca4a63bf72414ccce28e18c0b7173c6d0c8f9f12d9baedff293563d6e23865",
+      "core/com.goa2.core/Runtime/Rules/MovementRules.cs": "5a0d170ef26005a3d169cd2e198f9a1bea56a967dae5e879541872b0c02a2bd3",
+      "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs": "6fafe9f4bb4ca673d51c6d6bc3a47e63ab8e67e33f92260bf557d75b117fd57e",
+      "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs": "75d3610de13d1c287130bbd431de25da5f43dc4a7aa4ea386fe214f9598969de",
+      "core/com.goa2.core/Runtime/Rules/PoisonRules.cs": "5927f6702eba0289fee8007fcde1e5fb292d67f5226d59224de81a921ac4f1a8",
+      "core/com.goa2.core/Runtime/Rules/PushRules.cs": "625c1c4eae5e84a42b022283e278ddd68b2e2c2b6f52769b11249358c17f7f06",
+      "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs": "9290746928bc86ea19eb667cac5c734b80122eed847bfa146fc6931eb2b6b1cc",
+      "core/com.goa2.core/Runtime/Rules/TurnRules.cs": "add2a9294b109420cf458dafcef0c9afe6bdbe8a5f5be2261c57581b785e069a",
+      "core/com.goa2.core/Runtime/Rules/UltimateRules.cs": "fef62ced21fbffec7638041fc62609c7fc5f21999fadb592d027ba9fb2b569fd",
+      "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+      "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+      "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs": "3e7a732c757a5b76eeb886bd86e3c7de24e70802cc28b6494b942a8675bee799",
+      "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs": "9aae026bdbb01ce10f96d66c869fa15f8a7e7ef726b1215650bced28b67582e3"
+    }
+  }
+]

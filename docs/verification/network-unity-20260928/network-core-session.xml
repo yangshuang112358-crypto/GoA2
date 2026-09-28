@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-28 10:54:02Z" end-time="2026-09-28 10:54:02Z" duration="0.2776238">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2259" result="Passed" start-time="2026-09-28 10:54:02Z" end-time="2026-09-28 10:54:02Z" duration="0.277624" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3556" name="Goa2.Core.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.Core.Tests.dll" runstate="Runnable" testcasecount="2178" result="Passed" start-time="2026-09-28 10:54:02Z" end-time="2026-09-28 10:54:02Z" duration="0.255036" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="15952" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="3557" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="2178" result="Passed" start-time="2026-09-28 10:54:02Z" end-time="2026-09-28 10:54:02Z" duration="0.239157" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="3558" name="Tests" fullname="Goa2.Tests" runstate="Runnable" testcasecount="2178" result="Passed" start-time="2026-09-28 10:54:02Z" end-time="2026-09-28 10:54:02Z" duration="0.224723" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="3102" name="SessionTests" fullname="Goa2.Tests.SessionTests" classname="Goa2.Tests.SessionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-28 10:54:02Z" end-time="2026-09-28 10:54:02Z" duration="0.204001" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="3104" name="DuplicateIsIdempotentAndConflictIsRejectedAfterRestore" fullname="Goa2.Tests.SessionTests.DuplicateIsIdempotentAndConflictIsRejectedAfterRestore" methodname="DuplicateIsIdempotentAndConflictIsRejectedAfterRestore" classname="Goa2.Tests.SessionTests" runstate="Runnable" seed="357638990" result="Passed" start-time="2026-09-28 10:54:02Z" end-time="2026-09-28 10:54:02Z" duration="0.183972" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3103" name="InvalidIdentityAndStaleCommandsLeaveWholeStateUnchanged" fullname="Goa2.Tests.SessionTests.InvalidIdentityAndStaleCommandsLeaveWholeStateUnchanged" methodname="InvalidIdentityAndStaleCommandsLeaveWholeStateUnchanged" classname="Goa2.Tests.SessionTests" runstate="Runnable" seed="148819990" result="Passed" start-time="2026-09-28 10:54:02Z" end-time="2026-09-28 10:54:02Z" duration="0.001744" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3105" name="InvalidRuleAndMutatedViewCannotChangeAuthority" fullname="Goa2.Tests.SessionTests.InvalidRuleAndMutatedViewCannotChangeAuthority" methodname="InvalidRuleAndMutatedViewCannotChangeAuthority" classname="Goa2.Tests.SessionTests" runstate="Runnable" seed="490332447" result="Passed" start-time="2026-09-28 10:54:02Z" end-time="2026-09-28 10:54:02Z" duration="0.003409" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3106" name="SaveRejectsDifferentContentAndDuplicateJsonKeys" fullname="Goa2.Tests.SessionTests.SaveRejectsDifferentContentAndDuplicateJsonKeys" methodname="SaveRejectsDifferentContentAndDuplicateJsonKeys" classname="Goa2.Tests.SessionTests" runstate="Runnable" seed="2109183323" result="Passed" start-time="2026-09-28 10:54:02Z" end-time="2026-09-28 10:54:02Z" duration="0.003974" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\network-core-session-688c40b769dc484690714dfe6e86a574.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

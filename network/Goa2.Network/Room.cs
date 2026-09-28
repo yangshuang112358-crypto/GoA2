@@ -31,7 +31,7 @@ public sealed class Room
     public object Capabilities { get; }
     private readonly ContentCatalog catalog;
     public Room(ContentCatalog content, string id) : this(content,
-        LocalGameFactory.Create(content, id, ["Player 1", "Player 2", "Player 3", "Player 4"], 1729)) { }
+        LocalGameFactory.Create(content, id, ["Player 1", "Player 2", "Player 3", "Player 4"], RandomNumberGenerator.GetInt32(int.MaxValue))) { }
     internal Room(ContentCatalog content, GameSession initial)
     {
         catalog = content; session = initial; Id = initial.View(0).MatchId;
