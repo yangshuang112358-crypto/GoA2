@@ -1,0 +1,9 @@
+{
+  "name": "Goa2.Network.Client",
+  "rootNamespace": "Goa2.Network.Client",
+  "references": ["Goa2.Domain"],
+  "overrideReferences": true,
+  "precompiledReferences": ["Newtonsoft.Json.dll"],
+  "noEngineReferences": true,
+  "autoReferenced": false
+}
