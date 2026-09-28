@@ -22,7 +22,7 @@ namespace Goa2.Presentation.UI3D
         public float HoverAmount => motion.Hover;
         public float PressAmount => motion.Press;
 
-        public StoneSettingsButton(Action clicked, bool open, Motion motion) : base(clicked)
+        public StoneSettingsButton(Action clicked, bool open, Motion motion, Action<string> sound = null) : base(()=>{sound?.Invoke(open ? "leave" : "open");clicked();})
         {
             this.open = open;
             this.motion = motion;
@@ -46,12 +46,12 @@ namespace Goa2.Presentation.UI3D
             inscription.style.unityTextOutlineWidth = .6f;
             Add(inscription);
             PositionInscription();
-            RegisterCallback<PointerEnterEvent>(_ => hovered = true);
+            RegisterCallback<PointerEnterEvent>(_ => {if(!hovered)sound?.Invoke("enter");hovered = true;});
             RegisterCallback<PointerMoveEvent>(e => {
                 hovered = true;
                 pointerTilt = new Vector2(Mathf.Clamp((e.localPosition.x - 52) / 52, -1, 1), Mathf.Clamp((e.localPosition.y - 36) / 36, -1, 1));
             });
-            RegisterCallback<PointerLeaveEvent>(_ => { hovered = false; pointerTilt = Vector2.zero; });
+            RegisterCallback<PointerLeaveEvent>(_ => { if(hovered)sound?.Invoke("leave");hovered = false; pointerTilt = Vector2.zero; });
             RegisterCallback<PointerDownEvent>(e => { if(e.button == 0) held = true; }, TrickleDown.TrickleDown);
             RegisterCallback<PointerUpEvent>(e => { if(e.button == 0) held = false; }, TrickleDown.TrickleDown);
             RegisterCallback<PointerCaptureOutEvent>(_ => held = false);

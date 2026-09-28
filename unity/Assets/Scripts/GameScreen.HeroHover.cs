@@ -32,7 +32,7 @@ namespace Goa2.Presentation
     string? id=null;CardInstance? instance=null;
     if(color=="purple")id=player.PurpleCardId;
     else if(target==seat){instance=renderedView.OwnCards.FirstOrDefault(c=>catalog.Card(c.CardId).Color==color);id=instance?.CardId;}
-    else {instance=player.PublicDiscards.FirstOrDefault(c=>catalog.Card(c.CardId).Color==color) ?? player.Revealed.FirstOrDefault(c=>catalog.Card(c.CardId).Color==color);id=instance?.CardId ?? player.Plays.Where(p=>p.Round==renderedView.Round && catalog.Card(p.CardId).Color==color).OrderByDescending(p=>p.Turn).FirstOrDefault()?.CardId;}
+    else {instance=player.PublicCards.FirstOrDefault(c=>catalog.Card(c.CardId).Color==color) ?? player.PublicDiscards.FirstOrDefault(c=>catalog.Card(c.CardId).Color==color) ?? player.Revealed.FirstOrDefault(c=>catalog.Card(c.CardId).Color==color);id=instance?.CardId ?? player.Plays.Where(p=>p.Round==renderedView.Round && catalog.Card(p.CardId).Color==color).OrderByDescending(p=>p.Turn).FirstOrDefault()?.CardId;}
     if(color=="purple" && id==null)continue;
     var box=Box("hero-hover-card");box.name="hero-inspect-"+color;box.style.width=Length.Percent(49);box.style.marginRight=Length.Percent(1);box.style.flexShrink=0;grid.Add(box);
     if(id==null){box.Add(Text("◆","section-title"));box.style.minHeight=130;continue;}
@@ -40,7 +40,7 @@ namespace Goa2.Presentation
     var plays=player.Plays.Where(p=>p.Round==renderedView.Round && p.CardId==id).OrderBy(p=>p.Turn).ToList();
     box.style.opacity=discarded ? .5f : plays.Count>0 || instance?.Zone==CardZone.Selected ? .72f : 1;
     RenderCardDetail(box,catalog.Card(id),false);
-    string footer=color=="purple" ? "终极能力" : discarded ? "弃牌堆" : plays.Count>0 ? "第 "+string.Join("、",plays.Select(p=>p.Turn))+" 回合出牌" : instance?.Zone==CardZone.Selected ? "已选牌" : target==seat ? "手牌" : "";
+    string footer=color=="purple" ? "终极能力" : discarded ? "弃牌堆" : plays.Count>0 ? "第 "+string.Join("、",plays.Select(p=>p.Turn))+" 回合出牌" : instance?.Zone==CardZone.Selected ? "已选牌" : "手牌";
     box.Add(Text(footer,"card-zone"));
    }
    root.Add(popup);

@@ -57,7 +57,7 @@ namespace Goa2.Presentation.UI3D {
    RegisterCallback<PointerMoveEvent>(e=>tilt=new Vector2((e.localPosition.x-78)/78,(e.localPosition.y-78)/78));
    RegisterCallback<PointerDownEvent>(e=>{if(e.button==1)right();else if(e.button==0 && allowed)click();e.StopPropagation();});
    generateVisualContent+=Draw;
-   schedule.Execute(()=>{float now=Time.realtimeSinceStartup,dt=Mathf.Min(.05f,now-last);last=now;float blend=1-Mathf.Exp(-15*dt);motion.Hover=Mathf.Lerp(motion.Hover,hover?1:0,blend);motion.Velocity+=((pressed?1:0)-motion.Press)*190*dt-motion.Velocity*20*dt;motion.Press=Mathf.Clamp(motion.Press+motion.Velocity*dt,-.08f,1.08f);motion.Flip=Mathf.Lerp(motion.Flip,discarded && now>=flipAt ? Mathf.PI:0,1-Mathf.Exp(-9*dt));float face=Mathf.Abs(Mathf.Cos(motion.Flip));caption.style.display=Mathf.Cos(motion.Flip)<0?DisplayStyle.None:DisplayStyle.Flex;badges.style.display=caption.style.display;caption.style.opacity=1-.48f*motion.Press;caption.style.translate=new Translate(tilt.x*motion.Hover*3,motion.Press*5-motion.Hover*5+tilt.y*motion.Hover*3);caption.style.scale=new Scale(new Vector3(Mathf.Max(.01f,face),1,1));MarkDirtyRepaint();}).Every(16);
+   schedule.Execute(()=>{float now=Time.realtimeSinceStartup,dt=Mathf.Min(.05f,now-last);last=now;float blend=1-Mathf.Exp(-15*dt);motion.Hover=Mathf.Lerp(motion.Hover,hover?1:0,blend);motion.Velocity+=((pressed?1:0)-motion.Press)*190*dt-motion.Velocity*20*dt;motion.Press=Mathf.Clamp(motion.Press+motion.Velocity*dt,-.08f,1.08f);motion.Flip=Mathf.Lerp(motion.Flip,discarded && now>=flipAt ? Mathf.PI:0,1-Mathf.Exp(-9*dt));float face=Mathf.Abs(Mathf.Cos(motion.Flip));caption.style.display=Mathf.Cos(motion.Flip)<0?DisplayStyle.None:DisplayStyle.Flex;badges.style.display=caption.style.display;caption.style.opacity=1-.48f*motion.Press;badges.style.opacity=1-.35f*motion.Press;badges.style.translate=new Translate(tilt.x*motion.Hover*3,motion.Press*5-motion.Hover*5);badges.style.rotate=new Rotate(tilt.x*motion.Hover*2);caption.style.translate=new Translate(tilt.x*motion.Hover*3,motion.Press*5-motion.Hover*5+tilt.y*motion.Hover*3);caption.style.scale=new Scale(new Vector3(Mathf.Max(.01f,face),1,1));MarkDirtyRepaint();}).Every(16);
   }
   private Vector2 Project(Vector2 v){var q=Quaternion.Euler(tilt.y*motion.Hover*14,tilt.x*motion.Hover*14+motion.Flip*Mathf.Rad2Deg,0)*new Vector3(v.x,v.y,0);float f=300/(300-q.z);return center+new Vector2(q.x,q.y)*f*(1-.04f*motion.Press);}
   private void Disc(Painter2D p,float radius,Color color){p.fillColor=color;p.BeginPath();for(int i=0;i<64;i++){float a=i*Mathf.PI/32;var point=Project(new Vector2(Mathf.Cos(a)*radius,Mathf.Sin(a)*radius));if(i==0)p.MoveTo(point);else p.LineTo(point);}p.ClosePath();p.Fill();}
@@ -67,15 +67,35 @@ namespace Goa2.Presentation.UI3D {
   }
  }
  public sealed class SkillBadge : VisualElement {
-  public SkillBadge(string kind,string value,int bonus){pickingMode=PickingMode.Ignore;style.position=Position.Absolute;style.width=52;style.height=36;
-   var text=new Label(value){pickingMode=PickingMode.Ignore};text.style.position=Position.Absolute;text.style.left=23;text.style.top=1;text.style.width=29;text.style.height=32;text.style.fontSize=20;text.style.unityTextAlign=TextAnchor.MiddleCenter;text.style.unityFontStyleAndWeight=FontStyle.Bold;text.style.color=bonus>0?new Color(.35f,1,.55f):bonus<0?new Color(1,.32f,.35f):Color.white;text.style.marginLeft=0;text.style.paddingLeft=0;Add(text);
-   generateVisualContent+=c=>{var p=c.painter2D;p.fillColor=new Color(.12f,.16f,.19f,.97f);p.strokeColor=new Color(.66f,.65f,.59f);p.lineWidth=1.5f;p.BeginPath();p.MoveTo(new Vector2(0,8));p.LineTo(new Vector2(9,1));p.LineTo(new Vector2(44,1));p.LineTo(new Vector2(52,8));p.LineTo(new Vector2(48,32));p.LineTo(new Vector2(8,35));p.LineTo(new Vector2(0,25));p.ClosePath();p.Fill();p.Stroke();p.strokeColor=new Color(.9f,.86f,.7f);p.lineWidth=2;
-    void Line(params Vector2[] points){p.BeginPath();p.MoveTo(points[0]);for(int i=1;i<points.Length;i++)p.LineTo(points[i]);p.Stroke();}
-    if(kind=="hourglass"){Line(new Vector2(6,8),new Vector2(20,8),new Vector2(8,28),new Vector2(20,28),new Vector2(6,8));}
-    else if(kind=="shield"){Line(new Vector2(6,10),new Vector2(13,7),new Vector2(21,10),new Vector2(19,23),new Vector2(13,29),new Vector2(7,23),new Vector2(6,10));}
-    else if(kind=="boot"){Line(new Vector2(8,7),new Vector2(17,7),new Vector2(16,21),new Vector2(23,24),new Vector2(23,28),new Vector2(6,28),new Vector2(8,7));}
-    else if(kind=="sword" || kind=="arrow"){Line(new Vector2(6,29),new Vector2(21,7),new Vector2(21,17));Line(new Vector2(8,18),new Vector2(17,24));}
-    else {p.BeginPath();p.Arc(new Vector2(14,18),8,0,360);p.Stroke();Line(new Vector2(14,6),new Vector2(14,30));Line(new Vector2(3,18),new Vector2(25,18));}
+  public SkillBadge(string kind,string value,int bonus){
+   pickingMode=PickingMode.Ignore;style.position=Position.Absolute;style.width=58;style.height=40;
+   var text=new Label(value){pickingMode=PickingMode.Ignore};text.style.position=Position.Absolute;text.style.left=27;text.style.top=1;text.style.width=29;text.style.height=36;text.style.fontSize=22;text.style.unityTextAlign=TextAnchor.MiddleCenter;text.style.unityFontStyleAndWeight=FontStyle.Bold;text.style.color=bonus>0?new Color(.35f,1,.55f):bonus<0?new Color(1,.32f,.35f):Color.white;text.style.unityTextOutlineColor=new Color(.025f,.025f,.025f);text.style.unityTextOutlineWidth=1;text.style.marginLeft=0;text.style.marginTop=0;text.style.paddingLeft=0;Add(text);
+   generateVisualContent+=c=>{var p=c.painter2D;
+    void Poly(Color color,params Vector2[] points){p.fillColor=color;p.BeginPath();p.MoveTo(points[0]);for(int i=1;i<points.Length;i++)p.LineTo(points[i]);p.ClosePath();p.Fill();}
+    void Line(Color color,float width,params Vector2[] points){p.strokeColor=color;p.lineWidth=width;p.BeginPath();p.MoveTo(points[0]);for(int i=1;i<points.Length;i++)p.LineTo(points[i]);p.Stroke();}
+    var dark=new Color(.055f,.065f,.075f);var gold=new Color(.76f,.65f,.43f);var light=new Color(.98f,.87f,.61f);
+    Poly(new Color(0,0,0,.6f),new Vector2(0,11),new Vector2(9,3),new Vector2(48,3),new Vector2(59,13),new Vector2(54,36),new Vector2(29,41),new Vector2(6,37));
+    Poly(gold,new Vector2(1,8),new Vector2(11,1),new Vector2(46,1),new Vector2(57,10),new Vector2(52,33),new Vector2(29,38),new Vector2(7,33));
+    Poly(new Color(.18f,.22f,.25f),new Vector2(5,10),new Vector2(12,5),new Vector2(45,5),new Vector2(52,12),new Vector2(48,30),new Vector2(29,34),new Vector2(11,30));
+    Poly(new Color(.10f,.13f,.16f),new Vector2(5,17),new Vector2(52,17),new Vector2(48,30),new Vector2(29,34),new Vector2(11,30));
+    Line(light,1.5f,new Vector2(2,8),new Vector2(11,1),new Vector2(46,1),new Vector2(56,10));
+    Line(new Color(.31f,.25f,.17f),2,new Vector2(7,32),new Vector2(29,38),new Vector2(52,33));
+    // Small feathered metal shoulders, integrated into the plaque rather than text boxes.
+    for(int j=0;j<3;j++){float y=22+j*4;Line(gold,1.3f,new Vector2(1+j,y),new Vector2(9+j,y+3));}
+    Line(new Color(.46f,.48f,.45f),1,new Vector2(27,8),new Vector2(27,29));
+    Vector2[] glyph;
+    if(kind=="sword")glyph=new[]{new Vector2(10,30),new Vector2(7,27),new Vector2(12,21),new Vector2(8,17),new Vector2(10,15),new Vector2(13,18),new Vector2(21,6),new Vector2(23,7),new Vector2(18,22),new Vector2(22,25),new Vector2(20,27),new Vector2(16,24)};
+    else if(kind=="shield")glyph=new[]{new Vector2(8,10),new Vector2(16,6),new Vector2(24,10),new Vector2(22,23),new Vector2(16,30),new Vector2(9,23)};
+    else if(kind=="boot")glyph=new[]{new Vector2(10,7),new Vector2(20,7),new Vector2(18,21),new Vector2(25,24),new Vector2(25,29),new Vector2(8,29),new Vector2(8,25),new Vector2(11,20)};
+    else if(kind=="hourglass")glyph=new[]{new Vector2(8,7),new Vector2(24,7),new Vector2(23,11),new Vector2(18,18),new Vector2(23,25),new Vector2(24,30),new Vector2(8,30),new Vector2(9,25),new Vector2(14,18),new Vector2(9,11)};
+    else if(kind=="arrow")glyph=new[]{new Vector2(7,26),new Vector2(17,15),new Vector2(13,12),new Vector2(25,6),new Vector2(23,20),new Vector2(20,17),new Vector2(10,29)};
+    else glyph=new[]{new Vector2(16,5),new Vector2(19,14),new Vector2(27,18),new Vector2(19,21),new Vector2(16,31),new Vector2(13,21),new Vector2(5,18),new Vector2(13,14)};
+    var shadow=new Vector2[glyph.Length];for(int i=0;i<glyph.Length;i++)shadow[i]=glyph[i]+new Vector2(1.5f,2);Poly(dark,shadow);Poly(gold,glyph);
+    Line(light,1.2f,glyph[0],glyph[1],glyph[2]);
+    if(kind=="shield")Line(dark,1.5f,new Vector2(16,10),new Vector2(16,25));
+    if(kind=="boot")Line(dark,2,new Vector2(11,14),new Vector2(18,14));
+    if(kind=="hourglass"){Poly(new Color(.20f,.28f,.31f),new Vector2(12,10),new Vector2(20,10),new Vector2(16,16));Line(light,1.5f,new Vector2(12,27),new Vector2(20,27));}
+    if(kind=="range"){p.strokeColor=light;p.lineWidth=1;p.BeginPath();p.Arc(new Vector2(16,18),11,0,360);p.Stroke();}
    };
   }
  }

@@ -25,6 +25,8 @@ namespace Goa2.Domain
         public Dictionary<string, int> PermanentBonuses = new Dictionary<string, int>();
         public List<CardInstance> Revealed = new List<CardInstance>();
         public List<PublicPlay> Plays = new List<PublicPlay>();
+        // Equipped identities are public. Selected is projected as InHand until reveal.
+        public List<CardInstance> PublicCards = new List<CardInstance>();
         public List<CardInstance> PublicDiscards = new List<CardInstance>();
         public List<string> DiscardColors = new List<string>();
     }

@@ -72,7 +72,7 @@ namespace Goa2.Presentation
         private readonly StoneSettingsButton.Motion settingsMotion = new StoneSettingsButton.Motion();
         private void BuildCameraOverlays()
         {
-            var settings=new StoneSettingsButton(()=>{if(rightExpanded) showHotkeys=false;rightExpanded=!rightExpanded;Render();},rightExpanded,settingsMotion);
+            var settings=new StoneSettingsButton(()=>{if(rightExpanded) showHotkeys=false;rightExpanded=!rightExpanded;Render();},rightExpanded,settingsMotion,cue=>{var audio=GetComponent<SettingsAudio>();if(audio==null)audio=gameObject.AddComponent<SettingsAudio>();audio.Play(cue);});
             root.Add(settings);
             followButton=Button("",()=>SetCameraFollow(!cameraFollow),"follow-toggle","follow-toggle");root.Add(followButton);
             followToast=Text("","follow-toast");followToast.name="follow-toast";followToast.pickingMode=PickingMode.Ignore;root.Add(followToast);

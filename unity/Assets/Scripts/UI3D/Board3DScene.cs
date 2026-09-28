@@ -43,11 +43,7 @@ namespace Goa2.Presentation.UI3D
             var targets=new HashSet<Hex>(legal); var areas=new HashSet<Hex>(effectArea);
             foreach (var cell in catalog.Cells)
             {
-                float height=cell.Obstacle ? WallHeight : .13f;
-                Add(hex,Board3DGeometry.World(cell.Position,cell.Obstacle ? 0 : -.13f),new Vector3(.965f,height,.965f),RegionColor(cell),"hex "+cell.Position);
-                if (cell.Spawn.EndsWith("Spawn",StringComparison.Ordinal))
-                    Add(circle,Board3DGeometry.World(cell.Position,.015f),Vector3.one*.28f,
-                        ColorOf(cell.Spawn.StartsWith("blue",StringComparison.Ordinal) ? "#7BB9DF" : "#EA9F95"),"spawn");
+                BuildTerrain(cell,hex);
                 if (areas.Contains(cell.Position)) Add(ring,Board3DGeometry.World(cell.Position,.24f),Vector3.one*.81f,ColorOf("#C3A4FF"),"effect");
                 if (targets.Contains(cell.Position)) Add(ring,Board3DGeometry.World(cell.Position,.27f),Vector3.one*.94f,ColorOf("#6EF4CD"),"legal");
                 if (selected == cell.Position) Add(ring,Board3DGeometry.World(cell.Position,.29f),Vector3.one,ColorOf("#FFE39A"),"selected");

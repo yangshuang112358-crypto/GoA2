@@ -1,0 +1,39 @@
+{
+  "file": "terrain-ui-mobile.mp4",
+  "seconds": 69.33334,
+  "bytes": 8568259,
+  "sha256": "ef061b1ce37e7edd3217b5f790f66381d605b893ce4e422d63adf7a188d8ba98",
+  "video": "Actual Unity GameView, continuous single position; scripted input; no cuts. Last section adds fading live settings inset.",
+  "audio": "Original in-game WAV cues mixed at captured SettingsAudio.Played times, volume 0.7; not OS loopback capture.",
+  "events": [
+    {
+      "seconds": 59.8902168,
+      "cue": "enter"
+    },
+    {
+      "seconds": 62.2772865,
+      "cue": "leave"
+    },
+    {
+      "seconds": 63.087635,
+      "cue": "enter"
+    },
+    {
+      "seconds": 63.82297,
+      "cue": "open"
+    },
+    {
+      "seconds": 65.58943,
+      "cue": "leave"
+    },
+    {
+      "seconds": 66.19562,
+      "cue": "enter"
+    },
+    {
+      "seconds": 66.52944,
+      "cue": "leave"
+    }
+  ],
+  "full_decode_passed": true
+}

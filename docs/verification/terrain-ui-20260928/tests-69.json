@@ -1,0 +1,284 @@
+{
+  "result": "Passed",
+  "total": "69",
+  "passed": "69",
+  "failed": "0",
+  "cases": [
+    {
+      "name": "Goa2.Tests.BoundaryTests.ActualCatalogSupportsCompleteFourTurnReplay",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.BoundaryTests.InvalidIdentityReceivesNoPrivateHand(-1)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.BoundaryTests.InvalidIdentityReceivesNoPrivateHand(4)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.BoundaryTests.InvalidIdentityReceivesNoPrivateHand(99)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.BoundaryTests.PureCoreAssembliesHaveNoUnityReferences",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.BoundaryTests.RevealWaitsForEveryRequiredSeatAndKeepsEarlierTurnNumbers",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.CancelSelectionTests.CancelIsPrivateIdempotentAndReplays",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.CancelSelectionTests.CancelPreventsQuickRevealUntilSeatSelectsAgain",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.CancelSelectionTests.ConfirmedChoiceCannotBeCancelled",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.PublicLoadoutTests.EquippedNamesArePublicButSelectionAndCancellationArePrivate",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.PublicLoadoutTests.RevealedZonesRemainPublicAndViewsCannotMutateSession",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.SessionTests.DuplicateIsIdempotentAndConflictIsRejectedAfterRestore",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.SessionTests.InvalidIdentityAndStaleCommandsLeaveWholeStateUnchanged",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.SessionTests.InvalidRuleAndMutatedViewCannotChangeAuthority",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.Tests.SessionTests.SaveRejectsDifferentContentAndDuplicateJsonKeys",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Board3DTests.All254MapCoordinatesRoundTripAndNeighborsAreEquidistant",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Board3DTests.ProceduralTopNormalsFaceUpAndStayInsideCell",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps(-1,11)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps(12,0)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps(-24,0)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps(25,1)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Board3DTests.TwelveAnglesAreDistinctAndCloseWithoutDrift",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.AttackResponseFocusesChooser(Action)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.AttackResponseFocusesChooser(EffectChoice)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(\"round_minion_removal\")",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(\"action_minion_removal\")",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(\"minion_spawn\")",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(\"minion_return\")",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(\"spawn_order_unresolved\")",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.DefeatedActorDoesNotInventAPosition",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.FollowSmoothlyMovesWithoutChangingZoomOrRotation",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.ManualPanStopsPendingCameraMotion",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.PlanningTracksOwnSeatNotActiveOrChooser",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.UndecidedOrFinishedUsesOverview(InitiativeChoice)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.UndecidedOrFinishedUsesOverview(Finished)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.UndecidedOrFinishedUsesOverview(HeroSelection)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.UpgradeTracksSelfEvenAfterOwnUpgradeCompleted",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.CameraFollowTests.WheelOverridesOverviewZoomButRetainsFollow",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.DefenseExclamationDisplaysInfinityWithoutChangingSource",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.NewHeightsMatchRequestedModelRatios",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.PinkWarningIsOnlyNumericEvenWhenCardBlocks(3,5,True)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.PinkWarningIsOnlyNumericEvenWhenCardBlocks(5,5,False)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.PinkWarningIsOnlyNumericEvenWhenCardBlocks(6,5,False)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.PrimaryFormattingOnlySuppressesSkillZero(\"技能\",0,\"技能\")",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.PrimaryFormattingOnlySuppressesSkillZero(\"终极技能\",0,\"终极技能\")",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.PrimaryFormattingOnlySuppressesSkillZero(\"基础技能\",0,\"基础技能\")",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.PrimaryFormattingOnlySuppressesSkillZero(\"基础攻击\",0,\"基础攻击 0\")",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.PrimaryFormattingOnlySuppressesSkillZero(\"技能\",2,\"技能 2\")",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.RapidKeysRetargetWithoutSnappingOrDroppingSteps",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.RotationHasIntermediateFramesAndWrapsWithoutJump",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.Revision2Tests.WholeDiscardQuantityTurnsRedWithoutChangingWords",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.SkillWheelTests.DiscardAnimationIsPublicResultOnlyAndConsumedOnce",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.SkillWheelTests.DiscardBeatsRemainSequential",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.SkillWheelTests.MidGameCoinUsesFastHalfTurnTiming",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.SkillWheelTests.OtherHeroSlotNeverUsesPrivateHand",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.SkillWheelTests.OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.SkillWheelTests.RestoreDoesNotReplayHistoryAndRewindClearsFuture",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.WorldHudTests.DeathAndCrownConsumeEachPublicEventOnlyOnce",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.WorldHudTests.DebugCrystalCapacityAndCoinSideAreAuthoritative",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.WorldHudTests.LifeCrystalsHaveEqualRadiusAndSpacing",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.WorldHudTests.LoadingHistoricalMatchDoesNotReplayDeathsOrToss",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.WorldHudTests.MeterUsesZonesRatherThanRevealingSelectedCard(InHand,0)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.WorldHudTests.MeterUsesZonesRatherThanRevealingSelectedCard(Selected,1)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.WorldHudTests.MeterUsesZonesRatherThanRevealingSelectedCard(PlayedResolved,1)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.WorldHudTests.MeterUsesZonesRatherThanRevealingSelectedCard(Discarded,2)",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.WorldHudTests.OpponentMeterDoesNotLeakSelectedColor",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.WorldHudTests.RegionalCenterDoesNotUseWholeMapCenter",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.WorldHudTests.RestoringOlderRevisionClearsFutureAnimations",
+      "result": "Passed"
+    },
+    {
+      "name": "Goa2.UI3D.Tests.WorldHudTests.SlowFollowStartsGentlyAndHasSpeedLimit",
+      "result": "Passed"
+    }
+  ]
+}

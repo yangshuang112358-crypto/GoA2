@@ -21,7 +21,7 @@ namespace Goa2.Presentation.UI3D {
   public Motion Get(int seat,string color) {string key=seat+":"+color;if(!Motions.TryGetValue(key,out var m)){m=new Motion();Motions[key]=m;}return m;}
   public static CardInstance? KnownCard(ContentCatalog catalog,GameView view,int viewer,int target,string color) {
    var player=view.Players.Single(p=>p.Seat==target);
-   return (viewer==target ? view.OwnCards : player.PublicDiscards.Concat(player.Revealed)).FirstOrDefault(c=>catalog.Card(c.CardId).Color==color);
+   return (viewer==target ? view.OwnCards : player.PublicCards.Concat(player.PublicDiscards).Concat(player.Revealed)).FirstOrDefault(c=>catalog.Card(c.CardId).Color==color);
   }
  }
 }

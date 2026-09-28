@@ -18,11 +18,15 @@ namespace Goa2.Presentation.UI3D
   private BattlePresentationState presentation=null!;
   private static Mesh Gem()
   {
-   var vertices=new List<Vector3>{new Vector3(0,1,0),new Vector3(0,-1,0)};var indices=new List<int>();
-   for(int i=0;i<6;i++){float a=i*Mathf.PI/3;vertices.Add(new Vector3(Mathf.Cos(a),0,Mathf.Sin(a)));}
-   for(int i=0;i<6;i++){int a=i+2,b=(i+1)%6+2;indices.AddRange(new[]{0,b,a,1,a,b});}
-   var mesh=new Mesh{name="faceted crystal"};mesh.SetVertices(vertices);mesh.SetTriangles(indices,0);mesh.RecalculateNormals();return mesh;
+   var v=new List<Vector3>();var profile=new[]{new Vector2(0,-1),new Vector2(.70f,-.35f),new Vector2(1,.2f),new Vector2(.82f,.48f),new Vector2(0,1)};
+   for(int j=0;j<profile.Length-1;j++)for(int i=0;i<6;i++){
+    float a=i*Mathf.PI/3,b=(i+1)*Mathf.PI/3;
+    Vector3 P(int k,float angle)=>new Vector3(Mathf.Cos(angle)*profile[k].x,profile[k].y,Mathf.Sin(angle)*profile[k].x);
+    Tri(v,P(j,a),P(j+1,b),P(j,b));Tri(v,P(j,a),P(j+1,a),P(j+1,b));
+   }
+   return Faces(v,"cut six-sided crystal");
   }
+
   public static Vector3 CrystalPosition(ContentCatalog catalog,Team team,int index,int count)
   {
    var center=BattlePresentationState.Center(catalog);var fountain=BattlePresentationState.Center(catalog,team==Team.Blue ? "blueFountain" : "redFountain");
@@ -47,6 +51,7 @@ namespace Goa2.Presentation.UI3D
     int remaining=Mathf.Max(0,team==Team.Blue ? view.BlueCrystal : view.RedCrystal);
     for(int i=0;i<capacity;i++)if(i>=capacity-remaining) {
      var at=CrystalPosition(catalog,team,i,capacity);framingPoints.Add(at);var tr=Add(gem,at,new Vector3(.4f,.75f,.4f),ColorOf(team==Team.Blue ? "#59BAFF" : "#FF626B"),"crystal life "+team+" "+i).transform;
+     CrystalFinish(tr);
      crystals.Add((tr,at,i*1.37f+(team==Team.Blue ? 0 : 2.5f)));
     }
     framingPoints.Add(CrystalPosition(catalog,team,0,capacity));framingPoints.Add(CrystalPosition(catalog,team,Mathf.Max(0,capacity-1),capacity));
@@ -89,6 +94,9 @@ namespace Goa2.Presentation.UI3D
     jewel.SetParent(decisionCoin,false);jewel.localPosition=new Vector3(0,side*.66f,0);Polish(jewel,.18f);
    }
   }
+  private void CrystalFinish(Transform item) {
+   var renderer=item.GetComponent<MeshRenderer>();var mat=Own(new Material(Resources.Load<Shader>("UI3D/Crystal")));mat.color=renderer.sharedMaterial.color;renderer.sharedMaterial=mat;
+  }
   private void Polish(Transform item,float metallic) {
    var shader=Resources.Load<Shader>("UI3D/Coin");if(shader==null)return;
    var renderer=item.GetComponent<MeshRenderer>();var material=Own(new Material(shader));material.color=renderer.sharedMaterial.color;material.SetFloat("_Metallic",metallic);renderer.sharedMaterial=material;
@@ -107,7 +115,7 @@ namespace Goa2.Presentation.UI3D
   private void AnimateWorldHud()
   {
    float now=Time.realtimeSinceStartup;
-   foreach(var c in crystals)c.transform.localPosition=c.origin+Vector3.up*(.16f*Mathf.Sin(now*(.7f+(c.phase%1)*.6f)+c.phase));
+   foreach(var c in crystals){c.transform.localPosition=c.origin+Vector3.up*(.16f*Mathf.Sin(now*(.7f+(c.phase%1)*.6f)+c.phase));c.transform.localRotation=Quaternion.Euler(5*Mathf.Sin(now*.5f+c.phase),now*9+c.phase*57,4*Mathf.Cos(now*.7f+c.phase));}
    foreach(var c in crowns) {float t=Mathf.Clamp01((now-c.flight.Started)/2.4f),s=t*t*(3-2*t);c.transform.localPosition=Vector3.Lerp(c.flight.From,c.to,s)+Vector3.up*(Mathf.Sin(t*Mathf.PI)*3);c.transform.localRotation=Quaternion.Euler(0,360*t,0);}
    foreach(var p in pendingCrystals)p.transform.gameObject.SetActive(now<p.until);
    foreach(var f in fragments) {float t=now-f.effect.Started;f.transform.gameObject.SetActive(t>=0 && t<1.5f);if(t>=0){f.transform.localPosition=f.origin+f.velocity*t-Vector3.up*3*t*t;f.transform.localScale=Vector3.one*.18f*Mathf.Clamp01(1-t/1.5f);}}

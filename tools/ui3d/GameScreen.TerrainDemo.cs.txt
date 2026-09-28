@@ -1,0 +1,87 @@
+#if UNITY_EDITOR
+#nullable enable
+using System;
+using System.Collections;
+using System.IO;
+using System.Linq;
+using System.Diagnostics;
+using Goa2.Domain;
+using Goa2.Infrastructure;
+using Goa2.Presentation.UI3D;
+using UnityEngine;
+using UnityEngine.UIElements;
+namespace Goa2.Presentation {
+ public sealed partial class GameScreen {
+  private string demoFolder="",demoFfmpeg="",demoCaption="",demoError="",demoFile="";
+  private Process? demoEncoder;
+  private bool demoRecording;
+  private float demoStarted,demoClickedUntil;
+  private int demoFrames;
+  private void CaptureCue(string cue,float now){if(demoRecording)File.AppendAllText(Path.Combine(demoFolder,"audio-events.tsv"),(now-demoStarted).ToString("R",System.Globalization.CultureInfo.InvariantCulture)+"\t"+cue+"\n");}
+  private Vector2 demoPointer=new Vector2(-50,-50);
+  private Label? demoLabel;
+  private VisualElement? demoCursor;
+  [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+  private static void StartVideoDemo(){var args=Environment.GetCommandLineArgs();int index=Array.IndexOf(args,"-goaVideoDemo");if(index<0)return;var screen=UnityEngine.Object.FindFirstObjectByType<GameScreen>();screen.demoFolder=args[index+1];screen.demoFfmpeg=args[Array.IndexOf(args,"-goaVideoFfmpeg")+1];screen.StartCoroutine(screen.VideoDemoGuard());}
+  private IEnumerator VideoDemoGuard(){var demo=VideoSequence();bool good=false;while(true){object? step=null;bool more=false;try{if(demoError!="")throw new Exception(demoError);more=demo.MoveNext();if(more)step=demo.Current;}catch(Exception e){demoError=e.ToString();break;}if(!more){good=true;break;}yield return step;}StopVideo();SettingsAudio.Played-=CaptureCue;File.WriteAllText(Path.Combine(demoFolder,"capture-result.txt"),good?"PASS: real Unity rendered frames; scripted UI events; no OS input claims.":demoError);UnityEditor.EditorApplication.Exit(good?0:1);}
+  private void BeginVideo(string name){demoFile=Path.Combine(demoFolder,name+"-raw.mp4");demoStarted=Time.realtimeSinceStartup;demoFrames=0;demoRecording=true;StartCoroutine(CaptureVideoFrames());}
+  private IEnumerator CaptureVideoFrames(){while(demoRecording){DemoOverlay();yield return new WaitForEndOfFrame();if(!demoRecording)yield break;Texture2D? frame=null;try{
+    frame=ScreenCapture.CaptureScreenshotAsTexture();
+    string fmt=frame.format==TextureFormat.RGB24?"rgb24":frame.format==TextureFormat.RGBA32?"rgba":"";
+    if(fmt=="")throw new Exception("Unsupported screenshot format: "+frame.format);
+    if(demoEncoder==null){var info=new ProcessStartInfo(demoFfmpeg,"-hide_banner -loglevel error -y -f rawvideo -pixel_format "+fmt+" -video_size "+frame.width+"x"+frame.height+" -framerate 30 -i pipe:0 -vf vflip -c:v libx264 -preset ultrafast -crf 19 -pix_fmt yuv420p -movflags +faststart \""+demoFile+"\""){UseShellExecute=false,RedirectStandardInput=true,RedirectStandardError=true,CreateNoWindow=true,WindowStyle=ProcessWindowStyle.Hidden};demoEncoder=Process.Start(info);demoEncoder!.ErrorDataReceived+=(_,e)=>{if(!string.IsNullOrWhiteSpace(e.Data))File.AppendAllText(Path.Combine(demoFolder,"encoder.log"),e.Data+"\n");};demoEncoder.BeginErrorReadLine();}
+    var bytes=frame.GetRawTextureData();int goal=Mathf.FloorToInt((Time.realtimeSinceStartup-demoStarted)*30)+1;
+    while(demoFrames<goal){demoEncoder!.StandardInput.BaseStream.Write(bytes,0,bytes.Length);demoFrames++;}
+   }catch(Exception e){demoError=e.ToString();demoRecording=false;}finally{if(frame!=null)UnityEngine.Object.Destroy(frame);}}}
+  private void StopVideo(){demoRecording=false;if(demoEncoder!=null){demoEncoder.StandardInput.Close();demoEncoder.WaitForExit(15000);File.AppendAllText(Path.Combine(demoFolder,"timing.txt"),Path.GetFileName(demoFile)+": frames="+demoFrames+", duration="+(demoFrames/30f)+", wall="+(Time.realtimeSinceStartup-demoStarted)+", exit="+demoEncoder.ExitCode+"\n");demoEncoder.Dispose();demoEncoder=null;}}
+  private void DemoOverlay(){
+   if(demoLabel==null || demoLabel.parent==null){demoLabel=new Label{pickingMode=PickingMode.Ignore};demoLabel.style.position=Position.Absolute;demoLabel.style.left=230;demoLabel.style.right=230;demoLabel.style.bottom=20;demoLabel.style.height=60;demoLabel.style.backgroundColor=new Color(.035f,.055f,.075f,.95f);demoLabel.style.color=new Color(1,.88f,.62f);demoLabel.style.fontSize=25;demoLabel.style.unityTextAlign=TextAnchor.MiddleCenter;root.Add(demoLabel);}
+   demoLabel.text=demoCaption;
+   if(demoCursor==null || demoCursor.parent==null){demoCursor=new VisualElement{pickingMode=PickingMode.Ignore};demoCursor.style.position=Position.Absolute;demoCursor.style.width=16;demoCursor.style.height=16;demoCursor.style.borderTopLeftRadius=8;demoCursor.style.borderTopRightRadius=8;demoCursor.style.borderBottomLeftRadius=8;demoCursor.style.borderBottomRightRadius=8;demoCursor.style.borderTopWidth=2;demoCursor.style.borderBottomWidth=2;demoCursor.style.borderLeftWidth=2;demoCursor.style.borderRightWidth=2;demoCursor.style.borderTopColor=demoCursor.style.borderBottomColor=demoCursor.style.borderLeftColor=demoCursor.style.borderRightColor=Color.white;root.Add(demoCursor);}
+   demoCursor.style.left=demoPointer.x-8;demoCursor.style.top=demoPointer.y-8;demoCursor.style.backgroundColor=Time.realtimeSinceStartup<demoClickedUntil?new Color(1,.68f,.14f,.95f):new Color(1,1,1,.12f);demoCursor.BringToFront();
+  }
+  private void DemoMove(VisualElement target,float x=.5f,float y=.5f){demoPointer=new Vector2(Mathf.Lerp(target.worldBound.xMin,target.worldBound.xMax,x),Mathf.Lerp(target.worldBound.yMin,target.worldBound.yMax,y));using(var e=PointerMoveEvent.GetPooled(new Event{type=EventType.MouseMove,mousePosition=demoPointer})){e.target=target;target.SendEvent(e);}}
+  private void DemoEnter(VisualElement target){using(var e=PointerEnterEvent.GetPooled(new Event{type=EventType.MouseMove,mousePosition=target.worldBound.center})){e.target=target;target.SendEvent(e);}DemoMove(target);}
+  private void DemoLeave(VisualElement target){using(var e=PointerLeaveEvent.GetPooled(new Event{type=EventType.MouseMove,mousePosition=Vector2.zero})){e.target=target;target.SendEvent(e);}demoPointer=new Vector2(200,120);}
+  private void DemoDown(VisualElement target,int button=0){demoPointer=target.worldBound.center;demoClickedUntil=Time.realtimeSinceStartup+.3f;using(var e=PointerDownEvent.GetPooled(new Event{type=EventType.MouseDown,button=button,mousePosition=demoPointer})){e.target=target;target.SendEvent(e);}}
+  private void DemoUp(VisualElement target){using(var e=PointerUpEvent.GetPooled(new Event{type=EventType.MouseUp,button=0,mousePosition=demoPointer})){e.target=target;target.SendEvent(e);}}
+  private void DemoCheck(bool value,string message){if(!value)throw new Exception(message);}
+  private IEnumerator DemoTravel(Vector3 to,float zoom,float duration=3) {
+   board3DViewport.StopFollowing();Vector3 from=board3DViewport.Focus;float startZoom=board3DViewport.Zoom,start=Time.realtimeSinceStartup;
+   while(Time.realtimeSinceStartup-start<duration){float t=Mathf.Clamp01((Time.realtimeSinceStartup-start)/duration);t=t*t*t*(t*(t*6-15)+10);board3DViewport.Focus=Vector3.Lerp(from,to,t);board3DViewport.Zoom=Mathf.Lerp(startZoom,zoom,t);yield return null;}
+   board3DViewport.Focus=to;board3DViewport.Zoom=zoom;yield return new WaitForSecondsRealtime(.5f);
+  }
+  private void DemoShot(string name){ScreenCapture.CaptureScreenshot(Path.Combine(demoFolder,name+".png"));}
+  private IEnumerator VideoSequence(){
+   yield return null;yield return null;QualitySettings.vSyncCount=0;UnityEngine.Application.targetFrameRate=30;
+   DemoCheck(!startupFailed,"Startup failed");Submit(CommandKind.DebugPrepare,"wasp,shargatha,brogan,arien");cameraFollow=false;toastStarted=-100;topExpanded=false;rightExpanded=false;Render();yield return new WaitForSecondsRealtime(.6f);ToggleHeroWheel(0);board3DViewport.StopFollowing();board3DViewport.Focus=BattlePresentationState.Center(catalog);board3DViewport.Zoom=1.3f;yield return new WaitForSecondsRealtime(3);
+   string save=session.ExportSave();SettingsAudio.Played+=CaptureCue;
+   File.WriteAllText(Path.Combine(demoFolder,"audio-events.tsv"),"");
+   demoCaption="地图新外观 · 岩石、土地、两侧矮草地";BeginVideo("terrain-ui");yield return new WaitForSecondsRealtime(2);DemoShot("overview");
+   var rock=catalog.Cells.Where(c=>c.Obstacle).OrderBy(c=>c.Position.Distance(new Hex(0,0))).First();
+   demoCaption="岩石 · 分层切面与表面裂纹，障碍规则保持不变";yield return DemoTravel(Board3DGeometry.World(rock.Position),4.2f,3.5f);yield return new WaitForSecondsRealtime(2);DemoShot("rocks");
+   var grass=catalog.Cells.Where(c=>c.Region=="topGrass").OrderBy(c=>c.Position.Distance(new Hex(0,0))).First();
+   demoCaption="边侧短草 · 轻微摆动；其余可走格为土地";yield return DemoTravel(Board3DGeometry.World(grass.Position),4,3.5f);yield return new WaitForSecondsRealtime(2);DemoShot("grass");
+   demoCaption="红方出生符文 · 双剑 / 弓箭 / 重盾 / 王冠";yield return DemoTravel(Board3DGeometry.World(new Hex(5,-8)),3.6f,4);yield return new WaitForSecondsRealtime(2.3f);DemoShot("red-runes");
+   var red=Board3DScene.CrystalPosition(catalog,Team.Red,3,7);
+   demoCaption="红方生命水晶 · 切面光泽、独立浮动与缓慢旋转";yield return DemoTravel(red,3.8f,3.5f);yield return new WaitForSecondsRealtime(2.5f);DemoShot("red-crystals");
+   demoCaption="连续拉远跨越战场 · 不切换调试局面";yield return DemoTravel(BattlePresentationState.Center(catalog),1.4f,4);
+   demoCaption="蓝方出生符文与水晶 · 使用对应队伍颜色";yield return DemoTravel(Board3DGeometry.World(new Hex(-5,8)),3.5f,4);yield return new WaitForSecondsRealtime(2.3f);DemoShot("blue-runes");
+   var blue=Board3DScene.CrystalPosition(catalog,Team.Blue,3,7);yield return DemoTravel(blue,3.8f,2.8f);yield return new WaitForSecondsRealtime(2.2f);DemoShot("blue-crystals");
+   demoCaption="查看他人技能 · 名称与数值公开，暗选结果保密";var hero=renderedView.Units.First(u=>u.Seat==1);yield return DemoTravel(Board3DGeometry.World(hero.Position),3,4);ToggleHeroWheel(1);yield return new WaitForSecondsRealtime(1.8f);
+   DemoCheck(root.Query<SkillDisc>().ToList().All(d=>!d.Query<Label>().ToList().Any(l=>l.text=="?")),"Other skills still hidden");DemoShot("public-skills");
+   var disc=root.Q<SkillDisc>("skill-gold");DemoEnter(disc);demoCaption="角标增强 · 金属包边、浮雕图标、数值描边";
+   for(int i=0;i<28;i++){DemoMove(disc,.5f+.3f*Mathf.Sin(i*.22f),.5f+.3f*Mathf.Cos(i*.22f));yield return new WaitForSecondsRealtime(.065f);}DemoLeave(disc);
+   DemoDown(disc);yield return new WaitForSecondsRealtime(.4f);DemoCheck(session.ExportSave()==save,"Read-only opponent wheel changed rules");
+   demoCaption="右键技能可读完整牌文 · 不能替其他人操作";DemoDown(disc,1);yield return new WaitForSecondsRealtime(2.7f);DemoShot("skill-detail");skillPopup?.RemoveFromHierarchy();skillPopup=null;ToggleHeroWheel(1);yield return new WaitForSecondsRealtime(.4f);
+   demoCaption="设置音效 · 悬停进入 / 离开 / 打开";yield return DemoTravel(BattlePresentationState.Center(catalog),1.6f,3);
+   var settings=root.Q<StoneSettingsButton>("settings-toggle");DemoEnter(settings);yield return new WaitForSecondsRealtime(.6f);
+   for(int i=0;i<18;i++){DemoMove(settings,.5f+.3f*Mathf.Cos(i*.3f),.5f+.3f*Mathf.Sin(i*.3f));yield return new WaitForSecondsRealtime(.07f);}DemoLeave(settings);yield return new WaitForSecondsRealtime(.8f);
+   DemoEnter(settings);yield return new WaitForSecondsRealtime(.5f);DemoDown(settings);yield return new WaitForSecondsRealtime(.18f);DemoUp(settings);yield return new WaitForSecondsRealtime(1.7f);DemoCheck(rightExpanded,"Settings did not open");DemoShot("settings-open");
+   settings=root.Q<StoneSettingsButton>("settings-toggle");DemoLeave(settings);yield return new WaitForSecondsRealtime(.6f);DemoEnter(settings);yield return new WaitForSecondsRealtime(.3f);DemoDown(settings);DemoUp(settings);yield return new WaitForSecondsRealtime(1.2f);
+   DemoCheck(!rightExpanded && session.ExportSave()==save,"Presentation modified authority");DemoCheck(File.ReadAllLines(Path.Combine(demoFolder,"audio-events.tsv")).Length>=5,"Audio event callbacks absent");
+   demoCaption="本段同一局面连续展示 · 规则与身份未改变";yield return new WaitForSecondsRealtime(1.5f);StopVideo();
+  }
+ }
+}
+#endif

@@ -1,0 +1,11 @@
+{
+  "Method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard",
+  "UnityVersion": "6000.3.23f1",
+  "Error": "",
+  "Width": 1600,
+  "Height": 1000,
+  "Passed": true,
+  "PassedCheckCount": 6313,
+  "CompleteReport": "render-1600-before-final-polish.json.gz",
+  "CompleteReportUncompressedSHA256": "80e69d0ab9fdeeb8cd0a6cd4c547c0c06c105108e0768546d5102146214871d2"
+}
