@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="84" result="Passed" total="84" passed="84" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.1593566">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2262" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.159357" total="84" passed="84" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3594" name="Goa2.Presentation.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.Presentation.Tests.dll" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.052294" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="17488" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="3595" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.051967" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="3596" name="Presentation" fullname="Goa2.Presentation" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.051881" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="3597" name="Tests" fullname="Goa2.Presentation.Tests" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.051745" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="3559" name="CardTextMarkupTests" fullname="Goa2.Presentation.Tests.CardTextMarkupTests" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.040307" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3560" name="ActionsTimingsRestrictionsAndDefeatHaveDistinctEmphasis" fullname="Goa2.Presentation.Tests.CardTextMarkupTests.ActionsTimingsRestrictionsAndDefeatHaveDistinctEmphasis" methodname="ActionsTimingsRestrictionsAndDefeatHaveDistinctEmphasis" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" seed="1961009517" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.016462" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3566" name="FormattingRoundTripsExactSourceWithoutAddingPunctuation" fullname="Goa2.Presentation.Tests.CardTextMarkupTests.FormattingRoundTripsExactSourceWithoutAddingPunctuation" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.005699" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3561" name="FormattingRoundTripsExactSourceWithoutAddingPunctuation(&quot;下一回合：抵挡一次非远程攻击。&quot;)" fullname="Goa2.Presentation.Tests.CardTextMarkupTests.FormattingRoundTripsExactSourceWithoutAddingPunctuation(&quot;下一回合：抵挡一次非远程攻击。&quot;)" methodname="FormattingRoundTripsExactSourceWithoutAddingPunctuation" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" seed="1874804423" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.002988" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3562" name="FormattingRoundTripsExactSourceWithoutAddingPunctuation(&quot;攻击前：你可以丢弃一张卡牌。若如此做，则+2攻击距离。&quot;)" fullname="Goa2.Presentation.Tests.CardTextMarkupTests.FormattingRoundTripsExactSourceWithoutAddingPunctuation(&quot;攻击前：你可以丢弃一张卡牌。若如此做，则+2攻击距离。&quot;)" methodname="FormattingRoundTripsExactSourceWithoutAddingPunctuation" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" seed="2132513260" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000302" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3563" name="FormattingRoundTripsExactSourceWithoutAddingPunctuation(&quot;“打断施法”（不能攻击）\n最多2格；卡牌+1，保持 空格。&quot;)" fullname="Goa2.Presentation.Tests.CardTextMarkupTests.FormattingRoundTripsExactSourceWithoutAddingPunctuation(&quot;“打断施法”（不能攻击）\n最多2格；卡牌+1，保持 空格。&quot;)" methodname="FormattingRoundTripsExactSourceWithoutAddingPunctuation" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" seed="725648132" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000166" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3564" name="FormattingRoundTripsExactSourceWithoutAddingPunctuation(&quot;&lt;size=200&gt;攻击&lt;/size&gt; &amp; &lt;/noparse&gt; &lt;b&gt;不删原文&lt;/b&gt;&quot;)" fullname="Goa2.Presentation.Tests.CardTextMarkupTests.FormattingRoundTripsExactSourceWithoutAddingPunctuation(&quot;&lt;size=200&gt;攻击&lt;/size&gt; &amp; &lt;/noparse&gt; &lt;b&gt;不删原文&lt;/b&gt;&quot;)" methodname="FormattingRoundTripsExactSourceWithoutAddingPunctuation" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" seed="30902659" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000199" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3565" name="FormattingRoundTripsExactSourceWithoutAddingPunctuation(&quot;&quot;)" fullname="Goa2.Presentation.Tests.CardTextMarkupTests.FormattingRoundTripsExactSourceWithoutAddingPunctuation(&quot;&quot;)" methodname="FormattingRoundTripsExactSourceWithoutAddingPunctuation" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" seed="1884644384" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000040" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="3569" name="NegationAndNextTurnAreNotSplitIntoMisleadingShorterKeywords" fullname="Goa2.Presentation.Tests.CardTextMarkupTests.NegationAndNextTurnAreNotSplitIntoMisleadingShorterKeywords" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.001120" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3567" name="NegationAndNextTurnAreNotSplitIntoMisleadingShorterKeywords(&quot;非远程攻击&quot;)" fullname="Goa2.Presentation.Tests.CardTextMarkupTests.NegationAndNextTurnAreNotSplitIntoMisleadingShorterKeywords(&quot;非远程攻击&quot;)" methodname="NegationAndNextTurnAreNotSplitIntoMisleadingShorterKeywords" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" seed="948895536" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000627" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3568" name="NegationAndNextTurnAreNotSplitIntoMisleadingShorterKeywords(&quot;不是远程攻击&quot;)" fullname="Goa2.Presentation.Tests.CardTextMarkupTests.NegationAndNextTurnAreNotSplitIntoMisleadingShorterKeywords(&quot;不是远程攻击&quot;)" methodname="NegationAndNextTurnAreNotSplitIntoMisleadingShorterKeywords" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" seed="1844673275" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000086" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3571" name="PreviewMeasuresRichTextAndKeepsTwoWholeLinesWithEllipsis" fullname="Goa2.Presentation.Tests.CardTextMarkupTests.PreviewMeasuresRichTextAndKeepsTwoWholeLinesWithEllipsis" methodname="PreviewMeasuresRichTextAndKeepsTwoWholeLinesWithEllipsis" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" seed="38268397" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.005276" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3570" name="SourceRichTextCannotInjectFormatting" fullname="Goa2.Presentation.Tests.CardTextMarkupTests.SourceRichTextCannotInjectFormatting" methodname="SourceRichTextCannotInjectFormatting" classname="Goa2.Presentation.Tests.CardTextMarkupTests" runstate="Runnable" seed="1741641652" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000251" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3572" name="NetworkIntentTests" fullname="Goa2.Presentation.Tests.NetworkIntentTests" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.010675" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="3580" name="AuthorityOperationsCannotBeSent" fullname="Goa2.Presentation.Tests.NetworkIntentTests.AuthorityOperationsCannotBeSent" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.001936" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3577" name="AuthorityOperationsCannotBeSent(DebugPrepare)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.AuthorityOperationsCannotBeSent(DebugPrepare)" methodname="AuthorityOperationsCannotBeSent" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1696684114" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.001361" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3578" name="AuthorityOperationsCannotBeSent(SetQuickSelection)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.AuthorityOperationsCannotBeSent(SetQuickSelection)" methodname="AuthorityOperationsCannotBeSent" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1883234522" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000071" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3579" name="AuthorityOperationsCannotBeSent(UpgradeEngine)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.AuthorityOperationsCannotBeSent(UpgradeEngine)" methodname="AuthorityOperationsCannotBeSent" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1902165590" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000059" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3581" name="BeforeMoveDoesNotSendPrematureDestination" fullname="Goa2.Presentation.Tests.NetworkIntentTests.BeforeMoveDoesNotSendPrematureDestination" methodname="BeforeMoveDoesNotSendPrematureDestination" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1203332224" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.001364" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3583" name="EffectSkipDoesNotSendDestination" fullname="Goa2.Presentation.Tests.NetworkIntentTests.EffectSkipDoesNotSendDestination" methodname="EffectSkipDoesNotSendDestination" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1578972620" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000181" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3584" name="GoldTransferRetainsNoTargetSentinel" fullname="Goa2.Presentation.Tests.NetworkIntentTests.GoldTransferRetainsNoTargetSentinel" methodname="GoldTransferRetainsNoTargetSentinel" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1552601626" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000172" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3589" name="LocalAndLanTicketsSupported" fullname="Goa2.Presentation.Tests.NetworkIntentTests.LocalAndLanTicketsSupported" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.003730" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3585" name="LocalAndLanTicketsSupported(&quot;127.0.0.1&quot;)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.LocalAndLanTicketsSupported(&quot;127.0.0.1&quot;)" methodname="LocalAndLanTicketsSupported" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1737194690" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.003080" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3586" name="LocalAndLanTicketsSupported(&quot;192.168.1.10&quot;)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.LocalAndLanTicketsSupported(&quot;192.168.1.10&quot;)" methodname="LocalAndLanTicketsSupported" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="14840076" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000096" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3587" name="LocalAndLanTicketsSupported(&quot;10.1.2.3&quot;)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.LocalAndLanTicketsSupported(&quot;10.1.2.3&quot;)" methodname="LocalAndLanTicketsSupported" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1019836947" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000058" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3588" name="LocalAndLanTicketsSupported(&quot;172.16.0.1&quot;)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.LocalAndLanTicketsSupported(&quot;172.16.0.1&quot;)" methodname="LocalAndLanTicketsSupported" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1117144763" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000049" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3582" name="MoveKeepsChosenDestinationAndMode" fullname="Goa2.Presentation.Tests.NetworkIntentTests.MoveKeepsChosenDestinationAndMode" methodname="MoveKeepsChosenDestinationAndMode" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1081128165" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000652" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3576" name="NoArgumentCommandsDropLegacyDefaults" fullname="Goa2.Presentation.Tests.NetworkIntentTests.NoArgumentCommandsDropLegacyDefaults" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000798" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3573" name="NoArgumentCommandsDropLegacyDefaults(CancelCardSelection)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.NoArgumentCommandsDropLegacyDefaults(CancelCardSelection)" methodname="NoArgumentCommandsDropLegacyDefaults" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1727101489" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000202" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3574" name="NoArgumentCommandsDropLegacyDefaults(ConfirmCard)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.NoArgumentCommandsDropLegacyDefaults(ConfirmCard)" methodname="NoArgumentCommandsDropLegacyDefaults" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1025501921" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000053" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3575" name="NoArgumentCommandsDropLegacyDefaults(BeginPrimary)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.NoArgumentCommandsDropLegacyDefaults(BeginPrimary)" methodname="NoArgumentCommandsDropLegacyDefaults" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="32532996" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000046" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="3593" name="PublicEndpointsAreNotAdvertisedAsSupported" fullname="Goa2.Presentation.Tests.NetworkIntentTests.PublicEndpointsAreNotAdvertisedAsSupported" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000748" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3590" name="PublicEndpointsAreNotAdvertisedAsSupported(&quot;8.8.8.8&quot;)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.PublicEndpointsAreNotAdvertisedAsSupported(&quot;8.8.8.8&quot;)" methodname="PublicEndpointsAreNotAdvertisedAsSupported" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="146388862" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000297" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3591" name="PublicEndpointsAreNotAdvertisedAsSupported(&quot;0.0.0.0&quot;)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.PublicEndpointsAreNotAdvertisedAsSupported(&quot;0.0.0.0&quot;)" methodname="PublicEndpointsAreNotAdvertisedAsSupported" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1517269383" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000064" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3592" name="PublicEndpointsAreNotAdvertisedAsSupported(&quot;example.com&quot;)" fullname="Goa2.Presentation.Tests.NetworkIntentTests.PublicEndpointsAreNotAdvertisedAsSupported(&quot;example.com&quot;)" methodname="PublicEndpointsAreNotAdvertisedAsSupported" classname="Goa2.Presentation.Tests.NetworkIntentTests" runstate="Runnable" seed="1779143325" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000055" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="3668" name="Goa2.UI3D.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.UI3D.Tests.dll" runstate="Runnable" testcasecount="57" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.079210" total="57" passed="57" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="17488" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="3669" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="57" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.078865" total="57" passed="57" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="3670" name="UI3D" fullname="Goa2.UI3D" runstate="Runnable" testcasecount="57" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.078543" total="57" passed="57" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="3671" name="Tests" fullname="Goa2.UI3D.Tests" runstate="Runnable" testcasecount="57" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.078211" total="57" passed="57" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="3598" name="Board3DTests" fullname="Goa2.UI3D.Tests.Board3DTests" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.040671" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3599" name="All254MapCoordinatesRoundTripAndNeighborsAreEquidistant" fullname="Goa2.UI3D.Tests.Board3DTests.All254MapCoordinatesRoundTripAndNeighborsAreEquidistant" methodname="All254MapCoordinatesRoundTripAndNeighborsAreEquidistant" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="748184325" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.031383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3606" name="ProceduralTopNormalsFaceUpAndStayInsideCell" fullname="Goa2.UI3D.Tests.Board3DTests.ProceduralTopNormalsFaceUpAndStayInsideCell" methodname="ProceduralTopNormalsFaceUpAndStayInsideCell" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="6856600" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.006203" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3604" name="RotationWrapsExactlyTwelveSteps" fullname="Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.001421" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3600" name="RotationWrapsExactlyTwelveSteps(-1,11)" fullname="Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps(-1,11)" methodname="RotationWrapsExactlyTwelveSteps" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="1352738394" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000237" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3601" name="RotationWrapsExactlyTwelveSteps(12,0)" fullname="Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps(12,0)" methodname="RotationWrapsExactlyTwelveSteps" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="1737715855" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000045" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3602" name="RotationWrapsExactlyTwelveSteps(-24,0)" fullname="Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps(-24,0)" methodname="RotationWrapsExactlyTwelveSteps" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="1808874284" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000036" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3603" name="RotationWrapsExactlyTwelveSteps(25,1)" fullname="Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps(25,1)" methodname="RotationWrapsExactlyTwelveSteps" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="383078088" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000037" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3605" name="TwelveAnglesAreDistinctAndCloseWithoutDrift" fullname="Goa2.UI3D.Tests.Board3DTests.TwelveAnglesAreDistinctAndCloseWithoutDrift" methodname="TwelveAnglesAreDistinctAndCloseWithoutDrift" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="93424059" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000743" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3607" name="CameraFollowTests" fullname="Goa2.UI3D.Tests.CameraFollowTests" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.010305" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="3612" name="AttackResponseFocusesChooser" fullname="Goa2.UI3D.Tests.CameraFollowTests.AttackResponseFocusesChooser" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.003015" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3610" name="AttackResponseFocusesChooser(Action)" fullname="Goa2.UI3D.Tests.CameraFollowTests.AttackResponseFocusesChooser(Action)" methodname="AttackResponseFocusesChooser" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="2097391788" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.002663" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3611" name="AttackResponseFocusesChooser(EffectChoice)" fullname="Goa2.UI3D.Tests.CameraFollowTests.AttackResponseFocusesChooser(EffectChoice)" methodname="AttackResponseFocusesChooser" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1093955937" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000072" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="3622" name="CaptainBoardChoicesOverrideActor" fullname="Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000834" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3617" name="CaptainBoardChoicesOverrideActor(&quot;round_minion_removal&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(&quot;round_minion_removal&quot;)" methodname="CaptainBoardChoicesOverrideActor" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="854539293" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000217" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3618" name="CaptainBoardChoicesOverrideActor(&quot;action_minion_removal&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(&quot;action_minion_removal&quot;)" methodname="CaptainBoardChoicesOverrideActor" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="2080903467" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000044" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3619" name="CaptainBoardChoicesOverrideActor(&quot;minion_spawn&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(&quot;minion_spawn&quot;)" methodname="CaptainBoardChoicesOverrideActor" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1892539386" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000047" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3620" name="CaptainBoardChoicesOverrideActor(&quot;minion_return&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(&quot;minion_return&quot;)" methodname="CaptainBoardChoicesOverrideActor" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="2074485353" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000037" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3621" name="CaptainBoardChoicesOverrideActor(&quot;spawn_order_unresolved&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(&quot;spawn_order_unresolved&quot;)" methodname="CaptainBoardChoicesOverrideActor" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1281031634" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000039" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3627" name="DefeatedActorDoesNotInventAPosition" fullname="Goa2.UI3D.Tests.CameraFollowTests.DefeatedActorDoesNotInventAPosition" methodname="DefeatedActorDoesNotInventAPosition" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1672435642" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000130" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3616" name="DiscardResponseTracksChooserForEveryViewer" fullname="Goa2.UI3D.Tests.CameraFollowTests.DiscardResponseTracksChooserForEveryViewer" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000672" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3613" name="DiscardResponseTracksChooserForEveryViewer(&quot;forced_discard&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.DiscardResponseTracksChooserForEveryViewer(&quot;forced_discard&quot;)" methodname="DiscardResponseTracksChooserForEveryViewer" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="197132726" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000226" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3614" name="DiscardResponseTracksChooserForEveryViewer(&quot;optional_discard&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.DiscardResponseTracksChooserForEveryViewer(&quot;optional_discard&quot;)" methodname="DiscardResponseTracksChooserForEveryViewer" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="551904080" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000059" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3615" name="DiscardResponseTracksChooserForEveryViewer(&quot;minion_protection&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.DiscardResponseTracksChooserForEveryViewer(&quot;minion_protection&quot;)" methodname="DiscardResponseTracksChooserForEveryViewer" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="469055261" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000049" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3628" name="FollowSmoothlyMovesWithoutChangingZoomOrRotation" fullname="Goa2.UI3D.Tests.CameraFollowTests.FollowSmoothlyMovesWithoutChangingZoomOrRotation" methodname="FollowSmoothlyMovesWithoutChangingZoomOrRotation" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="382993309" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.002499" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3629" name="ManualPanStopsPendingCameraMotion" fullname="Goa2.UI3D.Tests.CameraFollowTests.ManualPanStopsPendingCameraMotion" methodname="ManualPanStopsPendingCameraMotion" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1755300351" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000610" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3608" name="PlanningTracksOwnSeatNotActiveOrChooser" fullname="Goa2.UI3D.Tests.CameraFollowTests.PlanningTracksOwnSeatNotActiveOrChooser" methodname="PlanningTracksOwnSeatNotActiveOrChooser" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1435400490" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3626" name="UndecidedOrFinishedUsesOverview" fullname="Goa2.UI3D.Tests.CameraFollowTests.UndecidedOrFinishedUsesOverview" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000727" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3623" name="UndecidedOrFinishedUsesOverview(InitiativeChoice)" fullname="Goa2.UI3D.Tests.CameraFollowTests.UndecidedOrFinishedUsesOverview(InitiativeChoice)" methodname="UndecidedOrFinishedUsesOverview" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1785829772" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000130" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3624" name="UndecidedOrFinishedUsesOverview(Finished)" fullname="Goa2.UI3D.Tests.CameraFollowTests.UndecidedOrFinishedUsesOverview(Finished)" methodname="UndecidedOrFinishedUsesOverview" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="2040602312" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000058" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3625" name="UndecidedOrFinishedUsesOverview(HeroSelection)" fullname="Goa2.UI3D.Tests.CameraFollowTests.UndecidedOrFinishedUsesOverview(HeroSelection)" methodname="UndecidedOrFinishedUsesOverview" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1803005202" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000045" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3609" name="UpgradeTracksSelfEvenAfterOwnUpgradeCompleted" fullname="Goa2.UI3D.Tests.CameraFollowTests.UpgradeTracksSelfEvenAfterOwnUpgradeCompleted" methodname="UpgradeTracksSelfEvenAfterOwnUpgradeCompleted" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="251521203" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3630" name="WheelOverridesOverviewZoomButRetainsFollow" fullname="Goa2.UI3D.Tests.CameraFollowTests.WheelOverridesOverviewZoomButRetainsFollow" methodname="WheelOverridesOverviewZoomButRetainsFollow" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="273457693" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000259" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3631" name="Revision2Tests" fullname="Goa2.UI3D.Tests.Revision2Tests" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.003704" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3641" name="DefenseExclamationDisplaysInfinityWithoutChangingSource" fullname="Goa2.UI3D.Tests.Revision2Tests.DefenseExclamationDisplaysInfinityWithoutChangingSource" methodname="DefenseExclamationDisplaysInfinityWithoutChangingSource" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="138681107" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000506" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3634" name="NewHeightsMatchRequestedModelRatios" fullname="Goa2.UI3D.Tests.Revision2Tests.NewHeightsMatchRequestedModelRatios" methodname="NewHeightsMatchRequestedModelRatios" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="2139460263" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000126" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3645" name="PinkWarningIsOnlyNumericEvenWhenCardBlocks" fullname="Goa2.UI3D.Tests.Revision2Tests.PinkWarningIsOnlyNumericEvenWhenCardBlocks" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000721" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3642" name="PinkWarningIsOnlyNumericEvenWhenCardBlocks(3,5,True)" fullname="Goa2.UI3D.Tests.Revision2Tests.PinkWarningIsOnlyNumericEvenWhenCardBlocks(3,5,True)" methodname="PinkWarningIsOnlyNumericEvenWhenCardBlocks" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="1126510378" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000318" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3643" name="PinkWarningIsOnlyNumericEvenWhenCardBlocks(5,5,False)" fullname="Goa2.UI3D.Tests.Revision2Tests.PinkWarningIsOnlyNumericEvenWhenCardBlocks(5,5,False)" methodname="PinkWarningIsOnlyNumericEvenWhenCardBlocks" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="1085972461" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000048" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3644" name="PinkWarningIsOnlyNumericEvenWhenCardBlocks(6,5,False)" fullname="Goa2.UI3D.Tests.Revision2Tests.PinkWarningIsOnlyNumericEvenWhenCardBlocks(6,5,False)" methodname="PinkWarningIsOnlyNumericEvenWhenCardBlocks" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="248516344" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000051" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="3640" name="PrimaryFormattingOnlySuppressesSkillZero" fullname="Goa2.UI3D.Tests.Revision2Tests.PrimaryFormattingOnlySuppressesSkillZero" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000789" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3635" name="PrimaryFormattingOnlySuppressesSkillZero(&quot;技能&quot;,0,&quot;技能&quot;)" fullname="Goa2.UI3D.Tests.Revision2Tests.PrimaryFormattingOnlySuppressesSkillZero(&quot;技能&quot;,0,&quot;技能&quot;)" methodname="PrimaryFormattingOnlySuppressesSkillZero" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="853783953" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000194" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3636" name="PrimaryFormattingOnlySuppressesSkillZero(&quot;终极技能&quot;,0,&quot;终极技能&quot;)" fullname="Goa2.UI3D.Tests.Revision2Tests.PrimaryFormattingOnlySuppressesSkillZero(&quot;终极技能&quot;,0,&quot;终极技能&quot;)" methodname="PrimaryFormattingOnlySuppressesSkillZero" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="875726708" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000044" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3637" name="PrimaryFormattingOnlySuppressesSkillZero(&quot;基础技能&quot;,0,&quot;基础技能&quot;)" fullname="Goa2.UI3D.Tests.Revision2Tests.PrimaryFormattingOnlySuppressesSkillZero(&quot;基础技能&quot;,0,&quot;基础技能&quot;)" methodname="PrimaryFormattingOnlySuppressesSkillZero" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="1209166264" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000036" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3638" name="PrimaryFormattingOnlySuppressesSkillZero(&quot;基础攻击&quot;,0,&quot;基础攻击 0&quot;)" fullname="Goa2.UI3D.Tests.Revision2Tests.PrimaryFormattingOnlySuppressesSkillZero(&quot;基础攻击&quot;,0,&quot;基础攻击 0&quot;)" methodname="PrimaryFormattingOnlySuppressesSkillZero" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="1045618203" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000040" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3639" name="PrimaryFormattingOnlySuppressesSkillZero(&quot;技能&quot;,2,&quot;技能 2&quot;)" fullname="Goa2.UI3D.Tests.Revision2Tests.PrimaryFormattingOnlySuppressesSkillZero(&quot;技能&quot;,2,&quot;技能 2&quot;)" methodname="PrimaryFormattingOnlySuppressesSkillZero" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="1699628019" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000037" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3633" name="RapidKeysRetargetWithoutSnappingOrDroppingSteps" fullname="Goa2.UI3D.Tests.Revision2Tests.RapidKeysRetargetWithoutSnappingOrDroppingSteps" methodname="RapidKeysRetargetWithoutSnappingOrDroppingSteps" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="1745540908" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3632" name="RotationHasIntermediateFramesAndWrapsWithoutJump" fullname="Goa2.UI3D.Tests.Revision2Tests.RotationHasIntermediateFramesAndWrapsWithoutJump" methodname="RotationHasIntermediateFramesAndWrapsWithoutJump" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="1583075017" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3646" name="WholeDiscardQuantityTurnsRedWithoutChangingWords" fullname="Goa2.UI3D.Tests.Revision2Tests.WholeDiscardQuantityTurnsRedWithoutChangingWords" methodname="WholeDiscardQuantityTurnsRedWithoutChangingWords" classname="Goa2.UI3D.Tests.Revision2Tests" runstate="Runnable" seed="356199275" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3647" name="SkillWheelTests" fullname="Goa2.UI3D.Tests.SkillWheelTests" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.012658" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3648" name="DiscardAnimationIsPublicResultOnlyAndConsumedOnce" fullname="Goa2.UI3D.Tests.SkillWheelTests.DiscardAnimationIsPublicResultOnlyAndConsumedOnce" methodname="DiscardAnimationIsPublicResultOnlyAndConsumedOnce" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1219557673" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.004775" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3650" name="DiscardBeatsRemainSequential" fullname="Goa2.UI3D.Tests.SkillWheelTests.DiscardBeatsRemainSequential" methodname="DiscardBeatsRemainSequential" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="609812100" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000738" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3653" name="MidGameCoinUsesFastHalfTurnTiming" fullname="Goa2.UI3D.Tests.SkillWheelTests.MidGameCoinUsesFastHalfTurnTiming" methodname="MidGameCoinUsesFastHalfTurnTiming" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1255668723" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.003588" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3651" name="OtherHeroSlotNeverUsesPrivateHand" fullname="Goa2.UI3D.Tests.SkillWheelTests.OtherHeroSlotNeverUsesPrivateHand" methodname="OtherHeroSlotNeverUsesPrivateHand" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1265402057" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.001564" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3652" name="OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection" fullname="Goa2.UI3D.Tests.SkillWheelTests.OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection" methodname="OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="659848214" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000512" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3649" name="RestoreDoesNotReplayHistoryAndRewindClearsFuture" fullname="Goa2.UI3D.Tests.SkillWheelTests.RestoreDoesNotReplayHistoryAndRewindClearsFuture" methodname="RestoreDoesNotReplayHistoryAndRewindClearsFuture" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1623112703" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000585" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3654" name="WorldHudTests" fullname="Goa2.UI3D.Tests.WorldHudTests" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.010124" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3655" name="DeathAndCrownConsumeEachPublicEventOnlyOnce" fullname="Goa2.UI3D.Tests.WorldHudTests.DeathAndCrownConsumeEachPublicEventOnlyOnce" methodname="DeathAndCrownConsumeEachPublicEventOnlyOnce" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" seed="861393293" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.004826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3657" name="DebugCrystalCapacityAndCoinSideAreAuthoritative" fullname="Goa2.UI3D.Tests.WorldHudTests.DebugCrystalCapacityAndCoinSideAreAuthoritative" methodname="DebugCrystalCapacityAndCoinSideAreAuthoritative" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" seed="2099110982" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3660" name="LifeCrystalsHaveEqualRadiusAndSpacing" fullname="Goa2.UI3D.Tests.WorldHudTests.LifeCrystalsHaveEqualRadiusAndSpacing" methodname="LifeCrystalsHaveEqualRadiusAndSpacing" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" seed="467403575" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000673" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3656" name="LoadingHistoricalMatchDoesNotReplayDeathsOrToss" fullname="Goa2.UI3D.Tests.WorldHudTests.LoadingHistoricalMatchDoesNotReplayDeathsOrToss" methodname="LoadingHistoricalMatchDoesNotReplayDeathsOrToss" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" seed="109072264" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000263" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3665" name="MeterUsesZonesRatherThanRevealingSelectedCard" fullname="Goa2.UI3D.Tests.WorldHudTests.MeterUsesZonesRatherThanRevealingSelectedCard" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.001222" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3661" name="MeterUsesZonesRatherThanRevealingSelectedCard(InHand,0)" fullname="Goa2.UI3D.Tests.WorldHudTests.MeterUsesZonesRatherThanRevealingSelectedCard(InHand,0)" methodname="MeterUsesZonesRatherThanRevealingSelectedCard" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" seed="1339789846" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000528" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3662" name="MeterUsesZonesRatherThanRevealingSelectedCard(Selected,1)" fullname="Goa2.UI3D.Tests.WorldHudTests.MeterUsesZonesRatherThanRevealingSelectedCard(Selected,1)" methodname="MeterUsesZonesRatherThanRevealingSelectedCard" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" seed="1287365325" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000061" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3663" name="MeterUsesZonesRatherThanRevealingSelectedCard(PlayedResolved,1)" fullname="Goa2.UI3D.Tests.WorldHudTests.MeterUsesZonesRatherThanRevealingSelectedCard(PlayedResolved,1)" methodname="MeterUsesZonesRatherThanRevealingSelectedCard" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" seed="554955336" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000052" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3664" name="MeterUsesZonesRatherThanRevealingSelectedCard(Discarded,2)" fullname="Goa2.UI3D.Tests.WorldHudTests.MeterUsesZonesRatherThanRevealingSelectedCard(Discarded,2)" methodname="MeterUsesZonesRatherThanRevealingSelectedCard" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" seed="1624109279" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000067" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3666" name="OpponentMeterDoesNotLeakSelectedColor" fullname="Goa2.UI3D.Tests.WorldHudTests.OpponentMeterDoesNotLeakSelectedColor" methodname="OpponentMeterDoesNotLeakSelectedColor" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" seed="1621238778" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3659" name="RegionalCenterDoesNotUseWholeMapCenter" fullname="Goa2.UI3D.Tests.WorldHudTests.RegionalCenterDoesNotUseWholeMapCenter" methodname="RegionalCenterDoesNotUseWholeMapCenter" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" seed="1208371355" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000276" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3658" name="RestoringOlderRevisionClearsFutureAnimations" fullname="Goa2.UI3D.Tests.WorldHudTests.RestoringOlderRevisionClearsFutureAnimations" methodname="RestoringOlderRevisionClearsFutureAnimations" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" seed="1494191181" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000341" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3667" name="SlowFollowStartsGentlyAndHasSpeedLimit" fullname="Goa2.UI3D.Tests.WorldHudTests.SlowFollowStartsGentlyAndHasSpeedLimit" methodname="SlowFollowStartsGentlyAndHasSpeedLimit" classname="Goa2.UI3D.Tests.WorldHudTests" runstate="Runnable" seed="1226567008" result="Passed" start-time="2026-09-28 18:51:26Z" end-time="2026-09-28 18:51:26Z" duration="0.000497" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\battlefield-layout-3cf38be90ce94d2da7b238121975238b.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

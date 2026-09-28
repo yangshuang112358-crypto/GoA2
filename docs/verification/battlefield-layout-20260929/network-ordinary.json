@@ -1,0 +1,4113 @@
+{
+  "source_commit": "a5ae4e2b5506c080a74ec13f031fee2955fb654f",
+  "runner": "4 Windows Unity Players + TCP service; synthetic GameScreen callbacks, NOT OS input",
+  "ui_tested": true,
+  "core_tests_counted": 0,
+  "checks": [
+    {
+      "name": "Player 0 authenticated own seat and no local rules session",
+      "passed": true
+    },
+    {
+      "name": "number key identity fixed 0",
+      "passed": true
+    },
+    {
+      "name": "Player 1 authenticated own seat and no local rules session",
+      "passed": true
+    },
+    {
+      "name": "number key identity fixed 1",
+      "passed": true
+    },
+    {
+      "name": "Player 2 authenticated own seat and no local rules session",
+      "passed": true
+    },
+    {
+      "name": "number key identity fixed 2",
+      "passed": true
+    },
+    {
+      "name": "Player 3 authenticated own seat and no local rules session",
+      "passed": true
+    },
+    {
+      "name": "number key identity fixed 3",
+      "passed": true
+    },
+    {
+      "name": "lost result marks UI uncertain and blocks new actions",
+      "passed": true
+    },
+    {
+      "name": "UI retry preserves command ID and does not duplicate",
+      "passed": true
+    },
+    {
+      "name": "delayed reply cannot rewind Unity view",
+      "passed": true
+    },
+    {
+      "name": "network requires four confirmations",
+      "passed": true
+    },
+    {
+      "name": "cancel selection routed over TCP",
+      "passed": true
+    },
+    {
+      "name": "public skills known but choice hidden 1",
+      "passed": true
+    },
+    {
+      "name": "public skills known but choice hidden 2",
+      "passed": true
+    },
+    {
+      "name": "public skills known but choice hidden 3",
+      "passed": true
+    },
+    {
+      "name": "disconnect disables map and confirmation",
+      "passed": true
+    },
+    {
+      "name": "settings reconnect remains enabled while decisions disabled",
+      "passed": true
+    },
+    {
+      "name": "reconnect preserves selected card",
+      "passed": true
+    },
+    {
+      "name": "wait for all players 1/0",
+      "passed": true
+    },
+    {
+      "name": "wait for all players 1/1",
+      "passed": true
+    },
+    {
+      "name": "wait for all players 1/2",
+      "passed": true
+    },
+    {
+      "name": "round turn 1 complete",
+      "passed": true
+    },
+    {
+      "name": "wait for all players 2/0",
+      "passed": true
+    },
+    {
+      "name": "wait for all players 2/1",
+      "passed": true
+    },
+    {
+      "name": "wait for all players 2/2",
+      "passed": true
+    },
+    {
+      "name": "round turn 2 complete",
+      "passed": true
+    },
+    {
+      "name": "wait for all players 3/0",
+      "passed": true
+    },
+    {
+      "name": "wait for all players 3/1",
+      "passed": true
+    },
+    {
+      "name": "wait for all players 3/2",
+      "passed": true
+    },
+    {
+      "name": "round turn 3 complete",
+      "passed": true
+    },
+    {
+      "name": "wait for all players 4/0",
+      "passed": true
+    },
+    {
+      "name": "wait for all players 4/1",
+      "passed": true
+    },
+    {
+      "name": "wait for all players 4/2",
+      "passed": true
+    },
+    {
+      "name": "round turn 4 complete",
+      "passed": true
+    },
+    {
+      "name": "Unity clients complete full round",
+      "passed": true
+    },
+    {
+      "name": "all four rendered projections agree",
+      "passed": true
+    }
+  ],
+  "assemblies": {
+    "Goa2.Application.dll": "77b97d94afc4592f4d284c0e796fa8d70cb1c1bff1e1b878f45342c2b24de6ab",
+    "Goa2.Domain.dll": "7adb8ae76717088f2ee959dc473fff903af63f3f434cb4dc792c2492fe374bad",
+    "Goa2.Infrastructure.dll": "771f84b84bc7dd5eda6183ceec7754b56a236191a7d7b4b8c9f04cfe81acb533",
+    "Goa2.Network.dll": "7d931b5de53443ada59c786441017432687529f4bf5fcc9827457cd51fe03558",
+    "Goa2.Rules.dll": "ceef078124864caf876ace445afb0f585e49af4b16f8320b01e594814e07dbc9",
+    "Newtonsoft.Json.dll": "4816c4276f575e4d85b80633a0df2eadf29496fe00bdc33cd7843e61373bde0e"
+  },
+  "source_files": {
+    "network/client/player.py": "934efbbad971ff74657a30bddceb816ac62f332c3f38451abcfa70b9a3d01a61",
+    "network/com.goa2.network.client/package.json": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+    "network/Goa2.Network/Goa2.Network.csproj": "33b7108be48b5e51062a0986e1fc4a7509d1edcc1b37263327a1a450700ca1f7",
+    "network/Goa2.Network/packages.lock.json": "3896b5350eaffa4692cfdce23dcc47ecbdad47ae27f658bf061022d872346d42",
+    "network/Goa2.Network/Program.cs": "7c831931e1998d03da2fd7cb11a7b71241d10d3cc38be3acc42d161878ee8692",
+    "network/Goa2.Network/Room.cs": "5557a37ae3d1345b713cb1b993880586521e80cb4270577e659c69f241a89544",
+    "network/Goa2.Network/TestAccess.cs": "7604e86017a81c6f07b79fdf72591f2afd7c22eb6f200b2cc9f2f81665cb6210",
+    "network/Goa2.Network/Wire.cs": "a5fee1fd193638e2dc96e52d65f660417174a2c299f89f6ac78b4ad792321d9b",
+    "network/Goa2.Network.Client/Goa2.Network.Client.csproj": "b35f8b67a5bbd3b9c91831a7b202913f99fa21291b5a154cf3ecf687e7206238",
+    "network/Goa2.Network.Client/packages.lock.json": "a2b02556d6502e9eefe4756953883d0ab4df0936c55df77778991ce03e4898c2",
+    "network/tests/acceptance.py": "bd0fe19fba82537797e8f9cef3676c9ed45f60d1a7d0f98199a48fce380a48ac",
+    "network/tests/fault_proxy.py": "2842dc2fbbd963e58cf4ded686c4373bf62c23c61d244820bced3601b12025f3",
+    "network/tests/test_client.py": "054198f3138d900aee440812ee11d6d22c3e7d683d0b75b607adc0f0dfe52593",
+    "network/tests/unity_acceptance.py": "397d46a20d9eb77d7fb16ca5aa4bb193896a4f4c6dfc6237cc654e15a1b841ba",
+    "network/com.goa2.network.client/Runtime/IPlayerSession.cs": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+    "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs": "7a94c4310f12869faa13375412fd85f59b7e562845678318f675aa435dc852f6",
+    "network/com.goa2.network.client/Runtime/UiIntent.cs": "994b692563f627718ce009989a5cdd8fd62c9a3a466a35898f8b4f5fa832ea27",
+    "network/tests/fixtures/axe-empty.json": "d2c59cb1b7da15d5aa95cb63de39df915f1ebf5f29137feae3ea40b38358d39d",
+    "network/tests/Goa2.Network.ClientHarness/Goa2.Network.ClientHarness.csproj": "c55af18969bd32d63d7acdf063ea751bcdd29f799935abce4377e1050f105f8a",
+    "network/tests/Goa2.Network.ClientHarness/packages.lock.json": "0136d384c5ca73952f1f999472050751c429e6ee70515ff5345f2a7293f32334",
+    "network/tests/Goa2.Network.ClientHarness/Program.cs": "213adf26e36e64d4ceb021574c651e79e56e6c8bf804b5e38847d6e459c01717",
+    "network/tests/Goa2.Network.TestHost/Goa2.Network.TestHost.csproj": "b6662f8d6ad2ba9b51ab5086fb052f50da25a970859bf279fea66da019225437",
+    "network/tests/Goa2.Network.TestHost/packages.lock.json": "394fd69a40905a514078328e72fbc3507f22fcaff974fe292146c6be15f565ec",
+    "network/tests/Goa2.Network.TestHost/Program.cs": "cd6a6725e123d88433ab912b5a51dcd7cf3ad67246928668acfa5cf286fec862",
+    "core/com.goa2.core/Runtime/Application/GameSession.cs": "dc2ee5d6fd642f80e363319e74adf286a8a3424daf5766ee1b961c258b59f8a1",
+    "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+    "core/com.goa2.core/Runtime/Domain/Combat.cs": "64e805fa02dfd2e6ab832d6015f7fbac88432eae388ee385dc88a3853cd2a617",
+    "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+    "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+    "core/com.goa2.core/Runtime/Domain/Displacement.cs": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+    "core/com.goa2.core/Runtime/Domain/Effects.cs": "641a3587b0e99a80a6ae0aec6b92d7b8aa39538b973201d0120e3664b49ade2e",
+    "core/com.goa2.core/Runtime/Domain/Model.cs": "a195027fc576254b4ab4678459da47eb0c6b46d9d478100f2f07d1ca8fdbf471",
+    "core/com.goa2.core/Runtime/Domain/RoundProgress.cs": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+    "core/com.goa2.core/Runtime/Domain/Views.cs": "21d8b2b409dd5b81e9e929e9d563faf6c307f85d85ecac41e442c3947e48da7b",
+    "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+    "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+    "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs": "db6fe75510c234db7a67ed4b3ebdc07563e7e861c3e30243e63d3773f5269e57",
+    "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+    "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+    "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs": "3d65a10a9ed5ac261c17a3e353add8839e57288b20eecfac2c8bdcaf81ed2a75",
+    "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs": "0522591b0c3a0b1ead83f99991dd98ab3da20678b8a9e037ed024c16b710857d",
+    "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs": "2ff7a7e03d1fa87423e097746c02bd348558ed9da7761cd906f97f76dd8c2113",
+    "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs": "8fbda04e927efb34759e5647c6acb6b51bd131e0fbd86e302bce076c730f1d8c",
+    "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs": "c2a8f5a065ef07e1bef7151dc848c453c56b73b8acf694708a959f9095946c77",
+    "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs": "169ae7680a36999271d6bf928179f0e37f6aeb87242d6f2dc39fbd7a5b115e28",
+    "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs": "72e09f37c1a4c944d2ad6515a190bd234a344d3ee4bd11687e292845972b5cf4",
+    "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+    "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs": "6989a1ccec65bd6ab1b6c6a6cc360e11eb32bbb6eb1a9b994da10d4179d8ff89",
+    "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs": "47ce77eb3e4284371072ca53e98dea0a047ba2fbb10d2f4bfff957d227e416c0",
+    "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs": "f52d8d44517e2c319a84ed5ba89e06320163007f5e4e0540787c240d521c0eb9",
+    "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs": "e4cd6f162f3ea180bee7eb3e42e1e97a37451795081ea214a1983ed928daa76f",
+    "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs": "0c03c3f41c259ad1a95fdec1dbc3314b132ec145d9c337e5d1066fe7822641ea",
+    "core/com.goa2.core/Runtime/Rules/CardPushRules.cs": "455d9ba8a613465890124117a65721eeed3ae66379e1bc8ae17e019cd12e91d9",
+    "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs": "301133dc738dbfef34354653aff5c36b90e01cde9e77423e539d436156f40240",
+    "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs": "a7f623a2f6e3cc16fdf22ba5882702897d443b760894721bcca9f49c8d463ce9",
+    "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+    "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs": "8ec0e99171bc298b4ddab6d95679c6ea788697352688fad1fdb06944bb343ee4",
+    "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs": "6f30d9314acf79d6779f92bd7330cb5f2af63e502f2132113c91a08f53f4ce20",
+    "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs": "3867631a0f623539dbec140b1994f6b463a72d7061d062dd2408df3c5641c172",
+    "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs": "b5f92ad96f895b4a6edc4d41176aee38fae75c54cbe3de68beebdeffc197687c",
+    "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs": "0b00d6274c5d8c5e06199187e30971c754c4c3ed3adb47df6c916f6cd2164899",
+    "core/com.goa2.core/Runtime/Rules/CombatMath.cs": "ddea04ebddd4cc16e397ae4cf183e46ea3d9c0ad7503fb85ef1b339672683446",
+    "core/com.goa2.core/Runtime/Rules/CombatRules.cs": "ab4afe3b5598d1b540df83a62ca56c353fc2fe28c7dacb581a5281020bd4a700",
+    "core/com.goa2.core/Runtime/Rules/DebugRules.cs": "bfb33bff4fc943ada0787e69b893fb7f3d0739b3e049a0dd7b35b655ff9acfb2",
+    "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs": "96c2191d775dd4410d69534e9f009e96366b7163a63177ab9bda8b9eec8b44af",
+    "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs": "da4bbcf4481a3091b5337bb197f123a626d4fc1b00bb4406f2947a4d3b9be063",
+    "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs": "1ff3ddd263b2c9ede296a694dada54bf610c99e64f344eea45ffdb5443b39932",
+    "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs": "9e964899710aa9a1519e42125c6148ac45625412ff8307623707eb6b4873f753",
+    "core/com.goa2.core/Runtime/Rules/EffectRules.cs": "31393d43e41b748a2925662975cf7f8c4a39699dc775517408623fa81bb6ad08",
+    "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs": "96f2944b3c5195c65a02e92f4704829f26e8a919d1ddac9a122e6c5b0c5d8021",
+    "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs": "766cdd2bebfe4bee993a7110dea717ef46600eced1af298cf6a9ef5eb7381e65",
+    "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+    "core/com.goa2.core/Runtime/Rules/GameRules.cs": "c32eb16b941858b7a8b72451702655d147611cd19456f2caca3658c3e5f0a3cd",
+    "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+    "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+    "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs": "55fa125634a22d32d271855a8eb11106893e946c792f93f988481957f9f7d092",
+    "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs": "deca4a63bf72414ccce28e18c0b7173c6d0c8f9f12d9baedff293563d6e23865",
+    "core/com.goa2.core/Runtime/Rules/MovementRules.cs": "5a0d170ef26005a3d169cd2e198f9a1bea56a967dae5e879541872b0c02a2bd3",
+    "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs": "6fafe9f4bb4ca673d51c6d6bc3a47e63ab8e67e33f92260bf557d75b117fd57e",
+    "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs": "75d3610de13d1c287130bbd431de25da5f43dc4a7aa4ea386fe214f9598969de",
+    "core/com.goa2.core/Runtime/Rules/PoisonRules.cs": "5927f6702eba0289fee8007fcde1e5fb292d67f5226d59224de81a921ac4f1a8",
+    "core/com.goa2.core/Runtime/Rules/PushRules.cs": "625c1c4eae5e84a42b022283e278ddd68b2e2c2b6f52769b11249358c17f7f06",
+    "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs": "9290746928bc86ea19eb667cac5c734b80122eed847bfa146fc6931eb2b6b1cc",
+    "core/com.goa2.core/Runtime/Rules/TurnRules.cs": "add2a9294b109420cf458dafcef0c9afe6bdbe8a5f5be2261c57581b785e069a",
+    "core/com.goa2.core/Runtime/Rules/UltimateRules.cs": "fef62ced21fbffec7638041fc62609c7fc5f21999fadb592d027ba9fb2b569fd",
+    "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+    "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+    "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+    "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs": "3e7a732c757a5b76eeb886bd86e3c7de24e70802cc28b6494b942a8675bee799",
+    "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs": "9aae026bdbb01ce10f96d66c869fa15f8a7e7ef726b1215650bced28b67582e3"
+  },
+  "started_utc": "2026-09-28T18:54:39Z",
+  "server_pid": 10272,
+  "csharp_adapter": false,
+  "client_pids": [
+    17692,
+    16604,
+    13580,
+    4848
+  ],
+  "player_build_info_sha256": "e71ed483e948df7f7c7be0025639d8269ae07c6bd3fc53b365a962f415352691",
+  "player_source_files": [
+    {
+      "Path": "content/canonical/cards.json",
+      "Sha256": "9fd571abe38f4711fa1a891f3696b9253057a2c21360fd4a62a1302351386192",
+      "Bytes": 90480
+    },
+    {
+      "Path": "content/canonical/heroes.json",
+      "Sha256": "f3f7c0c318b17738541dd8b6269f74865f0d66452acb5bcb2e5ae6627c783b6b",
+      "Bytes": 744
+    },
+    {
+      "Path": "content/canonical/map.json",
+      "Sha256": "8c4e20deee6540fdd6a675cb17523d1933cad5746938418ce8b02ff3f03dc77e",
+      "Bytes": 40625
+    },
+    {
+      "Path": "content/canonical/ruleset.json",
+      "Sha256": "9d568d0ba085ac7378a3397ade4db784f6e5026d34fbef311f5b511bfe17f390",
+      "Bytes": 1198
+    },
+    {
+      "Path": "content/manifest.json",
+      "Sha256": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+      "Bytes": 822
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Application.meta",
+      "Sha256": "44e33500e20b5a8fd53f3abc72092f558fa901e090b3382137e6b37477694557",
+      "Bytes": 172
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Application/GameSession.cs",
+      "Sha256": "dc2ee5d6fd642f80e363319e74adf286a8a3424daf5766ee1b961c258b59f8a1",
+      "Bytes": 17387
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Application/GameSession.cs.meta",
+      "Sha256": "1606c1ad3a962b4beab2823bbc7df715f810d6b446852a1e441654a55dec35e0",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Application/Goa2.Application.asmdef",
+      "Sha256": "26ebe8c93081959b6576e3c7a28b27fc7c0c33f82bee208eeaeb5b0fcdd177a1",
+      "Bytes": 176
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Application/Goa2.Application.asmdef.meta",
+      "Sha256": "d9474fb00cacf51919fe6a01d847cbfde2fbabe778f5509736a9a983d12a31bc",
+      "Bytes": 166
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain.meta",
+      "Sha256": "c0b87cd3cad9671b1906fe0809ea64ac8e7fd49ac3a05815715719930dcc8dc4",
+      "Bytes": 172
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs",
+      "Sha256": "154af5c75affdc2c7cdce9ce8cf5c76430165099f9e0218eafcdaf90457c47e0",
+      "Bytes": 606
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/BeforeActionFrame.cs.meta",
+      "Sha256": "2ded2e1776f3ae3a336a7072b9ae4164a32fe3df9d175a785722f03ae027fbc4",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/Combat.cs",
+      "Sha256": "64e805fa02dfd2e6ab832d6015f7fbac88432eae388ee385dc88a3853cd2a617",
+      "Bytes": 3747
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/Combat.cs.meta",
+      "Sha256": "5ea79f5bafca625b45a8aecc863831919a2920adee9a23adcebe17789bc270e0",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs",
+      "Sha256": "320d19a7cd20fa16685e1f4dfe5824aba3eed63c772b8891e4385f12dd942e35",
+      "Bytes": 1525
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/ContentSnapshot.cs.meta",
+      "Sha256": "1f63ed7cde914f1b200b102085553d6a257f616719680bb31c10d9de7e5fb057",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs",
+      "Sha256": "7b02c7526851f012716f1cddac332bc5db21dde35ca40f5e179e342d39a44313",
+      "Bytes": 590
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/DiscardReaction.cs.meta",
+      "Sha256": "ef015cfccd6d9705aa0feceb5bf57fff6a1f6ca4286142bb708abb2c20271b17",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/Displacement.cs",
+      "Sha256": "94017450e59872f6ca89c7ac133272e3509b37ea8f161f74455436ca6709a0d4",
+      "Bytes": 298
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/Displacement.cs.meta",
+      "Sha256": "2ea2d043daf0fe71f6deb5a64e6dad29b954c48a7ea5cde218224718ea3de1cd",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/Effects.cs",
+      "Sha256": "641a3587b0e99a80a6ae0aec6b92d7b8aa39538b973201d0120e3664b49ade2e",
+      "Bytes": 1883
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/Effects.cs.meta",
+      "Sha256": "1da85a0019905196f8c587b55ed076822a9b6ff79257fa60675b489e6a67b5b2",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/Goa2.Domain.asmdef",
+      "Sha256": "ed3e85cb9deec1492264ac505fd57a3160703876c9b155d1a7d3271ecff1b3a8",
+      "Bytes": 139
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/Goa2.Domain.asmdef.meta",
+      "Sha256": "d88e93e2d32ba529a0c5b0ef14edbadebbd1f7a22bf26376bb1dd8d6daaa93d1",
+      "Bytes": 166
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/Model.cs",
+      "Sha256": "a195027fc576254b4ab4678459da47eb0c6b46d9d478100f2f07d1ca8fdbf471",
+      "Bytes": 10198
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/Model.cs.meta",
+      "Sha256": "604c0ba8e192dc30ee9808b6ed214aa7a0f50ffa79dbf85d76c11bbd79a908f6",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/RoundProgress.cs",
+      "Sha256": "e4e3242c4c0405a123ecc11d4fb87c4d072184c7c4db113672235d25b04bfb13",
+      "Bytes": 1965
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/RoundProgress.cs.meta",
+      "Sha256": "9c61a4bba3fe3bab2509dc0fd53d23e45bc985a6527b4176e2b40a0780670ece",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/Views.cs",
+      "Sha256": "21d8b2b409dd5b81e9e929e9d563faf6c307f85d85ecac41e442c3947e48da7b",
+      "Bytes": 6265
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Domain/Views.cs.meta",
+      "Sha256": "7d5221d9d5baeb20f6b973b263e2236a1cda3ca6d7f4cfd084875c4c83422444",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure.meta",
+      "Sha256": "137574e7b1b1fb3cd046c73ce187fe408b18a325d42b695765cc5500743b3137",
+      "Bytes": 172
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs",
+      "Sha256": "58afe9d1d4afb0239a821642cb3a009d2f038d02f2d5ecf3290041da978da07d",
+      "Bytes": 5760
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/ContentLoader.cs.meta",
+      "Sha256": "c3cd330a205a8f989430ba2fee77e3e5fe709416a5a7251862fc6f731bb22a39",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs",
+      "Sha256": "859e71eb490bb44cf86c56a3818b77ae83f752495e81e1378e32e4f30c89eb6c",
+      "Bytes": 7206
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/DebugPositions.cs.meta",
+      "Sha256": "0dfe640f634147b8553fcd2734483cca42cd1ee921497e0af7fd5438e5c6cd7e",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/Goa2.Infrastructure.asmdef",
+      "Sha256": "899ce43aafbecebdae9562f5cbb94c123e6dc738f61aa88799efcf9fb523d567",
+      "Bytes": 284
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/Goa2.Infrastructure.asmdef.meta",
+      "Sha256": "8e5a2739b2704163036aca5303e4603e15922b636fee47601275e49a0971d83e",
+      "Bytes": 166
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs",
+      "Sha256": "db6fe75510c234db7a67ed4b3ebdc07563e7e861c3e30243e63d3773f5269e57",
+      "Bytes": 4872
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/JsonStateCodec.cs.meta",
+      "Sha256": "889e0f94095475953f0e55517254e784c48d0a3693634612f6d4a8214ae33307",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs",
+      "Sha256": "452dafdcd5fbca6e38a3ca1a3fedfaee66774b1c1df6ec699aaffb12c20c713b",
+      "Bytes": 2383
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/LocalGameFactory.cs.meta",
+      "Sha256": "341f7f3c30498067fbdca8f7aa0a84224d1008ca681ef10dc1f4021b1d9855fb",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/Scenarios.meta",
+      "Sha256": "e44749b0126d2dc11bab02f2038c0b8eb3f983daba71dda4eb99f696a9d1e9f0",
+      "Bytes": 172
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs",
+      "Sha256": "6df4d6f58f6904a939ae6b22828a54bdbdf6aee2aa603371687d9fdc5d6fe528",
+      "Bytes": 3078
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioModels.cs.meta",
+      "Sha256": "3ea20628f1ef0487b289862d750e6744d246f9f8ab6c103c62b305caf89c5686",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs",
+      "Sha256": "31d03201b7b7e6b966fbe05402badf90f45d21b249ea476e9112367f53e3e0c4",
+      "Bytes": 19999
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Infrastructure/Scenarios/ScenarioRunner.cs.meta",
+      "Sha256": "3e103bb0efdb8d5d3ee2efa9a47249dbc242a3182b03abe6373425732fb2d078",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules.meta",
+      "Sha256": "a15cec7e06c437626c0777574a8cfdb6379463d6ad68efc39e9989c440acb859",
+      "Bytes": 172
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs",
+      "Sha256": "ba32c40134e7fac6a7d69ef4da7ea89da265e70dccce7b02fd0583b70d3f68d7",
+      "Bytes": 6987
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/ActionMinionBattleRules.cs.meta",
+      "Sha256": "2f058be10c4f8ac7d95fe2eaacece13e7e467f9bf512e1c34668419510309024",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs",
+      "Sha256": "3d65a10a9ed5ac261c17a3e353add8839e57288b20eecfac2c8bdcaf81ed2a75",
+      "Bytes": 11173
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/BattlefieldRules.cs.meta",
+      "Sha256": "a04e48cbe2b7fd6a27a1e13a03cf12a154f857d1c28f0338a989a28fcfbbfb72",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs",
+      "Sha256": "0522591b0c3a0b1ead83f99991dd98ab3da20678b8a9e037ed024c16b710857d",
+      "Bytes": 7610
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/BeforeActionRules.cs.meta",
+      "Sha256": "42aeb1858224d49bc7199bfa0be173441f80f541738faddd92194b5a244b6606",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs",
+      "Sha256": "2ff7a7e03d1fa87423e097746c02bd348558ed9da7761cd906f97f76dd8c2113",
+      "Bytes": 10954
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardApproachRules.cs.meta",
+      "Sha256": "b05cf3e8cbabee8dc582c0004226464a40a7443d90103148386eced5e3ee763d",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs",
+      "Sha256": "8fbda04e927efb34759e5647c6acb6b51bd131e0fbd86e302bce076c730f1d8c",
+      "Bytes": 27628
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardExecutionRules.cs.meta",
+      "Sha256": "d82c9d118a879b882d6569872691c1bdc0eb4e10bd0df734a8925b4bccee7a17",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs",
+      "Sha256": "c2a8f5a065ef07e1bef7151dc848c453c56b73b8acf694708a959f9095946c77",
+      "Bytes": 4327
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardGoldRules.cs.meta",
+      "Sha256": "60025a751c86e987783617389cb69486d308061dfe2015ac155798631ad706cf",
+      "Bytes": 62
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs",
+      "Sha256": "169ae7680a36999271d6bf928179f0e37f6aeb87242d6f2dc39fbd7a5b115e28",
+      "Bytes": 4670
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardGroupPushRules.cs.meta",
+      "Sha256": "a0a49a9bb310d3803013f7003438b348328fca34b359279f006decc2cdb752f6",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs",
+      "Sha256": "72e09f37c1a4c944d2ad6515a190bd234a344d3ee4bd11687e292845972b5cf4",
+      "Bytes": 5974
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardMinionMoveRules.cs.meta",
+      "Sha256": "f3942cb644b59de9045904bb7c77df6aa5606b2bfb331cd69cb4f8c26f6bd365",
+      "Bytes": 62
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs",
+      "Sha256": "b7440fe1800ebaf2c3569a951fc02d0bc36190d0f3cc14a28957a5d5484b172c",
+      "Bytes": 4227
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardMinionRemovalRules.cs.meta",
+      "Sha256": "e111a4d7b987e018b06464bcfae84ecf018fba089f9b8689a51a1dcba2589375",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs",
+      "Sha256": "6989a1ccec65bd6ab1b6c6a6cc360e11eb32bbb6eb1a9b994da10d4179d8ff89",
+      "Bytes": 13219
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardMovementRules.cs.meta",
+      "Sha256": "4f1ea7f9116108153c519c895b9f65e3e387418f90000bb3686cf8e83c2e0ba6",
+      "Bytes": 62
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs",
+      "Sha256": "47ce77eb3e4284371072ca53e98dea0a047ba2fbb10d2f4bfff957d227e416c0",
+      "Bytes": 3886
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardOrbitalMoveRules.cs.meta",
+      "Sha256": "893155acaec0f8cfa5954711de9297aa0e89ed82a836b016e89018555d01a3fd",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs",
+      "Sha256": "f52d8d44517e2c319a84ed5ba89e06320163007f5e4e0540787c240d521c0eb9",
+      "Bytes": 6577
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardOtherMoveRules.cs.meta",
+      "Sha256": "5fb90a12307f167f1cd6684eba2058574e647dceb7abccd5b3345b9ac9257866",
+      "Bytes": 62
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs",
+      "Sha256": "e4cd6f162f3ea180bee7eb3e42e1e97a37451795081ea214a1983ed928daa76f",
+      "Bytes": 4864
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardPlacementRules.cs.meta",
+      "Sha256": "a1a84113b841df9b26f8125b46c4d0581f1c9f5264ccd4cb4231ae03075b6b37",
+      "Bytes": 62
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs",
+      "Sha256": "0c03c3f41c259ad1a95fdec1dbc3314b132ec145d9c337e5d1066fe7822641ea",
+      "Bytes": 2722
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardPrimaryOptionRules.cs.meta",
+      "Sha256": "0e7d0c2c003aa42fc4bd3a34cc6a8f781f75a7e07f951efeb15fbe2938f72cb4",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardPushRules.cs",
+      "Sha256": "455d9ba8a613465890124117a65721eeed3ae66379e1bc8ae17e019cd12e91d9",
+      "Bytes": 1507
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardPushRules.cs.meta",
+      "Sha256": "9b322740c01bc78033b7d4d8dfc92183868369f81edacaf3ca43c5e33f550691",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs",
+      "Sha256": "301133dc738dbfef34354653aff5c36b90e01cde9e77423e539d436156f40240",
+      "Bytes": 4925
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardRecoveryRules.cs.meta",
+      "Sha256": "a6e06a9bfec9a0d189601933ce0f3382772e59caa98e68bebc9d59a4aa6e9836",
+      "Bytes": 62
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs",
+      "Sha256": "a7f623a2f6e3cc16fdf22ba5882702897d443b760894721bcca9f49c8d463ce9",
+      "Bytes": 3424
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardRepeatRules.cs.meta",
+      "Sha256": "0178c237302b1c11cd1c265d8ec88a58b5028fc7bdfedccbb233c0534245fe06",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs",
+      "Sha256": "64cd6dadd264bd2667f8681fd69e4e04c0ca7d732fcb78bda098a6e4456bc168",
+      "Bytes": 4019
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardSwapRules.cs.meta",
+      "Sha256": "08eab7606c7a429aabba38abd2da67b0a8771b78cd8db79dd4f41b00c0cef3b9",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs",
+      "Sha256": "8ec0e99171bc298b4ddab6d95679c6ea788697352688fad1fdb06944bb343ee4",
+      "Bytes": 15420
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardTargetRules.cs.meta",
+      "Sha256": "0a7e719730ebc51987e9fe18b3f93d5a8f3c70a72542fbe228e6bc181d29e35b",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs",
+      "Sha256": "6f30d9314acf79d6779f92bd7330cb5f2af63e502f2132113c91a08f53f4ce20",
+      "Bytes": 6284
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardUnitPlacementRules.cs.meta",
+      "Sha256": "da8730ac0611f430fcfd8fb9b67511d40cbb781fbf6e943dcfbdad893128f13b",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs",
+      "Sha256": "3867631a0f623539dbec140b1994f6b463a72d7061d062dd2408df3c5641c172",
+      "Bytes": 7596
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardUnitPushRules.cs.meta",
+      "Sha256": "120f48516db0b9f10c410aaaaceb6d9c98f7e304029693456ed467edab3df9ab",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs",
+      "Sha256": "b5f92ad96f895b4a6edc4d41176aee38fae75c54cbe3de68beebdeffc197687c",
+      "Bytes": 3249
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CardUnitSwapRules.cs.meta",
+      "Sha256": "d8047d33eccd01f0701cf8ffc0815f91c5447929ce5458896ea5b45678372921",
+      "Bytes": 62
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/Cards.meta",
+      "Sha256": "b4dfdf7fe46b2245dcd1208dccef532a2a52280f39059228a4e52af1c9416f30",
+      "Bytes": 172
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs",
+      "Sha256": "3e7a732c757a5b76eeb886bd86e3c7de24e70802cc28b6494b942a8675bee799",
+      "Bytes": 50316
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/Cards/CardPrograms.cs.meta",
+      "Sha256": "5c84121040dc86e2951208aee54750cd117ec2adb33fd10bd5cc9f93fc03ab5f",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs",
+      "Sha256": "9aae026bdbb01ce10f96d66c869fa15f8a7e7ef726b1215650bced28b67582e3",
+      "Bytes": 4476
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/Cards/UltimatePrograms.cs.meta",
+      "Sha256": "f0905a803cd946964a79218b0beca55ef2c66133e97837414f6ec3854675a18b",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs",
+      "Sha256": "0b00d6274c5d8c5e06199187e30971c754c4c3ed3adb47df6c916f6cd2164899",
+      "Bytes": 9687
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CloakAndDaggerRules.cs.meta",
+      "Sha256": "fa633f207f02b4146bee40e4e689c08534a886259ed9bcf29730a84d1469436c",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CombatMath.cs",
+      "Sha256": "ddea04ebddd4cc16e397ae4cf183e46ea3d9c0ad7503fb85ef1b339672683446",
+      "Bytes": 3473
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CombatMath.cs.meta",
+      "Sha256": "77863869721dc2b77fd970af2a8b083d91b6b7bbb2fd1b09c1853866fdda6570",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CombatRules.cs",
+      "Sha256": "ab4afe3b5598d1b540df83a62ca56c353fc2fe28c7dacb581a5281020bd4a700",
+      "Bytes": 12904
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/CombatRules.cs.meta",
+      "Sha256": "cb4d6f104c609babb382189c0cc39e4e1379c018b4e19edb9c7296f02f9096e0",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/DebugRules.cs",
+      "Sha256": "bfb33bff4fc943ada0787e69b893fb7f3d0739b3e049a0dd7b35b655ff9acfb2",
+      "Bytes": 22270
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/DebugRules.cs.meta",
+      "Sha256": "1b1546559c1563b65c9719cd0fa5bf0d6b63af61975513b8bcb7c6fe141f8af2",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs",
+      "Sha256": "96c2191d775dd4410d69534e9f009e96366b7163a63177ab9bda8b9eec8b44af",
+      "Bytes": 4488
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/DefenseMovementRules.cs.meta",
+      "Sha256": "d044db1fd7e9dc5f26eb1c61f3a32be719581a030a65b65b59a0173981f26e26",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs",
+      "Sha256": "da4bbcf4481a3091b5337bb197f123a626d4fc1b00bb4406f2947a4d3b9be063",
+      "Bytes": 12328
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/DefenseResponseRules.cs.meta",
+      "Sha256": "4d4f2a1c2ca47edcc9beb09fa384c5850df15fff8a627c5fc930f3d86c13157a",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs",
+      "Sha256": "1ff3ddd263b2c9ede296a694dada54bf610c99e64f344eea45ffdb5443b39932",
+      "Bytes": 7346
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/DiscardReactionRules.cs.meta",
+      "Sha256": "ca945d046b0e3717a0bfba2fc6a8b8e826a94130bc28cd3ad81593115dd29ad9",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs",
+      "Sha256": "9e964899710aa9a1519e42125c6148ac45625412ff8307623707eb6b4873f753",
+      "Bytes": 5112
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/EffectLifecycleRules.cs.meta",
+      "Sha256": "dc244275d4abab100e60c5ee23df3d8640d2244650ccb858f622e72a7b2ee7d7",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/EffectRules.cs",
+      "Sha256": "31393d43e41b748a2925662975cf7f8c4a39699dc775517408623fa81bb6ad08",
+      "Bytes": 13544
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/EffectRules.cs.meta",
+      "Sha256": "110a74c6d7c7245d6a0fa7e47994f1dc1828b50e6325599d0d486985d765937b",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs",
+      "Sha256": "96f2944b3c5195c65a02e92f4704829f26e8a919d1ddac9a122e6c5b0c5d8021",
+      "Bytes": 1513
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/EffectTimeline.cs.meta",
+      "Sha256": "235938f4a47f0b759ee69da3727c1c5b230a54695ae7ea82404962a3662520d0",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs",
+      "Sha256": "766cdd2bebfe4bee993a7110dea717ef46600eced1af298cf6a9ef5eb7381e65",
+      "Bytes": 1399
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/EngineVersionRules.cs.meta",
+      "Sha256": "62c45cf1735176db037ffa3818ac807ba3ad449ba95ca7097e5865518a948aba",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs",
+      "Sha256": "8e55b92eba1c58efc0faeee00b94616c946165236bb008f54ae26068e6d13de4",
+      "Bytes": 3692
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/ForcedPaymentRules.cs.meta",
+      "Sha256": "ee182f66e3f1d762df359b8386cd1b84ba779f99f06dc8442c09d51db8b6ab2c",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/GameRules.cs",
+      "Sha256": "c32eb16b941858b7a8b72451702655d147611cd19456f2caca3658c3e5f0a3cd",
+      "Bytes": 10233
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/GameRules.cs.meta",
+      "Sha256": "71196abb869e81c2ed6ac6e7e135975c05a774aa57144c58b681a71d24451ca7",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/Goa2.Rules.asmdef",
+      "Sha256": "03262a4640ed7d46350e5ace119bec98015701cb41f3c58777addc68c05f4a0b",
+      "Bytes": 150
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/Goa2.Rules.asmdef.meta",
+      "Sha256": "515f14c5cbf3e6117e582a19c449db2b42a132c5acbdc7928b08387d933dd4e0",
+      "Bytes": 166
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs",
+      "Sha256": "5299d80aaaa68faf3399697c7a31831f55eed81ec4b7d20d770685cd52cab56f",
+      "Bytes": 3561
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/HeroDefeatRules.cs.meta",
+      "Sha256": "298e770fd55d22b49bc92956c4741e76fdffb31a30b9e4176984dbdee5305e15",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs",
+      "Sha256": "aac3039c57108b83479bb4c944d8da6002c5831f0aec42586424355261b53221",
+      "Bytes": 2464
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/MinionBattleParticipantRules.cs.meta",
+      "Sha256": "8e9a7d27c98e6e712fbdbb24f52c78552beded2bd1e0dc874c0be835a9e8e277",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs",
+      "Sha256": "55fa125634a22d32d271855a8eb11106893e946c792f93f988481957f9f7d092",
+      "Bytes": 4401
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/MinionProtectionRules.cs.meta",
+      "Sha256": "0bb2e5ee48f34687908e682a1547f81e2d89b7986a2f117832dfbcc8faec1201",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs",
+      "Sha256": "deca4a63bf72414ccce28e18c0b7173c6d0c8f9f12d9baedff293563d6e23865",
+      "Bytes": 6885
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/MinionReturnRules.cs.meta",
+      "Sha256": "7e9b0b0c400594a98cb13a2e7f94488abd0573f3f27eb0fc081316cffe40cb2c",
+      "Bytes": 62
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/MovementRules.cs",
+      "Sha256": "5a0d170ef26005a3d169cd2e198f9a1bea56a967dae5e879541872b0c02a2bd3",
+      "Bytes": 7365
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/MovementRules.cs.meta",
+      "Sha256": "ae83b01eddb926f9e6a42b78b722d3ee60c0356ebe2f896b7c359ef1b1da22ce",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs",
+      "Sha256": "6fafe9f4bb4ca673d51c6d6bc3a47e63ab8e67e33f92260bf557d75b117fd57e",
+      "Bytes": 3497
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/OptionalDiscardRules.cs.meta",
+      "Sha256": "1f09779f60e82cfc3483e35f5c07404ae12fdbe7d2289e4326c3f22ae93389f1",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs",
+      "Sha256": "75d3610de13d1c287130bbd431de25da5f43dc4a7aa4ea386fe214f9598969de",
+      "Bytes": 1783
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/PetrificationRules.cs.meta",
+      "Sha256": "f3d502ff0c4d1733373946a1acd9bf4781bd40f9217d0c7ddde543a286d16a52",
+      "Bytes": 62
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/PoisonRules.cs",
+      "Sha256": "5927f6702eba0289fee8007fcde1e5fb292d67f5226d59224de81a921ac4f1a8",
+      "Bytes": 2703
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/PoisonRules.cs.meta",
+      "Sha256": "7c8c5d815db305744bbd53203f6955d9bdc78de2dc66d5edc0b6d01c918751d1",
+      "Bytes": 62
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/PushRules.cs",
+      "Sha256": "625c1c4eae5e84a42b022283e278ddd68b2e2c2b6f52769b11249358c17f7f06",
+      "Bytes": 2930
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/PushRules.cs.meta",
+      "Sha256": "1972f8e00134e3d48fb03d611f8ce9e3c654c53fe0078cc916b6b2c70051ecf0",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs",
+      "Sha256": "9290746928bc86ea19eb667cac5c734b80122eed847bfa146fc6931eb2b6b1cc",
+      "Bytes": 7275
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/RoundEndRules.cs.meta",
+      "Sha256": "d4726a05cee5f43d225797626dba72fb43ccd3efc2ad57d99058693aa7d9af29",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/TurnRules.cs",
+      "Sha256": "add2a9294b109420cf458dafcef0c9afe6bdbe8a5f5be2261c57581b785e069a",
+      "Bytes": 10947
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/TurnRules.cs.meta",
+      "Sha256": "cc13346ad05c9b1e4b9047d0cc2b6075235dad730388de20ee7c412b3c51bbce",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/UltimateRules.cs",
+      "Sha256": "fef62ced21fbffec7638041fc62609c7fc5f21999fadb592d027ba9fb2b569fd",
+      "Bytes": 8182
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/UltimateRules.cs.meta",
+      "Sha256": "583fd428d9edc7e2cc7a12837ce465241d29bf96f5684bee01b8fbca0fd24d12",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs",
+      "Sha256": "7d79579f7bafb5938319a01be2c2676152c1d5afefda17c18e357e7eedd1fa1b",
+      "Bytes": 6970
+    },
+    {
+      "Path": "core/com.goa2.core/Runtime/Rules/UpgradeRules.cs.meta",
+      "Sha256": "6d18b2c0af9bb09f338f37c2eb1de05dad7a39cfa64d2658fa4ac095d391ac6a",
+      "Bytes": 59
+    },
+    {
+      "Path": "core/com.goa2.core/package.json",
+      "Sha256": "57e062c353953756882f64760748f012e1c3c7373b535176834e7c3ee30a016d",
+      "Bytes": 275
+    },
+    {
+      "Path": "network/com.goa2.network.client/Runtime.meta",
+      "Sha256": "18c292b71dd2dbf496e45010c3e5d87efaabbc57f4b4ffb0c5a8f0608429ad43",
+      "Bytes": 172
+    },
+    {
+      "Path": "network/com.goa2.network.client/Runtime/Goa2.Network.Client.asmdef",
+      "Sha256": "9153bbf0b2bfd90e3be11a2605cc5121fb55ef8105d89cf6c144101a7b4fb90b",
+      "Bytes": 250
+    },
+    {
+      "Path": "network/com.goa2.network.client/Runtime/Goa2.Network.Client.asmdef.meta",
+      "Sha256": "fef44aa77e5a3560f3c623f83aaf59a4d9c03cc092242412b3e95873b0f996c6",
+      "Bytes": 166
+    },
+    {
+      "Path": "network/com.goa2.network.client/Runtime/IPlayerSession.cs",
+      "Sha256": "b1038b2abc4fc5e17e6b29089e92b412413a048401a904516ee391023ab6d440",
+      "Bytes": 1642
+    },
+    {
+      "Path": "network/com.goa2.network.client/Runtime/IPlayerSession.cs.meta",
+      "Sha256": "0140e11a5a489fe08dd079eff5b0df3c56603c07524c874b9b3de7a4969a88c4",
+      "Bytes": 59
+    },
+    {
+      "Path": "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs",
+      "Sha256": "7a94c4310f12869faa13375412fd85f59b7e562845678318f675aa435dc852f6",
+      "Bytes": 13729
+    },
+    {
+      "Path": "network/com.goa2.network.client/Runtime/NetworkPlayerSession.cs.meta",
+      "Sha256": "7c697b6d54f3869ec673ff722dc1afb21858d19a27421c5703054f8807d26519",
+      "Bytes": 59
+    },
+    {
+      "Path": "network/com.goa2.network.client/Runtime/UiIntent.cs",
+      "Sha256": "994b692563f627718ce009989a5cdd8fd62c9a3a466a35898f8b4f5fa832ea27",
+      "Bytes": 2403
+    },
+    {
+      "Path": "network/com.goa2.network.client/Runtime/UiIntent.cs.meta",
+      "Sha256": "c2710b60f8cd76915ff52d426feccc455d70da93f4a31bee919b7d35cdad65cb",
+      "Bytes": 59
+    },
+    {
+      "Path": "network/com.goa2.network.client/package.json",
+      "Sha256": "05b649e99e844f4e7aa612d07d3ad8215a9827abfaf61a7e5bf997598fdf7798",
+      "Bytes": 294
+    },
+    {
+      "Path": "network/com.goa2.network.client/package.json.meta",
+      "Sha256": "4a98c5122ca4cf90261b941c49d3b60e944b942ab7869e005f69801a625b8d9f",
+      "Bytes": 163
+    },
+    {
+      "Path": "tests/scenarios/advantage-different.json",
+      "Sha256": "7f98c1662d1fd968dce3a5d78c7a9d7e3c380702881ca02bc1df80b1262244c1",
+      "Bytes": 3068
+    },
+    {
+      "Path": "tests/scenarios/advantage-heavy.json",
+      "Sha256": "d23ce6e0d1be881b9dfa72c13b87e1465b921234047715b7f5251e91f83127bd",
+      "Bytes": 3283
+    },
+    {
+      "Path": "tests/scenarios/advantage-range.json",
+      "Sha256": "aaa7a960abd2e2cdc865acd017c1b60531de15cdb086016513914e01bbff6156",
+      "Bytes": 3215
+    },
+    {
+      "Path": "tests/scenarios/advantage-return.json",
+      "Sha256": "0273cd760f7e51e156822b83bcc59e549f2228d83e3cece40160d0403577a4f5",
+      "Bytes": 4789
+    },
+    {
+      "Path": "tests/scenarios/advantage-same.json",
+      "Sha256": "c6fb1b5a542ff1b4b992dfff8fe717582c0c86d1fd997c7e50319c93d95aad99",
+      "Bytes": 3242
+    },
+    {
+      "Path": "tests/scenarios/advantage-skip.json",
+      "Sha256": "3e601730237092aee66e5269d59a3679bc72ca7dc39531959b641fe896f9a515",
+      "Bytes": 3167
+    },
+    {
+      "Path": "tests/scenarios/backstab.json",
+      "Sha256": "3f833a8c422902c913f0bef6297d36cca6128f1f2c87a4c60e75202bc1f6138b",
+      "Bytes": 2346
+    },
+    {
+      "Path": "tests/scenarios/bash-basic.json",
+      "Sha256": "7d3eb2c0fe7db80ee5375769a1b9c682fa382f0e631fd268d5bc669b3ebf45ce",
+      "Bytes": 2481
+    },
+    {
+      "Path": "tests/scenarios/bash-empty.json",
+      "Sha256": "524eb59bbf81d102e3a1552fb99f86f54806fa244a628a5b21dd6841175e2930",
+      "Bytes": 2619
+    },
+    {
+      "Path": "tests/scenarios/bash-resolved.json",
+      "Sha256": "8d956f2826eb887cc646d7700e0d2c7293bd059b6455b22859fc0a5464a93304",
+      "Bytes": 2485
+    },
+    {
+      "Path": "tests/scenarios/battlearms-basic.json",
+      "Sha256": "b28f34705306edc37610eb9f44544f93090882719ce095a9feb52c014e1c0bb3",
+      "Bytes": 4033
+    },
+    {
+      "Path": "tests/scenarios/battlearms-both-adjacent.json",
+      "Sha256": "5fab4e69efbfcd25fa7079304e0b7ac5fc01a453c27e6375b005caefd6a33ea6",
+      "Bytes": 4116
+    },
+    {
+      "Path": "tests/scenarios/battlearms-challenger.json",
+      "Sha256": "d45256f4ab9115a787cf0da6369a6720000596cd9f24f198919a158b4898eed8",
+      "Bytes": 4064
+    },
+    {
+      "Path": "tests/scenarios/battlearms-defeat.json",
+      "Sha256": "0636cd0d78f06b5e6b24a271dba2d7c6967834a5988ddd826e021041a551cddc",
+      "Bytes": 2755
+    },
+    {
+      "Path": "tests/scenarios/battlearms-ordinary.json",
+      "Sha256": "172d763f402e6143c76216303ea96e4b757be77f6377c49d07351903c344b96e",
+      "Bytes": 3989
+    },
+    {
+      "Path": "tests/scenarios/battlearms-retrieve.json",
+      "Sha256": "e8e2f0b67497f4c8418b829674016382409a4afb6bb6a019573bfdc7487ba8b6",
+      "Bytes": 4213
+    },
+    {
+      "Path": "tests/scenarios/battlearms-roundend.json",
+      "Sha256": "18f54dd5d34fd93ee2450a2a40940de17075c09fd0712ac48a1d9d7cdcf4b512",
+      "Bytes": 2722
+    },
+    {
+      "Path": "tests/scenarios/battlearms-source-moved.json",
+      "Sha256": "7d0839d8147f254108489ef4ac9bb8a6b78cbda19c90bb72952a66abb57c0334",
+      "Bytes": 4111
+    },
+    {
+      "Path": "tests/scenarios/battledrill-basic.json",
+      "Sha256": "dc9b890d77572d66aabd173f0b2bc799f4d07cc49168c20b8a18518213492e64",
+      "Bytes": 3704
+    },
+    {
+      "Path": "tests/scenarios/battledrill-defeat.json",
+      "Sha256": "3e35834abfa6ba778d29ea8904a37f3cc2949dbbb7ec9fa6b3fca6f7e096e602",
+      "Bytes": 2762
+    },
+    {
+      "Path": "tests/scenarios/battledrill-ordinary.json",
+      "Sha256": "7b77759d21615129e7b25925dc10e9b8c20a84d53abc2635961cafc6fd74f9c3",
+      "Bytes": 3684
+    },
+    {
+      "Path": "tests/scenarios/battledrill-retrieve.json",
+      "Sha256": "2ed7e0967930ed24a5e2a4e88e6263453c2451a827ed5d0f98d878b64fe15bb6",
+      "Bytes": 4226
+    },
+    {
+      "Path": "tests/scenarios/battledrill-roundend.json",
+      "Sha256": "628893a113702e064078e9de0bac083b7a29f738186323348ab1f2b89c1fac87",
+      "Bytes": 2723
+    },
+    {
+      "Path": "tests/scenarios/battledrill-source-moved.json",
+      "Sha256": "b1021e23580d416e294bee645a069fd3b31566fbf5ca4591351edc2e8089b359",
+      "Bytes": 3863
+    },
+    {
+      "Path": "tests/scenarios/battledrill-stay.json",
+      "Sha256": "3184435b65a5d92c9bc743e2e07867437ff0710b3d15399f5daaacdc3f5fb57a",
+      "Bytes": 3521
+    },
+    {
+      "Path": "tests/scenarios/binding-blue.json",
+      "Sha256": "c81538ca412ea3ff38a4a0da3fbad126642293ae4535ccc5ecc01db488f862d0",
+      "Bytes": 2757
+    },
+    {
+      "Path": "tests/scenarios/binding-gold.json",
+      "Sha256": "56aeabe2bfeb72431bdcba345001b25012b8c3602952d1e6f010e48eadea3bc8",
+      "Bytes": 2626
+    },
+    {
+      "Path": "tests/scenarios/binding-green.json",
+      "Sha256": "3dcba91c2d30e7e7b05e701b139738658315706233267f19610d2933a855dc4a",
+      "Bytes": 2756
+    },
+    {
+      "Path": "tests/scenarios/binding-red.json",
+      "Sha256": "cd82bedab04a56adcd443e6b6cee553e4b038d613b5974164cba5bf259386f12",
+      "Bytes": 2496
+    },
+    {
+      "Path": "tests/scenarios/blink-block.json",
+      "Sha256": "abde11c18eac3ef2274cbd6a5a5bf32d5d60779c2e98eb1c84a3cbdb7c1dfeaa",
+      "Bytes": 2483
+    },
+    {
+      "Path": "tests/scenarios/blink-blocked.json",
+      "Sha256": "0e5d9b7eb0860952302e7d4bad53e7120f80c1751a398dc5cabe999f22864fa2",
+      "Bytes": 1661
+    },
+    {
+      "Path": "tests/scenarios/blink-frontline.json",
+      "Sha256": "fb7495a7019fc94e051fa870493d2c7e81fe98906b46494fee392d6b724cf579",
+      "Bytes": 3023
+    },
+    {
+      "Path": "tests/scenarios/blink-hero.json",
+      "Sha256": "35bf42dc79529100098ba9d2dddfc850ac8e5c96a5d12aab4397d35b1cba45b7",
+      "Bytes": 2398
+    },
+    {
+      "Path": "tests/scenarios/blink-minion.json",
+      "Sha256": "70b7da8ab8021e20c7d623dd9d6cd6d3b947c77a369faddc81a6de5ea2305b2c",
+      "Bytes": 2194
+    },
+    {
+      "Path": "tests/scenarios/blink-numeric.json",
+      "Sha256": "01a8f64165be35461d9b0d8a9b2db9a2459d87964ca7d148d8522f0ea52bf20c",
+      "Bytes": 2482
+    },
+    {
+      "Path": "tests/scenarios/blink-shadowstep.json",
+      "Sha256": "0dd69f6f7710edaff64d3ecb71180123bfd08b57dcb04345e233cfbd63b146d4",
+      "Bytes": 3412
+    },
+    {
+      "Path": "tests/scenarios/boomerang-block.json",
+      "Sha256": "8ef70bd056a4c3b5d2c40146393dfe5c04bdb57a0bba560ff41e3ae34353bfce",
+      "Bytes": 2530
+    },
+    {
+      "Path": "tests/scenarios/boomerang-minion.json",
+      "Sha256": "42c758a94afa536bac2817264a1e00c22e2c0eb5164ea679082a0b657ba7dfee",
+      "Bytes": 1925
+    },
+    {
+      "Path": "tests/scenarios/boomerang-no-target.json",
+      "Sha256": "1dd39f16adca4dd33b058741cf508e5cd6099b7bb8cff342d95cd0b4522706a0",
+      "Bytes": 2083
+    },
+    {
+      "Path": "tests/scenarios/boost-invalid.json",
+      "Sha256": "e5a4d561352a603d5b93c424d9c73d2411668cf0ed895b9de3474a363bc47af7",
+      "Bytes": 4141
+    },
+    {
+      "Path": "tests/scenarios/boost-multiple.json",
+      "Sha256": "4576a7edafec59967a144043b263657d41ef4df64e4cb9e4c791716ca2fc9dd5",
+      "Bytes": 3890
+    },
+    {
+      "Path": "tests/scenarios/boost-none.json",
+      "Sha256": "05befa85d0d0d001046e90b30e36458899dd64b34c6a0d3a72bc58f428ff9ba5",
+      "Bytes": 2137
+    },
+    {
+      "Path": "tests/scenarios/boost-order.json",
+      "Sha256": "4a4eec6bc7debd8c59617180e7a6454e1fd5d59925cd2a2506c4b49fc2969f07",
+      "Bytes": 3257
+    },
+    {
+      "Path": "tests/scenarios/boost-return.json",
+      "Sha256": "aa419414d386bb078d51b1304c24dd674df4207a067c3c8b1e358eeab75816a0",
+      "Bytes": 3759
+    },
+    {
+      "Path": "tests/scenarios/boost-reverse.json",
+      "Sha256": "3ed7f259752ea56f926fbc2a2ce94eda609deaa9e55fc97f98aea84582e98f6b",
+      "Bytes": 3253
+    },
+    {
+      "Path": "tests/scenarios/bravecharge-blocked.json",
+      "Sha256": "7e970a44516a2c693153448f5369e9c893b3443f570e358e4c499ffe5e146726",
+      "Bytes": 1775
+    },
+    {
+      "Path": "tests/scenarios/bravecharge-counter.json",
+      "Sha256": "c490e2a8c5d5cfbd91981f406edac9ffe645d5a6d950e9e7fb06cb8b220268aa",
+      "Bytes": 2812
+    },
+    {
+      "Path": "tests/scenarios/bravecharge-frontline.json",
+      "Sha256": "c68835b4f20b6dc8d3b022b1e2caf75ecabf8215ad60d2afa4b9e37acfd90e94",
+      "Bytes": 3281
+    },
+    {
+      "Path": "tests/scenarios/bravecharge-three.json",
+      "Sha256": "08f8fafbc1663ece3c869c38a8d47d049a4bdbfc5238c436b83f65b171ab69ec",
+      "Bytes": 2575
+    },
+    {
+      "Path": "tests/scenarios/bravecharge-two.json",
+      "Sha256": "3ba881f238880e3defc6320acf0c5725fbbb378b4e5c2e064e89a5c89b1c5282",
+      "Bytes": 2365
+    },
+    {
+      "Path": "tests/scenarios/burst-invalid.json",
+      "Sha256": "3cdbee24ade49a4785ed0253ea6c27e8922bf29bf2ca753c526ea660ced1494f",
+      "Bytes": 4141
+    },
+    {
+      "Path": "tests/scenarios/burst-none.json",
+      "Sha256": "81baba5224d81c31d0757cbb5758f21452b83826032d03d912bb9f43b7e4c8fa",
+      "Bytes": 2137
+    },
+    {
+      "Path": "tests/scenarios/burst-order.json",
+      "Sha256": "468ea67745ef9bdf725e0e5fa5c902a1fad6ac443cc7d32cf6677ca4e74b5dc8",
+      "Bytes": 3257
+    },
+    {
+      "Path": "tests/scenarios/burst-return.json",
+      "Sha256": "e14a1d5f18af3cd3acdd788126b1ba477b1cff823f8bd7f18c3adbad19cd6c1e",
+      "Bytes": 3936
+    },
+    {
+      "Path": "tests/scenarios/burst-thirdblock.json",
+      "Sha256": "3e4aa665a6caf5616e882d4dbd13d8ebb5d9352a045c5d64a7af3a7e312ed5e7",
+      "Bytes": 3898
+    },
+    {
+      "Path": "tests/scenarios/charge-blocked.json",
+      "Sha256": "a1ac50f39abd1a2e79335410bf30196424187eff2b0718cfbf073042b9051187",
+      "Bytes": 1648
+    },
+    {
+      "Path": "tests/scenarios/charge-counter.json",
+      "Sha256": "3da4db3065df8f124bd68f6cc1352b3a84ecb4740790b1a0efeda70fb4867a49",
+      "Bytes": 2676
+    },
+    {
+      "Path": "tests/scenarios/charge-frontline.json",
+      "Sha256": "b1bea4ce26284f5ec2b97d0bb65d0c7e6d36cccc04141b07c84c081f226e3335",
+      "Bytes": 3154
+    },
+    {
+      "Path": "tests/scenarios/charge-hero.json",
+      "Sha256": "8f01cb379f31b13bcf8a7cb0bc6802810a19c578a8a3acf1f440fbbd76cbce71",
+      "Bytes": 2444
+    },
+    {
+      "Path": "tests/scenarios/charge-minion.json",
+      "Sha256": "fd7b3cc0e8ddb5aaa075ece2241de04c2537ae98167a9946afee083f18800e61",
+      "Bytes": 2238
+    },
+    {
+      "Path": "tests/scenarios/charm-ally.json",
+      "Sha256": "4dc20f27a3c57c49bcd3ebd6335f1d43d051d0bb43a43a253fbf8da3bccf2425",
+      "Bytes": 2863
+    },
+    {
+      "Path": "tests/scenarios/charm-dual.json",
+      "Sha256": "7efdba06c314467802735668f2cb0b388644c522ae9591dad22e661eaf11db16",
+      "Bytes": 3186
+    },
+    {
+      "Path": "tests/scenarios/charm-ranged.json",
+      "Sha256": "56f54f1f1cf6c672172d06fce0f2a0e82820e5fa519a8bd9347a441b3e2ace47",
+      "Bytes": 3191
+    },
+    {
+      "Path": "tests/scenarios/charm-self.json",
+      "Sha256": "35d22f1de1dd1af317be25f7e9c029fa3d71f42b908851882fd958b9602ccbe3",
+      "Bytes": 2860
+    },
+    {
+      "Path": "tests/scenarios/cleave.json",
+      "Sha256": "a9baece1679601f8488909c8f937088a07bf665d20b72cf8cf7320fbc357d55c",
+      "Bytes": 2804
+    },
+    {
+      "Path": "tests/scenarios/cloak-fail.json",
+      "Sha256": "1049a062100e9b03c59ebca4d2b914693c31a5505a547f96e15959eb96d07886",
+      "Bytes": 4236
+    },
+    {
+      "Path": "tests/scenarios/cloak-move.json",
+      "Sha256": "e428f6ff1671c1e30a65d0fe0a54b9264b21d94aaee8b0fa3433855c9fe019a7",
+      "Bytes": 4419
+    },
+    {
+      "Path": "tests/scenarios/cloak-repeat-fail.json",
+      "Sha256": "8a1861370396f700e215536d960d12f8c659e74435c7f99aafd1dc68a1228fb7",
+      "Bytes": 4998
+    },
+    {
+      "Path": "tests/scenarios/cloak-repeat.json",
+      "Sha256": "4863aab9243bf87ecbcad079d7c7a4a60361444e3b37199d958b28c1abe1799b",
+      "Bytes": 5255
+    },
+    {
+      "Path": "tests/scenarios/cloak-skip.json",
+      "Sha256": "6055310f940b51562a39f515b28338798eaa6d18899be6590fe607d2bbbce925",
+      "Bytes": 4711
+    },
+    {
+      "Path": "tests/scenarios/closesupport-basic.json",
+      "Sha256": "b9ab3bb040dcf6d8a1b600c5bcfebd6e1ae5709aef5f6b021ab8ff3974237d41",
+      "Bytes": 2915
+    },
+    {
+      "Path": "tests/scenarios/closesupport-heavy.json",
+      "Sha256": "ec5444b6745a03d87c3b6aaa13d337d7aefeebbf98089726fcd3d789e9ab7005",
+      "Bytes": 3053
+    },
+    {
+      "Path": "tests/scenarios/closesupport-no-minion.json",
+      "Sha256": "6b8d52872cdb8ba0bef7f39c4434d468b255cbc8e1330d051b9a4b6960cff3ef",
+      "Bytes": 2437
+    },
+    {
+      "Path": "tests/scenarios/closesupport-outside.json",
+      "Sha256": "bfba3c0668379dd0a2b3b0e767c22e3ae76902e0f6b0782dbfbb1be8b8840ed3",
+      "Bytes": 2435
+    },
+    {
+      "Path": "tests/scenarios/combat-defense.json",
+      "Sha256": "fcd54223a180a860434f8896a57412f501c3375fe6384da64e4403ccc98fe243",
+      "Bytes": 2384
+    },
+    {
+      "Path": "tests/scenarios/command-boundary.json",
+      "Sha256": "6be302b7317de63cacc54a9d168cfdf66a927dff0a5a1f03c6397096a4000ad4",
+      "Bytes": 2497
+    },
+    {
+      "Path": "tests/scenarios/command-heavy.json",
+      "Sha256": "cad9f74ec1a6c6619bff0347482cd55e3bf1c50ec8d22d10e40a2c207997c01e",
+      "Bytes": 2507
+    },
+    {
+      "Path": "tests/scenarios/command-invalid.json",
+      "Sha256": "9057595cf40ae7d34bf1179394b04f5ff1fb5c76550cc4087effa1fa8ab433f8",
+      "Bytes": 2959
+    },
+    {
+      "Path": "tests/scenarios/command-move.json",
+      "Sha256": "78d0b570b67129c10a5c7b11a6f9fa9262444667725a678e0972952dd1565f18",
+      "Bytes": 2775
+    },
+    {
+      "Path": "tests/scenarios/command-skip.json",
+      "Sha256": "cf59a1c91433e8c6c8f7e4372d2759b05e2a7189581373931274b1a3eeb1ef96",
+      "Bytes": 2548
+    },
+    {
+      "Path": "tests/scenarios/command-suppressed.json",
+      "Sha256": "dd796f1a3baff74b58f1ad49f25a8a03a0aedb8ee315a572f796ad831792df28",
+      "Bytes": 2189
+    },
+    {
+      "Path": "tests/scenarios/conspiracy-attacker-defeat.json",
+      "Sha256": "67b60870cb2dbc20ecb2967d80d0f81730bb11a7fca34ab1fedfd6975d9b777c",
+      "Bytes": 2569
+    },
+    {
+      "Path": "tests/scenarios/conspiracy-bard.json",
+      "Sha256": "ed9d5b17d79b2376deac3557612589980ed9780830fbb06ba374989bd106f1c0",
+      "Bytes": 3352
+    },
+    {
+      "Path": "tests/scenarios/conspiracy-block.json",
+      "Sha256": "ac2126d88ec7a11bd758dd55410aa63bd5b12515d8131b17c937039ac987b1bc",
+      "Bytes": 2728
+    },
+    {
+      "Path": "tests/scenarios/conspiracy-defeat.json",
+      "Sha256": "7fa9c3861b52a2496cbe421f16f7b9c44c5561eb5dfa3dfcda07f940a52f172a",
+      "Bytes": 2545
+    },
+    {
+      "Path": "tests/scenarios/conspiracy-expiry.json",
+      "Sha256": "83ca490085bce6d7f61abbc1682e8c6b1e962f36ecddc180c5bd96001872edae",
+      "Bytes": 2707
+    },
+    {
+      "Path": "tests/scenarios/conspiracy-no-support.json",
+      "Sha256": "a1d1dfb1763a7812c31672f5e90273fc94ea405d16cd6bffbb8f2773b0ace849",
+      "Bytes": 2086
+    },
+    {
+      "Path": "tests/scenarios/control-heavy.json",
+      "Sha256": "3777f1302a7b5fb49cad8acc0960a6b0f775a907099953a50fa1e56bd5fee0e6",
+      "Bytes": 2798
+    },
+    {
+      "Path": "tests/scenarios/control-invalid.json",
+      "Sha256": "21bab234aa8f47451430dab32b734022c4dabe130e7ba53ff84589a3061f5754",
+      "Bytes": 3248
+    },
+    {
+      "Path": "tests/scenarios/control-move.json",
+      "Sha256": "48f90a8cd8583c58d1d69e315b3c00ac1906db0c8ee16878d6cc618835acfba9",
+      "Bytes": 2878
+    },
+    {
+      "Path": "tests/scenarios/control-skip.json",
+      "Sha256": "75f5f1bf27ce2037a2142c1dbcc18f0b49384c731ac50c33dda9700d1075957c",
+      "Bytes": 2839
+    },
+    {
+      "Path": "tests/scenarios/counterattack-defense.json",
+      "Sha256": "1f9fa266bf819a115aba41a2a4ae0fe2197c4006d8a1c9da0f0e54d0a2ca9923",
+      "Bytes": 2894
+    },
+    {
+      "Path": "tests/scenarios/counterattack-moved.json",
+      "Sha256": "8d32048bfa50b8b724ee8be12434065c4e5e4ca6552bbea70d70889f3e0bf375",
+      "Bytes": 2912
+    },
+    {
+      "Path": "tests/scenarios/counterattack-nested.json",
+      "Sha256": "031ec874fede3c859e5007c9c786a974f15d5251856b86b009401bf69b740712",
+      "Bytes": 3430
+    },
+    {
+      "Path": "tests/scenarios/covering-fire-counterattack.json",
+      "Sha256": "9a9b66a5cfe3896018df9458fcb45e4a3a8991ffbaa238fa692e8a61138858a1",
+      "Bytes": 2780
+    },
+    {
+      "Path": "tests/scenarios/covering-fire-decline.json",
+      "Sha256": "7c0384fd975dd6c6e36e6c2236da76817fb7edc714272b437d00662df9e6f829",
+      "Bytes": 2222
+    },
+    {
+      "Path": "tests/scenarios/covering-fire-pay.json",
+      "Sha256": "dc4981456833ce4534f2eff76db95581e5debd58b754a4843a010a0d0bf20926",
+      "Bytes": 2205
+    },
+    {
+      "Path": "tests/scenarios/crossfire-frontline.json",
+      "Sha256": "08fd9f09400a40c5a1455d2f370cae387277cfaa9d506f34b3392af66797fd21",
+      "Bytes": 3711
+    },
+    {
+      "Path": "tests/scenarios/crossfire-hero.json",
+      "Sha256": "752faa31fc8962e2a79db80affea695f9ef3d7b47b92242b48ba0c7b912ceb6f",
+      "Bytes": 2374
+    },
+    {
+      "Path": "tests/scenarios/crossfire-remove.json",
+      "Sha256": "863fc2581377428525cab9d66b78ba1ef705e3b9c5797fd4d4c74e3bd0a1ed4b",
+      "Bytes": 2759
+    },
+    {
+      "Path": "tests/scenarios/crossfire-skip.json",
+      "Sha256": "238b1c38ef4bdd95c31a5693ed0eed9657771a66b9ddee52e000101efc3a7a68",
+      "Bytes": 2854
+    },
+    {
+      "Path": "tests/scenarios/crushing-punch-move.json",
+      "Sha256": "81871801af4e9eaefcbc5445036361dd8e3045f954d0e8d8207bffd7b34d45f0",
+      "Bytes": 2582
+    },
+    {
+      "Path": "tests/scenarios/crushing-punch-skip.json",
+      "Sha256": "376995c51bd41f8cead5f0b0aac680cfe2e5da0b0b7c46f80dd64a2ffb26c682",
+      "Bytes": 2263
+    },
+    {
+      "Path": "tests/scenarios/crushing-punch-stay.json",
+      "Sha256": "fc65bb0bd5a6b747dea06257288896487de6c44d1b8d10a486b915e3f14da60a",
+      "Bytes": 2305
+    },
+    {
+      "Path": "tests/scenarios/deadly-sweep.json",
+      "Sha256": "c04b71b89d96f4429353cbc3f2345240de756153e686f1d2ff39d42cc0df6ce2",
+      "Bytes": 2830
+    },
+    {
+      "Path": "tests/scenarios/death-grasp-blue.json",
+      "Sha256": "56ba0cdf3d5c9fef49e11ca132bbfaadb9ce32dbe4347edea5b0590c08a6a3d4",
+      "Bytes": 2761
+    },
+    {
+      "Path": "tests/scenarios/death-grasp-gold.json",
+      "Sha256": "7b541fac8de46cedaaf79d2cd8d1456e18dc5d4f049dbace15a9aaa8ab43caa6",
+      "Bytes": 2630
+    },
+    {
+      "Path": "tests/scenarios/death-grasp-red.json",
+      "Sha256": "3bbc0923408b8821577eeb20b97ee3c5eb7786af7edf8af7e6def08bb0a85ea9",
+      "Bytes": 2928
+    },
+    {
+      "Path": "tests/scenarios/death-grasp-source-defeat.json",
+      "Sha256": "5125dbe781d96bb87c14fcb4a3bbe1c6170fe01414cc864714b9e70e5e36a2c5",
+      "Bytes": 2996
+    },
+    {
+      "Path": "tests/scenarios/death-spin.json",
+      "Sha256": "2a684cef78a2782f26831c0c7d7b5379a7a04f59383ca3d339507b5ca1a0aa62",
+      "Bytes": 2828
+    },
+    {
+      "Path": "tests/scenarios/debug-attack.json",
+      "Sha256": "8280f07e81b76a6d8a5d6b757d7cf37fcaed0268b173e5049c0e4b0806778a23",
+      "Bytes": 702
+    },
+    {
+      "Path": "tests/scenarios/defensive-counter-decline.json",
+      "Sha256": "45dc09219beff4906f0443f2330703c8cbd951f1a35c188dfe289e381f9ff2cf",
+      "Bytes": 2508
+    },
+    {
+      "Path": "tests/scenarios/defensive-counter-empty.json",
+      "Sha256": "6b9087f66211f89efa2ae87502be3e541a8d1de60a34c8492c9b3de28e69e2e7",
+      "Bytes": 2735
+    },
+    {
+      "Path": "tests/scenarios/defensive-counter-pay.json",
+      "Sha256": "726e04c26a02614c98bb6e3c75120c955c6fd36272223b99d8ba3a043b10c019",
+      "Bytes": 2472
+    },
+    {
+      "Path": "tests/scenarios/deflection-barrier.json",
+      "Sha256": "4a4da6f080a0464d3f5f44db8ac1f712cecaaf34e0ce488acacf1054a29c4357",
+      "Bytes": 2335
+    },
+    {
+      "Path": "tests/scenarios/dominance-ally.json",
+      "Sha256": "be99ca4fa9707b3c759c9e2a6713421a4cde6210bbf4ba66f802584174285c8c",
+      "Bytes": 3255
+    },
+    {
+      "Path": "tests/scenarios/dominance-dual.json",
+      "Sha256": "d27dd9146494fe477546b52e176491cd73fd4bb4ab1877bd9e76f97ed78fda44",
+      "Bytes": 3510
+    },
+    {
+      "Path": "tests/scenarios/dominance-ranged.json",
+      "Sha256": "e3ae51fa3a52e763b6a3ec1846962501ba5a5f8a1c1becd655edc574e55b9bc9",
+      "Bytes": 3515
+    },
+    {
+      "Path": "tests/scenarios/dominance-self.json",
+      "Sha256": "ab54a858f76fb45839303fa40f6615082774e7a28523df2fc1d79591b14a57e0",
+      "Bytes": 3252
+    },
+    {
+      "Path": "tests/scenarios/dominion-ally.json",
+      "Sha256": "9003e94e15b37d5573ddc2cf2547feb53f52613f6a1fea855c6f36b3b4345713",
+      "Bytes": 3254
+    },
+    {
+      "Path": "tests/scenarios/dominion-dual.json",
+      "Sha256": "f1099bc45004d050d7222425a08a96d5eb3d403ffd9a72170fdb3f0432e5f8dc",
+      "Bytes": 3509
+    },
+    {
+      "Path": "tests/scenarios/dominion-ranged.json",
+      "Sha256": "b473d518d2dc9ce732cb724cb0e4edbc0a1e7c5082a1d868033c7b49a135e993",
+      "Bytes": 3514
+    },
+    {
+      "Path": "tests/scenarios/dominion-self.json",
+      "Sha256": "302a2b22f2ed945e8c39a4f52081e5bff0eda04b79bae661f9ce3b096cc13ba0",
+      "Bytes": 3251
+    },
+    {
+      "Path": "tests/scenarios/drill-basic.json",
+      "Sha256": "645cf8c3877d175aed72f02f87fb488d4832b6584dae184dd0f0c6cb297d4a77",
+      "Bytes": 3716
+    },
+    {
+      "Path": "tests/scenarios/drill-defeat.json",
+      "Sha256": "4e2243a1a1065a7ecb703bf794269c40012303cf3a1c56cda671728a9faf6709",
+      "Bytes": 2753
+    },
+    {
+      "Path": "tests/scenarios/drill-ordinary.json",
+      "Sha256": "5cb67fc703c636b9eb9a08458fcdaa9e19dd043d17af65baac4595ea4543ca0b",
+      "Bytes": 3660
+    },
+    {
+      "Path": "tests/scenarios/drill-retrieve.json",
+      "Sha256": "e44fe1b0e0dd6b2060d443eeea2032b81bea5c1171d45cbacb51cabaff7de712",
+      "Bytes": 4224
+    },
+    {
+      "Path": "tests/scenarios/drill-roundend.json",
+      "Sha256": "18f169ef51e7f6138a050849be173c32403adaeb457f5cacef70ea6ed9fe436c",
+      "Bytes": 2717
+    },
+    {
+      "Path": "tests/scenarios/drill-source-moved.json",
+      "Sha256": "e57f3ee091a4762b1351456ea4187a419354151e9b832ff55b750a208ca9b9ef",
+      "Bytes": 3839
+    },
+    {
+      "Path": "tests/scenarios/drill-stay.json",
+      "Sha256": "85d82b2d5d2b4c531bae1050cdc8d537f1257a7f97113b976a458a6290cba2b6",
+      "Bytes": 3515
+    },
+    {
+      "Path": "tests/scenarios/duelist-failed-respawn.json",
+      "Sha256": "8997a30e373ecdfbc5965c34ef579c05872120f47a2bf1f121b0a2a9566d9854",
+      "Bytes": 2549
+    },
+    {
+      "Path": "tests/scenarios/duelist-success.json",
+      "Sha256": "434a0d19af54138d47d12c1db85de0e002855f37ea3ca8aed3afb85f1ff66943",
+      "Bytes": 2329
+    },
+    {
+      "Path": "tests/scenarios/energy-explosion-counterattack.json",
+      "Sha256": "8730bf5f52d3982050390f3094cd0de96e2a88b80a211e2d115aed862d96f5ea",
+      "Bytes": 2992
+    },
+    {
+      "Path": "tests/scenarios/energy-explosion-decline.json",
+      "Sha256": "58a89bc976112d0c777a2e344698539ae7d75426ffaa4e3d062eff65f031a4c3",
+      "Bytes": 2356
+    },
+    {
+      "Path": "tests/scenarios/energy-explosion-pay.json",
+      "Sha256": "4961190f8a451d0a5406f6da73cd66ea59e168659fce8ea0bd053d1a3e016d89",
+      "Bytes": 2297
+    },
+    {
+      "Path": "tests/scenarios/energy-explosion-skip.json",
+      "Sha256": "52e172c0b5ac48cbbd2d7779eef67a440306469bb646a6da5a014611d16ae8fd",
+      "Bytes": 2068
+    },
+    {
+      "Path": "tests/scenarios/flashing-boundary.json",
+      "Sha256": "7a2ae1b0894d1d9679f56dfa2e94b16d0b873b08b8efe59c0a62c526ffd9585a",
+      "Bytes": 2621
+    },
+    {
+      "Path": "tests/scenarios/flashing-enemy.json",
+      "Sha256": "c22653ecc5cd4b4b1ba37836e04f38661885c0b90107af4d4e326bffdd3c1a7a",
+      "Bytes": 2420
+    },
+    {
+      "Path": "tests/scenarios/flashing-friendly.json",
+      "Sha256": "ce6f297d26ba586523cdba5c3c5bfa46fd526bbaf18212664598d93f9d452d34",
+      "Bytes": 2423
+    },
+    {
+      "Path": "tests/scenarios/flashing-invalid.json",
+      "Sha256": "cdb2925b25a0c5d2fc73d049e5626bf241c8de4348d24350fe2035ad8ef7d14a",
+      "Bytes": 4024
+    },
+    {
+      "Path": "tests/scenarios/flashing-return.json",
+      "Sha256": "fa2f4feebc44e6e8b6b40e07fabbfe41c4d87a25e0f71350863be7f3c3a2017e",
+      "Bytes": 2998
+    },
+    {
+      "Path": "tests/scenarios/flashing-skip.json",
+      "Sha256": "04dafa08f824c365603b8723113a0b113ef91e4651c84a4b4af325b58db0892b",
+      "Bytes": 2163
+    },
+    {
+      "Path": "tests/scenarios/flood-expiry.json",
+      "Sha256": "aeb813d50f0291460b6798df81f0d76d2d53f075e6b8f434e3c8acf24f016886",
+      "Bytes": 2369
+    },
+    {
+      "Path": "tests/scenarios/flood-internal.json",
+      "Sha256": "06bab807056d2bb31f1ac6c094078a8d95c4de832ea1776aeec595863b497d21",
+      "Bytes": 1951
+    },
+    {
+      "Path": "tests/scenarios/flood-outside.json",
+      "Sha256": "6813a53cc1fe3e78afb85a9072536f03a30da32fe17a6da9a420fb7f622c95e9",
+      "Bytes": 1885
+    },
+    {
+      "Path": "tests/scenarios/flood-secondary.json",
+      "Sha256": "5544b7985421353ec30f23aa83f0c237f87bf6dab9250b66994dd31eb9700e2d",
+      "Bytes": 1889
+    },
+    {
+      "Path": "tests/scenarios/formal-turn.json",
+      "Sha256": "36d0e6882381781b7259051e9dd28450df2c9d64260cddb7622843dc4596cb94",
+      "Bytes": 2241
+    },
+    {
+      "Path": "tests/scenarios/fortify-decline.json",
+      "Sha256": "2447002b7015570c12737e2fc5d8910a671cddd666a71aa64835afb05b9a6501",
+      "Bytes": 4244
+    },
+    {
+      "Path": "tests/scenarios/fortify-empty.json",
+      "Sha256": "31f6de276d38428f11c25c4ff16800b92cfc7ac148f81033d531889a3097dbad",
+      "Bytes": 4312
+    },
+    {
+      "Path": "tests/scenarios/fortify-pay.json",
+      "Sha256": "26456c9079335acbf627674c2bfe7c2a82cacf23ec5194dd46ee7610d063a7eb",
+      "Bytes": 4443
+    },
+    {
+      "Path": "tests/scenarios/fortify-protected.json",
+      "Sha256": "07ea3262d08788c520c85d6f754c647bf818bbfa7a09dc953198b94a76ccf7be",
+      "Bytes": 3129
+    },
+    {
+      "Path": "tests/scenarios/frontline.json",
+      "Sha256": "10933c41c9687d798ea487c1acaf3cca862147776281bc6a1875d5050f6922e3",
+      "Bytes": 1637
+    },
+    {
+      "Path": "tests/scenarios/gravity-control-minion.json",
+      "Sha256": "736a66a84e9d2063303a67db373939b3fe08718dbc5007f53eaf73fc87561abe",
+      "Bytes": 3041
+    },
+    {
+      "Path": "tests/scenarios/gravity-control-same.json",
+      "Sha256": "5a54d8347ba44156607b4d463f7092d826a1880303e372a6aabb22232843f065",
+      "Bytes": 2327
+    },
+    {
+      "Path": "tests/scenarios/gravity-control-skip.json",
+      "Sha256": "5394e9c07731498daba3c0864a56b21a3066fe3663896226504ba2b0b173766b",
+      "Bytes": 2165
+    },
+    {
+      "Path": "tests/scenarios/gravity-control-zero.json",
+      "Sha256": "0370124e6a4cbd7f2b29eaf6e70c53d4be86a3ff7f4412af0bf5217c32ac68dd",
+      "Bytes": 2224
+    },
+    {
+      "Path": "tests/scenarios/guard-cancel.json",
+      "Sha256": "069608ba4c3641b048ff72cdb8f49f4bd1768394c1955b835eee5ada6ec08b07",
+      "Bytes": 3304
+    },
+    {
+      "Path": "tests/scenarios/guard-cost-chain.json",
+      "Sha256": "c6d00885f44a9840fe61b636c663c3d86b16e2faa9c1be0599ed4b5655bf3797",
+      "Bytes": 3485
+    },
+    {
+      "Path": "tests/scenarios/guard-cross-decline.json",
+      "Sha256": "6a775b9d05c33407c62fd1f9607d75edf5b01e5ecbabf4f121df6a987f0081d4",
+      "Bytes": 3713
+    },
+    {
+      "Path": "tests/scenarios/guard-cross-pay.json",
+      "Sha256": "c49f9dcd1c40b267512243554b2d68dad118c7f463024fbbe74c4933249ddd93",
+      "Bytes": 3439
+    },
+    {
+      "Path": "tests/scenarios/guard-decline.json",
+      "Sha256": "40986c7634cbba90ee53660c81b676a025dcbe9e6b4750308790c84d6d2378b0",
+      "Bytes": 3323
+    },
+    {
+      "Path": "tests/scenarios/guard-empty.json",
+      "Sha256": "c26c86b3d33e49c2e7d4e4cce0ae06091eae2ab162b57746ec8e1d000e17b4e3",
+      "Bytes": 2716
+    },
+    {
+      "Path": "tests/scenarios/guard-pay.json",
+      "Sha256": "635cf0cfddd8ea92cec6b9fab7f705a44871bb3f6fe96744deef03ce1fc07f64",
+      "Bytes": 3484
+    },
+    {
+      "Path": "tests/scenarios/guard-range.json",
+      "Sha256": "a43f26737ccc83d455d34d35391dc4deb29bcc8d8be8a2d48d54423806c0d53c",
+      "Bytes": 2330
+    },
+    {
+      "Path": "tests/scenarios/guard-remove.json",
+      "Sha256": "625f11ca7fe279ef5983a6a2b8492b05406c3549d6b5faf341266e45882dc991",
+      "Bytes": 2148
+    },
+    {
+      "Path": "tests/scenarios/guard-repeat.json",
+      "Sha256": "a99beba1d145bd02362f67e02fd36b3c3d1dbd28378fe02e99520df601be10f8",
+      "Bytes": 2802
+    },
+    {
+      "Path": "tests/scenarios/headshot.json",
+      "Sha256": "b08e5bde1852ada0dc4431686990dacb1f75eec9e75e24609b24bca6f0615d56",
+      "Bytes": 1431
+    },
+    {
+      "Path": "tests/scenarios/heart-control-minion.json",
+      "Sha256": "c3463605f3fcc742efa59907bd1926b04904f537b62c528b71729e4538dda221",
+      "Bytes": 2980
+    },
+    {
+      "Path": "tests/scenarios/heart-control-repeat.json",
+      "Sha256": "2c7ee19ec1ffadc3a8fc599f143a64415d01f23bd83078be48d509cdbd140d71",
+      "Bytes": 2531
+    },
+    {
+      "Path": "tests/scenarios/heart-control-skip.json",
+      "Sha256": "61336006312c7d872d029d4443635b7a454ec8a5e399bb8a98bf8cd8d1cf4812",
+      "Bytes": 2300
+    },
+    {
+      "Path": "tests/scenarios/heavy-weaponry-blocked.json",
+      "Sha256": "114f0d66192fd99783a238e1e7cd55b84e8bb2bc22d525b11e54b7d9c0adb762",
+      "Bytes": 3761
+    },
+    {
+      "Path": "tests/scenarios/heavy-weaponry-defeat.json",
+      "Sha256": "c044cf18cbdad562c4d9bd597c529b35981a2f08e79dd47ef8d92e305de3120e",
+      "Bytes": 3607
+    },
+    {
+      "Path": "tests/scenarios/heavy-weaponry-empty.json",
+      "Sha256": "2ec831a8ca69cac47825e9aef36eb8b8aaa503ae032fa8f4a2b177f4d9e58a58",
+      "Bytes": 3811
+    },
+    {
+      "Path": "tests/scenarios/heavy-weaponry-followup.json",
+      "Sha256": "60357351388de6acc77bbacb8c4c25b0097eccd4c7982d88784ca883414da979",
+      "Bytes": 3811
+    },
+    {
+      "Path": "tests/scenarios/heavy-weaponry-invalid.json",
+      "Sha256": "b083172407bfdd508d91c06088c45d54ae0e56b4415b851463d9a8a6200d2dea",
+      "Bytes": 3922
+    },
+    {
+      "Path": "tests/scenarios/heavy-weaponry-pay.json",
+      "Sha256": "c13c4efbe69ce73f53c46618f02b6a0f5eb024edec5d487244e83ead73c4743e",
+      "Bytes": 3597
+    },
+    {
+      "Path": "tests/scenarios/lead-charge-unavailable.json",
+      "Sha256": "07fbc8e21ca4183c9e94bac185c3efa8577115ef1b28bd037ab79666816a4928",
+      "Bytes": 1987
+    },
+    {
+      "Path": "tests/scenarios/lead-charge.json",
+      "Sha256": "a05104b65e01ba1ee5521bbd23b244087424e1669cae490ad6500c3edac4f480",
+      "Bytes": 2010
+    },
+    {
+      "Path": "tests/scenarios/legendary-duelist-failed-respawn.json",
+      "Sha256": "4889976c3190f43f4f00d840cec192c11ba1128acddc9c80e5abde9340ba777e",
+      "Bytes": 2577
+    },
+    {
+      "Path": "tests/scenarios/legendary-duelist-retaliation.json",
+      "Sha256": "0f89ff769cf1b8dfd05a7b34d72ccf3ba7ca968dc71cfffd7b061eaa2f4a9836",
+      "Bytes": 2415
+    },
+    {
+      "Path": "tests/scenarios/legendary-duelist-success.json",
+      "Sha256": "246ee827d6d65a65b25ae6d29e9868933f718111d8ee3b454b76d3904948afc9",
+      "Bytes": 2357
+    },
+    {
+      "Path": "tests/scenarios/lord-tides-army.json",
+      "Sha256": "eaf9084b52f43624cac0bcb8a7d94384214c7b5be0630b900d35f09fd43349fb",
+      "Bytes": 4920
+    },
+    {
+      "Path": "tests/scenarios/lord-tides-enemy.json",
+      "Sha256": "315667fc63c94295c9d3b8a0b9abba27a24c7661052f99ee98a289daa3f011c8",
+      "Bytes": 3418
+    },
+    {
+      "Path": "tests/scenarios/lord-tides-heavy.json",
+      "Sha256": "fd55fcda702765b6d7e4720250eab1696ba269929c80c8acc6d9c9cc4d1d1035",
+      "Bytes": 3774
+    },
+    {
+      "Path": "tests/scenarios/lord-tides-outside.json",
+      "Sha256": "2db360f42882bd527390461f0f5aa79d4e99f3bdf778682ffc28931888cc90b3",
+      "Bytes": 2681
+    },
+    {
+      "Path": "tests/scenarios/lord-tides-skip.json",
+      "Sha256": "b13bf444d3ef21a3e4622e3a5a13ebba8ab28e4c10f1dcdcb93eb8ae6765450b",
+      "Bytes": 2996
+    },
+    {
+      "Path": "tests/scenarios/lord-tides-tie.json",
+      "Sha256": "daf0911b8f062fcc3f2460fc81ed2d78a6e41670fc27b47fd2767dbabeac1f20",
+      "Bytes": 3084
+    },
+    {
+      "Path": "tests/scenarios/loyal-recover.json",
+      "Sha256": "d89a907aa9087e4fcd99424120868eec98d85338dae2b4d4dbb1123d1f2f66fe",
+      "Bytes": 2968
+    },
+    {
+      "Path": "tests/scenarios/loyal-silence.json",
+      "Sha256": "4feb9ab7222793b9426b900ea490a12d33ebcfa25011225c831a5bd69c3369ba",
+      "Bytes": 2041
+    },
+    {
+      "Path": "tests/scenarios/loyal-skip.json",
+      "Sha256": "e1f33f33274c98e8fc84d04987f9ddbe30056f68361784d8ec934b97d2b13ddc",
+      "Bytes": 2298
+    },
+    {
+      "Path": "tests/scenarios/magic-water-third-ring.json",
+      "Sha256": "9f1ae97f7594124b3d865fe5ceede82d9cf51a3af928cef0dfa50d70c39f5f22",
+      "Bytes": 1744
+    },
+    {
+      "Path": "tests/scenarios/magic-water-vacated-hero-spawn.json",
+      "Sha256": "4725262b42cb565f2db0aa51f8f6cd7162ce79a116d18553b8ce756d4be355e4",
+      "Bytes": 1790
+    },
+    {
+      "Path": "tests/scenarios/magic-water-vacated-minion-spawn.json",
+      "Sha256": "e587a05c69a79379777a0d0a249cd2c855f868436674da814bff67626a90cf7e",
+      "Bytes": 1628
+    },
+    {
+      "Path": "tests/scenarios/marksman.json",
+      "Sha256": "2dc882a1d232fe82aacf4151f445424c901e8e0eb1136a9ed70bf6793ceb99fb",
+      "Bytes": 1426
+    },
+    {
+      "Path": "tests/scenarios/master-boundary.json",
+      "Sha256": "6aa6bf1988b9f50a37d03a9f2a64b164ad0e84408ed6a1e2f54e398ad45b7a4a",
+      "Bytes": 2959
+    },
+    {
+      "Path": "tests/scenarios/master-empty.json",
+      "Sha256": "a2cf59f0933e1589d732034578c8069b2c1318a1ff5a97d7d88c9b9daffc1b46",
+      "Bytes": 2730
+    },
+    {
+      "Path": "tests/scenarios/master-limited.json",
+      "Sha256": "cdb2047701bd4382d4975e66869474fd84524bc764ba492b9cd6e9bc735f7b3a",
+      "Bytes": 3228
+    },
+    {
+      "Path": "tests/scenarios/master-one.json",
+      "Sha256": "054b40fea9c88c29a00ac2752bdd0996f15a55ff456a356af4cc6e38862ebefa",
+      "Bytes": 3046
+    },
+    {
+      "Path": "tests/scenarios/master-skip.json",
+      "Sha256": "db6cb3f4760f5fa3c68c0e42408d0fc55398b08d6ba4892f66d26ee6b690abda",
+      "Bytes": 2914
+    },
+    {
+      "Path": "tests/scenarios/master-three.json",
+      "Sha256": "95d2ceae86eea0f699323c81c940c0022a96f7658a4cf61e0f673a953e729a10",
+      "Bytes": 3048
+    },
+    {
+      "Path": "tests/scenarios/master-two.json",
+      "Sha256": "d2b91745e6029106fbe3b2fbac676cc3a3c9b12f25e480d5f19bdd99fdcd3076",
+      "Bytes": 3046
+    },
+    {
+      "Path": "tests/scenarios/melee-block.json",
+      "Sha256": "1f6778c4e8f5f14fa4ec55ca78d0ff9acc49d038cfd33e40f33f1c59af0d99c9",
+      "Bytes": 2708
+    },
+    {
+      "Path": "tests/scenarios/mighty-counter.json",
+      "Sha256": "65b18851b2d9110e0b0a1d5d4899b94cd83e5ba79ef49c58ee88f3939440fea1",
+      "Bytes": 2234
+    },
+    {
+      "Path": "tests/scenarios/mighty-defeat.json",
+      "Sha256": "b479f06a362454ff9d1d48118dfe1e1ca6fc95792930563a0bd6611e84b2db5a",
+      "Bytes": 2084
+    },
+    {
+      "Path": "tests/scenarios/mighty-frontline.json",
+      "Sha256": "1c9a6e1fb6de26b2db536b86d6155c5fd6b6821c844ad0699a402f2018c4a4da",
+      "Bytes": 3068
+    },
+    {
+      "Path": "tests/scenarios/mighty-minion.json",
+      "Sha256": "c2efcc52419cd228410254685c8ee506227707ef7ed4fab0e66a2fe5f27b1953",
+      "Bytes": 1760
+    },
+    {
+      "Path": "tests/scenarios/mighty-occupied.json",
+      "Sha256": "be668944e2460570441e267abae0faa0d553d7f1b387d9ebe930ddcd75790014",
+      "Bytes": 3102
+    },
+    {
+      "Path": "tests/scenarios/mind-control-enemy.json",
+      "Sha256": "d07f70cb5a3645a519d4d8d323caa146f11f6aa78fb1bd4193494ff812497ee3",
+      "Bytes": 2230
+    },
+    {
+      "Path": "tests/scenarios/mind-control-friendly.json",
+      "Sha256": "842bac81d70bdca7778404a6a69fa98fa855391579808f1f792dd10a8faadc2f",
+      "Bytes": 2233
+    },
+    {
+      "Path": "tests/scenarios/mind-control-minion.json",
+      "Sha256": "f99d6daecf681feb2186989f1b7a52dacb14c5aba0f5f191d2ba750e16181302",
+      "Bytes": 2349
+    },
+    {
+      "Path": "tests/scenarios/minstrel-aura.json",
+      "Sha256": "91677bc533b9c1b85de5632d67a2a8cf026c270593f97e5aecb568077e48c0f9",
+      "Bytes": 2531
+    },
+    {
+      "Path": "tests/scenarios/minstrel-resolved.json",
+      "Sha256": "275ae49033c7b7e9a653639c2c0e02461e09de761dc512d5011bfe58118b40cd",
+      "Bytes": 4219
+    },
+    {
+      "Path": "tests/scenarios/minstrel-skip.json",
+      "Sha256": "2908df0570353c0a47c844f9e89d488cd5613a02275c57cbbb789ab64827a340",
+      "Bytes": 2741
+    },
+    {
+      "Path": "tests/scenarios/moment-bard.json",
+      "Sha256": "85a18bb435fa756f4c8463443df4fa3263fe60d5f39c0d40cf4f3acfaa8fa5f0",
+      "Bytes": 4155
+    },
+    {
+      "Path": "tests/scenarios/moment-immune.json",
+      "Sha256": "86d3a8bc6fedd4d146060d272e7e71d188fa06c0ec17f341428330406e8c64fd",
+      "Bytes": 5046
+    },
+    {
+      "Path": "tests/scenarios/moment-move.json",
+      "Sha256": "ce8b00015b04153ad56f3e805d633f3f2c8c1b086db874cec8d14a3d6ec14aa8",
+      "Bytes": 4097
+    },
+    {
+      "Path": "tests/scenarios/moment-no-safe.json",
+      "Sha256": "c6c7cd1789f3c0f6caec21d011635da062569906ccf2c5ffd863ab415f299bff",
+      "Bytes": 2797
+    },
+    {
+      "Path": "tests/scenarios/moment-placement.json",
+      "Sha256": "b2350200c89964b9790bd5f88333c68b0d6940bc61177f9810fd5f6a724bb68b",
+      "Bytes": 2776
+    },
+    {
+      "Path": "tests/scenarios/moment-shock.json",
+      "Sha256": "9abfcc65ed4dd9f8334c6851a1e4fd6582c87bd7a8f77c32f7565455abfc15fe",
+      "Bytes": 4163
+    },
+    {
+      "Path": "tests/scenarios/moment-static.json",
+      "Sha256": "b89bbbcff8b0b5ed1ee020a4ac43bda49d0dc5d48302dee82bfc6d7f48352181",
+      "Bytes": 4020
+    },
+    {
+      "Path": "tests/scenarios/moment-suppressed.json",
+      "Sha256": "df905cc560aa9e3b1b4362ab66827471ff725812d8b5183e3543d5c6edc508ad",
+      "Bytes": 2589
+    },
+    {
+      "Path": "tests/scenarios/one-man-captain.json",
+      "Sha256": "a2ecb13bce46015c89d08e5e3954da5f71c8ae76ab0835ac6c49c289f4aecca4",
+      "Bytes": 3479
+    },
+    {
+      "Path": "tests/scenarios/one-man-first.json",
+      "Sha256": "5906703a247058c265ac21c9b4dad1166f37ec6950c05fe724e62d8253df6f3b",
+      "Bytes": 3300
+    },
+    {
+      "Path": "tests/scenarios/one-man-ranged.json",
+      "Sha256": "e2386a952a1dcde6649b8746a28ad836d524299dba8b348d34cc45ca05e06371",
+      "Bytes": 3686
+    },
+    {
+      "Path": "tests/scenarios/one-man-tie.json",
+      "Sha256": "9794eefd2edcb63cd408add9b2023258af31b7371252b316aada31d47aa57cd4",
+      "Bytes": 2595
+    },
+    {
+      "Path": "tests/scenarios/onward-blocked.json",
+      "Sha256": "e6c886bd6bf842138cd23373ca79f3ea376525d8e13b8cc60499f2e0c97723ab",
+      "Bytes": 1766
+    },
+    {
+      "Path": "tests/scenarios/onward-counter.json",
+      "Sha256": "9de5f3918d33ec388df76730b9492686217303771c68b6232c138b47bf7966e4",
+      "Bytes": 2797
+    },
+    {
+      "Path": "tests/scenarios/onward-four.json",
+      "Sha256": "172720d8a3b3f0006b48d615be4e02b00ff1e296a5f693025caad85121027e66",
+      "Bytes": 2562
+    },
+    {
+      "Path": "tests/scenarios/onward-frontline.json",
+      "Sha256": "01165aa91eb2b0d1189ef539a4a7474f366a5400fcd5a77848720f7235b4e376",
+      "Bytes": 3272
+    },
+    {
+      "Path": "tests/scenarios/onward-three.json",
+      "Sha256": "82b68b7b3246c9dc3544079fda7c5576d5bbdefd4f655049cbb51c971841499a",
+      "Bytes": 2349
+    },
+    {
+      "Path": "tests/scenarios/onward-two.json",
+      "Sha256": "3797230a0ad1c325e59e0558817e014d630ee6fbd7180c5b4aa0fd3b6ae86618",
+      "Bytes": 2347
+    },
+    {
+      "Path": "tests/scenarios/permissions.json",
+      "Sha256": "d6d68f9eb69263fa516307e1cdd43273a08010a817b386c7f1ad2d6e8fa496ae",
+      "Bytes": 844
+    },
+    {
+      "Path": "tests/scenarios/petrify-dynamic.json",
+      "Sha256": "793fc8e6a41669e7d33ec6f2e29f5bd62ffcb0cacee60d2aff88c85fe0bf9397",
+      "Bytes": 2160
+    },
+    {
+      "Path": "tests/scenarios/petrify-expiry.json",
+      "Sha256": "c33feaca03b3bb0427686088e8dd1ba6f0bb468b25187441b6ab4904fcd19fa0",
+      "Bytes": 1740
+    },
+    {
+      "Path": "tests/scenarios/petrify-eye-dynamic.json",
+      "Sha256": "2b93476f316293ada6a2afe9ecd98a993e90338b2b27abd68d6a07083c436b77",
+      "Bytes": 2182
+    },
+    {
+      "Path": "tests/scenarios/petrify-eye-expiry.json",
+      "Sha256": "3e2650dc5a1fe7c1322db8792f0aad5cd38dda78670ead4ceba0af251b1dd47e",
+      "Bytes": 1768
+    },
+    {
+      "Path": "tests/scenarios/petrify-eye-placement.json",
+      "Sha256": "d1aea0be706e8988c0383d03292f6ac13fd6bb2a5568fe6f805e1e226a041606",
+      "Bytes": 2418
+    },
+    {
+      "Path": "tests/scenarios/petrify-eye-source-defeat.json",
+      "Sha256": "e3cf1c8c9dd464a6522efcce8275295ae7933b8df5eabf37967c065cc7d09731",
+      "Bytes": 1780
+    },
+    {
+      "Path": "tests/scenarios/petrify-gaze-dynamic.json",
+      "Sha256": "1ebb53bc0b47de56bb4cdf9b1c2f44fa3fa4d54934ca3a06220b08c883a6459b",
+      "Bytes": 2183
+    },
+    {
+      "Path": "tests/scenarios/petrify-gaze-expiry.json",
+      "Sha256": "5c81f74e94d0f473ac2fc0fbb11d249cf44aad58f37e3a5fa23d43b125099f5e",
+      "Bytes": 1769
+    },
+    {
+      "Path": "tests/scenarios/petrify-gaze-placement.json",
+      "Sha256": "a7dc025ab7340a6da0338acefa0eb97660b3e65ca30f1213186fbfca0fd7644f",
+      "Bytes": 2419
+    },
+    {
+      "Path": "tests/scenarios/petrify-gaze-source-defeat.json",
+      "Sha256": "89789c162e70d389bfc6ffea8fbb4ec78d7d92214e43b60d75d2399972066c70",
+      "Bytes": 1781
+    },
+    {
+      "Path": "tests/scenarios/petrify-placement.json",
+      "Sha256": "fa641d841b68ec32dc85804afadfc0b027f3bd0fd68cf7d52c28674e82fa7a7d",
+      "Bytes": 2390
+    },
+    {
+      "Path": "tests/scenarios/petrify-source-defeat.json",
+      "Sha256": "5cc5a709b10c8a95ffe6626dccd2327fd4193639dd668f40a4c19c9746cee1a6",
+      "Bytes": 1752
+    },
+    {
+      "Path": "tests/scenarios/phantasm-defense.json",
+      "Sha256": "bbacbf18b37491752824730eaae1c6c33357efb0daab116ea5ee2c5d85771f01",
+      "Bytes": 3464
+    },
+    {
+      "Path": "tests/scenarios/phantasm-empty.json",
+      "Sha256": "64be377fe2b449fea45b4ef4226e8ae15e0373a9479bf66c2d928c14c10740fd",
+      "Bytes": 4209
+    },
+    {
+      "Path": "tests/scenarios/phantasm-invalid.json",
+      "Sha256": "6260bd60a7eff681baf5d05da76d9755c81e873584db87b3bdf63c1066aa7a9f",
+      "Bytes": 3758
+    },
+    {
+      "Path": "tests/scenarios/phantasm-move.json",
+      "Sha256": "3002b3c65aca61ece5d7bed5b9347fcefef59ba5761a62a7296c2df5857d66f8",
+      "Bytes": 3591
+    },
+    {
+      "Path": "tests/scenarios/phantasm-primary.json",
+      "Sha256": "231b7756da6b51dc25d093cc381a6788433be92969bfd0f5de51104064f81106",
+      "Bytes": 3726
+    },
+    {
+      "Path": "tests/scenarios/pick-boundary.json",
+      "Sha256": "c68764ec6d503958e0d3a8844c74602b9aebceb5ae617175db38baf017ec2b4f",
+      "Bytes": 2959
+    },
+    {
+      "Path": "tests/scenarios/pick-empty.json",
+      "Sha256": "f90df484f60f964bfab99ca04546f19e87e381dd39ca48f397b55ab9267afde8",
+      "Bytes": 2737
+    },
+    {
+      "Path": "tests/scenarios/pick-invalid.json",
+      "Sha256": "f71d0c2a7fb07fbdf2c52f13534303261570366dbe13350799779db109ecf449",
+      "Bytes": 3686
+    },
+    {
+      "Path": "tests/scenarios/pick-move.json",
+      "Sha256": "0f6555b6be9f672bf373b4f9b41ea31eef35193f3b476eddb268f1b75d0b6188",
+      "Bytes": 2806
+    },
+    {
+      "Path": "tests/scenarios/pick-noexit.json",
+      "Sha256": "a1bc15622d6813cd0f1d5292d55655f71eef632446580b7b2cc5f06391248ef2",
+      "Bytes": 2912
+    },
+    {
+      "Path": "tests/scenarios/pick-skip.json",
+      "Sha256": "7c269571055fc8e1373832742a07cf09a43a8db9c4cafbbd9de28c0a7ae23286",
+      "Bytes": 2912
+    },
+    {
+      "Path": "tests/scenarios/pick-take.json",
+      "Sha256": "5872a4385e2629751f9724817a8a7ce412234407dcfda82212733078e6f99850",
+      "Bytes": 2945
+    },
+    {
+      "Path": "tests/scenarios/pike-defeat.json",
+      "Sha256": "c43f0a2c54294e1a62d7b0a32df6859555b5adcd40823dddfaeb926c695940ae",
+      "Bytes": 2727
+    },
+    {
+      "Path": "tests/scenarios/pike-defense.json",
+      "Sha256": "3c1370a5f666ffda8264d3652363c6a4d2cbf547555b519ad397ccda6e50584a",
+      "Bytes": 2772
+    },
+    {
+      "Path": "tests/scenarios/pike-minion-first.json",
+      "Sha256": "4e78d243d6ba96d2cf3f24e617418193cbfb962286f383191ca838f4cc418193",
+      "Bytes": 2645
+    },
+    {
+      "Path": "tests/scenarios/pike-noadjacent.json",
+      "Sha256": "2ae6b4eb352e43e02e4d9bb782159fb8597dd39dc73fa2ba51627aba14332979",
+      "Bytes": 2519
+    },
+    {
+      "Path": "tests/scenarios/pike-sidestep.json",
+      "Sha256": "22aa9d1dc7aee1735aa9910b4043465257004f1e8a2bb20291ed8379737c7aae",
+      "Bytes": 3035
+    },
+    {
+      "Path": "tests/scenarios/pike-stop.json",
+      "Sha256": "95a6d79de68715fbd5f171c7414b778446f04bf29c264c14b259ca7e6fc2aad2",
+      "Bytes": 2714
+    },
+    {
+      "Path": "tests/scenarios/pincer-block.json",
+      "Sha256": "8cdd5b61a077fd3fcbf0a5c38d7244b3c1138cd5bd09130f4cd6816dfea788cf",
+      "Bytes": 2240
+    },
+    {
+      "Path": "tests/scenarios/pincer-minion.json",
+      "Sha256": "8d8ce9806116d26f7b4eaab8f853d225ca9eaff956ff706d086dca93f69b3dbc",
+      "Bytes": 2345
+    },
+    {
+      "Path": "tests/scenarios/pincer-numeric.json",
+      "Sha256": "5b7b11aae900f7136204c59ef4fcf909ba3c8c3e6ab27056ac6871fbd1a70359",
+      "Bytes": 2677
+    },
+    {
+      "Path": "tests/scenarios/pincer-victory.json",
+      "Sha256": "754319f7c2c3b952352ac59ed62da4d3834ce9ccf39317f6c4e6589483e7a9c4",
+      "Bytes": 2594
+    },
+    {
+      "Path": "tests/scenarios/pointblank-blocked.json",
+      "Sha256": "d076d88363736c23723baeacc738eb379f99c5b26b8563e476d394d3d7fb59f4",
+      "Bytes": 2201
+    },
+    {
+      "Path": "tests/scenarios/pointblank-defeat.json",
+      "Sha256": "2605c37f1afc1762a19da29ceb915a16556c0733bf4690a39a1780068ef4c5c9",
+      "Bytes": 1876
+    },
+    {
+      "Path": "tests/scenarios/pointblank-minion.json",
+      "Sha256": "010d8c95ade42c9e3ddd3efd80d2738b5fd1f92e9112d806c120f048123ccf23",
+      "Bytes": 1666
+    },
+    {
+      "Path": "tests/scenarios/pointblank-push.json",
+      "Sha256": "b6a428f34694508fff1929ed46b6ef7f3f3e6123071e4d76bc625eec80adc606",
+      "Bytes": 2167
+    },
+    {
+      "Path": "tests/scenarios/poison-dagger-ally.json",
+      "Sha256": "91acb9387f31bd2cc1495e55872ec6e6ab5a2591cb56a04ea582e9c5c0694223",
+      "Bytes": 2618
+    },
+    {
+      "Path": "tests/scenarios/poison-dagger-attack.json",
+      "Sha256": "66b4d7da5332931c03c55e9fc976085ca1e005b62ede499b1e5f66cff4c1707a",
+      "Bytes": 3536
+    },
+    {
+      "Path": "tests/scenarios/poison-dagger-self.json",
+      "Sha256": "835b22790b8ee82110c685336d71ea1d6c5d6130a95bc182176d0672587d40af",
+      "Bytes": 2618
+    },
+    {
+      "Path": "tests/scenarios/poison-dart-ally.json",
+      "Sha256": "766a98a77d9c410b1ae8afe54d097ebab14b1b00ddd7298f72587045eb5054fc",
+      "Bytes": 2710
+    },
+    {
+      "Path": "tests/scenarios/poison-dart-attack.json",
+      "Sha256": "048b74192090669cccbd575dfec549503d793711f5e96c54c89bc7c360721f5e",
+      "Bytes": 3628
+    },
+    {
+      "Path": "tests/scenarios/poison-dart-self.json",
+      "Sha256": "f7b8055e19d84d5c6df4132381ee4b61e0b6ce48f09d0349fe2d704d5f2a8281",
+      "Bytes": 2710
+    },
+    {
+      "Path": "tests/scenarios/psychic-vortex-minion.json",
+      "Sha256": "e383b8d0637b48bd74558a6b33241ad52787ebe066eb3d1aa338436a32c0a0ce",
+      "Bytes": 3728
+    },
+    {
+      "Path": "tests/scenarios/psychic-vortex-skip-first.json",
+      "Sha256": "7a2e788517264afced564d5d14b55301607b0b733fa190b9a16d3b9e0411f29b",
+      "Bytes": 2179
+    },
+    {
+      "Path": "tests/scenarios/psychic-vortex-skip-second.json",
+      "Sha256": "1e047ca2265693617cba9e98f48acea3ea99e64332b236c405a871e4fa8bc73d",
+      "Bytes": 2593
+    },
+    {
+      "Path": "tests/scenarios/psychic-vortex-three.json",
+      "Sha256": "f0932baeb328c691b6ee7bc2101c22681227b479ac81a7ceb7ef6022f109ee71",
+      "Bytes": 2737
+    },
+    {
+      "Path": "tests/scenarios/punch-minion-return.json",
+      "Sha256": "c25e6b7e84522acc41eedbb3ff8c55f33e31b5cb8d5cb88e20b7a8560e84581e",
+      "Bytes": 2591
+    },
+    {
+      "Path": "tests/scenarios/punch-skip.json",
+      "Sha256": "e0c00ef319ee85a51ec1f153652cdb14550bb33dc668db9d229936b787ba6f2f",
+      "Bytes": 2141
+    },
+    {
+      "Path": "tests/scenarios/punch-two-steps.json",
+      "Sha256": "9840da0d2ba9710480649d711e5d55dcd5cf31afd0170baa961365ee7a5f1d15",
+      "Bytes": 2188
+    },
+    {
+      "Path": "tests/scenarios/raid-both.json",
+      "Sha256": "cd7d08dd4279e49c083f9ddfa5fb838f93a30f82c1c374acb3ba473f5927f7f8",
+      "Bytes": 2429
+    },
+    {
+      "Path": "tests/scenarios/raid-skip.json",
+      "Sha256": "f749db11ca36b7690f612687b8230ec006efa72bed66735c5fcbf8716017fad5",
+      "Bytes": 2313
+    },
+    {
+      "Path": "tests/scenarios/raid-static.json",
+      "Sha256": "adbd9929d925157cc17e6b8b070d8bc38f5532c2892739d60df37e317863c4a2",
+      "Bytes": 2522
+    },
+    {
+      "Path": "tests/scenarios/reflection-barrier.json",
+      "Sha256": "584a868eb59c58af26c7c4e81f8f9b6fdaf50fb9a5c30e4f6d0aaafebeb34568",
+      "Bytes": 2461
+    },
+    {
+      "Path": "tests/scenarios/riposte-decline-victory.json",
+      "Sha256": "f9bf6394242a4383f54489b7a10e114fc2248d00b93209caf3b41770448af80f",
+      "Bytes": 2630
+    },
+    {
+      "Path": "tests/scenarios/riposte-decline.json",
+      "Sha256": "c679a1e3ff0b366b30c17206d3ada0faeb6387454dd5ce0b5f61b011d039e70e",
+      "Bytes": 3713
+    },
+    {
+      "Path": "tests/scenarios/riposte-empty.json",
+      "Sha256": "f0013cd69808aa9988fd8f0fd54b16f7d72d113cb4d37a53510480036ba4840a",
+      "Bytes": 4482
+    },
+    {
+      "Path": "tests/scenarios/riposte-hand.json",
+      "Sha256": "63592f23757b8c90f4df6a839d3655cdc652381a84f4db6b3d3ca21b8c187fba",
+      "Bytes": 2709
+    },
+    {
+      "Path": "tests/scenarios/riposte-ranged.json",
+      "Sha256": "426d23cc9588373153cf6d4ee110fdc8defd68091421747ea0389b9cd083670b",
+      "Bytes": 1915
+    },
+    {
+      "Path": "tests/scenarios/riposte-victory.json",
+      "Sha256": "1e32d0b79f7c9edd8eb4590d3d41ace76253174dc6a9b2e91bb2aed16d563806",
+      "Bytes": 2434
+    },
+    {
+      "Path": "tests/scenarios/rising-tide-defeat.json",
+      "Sha256": "74493a7d74826c3f2da05598c544ac508531d96fa6577b75b2387fc04ab390ee",
+      "Bytes": 2147
+    },
+    {
+      "Path": "tests/scenarios/rising-tide-push.json",
+      "Sha256": "d3fa1058a7b224b16a4898757bacf2f23cb9c21e63c7ec834e18c878b1461cd9",
+      "Bytes": 2184
+    },
+    {
+      "Path": "tests/scenarios/rising-tide-skip.json",
+      "Sha256": "ee6018b482ed232d8d040ed8f4acc8c32eb1b2e86e1538066a5bdb843805786c",
+      "Bytes": 2198
+    },
+    {
+      "Path": "tests/scenarios/round-frontline.json",
+      "Sha256": "44c70b986231c2aa997c35a8f2abe1ed1e478862501d5c2e5df68d031f3f5291",
+      "Bytes": 2887
+    },
+    {
+      "Path": "tests/scenarios/round-upgrades.json",
+      "Sha256": "a96d6c47f1afa6c79adaadd529180dd9d1447f03143646b8414d2e2c469e1019",
+      "Bytes": 4599
+    },
+    {
+      "Path": "tests/scenarios/sandbox-smoke.json",
+      "Sha256": "21bc5e51ed0639ce82802308c08c7e8f0aea351da624719c4ce3867e750e19a4",
+      "Bytes": 1717
+    },
+    {
+      "Path": "tests/scenarios/savage-kick-hero.json",
+      "Sha256": "05e0c3a8d36e11d8722aedc22d4abf387c9f646954aebcbb4a7807d036f2698b",
+      "Bytes": 2294
+    },
+    {
+      "Path": "tests/scenarios/savage-kick-minion.json",
+      "Sha256": "0379d5708a05232ce42617f88f6a8bdd5512c51fe72e3dd6d6b3c2b5d5b530b5",
+      "Bytes": 2581
+    },
+    {
+      "Path": "tests/scenarios/savage-kick-phantasm.json",
+      "Sha256": "cc4860caa3b3b6ed91b106b0617b350bd3ca71c85751a94ba3ebdf7d36c62dd5",
+      "Bytes": 3339
+    },
+    {
+      "Path": "tests/scenarios/savage-kick-skip.json",
+      "Sha256": "4fab7dea65155d940a63e2b4421030bb1391bdf89b8bb577497f17eae58abc1d",
+      "Bytes": 2249
+    },
+    {
+      "Path": "tests/scenarios/shadow-after.json",
+      "Sha256": "86664e721f70abbf1280eaf2eb2cce51459b2f3790ae113ad77d5d03c1d6c684",
+      "Bytes": 1567
+    },
+    {
+      "Path": "tests/scenarios/shadow-before.json",
+      "Sha256": "12d28a5d0e7f71633c5733a898086c8bba8ee53bbdf77807e556f0cb826c0f0d",
+      "Bytes": 1533
+    },
+    {
+      "Path": "tests/scenarios/shadow-static.json",
+      "Sha256": "f50e6ecd5cca7f2c746fec358d057571d63dd3b2da48ec74ea09ccc0ba05f16f",
+      "Bytes": 2515
+    },
+    {
+      "Path": "tests/scenarios/shadowstep-empty.json",
+      "Sha256": "83d893f99e624bdb9b17c38709a90a6b95e56fdd775b03e3b6997c293dd55ed6",
+      "Bytes": 2881
+    },
+    {
+      "Path": "tests/scenarios/shadowstep-no-move.json",
+      "Sha256": "8e54b56b745e512d848f76fd0685b41516fde59b579859e948327004d5747b57",
+      "Bytes": 2839
+    },
+    {
+      "Path": "tests/scenarios/shadowstep-no-swap.json",
+      "Sha256": "0923dc1f2d24cddf800297c2ca935a5cdf7f2a98012245696654421d27173797",
+      "Bytes": 2834
+    },
+    {
+      "Path": "tests/scenarios/shadowstep-reuse.json",
+      "Sha256": "98b71917e052916bd161c823d8c6db6b422f79538d7696bee52860ae62428023",
+      "Bytes": 4033
+    },
+    {
+      "Path": "tests/scenarios/shadowstep-swap.json",
+      "Sha256": "7d5c970a4e65305bec9f384d79c172dd14e0d5deb04fbadab067674b27ca17ce",
+      "Bytes": 3017
+    },
+    {
+      "Path": "tests/scenarios/shield-both.json",
+      "Sha256": "cca7bfca9fd115de4a64dce1d0edef7475ef21fdcfb2d0aa02cd31c0b6c19b92",
+      "Bytes": 2798
+    },
+    {
+      "Path": "tests/scenarios/shield-decline.json",
+      "Sha256": "32833fd12e98402a158c1cbe2f9e1db61d1d1aef3274844e50e2a16a3f043052",
+      "Bytes": 3604
+    },
+    {
+      "Path": "tests/scenarios/shield-empty.json",
+      "Sha256": "e8de019bfb6d5b5e0af80411a9e994aa8b0a5ef45223c449a9ecaefc26742d35",
+      "Bytes": 3006
+    },
+    {
+      "Path": "tests/scenarios/shield-pay.json",
+      "Sha256": "ae01d9e3fc6452435977c60891e23d1e7fa950c107870fe82b81046271f2ea9c",
+      "Bytes": 3777
+    },
+    {
+      "Path": "tests/scenarios/shield-range.json",
+      "Sha256": "d8e306e60938c0077633f63f6b3438d406f822833c1543ff2176531b03c96762",
+      "Bytes": 2623
+    },
+    {
+      "Path": "tests/scenarios/shield-replace.json",
+      "Sha256": "2cf3a4808acb94ffb571c30113b7fc57993c259a3c92ab6d2840e4ad4757104b",
+      "Bytes": 2586
+    },
+    {
+      "Path": "tests/scenarios/shifting-step-enemy.json",
+      "Sha256": "d9c1ab3ee0b2c12d0e1135f35c828933343fb73d00a5fabc37209088f3b27ffb",
+      "Bytes": 2225
+    },
+    {
+      "Path": "tests/scenarios/shifting-step-friendly.json",
+      "Sha256": "4629fc7048d96f71b580d2554415e5e0a5aba22383aaf3ac5179e358640f2404",
+      "Bytes": 2228
+    },
+    {
+      "Path": "tests/scenarios/shifting-step-minion.json",
+      "Sha256": "7cf9c6eff2229fcd13f129e1f84bf0b2ae2e054c2e3962eda9a2ca5749724878",
+      "Bytes": 2648
+    },
+    {
+      "Path": "tests/scenarios/shining-blade.json",
+      "Sha256": "53298deae2d420e37fe48b8d94a36dc098749fffe62f37f863397ee2b1c11a9a",
+      "Bytes": 1918
+    },
+    {
+      "Path": "tests/scenarios/shock-empty.json",
+      "Sha256": "d4ff556a14ccd3098185c6931e8f6c20e2722a0b0c7dd5a064b4e18f82bd83a0",
+      "Bytes": 3175
+    },
+    {
+      "Path": "tests/scenarios/shock-extra.json",
+      "Sha256": "8f86d16faa34762c0ea24e9329f42846be2decc81c6b0dda52c1c43631054f09",
+      "Bytes": 2850
+    },
+    {
+      "Path": "tests/scenarios/shock-minion.json",
+      "Sha256": "cd6f3b3054b30821b9faa494b5fce4c3a2ab1172d8e4f9c5b39c2a18dabe34c3",
+      "Bytes": 2475
+    },
+    {
+      "Path": "tests/scenarios/shock-noextra.json",
+      "Sha256": "0513af7cfe465f52fd021589066a6c4f70a88641cc0ac3038d47efb64def54a2",
+      "Bytes": 2431
+    },
+    {
+      "Path": "tests/scenarios/shock-riposte.json",
+      "Sha256": "822ca13b6f4de8d5307fc254efb48872bb09ef11476e7fc944fc1f90313716a0",
+      "Bytes": 3070
+    },
+    {
+      "Path": "tests/scenarios/shock-skip.json",
+      "Sha256": "90cb6c6bde91da54bf1a85a928138f479b711a5d6dcfa1b970ef0ecbda62d833",
+      "Bytes": 2563
+    },
+    {
+      "Path": "tests/scenarios/side-cancel.json",
+      "Sha256": "5a481464c9810a64dbacda467ad87be0ad55d9821bd305618208b889cd2d1b34",
+      "Bytes": 2550
+    },
+    {
+      "Path": "tests/scenarios/side-expiry.json",
+      "Sha256": "ca639c37c1d83632fab988724c2e0df885c8fa72463971160a481a9c6b822345",
+      "Bytes": 2229
+    },
+    {
+      "Path": "tests/scenarios/side-invalid.json",
+      "Sha256": "d76685236c926acb5735a5ae84b6d7220b341cc9c7bdf71691fbb981c036a5d3",
+      "Bytes": 2748
+    },
+    {
+      "Path": "tests/scenarios/side-retrieve.json",
+      "Sha256": "9a1f7871d18d126b6a9432c1b0b9570f819540aa3b4ec7db33566d852431c78b",
+      "Bytes": 2324
+    },
+    {
+      "Path": "tests/scenarios/side-return.json",
+      "Sha256": "b5e4a6c8aa41aa6e054e3cbfb1abe9cf8b3ed6522ede59e1d13a2601524ce907",
+      "Bytes": 2758
+    },
+    {
+      "Path": "tests/scenarios/side-skip.json",
+      "Sha256": "7834d641e489912c10ff079f8375a91c26759e9ff169f7604d9fa3a72d955189",
+      "Bytes": 1834
+    },
+    {
+      "Path": "tests/scenarios/side-swap.json",
+      "Sha256": "99c941fd3b2f83e809f001052dee85f03b3bd3657ad45c6571777efa6293ab04",
+      "Bytes": 2069
+    },
+    {
+      "Path": "tests/scenarios/sidestep-blocked.json",
+      "Sha256": "8d653fbf53a2edad2dfba6adea1e46370813202a255888bbaac45be1bc5dd2b1",
+      "Bytes": 2547
+    },
+    {
+      "Path": "tests/scenarios/sidestep-move.json",
+      "Sha256": "64e9daaa5da479e11a453e4e20308926f26cb3b9e8ee804bf3ebe67fece8c893",
+      "Bytes": 2432
+    },
+    {
+      "Path": "tests/scenarios/sidestep-push.json",
+      "Sha256": "7384719d2f576e9cc4c3dd53c9480465f805b2512e6a70f84941927094096179",
+      "Bytes": 2483
+    },
+    {
+      "Path": "tests/scenarios/sidestep-skip.json",
+      "Sha256": "4c3039fc1139ab11a6ae6d6527af31ee7411178ad8bb1e849929cabb4590b3ef",
+      "Bytes": 2386
+    },
+    {
+      "Path": "tests/scenarios/siren-song-minion-return.json",
+      "Sha256": "3de78f2cf4e493c1bfac8b3e32199b19721f500bcc0c0f07eb6dec40a2cf650e",
+      "Bytes": 2440
+    },
+    {
+      "Path": "tests/scenarios/siren-song-two-targets.json",
+      "Sha256": "5aae05a6867d51b8ee9786a56fa678fa47a0bafaffd9259f2208894b2a36c292",
+      "Bytes": 2329
+    },
+    {
+      "Path": "tests/scenarios/siren-song-zero-move.json",
+      "Sha256": "8dd178462bf8c19ef04ad16ed0f093ac2037fd5e807841c27c0e6e5b75c8eceb",
+      "Bytes": 2141
+    },
+    {
+      "Path": "tests/scenarios/skill-suppression.json",
+      "Sha256": "c39797b64320fa61a69a3221f236624f524071ba61a2700c8113f20b92ffdad1",
+      "Bytes": 1513
+    },
+    {
+      "Path": "tests/scenarios/sleight-boundary.json",
+      "Sha256": "6b56d15bcbe4623e2d7390ff91133ad98b9a419f63ef55e67f5d08826e456fae",
+      "Bytes": 2956
+    },
+    {
+      "Path": "tests/scenarios/sleight-empty.json",
+      "Sha256": "8a8d6c54af5aa92e067a6fe7661ace2ae024d04ba246db2fc125ac270c5f99ac",
+      "Bytes": 2728
+    },
+    {
+      "Path": "tests/scenarios/sleight-limited.json",
+      "Sha256": "fcd629a72867b0144e13bfa174d13f896f84acbbc10ce6dc3ab3e618341729d0",
+      "Bytes": 3237
+    },
+    {
+      "Path": "tests/scenarios/sleight-one.json",
+      "Sha256": "e26bd62079e1f6bb1f2e89bd8b84718acaefa453116b4fc66cc2a9561260f001",
+      "Bytes": 3027
+    },
+    {
+      "Path": "tests/scenarios/sleight-skip.json",
+      "Sha256": "a8870ee9f47ca05dd7124112a28498d30506bca91251a0cf3921cd9c94cf55f6",
+      "Bytes": 2912
+    },
+    {
+      "Path": "tests/scenarios/sleight-two.json",
+      "Sha256": "6c5b9827ec7393d314ff15f70778d65fe200e226ad1857d093eb79e1abb45f0e",
+      "Bytes": 3056
+    },
+    {
+      "Path": "tests/scenarios/slippery-internal.json",
+      "Sha256": "29eaec9d095efb44f1efc3f10d3235249a6e4446117d8e1f6513bcc479687e89",
+      "Bytes": 1966
+    },
+    {
+      "Path": "tests/scenarios/slippery-outside.json",
+      "Sha256": "594706295b82477dfe050985f056cea83972b2baf9e2ef1f3e32d207a5bbfd7c",
+      "Bytes": 1900
+    },
+    {
+      "Path": "tests/scenarios/slippery-primary.json",
+      "Sha256": "d1cf15fc45b9c43d2364c8799b264da3575bc6eebba6f1b7c71666637bb9dc9d",
+      "Bytes": 2044
+    },
+    {
+      "Path": "tests/scenarios/slippery-secondary.json",
+      "Sha256": "fc26ae0c4128b73172c3a2e039f31baf8394e1a80255800ccc9df357b0c0e4e8",
+      "Bytes": 1904
+    },
+    {
+      "Path": "tests/scenarios/sneak-move.json",
+      "Sha256": "27c22a12d6c2ec4e4ad18027ee48f8d740748081e6e12023170fc4706a89d335",
+      "Bytes": 2186
+    },
+    {
+      "Path": "tests/scenarios/sneak-skip.json",
+      "Sha256": "e5f43ddaa0f124f3d90835115b870fbece1034e7de7278492c358650460bdfcd",
+      "Bytes": 2137
+    },
+    {
+      "Path": "tests/scenarios/sneak-static.json",
+      "Sha256": "f26c6e4463406033da2bb8e02f62e013875eddd5d3abd9a1e034df2578f6cc0f",
+      "Bytes": 2084
+    },
+    {
+      "Path": "tests/scenarios/spawn-order.json",
+      "Sha256": "1a7528bac504e389cca73a085e50cf99a8631000f1d194345f30fbf72d9da820",
+      "Bytes": 1181
+    },
+    {
+      "Path": "tests/scenarios/static-field.json",
+      "Sha256": "fb9c248dea047134dfddbb80bb62f509cadba2c4c8cacabf0e25eded6e1d0abd",
+      "Bytes": 1710
+    },
+    {
+      "Path": "tests/scenarios/storm-frontline.json",
+      "Sha256": "c258b0e948d7e1cea286d2c96ed1dc01a281cff8d929c2cceb00234eb70aef81",
+      "Bytes": 3707
+    },
+    {
+      "Path": "tests/scenarios/storm-hero.json",
+      "Sha256": "37fe073d2194a14592c6ee7c4923a9458ecb753fdcba13f61e5d6c0e32e8739f",
+      "Bytes": 2376
+    },
+    {
+      "Path": "tests/scenarios/storm-remove.json",
+      "Sha256": "188f5945be4468a3d713610f203edd6967ef841bd3e70ec1a5758dee35e392f6",
+      "Bytes": 2761
+    },
+    {
+      "Path": "tests/scenarios/storm-skip.json",
+      "Sha256": "f97f5c6c9333f26ff34f0b10228b890772abf2d773d7c80e7704d04519d34d51",
+      "Bytes": 2850
+    },
+    {
+      "Path": "tests/scenarios/surge-counter.json",
+      "Sha256": "faa02eb80ccb93853185dea1072e8de2bbcf9ad6638df825443c9cbda08e2f6a",
+      "Bytes": 2727
+    },
+    {
+      "Path": "tests/scenarios/surge-defeat-other.json",
+      "Sha256": "7cc1f2a229702cefd1fa993868552c3bbb200a66722b665a19e165b432c8d805",
+      "Bytes": 2153
+    },
+    {
+      "Path": "tests/scenarios/surge-same-target.json",
+      "Sha256": "c5b7e69deaaa9537a392b11417cddf09f0fd1b26e2b6269106c3ca44cfcc3600",
+      "Bytes": 2181
+    },
+    {
+      "Path": "tests/scenarios/surge-skip.json",
+      "Sha256": "4fd44f48a4e91b519331419f2b3a6341f5113ff309b22c900c39f8cfb47c7958",
+      "Bytes": 2192
+    },
+    {
+      "Path": "tests/scenarios/swap-enemy.json",
+      "Sha256": "4967aedd183647b55458a2987df41af8c965f3b65e11823cb3a4a49863c912f8",
+      "Bytes": 2023
+    },
+    {
+      "Path": "tests/scenarios/swap-friendly.json",
+      "Sha256": "1ba94638f1a83c2d98155580b98cb575ba9058bf60bea3dad50fe6451524eb91",
+      "Bytes": 2026
+    },
+    {
+      "Path": "tests/scenarios/swap-hero.json",
+      "Sha256": "01df687b76698ba4f959d69a233a9fa5e9dc8efc7f4f74d8da3bd02e524b798d",
+      "Bytes": 2037
+    },
+    {
+      "Path": "tests/scenarios/swap-invalid.json",
+      "Sha256": "57223252ace0dfc56c9fa0b47453096fcd747889d5e9a9ff977f28b0c9daeef5",
+      "Bytes": 2927
+    },
+    {
+      "Path": "tests/scenarios/swap-return.json",
+      "Sha256": "18563106c28af89a6013b526294a19e4a2418f6fe98350142b19181f5370fcc7",
+      "Bytes": 3388
+    },
+    {
+      "Path": "tests/scenarios/swap-suppressed.json",
+      "Sha256": "4c8a036fd983d10a50fab738b311c422d37d42cc7b3ea6912ad8d0d14b3ae4d2",
+      "Bytes": 2029
+    },
+    {
+      "Path": "tests/scenarios/telekinesis-enemy.json",
+      "Sha256": "fd5ade2d5301ad7865c4c513fdcb4da15fd01f6bb0c121031caa9c9fcc339c2f",
+      "Bytes": 2091
+    },
+    {
+      "Path": "tests/scenarios/telekinesis-friendly.json",
+      "Sha256": "fd62d59027115d48ff8fb567a5e298ca6130011c507e888c94e80432aac81670",
+      "Bytes": 2096
+    },
+    {
+      "Path": "tests/scenarios/telekinesis-minion.json",
+      "Sha256": "208511112fdb8d992b2f8f891b21a0489378ef86b4994aa961e954f543096577",
+      "Bytes": 2378
+    },
+    {
+      "Path": "tests/scenarios/telekinesis-zero.json",
+      "Sha256": "4767b4d0971598e8ada47d3758904cf5fa4a6d23578180fb335e4571cf214dd7",
+      "Bytes": 2019
+    },
+    {
+      "Path": "tests/scenarios/throwing-axe-reflection.json",
+      "Sha256": "6f247c8e98990869535c40dfefaf067531af89b53cf8d0eeb9a507b7be03eb37",
+      "Bytes": 2625
+    },
+    {
+      "Path": "tests/scenarios/throwing-axe-skip.json",
+      "Sha256": "ff9bb2304f9beaaa2e3cf6809adc11e3b351cb0b02b1d3dec7cf6a2c07bf30cf",
+      "Bytes": 1367
+    },
+    {
+      "Path": "tests/scenarios/throwing-spear-existing-discard.json",
+      "Sha256": "d7f42bee8710c10e7d26f1a7e84d01ff01622c87bfaa83145c3bbc7dd233231c",
+      "Bytes": 1654
+    },
+    {
+      "Path": "tests/scenarios/thunder-chain.json",
+      "Sha256": "8ea486c04844360610ba23e57757132f4dbab2e9e02ea508d1d9674c8059fa44",
+      "Bytes": 3448
+    },
+    {
+      "Path": "tests/scenarios/thunder-defense.json",
+      "Sha256": "0194911846c56296339d658ebed23d3ebc4f9ba733e49bd7974a0fcf71233e83",
+      "Bytes": 2964
+    },
+    {
+      "Path": "tests/scenarios/thunder-stop.json",
+      "Sha256": "3be5cc6d6e6c1714ea320a764bc92340e0ef220d77881272ecbe56e7228cff00",
+      "Bytes": 2891
+    },
+    {
+      "Path": "tests/scenarios/thunder-victory.json",
+      "Sha256": "90ec7436eacd70ce669eddbb3db0aa6f225adf5f67f91df2cab026e179ba9aea",
+      "Bytes": 2407
+    },
+    {
+      "Path": "tests/scenarios/thunderstorm-empty.json",
+      "Sha256": "91cf9b296936b62cb964527a34021fa2b6b34e218d7d1370a10ffa79d39c82bd",
+      "Bytes": 3839
+    },
+    {
+      "Path": "tests/scenarios/thunderstorm-invalid.json",
+      "Sha256": "f2d4ba1889a02d5f801c9a2b7eb345d96a281489d37dc4dd5e38ca0647d3b9a2",
+      "Bytes": 3831
+    },
+    {
+      "Path": "tests/scenarios/thunderstorm-pay.json",
+      "Sha256": "3541abbe42e40d245797208a19c6785cbed12f6e7d43d043501d7b609c33bb02",
+      "Bytes": 3475
+    },
+    {
+      "Path": "tests/scenarios/thunderstorm-suppressed.json",
+      "Sha256": "6493da73f56222a3d4dfeb86c8fd1e8efab4feea04f8b5d19c100ed011ac9faf",
+      "Bytes": 2843
+    },
+    {
+      "Path": "tests/scenarios/tidal-boundary.json",
+      "Sha256": "b6f5e18ae801a61736bf64cf147d514da2b23d34041fde256215c1187ddf0c36",
+      "Bytes": 2411
+    },
+    {
+      "Path": "tests/scenarios/tidal-invalid.json",
+      "Sha256": "ce9bb0b775c44f368a5eb59c32f0229f86dd282f75a2b85e5ab2410a06a35294",
+      "Bytes": 3267
+    },
+    {
+      "Path": "tests/scenarios/tidal-place.json",
+      "Sha256": "599d5c39ebe5c3738e6d9d593a4d6481e9f72ab537cade78a1129f7c9e1bb625",
+      "Bytes": 2394
+    },
+    {
+      "Path": "tests/scenarios/tidal-secondary.json",
+      "Sha256": "437273a4542da4d07a6f1a1e15d2cf10d761d705761eb597fa5f058a484fdd99",
+      "Bytes": 2208
+    },
+    {
+      "Path": "tests/scenarios/tidal-wave-counterattack.json",
+      "Sha256": "b84d95cc89722a7b85dc753c1b52eddf86a358c891285666a5d3bc2bc2be8335",
+      "Bytes": 3549
+    },
+    {
+      "Path": "tests/scenarios/tidal-wave-pay.json",
+      "Sha256": "604dff41f2902bc79017536090a849f4dac446205185ea6329acfa55391c5af7",
+      "Bytes": 2834
+    },
+    {
+      "Path": "tests/scenarios/tidal-wave-skip.json",
+      "Sha256": "5894c73de4279257371f70ac084f133cc17e75c0a5c4499489820db6771203cc",
+      "Bytes": 2860
+    },
+    {
+      "Path": "tests/scenarios/tidal-wave-two-payments.json",
+      "Sha256": "31b60b3916fb4779fee30380f49de25726218b159334240711d71013e9034acc",
+      "Bytes": 3148
+    },
+    {
+      "Path": "tests/scenarios/tide-static-boundary.json",
+      "Sha256": "3de5356655342f54ae78ebfed4f9d5dcc1c20f7a9e15c720dae5e278dbdc5988",
+      "Bytes": 1718
+    },
+    {
+      "Path": "tests/scenarios/tide-vacated-hero-spawn.json",
+      "Sha256": "87f5d151a293095a60554adbc4d3f0707a08e415c7d19c47ab5807661f6aa310",
+      "Bytes": 1771
+    },
+    {
+      "Path": "tests/scenarios/tide-vacated-minion-spawn.json",
+      "Sha256": "c2c2eb76df410582ddd76fd47a5a26b2d0aab3ca2fbe8dfa7ad0563af7a293da",
+      "Bytes": 1609
+    },
+    {
+      "Path": "tests/scenarios/torrent-counterattack.json",
+      "Sha256": "a18e0bb56689854cc324f7c8e313ddf96b7c55e8e41a77f0551ff83188d6923c",
+      "Bytes": 3048
+    },
+    {
+      "Path": "tests/scenarios/torrent-decline.json",
+      "Sha256": "e8fd97eca64253da72411f83566af68aafecb09639ddbb4b29167a4624b38327",
+      "Bytes": 2412
+    },
+    {
+      "Path": "tests/scenarios/torrent-no-rear.json",
+      "Sha256": "cb17e68bfb94d1494e21befbf27b24241613c079efe570b6e12fecd96bf403ab",
+      "Bytes": 2126
+    },
+    {
+      "Path": "tests/scenarios/torrent-pay.json",
+      "Sha256": "6c5074d0f604ad305a12e2214a83f8aaf8c5fa3eb53953befd210ca4af63b853",
+      "Bytes": 2333
+    },
+    {
+      "Path": "tests/scenarios/tsunami-counter.json",
+      "Sha256": "0580fffc2847ad76b5cf8c155bd03f5667d632c1c8132465f03ba1b0cfc52503",
+      "Bytes": 2884
+    },
+    {
+      "Path": "tests/scenarios/tsunami-defeat.json",
+      "Sha256": "bb7e476812445eabe5cc9cac5fba449a30d9910883e51b55064cfc2b9e5ffc82",
+      "Bytes": 2170
+    },
+    {
+      "Path": "tests/scenarios/tsunami-move-push.json",
+      "Sha256": "5c4979b647cff786499b6818bc7f07e642312c2a4cebd903effbdf7c9580b985",
+      "Bytes": 2345
+    },
+    {
+      "Path": "tests/scenarios/tsunami-skip.json",
+      "Sha256": "a3fee9c7eed94e8dd20f1c7bb8fd7f95cf260270bab1f04b67d64d09ec6b3012",
+      "Bytes": 2314
+    },
+    {
+      "Path": "tests/scenarios/undying-loyalty-recover.json",
+      "Sha256": "436174acdd49c72389eb07f66e4a0c40797f5943713d13e1c6d1f589357cc505",
+      "Bytes": 2455
+    },
+    {
+      "Path": "tests/scenarios/undying-loyalty-skip.json",
+      "Sha256": "54dfe5fccd05abf9dcfad1630c738060754792e76b2b88856b3d9d597ad3e24a",
+      "Bytes": 2331
+    },
+    {
+      "Path": "tests/scenarios/wall-bard.json",
+      "Sha256": "8fac4ddf90f052dd8683ca085cc9cd88d41badb9cdcc9a29a48af1173e79895f",
+      "Bytes": 3828
+    },
+    {
+      "Path": "tests/scenarios/wall-enemy-swap.json",
+      "Sha256": "810ea9426c23ef00a6366b8b7dcbb336de82d61c7c2e4809ee3d3389171a4663",
+      "Bytes": 2752
+    },
+    {
+      "Path": "tests/scenarios/wall-friendly-swap.json",
+      "Sha256": "798d6e26b8a606f41a4e0f61ae3f672eec06a521079c97c97bf6c104fd09d1c2",
+      "Bytes": 2487
+    },
+    {
+      "Path": "tests/scenarios/wall-invalid.json",
+      "Sha256": "5ec2669546766580eda13c05eec2553ee0eb3c3bd0a407402fd45f1b301e45b4",
+      "Bytes": 2827
+    },
+    {
+      "Path": "tests/scenarios/wall-nearshot.json",
+      "Sha256": "a640dd1c0a045c60018a1fb04ce6c0052f57bac4ddf9be2e5fc248e25acfe96a",
+      "Bytes": 3662
+    },
+    {
+      "Path": "tests/scenarios/wall-outside.json",
+      "Sha256": "3fe032e581504ab6e3874d32f7a7d9554d5a5baf4f84c4aac19ed2bec923f919",
+      "Bytes": 3914
+    },
+    {
+      "Path": "tests/scenarios/wall-protect.json",
+      "Sha256": "f4453a4648081d3e75a36b3dd733aa0ccb4e1accbd53b225a2ceea55567435fb",
+      "Bytes": 2481
+    },
+    {
+      "Path": "tests/scenarios/wall-push.json",
+      "Sha256": "ed922ea358be3ee64333304ed7f83516f8f63590c80a909fd54deecf7660936f",
+      "Bytes": 3636
+    },
+    {
+      "Path": "tests/scenarios/wall-recover.json",
+      "Sha256": "a8bd168e6cc20da07273d3855927432e4e3e479b8317668f2da95b6a71ae5bbb",
+      "Bytes": 2549
+    },
+    {
+      "Path": "tests/scenarios/war-drum-ally.json",
+      "Sha256": "8082143b37e9462c63af9c8bde648487bba35c380d9d154d7496e19e327a8c61",
+      "Bytes": 4326
+    },
+    {
+      "Path": "tests/scenarios/war-drum-reflection.json",
+      "Sha256": "0a9a08ecdf1af243a604af42ea2db12185a73665014313cb0586374ac210818b",
+      "Bytes": 3021
+    },
+    {
+      "Path": "tests/scenarios/war-drum-self.json",
+      "Sha256": "ef879a3e605586bbc0017cbc18179117bb0a28e8bbdaa50094628a7f1df0ee6e",
+      "Bytes": 2589
+    },
+    {
+      "Path": "tests/scenarios/war-drum-silence.json",
+      "Sha256": "8cddfeb11544cfa16c58bb5ba12a738412d393df3128f219b554690a1d221ec1",
+      "Bytes": 2432
+    },
+    {
+      "Path": "tests/scenarios/wave-empty.json",
+      "Sha256": "285ba94d87bbac80ca513acbfc9aad2022286b4ab77d4080b2da1150d88ac458",
+      "Bytes": 3312
+    },
+    {
+      "Path": "tests/scenarios/wave-extra.json",
+      "Sha256": "85ecb3084c48f9b3d7f00e1fe034543b5231cb882f084cfcc1e6c9acb610e319",
+      "Bytes": 2987
+    },
+    {
+      "Path": "tests/scenarios/wave-minion.json",
+      "Sha256": "bdfcce86632047421e8cad47fa69bff5ca3b2f9b801fd89cf6108b2f5b709f77",
+      "Bytes": 2612
+    },
+    {
+      "Path": "tests/scenarios/wave-noextra.json",
+      "Sha256": "3281c16a1caf743b5451f084e01253e2cab786661b331c24c8b74ecfb1e0fcd5",
+      "Bytes": 2577
+    },
+    {
+      "Path": "tests/scenarios/wave-riposte.json",
+      "Sha256": "5acc55afde1029c613c663235d66824a71d8109b8ff31cf0a98767baf1b476ba",
+      "Bytes": 3207
+    },
+    {
+      "Path": "tests/scenarios/wave-skip.json",
+      "Sha256": "6471dbe4b047f242d785fe91e39dd97b9a4f82f3259afd885c2bcc9500d3d19a",
+      "Bytes": 2700
+    },
+    {
+      "Path": "tools/debug-positions.json",
+      "Sha256": "3dac592022d58c0b5875b59ab0a0d3abd5a9fe3a212b522bde582d78bf5569b5",
+      "Bytes": 86554
+    },
+    {
+      "Path": "unity/Assets/Editor.meta",
+      "Sha256": "a915aa28e49ccd403eb37d2265adfca7e5ba654e74fe276bbedda6cf669b5e35",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/Editor/BuildInventory.cs",
+      "Sha256": "d6d3e21f64885e910bb9ef3b653164b7b9e3b17caebca1f0b4667d506f8b76a7",
+      "Bytes": 4767
+    },
+    {
+      "Path": "unity/Assets/Editor/BuildInventory.cs.meta",
+      "Sha256": "620eed73d8fb9750e3361031c66332a0de55702b70caddce446077fe31579e50",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Editor/BuildTools.cs",
+      "Sha256": "2a2ac70c1761c593d63a29e4faad2ae8e126edc497baff6a1a0a557dedf13f17",
+      "Bytes": 6065
+    },
+    {
+      "Path": "unity/Assets/Editor/BuildTools.cs.meta",
+      "Sha256": "938fd0409d6d7cf35d0e48fe0302c4e47490f95facb9c06440d4ba98806d3b05",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Editor/Goa2.Editor.asmdef",
+      "Sha256": "3b39c192a295122bbca839841a9f3d53f00aa628b96f522c294625c58b1da5a2",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/Editor/Goa2.Editor.asmdef.meta",
+      "Sha256": "daa991a71ecc917b6bbb0932d81583bd6db040ebe70aba994b2aa791274cb208",
+      "Bytes": 166
+    },
+    {
+      "Path": "unity/Assets/Editor/RevealedStripeAuditRunner.cs",
+      "Sha256": "eba4c88716eb6560afc657e5e8c290d32c774f4140139be4747e6d14488d123f",
+      "Bytes": 2331
+    },
+    {
+      "Path": "unity/Assets/Editor/RevealedStripeAuditRunner.cs.meta",
+      "Sha256": "2b0834ccb568f33dc561ed1dc239eeaf994ff0b43208ceda5d482121e15e4df7",
+      "Bytes": 60
+    },
+    {
+      "Path": "unity/Assets/Editor/ScenarioBatch.cs",
+      "Sha256": "1c104bb10926a4e753b4508f2517fcdc781f0e443eb89009fc87231310653d85",
+      "Bytes": 4094
+    },
+    {
+      "Path": "unity/Assets/Editor/ScenarioBatch.cs.meta",
+      "Sha256": "60641f02626c173e554c59e6dcb68403743f10993e25bc67b9ed428114561890",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/Resources.meta",
+      "Sha256": "52fb638abdc8634bcc58314fcc724df14b903825c22674c6bf6fd31eb3cbb81f",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/Resources/Fonts.meta",
+      "Sha256": "b17da32c3711422e3d3e3d9fba4447891e7100b2e95c266813c2d77aaa2ddea8",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/Resources/Fonts/NotoSansCJKsc-Regular.otf",
+      "Sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "Bytes": 16437364
+    },
+    {
+      "Path": "unity/Assets/Resources/Fonts/NotoSansCJKsc-Regular.otf.meta",
+      "Sha256": "9e0a08f2402df4d5dd56ec3af876d412843a2292d20310bcc5701f8ff51ec471",
+      "Bytes": 481
+    },
+    {
+      "Path": "unity/Assets/Resources/Goa2.uss",
+      "Sha256": "bd13e3525316aa9adc96aa58cc5251c5e0e0945058c2093230dc4535f382249a",
+      "Bytes": 27035
+    },
+    {
+      "Path": "unity/Assets/Resources/Goa2.uss.meta",
+      "Sha256": "de0c43885bba22a970cc07ed1e8891f6ca923ead0458b827150373f5132adb30",
+      "Bytes": 336
+    },
+    {
+      "Path": "unity/Assets/Resources/Goa2Theme.tss",
+      "Sha256": "682e2b1c6cc1d6e332c15f56c840f7d8282cb1e5bc627eb6664580352a752fda",
+      "Bytes": 38
+    },
+    {
+      "Path": "unity/Assets/Resources/Goa2Theme.tss.meta",
+      "Sha256": "2428b46032eace58ea5f7293e3aedd3a092cd0c25086ae4fa301b873a67a7dbe",
+      "Bytes": 336
+    },
+    {
+      "Path": "unity/Assets/Scenes.meta",
+      "Sha256": "b994cd3f4bd40d4b42c632108a6b6a0a93ba77e78940e4e713289c94b316337c",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/Scenes/Main.unity",
+      "Sha256": "b5949059f66ac5637866706c6ddb9c75d200ffab37765532e79734f4e4ec2c5a",
+      "Bytes": 5567
+    },
+    {
+      "Path": "unity/Assets/Scenes/Main.unity.meta",
+      "Sha256": "b5d231b8d27018a4b4477da5b57a1a459e4426372799dcf834c335a592de421d",
+      "Bytes": 155
+    },
+    {
+      "Path": "unity/Assets/Scripts.meta",
+      "Sha256": "524bcb8a2d15eb050e548ea8455201f7e00f9fbf29abb5bbabe80895d35d2369",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/Scripts/CardTextMarkup.cs",
+      "Sha256": "968f16561887d920e69edbbabda80f7f8319fe5179e3b22f5ad43c61cbd153cb",
+      "Bytes": 9935
+    },
+    {
+      "Path": "unity/Assets/Scripts/CardTextMarkup.cs.meta",
+      "Sha256": "186dbd97574b96ae2adc05602955a81caffc7db9fb279253102e6af889e92549",
+      "Bytes": 60
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Battlefield.cs",
+      "Sha256": "7f13631499520bec731437f89d6d94e41f94558cd1fe492ada915d755bbfe8ea",
+      "Bytes": 3789
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Battlefield.cs.meta",
+      "Sha256": "8c3966ca8077497e67d4737548360b943a63f552c410c74b2c07c10dca1a4590",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.CameraFollow.cs",
+      "Sha256": "43071092266017965e07320cfe2307072362beab287968fe57749bcae4268019",
+      "Bytes": 8238
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.CameraFollow.cs.meta",
+      "Sha256": "0cbd85ee35caf395739573aeda3f1f9c2916a85374a90214c486963bafd0c987",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.CardReading.cs",
+      "Sha256": "2ebddf27d0cbfbc268e96a1a583b716ff533d4cb618773785977799b63ed894a",
+      "Bytes": 6676
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.CardReading.cs.meta",
+      "Sha256": "66186efe5355f03c6489a228cdaa6bd6dbd363300928bff4ed9fb44f25aab2d7",
+      "Bytes": 60
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.CardReadingAudit.cs",
+      "Sha256": "48465217e01df16ac29c8fcc6603fb0979d7b415445279f6244c142c38d6cc2f",
+      "Bytes": 7805
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.CardReadingAudit.cs.meta",
+      "Sha256": "f963b425ec30c250bc8710db51d40a2f393a6aa03aa4e3b5bae65d22b35a746e",
+      "Bytes": 60
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Combat.cs",
+      "Sha256": "0e01eedb2661aa43a507e3f9f04c8900d227acc4b60409b72b1047a1d28f2c8b",
+      "Bytes": 28506
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Combat.cs.meta",
+      "Sha256": "2bff36789efed9c65e86642765a08407798cf792a548a57221ebecab6ed0f641",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Debug.cs",
+      "Sha256": "381ad170700de29b250576c5a79f147807262d543fa108f86382b5308bdc6957",
+      "Bytes": 12668
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Debug.cs.meta",
+      "Sha256": "4c070c00083ad77bd918ddf6049cccd5f70b9240e091046f66f6c18611d6a182",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.DebugPresets.cs",
+      "Sha256": "236162f6a2d16753c7a3e70a7d3ae7c53262297362f5395603115a231176f80d",
+      "Bytes": 6100
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.DebugPresets.cs.meta",
+      "Sha256": "2bc95623bf9d475d77bf88eedd5e3cf0f4435f6c1995e7e33f0054fe894eb5be",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Effects.cs",
+      "Sha256": "dd4215fe9f1da2ad06011bd1166f49c77349f49937bf4c86cb54391957fe420a",
+      "Bytes": 6654
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Effects.cs.meta",
+      "Sha256": "590284cda3e8cfd36ed2fe06315de2d38bc2f3a3da878c258bcb4472f32922f6",
+      "Bytes": 60
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.HeroHover.cs",
+      "Sha256": "3848fe77748e63b5f11cdde82edae1cca7851c4384f874a8e0496c60ebe42e29",
+      "Bytes": 3750
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.HeroHover.cs.meta",
+      "Sha256": "b3fd416dfd356de92b6ecb9ac24e0b6ee120766deea56750ccafca3f5fd3f96f",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Keywords.cs",
+      "Sha256": "04b411dc11e84cf56e93207115c4e4492ea969c2a16c3483f8eebff3abd581f8",
+      "Bytes": 2593
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Keywords.cs.meta",
+      "Sha256": "d435c376a9102494f2350c5735dedf7609d73fce4b169b3f262aaffa28f9b050",
+      "Bytes": 60
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Layout.cs",
+      "Sha256": "1e75cb2b60c720785efd59a270358b18d8412dd8b14628d023a5dc95a9c2225e",
+      "Bytes": 15340
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Layout.cs.meta",
+      "Sha256": "4bf35d116b4a49ae27cdd1c2e75b6ed98641be1a860d6f5febd37ee03b358ec4",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Network.cs",
+      "Sha256": "79b8a35e2a6bef1d2f969be94c51248fb2b5df6334dff2b49e7a080a19247893",
+      "Bytes": 6513
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Network.cs.meta",
+      "Sha256": "c4b7071a85c84b70fb743c93090ae8815fb37dd72031f384a268828c47d7fa95",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.NetworkAudit.cs",
+      "Sha256": "9c3bd0447d40487550cef5a4d12d1495706785cf4a300a68767af2b295571829",
+      "Bytes": 4129
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.NetworkAudit.cs.meta",
+      "Sha256": "a2eb906aa232d559175d951dc895e903b18cc2320818352b69f237b58e0e77d9",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Readability.cs",
+      "Sha256": "59e00f15bb7c2cfe01595b65fd2f83176b45a98a935e65cbf62217362548896d",
+      "Bytes": 6080
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Readability.cs.meta",
+      "Sha256": "af773cbdb9762ac462dd9f7625db33ea0e1ce391d499c7196a2f5c652091e9f5",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.RevealedStripeAudit.cs",
+      "Sha256": "94e30cfdf21603e012f6faf18773d8975eada93367e18224b40ac1b0bc4fc9fa",
+      "Bytes": 6627
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.RevealedStripeAudit.cs.meta",
+      "Sha256": "920582c7fc0dd30305cf915ca6aebcff49bbba570ba730e2f0be8ba59e9b8d83",
+      "Bytes": 60
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Scenarios.cs",
+      "Sha256": "cc94b025830b43d00e252b3574a10edfad262db2249aed0f8cdf6a4746fdebc0",
+      "Bytes": 4445
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Scenarios.cs.meta",
+      "Sha256": "25f84331ded77a0114bf2cc5c12d2132c7e9cbefa0567b23154ed9a533742bc8",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.SkillWheel.cs",
+      "Sha256": "201711dd03cba80b2abf9a57547d9d893d9e44a6015e8e5d94e81efd354f0564",
+      "Bytes": 11149
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.SkillWheel.cs.meta",
+      "Sha256": "c9672800bf8382f0801f7c9a814488d448d64252c6421de80baae14fc4517f51",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Startup.cs",
+      "Sha256": "f855d17d2412dedd157803ca7467524d548607a538f49695ede9026a1fcee649",
+      "Bytes": 1959
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Startup.cs.meta",
+      "Sha256": "dacc8eaade958ccfbf48977850498c0f692da1004874db01faeb9f9eb04684fb",
+      "Bytes": 60
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Upgrades.cs",
+      "Sha256": "5dd05123141aa04f9daff37926735188d65d8e24a92c51aba5659b247a1c4603",
+      "Bytes": 8134
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.Upgrades.cs.meta",
+      "Sha256": "ba443e9a87f4bde19321b54d1ae2e3a721aacc585d7cc5c080b64ae6890c843d",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.cs",
+      "Sha256": "86120fc79ccbbd543bc503b471bc142db8306ccd988ccb88aedf916e86bd4684",
+      "Bytes": 62748
+    },
+    {
+      "Path": "unity/Assets/Scripts/GameScreen.cs.meta",
+      "Sha256": "3f90631dccdfe9ed679870a907084c0806be089cad5320c06b232da90ead2547",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/Goa2.Presentation.asmdef",
+      "Sha256": "75d86f91856cced857980bad52671fee55e4cb0ffd303a43608ab382d02fead3",
+      "Bytes": 233
+    },
+    {
+      "Path": "unity/Assets/Scripts/Goa2.Presentation.asmdef.meta",
+      "Sha256": "eaa3db09ea8fd1524596d43409ef802106d5418cb6ca662e7ad08c54ecf90a14",
+      "Bytes": 166
+    },
+    {
+      "Path": "unity/Assets/Scripts/HexBoard.cs",
+      "Sha256": "016efa0fb16f62874b0c97435ba126539b2371c77e2a0b4a27198f855ca08207",
+      "Bytes": 13977
+    },
+    {
+      "Path": "unity/Assets/Scripts/HexBoard.cs.meta",
+      "Sha256": "d8acc714eb48afc2a00a08d0cd24b1254aa45d03f2c2a4e2b8b69dc7846e3c31",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/ScenarioPlayer.cs",
+      "Sha256": "c5af903c40f42419cee8ed02e7033e04e768727c0aecf19644dcc38f38911786",
+      "Bytes": 3500
+    },
+    {
+      "Path": "unity/Assets/Scripts/ScenarioPlayer.cs.meta",
+      "Sha256": "986b26ba0d37b6892e91dfcb854dad5dde6eef19dd0cafd54544c00e4635f44f",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D.meta",
+      "Sha256": "2c6e81a63620aac67bdb32c9f3b1e132129b8f643a61b70bfc29c73acb3ade3c",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/BattlePresentationState.cs",
+      "Sha256": "a69dcedc4d54c27c483d2f4d76b8f6fe8b1fbd3b1d7f9c857197dd7e156cf7ed",
+      "Bytes": 4169
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/BattlePresentationState.cs.meta",
+      "Sha256": "fa80de9f2568d57177b7c6ce02548a1253d80427a047e0d98d3386ee65dbd9d7",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/BattlefieldSurface.cs",
+      "Sha256": "2e446fd4c5a1960b8c86a07dca0cb273b8d766bc5ec130eb9d139ee95e17a584",
+      "Bytes": 13350
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/BattlefieldSurface.cs.meta",
+      "Sha256": "840d3682a9bb109a148c7798102238566d504377de084cdb306786531472ac9f",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Board3DGeometry.cs",
+      "Sha256": "7d6c1f743080927ada522cd199aac7628bde05b841f169e79c0bab77c83c811f",
+      "Bytes": 5380
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Board3DGeometry.cs.meta",
+      "Sha256": "76714218587f1842841a6ab22cfa51c8111328c8f46dd840a21fa4f238e72128",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Board3DScene.Terrain.cs",
+      "Sha256": "1ef66fe9be118c4bd5bb4d8c49290f3055c236c54a78c919d61ade66d3a97ca6",
+      "Bytes": 7983
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Board3DScene.Terrain.cs.meta",
+      "Sha256": "70bc7be2cfb63c30955f21b1faa48af70174b2077fd6574d28c5e1f8147c8434",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Board3DScene.WorldHud.cs",
+      "Sha256": "9fe0177e03550e7792d118d29f47aabbc504fc49d68c993893d984c5e38b1422",
+      "Bytes": 9562
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Board3DScene.WorldHud.cs.meta",
+      "Sha256": "906c6fb9cbd9f086bed2c772864f474279439fbb2fe60a5f9cd43a31352aa356",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Board3DScene.cs",
+      "Sha256": "ad0dd16c267e2b59d13cc0d50ceba9a876ce4fa41628d80ea433655fe4655193",
+      "Bytes": 10367
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Board3DScene.cs.meta",
+      "Sha256": "9818314fb8b7d05c8aa98ee117adf59ca7324fd13fbfd89aa383d66d89aeb99d",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/CameraFollowPolicy.cs",
+      "Sha256": "7192cd97fbb94f7bbf0782ce4be701769fd6def70286de61294eaf1bf16978d0",
+      "Bytes": 1203
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/CameraFollowPolicy.cs.meta",
+      "Sha256": "df29f2b496de9494f4406df4fd50a374260cdf80c1ce3ec440c0ba8b269589d8",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/CardDisplay.cs",
+      "Sha256": "e620e1929d5793ecebef258e9681ff3534963d32201cc297226b99bc04ede93a",
+      "Bytes": 771
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/CardDisplay.cs.meta",
+      "Sha256": "ac7d189c25c12785e2fd834510e9c6e86a680bb2017eee859889f973801f9159",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/GameScreen.Board3DAudit.cs",
+      "Sha256": "4627445a5558e685ee3b5ef8a6577dc55239cf7597669bb562b34001ce6d89b2",
+      "Bytes": 42373
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/GameScreen.Board3DAudit.cs.meta",
+      "Sha256": "9a7b51735232d6f951cebf267203f5a4edfa0fdfb7218a2f3f443db92893f27a",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/GameScreen.Board3DTelemetry.cs",
+      "Sha256": "ce4f4741143b28713650727dffb95f3186aece61eafbe79c5b96cc4295ad8137",
+      "Bytes": 1736
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/GameScreen.Board3DTelemetry.cs.meta",
+      "Sha256": "def68318352f74e41221aacb8b726ebf2c6a471c4dcf675045008a86c04a7f16",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/HeroPlate.cs",
+      "Sha256": "e855171aaa5b4f924824c9c2f388e91431c53c33e1a231a18f93e24450caee40",
+      "Bytes": 5074
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/HeroPlate.cs.meta",
+      "Sha256": "4264d6b286e624e32028432ee520078cd5a067a1cf7e0c330dccae855ee791d7",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources.meta",
+      "Sha256": "3adec7b9479ef04dd245e9eba8e8ce1c9daf554ee7e3bdabb38486a1823d29fe",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D.meta",
+      "Sha256": "ad1601c03de0788e09e819a7de3aee593806d1e8531bb3ca17044611f9db5763",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Audio.meta",
+      "Sha256": "1fb7526c4e356cd6200fe06ba072c4267f4178e96ab0236139940a121979a592",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Audio/settings-enter.wav",
+      "Sha256": "a807fceba960bd52dde0f906ffa074ce3e6dae8addf1d9f82f582adfe85cb593",
+      "Bytes": 23084
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Audio/settings-enter.wav.meta",
+      "Sha256": "125c6586325d2a1d19578a27ff15292afa51ac1cb35a2f4910b041c7a9f0a009",
+      "Bytes": 485
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Audio/settings-leave.wav",
+      "Sha256": "ded907310d21bf1eec7ff68b54c89f576363ad8400bab32230245d5f3acc249e",
+      "Bytes": 19244
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Audio/settings-leave.wav.meta",
+      "Sha256": "a8e3ff3b356665e6fe0314be6413c5c627894e8f929304fecca9519531d4bf4e",
+      "Bytes": 485
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Audio/settings-open.wav",
+      "Sha256": "cdd8e66aa39b1fe3ec5adb284a1724959ac2d3695b6a22353c0f403028d855d9",
+      "Bytes": 49964
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Audio/settings-open.wav.meta",
+      "Sha256": "1f2f1903732f2c9f02c889099bde6fd032b540ae14d5cff8384de28e1c211686",
+      "Bytes": 485
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Board.shader",
+      "Sha256": "7af90b850d1355bc5b7309a1f07bdff3111971c0a69efa83846a829ec1fa31d6",
+      "Bytes": 849
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Board.shader.meta",
+      "Sha256": "538b49675767b27e593f8fdfe56d2ecdbd1c85098a52c7e37bed7f398cf95a5d",
+      "Bytes": 204
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Coin.shader",
+      "Sha256": "a6a75cca7dd7a65d441e18216a08b9d323a382bd0083275b223ce2b3dadbcc97",
+      "Bytes": 1113
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Coin.shader.meta",
+      "Sha256": "87e45dc5dc433e345880570410a3d337b1e951f53f1a92b91329e6342005323b",
+      "Bytes": 213
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Crystal.shader",
+      "Sha256": "30f4af3d177e1b6fe2871edeeacfd8dd51510412486293376273d2f0dd2c5350",
+      "Bytes": 1140
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Crystal.shader.meta",
+      "Sha256": "b7264c3cb5fdc5607378c70898a612891911ddcb0a7922d733d9127d5396850e",
+      "Bytes": 204
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Terrain.shader",
+      "Sha256": "2155746c83dc3b7f8a8d679942ac58db744c91c263963cd88f6a745dcdbaf5ea",
+      "Bytes": 1476
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/Resources/UI3D/Terrain.shader.meta",
+      "Sha256": "5b786627b3518e66a4cb1ff94a59409a2b9edb6771d5fe42b25f0503195ce81e",
+      "Bytes": 204
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/SettingsAudio.cs",
+      "Sha256": "872ee91854e4574c0c8240ab7b953ccf9b21761744bca2f845c15725bfe01a8e",
+      "Bytes": 1318
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/SettingsAudio.cs.meta",
+      "Sha256": "d04a4c454e5cb4204a8bde3c9cb01919bfd0bed508bb94893ef35d0b8ce40fb4",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/SkillWheel.cs",
+      "Sha256": "685c48477bfb376c10acdc0e372cdd9dd12cc75e63b71d855b5860531de749d7",
+      "Bytes": 14875
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/SkillWheel.cs.meta",
+      "Sha256": "273b2eb0fef7a32a1fb0720c3721dab71b80781d5138846869ccd5643cf147fd",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/SkillWheelState.cs",
+      "Sha256": "e19856c2372381c1a278b5074f8371902fdec69b9fa3e9edcfd8a497c22dc9f0",
+      "Bytes": 1945
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/SkillWheelState.cs.meta",
+      "Sha256": "19a32fa02be8fea1a372cca505e8d72759a4d669e68ed222d6da2dc415c1dd19",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/StoneSettingsButton.cs",
+      "Sha256": "fa0df21e6aa206b401a885134515a6555ffe5b0937ac7544731e43a84318cd88",
+      "Bytes": 10864
+    },
+    {
+      "Path": "unity/Assets/Scripts/UI3D/StoneSettingsButton.cs.meta",
+      "Sha256": "419bc438854d43e6ed622d5ed461d4757d498d346411c9d4da6b2ac7b059b2a2",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/StreamingAssets.meta",
+      "Sha256": "cf729ca05f1220fef73c9ce7de40aba9d036ef114e3ff81cca23fe247894367c",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/StreamingAssets/ThirdParty.meta",
+      "Sha256": "6bf488df3cc45082bd7605db1c16f920cec8eeaa51ecaef64eeea081e97f7513",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/StreamingAssets/ThirdParty/NewtonsoftJson-NOTICES.txt",
+      "Sha256": "f07d2ea4af53fd1c9800b345bb4fbfa3ab0181d8c87625d6c265cd65142df097",
+      "Bytes": 4719
+    },
+    {
+      "Path": "unity/Assets/StreamingAssets/ThirdParty/NewtonsoftJson-NOTICES.txt.meta",
+      "Sha256": "7b670bc2657d521a6c59724ffce53e9271cc2d5e9b80cfb13135c28a1bc29c8b",
+      "Bytes": 155
+    },
+    {
+      "Path": "unity/Assets/StreamingAssets/ThirdParty/NotoSansCJK-LICENSE.txt",
+      "Sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+      "Bytes": 4301
+    },
+    {
+      "Path": "unity/Assets/StreamingAssets/ThirdParty/NotoSansCJK-LICENSE.txt.meta",
+      "Sha256": "5e3e58befda3667055704192a333f8dafc216d4afd97a5a84b46736dac043d89",
+      "Bytes": 155
+    },
+    {
+      "Path": "unity/Assets/StreamingAssets/ThirdParty/UnityNewtonsoft-LICENSE.txt",
+      "Sha256": "a5177bfecfea04d225e4a26a631db86721a03b4080350867847e71dc26b44f85",
+      "Bytes": 481
+    },
+    {
+      "Path": "unity/Assets/StreamingAssets/ThirdParty/UnityNewtonsoft-LICENSE.txt.meta",
+      "Sha256": "7e7a5607de1ab1d231ef0e9c5a0ec2181510520ace4c8db6e4b21e766a1d079d",
+      "Bytes": 155
+    },
+    {
+      "Path": "unity/Assets/Tests.meta",
+      "Sha256": "6cd9e133a9d34fd110bd60936dcb757cd18a32b10729e3968d3d0f9fba148739",
+      "Bytes": 77
+    },
+    {
+      "Path": "unity/Assets/Tests/Editor.meta",
+      "Sha256": "828bb235068857f1b7f149147b47222aa8caa4d4486a8e7deef5872e61deb69e",
+      "Bytes": 77
+    },
+    {
+      "Path": "unity/Assets/Tests/Editor/CardTextMarkupTests.cs",
+      "Sha256": "b5978ccad3ce1d9d0d692b7c8028360418acec99ba9a7b51ae11f541e27dbcb5",
+      "Bytes": 3076
+    },
+    {
+      "Path": "unity/Assets/Tests/Editor/CardTextMarkupTests.cs.meta",
+      "Sha256": "2801278380d0c8d305d1798181ba59b073f1fbdda6bb3baf5af875c6c32c0d47",
+      "Bytes": 60
+    },
+    {
+      "Path": "unity/Assets/Tests/Editor/Goa2.Presentation.Tests.asmdef",
+      "Sha256": "10e184dc95968fe9183091ad56f1ea9d66705c0d643a9c25ad823d0d368344dd",
+      "Bytes": 398
+    },
+    {
+      "Path": "unity/Assets/Tests/Editor/Goa2.Presentation.Tests.asmdef.meta",
+      "Sha256": "2ff296f1caa7838cde127765a65119836bfafe12348cf858f2425731ed77a9ae",
+      "Bytes": 60
+    },
+    {
+      "Path": "unity/Assets/Tests/Editor/NetworkIntentTests.cs",
+      "Sha256": "27023505f7c7fd0d13fb14e71d43d3ceb7b3456210bf9c0658a2d86f5259f8af",
+      "Bytes": 2260
+    },
+    {
+      "Path": "unity/Assets/Tests/Editor/NetworkIntentTests.cs.meta",
+      "Sha256": "19529861a3c22a8c582107b6881d6d99370eee66e2f9fcd03231d122d75af56f",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/UI3D.meta",
+      "Sha256": "22d0157a5a285c2ac20bb952b38ce49b185208ae781ff1e47ceea6fc192f750e",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/UI3D/Editor.meta",
+      "Sha256": "cb877430fa4839b710948543dac3a158b83473fe2b0a0ec57c5f7a21f5a5a941",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/UI3D/Editor/Board3DAuditRunner.cs",
+      "Sha256": "35bb7f47379d4eaeb30475c5bfc3a0b28b0b34865077294274f3201e2aead06d",
+      "Bytes": 414
+    },
+    {
+      "Path": "unity/Assets/UI3D/Editor/Board3DAuditRunner.cs.meta",
+      "Sha256": "c950f974bd580f436897c2ffdeb952ec02bf0169f393cd466411bee95f5bb31c",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/UI3D/Editor/Goa2.UI3D.Editor.asmdef",
+      "Sha256": "3b8551d7483f6462e434db256d1c43f197de75d861a30b079e1633df893c607d",
+      "Bytes": 100
+    },
+    {
+      "Path": "unity/Assets/UI3D/Editor/Goa2.UI3D.Editor.asmdef.meta",
+      "Sha256": "faa6b57d1fe2327140e08a53809b77c3be9e106954ce5f1ee69ac52d2d42e656",
+      "Bytes": 166
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests.meta",
+      "Sha256": "38e616be43b01ace952d975664fe347a67409dc813b301d4384c068dd7a2715e",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor.meta",
+      "Sha256": "85ceffb35a5d5b6261321da7c481cbff8a0acbb7b4ca073f37498afc0eb3bbc9",
+      "Bytes": 172
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor/Board3DTests.cs",
+      "Sha256": "97c912150ae58f058840b5dbb39c86f84c762e36b9c8cbeefbcd259c3182ee03",
+      "Bytes": 2227
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor/Board3DTests.cs.meta",
+      "Sha256": "7f6c9ab491126b464a4a2133da333c69168e0e4e0f0323dff52c3c938e1cc1e5",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor/CameraFollowTests.cs",
+      "Sha256": "c80ac48eaa03be012efba685df12587ae39ec310705b1aeefd6218442c6e356e",
+      "Bytes": 3356
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor/CameraFollowTests.cs.meta",
+      "Sha256": "9e8f3b858cd687553ad9e15238d8a37279ff2475ef9159163da524333508a2df",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor/Goa2.UI3D.Tests.asmdef",
+      "Sha256": "cbb22b5bb34f189eeba877b8af3b515da9122ee6288496ef2a66022a34d79bf0",
+      "Bytes": 321
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor/Goa2.UI3D.Tests.asmdef.meta",
+      "Sha256": "9e5d19319480f377fd29c4b18efa00dfad1c79de725f7d2f43429ee47545d710",
+      "Bytes": 166
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor/Revision2Tests.cs",
+      "Sha256": "69125f1ebd8906f84ac1d62dc8fdf2b14dc8e1fd3dc2a589660a20727d3b05c1",
+      "Bytes": 3201
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor/Revision2Tests.cs.meta",
+      "Sha256": "154673269473c37d87865a532af2bfcd70642e5b55555ac2c0e3226b2e98a47e",
+      "Bytes": 59
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor/SkillWheelTests.cs",
+      "Sha256": "58e0770d29de045c9c16ec7bf0ae7fcfcc260c5ef774fa8b6e78ce50480fb3a0",
+      "Bytes": 3203
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor/SkillWheelTests.cs.meta",
+      "Sha256": "ceeaa80de9173c95584932fb9467720460c152124918aa47deea838fa6489885",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor/WorldHudTests.cs",
+      "Sha256": "b448ceffc81550cc792226e7ade6400a37e10833a820a5682716c752e98edfce",
+      "Bytes": 4659
+    },
+    {
+      "Path": "unity/Assets/UI3D/Tests/Editor/WorldHudTests.cs.meta",
+      "Sha256": "ba043bf474a0c228602c8438c966bc2eb19815bace56a3fc3d21997c590c2290",
+      "Bytes": 62
+    },
+    {
+      "Path": "unity/Packages/manifest.json",
+      "Sha256": "7a35ce425ee4ee5a99e9de09ee7b5ab4857d2394231861075d475f4898c9ef57",
+      "Bytes": 615
+    },
+    {
+      "Path": "unity/Packages/packages-lock.json",
+      "Sha256": "57d9ef84ff503045b60478c5e0a8960ce6857dca248e51eac763b5a3be46abcf",
+      "Bytes": 2624
+    },
+    {
+      "Path": "unity/ProjectSettings/AudioManager.asset",
+      "Sha256": "9543c41dbfc7d3951217c4dd9481ed026eb8e529b85ecf4463969a0fea747729",
+      "Bytes": 523
+    },
+    {
+      "Path": "unity/ProjectSettings/ClusterInputManager.asset",
+      "Sha256": "40e65dd214bf254955d2c8829ca8ce2130fd3510485560ce012e9a1ddd93e623",
+      "Bytes": 114
+    },
+    {
+      "Path": "unity/ProjectSettings/DynamicsManager.asset",
+      "Sha256": "d102dd312ef330f5e5ca255c070fb34f68f59ec633d1e9fd67e2f2f6f88f66c8",
+      "Bytes": 1574
+    },
+    {
+      "Path": "unity/ProjectSettings/EditorBuildSettings.asset",
+      "Sha256": "7e2bb2f8ed195d5192c9000d0e98f3d351e7a9d9f633fbbaf9c62030702eb925",
+      "Bytes": 280
+    },
+    {
+      "Path": "unity/ProjectSettings/EditorSettings.asset",
+      "Sha256": "4a87c54b3541c7bd242aad68c3fc28661083db1117ec56149694ee592156415e",
+      "Bytes": 1603
+    },
+    {
+      "Path": "unity/ProjectSettings/GraphicsSettings.asset",
+      "Sha256": "40de98f4d46d02fb08e268ad3a722a00eed7289f4ef6d2e759984b1b4a85d2af",
+      "Bytes": 2433
+    },
+    {
+      "Path": "unity/ProjectSettings/InputManager.asset",
+      "Sha256": "d0f454ddb880912abcae92e3e12957a7446786ba89e24937e019ff3bbc0d4300",
+      "Bytes": 5816
+    },
+    {
+      "Path": "unity/ProjectSettings/MemorySettings.asset",
+      "Sha256": "2c9e2339b4fa50f4782840d37dde021508d411b99278614cba335d206edb1738",
+      "Bytes": 1226
+    },
+    {
+      "Path": "unity/ProjectSettings/MultiplayerManager.asset",
+      "Sha256": "ce4075d7a7dd8ac7ffe55de2427692c63f90dae398208bd80cec0f27cbe09f4b",
+      "Bytes": 232
+    },
+    {
+      "Path": "unity/ProjectSettings/NavMeshAreas.asset",
+      "Sha256": "7ebbf8f53b8033104e1878b95ca07a28d0954092d81c220f14196a42f651e658",
+      "Bytes": 1361
+    },
+    {
+      "Path": "unity/ProjectSettings/Physics2DSettings.asset",
+      "Sha256": "1cfc0c8fbceec604fd7cd2a06c04ff05dddee6335b75c92b0f5715ad80ba9490",
+      "Bytes": 1862
+    },
+    {
+      "Path": "unity/ProjectSettings/PresetManager.asset",
+      "Sha256": "29c125923fe6e29f90190d4fce1c82d660e7051546e2c9d02908d18c9cf2436c",
+      "Bytes": 146
+    },
+    {
+      "Path": "unity/ProjectSettings/ProjectSettings.asset",
+      "Sha256": "6efedbd900f73405cf08afc39a230eff5ae9b06083fab67a1466f173e39781f5",
+      "Bytes": 20629
+    },
+    {
+      "Path": "unity/ProjectSettings/ProjectVersion.txt",
+      "Sha256": "ccbded48add235cebc157983154aaa49ed9035f56398fcb5e2b41bae3ebd2b66",
+      "Bytes": 85
+    },
+    {
+      "Path": "unity/ProjectSettings/QualitySettings.asset",
+      "Sha256": "f1f893b1be47ad2442f58338dd7c860dc1986bb317e2f5bb31084454ffabbf4c",
+      "Bytes": 9802
+    },
+    {
+      "Path": "unity/ProjectSettings/SceneTemplateSettings.json",
+      "Sha256": "bb9098b3bfcde78d93e264b96f7b77b5430e64e8c57a7aad7f5a5d9c3945e16a",
+      "Bytes": 3535
+    },
+    {
+      "Path": "unity/ProjectSettings/TagManager.asset",
+      "Sha256": "da4b5eefc927f8b91bcf9e56a186d2b852f49d9cbe91d466638d26c79d6a83ce",
+      "Bytes": 411
+    },
+    {
+      "Path": "unity/ProjectSettings/TimeManager.asset",
+      "Sha256": "3396f52fdc16d445024e01d7a2d99db6f0a37569d1d73c0302e9ffb857d90287",
+      "Bytes": 305
+    },
+    {
+      "Path": "unity/ProjectSettings/UnityConnectSettings.asset",
+      "Sha256": "11251dae0356b6f43dd2c67bb511f6b7ecda4e5de425186bba3297e6f3dc1c6f",
+      "Bytes": 1063
+    },
+    {
+      "Path": "unity/ProjectSettings/VFXManager.asset",
+      "Sha256": "2973a6af930e142f62cde00076beda8a3cc3a66d9bfcde7a58ba7d4be2251c26",
+      "Bytes": 525
+    },
+    {
+      "Path": "unity/ProjectSettings/VersionControlSettings.asset",
+      "Sha256": "e199cdfa6a8f2bf33cfd47e549198f13e3eb2a5099e908fdb4e0f14d939ccc6b",
+      "Bytes": 172
+    }
+  ],
+  "passed": true,
+  "server_exit": 0,
+  "restore_verified": true,
+  "finished_utc": "2026-09-28T18:55:11Z",
+  "public_logs_privacy_checked": true
+}
