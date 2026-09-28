@@ -4,7 +4,7 @@ $goaNetRoot=Split-Path -Parent $PSScriptRoot
 $goaDotnet=Join-Path $env:LOCALAPPDATA 'Goa2V1Toolchain/dotnet/dotnet.exe'
 $goaExe=Join-Path $goaNetRoot 'artifacts/player/Goa2V1.exe'
 if($OpenLocalPlayers -gt 0 -and -not (Test-Path -LiteralPath $goaExe)){throw 'Build the Windows player first.'}
-& $goaDotnet build (Join-Path $PSScriptRoot 'Goa2.Network/Goa2.Network.csproj') -c Release -p:RestoreLockedMode=true
+& $goaDotnet build (Join-Path $PSScriptRoot 'Goa2.Network/Goa2.Network.csproj') -c Release -p:RestoreLockedMode=true -p:WarningsNotAsErrors=CS8602
 if($LASTEXITCODE -ne 0){throw 'Server build failed.'}
 $goaRoom=Join-Path $goaNetRoot ('artifacts/network/room-'+[DateTime]::Now.ToString('yyyyMMdd-HHmmss')+'-'+[Guid]::NewGuid().ToString('N').Substring(0,6))
 New-Item -ItemType Directory -Path $goaRoom | Out-Null

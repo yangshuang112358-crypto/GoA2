@@ -7,6 +7,7 @@ import subprocess
 import sys
 import time
 import traceback
+from concurrent.futures import ThreadPoolExecutor
 from acceptance import Run, ROOT
 
 
@@ -50,7 +51,7 @@ class UnityRun(Run):
             if self.clients[seat].poll() is not None:
                 raise RuntimeError(f'Player {seat} exited; inspect its log')
             try:
-                result=json.loads((folder/'result.json').read_text(encoding='utf-8'))
+                result=json.loads((folder/f'result-{self.seq[seat]}.json').read_text(encoding='utf-8'))
                 if result['seq']==message['seq']:
                     assert not result['error'], result['error']
                     return result
@@ -83,7 +84,13 @@ class UnityRun(Run):
         result=self.ui(0,'retry')
         self.check('UI retry preserves command ID and does not duplicate',result['result']['Duplicate'] and not result['uncertain'])
         self.revision=result['view']['Revision']
-        for seat,hero in [(1,'shargatha'),(2,'brogan'),(3,'arien')]: self.command(seat,'ChooseHero',Value=hero)
+        with ThreadPoolExecutor(1) as pool:
+            delayed=pool.submit(self.ui,1,'submit',kind='ChooseHero',args={'Value':'shargatha'})
+            self.rpc(2,'view',revision=2);self.revision=2
+            self.command(2,'ChooseHero',Value='brogan')
+            response=delayed.result(timeout=20)
+        self.check('delayed reply cannot rewind Unity view',response['result']['Accepted'] and self.view(1)['Revision']==3)
+        self.command(3,'ChooseHero',Value='arien')
         while self.view()['Phase']=='Deployment':
             for seat in range(4):
                 choices=self.view(seat)['Deployments']

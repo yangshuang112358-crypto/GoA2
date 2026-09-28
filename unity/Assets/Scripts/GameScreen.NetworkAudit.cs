@@ -55,9 +55,9 @@ namespace Goa2.Presentation
                     hasLocalSession=session!=null,hasBoard=board!=null,boardConnected=board?.Connected,
                     confirmEnabled=confirmButton?.enabledInHierarchy??false,wheelPreview,uncertain=uncertainCommand!="",
                     discardBeats=wheelState.Discards.Count,result=lastNetworkResult,view=networkView};
-                string output=Path.Combine(directory,"result.json"),temp=output+".tmp";
+                string output=Path.Combine(directory,"result-"+last+".json"),temp=output+".tmp";
                 File.WriteAllText(temp,JsonConvert.SerializeObject(result,settings));
-                if(File.Exists(output))File.Replace(temp,output,null);else File.Move(temp,output);
+                File.Move(temp,output);
             }
         }
     }
