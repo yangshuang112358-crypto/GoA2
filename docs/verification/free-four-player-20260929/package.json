@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "files": 364,
+  "player": {
+    "engine_version": 97,
+    "unity_version": "6000.3.23f1",
+    "payload_files": 158,
+    "payload_bytes": 110166803,
+    "primary_cards": 89,
+    "defense_cards": 13
+  },
+  "source_commit": "3c1fb126b1c401367e12e32495822d63a041295f",
+  "folder": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\GoA2\\Goa2V1\\artifacts\\releases\\Goa2V1-Multiplayer-easytier-3c1fb12-20260929-130154-edd060",
+  "archive": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\GoA2\\Goa2V1\\artifacts\\releases\\Goa2V1-Multiplayer-easytier-3c1fb12-20260929-130154-edd060.zip",
+  "archive_sha256": "1d7f089988384d500887e590ee79a08fff3c37f8aa31c630b91aa8376a0563ed"
+}
