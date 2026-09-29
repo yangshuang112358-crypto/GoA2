@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "source_sha256": "41b6372391fce54dd98121bd29579170f776911d1530202149521e758cd08faf",
+  "source_sha256": "8f5cdc9ba8f3f47f57ba2775bf218800d3f0c6e6e194568ac1f7d6d5b9a53e0d",
   "duration_seconds": 108.4,
   "resolution": "1600x1000",
   "fps": 25,
@@ -22,8 +22,10 @@
     "stone-sequence-mobile.mp4": "4371ebc15e24e5f79f5196bd84062ad5bac31ec3f04ac871a175e4e2ea809725",
     "verification.json": "c2effacff764960258d6acc793daa5737d4fac652af5ade940fbada897e926bd",
     "video-contact.png": "dbfd47d4f3391aec3c19cf343f2335e74bfc6735717190fac9006c021c1fc5d1",
-    "demo/index.html": "41b6372391fce54dd98121bd29579170f776911d1530202149521e758cd08faf",
+    "demo/index.html": "8f5cdc9ba8f3f47f57ba2775bf218800d3f0c6e6e194568ac1f7d6d5b9a53e0d",
     "demo/README.md": "494832cfe1de6ff5bd034451b04b0fa5cd39e0b1bf97bd881be9c76470d44d5a",
     "demo/verify-record.cjs": "d6de533e86c426169376b0756843a5e2c7f07e87e411e03bc90577a0e1707638"
-  }
+  },
+  "recorded_source_raw_sha256": "41b6372391fce54dd98121bd29579170f776911d1530202149521e758cd08faf",
+  "source_normalization": "Git converts text CRLF to LF; identical JavaScript content. ZIP retains original recorded source bytes."
 }
