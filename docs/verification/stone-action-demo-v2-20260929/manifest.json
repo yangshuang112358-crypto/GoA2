@@ -1,0 +1,29 @@
+{
+  "schema": 2,
+  "source_sha256": "41b6372391fce54dd98121bd29579170f776911d1530202149521e758cd08faf",
+  "duration_seconds": 108.4,
+  "resolution": "1600x1000",
+  "fps": 25,
+  "video_codec": "H.264",
+  "audio": "AAC stereo, live WebAudio original procedural sounds",
+  "audio_max_db": -11.9,
+  "pixel_format": "yuv420p",
+  "recording": "Continuous Edge canvas.captureStream plus WebAudio MediaStreamDestination via MediaRecorder; no cuts, no speed changes, no added soundtrack",
+  "full_decode_passed": true,
+  "checks": 25,
+  "unity_modified": false,
+  "game_rules_verified": false,
+  "files_sha256": {
+    "acting-detaches.png": "2e3499a6442a27616eed1e749fd9e868aacc63aac08e8d2164bd164c07b49497",
+    "record-events.json": "dd744b5467d9a386bc46d85e2e12c06f30fbaf87094155145449fe707367b5e9",
+    "response-1280.png": "ec4a722a66d24573d6ad213c688e15146930fcd907e909432d3fd57283fa9722",
+    "response.png": "53e6face06e1a2bf1d18449a3fa7fecafd650433b56f48677cd8bcb4eea4d05e",
+    "stone-action-demo.zip": "7095d1e202feb57cc70063b2e5fae36468ea7fd96c913a8173b436e42d59e3db",
+    "stone-sequence-mobile.mp4": "4371ebc15e24e5f79f5196bd84062ad5bac31ec3f04ac871a175e4e2ea809725",
+    "verification.json": "c2effacff764960258d6acc793daa5737d4fac652af5ade940fbada897e926bd",
+    "video-contact.png": "dbfd47d4f3391aec3c19cf343f2335e74bfc6735717190fac9006c021c1fc5d1",
+    "demo/index.html": "41b6372391fce54dd98121bd29579170f776911d1530202149521e758cd08faf",
+    "demo/README.md": "494832cfe1de6ff5bd034451b04b0fa5cd39e0b1bf97bd881be9c76470d44d5a",
+    "demo/verify-record.cjs": "d6de533e86c426169376b0756843a5e2c7f07e87e411e03bc90577a0e1707638"
+  }
+}

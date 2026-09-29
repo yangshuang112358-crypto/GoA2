@@ -1,0 +1,107 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "four revealed roots only",
+      "passed": true
+    },
+    {
+      "name": "neutral coins on both tied groups",
+      "passed": true
+    },
+    {
+      "name": "different initiative wider than tied spacing",
+      "passed": true
+    },
+    {
+      "name": "hover actually spins coin on a random axis",
+      "passed": true
+    },
+    {
+      "name": "coin click leaves rule queue unchanged",
+      "passed": true
+    },
+    {
+      "name": "audio unlocked and procedural sound emitted",
+      "passed": true
+    },
+    {
+      "name": "acting card leaves group and loses its coin",
+      "passed": true
+    },
+    {
+      "name": "other pending tie remains intact",
+      "passed": true
+    },
+    {
+      "name": "no tentative discarded card",
+      "passed": true
+    },
+    {
+      "name": "defense below attacker",
+      "passed": true
+    },
+    {
+      "name": "discard below defense",
+      "passed": true
+    },
+    {
+      "name": "all nested response cards have straight edges",
+      "passed": true
+    },
+    {
+      "name": "counterattack new root",
+      "passed": true
+    },
+    {
+      "name": "new root focuses and ends browsing",
+      "passed": true
+    },
+    {
+      "name": "response does not create initiative coin",
+      "passed": true
+    },
+    {
+      "name": "extra counterattack root has no notches",
+      "passed": true
+    },
+    {
+      "name": "real pointer selects captain candidate",
+      "passed": true
+    },
+    {
+      "name": "four-way tie ordered without losing cards",
+      "passed": true
+    },
+    {
+      "name": "four-way active root separated but pending three linked",
+      "passed": true
+    },
+    {
+      "name": "poison sorts only pending nodes",
+      "passed": true
+    },
+    {
+      "name": "real wheel inside scrolls list only",
+      "passed": true
+    },
+    {
+      "name": "real wheel outside zooms board only",
+      "passed": true
+    },
+    {
+      "name": "next root resets free browse",
+      "passed": true
+    },
+    {
+      "name": "no visible DOM scrollbars",
+      "passed": true
+    },
+    {
+      "name": "no browser runtime errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "method": "Independent browser canvas UI; fixture assertions and Playwright pointer/wheel events, not Unity or game-rule verification"
+}
