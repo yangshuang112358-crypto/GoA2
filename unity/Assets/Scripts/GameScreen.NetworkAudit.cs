@@ -57,7 +57,8 @@ namespace Goa2.Presentation
                     hasLocalSession=session!=null,hasBoard=board!=null,boardConnected=board?.Connected,
                     confirmEnabled=confirmButton?.enabledInHierarchy??false,wheelPreview,uncertain=uncertainCommand!="",
                     reconnectEnabled=root.Q<Button>("network-reconnect")?.enabledInHierarchy??false,
-                    discardBeats=wheelState.Discards.Count,result=lastNetworkResult,view=networkView};
+                    discardBeats=wheelState.Discards.Count,actionStoneCount=root.Query<Goa2.Presentation.UI3D.ActionSlab>().ToList().Count,
+                    actionFocus=actionRail?.FocusId,actionCoins=actionRail?.CoinCount??0,result=lastNetworkResult,view=networkView};
                 string output=Path.Combine(directory,"result-"+last+".json"),temp=output+".tmp";
                 File.WriteAllText(temp,JsonConvert.SerializeObject(result,settings));
                 File.Move(temp,output);

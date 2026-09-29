@@ -141,7 +141,8 @@ namespace Goa2.Application
                 }).ToList(),
                 OwnCards = seat.HasValue && seat >= 0 && seat < 4 ? snapshot.Players[seat.Value].Cards : new System.Collections.Generic.List<CardInstance>(),
                 AvailableHeroes = snapshot.Phase == Phase.HeroSelection ? catalog.Heroes.Where(h => !snapshot.Players.Any(p => p.Seat != seat && p.HeroId == h.Id)).Select(h => h.Id).ToList() : new System.Collections.Generic.List<string>(),
-                Events = snapshot.Events.Where(e => e.PrivateTo == null || e.PrivateTo == seat).ToList()
+                Events = snapshot.Events.Where(e => e.PrivateTo == null || e.PrivateTo == seat).ToList(),
+                ActionSequence = ActionSequenceProjection.Build(catalog, snapshot)
             };
             int playedRound = 1, playedTurn = 1;
             foreach (var entry in snapshot.Events)

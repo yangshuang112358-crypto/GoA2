@@ -414,17 +414,7 @@ namespace Goa2.Presentation
                 case Phase.InitiativeChoice:
                     var pending = view.Pending!;
                     sidebar.Add(Text(PlayerName(pending.ChooserSeat) + "决定本队哪张并列牌先执行。", "body"));
-                    if (pending.ChooserSeat == seat)
-                    {
-                        foreach (int target in pending.CandidateSeats)
-                        {
-                            int copy = target;
-                            var option = Button(PlayerName(target), () => { initiativeSeat = copy; Render(); }, "choice-button");
-                            if (initiativeSeat == target) option.AddToClassList("chosen");
-                            sidebar.Add(option);
-                        }
-                        if (initiativeSeat.HasValue) Confirm(sidebar, "确认先行动者", () => Submit(CommandKind.ChooseInitiative, target: initiativeSeat!.Value));
-                    }
+                    sidebar.Add(Text("先行动者选择已迁至左侧行动石板；队长点击候选卡牌确认。", "muted"));
                     break;
                 case Phase.Action:
                     sidebar.Add(Text(PlayerName(view.ActiveSeat!.Value) + "正在行动。", "body"));

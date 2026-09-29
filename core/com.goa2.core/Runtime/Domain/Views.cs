@@ -118,6 +118,7 @@ namespace Goa2.Domain
         public Dictionary<string, List<Hex>> DebugTeleports = new Dictionary<string, List<Hex>>();
         public bool CanPass;
         public List<GameEvent> Events = new List<GameEvent>();
+        public ActionSequenceView ActionSequence = new ActionSequenceView();
     }
     public sealed class MinionReturnOption
     {

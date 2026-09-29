@@ -1,0 +1,11 @@
+{
+  "result": "PASS",
+  "engine_version": 97,
+  "unity_version": "6000.3.23f1",
+  "payload_files": 158,
+  "payload_bytes": 110133039,
+  "primary_cards": 89,
+  "defense_cards": 13,
+  "archive": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\GoA2\\Goa2V1\\artifacts\\releases\\Goa2V1-e97-action-stones-20260929-074601-ac3fd721.zip",
+  "archive_sha256": "0b52e11f154b399c727d5a132300187826c651f139c0ad9e746b3dd6dd38f115"
+}

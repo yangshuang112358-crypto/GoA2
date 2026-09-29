@@ -1,0 +1,16 @@
+{
+  "SchemaVersion": 1,
+  "Id": "action-sequence-four-tie",
+  "Name": "行动石板：四人同先攻，蓝队队长选阿连先行",
+  "Steps": [
+    {"Command":"DebugPrepare","Value":"brogan,shargatha,arien,wasp"},
+    {"Command":"DebugSetCoin","Value":"blue"},
+    {"Command":"SelectCard","Actor":"p1","Value":"brogan-00-猛攻"},
+    {"Command":"SelectCard","Actor":"p2","Value":"shargatha-00-反击"},
+    {"Command":"SelectCard","Actor":"p3","Value":"arien-00-华丽刀锋"},
+    {"Command":"SelectCard","Actor":"p4","Value":"wasp-06-静电封锁","Expect":{"Phase":"InitiativeChoice"}},
+    {"Command":"ChooseInitiative","Actor":"p1","Target":"p3","Expect":{"Active":"p3","Phase":"Action"}},
+    {"Command":"Pass","Actor":"p3","Expect":{"Phase":"InitiativeChoice"}},
+    {"Command":"ChooseInitiative","Actor":"p2","Target":"p4","Expect":{"Active":"p4","Phase":"Action"}}
+  ]
+}

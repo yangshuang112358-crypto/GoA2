@@ -95,29 +95,7 @@ namespace Goa2.Presentation
             parent.Add(Text(notice,"settings-notice"));
         }
         private static string ColorName(string color) => color switch { "gold" => "金", "silver" => "银", "red" => "红", "green" => "绿", "blue" => "蓝", _ => "紫" };
-        private void BuildRevealedStrip(VisualElement parent, GameView view)
-        {
-            var latest=view.Players.SelectMany(p=>p.Plays).OrderByDescending(p=>p.Round).ThenByDescending(p=>p.Turn).FirstOrDefault();
-            if(latest==null)return;
-            var panel=Box("revealed-rail");panel.name="revealed-zone";parent.Add(panel);
-            var row=panel;
-            foreach (var player in view.Players.OrderByDescending(p=> {var play=latest==null ? null : p.Plays.LastOrDefault(x=>x.Round==latest.Round && x.Turn==latest.Turn);return play==null ? int.MinValue : catalog.Card(play.CardId).Initiative+Bonus(p,"先攻");}))
-            {
-                var play = latest == null ? null : player.Plays.LastOrDefault(p => p.Round == latest.Round && p.Turn == latest.Turn);
-                var tile = Box("revealed-card"); row.Add(tile);
-                tile.name="revealed-seat-"+(player.Seat+1);
-                if (play == null) { tile.Add(Text((player.Seat+1)+" · "+HeroName(player.HeroId)+" · "+(latest==null ? "尚未揭示" : "未出牌"),"muted")); continue; }
-                var card = catalog.Card(play.CardId); tile.style.borderTopColor = CardColor(card.Color);
-                var colorStrip=Box("card-color-stripe");colorStrip.name="revealed-color-"+(player.Seat+1);colorStrip.style.backgroundColor=CardColor(card.Color);tile.Add(colorStrip);
-                if (view.ActiveSeat == player.Seat) tile.AddToClassList("active-public-card");
-                tile.Add(Text(card.Name,"public-card-name"));
-                tile.Add(Text(HeroName(player.HeroId),"revealed-hero-name"));
-                CardRulesPreview(tile,card,"revealed-rules-"+player.Seat);
-                CompactCardNumbers(tile,card,player,true,"revealed-"+player.Seat,true);
-                var teamStrip=Box("team-stripe");teamStrip.name="revealed-team-"+(player.Seat+1);teamStrip.style.backgroundColor=player.Team==Team.Blue ? new Color(.15f,.45f,.95f) : new Color(.9f,.2f,.25f);tile.Add(teamStrip);
-                AttachCardReading(tile,card,player);
-            }
-        }
+        private void BuildRevealedStrip(VisualElement parent, GameView view) => BuildActionSequence(parent,view);
         private void BuildBoard(VisualElement parent, GameView view)
         {
             var field = Box("field");field.name="battlefield-map"; parent.Add(field);

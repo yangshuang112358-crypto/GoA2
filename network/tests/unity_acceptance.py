@@ -177,11 +177,20 @@ class UnityRun(Run):
         time.sleep(3)
         self.ui(0,'pick',card='brogan-06-铜墙铁壁');result=self.ui(0,'confirm');self.revision=result['view']['Revision']
         self.check('nested attack defense discard resumes parent in Unity',self.view()['ActiveSeat']==3)
+        reference=self.view(0)['ActionSequence']
+        defense=next(n for n in reference['Cards'] if n['Role']=='defense')
+        discarded=next(n for n in reference['Cards'] if n['CardId']=='brogan-06-铜墙铁壁')
+        self.check('public committed defense owns nested discarded card',discarded['ParentId']==defense['Id'])
+        for seat in range(4):
+            shown=self.ui(seat,'view',revision=self.revision)
+            self.check(f'authoritative action sequence identical at seat {seat}',shown['view']['ActionSequence']==reference)
+            self.check(f'Unity displays every action slab at seat {seat}',shown['actionStoneCount']==len(reference['Cards']))
         self.ui(0,'screen')
 
     def reconnect_pending(self, seat, kind, candidates):
         before=self.view(seat);self.ui(seat,'disconnect');self.ui(seat,'connect');after=self.view(seat)
         self.check('Unity reconnect '+kind,before['Pending']['Kind']==kind and after['Pending']==before['Pending'] and after[candidates]==before[candidates])
+        self.check('Unity reconnect restores public action sequence '+kind,before['ActionSequence']==after['ActionSequence'])
         for other in range(4):
             if other!=seat:self.check(f'private {candidates} seat {other}',not self.view(other)[candidates])
 

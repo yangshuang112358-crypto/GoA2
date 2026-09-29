@@ -32,7 +32,7 @@ namespace Goa2.Presentation
         {
             Directory.CreateDirectory(output);
             var report=new BoardAuditReport {UnityVersion=UnityEngine.Application.unityVersion,Width=Screen.width,Height=Screen.height};
-            var routine=Environment.GetCommandLineArgs().Contains("-goaBattlefieldAuditOnly") ? AuditBattlefieldLayout(output,report) : Environment.GetCommandLineArgs().Contains("-goaTerrainAuditOnly") ? AuditTerrain(output,report) : Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
+            var routine=Environment.GetCommandLineArgs().Contains("-goaActionSequenceAuditOnly") ? AuditActionSequence(output,report) : Environment.GetCommandLineArgs().Contains("-goaBattlefieldAuditOnly") ? AuditBattlefieldLayout(output,report) : Environment.GetCommandLineArgs().Contains("-goaTerrainAuditOnly") ? AuditTerrain(output,report) : Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
             while(true)
             {
                 object? next=null;bool more=false;
@@ -75,8 +75,8 @@ namespace Goa2.Presentation
             Check(root.Q("skill-description")==null,"Leaving skill immediately closes detail");
             Submit(CommandKind.DebugSelectAll);yield return new WaitForSecondsRealtime(3);
             cameraFollow=false;board3DViewport.StopFollowing();board3DViewport.Focus=BattlePresentationState.Center(catalog);board3DViewport.Zoom=1f;CloseHeroWheel();Render();yield return new WaitForSecondsRealtime(.3f);
-            var cards=root.Query<VisualElement>(className:"revealed-card").ToList();Check(cards.Count==4,"Four revealed cards in rail");
-            for(int n=0;n<4;n++){Check(cards[n].worldBound.xMin<20 && cards[n].worldBound.yMax<=Screen.height,"Revealed card visible at left "+n);if(n>0)Check(cards[n].worldBound.yMin>=cards[n-1].worldBound.yMax,"Revealed cards stack vertically "+n);}
+            var cards=root.Query<VisualElement>(className:"action-card").ToList();Check(cards.Count==4,"Four revealed cards in rail");
+            for(int n=0;n<4;n++){Check(cards[n].worldBound.xMin<35 && cards[n].worldBound.height>100,"Full card located at left "+n);if(n>0)Check(cards[n].worldBound.yMin>=cards[n-1].worldBound.yMax,"Revealed cards stack vertically "+n);}
             Check(root.Q("revealed-heading")==null,"No repeated revealed title or round label");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"battlefield.png"));yield return new WaitForSecondsRealtime(.3f);
             rightExpanded=true;Render();yield return null;yield return null;
