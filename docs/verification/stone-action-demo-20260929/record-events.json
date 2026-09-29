@@ -1,0 +1,339 @@
+{
+  "events": [
+    {
+      "at": 0,
+      "kind": "scene",
+      "chapter": 0,
+      "count": 4
+    },
+    {
+      "at": 0,
+      "kind": "caption",
+      "text": "石板从顶端落入 · 揭示后先预排"
+    },
+    {
+      "at": 4.02,
+      "kind": "caption",
+      "text": "悬停收稳 · 卡面内显示先攻"
+    },
+    {
+      "at": 8.02,
+      "kind": "caption",
+      "text": "两组之间保持空隙"
+    },
+    {
+      "at": 15.02,
+      "kind": "scene",
+      "chapter": 1,
+      "count": 3
+    },
+    {
+      "at": 15.02,
+      "kind": "focus",
+      "id": "atk",
+      "offset": 0
+    },
+    {
+      "at": 15.02,
+      "kind": "caption",
+      "text": "响应发生之前，不预留卡牌或空槽"
+    },
+    {
+      "at": 17.02,
+      "kind": "insert",
+      "id": "boost",
+      "parent": "atk",
+      "level": 1
+    },
+    {
+      "at": 17.02,
+      "kind": "caption",
+      "text": "先公开攻击前弃置的《猛攻》"
+    },
+    {
+      "at": 20.02,
+      "kind": "insert",
+      "id": "r",
+      "parent": "atk",
+      "level": 1
+    },
+    {
+      "at": 20.02,
+      "kind": "caption",
+      "text": "使用《反射屏障》 → 二级防御"
+    },
+    {
+      "at": 23.02,
+      "kind": "caption",
+      "text": "尚未确认弃哪张：不展示预选牌"
+    },
+    {
+      "at": 26.02,
+      "kind": "insert",
+      "id": "pay",
+      "parent": "r",
+      "level": 2
+    },
+    {
+      "at": 26.02,
+      "kind": "caption",
+      "text": "确认弃置《铜墙铁壁》 → 三级"
+    },
+    {
+      "at": 30.02,
+      "kind": "caption",
+      "text": "每张牌底部保留实际结果"
+    },
+    {
+      "at": 34.02,
+      "kind": "scene",
+      "chapter": 2,
+      "count": 3
+    },
+    {
+      "at": 34.02,
+      "kind": "focus",
+      "id": "m",
+      "offset": 0
+    },
+    {
+      "at": 34.02,
+      "kind": "caption",
+      "text": "反击效果已在此前开启"
+    },
+    {
+      "at": 37.01,
+      "kind": "caption",
+      "text": "原攻击结束，才开放反击"
+    },
+    {
+      "at": 40.01,
+      "kind": "insert",
+      "id": "riposte",
+      "parent": null,
+      "level": 0
+    },
+    {
+      "at": 40.01,
+      "kind": "focus",
+      "id": "riposte",
+      "offset": 291
+    },
+    {
+      "at": 40.01,
+      "kind": "caption",
+      "text": "选定《劈砍》 → 新增一级并置顶"
+    },
+    {
+      "at": 44.01,
+      "kind": "insert",
+      "id": "rd",
+      "parent": "riposte",
+      "level": 1
+    },
+    {
+      "at": 44.01,
+      "kind": "caption",
+      "text": "反击的防御，仍然是二级"
+    },
+    {
+      "at": 49.01,
+      "kind": "scene",
+      "chapter": 3,
+      "count": 4
+    },
+    {
+      "at": 49.01,
+      "kind": "caption",
+      "text": "三人同先攻 · 红方队长选择"
+    },
+    {
+      "at": 54.01,
+      "kind": "reorder",
+      "ids": [
+        "s-ar",
+        "s-sh",
+        "s-bro",
+        "s-low"
+      ]
+    },
+    {
+      "at": 54.01,
+      "kind": "focus",
+      "id": "s-ar",
+      "offset": 0
+    },
+    {
+      "at": 54.01,
+      "kind": "caption",
+      "text": "队长已确认 · 石板前浮换序"
+    },
+    {
+      "at": 58.01,
+      "kind": "focus",
+      "id": "s-sh",
+      "offset": 152
+    },
+    {
+      "at": 58.01,
+      "kind": "caption",
+      "text": "下一张主牌开始 → 自动置顶"
+    },
+    {
+      "at": 61.01,
+      "kind": "scene",
+      "chapter": 3,
+      "count": 4
+    },
+    {
+      "at": 61.01,
+      "kind": "caption",
+      "text": "四张牌同为先攻11，也保持一列"
+    },
+    {
+      "at": 64.01,
+      "kind": "reorder",
+      "ids": [
+        "s-bro",
+        "s-sh",
+        "s-ar",
+        "s-wa"
+      ]
+    },
+    {
+      "at": 64.01,
+      "kind": "focus",
+      "id": "s-bro",
+      "offset": 0
+    },
+    {
+      "at": 64.01,
+      "kind": "caption",
+      "text": "队长已确认 · 石板前浮换序"
+    },
+    {
+      "at": 68.03,
+      "kind": "scene",
+      "chapter": 4,
+      "count": 4
+    },
+    {
+      "at": 68.03,
+      "kind": "focus",
+      "id": "p-current",
+      "offset": 152
+    },
+    {
+      "at": 68.03,
+      "kind": "caption",
+      "text": "剩余行动重新排序"
+    },
+    {
+      "at": 72.01,
+      "kind": "caption",
+      "text": "中毒改变先攻：10 → 6"
+    },
+    {
+      "at": 73.21,
+      "kind": "reorder",
+      "ids": [
+        "p-done",
+        "p-current",
+        "p-s",
+        "p-w"
+      ]
+    },
+    {
+      "at": 78.01,
+      "kind": "focus",
+      "id": "p-s",
+      "offset": 304
+    },
+    {
+      "at": 78.01,
+      "kind": "caption",
+      "text": "下一名行动者取更新后的顺序"
+    },
+    {
+      "at": 81.01,
+      "kind": "scene",
+      "chapter": 5,
+      "count": 10
+    },
+    {
+      "at": 81.01,
+      "kind": "focus",
+      "id": "long",
+      "offset": 0
+    },
+    {
+      "at": 81.01,
+      "kind": "caption",
+      "text": "超长响应：卡牌仍悬浮在战场中"
+    },
+    {
+      "at": 85.01,
+      "kind": "wheel",
+      "zone": "list",
+      "scrollGoal": 360,
+      "zoomGoal": 1
+    },
+    {
+      "at": 85.01,
+      "kind": "caption",
+      "text": "鼠标在石板附近 → 滚动信息"
+    },
+    {
+      "at": 88.01,
+      "kind": "wheel",
+      "zone": "list",
+      "scrollGoal": 616,
+      "zoomGoal": 1
+    },
+    {
+      "at": 91.01,
+      "kind": "wheel",
+      "zone": "board",
+      "scrollGoal": 616,
+      "zoomGoal": 1.2092495976572515
+    },
+    {
+      "at": 91.01,
+      "kind": "caption",
+      "text": "鼠标离开信息区域 → 缩放战场"
+    },
+    {
+      "at": 94.01,
+      "kind": "caption",
+      "text": "只更新记录，不跳走浏览位置"
+    },
+    {
+      "at": 97.01,
+      "kind": "focus",
+      "id": "future",
+      "offset": 1264
+    },
+    {
+      "at": 97.01,
+      "kind": "caption",
+      "text": "下一主卡开始 → 结束自由浏览"
+    },
+    {
+      "at": 102.01,
+      "kind": "caption",
+      "text": "演示完成 · 可选择场景继续交互"
+    },
+    {
+      "at": 107.01,
+      "kind": "finished"
+    }
+  ],
+  "errors": [],
+  "interactions": [
+    "captain-choice",
+    "captain-choice",
+    "list-wheel",
+    "list-wheel",
+    "board-wheel"
+  ]
+}

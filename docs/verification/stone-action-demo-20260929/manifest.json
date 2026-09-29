@@ -1,0 +1,24 @@
+{
+  "unity_modified": false,
+  "pixel_format": "yuv420p",
+  "full_decode_passed": true,
+  "files_sha256": {
+    "demo/README.md": "f57cb3953dd2bbd96a88b1e37c25c0132e96d29c5baa1bcda18b10fb54f90759",
+    "demo/index.html": "68d51fe772b8e5ced0b8a95da39583607b6b53c7d7e10d97611744fce8dbdfce",
+    "stone-sequence-mobile.mp4": "58201f5037868d904719e574323700469b15afef5d678ff1b1420f88f717874e",
+    "record-events.json": "9fa0a7a99d2c4d06ff247394f12021ea88b783d1f32505fee4a7a65e590761c2",
+    "demo/verify-record.cjs": "194b22c79abe3552f1203eb0d3c5b37f7965f8c6f40bdcc3e4d7c048eeb4817b",
+    "stone-action-demo.zip": "53b5cd6391a3e42be2cf39ea293f4ac8a311870ecc1ff0fa67cc95712f1c4362",
+    "verification.json": "58468b1744ffbb4eeb6c556295c978dcd6dc6bacb7d9fba448b640247c79c21e"
+  },
+  "video_codec": "H.264",
+  "fps": 25,
+  "resolution": "1600x1000",
+  "duration_seconds": 109.32,
+  "audio": "none",
+  "game_rules_verified": false,
+  "recording": "Continuous Edge browser render via Playwright; scripted UI fixture actions, no cuts or speed change",
+  "source_sha256": "68d51fe772b8e5ced0b8a95da39583607b6b53c7d7e10d97611744fce8dbdfce",
+  "checks": 16,
+  "schema": 1
+}

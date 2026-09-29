@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "four revealed roots only",
+      "passed": true
+    },
+    {
+      "name": "two red then blue preview coins",
+      "passed": true
+    },
+    {
+      "name": "no tentative discarded card",
+      "passed": true
+    },
+    {
+      "name": "defense below attacker",
+      "passed": true
+    },
+    {
+      "name": "discard below defense",
+      "passed": true
+    },
+    {
+      "name": "counterattack new root",
+      "passed": true
+    },
+    {
+      "name": "new root focuses and ends browsing",
+      "passed": true
+    },
+    {
+      "name": "response does not create initiative coin",
+      "passed": true
+    },
+    {
+      "name": "real pointer selects captain candidate",
+      "passed": true
+    },
+    {
+      "name": "four-way tie ordered without losing cards",
+      "passed": true
+    },
+    {
+      "name": "poison sorts only pending nodes",
+      "passed": true
+    },
+    {
+      "name": "real wheel inside scrolls list only",
+      "passed": true
+    },
+    {
+      "name": "real wheel outside zooms board only",
+      "passed": true
+    },
+    {
+      "name": "next root resets free browse",
+      "passed": true
+    },
+    {
+      "name": "no visible DOM scrollbars",
+      "passed": true
+    },
+    {
+      "name": "no browser runtime errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "method": "Independent browser canvas UI; fixture assertions and Playwright pointer/wheel events, not Unity or game-rule verification"
+}
