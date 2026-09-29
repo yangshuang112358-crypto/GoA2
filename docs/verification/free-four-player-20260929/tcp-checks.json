@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "runner": "portable exe + four TCP connections; same PC; no UI",
+  "checks": [
+    "authenticated seat 0",
+    "authenticated seat 1",
+    "authenticated seat 2",
+    "authenticated seat 3",
+    "choose hero 0",
+    "choose hero 1",
+    "choose hero 2",
+    "choose hero 3",
+    "public heroes agree 0",
+    "public heroes agree 1",
+    "public heroes agree 2",
+    "public heroes agree 3",
+    "reconnect retains identity and revision"
+  ]
+}

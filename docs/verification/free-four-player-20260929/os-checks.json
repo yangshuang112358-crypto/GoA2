@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "runner": "visible WinForms; real Windows mouse/keyboard",
+  "checks": [
+    "visible Chinese launcher",
+    "OS click created portable server and host Player",
+    "OS confirmation stopped room with verified save",
+    "launcher closed without live room"
+  ],
+  "cross_machine": false,
+  "player_gameplay_tested": false
+}
