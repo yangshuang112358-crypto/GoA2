@@ -1,0 +1,51 @@
+{
+  "SchemaVersion": 1,
+  "Id": "action-stones-os-setup",
+  "Name": "实操录屏准备：四人同先攻与反射屏障",
+  "Steps": [
+    {
+      "Command": "DebugPrepare",
+      "Value": "brogan,shargatha,arien,wasp"
+    },
+    {
+      "Command": "DebugSetCoin",
+      "Value": "blue"
+    },
+    {
+      "Command": "DebugEquipCard",
+      "Target": "p4",
+      "Value": "wasp-10-反射屏障"
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:0",
+      "Destination": {
+        "X": 6,
+        "Y": -6
+      }
+    },
+    {
+      "Command": "DebugTeleport",
+      "Value": "hero:3",
+      "Destination": {
+        "X": 6,
+        "Y": -5
+      }
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p1",
+      "Value": "brogan-00-猛攻"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p2",
+      "Value": "shargatha-00-反击"
+    },
+    {
+      "Command": "SelectCard",
+      "Actor": "p3",
+      "Value": "arien-00-华丽刀锋"
+    }
+  ]
+}
