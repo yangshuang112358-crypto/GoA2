@@ -22,6 +22,7 @@ public static class Wire
         ["SelectCard"] = ["Value"], ["ConfirmCard"] = [], ["CancelCardSelection"] = [], ["ChooseInitiative"] = ["TargetSeat"],
         ["Move"] = ["MoveMode", "Destination?", "Value?"], ["Pass"] = [],
         ["ChooseMinionSpawn"] = ["Destination", "Value?"], ["BeginPrimary"] = [],
+        ["CommitPrimaryAttack"] = ["Value"], ["CommitPrimaryMove"] = ["Destination?", "Value?"], ["CommitPrimaryPlacement"] = ["Destination"],
         ["ChooseAttackTarget"] = ["Value"], ["Defend"] = ["Value"], ["DeclineDefense"] = [],
         ["RespawnHero"] = ["Destination"], ["ResolveRoundEnd"] = [],
         ["ChooseRoundMinionRemoval"] = ["Value"], ["ChooseUpgrade"] = ["Value"],
@@ -101,8 +102,8 @@ public static class Wire
             cmd.Destination = new Hex((int)Number(dest, "X", -1000, 1000), (int)Number(dest, "Y", -1000, 1000));
         }
         if (kind == "Move" && !item.TryGetProperty("Destination", out _) && cmd.Value != "begin") throw new WireError("missing_Destination");
-        if (kind == "ChooseEffectMove" && !item.TryGetProperty("Destination", out _) && cmd.Value != "skip") throw new WireError("missing_Destination");
-        if ((kind == "Move" && cmd.Value == "begin" || kind == "ChooseEffectMove" && cmd.Value == "skip") && item.TryGetProperty("Destination", out _))
+        if ((kind == "ChooseEffectMove" || kind == "CommitPrimaryMove") && !item.TryGetProperty("Destination", out _) && cmd.Value != "skip") throw new WireError("missing_Destination");
+        if ((kind == "Move" && cmd.Value == "begin" || (kind == "ChooseEffectMove" || kind == "CommitPrimaryMove") && cmd.Value == "skip") && item.TryGetProperty("Destination", out _))
             throw new WireError("ambiguous_destination");
         return cmd;
     }

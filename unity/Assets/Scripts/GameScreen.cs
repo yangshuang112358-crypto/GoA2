@@ -117,6 +117,7 @@ namespace Goa2.Presentation
         }
         private void ClearPending()
         {
+            actionChoice=""; worldOptionsOpen=false; actionRingClosed=false;
             chosenHero = null; chosenCell = null; moveMode = null; initiativeSeat = null; passPending = false; deploymentSeat = -1;
             defenseCardId = ""; discardCardId = ""; declineDefensePending = false;declineRetaliationPending=false;
             goldTransferTarget=-1;goldTransferAmount=-1;
@@ -203,10 +204,12 @@ namespace Goa2.Presentation
             renderedView = NetworkMode ? networkView! : session.View(seat);
             board3DViewport.Presentation.Observe(catalog,renderedView,Time.realtimeSinceStartup,cameraFollow ? board3DViewport.Focus : (Vector3?)null);
             if (!renderedView.EffectAreas.ContainsKey(effectAreaId)) effectAreaId="";
+            ObserveWorldDecisions();
             ObserveWheel();
             BuildLayout(renderedView);
             BuildCameraOverlays();
             BuildSkillWheel();
+            BuildWorldDecisions();
             ApplyNetworkInputGate();
             if (galleryOpen) RenderGallery();
             if (publicCardsOpen) RenderPublicCards(renderedView);
@@ -329,6 +332,7 @@ namespace Goa2.Presentation
         [Serializable] private sealed class QaScroll {public string Name="";public Rect Viewport,Track,Thumb;public float Value,Maximum;}
         private List<Hex> LegalCells(GameView view)
         {
+            var primaryCells=PrimaryPreviewCells(view);if(primaryCells!=null)return primaryCells;
             if (debugAttack) return view.Units.Where(u=>view.DebugAttackTargets.Contains(u.Id)).Select(u=>u.Position).ToList();
             if (debugTeleport && view.DebugTeleports.TryGetValue(debugUnitId, out var teleportTargets)) return teleportTargets;
             if (view.Pending?.Kind == "attack_target" && view.Pending.ChooserSeat == seat)
@@ -365,11 +369,9 @@ namespace Goa2.Presentation
                 case "terrain": return "障碍地形"; default: return "中区";
             }
         }
-        private void RenderSidebar(VisualElement sidebar, GameView view)
+        private void RenderDecisionSource(VisualElement sidebar, GameView view)
         {
-            sidebar.Add(Text("当前席位 " + (seat + 1), "eyebrow"));
-            sidebar.Add(Text(PhaseName(view), "panel-title"));
-            if(!NetworkMode)RenderDebugGuideShortcut(sidebar,view);
+
             switch (view.Phase)
             {
                 case Phase.HeroSelection:
@@ -417,25 +419,7 @@ namespace Goa2.Presentation
                     sidebar.Add(Text("先行动者选择已迁至左侧行动石板；队长点击候选卡牌确认。", "muted"));
                     break;
                 case Phase.Action:
-                    sidebar.Add(Text(PlayerName(view.ActiveSeat!.Value) + "正在行动。", "body"));
-                    var played = view.Players[view.ActiveSeat.Value].Revealed.Single(c => c.Zone == CardZone.PlayedUnresolved);
-                    RenderCardDetail(sidebar, catalog.Card(played.CardId));
-                    if (view.ActiveSeat == seat)
-                    {
-                        var primary = Button("执行" + catalog.Card(played.CardId).PrimaryCategory, () => { debugTeleport = false; Submit(CommandKind.BeginPrimary); }, "primary-button", "begin-primary");
-                        primary.SetEnabled(view.CanBeginPrimary && !view.PrimaryImmediatelySkips);if(view.PrimaryImmediatelySkips)primary.tooltip="没有合法目标，此行动等效跳过"; sidebar.Add(primary);
-                        if (view.PrimaryRestriction!="") sidebar.Add(Text("受到“" + catalog.Card(view.PrimaryRestriction).Name + "”影响，当前不能执行技能。可选择其他合法行动或放弃。", "restriction-text"));
-                        if (view.PrimarySupported) sidebar.Add(Text("开始后按牌文完成行动；不能再改选次要移动或放弃。", "tiny"));
-                        var normal = Button("次要移动" + (moveMode == MoveMode.Secondary ? "  ✓" : ""), () => { debugTeleport = false; if(view.CanStartSecondaryMoveWithPrelude){Submit(CommandKind.Move,"begin",mode:MoveMode.Secondary);return;} moveMode = MoveMode.Secondary; chosenCell = null; passPending = false; Render(); }, "choice-button");
-                        normal.SetEnabled(view.CanStartSecondaryMoveWithPrelude || view.SecondaryMoves.Count > 0); sidebar.Add(normal);
-                        var fast = Button("快速移动" + (moveMode == MoveMode.Fast ? "  ✓" : ""), () => { debugTeleport = false; if(view.CanStartFastMoveWithPrelude){Submit(CommandKind.Move,"begin",mode:MoveMode.Fast);return;} moveMode = MoveMode.Fast; chosenCell = null; passPending = false; Render(); }, "choice-button");
-                        fast.SetEnabled(view.CanStartFastMoveWithPrelude || view.FastMoves.Count > 0); sidebar.Add(fast);
-                        if (chosenCell.HasValue && moveMode.HasValue)
-                            Confirm(sidebar, "确认移动至 " + chosenCell.Value, () => Submit(CommandKind.Move, destination: chosenCell!.Value, mode: moveMode!.Value));
-                        else if (passPending) Confirm(sidebar, "确认放弃此牌行动", () => Submit(CommandKind.Pass));
-                        else sidebar.Add(Button("放弃此牌行动", () => { passPending = true; moveMode = null; chosenCell = null; Render(); }, "quiet-button"));
-                        if (!view.PrimarySupported) sidebar.Add(Text("此卡主要行动待实装；次要行动按显示选项使用。", "tiny"));
-                    }
+                    RenderActionSource(sidebar,view);
                     break;
                 case Phase.RoundEnd:
                     RenderRoundEnd(sidebar, view);
@@ -447,9 +431,7 @@ namespace Goa2.Presentation
                     RenderVictory(sidebar, view);
                     break;
             }
-            RenderActiveEffects(sidebar, view);
-            // Permanent bonuses and the ultimate are shown in the hero inspection panel.
-            RenderRecentEvents(sidebar, view);
+
         }
         private void Confirm(VisualElement parent, string caption, Action action)
         {

@@ -1,0 +1,13 @@
+{
+  "InitialRevision": 7,
+  "FinalRevision": 8,
+  "Note": "Initial post-click assertion read a stale QA snapshot; a fresh capture confirmed revision 8 / EffectChoice before switching seat.",
+  "Checks": [
+    "Attack preview does not change revision",
+    "Attack and secondary-move return do not change revision",
+    "Clicking map confirmation enters response with one revision",
+    "Keyboard switches to defender; settings stay closed"
+  ],
+  "Passed": true,
+  "Method": "Real Windows OS mouse and keyboard"
+}

@@ -6,7 +6,7 @@ namespace Goa2.Presentation.UI3D
     // View-only policy. Never selects a seat or computes legal game actions.
     public static class CameraFollowPolicy
     {
-        public static int? ResponseSeat(GameView view) => view.Pending?.Kind=="defense" || view.Pending?.Kind=="forced_discard" || view.Pending?.Kind=="optional_discard" || view.Pending?.Kind=="minion_protection" ? view.Pending.ChooserSeat : (int?)null;
+        public static int? ResponseSeat(GameView view) => view.Pending?.Kind=="recover_discard" || view.Pending?.Kind=="discard_attack" || view.Pending?.Kind=="card_swap" || view.Pending?.Kind=="defense" || view.Pending?.Kind=="forced_discard" || view.Pending?.Kind=="optional_discard" || view.Pending?.Kind=="minion_protection" ? view.Pending.ChooserSeat : (int?)null;
         public static Hex? Target(GameView view, int ownSeat)
         {
             string kind=view.Pending?.Kind ?? "";

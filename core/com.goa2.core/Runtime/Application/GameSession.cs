@@ -10,7 +10,7 @@ namespace Goa2.Application
 {
     // Only the host owns this service. A network adapter must bind authenticatedSeat
     // from its connection, never from a client's command or hotseat selector.
-    public sealed class GameSession
+    public sealed partial class GameSession
     {
         private readonly ContentCatalog catalog;
         private readonly IStateCodec codec;
@@ -75,7 +75,7 @@ namespace Goa2.Application
             }
             if (command.ExpectedRevision != state.Revision) return Reject("stale_revision", "状态已更新，请重新选择。", authenticatedSeat,replay);
             var draft = replay ? state : codec.Read(codec.Write(state));
-            try { rules.Apply(catalog, draft, command); }
+            try { ApplyWithPrimaryChoice(draft, command); }
             catch (RuleViolation error) { return Reject(error.Code, error.Message, authenticatedSeat,replay); }
             draft.Revision++;
             draft.Receipts.Add(new CommandReceipt { Id = command.Id, ActorSeat = authenticatedSeat, Fingerprint = fingerprint, Revision = draft.Revision });
@@ -170,6 +170,7 @@ namespace Goa2.Application
                 view.PrimaryRestriction = playedCard == null ? "" : EffectRules.SkillRestriction(catalog,snapshot,seat.Value,catalog.Card(playedCard.CardId));
                 view.CanBeginPrimary = view.CanPass && view.PrimarySupported && view.PrimaryRestriction == "" && snapshot.Units.Any(u => u.Seat == seat);
                 view.PrimaryImmediatelySkips = view.CanBeginPrimary && CombatRules.PrimaryImmediatelySkips(catalog,snapshot,seat.Value);
+                if(view.CanBeginPrimary && !view.PrimaryImmediatelySkips) view.PrimaryPreview = PreviewForView(snapshot,seat.Value);
                 view.AttackTargets = CombatRules.AttackTargets(catalog, snapshot, seat.Value);
                 view.DefenseOptions = CombatRules.DefenseOptions(catalog, snapshot, seat.Value);
                 view.DefenseRestrictions = CombatRules.DefenseRestrictions(catalog,snapshot,seat.Value);

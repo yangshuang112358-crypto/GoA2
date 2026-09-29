@@ -152,56 +152,10 @@ namespace Goa2.Presentation
                 RenderCardDetail(parent,catalog.Card(choice.Source));
                 return true;
             }
-            if (choice.Kind == "discard_attack")
+            if(WheelRecovery(view))
             {
-                parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择弃牌堆中的一张攻击牌执行反击。","section-title"));
-                if(choice.ChooserSeat!=seat)
-                { parent.Add(Text("等待反击者选择攻击牌。","body"));RenderCardDetail(parent,catalog.Card(choice.Source));return true; }
-                foreach(string id in view.DiscardAttackCards)
-                {
-                    string selected=id;
-                    var button=Button(catalog.Card(id).Name+" · 已丢弃",()=>{discardCardId=selected;Render();},"choice-button","discard-attack-"+catalog.Card(id).Color);
-                    if(discardCardId==id)button.AddToClassList("chosen");parent.Add(button);
-                }
-                if(view.DiscardAttackCards.Contains(discardCardId))
-                    Confirm(parent,"执行反击："+catalog.Card(discardCardId).Name,()=>Submit(CommandKind.ChooseDiscardAttack,discardCardId));
-                parent.Add(Text("此牌仍留在弃牌堆；反击完成后继续原行动流程。","body"));
-                RenderCardDetail(parent,catalog.Card(view.DiscardAttackCards.Contains(discardCardId)?discardCardId:choice.Source));
+                parent.Add(Text(choice.Kind=="discard_attack" ? "从英雄圆环选择弃牌堆攻击牌反击；牌仍留在弃牌堆。" : choice.Kind=="recover_discard" ? "从英雄圆环选择取回卡牌；取回来源牌会取消对应持续效果。" : "从英雄圆环选择交换手牌，或选择不交换。","body"));
                 return true;
-            }
-            if (choice.Kind == "recover_discard")
-            {
-                parent.Add(Text(PlayerName(choice.ChooserSeat)+"选择取回一张卡牌。","section-title"));
-                if(choice.ChooserSeat!=seat) { parent.Add(Text("等待对应角色选择取回或跳过。","body"));RenderCardDetail(parent,catalog.Card(choice.Source));return true; }
-                foreach(string id in view.RecoverableCards)
-                {
-                    string selected=id;
-                    string zone=view.OwnCards.Single(c=>c.CardId==id).Zone==CardZone.PlayedResolved ? "已结算" : "已丢弃";
-                    var button=Button(catalog.Card(id).Name+" · "+zone,()=> { discardCardId=selected;Render(); },"choice-button","recover-card-"+catalog.Card(id).Color);
-                    if(discardCardId==id) button.AddToClassList("chosen");parent.Add(button);
-                }
-                if(view.RecoverableCards.Contains(discardCardId))
-                {
-                    Confirm(parent,"确认取回 "+catalog.Card(discardCardId).Name,()=>Submit(CommandKind.ChooseRecoveredCard,discardCardId));
-                    if(view.EngineVersion>=16 && view.Effects.Any(e=>e.ControllerSeat==seat && e.SourceCardId==discardCardId))
-                        parent.Add(Text("取回此牌会取消它当前或待生效的持续效果。","body"));
-                }
-                parent.Add(Button("不取回，继续结算",()=>Submit(CommandKind.ChooseRecoveredCard,"skip"),"quiet-button","recover-card-skip"));
-                RenderCardDetail(parent,catalog.Card(view.RecoverableCards.Contains(discardCardId)?discardCardId:choice.Source));
-                return true;
-            }
-            if(choice.Kind=="card_swap")
-            {
-                var instruction=Text(PlayerName(choice.ChooserSeat)+"可以选择一张手牌交换；换回本次防御牌，所选手牌进入弃牌区。","body");instruction.name="card-swap-choice";parent.Add(instruction);
-                if(choice.ChooserSeat!=seat){parent.Add(Text("等待防御者选择交换或跳过。","body"));return true;}
-                foreach(string id in view.CardSwapOptions)
-                {
-                    string selected=id;var button=Button(catalog.Card(id).Name,()=>{discardCardId=selected;Render();},"choice-button","card-swap-"+catalog.Card(id).Color);
-                    if(discardCardId==id)button.AddToClassList("chosen");parent.Add(button);
-                }
-                if(view.CardSwapOptions.Contains(discardCardId))Confirm(parent,"确认交换 "+catalog.Card(discardCardId).Name,()=>Submit(CommandKind.ChooseCardSwap,discardCardId));
-                parent.Add(Button("不交换，继续结算",()=>Submit(CommandKind.ChooseCardSwap,"skip"),"quiet-button","card-swap-skip"));
-                if(choice.Source!="")RenderCardDetail(parent,catalog.Card(choice.Source));return true;
             }
             if(choice.Kind=="placement")
             {

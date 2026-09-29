@@ -11,6 +11,7 @@ namespace Goa2.Network.Client
         {
             switch (kind)
             {
+                case CommandKind.CommitPrimaryAttack:
                 case CommandKind.ChooseHero: case CommandKind.SelectCard: case CommandKind.ChooseAttackTarget:
                 case CommandKind.Defend: case CommandKind.ChooseRoundMinionRemoval: case CommandKind.ChooseUpgrade:
                 case CommandKind.ForcedDiscard: case CommandKind.ChooseOptionalDiscard: case CommandKind.ChooseRecoveredCard:
@@ -20,8 +21,10 @@ namespace Goa2.Network.Client
                 case CommandKind.DeployHero: return new PlayerIntent(kind, targetSeat:target, destination:destination);
                 case CommandKind.ChooseInitiative: return new PlayerIntent(kind, targetSeat:target);
                 case CommandKind.Move: return new PlayerIntent(kind, value=="begin" ? value : null, destination:value=="begin" ? (Hex?)null : destination, moveMode:mode);
+                case CommandKind.CommitPrimaryMove:
                 case CommandKind.ChooseEffectMove: return new PlayerIntent(kind, value=="skip" ? value : null, destination:value=="skip" ? (Hex?)null : destination);
                 case CommandKind.ChooseMinionSpawn: case CommandKind.ChooseMinionReturn: return new PlayerIntent(kind,value,destination:destination);
+                case CommandKind.CommitPrimaryPlacement:
                 case CommandKind.RespawnHero: case CommandKind.ChoosePlacement: return new PlayerIntent(kind,destination:destination);
                 case CommandKind.ChooseGoldTransfer: return new PlayerIntent(kind,value,targetSeat:target);
                 case CommandKind.ConfirmCard: case CommandKind.CancelCardSelection: case CommandKind.Pass:

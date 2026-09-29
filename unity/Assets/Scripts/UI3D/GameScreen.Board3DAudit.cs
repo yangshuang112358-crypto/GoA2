@@ -32,7 +32,7 @@ namespace Goa2.Presentation
         {
             Directory.CreateDirectory(output);
             var report=new BoardAuditReport {UnityVersion=UnityEngine.Application.unityVersion,Width=Screen.width,Height=Screen.height};
-            var routine=Environment.GetCommandLineArgs().Contains("-goaActionSequenceAuditOnly") ? AuditActionSequence(output,report) : Environment.GetCommandLineArgs().Contains("-goaBattlefieldAuditOnly") ? AuditBattlefieldLayout(output,report) : Environment.GetCommandLineArgs().Contains("-goaTerrainAuditOnly") ? AuditTerrain(output,report) : Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
+            var routine=Environment.GetCommandLineArgs().Contains("-goaWorldDecisionsAuditOnly") ? AuditWorldDecisions(output,report) : Environment.GetCommandLineArgs().Contains("-goaActionSequenceAuditOnly") ? AuditActionSequence(output,report) : Environment.GetCommandLineArgs().Contains("-goaBattlefieldAuditOnly") ? AuditBattlefieldLayout(output,report) : Environment.GetCommandLineArgs().Contains("-goaTerrainAuditOnly") ? AuditTerrain(output,report) : Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
             while(true)
             {
                 object? next=null;bool more=false;

@@ -78,7 +78,7 @@ namespace Goa2.Presentation
             root.Add(settings);
             followButton=Button("",()=>SetCameraFollow(!cameraFollow),"follow-toggle","follow-toggle");root.Add(followButton);
             followToast=Text("","follow-toast");followToast.name="follow-toast";followToast.pickingMode=PickingMode.Ignore;root.Add(followToast);
-            if(!rightExpanded && confirmAction!=null && confirmButton!=null) {
+            if(showDebug && !rightExpanded && confirmAction!=null && confirmButton!=null) {
                 var confirm=Button(confirmButton.text+" · Enter",ConfirmCurrent,"floating-confirm","floating-confirm");root.Add(confirm);
             }
             if(renderedView.Winner.HasValue) {

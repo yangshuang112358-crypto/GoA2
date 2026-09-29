@@ -37,6 +37,9 @@ namespace Goa2.Presentation
                     var args=request["args"] as JObject ?? new JObject();
                     if(op=="submit")Submit(Enum.Parse<CommandKind>((string)request["kind"]!), (string?)args["Value"]??"",(int?)args["TargetSeat"]??-1,args["Destination"]?.ToObject<Hex>()??default,args["MoveMode"]==null ? MoveMode.Secondary : Enum.Parse<MoveMode>((string)args["MoveMode"]!));
                     else if(op=="pick"){lastNetworkResult=null;WheelPick((string)request["card"]!);}
+                    else if(op=="action"){lastNetworkResult=null;PickAction((string)request["value"]!);}
+                    else if(op=="return"){lastNetworkResult=null;ReturnWorldChoice();}
+                    else if(op=="cell") {var cell=request["cell"]!.ToObject<Hex>();if(NetworkCanAct && LegalCells(renderedView).Contains(cell)){chosenCell=cell;worldOptionsOpen=false;wheelSeat=null;Render();}}
                     else if(op=="confirm"){lastNetworkResult=null;ConfirmCurrent();}
                     else if(op=="switch")SwitchSeat((int)request["seat"]!);
                     else if(op=="disconnect")networkSession!.Disconnect();
@@ -55,7 +58,7 @@ namespace Goa2.Presentation
                 if(Time.realtimeSinceStartup>=until)error="Timed out";
                 var result=new{seq=last,error,seat,connection=networkSession!.Connection.ToString(),canAct=NetworkCanAct,
                     hasLocalSession=session!=null,hasBoard=board!=null,boardConnected=board?.Connected,
-                    confirmEnabled=confirmButton?.enabledInHierarchy??false,wheelPreview,uncertain=uncertainCommand!="",
+                    confirmEnabled=confirmButton?.enabledInHierarchy??false,wheelPreview,actionChoice,worldConfirm=root.Q("world-confirm")!=null,worldDecisionsEnabled=root.Q("world-decisions")?.enabledInHierarchy??false,uncertain=uncertainCommand!="",
                     reconnectEnabled=root.Q<Button>("network-reconnect")?.enabledInHierarchy??false,
                     discardBeats=wheelState.Discards.Count,actionStoneCount=root.Query<Goa2.Presentation.UI3D.ActionSlab>().ToList().Count,
                     actionFocus=actionRail?.FocusId,actionCoins=actionRail?.CoinCount??0,result=lastNetworkResult,view=networkView};

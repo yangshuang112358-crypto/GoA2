@@ -103,7 +103,7 @@ namespace Goa2.Presentation
             board = new BattlefieldSurface(catalog, view, targets, chosenCell, cell =>
             {
                 if (!targets.Contains(cell)) { notice = "此格不可用于当前操作。"; return; }
-                chosenCell = cell; notice = "已选地图格 " + cell + "，确认后应用。"; Render();
+                chosenCell = cell; worldOptionsOpen=false;wheelSeat=null; notice = "已选地图格 " + cell + "，确认后应用。"; Render();
             }, cell => cellInfo.text = BoardHint(view,RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : "")), viewport, SelectedEffectArea(view), board3DViewport, seat);
             board.HeroHover=ShowHeroHover;
             board.HeroClick=ToggleHeroWheel;
@@ -116,7 +116,7 @@ namespace Goa2.Presentation
         }
         private void BuildHand(VisualElement parent, GameView view)
         {
-            if(wheelState.Discards.Count>0 || (view.UpgradeOptions.Count==0 && view.CardSwapOptions.Count==0)) return;
+            if(wheelState.Discards.Count>0 || view.UpgradeOptions.Count==0) return;
             PrepareUpgradeSelection(view);
             var panel = Box(bottomExpanded ? "hand" : "collapsed-row");panel.name=view.UpgradeOptions.Count>0 ? "upgrade-zone" : "hand-zone"; parent.Add(panel);
             if(view.UpgradeOptions.Count>0) panel.AddToClassList("upgrade-panel");

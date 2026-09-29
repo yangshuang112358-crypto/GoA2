@@ -338,3 +338,15 @@ Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
 .action-card-result { font-size: 19px; color: #b9c4d2; white-space: normal; border-top-width: 1px; border-top-color: #596777; margin: 0; padding-top: 7px; }
 .action-team-stripe { height: 2px; margin-top: 3px; margin-left: 3px; margin-right: 3px; flex-shrink: 0; }
 .action-version-warning { position: absolute; left: 16px; top: 110px; width: 340px; font-size: 22px; color: #f6c38b; white-space: normal; }
+/* Battlefield decisions: transparent surrounding layer, world-anchored discs. */
+.world-action-wheel { position: absolute; width: 430px; height: 430px; }
+.world-action-disc { position: absolute; width: 130px; height: 130px; margin: 0; padding: 12px; border-radius: 65px; border-width: 4px; border-color: rgb(163, 150, 114); background-color: rgba(26, 38, 46, .96); color: rgb(247, 235, 205); font-size: 24px; white-space: normal; -unity-text-align: middle-center; transition-property: scale, background-color; transition-duration: .12s; }
+.world-action-disc:hover { scale: 1.07 1.07; background-color: rgb(48, 68, 79); }
+.world-action-disc:active { scale: .96 .96; }
+.world-action-disc:disabled { opacity: .36; }
+.world-map-confirm { position: absolute; margin: 0; padding: 0; border-radius: 36px; border-width: 3px; border-color: rgb(122, 221, 181); background-color: rgba(21, 68, 67, .95); color: white; font-size: 42px; -unity-text-align: middle-center; }
+.world-return { position: absolute; right: 22px; top: 44%; width: 76px; height: 76px; border-radius: 38px; font-size: 48px; color: rgb(222, 215, 184); background-color: rgba(22, 33, 43, .92); }
+.world-options-toggle { position: absolute; right: 22px; bottom: 140px; font-size: 24px; padding: 12px; }
+.world-ring-page { position: absolute; left: 165px; top: 190px; width: 100px; height: 50px; font-size: 24px; }
+.world-instruction { position: absolute; left: 36%; right: 15%; bottom: 18px; border-radius: 12px; padding: 10px; flex-direction: row; background-color: rgba(14, 24, 33, .9); }
+.world-instruction-text { flex-grow: 1; flex-shrink: 1; font-size: 23px; white-space: normal; color: rgb(220, 230, 233); }

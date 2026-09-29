@@ -42,6 +42,13 @@ namespace Goa2.Domain
         public Hex Destination;
         public List<Hex> Path = new List<Hex>();
     }
+    public sealed class PrimaryActionPreview
+    {
+        public string Kind = "";
+        public bool Optional;
+        public List<string> Targets = new List<string>();
+        public List<Hex> Cells = new List<Hex>();
+    }
     public sealed class GameView
     {
         public string MatchId = "";
@@ -71,6 +78,7 @@ namespace Goa2.Domain
         public bool CanUpgradeEngine;
         public bool CanBeginPrimary;
         public bool PrimaryImmediatelySkips;
+        public PrimaryActionPreview? PrimaryPreview;
         public bool CanStartSecondaryMoveWithPrelude, CanStartFastMoveWithPrelude;
         public bool PrimarySupported;
         public string PrimaryRestriction = "";

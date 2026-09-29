@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 11:38:40Z" end-time="2026-09-29 11:38:41Z" duration="1.6442959">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2284" result="Passed" start-time="2026-09-29 11:38:40Z" end-time="2026-09-29 11:38:41Z" duration="1.644296" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3565" name="Goa2.Core.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.Core.Tests.dll" runstate="Runnable" testcasecount="2185" result="Passed" start-time="2026-09-29 11:38:40Z" end-time="2026-09-29 11:38:41Z" duration="1.612401" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9432" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="3566" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="2185" result="Passed" start-time="2026-09-29 11:38:40Z" end-time="2026-09-29 11:38:41Z" duration="1.591559" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="3567" name="Tests" fullname="Goa2.Tests" runstate="Runnable" testcasecount="2185" result="Passed" start-time="2026-09-29 11:38:40Z" end-time="2026-09-29 11:38:41Z" duration="1.563898" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="2553" name="PrimaryPreviewTests" fullname="Goa2.Tests.PrimaryPreviewTests" classname="Goa2.Tests.PrimaryPreviewTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-29 11:38:40Z" end-time="2026-09-29 11:38:41Z" duration="1.526495" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2559" name="BadTargetStaleRevisionAndWrongActorDoNotStartAction" fullname="Goa2.Tests.PrimaryPreviewTests.BadTargetStaleRevisionAndWrongActorDoNotStartAction" methodname="BadTargetStaleRevisionAndWrongActorDoNotStartAction" classname="Goa2.Tests.PrimaryPreviewTests" runstate="Runnable" seed="946700154" result="Passed" start-time="2026-09-29 11:38:40Z" end-time="2026-09-29 11:38:40Z" duration="0.458856" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2558" name="ConfirmCommitsOnceAndRestoresFromReplay" fullname="Goa2.Tests.PrimaryPreviewTests.ConfirmCommitsOnceAndRestoresFromReplay" methodname="ConfirmCommitsOnceAndRestoresFromReplay" classname="Goa2.Tests.PrimaryPreviewTests" runstate="Runnable" seed="532710809" result="Passed" start-time="2026-09-29 11:38:40Z" end-time="2026-09-29 11:38:40Z" duration="0.168566" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2556" name="MapPreviewConfirmsFirstStepAtomicallyAndReplays" fullname="Goa2.Tests.PrimaryPreviewTests.MapPreviewConfirmsFirstStepAtomicallyAndReplays" classname="Goa2.Tests.PrimaryPreviewTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29 11:38:40Z" end-time="2026-09-29 11:38:41Z" duration="0.655290" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2554" name="MapPreviewConfirmsFirstStepAtomicallyAndReplays(&quot;tidal-place&quot;,&quot;placement&quot;,CommitPrimaryPlacement)" fullname="Goa2.Tests.PrimaryPreviewTests.MapPreviewConfirmsFirstStepAtomicallyAndReplays(&quot;tidal-place&quot;,&quot;placement&quot;,CommitPrimaryPlacement)" methodname="MapPreviewConfirmsFirstStepAtomicallyAndReplays" classname="Goa2.Tests.PrimaryPreviewTests" runstate="Runnable" seed="412698572" result="Passed" start-time="2026-09-29 11:38:40Z" end-time="2026-09-29 11:38:41Z" duration="0.413006" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2555" name="MapPreviewConfirmsFirstStepAtomicallyAndReplays(&quot;charge-hero&quot;,&quot;effect_move&quot;,CommitPrimaryMove)" fullname="Goa2.Tests.PrimaryPreviewTests.MapPreviewConfirmsFirstStepAtomicallyAndReplays(&quot;charge-hero&quot;,&quot;effect_move&quot;,CommitPrimaryMove)" methodname="MapPreviewConfirmsFirstStepAtomicallyAndReplays" classname="Goa2.Tests.PrimaryPreviewTests" runstate="Runnable" seed="1440771056" result="Passed" start-time="2026-09-29 11:38:41Z" end-time="2026-09-29 11:38:41Z" duration="0.240143" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="2560" name="OptionalDiscardPreludeCannotBeBypassedWithAtomicAttack" fullname="Goa2.Tests.PrimaryPreviewTests.OptionalDiscardPreludeCannotBeBypassedWithAtomicAttack" methodname="OptionalDiscardPreludeCannotBeBypassedWithAtomicAttack" classname="Goa2.Tests.PrimaryPreviewTests" runstate="Runnable" seed="1646780238" result="Passed" start-time="2026-09-29 11:38:41Z" end-time="2026-09-29 11:38:41Z" duration="0.104165" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2557" name="PreviewIsReadOnlyPrivateAndCannotMutateAuthority" fullname="Goa2.Tests.PrimaryPreviewTests.PreviewIsReadOnlyPrivateAndCannotMutateAuthority" methodname="PreviewIsReadOnlyPrivateAndCannotMutateAuthority" classname="Goa2.Tests.PrimaryPreviewTests" runstate="Runnable" seed="2074914492" result="Passed" start-time="2026-09-29 11:38:41Z" end-time="2026-09-29 11:38:41Z" duration="0.126957" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\primary-preview-final-c2390e4f978944f1b8cf1e8807f2b332.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
