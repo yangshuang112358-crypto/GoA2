@@ -23,11 +23,12 @@ namespace Goa2.Presentation
         private void PickAction(string value)
         {
             if(!NetworkCanAct)return;
-            debugTeleport=false;actionChoice=value;chosenCell=null;moveMode=value=="secondary" ? MoveMode.Secondary : value=="fast" ? MoveMode.Fast : (MoveMode?)null;
+            Sound("select");debugTeleport=false;actionChoice=value;chosenCell=null;moveMode=value=="secondary" ? MoveMode.Secondary : value=="fast" ? MoveMode.Fast : (MoveMode?)null;
             wheelSeat=null;worldOptionsOpen=false;Render();
         }
         private void ReturnWorldChoice()
         {
+            Sound("cancel");
             chosenCell=null;wheelPreview="";wheelDecline=false;
             if(renderedView.Phase==Phase.Action){actionChoice="";moveMode=null;passPending=false;actionRingClosed=false;}
             else worldOptionsOpen=!worldOptionsOpen;

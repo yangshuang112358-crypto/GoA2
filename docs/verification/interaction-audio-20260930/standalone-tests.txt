@@ -1,0 +1,8 @@
+PASS ClipsAreFiniteShortAndFadeAtBothEnds
+PASS LoadAndRefreshDoNotReplayResponse
+PASS NewOwnResponsePlaysOnce
+PASS OtherSeatsResponseDoesNotPromptLocalPlayer
+PASS HiddenSelectionRefreshDoesNotMakeSound
+PASS NewMatchDoesNotReplayLastMatch
+PASS OwnTurnAndVictoryAreAnnouncedOnce
+7 passed, 0 failed (standalone .NET; no Unity scene/audio playback)

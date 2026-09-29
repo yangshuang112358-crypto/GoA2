@@ -60,8 +60,8 @@ namespace Goa2.Presentation
         {
             if(!NetworkCanAct){notice="等待连接或上一条操作确认后再操作。";Render();return;}
             lastNetworkResult=null;networkBusy=true;Render();
-            try{var result=await networkSession!.SubmitAsync(UiIntent.Create(kind,value,target,destination,mode));ApplyNetworkResult(result);}
-            catch{notice="操作未提交，请重新选择。";}
+            try{var result=await networkSession!.SubmitAsync(UiIntent.Create(kind,value,target,destination,mode));ApplyNetworkResult(result);if(!networkDestroyed && !result.Uncertain)CommandSound(kind,result.Accepted);}
+            catch{if(!networkDestroyed)Sound("reject");notice="操作未提交，请重新选择。";}
             finally{networkBusy=false;if(!networkDestroyed){ClearNetworkPreview();Render();}}
         }
         private void ApplyNetworkResult(IntentResult result)

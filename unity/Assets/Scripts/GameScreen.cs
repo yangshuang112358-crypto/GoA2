@@ -134,6 +134,7 @@ namespace Goa2.Presentation
                 Id = Guid.NewGuid().ToString("N"), MatchId = view.MatchId, ExpectedRevision = view.Revision,
                 ActorSeat = seat, Kind = kind, Value = value, TargetSeat = target, Destination = destination, MoveMode = mode
             });
+            CommandSound(kind,result.Accepted);
             notice = result.Accepted ? "操作已确认。" : result.Message;
             ClearPending(); Render();
         }
@@ -204,6 +205,7 @@ namespace Goa2.Presentation
             renderedView = NetworkMode ? networkView! : session.View(seat);
             board3DViewport.Presentation.Observe(catalog,renderedView,Time.realtimeSinceStartup,cameraFollow ? board3DViewport.Focus : (Vector3?)null);
             if (!renderedView.EffectAreas.ContainsKey(effectAreaId)) effectAreaId="";
+            ObserveAudio();
             ObserveWorldDecisions();
             ObserveWheel();
             BuildLayout(renderedView);

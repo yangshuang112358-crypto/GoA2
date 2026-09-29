@@ -15,7 +15,9 @@ namespace Goa2.Presentation.UI3D {
    open=Resources.Load<AudioClip>("UI3D/Audio/settings-open");
    if(FindFirstObjectByType<AudioListener>()==null)gameObject.AddComponent<AudioListener>();
   }
+  private void Update(){source.volume=.7f*InteractionAudio.Volume;}
   public void Play(string cue) {
+   source.volume=.7f*InteractionAudio.Volume;
    // Rebuilding the drawer sends a fresh PointerEnter without a physical re-entry.
    if(cue=="enter"){if(hovering)return;hovering=true;}
    else if(cue=="leave"){if(!hovering)return;hovering=false;}

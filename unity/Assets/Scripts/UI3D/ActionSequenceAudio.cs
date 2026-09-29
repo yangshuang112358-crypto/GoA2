@@ -10,6 +10,7 @@ namespace Goa2.Presentation.UI3D
         private float last=-10;
         public static float Duration(string cue)=>cue=="tick"?.07f:cue=="move"?.18f:cue=="drop"?.22f:.13f;
         private void Awake(){source=gameObject.AddComponent<AudioSource>();source.playOnAwake=false;source.spatialBlend=0;source.volume=.65f;if(FindFirstObjectByType<AudioListener>()==null)gameObject.AddComponent<AudioListener>();}
+        private void Update(){source.volume=.65f*InteractionAudio.Volume;}
         public void Play(string cue)
         {
             if(Time.realtimeSinceStartup-last<.065f)return;last=Time.realtimeSinceStartup;
@@ -24,7 +25,7 @@ namespace Goa2.Presentation.UI3D
                 }
                 clip=AudioClip.Create("action-"+cue,data.Length,1,rate,false);clip.SetData(data,0);clips[cue]=clip;
             }
-            source.PlayOneShot(clip);
+            source.volume=.65f*InteractionAudio.Volume;source.PlayOneShot(clip);
         }
         private void OnDestroy(){foreach(var c in clips.Values)Destroy(c);}
     }

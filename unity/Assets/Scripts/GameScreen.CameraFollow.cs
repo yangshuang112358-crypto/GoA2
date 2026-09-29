@@ -17,7 +17,7 @@ namespace Goa2.Presentation
         {
             cameraFocusVersion++;
             if(cameraFollow==enabled) {if(!enabled)board?.StopFollowing();return;}
-            cameraFollow=enabled;toastStarted=Time.realtimeSinceStartup;
+            Sound(enabled?"open":"close");cameraFollow=enabled;toastStarted=Time.realtimeSinceStartup;
             if(enabled) ApplyCameraFollow(true);else {cinematicResumeZoom=null;board?.StopFollowing();}
             RefreshFollowControls();RequestCapture();
         }

@@ -1,0 +1,6 @@
+C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\unity\Assets\Scripts\GameScreen.Combat.cs(15,22): warning CS0414: 字段“GameScreen.declineRetaliationPending”已被赋值，但从未使用过它的值 [C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\audio-compile\AudioCompile.csproj]
+    10 个警告
+    0 个错误
+
+已用时间 00:00:01.62
+Unity runtime/build remains blocked by Windows application control; this is standalone compilation only.

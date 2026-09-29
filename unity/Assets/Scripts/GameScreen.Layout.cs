@@ -92,6 +92,7 @@ namespace Goa2.Presentation
                 var load=Button("读取",Load,"quiet-button");load.SetEnabled(!ScenarioRunning);controls.Add(load);
                 var fresh=Button("新对局",()=>{newMatchPending=true;Render();},"quiet-button");fresh.SetEnabled(!ScenarioRunning);controls.Add(fresh);
             }
+            BuildAudioSettings(parent);
             parent.Add(Text(notice,"settings-notice"));
         }
         private static string ColorName(string color) => color switch { "gold" => "金", "silver" => "银", "red" => "红", "green" => "绿", "blue" => "蓝", _ => "紫" };
@@ -103,7 +104,7 @@ namespace Goa2.Presentation
             board = new BattlefieldSurface(catalog, view, targets, chosenCell, cell =>
             {
                 if (!targets.Contains(cell)) { notice = "此格不可用于当前操作。"; return; }
-                chosenCell = cell; worldOptionsOpen=false;wheelSeat=null; notice = "已选地图格 " + cell + "，确认后应用。"; Render();
+                Sound("target");chosenCell = cell; worldOptionsOpen=false;wheelSeat=null; notice = "已选地图格 " + cell + "，确认后应用。"; Render();
             }, cell => cellInfo.text = BoardHint(view,RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : "")), viewport, SelectedEffectArea(view), board3DViewport, seat);
             board.HeroHover=ShowHeroHover;
             board.HeroClick=ToggleHeroWheel;

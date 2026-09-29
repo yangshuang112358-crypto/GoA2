@@ -29,13 +29,14 @@ namespace Goa2.Presentation {
    else if(renderedView.Phase==Phase.Action)actionRingClosed=true;
    HideHeroHover();HideSkillInfo();
    if(wheelSeat==target){CloseHeroWheel();return;}
-   wheelOpened=Time.realtimeSinceStartup;wheelSeat=target;wheelPreview="";wheelDecline=false;Render();
+   Sound("open");wheelOpened=Time.realtimeSinceStartup;wheelSeat=target;wheelPreview="";wheelDecline=false;Render();
    var unit=renderedView.Units.FirstOrDefault(u=>u.Seat==target);
    var currentBoard=board;int focusVersion=cameraFocusVersion;
    if(unit!=null)root.schedule.Execute(()=>{if(board==currentBoard && wheelSeat==target && focusVersion==cameraFocusVersion)board?.FollowAt(Board3DGeometry.World(unit.Position),board3DViewport.Enabled ? 3f : 2.6f);}).StartingIn(30);
   }
   private void CloseHeroWheel() {
    if(wheelState.Discards.Count>0)return;
+   if(wheelSeat.HasValue || root.Q("action-wheel")!=null)Sound("close");
    actionRingClosed=true;root.Q("action-wheel")?.RemoveFromHierarchy();
    wheelSeat=null;wheelPreview="";wheelDecline=false;HideSkillInfo();
    if(confirmButton==skillWheel?.Confirm){confirmButton=null;confirmAction=null;root.Q("floating-confirm")?.RemoveFromHierarchy();}
@@ -47,7 +48,7 @@ namespace Goa2.Presentation {
     var c=renderedView.OwnCards.Single(x=>x.CardId==id);
     if(c.Zone==CardZone.Selected)Submit(CommandKind.CancelCardSelection);else if(c.Zone==CardZone.InHand)Submit(CommandKind.SelectCard,id);return;
    }
-   if(WheelChoices(renderedView).Contains(id)){wheelDecline=false;wheelPreview=wheelPreview==id ? "" : id;Render();}
+   if(WheelChoices(renderedView).Contains(id)){wheelDecline=false;wheelPreview=wheelPreview==id ? "" : id;Sound(wheelPreview==""?"cancel":"select");Render();}
   }
   private void WheelConfirm() {
    if(!NetworkCanAct || wheelState.Discards.Count>0 || wheelSeat!=seat)return;
@@ -104,6 +105,7 @@ namespace Goa2.Presentation {
     var scheduled=wheelState.Discards.FirstOrDefault(b=>b.Seat==target && b.Color==color);float flipAt=scheduled!=null ? scheduled.Start+1.15f : 0;
     if(flipAt>0)zone=CardZone.Discarded;
     var disc=new SkillDisc(color,card,player,zone,card?.Id==wheelPreview,allowed,wheelState.Get(target,color),flipAt,()=>{if(card!=null)WheelPick(card.Id);},()=>{});
+    disc.RegisterCallback<PointerEnterEvent>(e=>HoverSkillSound(e.position));
     disc.Inspect=at=>ShowSkillInfo(card,disc,at);
     disc.RegisterCallback<PointerMoveEvent>(e=>{if(skillPopupOwner==disc)PositionSkillInfo(e.position);});
     disc.RegisterCallback<PointerLeaveEvent>(_=>{if(skillPopupOwner==disc)HideSkillInfo();});
