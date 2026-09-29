@@ -20,13 +20,26 @@ namespace Goa2.Presentation
             yield return null;var runner=Fixture("throwing-axe-reflection");Take(runner,9);
             rightExpanded=false;cameraFollow=false;CloseHeroWheel();Render();yield return new WaitForSecondsRealtime(2);
             Check(root.Q<ScrollView>("revealed-zone")==null&&actionRail!=null,"Floating rail is not a window ScrollView");
-            Check(root.Query<ActionSlab>().ToList().Count==4,"Four original complete cards");
+            Check(root.Query<ActionSlab>().ToList().Count==4,"Four original compact cards");
+            Check(actionRail!.worldBound.width<=344,"Rail occupies at most 344px");
             foreach(var n in renderedView.ActionSequence.Cards)
             {
-                var text=root.Q<Label>("action-rules-"+n.Id);Check(text!=null&&text.text==CardTextMarkup.Format(CardTextMarkup.Description(catalog.Card(n.CardId))),"Complete formal description "+n.CardId);
-                Check(text!.worldBound.height>20&&text.worldBound.yMax<text.parent.worldBound.yMax,"Description contained within stone "+n.CardId);
+                var slab=root.Q<ActionSlab>("revealed-seat-"+(n.Seat+1));
+                Check(slab.Q<Label>(className:"action-card-rules")==null && slab.Q<Label>(className:"action-card-result")==null,"No effects or results on compact stone "+n.CardId);
+                Check(slab.worldBound.height<=138 && slab.Q("action-portrait-"+n.Id)!=null && slab.Q("action-skill-"+n.Id)!=null,"Compact portrait and skill icon "+n.CardId);
+                foreach(var number in slab.Query<VisualElement>(className:"action-number").ToList())Check(number.worldBound.xMax<=slab.worldBound.xMax,"Numbers fit compact stone "+n.CardId);
             }
-            ScreenCapture.CaptureScreenshot(Path.Combine(output,"full-cards.png"));yield return new WaitForSecondsRealtime(.25f);
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"compact-cards.png"));yield return new WaitForSecondsRealtime(.25f);
+            var first=root.Query<ActionSlab>().ToList().First();var firstNode=renderedView.ActionSequence.Cards.First();
+            string beforeHover=session.ExportSave();
+            using(var enter=PointerEnterEvent.GetPooled(new Event{type=EventType.MouseMove,mousePosition=first.worldBound.center})){enter.target=first;first.SendEvent(enter);}
+            yield return new WaitForSecondsRealtime(.4f);
+            Check(cardPreview!=null && root.Q<Label>("card-preview-rules").text==CardTextMarkup.Format(CardTextMarkup.Description(catalog.Card(firstNode.CardId))),"Hover opens full canonical card");
+            Check(cardPreview!.worldBound.x>=first.worldBound.xMax && cardPreview.worldBound.yMax<=Screen.height,"Hover detail beside rail fits screen");
+            Check(session.ExportSave()==beforeHover,"Hover never changes game state");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"hover-full-card.png"));yield return new WaitForSecondsRealtime(.25f);
+            using(var leave=PointerLeaveEvent.GetPooled(new Event{type=EventType.MouseMove,mousePosition=new Vector2(1000,90)})){leave.target=first;first.SendEvent(leave);}
+            yield return null;Check(cardPreview==null,"Leaving stone closes full card");
             float zoom=board3DViewport.Zoom;
             using(var e=WheelEvent.GetPooled(new Event{type=EventType.ScrollWheel,delta=new Vector2(0,5),mousePosition=new Vector2(120,230)})){e.target=actionRail;actionRail!.SendEvent(e);}
             yield return new WaitForSecondsRealtime(.5f);Check(actionRail!.FreeBrowsing&&actionRail.ScrollOffset>30,"Wheel scrolls stone rail");Check(board3DViewport.Zoom==zoom,"Stone wheel does not zoom battlefield");
@@ -53,6 +66,7 @@ namespace Goa2.Presentation
             yield return new WaitForSecondsRealtime(1.2f);
             Check(renderedView.ActiveSeat==2&&renderedView.ActionSequence.Cards[0].Seat==2,"Captain chooses real next actor by clicking stone");
             Check(actionRail.CoinCount==2&&!actionRail.FreeBrowsing,"Actor detaches, two coins remain and focus resets");
+            Check(root.Query<ActionSlab>().ToList().All(s=>s.worldBound.yMax<=Screen.height),"Four compact main cards fit after selection");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"same-initiative.png"));yield return new WaitForSecondsRealtime(.25f);
             // Rendering stress fixture only: all canonical descriptions are measured at this width.
             var actual=renderedView;int count=0;
@@ -61,8 +75,12 @@ namespace Goa2.Presentation
                 var copy=new GameView{MatchId="text-audit",Revision=count,Players=actual.Players,ActionSequence=new ActionSequenceView{Id="text",FocusId="text"}};
                 copy.ActionSequence.Cards.Add(new ActionCardView{Id="text",CardId=card.Id,Seat=0,Started=true});
                 BuildActionSequence(root,copy);yield return null;yield return null;
-                var text=root.Q<Label>("action-rules-text");
-                Check(text!=null&&text.text==CardTextMarkup.Format(CardTextMarkup.Description(card))&&text.worldBound.yMax<text.parent.worldBound.yMax,"Unabridged card layout "+card.Id);count++;
+                var compact=root.Q<ActionSlab>("action-node-text");
+                if(compact==null)compact=root.Q<ActionSlab>("revealed-seat-1");
+                ShowActionCardPreview(compact,card,copy.Players[0],copy.ActionSequence.Cards[0]);yield return null;yield return null;
+                var text=root.Q<Label>("card-preview-rules");
+                Check(text!=null&&text.text==CardTextMarkup.Format(CardTextMarkup.Description(card))&&cardPreview!.worldBound.yMax<=Screen.height && text.worldBound.yMax<cardPreview.worldBound.yMax,"Unabridged hover layout "+card.Id);
+                HideCardPreview();count++;
             }
             Check(count==108,"All 108 canonical descriptions rendered without excerpting");
             renderedView=actual;Render();yield return new WaitForSecondsRealtime(.4f);

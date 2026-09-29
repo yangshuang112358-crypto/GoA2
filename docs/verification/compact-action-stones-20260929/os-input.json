@@ -1,0 +1,13 @@
+{
+  "Passed": true,
+  "Method": "Foreground Player OS mouse/keyboard injection, not synthetic UI events",
+  "Checks": [
+    "OS hover shows full rules",
+    "Hover preserves revision",
+    "Four compact stones use bounded size",
+    "Leaving closes full card",
+    "Rail wheel preserves map zoom",
+    "Outside rail wheel zooms map",
+    "All OS browsing preserves game state revision"
+  ]
+}

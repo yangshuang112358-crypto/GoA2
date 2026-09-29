@@ -28,6 +28,7 @@ namespace Goa2.Presentation.UI3D
         public float ScrollOffset=>scroll;
         public int CoinCount=>coins.Count;
         public string FocusId=>focus;
+        public Action? Browsing;
         public static bool Grouped(ActionCardView a,ActionCardView b)=>a.IsMain&&b.IsMain&&!a.Started&&!b.Started&&a.Initiative==b.Initiative;
         public ActionSequenceRail(Action<string> sound)
         {
@@ -39,7 +40,7 @@ namespace Goa2.Presentation.UI3D
             RegisterCallback<PointerDownEvent>(e=>e.StopPropagation());
             lastTime=Time.realtimeSinceStartup;schedule.Execute(Animate).Every(16);
         }
-        public void ScrollBy(float amount){FreeBrowsing=true;autoFocus=false;scrollGoal=Mathf.Clamp(scrollGoal+amount,0,MaxScroll());}
+        public void ScrollBy(float amount){Browsing?.Invoke();FreeBrowsing=true;autoFocus=false;scrollGoal=Mathf.Clamp(scrollGoal+amount,0,MaxScroll());}
         private float MaxScroll()=>Mathf.Max(0,Mathf.Max(totalHeight-resolvedStyle.height,entries.Values.Where(e=>e.Data.ParentId=="").Select(e=>e.TargetY).DefaultIfEmpty(0).Max()));
         public void Refresh(GameView view,float width,Func<ActionCardView,bool> canChoose,Action<int> choose,
             Func<ActionCardView,string> contentKey,Action<VisualElement,ActionCardView> build)
@@ -65,7 +66,7 @@ namespace Goa2.Presentation.UI3D
                 e.Slab.CanChoose=canChoose(n);e.Slab.Resolved=n.Resolved;
                 int depth=0;var p=n.ParentId;var visited=new HashSet<string>();
                 while(p!=""&&visited.Add(p)){depth++;p=ordered.FirstOrDefault(x=>x.Id==p)?.ParentId??"";}
-                e.Depth=depth;e.Width=width-16-Math.Min(depth,3)*24;
+                e.Depth=depth;e.Width=width-16-Math.Min(depth,3)*16;
                 e.Slab.style.width=e.Width;
                 string key=contentKey(n)+":"+e.Slab.CanChoose;
                 if(key!=e.ContentKey){e.Slab.Clear();build(e.Slab,n);e.ContentKey=key;}
@@ -85,9 +86,9 @@ namespace Goa2.Presentation.UI3D
             {
                 var n=ordered[i];if(!entries.TryGetValue(n.Id,out var e))continue;
                 float measured=e.Slab.resolvedStyle.height;if(!float.IsNaN(measured)&&measured>60)e.Height=measured;
-                e.TargetY=y;e.Slab.style.top=y;e.Slab.style.left=8+Math.Min(e.Depth,3)*24;
+                e.TargetY=y;e.Slab.style.top=y;e.Slab.style.left=8+Math.Min(e.Depth,3)*16;
                 var next=i+1<ordered.Count?ordered[i+1]:null;
-                y+=e.Height+(next!=null&&next.ParentId!=""?14:next!=null&&Grouped(n,next)?16:52);
+                y+=e.Height+(next!=null&&next.ParentId!=""?12:next!=null&&Grouped(n,next)?16:36);
                 if(snap)e.Y=e.TargetY;
             }
             totalHeight=y;layer.style.height=y+resolvedStyle.height;
@@ -129,8 +130,8 @@ namespace Goa2.Presentation.UI3D
             var p=c.painter2D;p.lineWidth=1.8f;p.strokeColor=new Color(.68f,.51f,.92f,.8f);
             foreach(var e in entries.Values)if(e.Data.ParentId!=""&&entries.TryGetValue(e.Data.ParentId,out var parent))
             {
-                float x=8+Math.Min(e.Depth,3)*24-9,y=e.Y+26;
-                p.BeginPath();p.MoveTo(new Vector2(18+Math.Min(parent.Depth,3)*24,parent.Y+parent.Height-6));
+                float x=8+Math.Min(e.Depth,3)*16-9,y=e.Y+26;
+                p.BeginPath();p.MoveTo(new Vector2(18+Math.Min(parent.Depth,3)*16,parent.Y+parent.Height-6));
                 p.LineTo(new Vector2(x,y-12));p.QuadraticCurveTo(new Vector2(x,y),new Vector2(x+11,y));p.Stroke();
             }
         }
@@ -139,11 +140,14 @@ namespace Goa2.Presentation.UI3D
     public sealed class ActionSlab : VisualElement
     {
         public bool Notched,Active,CanChoose,Resolved,Hovered;
+        public Action? HoverEnter,HoverExit;
         public Color Accent=new Color(.6f,.7f,.8f);
         public ActionSlab(Action click)
         {
             AddToClassList("action-card");style.position=Position.Absolute;style.flexShrink=0;
-            RegisterCallback<PointerEnterEvent>(_=>Hovered=true);RegisterCallback<PointerLeaveEvent>(_=>Hovered=false);
+            RegisterCallback<PointerEnterEvent>(_=>{Hovered=true;HoverEnter?.Invoke();});
+            RegisterCallback<PointerLeaveEvent>(_=>{Hovered=false;HoverExit?.Invoke();});
+            RegisterCallback<DetachFromPanelEvent>(_=>{Hovered=false;HoverExit?.Invoke();});
             RegisterCallback<PointerUpEvent>(e=>{if(e.button==0){click();e.StopPropagation();}});
             generateVisualContent+=Draw;
         }
@@ -159,7 +163,11 @@ namespace Goa2.Presentation.UI3D
         private void Draw(MeshGenerationContext c)
         {
             var p=c.painter2D;float h=resolvedStyle.height,w=resolvedStyle.width;if(w<50||h<50)return;
-            Shape(p,0);p.fillColor=new Color(.085f,.12f,.16f,.98f);p.Fill();p.strokeColor=Active?new Color(.8f,.62f,1):CanChoose?new Color(1,.81f,.43f):Hovered?Color.white:Accent;p.lineWidth=Active||CanChoose?3:2;p.Stroke();
+            Shape(p,0);p.fillColor=new Color(.17f,.19f,.205f,1);p.Fill();p.strokeColor=Active?new Color(.8f,.62f,1):CanChoose?new Color(1,.81f,.43f):Hovered?Color.white:Accent;p.lineWidth=Active||CanChoose?3:2;p.Stroke();
+            // Fixed grain, chipped bevel and mineral seams; no transparent window surface.
+            for(int i=0;i<90;i++){float x=10+(i*73%(int)(w-20)),y=15+(i*47%(int)(h-30));p.fillColor=i%3==0?new Color(.45f,.46f,.44f,.13f):new Color(.03f,.04f,.05f,.15f);p.BeginPath();p.Arc(new Vector2(x,y),i%3+0.6f,0,360);p.Fill();}
+            p.strokeColor=new Color(.66f,.67f,.62f,.34f);p.lineWidth=2;p.BeginPath();p.MoveTo(new Vector2(8,h-15));p.LineTo(new Vector2(8,15));p.LineTo(new Vector2(16,8));p.LineTo(new Vector2(w*.29f,8));p.Stroke();
+            p.strokeColor=new Color(.035f,.04f,.045f,.7f);p.BeginPath();p.MoveTo(new Vector2(w-8,17));p.LineTo(new Vector2(w-8,h-16));p.LineTo(new Vector2(w-16,h-8));p.LineTo(new Vector2(w*.71f,h-8));p.Stroke();
             Shape(p,5);p.strokeColor=new Color(.54f,.59f,.62f,.45f);p.lineWidth=1;p.Stroke();
             p.strokeColor=new Color(.44f,.5f,.55f,.12f);p.lineWidth=1;
             for(int i=0;i<26;i++){float x=13+(i*71%(int)(w-30)),y=26+(i*53%(int)(h-50));p.BeginPath();p.MoveTo(new Vector2(x,y));p.LineTo(new Vector2(Mathf.Min(w-12,x+20),y-4));p.Stroke();}

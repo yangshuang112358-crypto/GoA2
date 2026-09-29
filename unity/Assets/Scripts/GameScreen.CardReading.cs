@@ -61,9 +61,10 @@ namespace Goa2.Presentation
             preview.RegisterCallback<GeometryChangedEvent>(_=>
             {
                 float w=preview.worldBound.width,h=preview.worldBound.height;
-                float x=Mathf.Clamp(source.worldBound.center.x-w/2,16,Mathf.Max(16,root.worldBound.width-w-16));
+                bool actionStone=source is Goa2.Presentation.UI3D.ActionSlab;
+                float x=Mathf.Clamp(actionStone?source.worldBound.xMax+16:source.worldBound.center.x-w/2,16,Mathf.Max(16,root.worldBound.width-w-16));
                 float above=source.worldBound.y-h-10,below=source.worldBound.yMax+10;
-                float y=above>=16 ? above : below+h<=root.worldBound.height-16 ? below : (root.worldBound.height-h)/2;
+                float y=actionStone?source.worldBound.y:above>=16 ? above : below+h<=root.worldBound.height-16 ? below : (root.worldBound.height-h)/2;
                 preview.style.left=x;preview.style.top=Mathf.Clamp(y,16,Mathf.Max(16,root.worldBound.height-h-16));
                 RequestCapture();
             });
