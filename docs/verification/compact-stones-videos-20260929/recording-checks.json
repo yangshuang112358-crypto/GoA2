@@ -1,0 +1,32 @@
+{
+  "sourceCommit": "a913466",
+  "engineVersion": 97,
+  "capture": "Visible Windows Player; scripted OS mouse and keyboard; continuous capture per clip; WASAPI loopback audio",
+  "resolution": "1600x1000",
+  "clips": [
+    {
+      "file": "01-hover.mp4",
+      "duration": "00:00:29.40",
+      "bytes": 2024998,
+      "sha256": "77aa24aac24d77ef60ec9511a09f8590ed598c1605eb943fa444a79d014bb4dc",
+      "decode": "pass",
+      "loopbackPcmPeak": 1
+    },
+    {
+      "file": "02-initiative.mp4",
+      "duration": "00:00:31.50",
+      "bytes": 2449203,
+      "sha256": "0cf219cfd9160a8e5f78a79c6de6b7e1aa958267f4811a2b243e67d0a254921e",
+      "decode": "pass",
+      "loopbackPcmPeak": 9137
+    },
+    {
+      "file": "03-nested.mp4",
+      "duration": "00:00:28.93",
+      "bytes": 4719270,
+      "sha256": "8bc87519a024df08e64de02299d26d9044e7a0e991432278c9a7622f58c4a7e4",
+      "decode": "pass",
+      "loopbackPcmPeak": 4570
+    }
+  ]
+}
