@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Passed" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-30 04:25:26Z" end-time="2026-09-30 04:25:26Z" duration="0.7301466">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2295" result="Passed" start-time="2026-09-30 04:25:26Z" end-time="2026-09-30 04:25:26Z" duration="0.730147" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3708" name="Goa2.UI3D.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.UI3D.Tests.dll" runstate="Runnable" testcasecount="83" result="Passed" start-time="2026-09-30 04:25:26Z" end-time="2026-09-30 04:25:26Z" duration="0.595472" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="11256" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+      <test-suite type="TestSuite" id="3709" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="83" result="Passed" start-time="2026-09-30 04:25:26Z" end-time="2026-09-30 04:25:26Z" duration="0.594019" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+        <test-suite type="TestSuite" id="3710" name="UI3D" fullname="Goa2.UI3D" runstate="Runnable" testcasecount="83" result="Passed" start-time="2026-09-30 04:25:26Z" end-time="2026-09-30 04:25:26Z" duration="0.593053" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+          <test-suite type="TestSuite" id="3711" name="Tests" fullname="Goa2.UI3D.Tests" runstate="Runnable" testcasecount="83" result="Passed" start-time="2026-09-30 04:25:26Z" end-time="2026-09-30 04:25:26Z" duration="0.591739" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            <test-suite type="TestFixture" id="3624" name="Board3DTests" fullname="Goa2.UI3D.Tests.Board3DTests" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-30 04:25:23Z" end-time="2026-09-30 04:25:23Z" duration="0.060784" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3625" name="All254MapCoordinatesRoundTripAndNeighborsAreEquidistant" fullname="Goa2.UI3D.Tests.Board3DTests.All254MapCoordinatesRoundTripAndNeighborsAreEquidistant" methodname="All254MapCoordinatesRoundTripAndNeighborsAreEquidistant" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="239688732" result="Passed" start-time="2026-09-30 04:25:23Z" end-time="2026-09-30 04:25:23Z" duration="0.039854" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3632" name="ProceduralTopNormalsFaceUpAndStayInsideCell" fullname="Goa2.UI3D.Tests.Board3DTests.ProceduralTopNormalsFaceUpAndStayInsideCell" methodname="ProceduralTopNormalsFaceUpAndStayInsideCell" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="1556782340" result="Passed" start-time="2026-09-30 04:25:23Z" end-time="2026-09-30 04:25:23Z" duration="0.007470" asserts="0">
+                <properties />
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3630" name="RotationWrapsExactlyTwelveSteps" fullname="Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-30 04:25:23Z" end-time="2026-09-30 04:25:23Z" duration="0.002266" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3626" name="RotationWrapsExactlyTwelveSteps(-1,11)" fullname="Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps(-1,11)" methodname="RotationWrapsExactlyTwelveSteps" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="2041859609" result="Passed" start-time="2026-09-30 04:25:23Z" end-time="2026-09-30 04:25:23Z" duration="0.000227" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3627" name="RotationWrapsExactlyTwelveSteps(12,0)" fullname="Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps(12,0)" methodname="RotationWrapsExactlyTwelveSteps" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="7338517" result="Passed" start-time="2026-09-30 04:25:23Z" end-time="2026-09-30 04:25:23Z" duration="0.000041" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3628" name="RotationWrapsExactlyTwelveSteps(-24,0)" fullname="Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps(-24,0)" methodname="RotationWrapsExactlyTwelveSteps" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="1676927723" result="Passed" start-time="2026-09-30 04:25:23Z" end-time="2026-09-30 04:25:23Z" duration="0.000034" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3629" name="RotationWrapsExactlyTwelveSteps(25,1)" fullname="Goa2.UI3D.Tests.Board3DTests.RotationWrapsExactlyTwelveSteps(25,1)" methodname="RotationWrapsExactlyTwelveSteps" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="691058975" result="Passed" start-time="2026-09-30 04:25:23Z" end-time="2026-09-30 04:25:23Z" duration="0.000034" asserts="0">
+                  <properties />
+                </test-case>
+              </test-suite>
+              <test-case id="3631" name="TwelveAnglesAreDistinctAndCloseWithoutDrift" fullname="Goa2.UI3D.Tests.Board3DTests.TwelveAnglesAreDistinctAndCloseWithoutDrift" methodname="TwelveAnglesAreDistinctAndCloseWithoutDrift" classname="Goa2.UI3D.Tests.Board3DTests" runstate="Runnable" seed="1578220902" result="Passed" start-time="2026-09-30 04:25:23Z" end-time="2026-09-30 04:25:23Z" duration="0.000712" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3665" name="MinionModelTests" fullname="Goa2.UI3D.Tests.MinionModelTests" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-30 04:25:26Z" end-time="2026-09-30 04:25:26Z" duration="0.580541" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              <test-case id="3670" name="BoardUsesModelsWithoutMutatingTheProjectedGameOrTokenPicking" fullname="Goa2.UI3D.Tests.MinionModelTests.BoardUsesModelsWithoutMutatingTheProjectedGameOrTokenPicking" methodname="BoardUsesModelsWithoutMutatingTheProjectedGameOrTokenPicking" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="908304280" result="Passed" start-time="2026-09-30 04:25:23Z" end-time="2026-09-30 04:25:26Z" duration="3.286245" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="Category" value="RequiresGraphics" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3669" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-30 04:25:26Z" end-time="2026-09-30 04:25:26Z" duration="0.015267" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3666" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Melee&quot;)" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Melee&quot;)" methodname="ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="1949423857" result="Passed" start-time="2026-09-30 04:25:26Z" end-time="2026-09-30 04:25:26Z" duration="0.010117" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3667" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Ranged&quot;)" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Ranged&quot;)" methodname="ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="1308659067" result="Passed" start-time="2026-09-30 04:25:26Z" end-time="2026-09-30 04:25:26Z" duration="0.001781" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3668" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Heavy&quot;)" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Heavy&quot;)" methodname="ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="51843291" result="Passed" start-time="2026-09-30 04:25:26Z" end-time="2026-09-30 04:25:26Z" duration="0.001466" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\minion-graphics-20260930-418789d43ac84053920d69d61c1c5ac0.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

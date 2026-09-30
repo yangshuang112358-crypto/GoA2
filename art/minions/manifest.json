@@ -1,0 +1,58 @@
+{
+  "blender": "4.5.14 LTS",
+  "models": [
+    {
+      "kind": "Melee",
+      "triangles": 9460,
+      "vertices": 4846,
+      "bones": 18,
+      "materials": [
+        "Leather",
+        "Steel",
+        "Shadow",
+        "SteelLight",
+        "TeamCloth",
+        "Bronze",
+        "Glow",
+        "TeamInset"
+      ],
+      "height": 1.888,
+      "width": 1.678
+    },
+    {
+      "kind": "Ranged",
+      "triangles": 12548,
+      "vertices": 6402,
+      "bones": 18,
+      "materials": [
+        "Leather",
+        "TeamCloth",
+        "Bronze",
+        "TeamInset",
+        "Shadow",
+        "Glow",
+        "Parchment"
+      ],
+      "height": 1.95,
+      "width": 1.366
+    },
+    {
+      "kind": "Heavy",
+      "triangles": 8400,
+      "vertices": 4332,
+      "bones": 18,
+      "materials": [
+        "Steel",
+        "Bronze",
+        "Shadow",
+        "SteelLight",
+        "TeamInset",
+        "TeamCloth",
+        "Leather",
+        "Glow"
+      ],
+      "height": 1.982,
+      "width": 1.57
+    }
+  ]
+}

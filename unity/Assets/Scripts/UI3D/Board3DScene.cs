@@ -51,10 +51,19 @@ namespace Goa2.Presentation.UI3D
             BuildConnectedRocks();
             foreach (var unit in view.Units)
             {
-                float radius=unit.Seat.HasValue ? .55f : .42f, height=unit.Seat.HasValue ? HeroHeight : .34f;
+                float radius=unit.Seat.HasValue ? .55f : .52f, height=unit.Seat.HasValue ? HeroHeight : .34f;
                 string text=unit.Seat.HasValue
                     ? catalog.Heroes.FirstOrDefault(h=>h.Id==view.Players.FirstOrDefault(p=>p.Seat==unit.Seat)?.HeroId)?.Name ?? "英雄"
                     : unit.Kind=="heavy" ? "重" : unit.Kind=="ranged" ? "远" : "近";
+                if(!unit.Seat.HasValue && BuildMinion(unit.Kind,unit.Team,unit.Position,unit.Id))
+                {
+                    height=MinionHeight(unit.Kind);
+                    // Ground team ring keeps allegiances legible without obscuring the armor.
+                    Add(circle,Board3DGeometry.World(unit.Position,.026f),Vector3.one*.64f,
+                        ColorOf(unit.Team==Team.Blue ? "#559EDB" : "#D77C79"),"minion team rim");
+                    tokens.Add((unit.Position,radius,height+.07f,text));
+                    continue;
+                }
                 Add(cylinder,Board3DGeometry.World(unit.Position,.03f),new Vector3(radius,height,radius),ColorOf(unit.Team==Team.Blue ? "#559EDB" : "#D77C79"),"token "+unit.Id);
                 Add(circle,Board3DGeometry.World(unit.Position,height+.04f),Vector3.one*radius,
                     ColorOf(unit.Seat.HasValue && unit.Seat==view.ActiveSeat ? "#FFE39A" : "#DDE8EA"),"token rim");

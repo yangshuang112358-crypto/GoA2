@@ -1,5 +1,7 @@
 # Goa2V1 开发约定
 
+2026-09-30 小兵模型第一版：用户授权 Blender，已用4.5.14制作原创近战盾斧、远程兜帽法杖、重型装甲拳兵，统一青灰金属/旧黄铜及红蓝布料。源文件art/minions/Goa2_Minion_Collection.blend，生成器tools/art/build_minions.py；FBX接入Board3DScene.Minions.cs替换小兵圆柱，英雄未替换。18骨骼为刚性分件权重，尚无动作/柔性布袍/最终贴图/LOD。11项带图形测试、3项无图形导入检查、Windows构建与源码清单验证通过；证据docs/verification/小兵模型第一版-2026-09-30.md。用户美术验收未通过，不宣称已达到最终品质；旧联机发行包未更新。
+
 2026-09-30 音乐接入与录屏：用户已授权必要系统安全设置调整并要求告知，覆盖下方历史“不得修改系统安全策略”。本次确认 Smart App Control 拦截 Unity 官方构建 DLL，管理员流程将 VerifiedAndReputablePolicyState 从1改为0并刷新成功；杀毒、防火墙未改，记录留在 artifacts/audio-live/security-*.json/log。新增原创53.333秒循环背景音乐、独立本机音量与启动淡入，保留已实现交互音效。Unity音效专项7/7及Windows构建/源码清单验证通过；最终录屏与客户端关闭状态以 docs/verification/音乐音效实机展示-2026-09-30.md 为准。网易云NCM未转换或纳入项目；旧联机zip及桌面旧发行目录不自动更新。
 
 2026-09-30 交互音效源码已接入：技能/地图预选、确认取消、圆环展开收起、本人行动与响应、胜利、设置音量（含原有声音）。独立编译0错误、7项同源波形/时序测试通过；Unity因Windows应用控制阻止BeeBuildProgramCommon.dll（0x800711C7）未能执行测试/构建，不修改系统安全策略。旧Player和联机发行包未更新，不宣称用户已可在旧包听到新音效。入口docs/verification/交互音效验收-2026-09-30.md。网易云正常下载的个人收藏为ncm，未放项目/发行包，背景音乐尚未接入。

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-30 04:30:15Z" end-time="2026-09-30 04:30:15Z" duration="0.0705537">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2295" result="Passed" start-time="2026-09-30 04:30:15Z" end-time="2026-09-30 04:30:15Z" duration="0.070554" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3708" name="Goa2.UI3D.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.UI3D.Tests.dll" runstate="Runnable" testcasecount="83" result="Passed" start-time="2026-09-30 04:30:15Z" end-time="2026-09-30 04:30:15Z" duration="0.036010" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="13900" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="3709" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="83" result="Passed" start-time="2026-09-30 04:30:15Z" end-time="2026-09-30 04:30:15Z" duration="0.035223" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="3710" name="UI3D" fullname="Goa2.UI3D" runstate="Runnable" testcasecount="83" result="Passed" start-time="2026-09-30 04:30:15Z" end-time="2026-09-30 04:30:15Z" duration="0.034656" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="3711" name="Tests" fullname="Goa2.UI3D.Tests" runstate="Runnable" testcasecount="83" result="Passed" start-time="2026-09-30 04:30:15Z" end-time="2026-09-30 04:30:15Z" duration="0.034068" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="3665" name="MinionModelTests" fullname="Goa2.UI3D.Tests.MinionModelTests" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-30 04:30:15Z" end-time="2026-09-30 04:30:15Z" duration="0.032634" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="3669" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-30 04:30:15Z" end-time="2026-09-30 04:30:15Z" duration="0.029295" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3666" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Melee&quot;)" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Melee&quot;)" methodname="ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="638538594" result="Passed" start-time="2026-09-30 04:30:15Z" end-time="2026-09-30 04:30:15Z" duration="0.019267" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3667" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Ranged&quot;)" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Ranged&quot;)" methodname="ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="652078156" result="Passed" start-time="2026-09-30 04:30:15Z" end-time="2026-09-30 04:30:15Z" duration="0.001385" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3668" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Heavy&quot;)" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Heavy&quot;)" methodname="ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="301597292" result="Passed" start-time="2026-09-30 04:30:15Z" end-time="2026-09-30 04:30:15Z" duration="0.001036" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\minion-import-headless-20260930-5513aa153cbe41fb842f4d195dc8b8f5.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

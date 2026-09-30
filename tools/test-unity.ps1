@@ -2,7 +2,8 @@ param(
     [string]$UnityExe,
     [ValidatePattern('^[A-Za-z0-9_.;]*$')][string]$Filter,
     [ValidatePattern('^[A-Za-z0-9_-]+$')][string]$ReportName = 'core-editmode',
-    [ValidatePattern('^[A-Za-z0-9_.;]+$')][string]$Assemblies = 'Goa2.Core.Tests'
+    [ValidatePattern('^[A-Za-z0-9_.;]+$')][string]$Assemblies = 'Goa2.Core.Tests',
+    [switch]$Graphics
 )
 $ErrorActionPreference = 'Stop'
 $goaRoot = Split-Path -Parent $PSScriptRoot
@@ -20,7 +21,8 @@ New-Item -ItemType Directory -Path $goaResults -Force | Out-Null
 $goaUniqueReport = Join-Path $goaResults ($ReportName+'-'+[Guid]::NewGuid().ToString('N')+'.xml')
 $goaLog = Join-Path $goaResults ($ReportName+'.log')
 # Unity's test runner owns process exit; -quit would terminate before tests finish.
-$goaArguments = '-batchmode -nographics -projectPath "'+(Join-Path $goaRoot 'unity')+'" -runTests -testPlatform EditMode -assemblyNames "'+$Assemblies+'" -testResults "'+$goaUniqueReport+'" -logFile "'+$goaLog+'"'
+$goaGraphicsArguments = if ($Graphics) { '' } else { ' -nographics -testCategory "!RequiresGraphics"' }
+$goaArguments = '-batchmode'+$goaGraphicsArguments+' -projectPath "'+(Join-Path $goaRoot 'unity')+'" -runTests -testPlatform EditMode -assemblyNames "'+$Assemblies+'" -testResults "'+$goaUniqueReport+'" -logFile "'+$goaLog+'"'
 if ($Filter) { $goaArguments += ' -testFilter "'+$Filter+'"' }
 $goaProcess = Start-Process -FilePath $UnityExe -ArgumentList $goaArguments -WindowStyle Hidden -PassThru
 $goaProcess.WaitForExit()
