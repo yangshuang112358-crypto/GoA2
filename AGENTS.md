@@ -1,5 +1,7 @@
 # Goa2V1 开发约定
 
+2026-09-30 音乐接入与录屏：用户已授权必要系统安全设置调整并要求告知，覆盖下方历史“不得修改系统安全策略”。本次确认 Smart App Control 拦截 Unity 官方构建 DLL，管理员流程将 VerifiedAndReputablePolicyState 从1改为0并刷新成功；杀毒、防火墙未改，记录留在 artifacts/audio-live/security-*.json/log。新增原创53.333秒循环背景音乐、独立本机音量与启动淡入，保留已实现交互音效。Unity音效专项7/7及Windows构建/源码清单验证通过；最终录屏与客户端关闭状态以 docs/verification/音乐音效实机展示-2026-09-30.md 为准。网易云NCM未转换或纳入项目；旧联机zip及桌面旧发行目录不自动更新。
+
 2026-09-30 交互音效源码已接入：技能/地图预选、确认取消、圆环展开收起、本人行动与响应、胜利、设置音量（含原有声音）。独立编译0错误、7项同源波形/时序测试通过；Unity因Windows应用控制阻止BeeBuildProgramCommon.dll（0x800711C7）未能执行测试/构建，不修改系统安全策略。旧Player和联机发行包未更新，不宣称用户已可在旧包听到新音效。入口docs/verification/交互音效验收-2026-09-30.md。网易云正常下载的个人收藏为ncm，未放项目/发行包，背景音乐尚未接入。
 
 2026-09-29 免费四人异地联机准备：用户要求先云端备份再开始联网开发，已核对0526c55与origin一致。方案采用独立EasyTier私人虚拟网络、一人权威房主三人加入；暂无中国跨网实测，不承诺免费公共节点延迟。本批增加network/launcher中文外部启动器、Windows x64自带.NET房主包、三个独立席位邀请与停止保存；工具tools/package-multiplayer.ps1，设计docs/development/四人免费异地联机设计-2026-09-29.md，证据docs/verification/免费四人启动器验收-2026-09-29.md。没有内嵌EasyTier/短码发现/游戏内大厅/房主崩溃恢复，未改GameScreen、规则、Command/View或存档。凭据和存档在LOCALAPPDATA/Goa2V1/Multiplayer，不进发行zip或Git。下一步先两台再四台实际异地验收，之后游戏内大厅与心跳/异常恢复；不能把本机TCP/OS测试等同于中国四人异地已通过。

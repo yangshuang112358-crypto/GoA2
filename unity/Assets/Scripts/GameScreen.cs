@@ -60,6 +60,7 @@ namespace Goa2.Presentation
         }
         private void Awake()
         {
+            gameObject.AddComponent<Goa2.Presentation.UI3D.BackgroundMusic>();
             var settings = ScriptableObject.CreateInstance<PanelSettings>();
             settings.scaleMode = PanelScaleMode.ConstantPixelSize;
             settings.sortingOrder = 100;

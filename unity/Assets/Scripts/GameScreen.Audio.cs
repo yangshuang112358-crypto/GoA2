@@ -15,8 +15,14 @@ namespace Goa2.Presentation
         private void ObserveAudio(){var cue=audioState.Observe(renderedView,seat);if(cue!="")Sound(cue);}
         private void BuildAudioSettings(VisualElement parent)
         {
+            var music=new Slider("背景音乐",0,1){name="music-volume",value=BackgroundMusic.Volume};
+            music.style.minHeight=36;
+            music.labelElement.style.color=new UnityEngine.Color(.88f,.91f,.87f);
+            music.RegisterValueChangedCallback(e=>BackgroundMusic.Volume=e.newValue);
+            parent.Add(music);
             var slider=new Slider("交互音量",0,1){name="sfx-volume",value=InteractionAudio.Volume};
             slider.style.minHeight=36;
+            slider.labelElement.style.color=new UnityEngine.Color(.88f,.91f,.87f);
             slider.RegisterValueChangedCallback(e=>InteractionAudio.Volume=e.newValue);
             parent.Add(slider);
             parent.Add(Button("试听确认音",()=>Sound("confirm"),"quiet-button","sfx-preview"));

@@ -1,0 +1,42 @@
+[
+  {
+    "seconds": 2.0,
+    "label": "背景音乐：游戏内实际播放",
+    "revision": 10
+  },
+  {
+    "seconds": 6.671,
+    "label": "设置音量与试听确认音",
+    "revision": 10
+  },
+  {
+    "seconds": 11.729,
+    "label": "音乐静音，仅试听交互音效",
+    "revision": 10
+  },
+  {
+    "seconds": 16.755,
+    "label": "恢复背景音乐",
+    "revision": 10
+  },
+  {
+    "seconds": 23.678,
+    "label": "攻击前选择弃牌",
+    "revision": 11
+  },
+  {
+    "seconds": 38.257,
+    "label": "攻击目标确认，进入对方响应",
+    "revision": 13
+  },
+  {
+    "seconds": 47.652,
+    "label": "反射屏障防御并触发弃牌",
+    "revision": 14
+  },
+  {
+    "seconds": 56.366,
+    "label": "攻击完整结算，三级石板记录",
+    "revision": 15
+  }
+]

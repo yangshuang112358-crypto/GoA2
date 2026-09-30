@@ -1,0 +1,29 @@
+{
+  "result": "PASS",
+  "capture": "Continuous Windows Player, OS mouse/keyboard input, WASAPI loopback (no replacement soundtrack)",
+  "engine": 97,
+  "uiRevisionStart": 10,
+  "uiRevisionEnd": 15,
+  "unityEditModePassed": 7,
+  "buildErrors": 0,
+  "buildWarnings": 9,
+  "payloadFilesVerified": 158,
+  "audioSeconds": 62.08,
+  "pcmPeak": 9029.0,
+  "pcmRms": 833.4925976807742,
+  "musicMuteRms10To11Seconds": 0.4789,
+  "musicRestoredRms17To19Seconds": 783.2703,
+  "videoSha256": "5498dd8871d8fabf8d9ecb7898738498e2ea784b568f09e9aebf5986c5175030",
+  "videoBytes": 8339189,
+  "videoDecode": "PASS",
+  "clientPid": 24728,
+  "clientClosedNormally": true,
+  "multiplayerCrossComputerTested": false,
+  "securityChange": {
+    "smartAppControlBefore": 1,
+    "smartAppControlAfter": 0,
+    "refreshResult": 0,
+    "antivirusChanged": false,
+    "firewallChanged": false
+  }
+}

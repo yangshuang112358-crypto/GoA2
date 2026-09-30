@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.104438">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2291" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.104438" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3702" name="Goa2.UI3D.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.UI3D.Tests.dll" runstate="Runnable" testcasecount="79" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.061084" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28352" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="3703" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="79" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.060261" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="3704" name="UI3D" fullname="Goa2.UI3D" runstate="Runnable" testcasecount="79" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.059710" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="3705" name="Tests" fullname="Goa2.UI3D.Tests" runstate="Runnable" testcasecount="79" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.059141" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="3657" name="InteractionAudioTests" fullname="Goa2.UI3D.Tests.InteractionAudioTests" classname="Goa2.UI3D.Tests.InteractionAudioTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.057329" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3658" name="ClipsAreFiniteShortAndFadeAtBothEnds" fullname="Goa2.UI3D.Tests.InteractionAudioTests.ClipsAreFiniteShortAndFadeAtBothEnds" methodname="ClipsAreFiniteShortAndFadeAtBothEnds" classname="Goa2.UI3D.Tests.InteractionAudioTests" runstate="Runnable" seed="1001695983" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.042412" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3662" name="HiddenSelectionRefreshDoesNotMakeSound" fullname="Goa2.UI3D.Tests.InteractionAudioTests.HiddenSelectionRefreshDoesNotMakeSound" methodname="HiddenSelectionRefreshDoesNotMakeSound" classname="Goa2.UI3D.Tests.InteractionAudioTests" runstate="Runnable" seed="1881496170" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.002331" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3659" name="LoadAndRefreshDoNotReplayResponse" fullname="Goa2.UI3D.Tests.InteractionAudioTests.LoadAndRefreshDoNotReplayResponse" methodname="LoadAndRefreshDoNotReplayResponse" classname="Goa2.UI3D.Tests.InteractionAudioTests" runstate="Runnable" seed="556011807" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.000280" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3663" name="NewMatchDoesNotReplayLastMatch" fullname="Goa2.UI3D.Tests.InteractionAudioTests.NewMatchDoesNotReplayLastMatch" methodname="NewMatchDoesNotReplayLastMatch" classname="Goa2.UI3D.Tests.InteractionAudioTests" runstate="Runnable" seed="407741926" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.000179" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3660" name="NewOwnResponsePlaysOnce" fullname="Goa2.UI3D.Tests.InteractionAudioTests.NewOwnResponsePlaysOnce" methodname="NewOwnResponsePlaysOnce" classname="Goa2.UI3D.Tests.InteractionAudioTests" runstate="Runnable" seed="2005093788" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.000184" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3661" name="OtherSeatsResponseDoesNotPromptLocalPlayer" fullname="Goa2.UI3D.Tests.InteractionAudioTests.OtherSeatsResponseDoesNotPromptLocalPlayer" methodname="OtherSeatsResponseDoesNotPromptLocalPlayer" classname="Goa2.UI3D.Tests.InteractionAudioTests" runstate="Runnable" seed="590746799" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.000158" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3664" name="OwnTurnAndVictoryAreAnnouncedOnce" fullname="Goa2.UI3D.Tests.InteractionAudioTests.OwnTurnAndVictoryAreAnnouncedOnce" methodname="OwnTurnAndVictoryAreAnnouncedOnce" classname="Goa2.UI3D.Tests.InteractionAudioTests" runstate="Runnable" seed="155467327" result="Passed" start-time="2026-09-30 02:39:28Z" end-time="2026-09-30 02:39:28Z" duration="0.000192" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\audio-live-20260930-9adec8d8e2cd4f39bc4c6e69216eee8e.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
