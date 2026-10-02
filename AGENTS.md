@@ -1,5 +1,7 @@
 # Goa2V1 开发约定
 
+2026-10-03整理：使用入口docs/development/使用手册与版本更新-2026-10-03.md，成果/Blender/教程计划在docs/planning对应同日文档，联机一体化方案在docs/development。108/108状态均implemented，不能称全部integration_tested；Q-09/U-017及D-050扩展保留。9月30日新版联机ZIP已生成，SHA256为6098cc03d9f89927d78c23aff5cde117f80a0751dcbf71cb84103ac3f3647691，覆盖下方“旧包未更新”的时间状态；游戏无响应仅留存显卡超时线索及成功重连，根因未定位。用户本次授权整理/清理冗余文件并推送云端，不等于已实现教程、账号或内嵌EasyTier。EasyTier v2.6.4仓库LICENSE实际LGPL-3.0，勿混同文档网站许可。桌面统一入口Goa2V1，清理以同日清单为准，保留凭据、存档、原始资料和engine34永久回退。
+
 2026-09-30 小兵模型第一版：用户授权 Blender，已用4.5.14制作原创近战盾斧、远程兜帽法杖、重型装甲拳兵，统一青灰金属/旧黄铜及红蓝布料。源文件art/minions/Goa2_Minion_Collection.blend，生成器tools/art/build_minions.py；FBX接入Board3DScene.Minions.cs替换小兵圆柱，英雄未替换。18骨骼为刚性分件权重，尚无动作/柔性布袍/最终贴图/LOD。11项带图形测试、3项无图形导入检查、Windows构建与源码清单验证通过；证据docs/verification/小兵模型第一版-2026-09-30.md。用户美术验收未通过，不宣称已达到最终品质；旧联机发行包未更新。
 
 2026-09-30 音乐接入与录屏：用户已授权必要系统安全设置调整并要求告知，覆盖下方历史“不得修改系统安全策略”。本次确认 Smart App Control 拦截 Unity 官方构建 DLL，管理员流程将 VerifiedAndReputablePolicyState 从1改为0并刷新成功；杀毒、防火墙未改，记录留在 artifacts/audio-live/security-*.json/log。新增原创53.333秒循环背景音乐、独立本机音量与启动淡入，保留已实现交互音效。Unity音效专项7/7及Windows构建/源码清单验证通过；最终录屏与客户端关闭状态以 docs/verification/音乐音效实机展示-2026-09-30.md 为准。网易云NCM未转换或纳入项目；旧联机zip及桌面旧发行目录不自动更新。

@@ -1,4 +1,4 @@
-﻿{
+{
     "passed":  true,
     "runner":  "Windows PowerShell launcher helpers + standalone host",
     "cross_machine":  false,
