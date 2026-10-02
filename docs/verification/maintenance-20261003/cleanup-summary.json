@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-03",
+  "recycled_zip_count": 111,
+  "recycled_zip_bytes": 5403782545,
+  "old_distribution_recycled": true,
+  "old_distribution_extra_invitation_preserved": true,
+  "latest_desktop_zip_sha256": "6098cc03d9f89927d78c23aff5cde117f80a0751dcbf71cb84103ac3f3647691",
+  "recycle_bin_emptied": false,
+  "preserved": [
+    "current multiplayer package",
+    "previous multiplayer package",
+    "engine34 package and permanent Git references",
+    "BATCH02 delivery",
+    "first complete engine97 package",
+    "user invitations and network configurations",
+    "user saved games",
+    "original sources and Blender source",
+    "independent worktrees",
+    "non-project desktop files"
+  ]
+}

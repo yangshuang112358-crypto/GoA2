@@ -4,6 +4,8 @@
 
 当前为Windows四人联机试玩版：engine97，六英雄108张卡均已有实现，三类小兵模型、背景音乐与交互音效已接入。**不是全部验收完成的正式版**：四台异地真人整局、卡死定位、旧房续局、一键组网及教程仍待完成。源码日常分支为 `experiment/ai-level-20260920`；main与engine34回退引用不动。
 
+[下载当前四人试玩包与文本手册](https://github.com/yangshuang112358-crypto/GoA2/releases/tag/playtest-20261003-engine97)。云端游戏ZIP与9月30日桌面新版包内容完全相同，已持有该包无需重复下载；10月3日新增的是盘点手册、计划和整理后的入口。
+
 - [使用手册、每次更新步骤与可复制提示词](docs/development/使用手册与版本更新-2026-10-03.md)
 - [成果、证据边界与下一步优先级](docs/planning/成果与后续路线-2026-10-03.md)
 - [Blender、角色动作与UI特效路线](docs/planning/Blender与表现优化-2026-10-03.md)

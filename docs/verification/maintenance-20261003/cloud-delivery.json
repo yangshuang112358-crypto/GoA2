@@ -1,0 +1,34 @@
+{
+  "release_url": "https://github.com/yangshuang112358-crypto/GoA2/releases/tag/playtest-20261003-engine97",
+  "tag": "playtest-20261003-engine97",
+  "source_commit": "b2fd908dd8359e39b27bae630a281e53477d0c88",
+  "documentation_commit": "a8dfcc0ee35fcbb5cdbff9a9442c35ccef469498",
+  "prerelease": true,
+  "assets": [
+    {
+      "name": "Goa2V1-Windows-Playtest-b2fd908.zip",
+      "bytes": 85021310,
+      "sha256": "6098cc03d9f89927d78c23aff5cde117f80a0751dcbf71cb84103ac3f3647691",
+      "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/playtest-20261003-engine97/Goa2V1-Windows-Playtest-b2fd908.zip"
+    },
+    {
+      "name": "Goa2V1-User-Guide-20261003.txt",
+      "bytes": 10969,
+      "sha256": "4a32da964f92ecbf38fd7ccd3de26473527d0e85c438e7fc3c71f42a690eb988",
+      "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/playtest-20261003-engine97/Goa2V1-User-Guide-20261003.txt"
+    },
+    {
+      "name": "Goa2V1-Roadmap-20261003.txt",
+      "bytes": 21927,
+      "sha256": "8fe7b29bd2bb41c8ee1a6ae4d21c5215a7f1dba39b591b0926989ec63b2b2eb1",
+      "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/playtest-20261003-engine97/Goa2V1-Roadmap-20261003.txt"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 296,
+      "sha256": "fca8d0a9c17064afc59c51ccb65bf39e8e9caf211eb8eb1a2b63761d20ec925d",
+      "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/playtest-20261003-engine97/SHA256SUMS.txt"
+    }
+  ],
+  "anonymous_public_read_verified": true
+}
