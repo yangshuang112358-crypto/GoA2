@@ -18,7 +18,7 @@ from player import Player
 def port():
     with socket.socket() as s: s.bind(('127.0.0.1',0)); return s.getsockname()[1]
 
-def run(package, public=False, relay_only=False):
+def run(package, public=False, relay_only=False, peer=None):
     root=Path(__file__).resolve().parents[2]
     out=root/'artifacts/network'/('automatic-'+uuid.uuid4().hex);out.mkdir()
     checks=[];workers=[];players=[];logs=[];relay=None
@@ -51,7 +51,7 @@ def run(package, public=False, relay_only=False):
         item[0].wait(timeout=30)
         return state(item)
     try:
-        if public:peers=['tcp://38.147.105.185:11010']
+        if public:peers=[peer or 'tcp://38.147.105.185:11010']
         else:
             relay_port=port();peers=[f'tcp://127.0.0.1:{relay_port}']
             log=open(out/'relay.log','wb');logs.append(log)
@@ -61,6 +61,7 @@ def run(package, public=False, relay_only=False):
         check('host automatic network ready',hs['HostPid']>0 and hs['CorePid']>0)
         invitations=sorted(Path(hs['Invitations']).glob('*.json'))
         check('three separate seat invitations',len(invitations)==3 and len({json.loads(p.read_text())['Ticket']['Credential'] for p in invitations})==3)
+        check('three isolated guest transport identities',len({json.loads(p.read_text())['Network']['Name'] for p in invitations})==3 and len(hs['CorePids'])==3)
         guests=[start('Join',invite=p) for p in invitations]
         gs=[wait(g) for g in guests]
         check('all three guests authenticate',sorted(v['Seat'] for v in gs)==[1,2,3])
@@ -108,7 +109,10 @@ def run(package, public=False, relay_only=False):
         alive=subprocess.run(['powershell.exe','-NoProfile','-Command',f'if(Get-Process -Id {crashed_core} -ErrorAction SilentlyContinue){{exit 1}}'],capture_output=True).returncode
         check('abnormal worker exit leaves no owned core',alive==0 and host[0].poll() is None)
         ss=stop(host);check('host graceful stop validates save',ss['Phase']=='Stopped' and json.loads((Path(hs['RoomPath'])/'private/restore-check.json').read_text())['passed'])
-        report={'passed':True,'mode':'same PC public bootstrap' if public else 'same PC local relay','relay_only':relay_only,'checks':checks,'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()}
+        pids=','.join(str(p) for p in hs['CorePids'])
+        gone=subprocess.run(['powershell.exe','-NoProfile','-Command',f'if(Get-Process -Id {pids} -ErrorAction SilentlyContinue){{exit 1}}'],capture_output=True).returncode
+        check('all three owned host bridges stopped',gone==0)
+        report={'passed':True,'mode':'same PC public bootstrap' if public else 'same PC local relay','peers':peers,'relay_only':relay_only,'checks':checks,'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()}
         (out/'report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
         print('REPORT',out/'report.json',flush=True)
     finally:
@@ -121,4 +125,4 @@ def run(package, public=False, relay_only=False):
         for f in logs:f.close()
 
 if __name__=='__main__':
-    a=argparse.ArgumentParser();a.add_argument('package',type=Path);a.add_argument('--public',action='store_true');a.add_argument('--relay-only',action='store_true');v=a.parse_args();run(v.package.resolve(),v.public,v.relay_only)
+    a=argparse.ArgumentParser();a.add_argument('package',type=Path);a.add_argument('--public',action='store_true');a.add_argument('--relay-only',action='store_true');a.add_argument('--peer');v=a.parse_args();run(v.package.resolve(),v.public or bool(v.peer),v.relay_only,v.peer)

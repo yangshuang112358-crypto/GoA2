@@ -5,7 +5,7 @@ $Run=[IO.Path]::GetFullPath($Run)
 $statePath=Join-Path $Run 'state.json'
 $request=Get-GoaJson (Join-Path $Run 'request.private.json') 65536
 $package=[IO.Path]::GetFullPath($request.Package)
-$room=$null; $core=$null; $mutex=$null; $locked=$false; $failure=$null
+$room=$null; $core=$null; $mutex=$null; $locked=$false; $failure=$null; $hostBridges=@()
 $script:details=@{Mode=$request.Mode;Seat=0;RoomId='';Ticket='';Invitations='';RoomPath='';RpcPort=0;ListenPort=0;CorePid=0;HostPid=0}
 function State([string]$Phase,[string]$Message) {
     $v=@{Phase=$Phase;Message=$Message;WorkerPid=$PID;UpdatedUtc=[DateTime]::UtcNow.ToString('o')}
@@ -40,7 +40,10 @@ try {
         New-GoaPrivateDirectory $invitations
         for ($i=1; $i -le 3; $i++) {
             $seatTicket=Get-GoaTicket (Join-Path $room.Private "seat-$i.private.json") $package
-            Write-GoaJson (Join-Path $invitations ("Goa2-席位"+($i+1)+".private.json")) (New-GoaUnifiedInvitation $network $seatTicket $i)
+            # One transport network per guest: the authority is shared, mesh routing is not.
+            $guestNetwork=if ($i -eq 1) { $network } else { New-GoaNetwork $request.Peers $onlyRelay }
+            Write-GoaJson (Join-Path $invitations ("Goa2-席位"+($i+1)+".private.json")) (New-GoaUnifiedInvitation $guestNetwork $seatTicket $i)
+            if ($i -gt 1) { $hostBridges+=@{Network=$guestNetwork;Process=$null;Rpc=0;Directory='';Ready=$false} }
         }
         $script:details.Invitations=$invitations
     } elseif ($request.Mode -ceq 'Join') {
@@ -61,6 +64,18 @@ try {
     # The RPC portal is a process argument in 2.6.4, not a TOML property.
     $core=Start-Core
     $null=$core.Handle; $script:details.CorePid=$core.Id
+    foreach ($bridge in $hostBridges) {
+        Check-Cancel
+        $bridge.Rpc=Get-GoaFreePort
+        $bridge.Directory=Join-Path $Run ('bridge-'+$bridge.Rpc)
+        New-GoaPrivateDirectory $bridge.Directory
+        $bridgeConfig=Get-GoaCoreConfig $bridge.Network 0 $ticket.Port (Get-GoaFreePort) $bridge.Rpc 0
+        $bridgePath=Join-Path $bridge.Directory 'network.private.toml'
+        [IO.File]::WriteAllText($bridgePath,$bridgeConfig,(New-Object Text.UTF8Encoding($false)))
+        $bridge.Process=Start-Process -FilePath (Join-Path $package 'easytier/easytier-core.exe') -ArgumentList ('-c "'+$bridgePath+'" --rpc-portal 127.0.0.1:'+$bridge.Rpc) -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $bridge.Directory 'network.log') -RedirectStandardError (Join-Path $bridge.Directory 'network-error.log')
+        $null=$bridge.Process.Handle
+    }
+    $script:details.CorePids=@($core.Id)+@($hostBridges | ForEach-Object { $_.Process.Id })
     $deadline=[DateTime]::UtcNow.AddSeconds(75)
     $fallbackAt=[DateTime]::UtcNow.AddSeconds(20); $relayFallback=$network.PSObject.Properties['RelayOnly'] -and $network.RelayOnly
     if ($seat -gt 0) { $ticket.Host='127.0.0.1'; $ticket.Port=$forward }
@@ -76,13 +91,22 @@ try {
             # Keep the exact same room, credential and virtual endpoint. Only the owned transport restarts.
             $config=$config.Replace('no_tun = true',"no_tun = true`ndisable_p2p = true`ndisable_udp_hole_punching = true`ndisable_tcp_hole_punching = true")
             [IO.File]::WriteAllText($configPath,$config,(New-Object Text.UTF8Encoding($false)))
-            $core=Start-Core; $script:details.CorePid=$core.Id
+            $core=Start-Core; $script:details.CorePid=$core.Id; $script:details.CorePids=@($core.Id)
         }
         $peers=Invoke-GoaCoreStatus $package $rpc $Run
         $remote=@($peers | Where-Object { $null -ne $_ -and $_.cost -ne 'Local' })
         if ($remote.Count -gt 0) {
-            if ($seat -eq 0) { $connected=$true; break }
-            if (@($peers | Where-Object { $null -ne $_ -and $_.ipv4 -eq '10.233.42.1' }).Count -gt 0) {
+            if ($seat -eq 0) {
+                foreach ($bridge in $hostBridges) {
+                    if ($bridge.Process.HasExited) { throw '好友通道启动失败，请保留诊断目录并重新开房。' }
+                    if (-not $bridge.Ready) {
+                        $bridgePeers=Invoke-GoaCoreStatus $package $bridge.Rpc $bridge.Directory
+                        $bridge.Ready=@($bridgePeers | Where-Object { $null -ne $_ -and $_.cost -ne 'Local' }).Count -gt 0
+                    }
+                }
+                if (@($hostBridges | Where-Object { -not $_.Ready }).Count -eq 0) { $connected=$true; break }
+            }
+            if ($seat -gt 0 -and @($peers | Where-Object { $null -ne $_ -and $_.ipv4 -eq '10.233.42.1' }).Count -gt 0) {
                 State 'Authenticating' '已找到房主，正在验证个人席位…'
                 if (Test-GoaSeatHandshake $ticket $seat) { $connected=$true; break }
             }
@@ -99,6 +123,7 @@ try {
     while ($true) {
         Check-Cancel
         if ($core.HasExited) { throw '网络组件意外退出，请退出本次连接并重新加入。' }
+        if (@($hostBridges | Where-Object { $_.Process.HasExited }).Count -gt 0) { throw '好友网络通道意外退出，请保留诊断目录；本次房间将保存后停止。' }
         if ($null -ne $room -and $room.Process.HasExited) { throw '房主服务已退出，本次房间已停止。请保留本机诊断与存档。' }
         Start-Sleep -Milliseconds 500
     }
@@ -130,6 +155,9 @@ try {
         } while ($retry)
     }
     if ($null -ne $core -and -not $core.HasExited) { $core.Kill(); $core.WaitForExit(5000) | Out-Null }
+    foreach ($bridge in $hostBridges) {
+        if ($null -ne $bridge.Process -and -not $bridge.Process.HasExited) { $bridge.Process.Kill(); $bridge.Process.WaitForExit(5000) | Out-Null }
+    }
     if ($locked) { $mutex.ReleaseMutex() }
     if ($null -ne $mutex) { $mutex.Dispose() }
     if ($failure) { State 'Error' $failure } else { State 'Stopped' $(if ($null -ne $room) {'房间已停止并验证存档；重开需要重新发送邀请。'} else {'本次连接已结束。'}) }
