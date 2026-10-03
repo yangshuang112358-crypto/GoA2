@@ -59,7 +59,9 @@ def prepare(destination):
         'Rust 1.95.0, Windows x86_64 MSVC, upstream Cargo.lock.\n'
         'cargo build --release --locked -p easytier --bin easytier-core --no-default-features --features smoltcp,socks5,aes-gcm\n'
         'Default features (including fake-TCP and TUN) are disabled. No Packet.dll is shipped.\n',encoding='utf-8')
-    shutil.make_archive(str(destination/'Goa2-EasyTier-2.6.4-modified-source'),'zip',source)
+    with zipfile.ZipFile(destination/'Goa2-EasyTier-2.6.4-modified-source.zip','w',zipfile.ZIP_DEFLATED,strict_timestamps=False) as output:
+        for file in sorted(source.rglob('*')):
+            if file.is_file():output.write(file,file.relative_to(source).as_posix())
     print(source)
 
 if __name__=='__main__':prepare(Path(sys.argv[1]).resolve())
