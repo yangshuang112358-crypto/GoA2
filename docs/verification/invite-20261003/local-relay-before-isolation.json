@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "mode": "same PC local relay",
+  "peers": [
+    "tcp://127.0.0.1:51653"
+  ],
+  "relay_only": true,
+  "checks": [
+    "host automatic network ready",
+    "three separate seat invitations",
+    "all three guests authenticate",
+    "actual TCP seat 0",
+    "actual TCP seat 1",
+    "actual TCP seat 2",
+    "actual TCP seat 3",
+    "authority accepts seat 0 hero",
+    "authority accepts seat 1 hero",
+    "authority accepts seat 2 hero",
+    "authority accepts seat 3 hero",
+    "projection agrees seat 0",
+    "projection agrees seat 1",
+    "projection agrees seat 2",
+    "projection agrees seat 3",
+    "client reconnect through forwarding",
+    "same-seat duplicate worker rejected",
+    "ACL probe forwarding configured",
+    "host ACL blocks unrelated local TCP service",
+    "guest stop releases only its connection",
+    "saved invitation reconnects same seat/revision",
+    "cancel unreachable network saves room",
+    "version rejection before starting network",
+    "abnormal worker exit leaves no owned core",
+    "host graceful stop validates save"
+  ],
+  "source_commit": "e36f9afa1b57f8fc1d7fbc5e1cb8981628f53538"
+}

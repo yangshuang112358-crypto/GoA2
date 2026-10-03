@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "runner": "Windows PowerShell launcher helpers + standalone host",
+  "cross_machine": false,
+  "os_input": false,
+  "checks": [
+    "loopback allowed for local test",
+    "EasyTier private address allowed",
+    "public address rejected",
+    "IPv6 rejected until supported",
+    "unassigned bind address rejected",
+    "standalone executable started",
+    "live room reachable",
+    "one-seat invitation 1",
+    "one-seat invitation 2",
+    "one-seat invitation 3",
+    "no authority or host invite exported",
+    "invitation overwrite refused",
+    "old engine invitation rejected",
+    "incomplete invitation rejected",
+    "four clients protocol acceptance",
+    "graceful stop and Restore validation",
+    "stopped endpoint not reachable",
+    "stopped room cannot export invitations",
+    "package remains pristine"
+  ],
+  "package_sha256": "9BE30E203B3C67DBCA257D9C58D5B02BA55EAAB6B7A1C45BB86C86725EFF5AC3"
+}
