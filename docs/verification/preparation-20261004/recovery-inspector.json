@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "checks": [
+    "accepted-command save validates by replay",
+    "pending decision survives offline replay",
+    "tampered final state rejected",
+    "wrong content version rejected",
+    "truncated write rejected",
+    "missing save rejected",
+    "original normal and pending saves unchanged"
+  ],
+  "normal_revision": 4,
+  "pending_revision": 13,
+  "network_recovery_implemented": false
+}

@@ -1,0 +1,25 @@
+{
+  "blender": "4.5.14 LTS",
+  "source_sha256": "548986b0c916fd0258cb51e7dcf9c2d8eb4211cb2e38e62326d627983bae423f",
+  "mode": "check",
+  "unit_scale": 1.0,
+  "fps": 30,
+  "python": "3.11.15",
+  "fbx": {
+    "objects": [
+      "Calibration_1m_REPLACE_BEFORE_PRODUCTION"
+    ],
+    "triangles": 12,
+    "animation_exported": false,
+    "sha256": "fc9a77b05ba179cc7b74a05c54dffd471dc110e37eea7101d147d2f49a496615"
+  },
+  "roundtrip_meshes": 1,
+  "roundtrip_dimensions": [
+    [
+      1.0,
+      1.0,
+      1.0
+    ]
+  ],
+  "passed": true
+}

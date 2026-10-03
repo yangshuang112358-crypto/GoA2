@@ -1,5 +1,7 @@
 # Goa2V1 开发约定
 
+2026-10-04准备：用户确认点击联网允许，已查询桌面bb239c8包easytier-core.exe有Enabled/Public/Inbound/Allow规则；提示用进程已清理。异地联机验收由用户稍后完成，不主动继续。重连/暂存下一入口docs/development/重连与战况保留准备-2026-10-04.md；本批仅新增只读RecoveryInspector（7项通过），未接入自动检查点、旧房重开或自动重连。Blender4.5.14制作模板与项目独立配置已准备，tools/art/blender.ps1和art/production/README.md，CPU渲染/FBX重导入尺寸检查通过；动作导出与新Unity美术尚未完成。桌面06为工作副本入口，07为说明；游戏包仍bb239c8，无需换包。main/engine34不动。
+
 2026-10-03邀请加入：已实施外部启动器自动组网＋三个固定席位个人邀请，核心规则与Unity载荷不变。入口docs/development/邀请加入实现-2026-10-03.md；验收与发行包以同日verification文档为准。EasyTier使用自行构建的2.6.4用户态版本，不分发Npcap Packet.dll，不安装TUN，不改DNS/默认路由/防火墙；Windows首次可能需用户允许程序联网。UI不阻塞，worker管理自己子进程，正常停止验证存档。旧手动模式保留；暗选/凭据权限保持。旧public.easytier.cn域名已失效，本批使用38.147.105.185社区节点，四节点共享网络复测不稳定，现为三个独立房主—好友通道共享权威房间，免费节点不保证可用或低延迟；只通过本机四席与公共节点测试，不宣称四台异地真人整局通过。下方“尚无自动组网”是历史。main与engine34引用不动。
 
 2026-10-03整理：使用入口docs/development/使用手册与版本更新-2026-10-03.md，成果/Blender/教程计划在docs/planning对应同日文档，联机一体化方案在docs/development。108/108状态均implemented，不能称全部integration_tested；Q-09/U-017及D-050扩展保留。9月30日新版联机ZIP已生成，SHA256为6098cc03d9f89927d78c23aff5cde117f80a0751dcbf71cb84103ac3f3647691，覆盖下方“旧包未更新”的时间状态；游戏无响应仅留存显卡超时线索及成功重连，根因未定位。用户本次授权整理/清理冗余文件并推送云端，不等于已实现教程、账号或内嵌EasyTier。EasyTier v2.6.4仓库LICENSE实际LGPL-3.0，勿混同文档网站许可。桌面统一入口Goa2V1，清理以同日清单为准，保留凭据、存档、原始资料和engine34永久回退。

@@ -24,3 +24,4 @@ artifacts/
 *.user
 *.suo
 .vs/
+*.blend[1-9]
