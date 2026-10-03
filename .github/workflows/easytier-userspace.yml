@@ -1,5 +1,8 @@
 name: Build EasyTier userspace transport
 on:
+  push:
+    branches: [experiment/ai-level-20260920]
+    paths: [.github/workflows/easytier-userspace.yml, tools/build_easytier_userspace.py]
   workflow_dispatch:
 permissions:
   contents: read
