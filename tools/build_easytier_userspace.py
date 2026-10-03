@@ -8,6 +8,9 @@ from pathlib import Path
 import hashlib
 import shutil
 import sys
+import io
+import tarfile
+import tomllib
 import urllib.request
 import zipfile
 
@@ -32,9 +35,27 @@ def prepare(destination):
     text=text.replace(before,'                // Goa2 userspace build: never load the optional Npcap capture API.\n                Vec::new()')
     text=text.replace('failed to enumerate interfaces via network-interface, falling back to pnet','failed to enumerate interfaces via network-interface; capture fallback disabled')
     file.write_text(text,encoding='utf-8')
+    lockfile=source/'Cargo.lock';locktext=lockfile.read_text()
+    package=next(p for p in tomllib.loads(locktext)['package'] if p['name']=='pnet_datalink')
+    crate=urllib.request.urlopen('https://static.crates.io/crates/pnet_datalink/pnet_datalink-'+package['version']+'.crate',timeout=60).read()
+    assert hashlib.sha256(crate).hexdigest()==package['checksum']
+    vendor=source/'vendor';vendor.mkdir(exist_ok=True)
+    with tarfile.open(fileobj=io.BytesIO(crate)) as tar:tar.extractall(vendor,filter='data')
+    vendor=vendor/('pnet_datalink-'+package['version'])
+    bindings=vendor/'src/bindings/winpcap.rs';text=bindings.read_text()
+    assert text.count('#[link(name = "Packet")]')==1
+    text=text.replace('#[link(name = "Packet")]','// Goa2: capture is disabled; do not link the optional Packet library.')
+    bindings.write_text(text,encoding='utf-8')
+    with (source/'Cargo.toml').open('a') as f:f.write('\n[patch.crates-io]\npnet_datalink = { path = "vendor/pnet_datalink-'+package['version']+'" }\n')
+    before='name = "pnet_datalink"\nversion = "'+package['version']+'"\nsource = "'+package['source']+'"\nchecksum = "'+package['checksum']+'"'
+    assert locktext.count(before)==1
+    lockfile.write_text(locktext.replace(before,'name = "pnet_datalink"\nversion = "'+package['version']+'"'),encoding='utf-8')
+    # No proprietary capture DLL, import library or unused driver in the published source either.
+    for file in (source/'easytier/third_party').rglob('*'):
+        if file.is_file() and file.suffix.lower() in ('.dll','.sys','.lib'):file.unlink()
     (source/'GOA2-BUILD.txt').write_text(
         'Modified EasyTier 2.6.4, LGPL-3.0. Goa2 userspace build 1 (2026-10-03).\n'
-        'Only modification: remove the Windows legacy pnet/Npcap fallback after network-interface fails.\n'
+        'Modifications: remove Windows legacy pnet/Npcap fallback; remove pnet_datalink Packet link attribute; disable capture/TUN build features; omit precompiled drivers/import libraries.\n'
         'Rust 1.95.0, Windows x86_64 MSVC, upstream Cargo.lock.\n'
         'cargo build --release --locked -p easytier --bin easytier-core --no-default-features --features smoltcp,socks5,aes-gcm\n'
         'Default features (including fake-TCP and TUN) are disabled. No Packet.dll is shipped.\n',encoding='utf-8')
