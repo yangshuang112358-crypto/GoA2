@@ -1,0 +1,38 @@
+{
+  "release_url": "https://github.com/yangshuang112358-crypto/GoA2/releases/tag/invite-20261003-engine97",
+  "tag": "invite-20261003-engine97",
+  "source_commit": "bb239c85416b99f057d1bf49521d00bb26899ff5",
+  "documentation_commit": "ba013ae9969e01a828d16be6c86515f8f64f6acc",
+  "assets": [
+    {
+      "name": "Goa2V1-Invite-Playtest-bb239c8.zip",
+      "size": 101886628,
+      "sha256": "420eab315e6d323d155c64e49ed52b18e28032e06109684df1b2af15874c3924",
+      "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/invite-20261003-engine97/Goa2V1-Invite-Playtest-bb239c8.zip"
+    },
+    {
+      "name": "Goa2V1-Invite-User-Guide.txt",
+      "size": 10770,
+      "sha256": "c2a5efc1caec0d568f15e25c03883f1b5fac317e90e3feff4c3e77888215c641",
+      "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/invite-20261003-engine97/Goa2V1-Invite-User-Guide.txt"
+    },
+    {
+      "name": "Goa2-EasyTier-2.6.4-userspace.zip",
+      "size": 12823274,
+      "sha256": "34f449edb136c9269e08f297df2bc9960581c058e24174c2455ab39142e62fa7",
+      "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/invite-20261003-engine97/Goa2-EasyTier-2.6.4-userspace.zip"
+    },
+    {
+      "name": "Goa2-EasyTier-2.6.4-Sources.zip",
+      "size": 226279393,
+      "sha256": "510f6ab7fe1a4674857b7f35a73ebae59e30efee671ac6eb5023707e342b119b",
+      "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/invite-20261003-engine97/Goa2-EasyTier-2.6.4-Sources.zip"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "size": 398,
+      "sha256": "dbec3aa1d350fbfdaf6c96329cd7bfe021491a275d3c5c607279e5b91204fbb1",
+      "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/invite-20261003-engine97/SHA256SUMS.txt"
+    }
+  ]
+}
