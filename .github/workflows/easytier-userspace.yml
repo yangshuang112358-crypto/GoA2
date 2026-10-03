@@ -6,6 +6,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: easytier-userspace-build
+  cancel-in-progress: true
 jobs:
   windows:
     runs-on: windows-latest
@@ -16,6 +19,10 @@ jobs:
         run: python tools/build_easytier_userspace.py artifacts/easytier-build
       - name: Install pinned Rust toolchain
         run: rustup toolchain install 1.95.0 --profile minimal
+      - uses: arduino/setup-protoc@v3
+        with:
+          version: '31.1'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build without capture and TUN features
         working-directory: artifacts/easytier-build/EasyTier-2.6.4
         run: cargo +1.95.0 build --release --locked -p easytier --bin easytier-core --no-default-features --features smoltcp,socks5,aes-gcm
