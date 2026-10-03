@@ -5,6 +5,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import zipfile
+from prepare_easytier import prepare as prepare_easytier
 
 from player_package import file_digest, verify_build, require, regular_file, safe_relative, strict_json
 
@@ -25,6 +26,11 @@ def verify(folder):
     required = {"Start-Multiplayer.cmd", "launcher/Launcher.ps1", "launcher/RoomTools.ps1",
                 "host/Goa2.Network.exe", "host/Goa2.Network.runtimeconfig.json", "host/coreclr.dll",
                 "host/hostfxr.dll", "content/manifest.json", "player/build-info.json"}
+    if manifest.get("AutomaticInviteVersion") == 1:
+        required.update({"launcher/AutoLauncher.ps1", "launcher/ManualLauncher.ps1", "launcher/BootstrapTools.ps1",
+                         "launcher/BootstrapWorker.ps1", "launcher/OwnedProcessJob.cs", "easytier/easytier-core.exe",
+                         "easytier/easytier-cli.exe", "easytier/component.json", "easytier/LICENSE-LGPL-3.0.txt",
+                         "easytier/DEPENDENCY-NOTICES.txt", "easytier/Goa2-EasyTier-2.6.4-modified-source.zip"})
     require(required <= names, "Incomplete portable package")
     require(not any(".private." in n or n.endswith(".log") for n in names), "Session data in distribution")
     for entry in manifest["Files"]:
@@ -55,14 +61,16 @@ def create(root, host, destination):
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(root / "content" / name, target)
     (destination / "launcher").mkdir()
-    for name in ("RoomTools.ps1", "Launcher.ps1", "Start-Multiplayer.cmd", "README.txt"):
-        target = destination / "launcher" / name if name.endswith(".ps1") else destination / name
+    for name in ("RoomTools.ps1", "Launcher.ps1", "AutoLauncher.ps1", "ManualLauncher.ps1", "BootstrapTools.ps1", "BootstrapWorker.ps1", "OwnedProcessJob.cs", "Start-Multiplayer.cmd", "README.txt"):
+        target = destination / "launcher" / name if name.endswith((".ps1", ".cs")) else destination / name
         # Windows PowerShell 5.1 requires BOM for Chinese text in scripts.
         text = (root / "network/launcher" / name).read_text(encoding="utf-8-sig")
         target.write_text(text, encoding="utf-8-sig" if name.endswith(".ps1") else "utf-8", newline="\r\n")
+    shutil.copytree(prepare_easytier(root), destination / "easytier")
     source_names = subprocess.check_output(["git", "ls-files", "--cached", "--others", "--exclude-standard"], cwd=root, text=True).splitlines()
     source_names = [n for n in source_names if n.startswith(("core/", "network/", "tools/")) or n in ("Directory.Build.props", "global.json")]
     manifest = {"SchemaVersion": 1,
+                "AutomaticInviteVersion": 1,
                 "SourceCommit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip(),
                 "SourceFiles": [{"Path": n, "Sha256": file_digest(root / n)} for n in sorted(source_names) if (root / n).is_file()],
                 "Files": records(destination)}

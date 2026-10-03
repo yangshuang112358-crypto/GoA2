@@ -1,5 +1,7 @@
 # Goa2V1 开发约定
 
+2026-10-03邀请加入：已实施外部启动器自动组网＋三个固定席位个人邀请，核心规则与Unity载荷不变。入口docs/development/邀请加入实现-2026-10-03.md；验收与发行包以同日verification文档为准。EasyTier使用自行构建的2.6.4用户态版本，不分发Npcap Packet.dll，不安装TUN，不改DNS/默认路由/防火墙；Windows首次可能需用户允许程序联网。UI不阻塞，worker管理自己子进程，正常停止验证存档。旧手动模式保留；暗选/凭据权限保持。旧public.easytier.cn域名已失效，本批使用已验证的38.147.105.185社区节点，免费节点不保证可用或低延迟；只通过本机四席与公共节点测试，不宣称四台异地真人整局通过。下方“尚无自动组网”是历史。main与engine34引用不动。
+
 2026-10-03整理：使用入口docs/development/使用手册与版本更新-2026-10-03.md，成果/Blender/教程计划在docs/planning对应同日文档，联机一体化方案在docs/development。108/108状态均implemented，不能称全部integration_tested；Q-09/U-017及D-050扩展保留。9月30日新版联机ZIP已生成，SHA256为6098cc03d9f89927d78c23aff5cde117f80a0751dcbf71cb84103ac3f3647691，覆盖下方“旧包未更新”的时间状态；游戏无响应仅留存显卡超时线索及成功重连，根因未定位。用户本次授权整理/清理冗余文件并推送云端，不等于已实现教程、账号或内嵌EasyTier。EasyTier v2.6.4仓库LICENSE实际LGPL-3.0，勿混同文档网站许可。桌面统一入口Goa2V1，清理以同日清单为准，保留凭据、存档、原始资料和engine34永久回退。
 
 2026-09-30 小兵模型第一版：用户授权 Blender，已用4.5.14制作原创近战盾斧、远程兜帽法杖、重型装甲拳兵，统一青灰金属/旧黄铜及红蓝布料。源文件art/minions/Goa2_Minion_Collection.blend，生成器tools/art/build_minions.py；FBX接入Board3DScene.Minions.cs替换小兵圆柱，英雄未替换。18骨骼为刚性分件权重，尚无动作/柔性布袍/最终贴图/LOD。11项带图形测试、3项无图形导入检查、Windows构建与源码清单验证通过；证据docs/verification/小兵模型第一版-2026-09-30.md。用户美术验收未通过，不宣称已达到最终品质；旧联机发行包未更新。

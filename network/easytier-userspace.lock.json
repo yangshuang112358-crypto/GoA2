@@ -1,0 +1,8 @@
+{
+  "Version": "2.6.4",
+  "Variant": "Goa2-userspace-1",
+  "BuildCommit": "7f8b211",
+  "BuildRun": "https://github.com/yangshuang112358-crypto/GoA2/actions/runs/37091717807",
+  "Url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/invite-20261003-engine97/Goa2-EasyTier-2.6.4-userspace.zip",
+  "Sha256": "34f449edb136c9269e08f297df2bc9960581c058e24174c2455ab39142e62fa7"
+}

@@ -19,7 +19,7 @@ package = Path(sys.argv[1]).resolve()
 output = Path(sys.argv[2]).resolve()
 output.mkdir(parents=True, exist_ok=False)
 checks = []
-process = subprocess.Popen(["powershell.exe", "-NoProfile", "-STA", "-File", str(package / "launcher/Launcher.ps1")], creationflags=subprocess.CREATE_NO_WINDOW)
+process = subprocess.Popen(["powershell.exe", "-NoProfile", "-STA", "-File", str(package / "launcher/ManualLauncher.ps1")], creationflags=subprocess.CREATE_NO_WINDOW)
 
 
 def windows(parent=None):

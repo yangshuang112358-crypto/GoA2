@@ -1,4 +1,4 @@
-# Dot-source from the packaged launcher or verification script. No SDK is required.
+﻿# Dot-source from the packaged launcher or verification script. No SDK is required.
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
@@ -38,6 +38,12 @@ function Get-GoaJson([string]$Path, [int]$MaxBytes=16384) {
 function Get-GoaTicket([string]$Path, [string]$Package) {
     try {
         $ticket = Get-GoaJson $Path
+        Test-GoaTicketObject $ticket $Package
+        return $ticket
+    } catch { throw '邀请无效或游戏版本不一致。请使用与房主相同的游戏包和本次房间的个人邀请。' }
+}
+
+function Test-GoaTicketObject($ticket, [string]$Package) {
         if ($ticket.Type -ne 'Hello' -or $ticket.RoomId -notmatch '^[a-fA-F0-9]{32}$' -or
             $ticket.Credential -notmatch '^[a-fA-F0-9]{64}$' -or -not (Test-GoaPrivateAddress $ticket.Host) -or
             ($ticket.Port -isnot [int] -and $ticket.Port -isnot [long]) -or $ticket.Port -lt 1 -or $ticket.Port -gt 65535) { throw 'invalid' }
@@ -46,8 +52,6 @@ function Get-GoaTicket([string]$Path, [string]$Package) {
         if ($caps.WireVersion -ne 1 -or $caps.EngineVersion -ne $info.EngineVersion -or
             $caps.ProtocolVersion -cne $info.ProtocolVersion -or $caps.ContentHash -cne $info.ContentHash -or
             $caps.RulesVersion -cne $info.RulesVersion) { throw 'version' }
-        return $ticket
-    } catch { throw '邀请无效或游戏版本不一致。请使用与房主相同的游戏包和本次房间的个人邀请。' }
 }
 
 function Test-GoaEndpoint([string]$Address, [int]$Port) {
@@ -87,7 +91,7 @@ function Join-GoaRoom([string]$Package, [string]$Ticket) {
     return Start-GoaPlayer $Package $copy
 }
 
-function Start-GoaRoom([string]$Package, [string]$Address, [string]$DataRoot='') {
+function Start-GoaRoom([string]$Package, [string]$Address, [string]$DataRoot='', [scriptblock]$CheckCancelled={}) {
     if (-not (Test-GoaPrivateAddress $Address) -or $Address -notin @(Get-GoaAddresses | ForEach-Object { $_.Address })) {
         throw '请选择本机正在使用的私有 IPv4 地址；异地联机请选择 EasyTier 地址。'
     }
@@ -105,6 +109,7 @@ function Start-GoaRoom([string]$Package, [string]$Address, [string]$DataRoot='')
         $deadline = [DateTime]::UtcNow.AddSeconds(20)
         $readyPath = Join-Path $private 'ready.json'
         while (-not (Test-Path -LiteralPath $readyPath)) {
+            & $CheckCancelled
             if ($process.HasExited -or [DateTime]::UtcNow -ge $deadline) { throw '房主服务未成功启动。请查看本机房间目录内 server-error.log。' }
             Start-Sleep -Milliseconds 100
         }
