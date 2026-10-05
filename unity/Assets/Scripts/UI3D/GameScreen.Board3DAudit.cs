@@ -242,11 +242,11 @@ namespace Goa2.Presentation
             Check(!root.Q<VisualElement>("hero-hover").Query<Label>().ToList().Any(l=>l.text=="未公开手牌隐藏"),"Opponent inspection omits hidden-hand notice");Check(root.Q<VisualElement>("hero-card-grid")!=null,"Two-column hero inspection grid exists");Check(root.Q<VisualElement>("hero-hover").Q<Button>("card-keywords")==null,"Inspection has no glossary button");HideHeroHover();
             long followRevision=renderedView.Revision;int followSeat=seat;
             SetCameraFollow(false);yield return new WaitForSecondsRealtime(.25f);
-            Check(followToast!=null && followToast.resolvedStyle.opacity>.99f,"Follow toast rises and becomes opaque");
+            Check(root.Q(className:"flow-return")!=null,"Free mode offers unified flow return");
             Render();yield return null;
             Check(!cameraFollow && seat==followSeat && renderedView.Revision==followRevision,"Follow toggle survives rebuild without command or identity change");
             yield return new WaitForSecondsRealtime(1.5f);
-            Check(followToast!.resolvedStyle.display==DisplayStyle.None,"Toast fades out after one second hold");
+            Check(root.Q("follow-toast")==null && root.Q("follow-toggle")==null,"No redundant follow controls or toast");
             rightExpanded=true;showHotkeys=true;Render();yield return null;yield return null;
             var drawer=root.Q<VisualElement>("operation-panel");
             Check(drawer.worldBound.xMax<=Screen.width && drawer.worldBound.yMax<=Screen.height,"Settings drawer stays inside viewport");

@@ -17,13 +17,12 @@ namespace Goa2.Presentation
         private readonly Board3DViewport board3DViewport = new Board3DViewport();
         private void Update()
         {
-            RefreshFollowControls();
             UpdatePresentationFocus();
             if(Input.GetKeyDown(KeyCode.Escape)) { if(skillPopup!=null){skillPopup.RemoveFromHierarchy();skillPopup=null;}else if(heroPopup!=null)HideHeroHover();else if(keywordGlossaryOpen) CloseKeywordGlossary();else if(rightExpanded && !galleryOpen && !historyOpen && !newMatchPending && !debugPresetsOpen) {rightExpanded=false;showHotkeys=false;Render();}else if(wheelSeat.HasValue)ToggleHeroWheel(wheelSeat.Value);else if(browsingWheels.Count>0)CloseHeroWheel();else HideCardPreview();return; }
             if(keywordGlossaryOpen) return;
             if(Input.GetKeyDown(KeyCode.F1) && HasGameView && !startupFailed && !newMatchPending && !debugPresetsOpen && !IsEditingText()) { OpenKeywordGlossary(previewCard);return; }
             if (!HasGameView || startupFailed || galleryOpen || publicCardsOpen || historyOpen || newMatchPending || debugPresetsOpen || IsEditingText()) return;
-            if(Input.GetKeyDown(KeyCode.Space)) {SetCameraFollow(!cameraFollow);return;}
+            if(Input.GetKeyDown(KeyCode.Space)) {ReturnMainFlow();return;}
             if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) {ConfirmCurrent();return;}
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) SwitchSeat(0);
             if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)) SwitchSeat(1);

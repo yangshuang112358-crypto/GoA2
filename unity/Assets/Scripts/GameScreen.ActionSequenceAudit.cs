@@ -21,12 +21,12 @@ namespace Goa2.Presentation
             rightExpanded=false;cameraFollow=false;CloseHeroWheel();Render();yield return new WaitForSecondsRealtime(2);
             Check(root.Q<ScrollView>("revealed-zone")==null&&actionRail!=null,"Floating rail is not a window ScrollView");
             Check(root.Query<ActionSlab>().ToList().Count==4,"Four original compact cards");
-            Check(actionRail!.worldBound.width<=344,"Rail occupies at most 344px");
+            Check(actionRail!.worldBound.width<=296,"Rail occupies at most 296px");
             foreach(var n in renderedView.ActionSequence.Cards)
             {
                 var slab=root.Q<ActionSlab>("revealed-seat-"+(n.Seat+1));
                 Check(slab.Q<Label>(className:"action-card-rules")==null && slab.Q<Label>(className:"action-card-result")==null,"No effects or results on compact stone "+n.CardId);
-                Check(slab.worldBound.height<=138 && slab.Q("action-portrait-"+n.Id)!=null && slab.Q("action-skill-"+n.Id)!=null,"Compact portrait and skill icon "+n.CardId);
+                Check(slab.worldBound.height<=114 && slab.Q("action-portrait-"+n.Id)!=null && slab.Q("action-skill-"+n.Id)!=null,"Compact portrait and skill icon "+n.CardId);
                 foreach(var number in slab.Query<VisualElement>(className:"action-number").ToList())Check(number.worldBound.xMax<=slab.worldBound.xMax,"Numbers fit compact stone "+n.CardId);
             }
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"compact-cards.png"));yield return new WaitForSecondsRealtime(.25f);

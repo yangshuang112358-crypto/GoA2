@@ -4,6 +4,7 @@ using System.Collections;
 using System.IO;
 using System.Linq;
 using Goa2.Domain;
+using Goa2.Presentation.UI3D;
 using Goa2.Infrastructure.Scenarios;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -26,6 +27,13 @@ namespace Goa2.Presentation
             yield return null;Load("combat-defense",7);yield return new WaitForSecondsRealtime(3);
             Check(root.Q("action-wheel")!=null && root.Q("operation-panel").resolvedStyle.display==DisplayStyle.None,"Action choices on hero with settings closed");
             Check(root.Q("operation-panel").Q("begin-primary")==null,"No old action duplicate in settings");
+            var guide=root.Q("main-flow-status");
+            Check(guide.worldBound.xMax<=Screen.width && guide.worldBound.yMax>=Screen.height-16 && guide.worldBound.width<=282,"Compact guide sits at bottom-right");
+            Check(root.Q("follow-toggle")==null && root.Q("follow-toast")==null && root.Q("world-instruction")==null,"One guide replaces old follow button and bottom hint");
+            Check(!root.Q<Label>(className:"flow-summary").text.Contains("（"),"Summary omits seat suffix");
+            var firstStone=root.Query<ActionSlab>().ToList().OrderBy(v=>v.worldBound.yMin).First();
+            Check(Mathf.Abs(firstStone.worldBound.yMin-firstStone.worldBound.xMin)<4,"First stone top margin matches left margin");
+            Check(firstStone.worldBound.width<=280 && firstStone.worldBound.height<=114 && root.Q(className:"action-team-stripe")==null,"Compact action slabs omit bottom team stripe");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"action-wheel.png"));yield return new WaitForSecondsRealtime(.2f);
             string before=session.ExportSave();
             ToggleHeroWheel(1);ToggleHeroWheel(2);yield return new WaitForSecondsRealtime(1);
@@ -34,7 +42,7 @@ namespace Goa2.Presentation
             Check(root.Q(className:"flow-return")!=null && root.Q("action-wheel")==null,"Free mode offers return and hides operation ring");
             Render();Check(browsingWheels.Count>=2 && !mainFlow,"UI refresh preserves free browsing");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"free-multiple-rings.png"));yield return new WaitForSecondsRealtime(.3f);
-            ReturnMainFlow();yield return new WaitForSecondsRealtime(.5f);
+            ReturnMainFlow();ReturnMainFlow();yield return new WaitForSecondsRealtime(.5f);
             Check(mainFlow && cameraFollow && browsingWheels.Count==0 && root.Q("action-wheel")!=null,"Return clears inspected rings and restores actor choices");
             Check(session.ExportSave()==before,"Browsing and returning do not mutate rules");
             PickAction("primary");yield return null;
@@ -44,7 +52,9 @@ namespace Goa2.Presentation
             PickAction("secondary");Check(LegalCells(renderedView).Count>0,"Secondary movement destinations visible");ReturnWorldChoice();Check(session.ExportSave()==before,"Movement cancellation is read-only");
             PickAction("primary");chosenCell=renderedView.Units.Single(u=>u.Id=="hero:1").Position;Render();yield return new WaitForSecondsRealtime(1);
             var confirm=root.Q<Button>("flow-confirm");Check(confirm!=null && confirm.enabledInHierarchy,"Map target has confirmation check");
-            Check(confirm!.worldBound.xMin>Screen.width-250 && root.Q("flow-withdraw").worldBound.yMin>confirm.worldBound.yMax,"Confirm and withdraw stacked at right edge");
+            Check(confirm!.worldBound.xMin>Screen.width-250 && root.Q("flow-withdraw").worldBound.yMin>=confirm.worldBound.yMax,"Confirm and withdraw stacked at right edge");
+            Check(confirm.worldBound.width<=181 && root.Q("flow-withdraw").worldBound.yMin-confirm.worldBound.yMax<=3,"Decision buttons are narrower with tightly stacked hit boxes");
+            Check(confirm.Query<Label>().ToList().Count==0 && root.Q("flow-withdraw").Query<Label>().ToList().Count==0,"Lettering and symbols are baked into model, no overlaid labels");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"target-confirm.png"));yield return new WaitForSecondsRealtime(.2f);
             ConfirmCurrent();ConfirmCurrent();yield return new WaitForSecondsRealtime(.5f);Check(renderedView.Pending?.Kind=="defense" && renderedView.Revision>0,"Single confirmation begins actual defender response");
             Check(actionChoice=="" && root.Q("world-return")==null,"Cannot undo committed attack from response");
@@ -83,6 +93,7 @@ namespace Goa2.Presentation
                 upgradeCardId=renderedView.UpgradeOptions.First().CardId;Render();yield return null;yield return null;
                 Check(confirmButton!=null && root.Q("decision-dock").Contains(confirmButton),"Upgrade confirmation uses right dock");
                 Check(root.Query<VisualElement>(className:"upgrade-row").ToList().Count==3,"Six upgrade candidates retain three color rows");
+                if(upgrades==1){ScreenCapture.CaptureScreenshot(Path.Combine(output,"upgrade-layout.png"));yield return new WaitForSecondsRealtime(.2f);}
                 ConfirmCurrent();yield return new WaitForSecondsRealtime(.5f);
             }
             Check(renderedView.Phase==Phase.Planning && !rightExpanded,"Minion battle, spawn and upgrades reach next round without settings");

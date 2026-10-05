@@ -1,0 +1,8 @@
+{
+  "method": "OS key/mouse injection into verified foreground standalone Player; not human physical input and not UI Toolkit synthetic events",
+  "passed": false,
+  "error": "Home enters free viewing",
+  "checks": [
+    "Starts in main flow"
+  ]
+}

@@ -10,9 +10,13 @@ source=root/'art/ui/DecisionControls.blend'
 output=root/'unity/Assets/Resources/UI3D/DecisionButtons'
 source.parent.mkdir(parents=True,exist_ok=True);output.mkdir(parents=True,exist_ok=True)
 bpy.ops.wm.read_factory_settings(use_empty=True)
+bpy.context.preferences.filepaths.save_version=0
+def principled(mat):
+    return next(n for n in mat.node_tree.nodes if n.type=='BSDF_PRINCIPLED')
+
 def material(name,color,metal=0,rough=.5,emission=0):
     m=bpy.data.materials.new(name);m.diffuse_color=(*color,1);m.use_nodes=True
-    p=m.node_tree.nodes.get('Principled BSDF');p.inputs['Base Color'].default_value=(*color,1)
+    p=principled(m);p.inputs['Base Color'].default_value=(*color,1)
     p.inputs['Metallic'].default_value=metal;p.inputs['Roughness'].default_value=rough
     p.inputs['Emission Color'].default_value=(*color,1);p.inputs['Emission Strength'].default_value=emission
     return m
@@ -46,7 +50,7 @@ for side in (-1,1):
     line('Inset circuit',[(side*1.65,-.32,.461),(side*1.55,-.42,.461),(side*.95,-.42,.461)],rune)
     line('Inset circuit',[(side*1.65,.32,.461),(side*1.55,.42,.461),(side*.95,.42,.461)],rune)
 scene=bpy.context.scene;scene.render.engine='CYCLES';scene.cycles.device='CPU';scene.cycles.samples=24
-scene.render.film_transparent=True;scene.render.resolution_x=640;scene.render.resolution_y=320;scene.render.resolution_percentage=100
+scene.render.film_transparent=True;scene.render.resolution_x=640;scene.render.resolution_y=280;scene.render.resolution_percentage=100
 scene.render.image_settings.file_format='PNG';scene.render.image_settings.color_mode='RGBA';scene.view_settings.view_transform='AgX'
 scene.world=bpy.data.worlds.new('Dark studio');scene.world.color=(.16,.16,.16)
 lights=[]
@@ -54,13 +58,49 @@ for name,loc,power,color in [('Softbox',(-3,-4,7),750,(1,.88,.65)),('Rim',(3,2,5
     d=bpy.data.lights.new(name,'AREA');d.energy=power;d.color=color;d.size=4
     o=bpy.data.objects.new(name,d);bpy.context.collection.objects.link(o);o.location=loc;o.rotation_euler=(-o.location).to_track_quat('-Z','Y').to_euler();lights.append(d)
 d=bpy.data.cameras.new('UI orthographic bake');o=bpy.data.objects.new(d.name,d);bpy.context.collection.objects.link(o)
-o.location=(0,-3,9);o.rotation_euler=(Vector((0,0,.15))-o.location).to_track_quat('-Z','Y').to_euler();d.type='ORTHO';d.ortho_scale=4.8;scene.camera=o
-scene['usage']='Blender-made geometry/light bakes; UI animates translation/tilt/press. No Hearthstone ripped assets.'
-bpy.ops.wm.save_as_mainfile(filepath=str(source))
-for name,color,glow in [('confirm',(.025,.22,.07),(.15,.8,.3)),('withdraw',(.055,.07,.085),(.24,.33,.4))]:
-    shader=face.node_tree.nodes.get('Principled BSDF');shader.inputs['Base Color'].default_value=(*color,1);shader.inputs['Emission Color'].default_value=(*color,1)
-    rune.node_tree.nodes.get('Principled BSDF').inputs['Emission Color'].default_value=(*glow,1)
-    for state,energy,offset in [('idle',750,0),('hover',1050,.04),('pressed',580,-.065)]:
+o.location=(0,-3,9);o.rotation_euler=(Vector((0,0,.15))-o.location).to_track_quat('-Z','Y').to_euler();d.type='ORTHO';d.ortho_scale=4.35;scene.camera=o
+# Lettering is actual bevelled geometry attached to the inset, sharing lights/occlusion.
+font=bpy.data.fonts.load(str(root/'unity/Assets/Resources/Fonts/NotoSansCJKsc-Regular.otf'))
+letters=material('Warm ivory brass lettering',(.68,.60,.38),.58,.35)
+variants={}
+for kind,caption in [('confirm','确认'),('withdraw','撤回')]:
+    curve=bpy.data.curves.new(kind+' raised lettering','FONT');curve.body=caption;curve.font=font
+    curve.size=1.55;curve.extrude=.012;curve.bevel_depth=.005;curve.bevel_resolution=2
+    obj=bpy.data.objects.new(curve.name,curve);bpy.context.collection.objects.link(obj);curve.materials.append(letters)
+    bpy.context.view_layer.update()
+    bounds=[Vector(v) for v in obj.bound_box]
+    obj.location=(.43-(min(v.x for v in bounds)+max(v.x for v in bounds))/2,
+                  -(min(v.y for v in bounds)+max(v.y for v in bounds))/2,.466)
+    obj.parent=inset
+    if kind=='confirm':
+        icon=line('confirm inset check',[(-1.60,.015,.478),(-1.38,-.20,.478),(-1.00,.28,.478)],letters,.048)
+        parts=[obj,icon]
+    else:
+        cx,cy,r=-1.28,0,.29
+        points=[(cx+math.cos(math.radians(a))*r,cy+math.sin(math.radians(a))*r,.478) for a in range(-40,211,8)]
+        icon=line('withdraw curved arrow',points,letters,.043)
+        ex,ey,ez=points[-1]
+        head=line('withdraw arrowhead',[(ex-.13,ey+.14,ez),(ex,ey,ez),(ex+.19,ey+.03,ez)],letters,.043)
+        parts=[obj,icon,head]
+    for part in parts:part.parent=inset
+    variants[kind]=parts
+scene['usage']='Original inset lettering/icon geometry, all material and lighting baked together; animated in Unity.'
+scene['variant']='confirm'
+for name,color,glow in [('confirm',(.025,.22,.07),(.15,.8,.3)),('withdraw',(.025,.03,.036),(.18,.23,.27))]:
+    for variant,parts in variants.items():
+        for part in parts:part.hide_render=variant!=name;part.hide_viewport=variant!=name
+    shader=principled(face);shader.inputs['Base Color'].default_value=(*color,1);shader.inputs['Emission Color'].default_value=(*color,1)
+    principled(rune).inputs['Emission Color'].default_value=(*glow,1)
+    for state,energy,offset in [('idle',750,0),('hover',1050,.035),('pressed',580,-.05)]:
         lights[0].energy=energy;inset.location.z=offset
         scene.render.filepath=str(output/(name+'-'+state+'.png'));bpy.ops.render.render(write_still=True)
+# Save a self-contained editable master with confirm visible; hidden withdraw geometry retained.
+inset.location.z=0;lights[0].energy=750
+for variant,parts in variants.items():
+    for part in parts:part.hide_render=variant!='confirm';part.hide_viewport=variant!='confirm'
+principled(face).inputs['Base Color'].default_value=(.025,.22,.07,1)
+principled(face).inputs['Emission Color'].default_value=(.025,.22,.07,1)
+principled(rune).inputs['Emission Color'].default_value=(.15,.8,.3,1)
+bpy.ops.file.pack_all()
+bpy.ops.wm.save_as_mainfile(filepath=str(source),compress=True)
 print('GOA_DECISION_BUTTONS_READY')

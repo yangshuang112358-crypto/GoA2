@@ -1,0 +1,19 @@
+{
+  "method": "OS key/mouse injection into verified foreground standalone Player; not human physical input and not UI Toolkit synthetic events",
+  "passed": true,
+  "error": "",
+  "checks": [
+    "Starts in main flow",
+    "Home enters free viewing",
+    "Space returns to current action",
+    "Repeated Space does not toggle follow off",
+    "Focus shortcut submits no game command",
+    "Clicking unified guide restores current action",
+    "Compact guide is visible and bounded",
+    "Old follow button is absent",
+    "Middle drag leaves main flow",
+    "Free camera stays where released",
+    "Return guide works after actual drag",
+    "All viewing operations preserve rule revision"
+  ]
+}

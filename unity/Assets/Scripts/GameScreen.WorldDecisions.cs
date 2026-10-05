@@ -12,13 +12,13 @@ namespace Goa2.Presentation
     public sealed partial class GameScreen
     {
         private string actionChoice="",worldContext="";
-        private bool worldOptionsOpen,worldInfoOpen,actionRingClosed;
+        private bool worldOptionsOpen,actionRingClosed;
         private int worldPage;
         private void ObserveWorldDecisions()
         {
             string context=renderedView.MatchId+":"+seat+":"+renderedView.Revision;
             if(context==worldContext)return;
-            worldContext=context;actionChoice="";worldOptionsOpen=false;worldInfoOpen=false;actionRingClosed=false;worldPage=0;
+            worldContext=context;actionChoice="";worldOptionsOpen=false;actionRingClosed=false;worldPage=0;
         }
         private void PickAction(string value)
         {
@@ -88,9 +88,10 @@ namespace Goa2.Presentation
         }
         private void BuildWorldDecisions()
         {
-            var view=renderedView;if(!mainFlow || board==null || showDebug && rightExpanded || debugAttack || debugTeleport)return;
+            flowDetails="";var view=renderedView;if(!mainFlow || board==null || showDebug && rightExpanded || debugAttack || debugTeleport)return;
             var source=new VisualElement();RenderDecisionSource(source,view);
             var labels=source.Query<Label>().ToList().Where(l=>l.GetFirstAncestorOfType<ScrollView>()==null && !InsideCardDetail(l)).Select(l=>l.text).Where(t=>!string.IsNullOrWhiteSpace(t)).ToList();
+            flowDetails=string.Join("\n",labels);
             var options=source.Query<Button>().ToList().Where(b=>b!=confirmButton && b.text!="取消" && !InsideCardDetail(b)).ToList();
             bool cards=WheelDiscard(view) || view.Pending?.Kind=="defense" || WheelRecovery(view);
             if(cards)options.Clear();
@@ -108,7 +109,7 @@ namespace Goa2.Presentation
                 if(chosen!=null && chosen.Color!="purple")upgrade?.Add(Text("永久"+chosen.Bonus+" +1 · 来源："+catalog.Card(chosen.RejectedCardId).Name,"muted"));
                 return;
             }
-            if(cards) {BuildWorldHint(layer,labels);return;}
+            if(cards)return;
             if(view.Phase==Phase.Action && actionChoice=="" && actionRingClosed)return;
             if(wheelState.Discards.Count>0)return;
             bool expanded=!geometry || worldOptionsOpen;
@@ -118,19 +119,10 @@ namespace Goa2.Presentation
                 else layer.Add(Button("步骤选项",()=>{worldOptionsOpen=true;Render();},"world-options-toggle","world-options-toggle"));
             }
             if(worldOptionsOpen && geometry)layer.Add(Button("继续选择地图目标",()=>{worldOptionsOpen=false;Render();},"world-options-toggle","world-options-close"));
-            BuildWorldHint(layer,labels);
         }
         private static bool InsideCardDetail(VisualElement element)
         {
             for(var p=element.parent;p!=null;p=p.parent)if(p.ClassListContains("card-detail"))return true;return false;
-        }
-        private void BuildWorldHint(VisualElement layer,List<string> labels)
-        {
-            if(labels.Count==0)return;
-            var hint=new VisualElement{name="world-instruction"};hint.AddToClassList("world-instruction");layer.Add(hint);
-            string summary=labels[0];var text=Text(summary,"world-instruction-text");text.tooltip=string.Join("\n",labels);hint.Add(text);
-            if(labels.Count>1)hint.Add(Button(worldInfoOpen?"收起":"详情",()=>{worldInfoOpen=!worldInfoOpen;Render();},"quiet-button","world-details"));
-            if(worldInfoOpen){hint.style.flexDirection=FlexDirection.Column;var scroll=new ScrollView{name="world-details-text"};scroll.style.maxHeight=250;foreach(var line in labels.Skip(1))scroll.Add(Text(line,"body"));hint.Add(scroll);}
         }
         private void BuildContextRing(VisualElement layer,List<Button> options,int actor)
         {

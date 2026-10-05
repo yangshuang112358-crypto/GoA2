@@ -11,7 +11,7 @@ namespace Goa2.Presentation
     public sealed partial class GameScreen
     {
         private bool mainFlow=true,decisionAnimating;
-        private string flowMatch="";
+        private string flowMatch="",flowDetails="";
         private readonly HashSet<int> browsingWheels=new HashSet<int>();
         private VisualElement? decisionDock;
         private void ObserveMainFlow()
@@ -25,7 +25,7 @@ namespace Goa2.Presentation
             if(wheelSeat.HasValue){browsingWheels.Add(wheelSeat.Value);lastBrowsedSeat=wheelSeat;}
             mainFlow=false;cameraFollow=false;cameraFocusVersion++;board?.StopFollowing();
             ClearPending();actionRingClosed=true;wheelSeat=null;wheelPreview="";wheelDecline=false;
-            confirmButton=null;confirmAction=null;RefreshFollowControls();
+            confirmButton=null;confirmAction=null;
         }
         private void ReturnMainFlow()
         {
@@ -39,7 +39,7 @@ namespace Goa2.Presentation
         {
             var panel=Button("",ReturnMainFlow,"main-flow-status","main-flow-status");
             panel.Add(Text("第 "+renderedView.Round+" 轮 · 第 "+renderedView.Turn+" / 4 回合","flow-round"));
-            string Hero(int who)=>HeroName(renderedView.Players.FirstOrDefault(p=>p.Seat==who)?.HeroId)+"（"+(who+1)+"）";
+            string Hero(int who)=>HeroName(renderedView.Players.FirstOrDefault(p=>p.Seat==who)?.HeroId);
             panel.Add(Text(MainFlowPolicy.Summary(renderedView,Hero),"flow-summary"));
             bool mine=MainFlowPolicy.NeedsInput(renderedView,seat) && NetworkCanAct;
             string instruction=MainFlowPolicy.Instruction(renderedView,seat);
@@ -48,7 +48,7 @@ namespace Goa2.Presentation
             if(NetworkMode && !NetworkCanAct)instruction=networkBusy?"正在等待操作回执":uncertainCommand!=""?"操作结果待核实，请在设置中查询原操作":"连接已中断，请在设置中重连";
             var prompt=Text((mine?"到你行动 · ":"")+instruction,"flow-prompt");prompt.EnableInClassList("flow-mine",mine);panel.Add(prompt);
             if(!mainFlow)panel.Add(Text("回到当前行动","flow-return"));
-            panel.tooltip="返回当前规则步骤；暗选时返回自己的选牌界面";
+            panel.tooltip="点击或空格：回到当前行动；暗选时返回自己的选牌界面"+(flowDetails==""?"":"\n\n"+flowDetails);
             panel.Query<VisualElement>().ForEach(e=>{if(e!=panel)e.pickingMode=PickingMode.Ignore;});root.Add(panel);
         }
         private bool CanWithdrawPreview()=>chosenHero!=null || chosenCell.HasValue || wheelPreview!="" || wheelDecline || upgradeCardId!="" || actionChoice!="" || moveMode.HasValue || goldTransferAmount>=0 || deploymentSeat>=0 || (renderedView.Pending?.Kind=="primary_option" && primaryOptionChoice!="");

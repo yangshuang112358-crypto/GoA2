@@ -15,10 +15,30 @@ if($ActionSequenceOnly) {$uiArgs+=' -goaActionSequenceAuditOnly'}
 if($TerrainOnly) {$uiArgs+=' -goaTerrainAuditOnly'}
 if($SettingsOnly) {$uiArgs+=' -goaSettingsAuditOnly'}
 if($SkillBadgesOnly) {$uiArgs+=' -goaSkillBadgesAuditOnly'}
-$uiProcess=Start-Process -FilePath $uiUnity -ArgumentList $uiArgs -WindowStyle Hidden -PassThru
+# A Player graphic audit must display its test window: Hidden can produce black captures.
+if($Player) {$uiProcess=Start-Process -FilePath $uiUnity -ArgumentList $uiArgs -PassThru}
+else {$uiProcess=Start-Process -FilePath $uiUnity -ArgumentList $uiArgs -WindowStyle Hidden -PassThru}
 $uiProcess.WaitForExit()
 $uiReport=Join-Path $uiOutput 'report.json'
 if(-not (Test-Path -LiteralPath $uiReport)) {throw "No audit report; inspect $uiOutput"}
 $uiResult=Get-Content -LiteralPath $uiReport -Raw | ConvertFrom-Json
 if($uiProcess.ExitCode -ne 0 -or -not $uiResult.Passed) {throw "Audit failed; inspect $uiReport"}
+Add-Type -AssemblyName System.Drawing
+$uiImages=@(Get-ChildItem -LiteralPath $uiOutput -Filter '*.png' -File)
+$uiCaptureChecks=@()
+foreach($uiImage in $uiImages) {
+ $uiBitmap=[System.Drawing.Bitmap]::FromFile($uiImage.FullName)
+ try {
+  $uiLow=765;$uiHigh=0
+  for($uiY=0;$uiY -lt $uiBitmap.Height;$uiY+=[Math]::Max(1,[int]($uiBitmap.Height/32))) {
+   for($uiX=0;$uiX -lt $uiBitmap.Width;$uiX+=[Math]::Max(1,[int]($uiBitmap.Width/32))) {
+    $uiPixel=$uiBitmap.GetPixel($uiX,$uiY);$uiSum=[int]$uiPixel.R+[int]$uiPixel.G+[int]$uiPixel.B
+    $uiLow=[Math]::Min($uiLow,$uiSum);$uiHigh=[Math]::Max($uiHigh,$uiSum)
+   }
+  }
+  $uiCaptureChecks+=@{file=$uiImage.Name;passed=($uiHigh-$uiLow -gt 8);variation=($uiHigh-$uiLow)}
+ } finally {$uiBitmap.Dispose()}
+}
+$uiCaptureChecks | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $uiOutput 'capture-check.json') -Encoding utf8
+if($uiImages.Count -eq 0 -or @($uiCaptureChecks | Where-Object {-not $_.passed}).Count -gt 0) {throw "Blank or missing capture; layout checks alone are not visual evidence: $uiOutput"}
 Write-Output "Rendered synthetic audit passed: $uiReport"

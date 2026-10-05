@@ -15,7 +15,7 @@ namespace Goa2.Presentation
             if(actionAudio==null)actionAudio=gameObject.AddComponent<ActionSequenceAudio>();
             if(actionRail==null)actionRail=new ActionSequenceRail(cue=>actionAudio.Play(cue));
             actionRail.Browsing=HideCardPreview;
-            float width=Mathf.Clamp(Screen.width*.215f,304,344);
+            float width=Mathf.Clamp(Screen.width*.185f,272,296);
             bool CanChoose(ActionCardView n)=>mainFlow && NetworkCanAct && view.Pending?.Kind=="initiative" && view.Pending.ChooserSeat==seat && view.Pending.CandidateSeats.Contains(n.Seat) && n.IsMain && !n.Started;
             string Key(ActionCardView n)
             {
@@ -28,8 +28,8 @@ namespace Goa2.Presentation
                 tile.name=n.IsMain?"revealed-seat-"+(n.Seat+1):"action-node-"+n.Id;
                 var slab=(ActionSlab)tile;slab.Accent=CardColor(card.Color);
                 var header=Box("action-card-heading");tile.Add(header);
-                var portrait=new ActionCardGlyph(card.HeroId,p.Team==Team.Blue?new Color(.3f,.65f,1):new Color(1,.36f,.4f),48,true){name="action-portrait-"+n.Id};header.Add(portrait);
-                var icon=new ActionCardGlyph(card.PrimaryFamily,CardColor(card.Color),36,false,true){name="action-skill-"+n.Id};header.Add(icon);
+                var portrait=new ActionCardGlyph(card.HeroId,p.Team==Team.Blue?new Color(.3f,.65f,1):new Color(1,.36f,.4f),42,true){name="action-portrait-"+n.Id};header.Add(portrait);
+                var icon=new ActionCardGlyph(card.PrimaryFamily,CardColor(card.Color),32,false,true){name="action-skill-"+n.Id};header.Add(icon);
                 var title=Text(card.Name,"action-card-title");header.Add(title);
                 if(n.Role!="main")
                 {
@@ -37,8 +37,6 @@ namespace Goa2.Presentation
                     badge.style.position=Position.Absolute;badge.style.right=-1;badge.style.bottom=-1;icon.Add(badge);
                 }
                 BuildActionNumbers(tile,card,p,n.Id);
-                var team=new VisualElement {name="revealed-team-"+(n.Seat+1)};team.AddToClassList("action-team-stripe");
-                team.style.backgroundColor=p.Team==Team.Blue?new Color(.2f,.5f,.9f):new Color(.85f,.22f,.28f);tile.Add(team);
                 // One replaceable callback per persistent slab; no stacked stale hover handlers.
                 slab.HoverEnter=()=>
                 {
@@ -65,7 +63,7 @@ namespace Goa2.Presentation
             {
                 if(!value.HasValue&&!infinity)return;
                 var chip=Box("action-number");chip.name="action-number-"+id+"-"+kind;row.Add(chip);
-                chip.Add(new ActionCardGlyph(kind,new Color(.85f,.79f,.64f),20));
+                chip.Add(new ActionCardGlyph(kind,new Color(.85f,.79f,.64f),16));
                 var number=Text(infinity?"∞":(value!.Value+bonus).ToString(),"action-number-value");chip.Add(number);
                 number.style.color=bonus>0?new Color(.35f,1,.55f):bonus<0?new Color(1,.32f,.35f):Color.white;
             }

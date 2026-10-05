@@ -19,8 +19,6 @@ namespace Goa2.Presentation.UI3D
             pressed=Resources.Load<Texture2D>("UI3D/DecisionButtons/"+key+"-pressed");
             stone=new VisualElement{pickingMode=PickingMode.Ignore};stone.StretchToParentSize();Add(stone);
             stone.style.backgroundImage=new StyleBackground(idle);
-            var icon=new Label(confirm?"✓":"↶"){pickingMode=PickingMode.Ignore};icon.AddToClassList("decision-symbol");stone.Add(icon);
-            var label=new Label(confirm?"确认":"撤回"){pickingMode=PickingMode.Ignore};label.AddToClassList("decision-caption");stone.Add(label);
             RegisterCallback<PointerEnterEvent>(_=>over=true);
             RegisterCallback<PointerLeaveEvent>(_=>{over=false;held=false;});
             RegisterCallback<PointerDownEvent>(e=>{if(e.button==0)held=true;});

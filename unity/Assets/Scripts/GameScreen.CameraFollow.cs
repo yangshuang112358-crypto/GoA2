@@ -8,30 +8,15 @@ namespace Goa2.Presentation
     public sealed partial class GameScreen
     {
         private bool cameraFollow=true,followOverview,followInitialized,showHotkeys;
-        private float heroZoom=3,heroZoom2D=2,toastStarted=-100;
+        private float heroZoom=3,heroZoom2D=2;
         private float? cinematicResumeZoom;
-        private Label? followToast;
         private int cameraFocusVersion;
-        private Button? followButton;
         private void SetCameraFollow(bool enabled)
         {
-            if(enabled && !mainFlow){toastStarted=Time.realtimeSinceStartup;Sound("open");ReturnMainFlow();return;}
-            if(!enabled && mainFlow){toastStarted=Time.realtimeSinceStartup;Sound("close");LeaveMainFlow();Render();return;}
-            cameraFocusVersion++;
-            if(cameraFollow==enabled) {if(!enabled)board?.StopFollowing();return;}
-            Sound(enabled?"open":"close");cameraFollow=enabled;toastStarted=Time.realtimeSinceStartup;
-            if(enabled) ApplyCameraFollow(true);else {cinematicResumeZoom=null;board?.StopFollowing();}
-            RefreshFollowControls();RequestCapture();
-        }
-        private void RefreshFollowControls()
-        {
-            if(followButton!=null) {followButton.text=cameraFollow ? "◉" : "◎";followButton.tooltip="视野跟随模式："+(cameraFollow ? "开" : "关")+"（空格）";followButton.EnableInClassList("follow-on",cameraFollow);}
-            if(followToast==null) return;
-            float age=Time.realtimeSinceStartup-toastStarted;
-            followToast.text="视野跟随模式："+(cameraFollow ? "开" : "关");
-            followToast.style.display=age<1.6f ? DisplayStyle.Flex : DisplayStyle.None;
-            followToast.style.opacity=age<.18f ? Mathf.Clamp01(age/.18f) : age<1.18f ? 1 : Mathf.Clamp01((1.6f-age)/.42f);
-            followToast.style.bottom=86+16*Mathf.Clamp01(age/.18f);
+            if(enabled){ReturnMainFlow();return;}
+            if(mainFlow){LeaveMainFlow();Render();}
+            else {cameraFollow=false;cameraFocusVersion++;board?.StopFollowing();}
+            cinematicResumeZoom=null;RequestCapture();
         }
         private void ApplyCameraFollow(bool reenabled=false)
         {
@@ -78,24 +63,18 @@ namespace Goa2.Presentation
         {
             var settings=new StoneSettingsButton(()=>{if(rightExpanded) showHotkeys=false;rightExpanded=!rightExpanded;Render();},rightExpanded,settingsMotion,cue=>{var audio=GetComponent<SettingsAudio>();if(audio==null)audio=gameObject.AddComponent<SettingsAudio>();audio.Play(cue);});
             root.Add(settings);
-            followButton=Button("",()=>SetCameraFollow(!cameraFollow),"follow-toggle","follow-toggle");root.Add(followButton);
-            followToast=Text("","follow-toast");followToast.name="follow-toast";followToast.pickingMode=PickingMode.Ignore;root.Add(followToast);
-            if(showDebug && !rightExpanded && confirmAction!=null && confirmButton!=null) {
-                var confirm=Button(confirmButton.text+" · Enter",ConfirmCurrent,"floating-confirm","floating-confirm");root.Add(confirm);
-            }
             if(renderedView.Winner.HasValue) {
                 var victory=Text((renderedView.Winner==Goa2.Domain.Team.Blue ? "蓝队" : "红队")+"获胜","world-victory");victory.name="world-victory";victory.pickingMode=PickingMode.Ignore;victory.style.display=DisplayStyle.None;root.Add(victory);
                 float until=board3DViewport.Presentation.Crowns.Select(c=>c.Started+2.4f).DefaultIfEmpty(Time.realtimeSinceStartup).Max();
                 victory.schedule.Execute(()=>victory.style.display=DisplayStyle.Flex).StartingIn((long)(Mathf.Max(0,until-Time.realtimeSinceStartup)*1000));
             }
-            RefreshFollowControls();
             var current=board;
             root.schedule.Execute(()=>{if(board==current) ApplyCameraFollow();}).StartingIn(20);
         }
         private void RenderHotkeys(VisualElement parent)
         {
             parent.Add(Text("热键与鼠标","section-title"));
-            foreach(string line in new[]{"Enter / 小键盘Enter：确认当前选择","空格：开关视野跟随",NetworkMode ? "1—4 / 小键盘1—4：查看英雄，身份不变" : "1—4 / 小键盘1—4：切换本机测试席位","Q / E：向左 / 向右旋转30°","滚轮：以鼠标位置缩放","中键 / 空白处右键拖动：平移并取消跟随","左键英雄：开关技能圆环（合法目标优先）","右键英雄：查看卡牌、状态与永久加成","右键圆环技能：查看卡牌说明","Home：全图并取消跟随","F1：关键词说明","Esc：关闭英雄信息、术语、设置或卡牌预览","悬停卡牌：查看完整描述"}) parent.Add(Text(line,"body"));
+            foreach(string line in new[]{"Enter / 小键盘Enter：确认当前选择","空格：回到当前行动（与右下窗口相同）",NetworkMode ? "1—4 / 小键盘1—4：查看英雄，身份不变" : "1—4 / 小键盘1—4：切换本机测试席位","Q / E：向左 / 向右旋转30°","滚轮：以鼠标位置缩放","中键 / 空白处右键拖动：平移并取消跟随","左键英雄：开关技能圆环（合法目标优先）","右键英雄：查看卡牌、状态与永久加成","右键圆环技能：查看卡牌说明","Home：全图并取消跟随","F1：关键词说明","Esc：关闭英雄信息、术语、设置或卡牌预览","悬停卡牌：查看完整描述"}) parent.Add(Text(line,"body"));
             parent.Add(Text("输入文字或打开独立弹窗时，游戏热键暂停。相机跟随不改变操控身份。","muted"));
         }
     }

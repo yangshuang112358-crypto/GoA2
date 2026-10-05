@@ -33,7 +33,7 @@ namespace Goa2.Presentation.UI3D
         public ActionSequenceRail(Action<string> sound)
         {
             this.sound=sound;name="revealed-zone";AddToClassList("action-sequence-rail");
-            style.position=Position.Absolute;style.left=8;style.top=104;style.bottom=12;style.overflow=Overflow.Hidden;
+            style.position=Position.Absolute;style.left=8;style.top=8;style.bottom=12;style.overflow=Overflow.Hidden;
             layer.style.position=Position.Absolute;layer.style.left=0;layer.style.top=0;layer.style.right=0;Add(layer);
             links.pickingMode=PickingMode.Ignore;links.StretchToParentSize();layer.Add(links);links.generateVisualContent+=DrawLinks;
             RegisterCallback<WheelEvent>(e=>{ScrollBy(e.delta.y*55);e.StopImmediatePropagation();e.PreventDefault();},TrickleDown.TrickleDown);
@@ -74,14 +74,14 @@ namespace Goa2.Presentation.UI3D
             }
             Reflow();
             if(focus!=trace.FocusId){focus=trace.FocusId;FreeBrowsing=false;autoFocus=true;}
-            if(reset){autoFocus=true;scroll=scrollGoal=FocusY();foreach(var e in entries.Values){e.Y=e.TargetY;e.X=0;e.Opacity=1;}}
+            if(reset){autoFocus=true;scroll=scrollGoal=Mathf.Max(0,FocusY()-8);foreach(var e in entries.Values){e.Y=e.TargetY;e.X=0;e.Opacity=1;}}
             if(animate){if(added)sound(newSequence?"drop":"insert");else if(reordered)sound("move");}
             UpdateCoins();snap=false;
         }
         private float FocusY()=>entries.TryGetValue(focus,out var e)?e.TargetY:0;
         private void Reflow()
         {
-            float y=16;
+            float y=8;
             for(int i=0;i<ordered.Count;i++)
             {
                 var n=ordered[i];if(!entries.TryGetValue(n.Id,out var e))continue;
@@ -92,7 +92,7 @@ namespace Goa2.Presentation.UI3D
                 if(snap)e.Y=e.TargetY;
             }
             totalHeight=y;layer.style.height=y+resolvedStyle.height;
-            if(autoFocus)scrollGoal=Mathf.Max(0,FocusY()-16);
+            if(autoFocus)scrollGoal=Mathf.Max(0,FocusY()-8);
         }
         private void UpdateCoins()
         {

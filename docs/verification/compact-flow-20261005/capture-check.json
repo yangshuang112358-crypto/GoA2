@@ -1,0 +1,37 @@
+[
+  {
+    "file": "action-wheel.png",
+    "passed": true,
+    "variation": 727
+  },
+  {
+    "file": "defense-dock.png",
+    "passed": true,
+    "variation": 727
+  },
+  {
+    "file": "free-multiple-rings.png",
+    "passed": true,
+    "variation": 760
+  },
+  {
+    "file": "nested-after.png",
+    "passed": true,
+    "variation": 727
+  },
+  {
+    "file": "planning-return.png",
+    "passed": true,
+    "variation": 719
+  },
+  {
+    "file": "target-confirm.png",
+    "passed": true,
+    "variation": 727
+  },
+  {
+    "file": "upgrade-layout.png",
+    "passed": true,
+    "variation": 719
+  }
+]
