@@ -58,7 +58,7 @@ namespace Goa2.Presentation
                 if(Time.realtimeSinceStartup>=until)error="Timed out";
                 var result=new{seq=last,error,seat,connection=networkSession!.Connection.ToString(),canAct=NetworkCanAct,
                     hasLocalSession=session!=null,hasBoard=board!=null,boardConnected=board?.Connected,
-                    confirmEnabled=confirmButton?.enabledInHierarchy??false,wheelPreview,actionChoice,worldConfirm=root.Q("world-confirm")!=null,worldDecisionsEnabled=root.Q("world-decisions")?.enabledInHierarchy??false,uncertain=uncertainCommand!="",
+                    confirmEnabled=confirmButton?.enabledInHierarchy??false,wheelPreview,actionChoice,worldConfirm=root.Q("flow-confirm")!=null,worldDecisionsEnabled=root.Q("world-decisions")?.enabledInHierarchy??false,uncertain=uncertainCommand!="",
                     reconnectEnabled=root.Q<Button>("network-reconnect")?.enabledInHierarchy??false,
                     discardBeats=wheelState.Discards.Count,actionStoneCount=root.Query<Goa2.Presentation.UI3D.ActionSlab>().ToList().Count,
                     actionFocus=actionRail?.FocusId,actionCoins=actionRail?.CoinCount??0,result=lastNetworkResult,view=networkView};

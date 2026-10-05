@@ -15,6 +15,8 @@ namespace Goa2.Presentation
         private Button? followButton;
         private void SetCameraFollow(bool enabled)
         {
+            if(enabled && !mainFlow){toastStarted=Time.realtimeSinceStartup;Sound("open");ReturnMainFlow();return;}
+            if(!enabled && mainFlow){toastStarted=Time.realtimeSinceStartup;Sound("close");LeaveMainFlow();Render();return;}
             cameraFocusVersion++;
             if(cameraFollow==enabled) {if(!enabled)board?.StopFollowing();return;}
             Sound(enabled?"open":"close");cameraFollow=enabled;toastStarted=Time.realtimeSinceStartup;
@@ -68,7 +70,7 @@ namespace Goa2.Presentation
         }
         private void ConfirmCurrent()
         {
-            if(ScenarioRunning || confirmButton==null || !confirmButton.enabledInHierarchy) return;
+            if(!mainFlow || decisionAnimating || ScenarioRunning || confirmButton==null || !confirmButton.enabledInHierarchy) return;
             var action=confirmAction;confirmAction=null;action?.Invoke();
         }
         private readonly StoneSettingsButton.Motion settingsMotion = new StoneSettingsButton.Motion();

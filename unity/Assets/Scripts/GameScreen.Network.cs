@@ -96,7 +96,7 @@ namespace Goa2.Presentation
             if(!NetworkMode || NetworkCanAct)return;
             board?.SetConnected(false);
             root.Q("decision-content")?.SetEnabled(false);root.Q("hand-zone")?.SetEnabled(false);root.Q("upgrade-zone")?.SetEnabled(false);
-            root.Q("world-decisions")?.SetEnabled(false);
+            root.Q("world-decisions")?.SetEnabled(false);root.Q("decision-dock")?.SetEnabled(false);
             skillWheel?.SetEnabled(false);root.Q("floating-confirm")?.SetEnabled(false);
             confirmAction=null;confirmButton=null;
         }

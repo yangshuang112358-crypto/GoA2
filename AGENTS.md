@@ -1,5 +1,7 @@
 # Goa2V1 开发约定
 
+2026-10-05：主流程状态窗迁至右上；自由观看与规则流程分离，多英雄技能环并存，点击“回到当前行动”或重新启用跟随恢复本人当前步骤。确认/撤回迁至右侧Blender烘焙石材按钮，保留Enter；撤回仅本地预选，不撤销已提交效果。新增50项相关测试、两分辨率Editor各76项及独立Player78项图形检查通过，均不是真人OS输入或四台异地验收。入口docs/development/主流程引导与自由观看-2026-10-05.md及同日verification文档。Workbench.blend是用户自建文件不覆盖、不暂存；main/engine34不动。
+
 2026-10-04准备：用户确认点击联网允许，已查询桌面bb239c8包easytier-core.exe有Enabled/Public/Inbound/Allow规则；提示用进程已清理。异地联机验收由用户稍后完成，不主动继续。重连/暂存下一入口docs/development/重连与战况保留准备-2026-10-04.md；本批仅新增只读RecoveryInspector（7项通过），未接入自动检查点、旧房重开或自动重连。Blender4.5.14制作模板与项目独立配置已准备，tools/art/blender.ps1和art/production/README.md，CPU渲染/FBX重导入尺寸检查通过；动作导出与新Unity美术尚未完成。桌面06为工作副本入口，07为说明；游戏包仍bb239c8，无需换包。main/engine34不动。
 
 2026-10-03邀请加入：已实施外部启动器自动组网＋三个固定席位个人邀请，核心规则与Unity载荷不变。入口docs/development/邀请加入实现-2026-10-03.md；验收与发行包以同日verification文档为准。EasyTier使用自行构建的2.6.4用户态版本，不分发Npcap Packet.dll，不安装TUN，不改DNS/默认路由/防火墙；Windows首次可能需用户允许程序联网。UI不阻塞，worker管理自己子进程，正常停止验证存档。旧手动模式保留；暗选/凭据权限保持。旧public.easytier.cn域名已失效，本批使用38.147.105.185社区节点，四节点共享网络复测不稳定，现为三个独立房主—好友通道共享权威房间，免费节点不保证可用或低延迟；只通过本机四席与公共节点测试，不宣称四台异地真人整局通过。下方“尚无自动组网”是历史。main与engine34引用不动。

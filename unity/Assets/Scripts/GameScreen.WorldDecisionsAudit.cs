@@ -17,28 +17,44 @@ namespace Goa2.Presentation
             void Check(bool value,string label){if(!value)throw new InvalidOperationException(label);report.Checks.Add(label);}
             void Load(string name,int count)
             {
-                var runner=new ScenarioRunner(catalog,ScenarioRunner.Load(File.ReadAllText(Path.GetFullPath(Path.Combine(UnityEngine.Application.dataPath,"../../tests/scenarios/"+name+".json")))));
+                var args=Environment.GetCommandLineArgs();int index=Array.IndexOf(args,"-goaAuditScenarios");
+                string folder=index>=0 && index+1<args.Length ? args[index+1] : Path.GetFullPath(Path.Combine(UnityEngine.Application.dataPath,"../../tests/scenarios"));
+                var runner=new ScenarioRunner(catalog,ScenarioRunner.Load(File.ReadAllText(Path.Combine(folder,name+".json"))));
                 for(int i=0;i<count;i++)Check(runner.Next().Passed,"Fixture "+name+" step "+i);
-                session=runner.Session;seat=0;ClearPending();wheelState.Discards.Clear();worldContext="";wheelContext="";cameraFollow=true;rightExpanded=false;Render();
+                session=runner.Session;seat=0;ClearPending();wheelState.Discards.Clear();worldContext="";wheelContext="";cameraFollow=true;mainFlow=true;browsingWheels.Clear();rightExpanded=false;Render();
             }
             yield return null;Load("combat-defense",7);yield return new WaitForSecondsRealtime(3);
             Check(root.Q("action-wheel")!=null && root.Q("operation-panel").resolvedStyle.display==DisplayStyle.None,"Action choices on hero with settings closed");
             Check(root.Q("operation-panel").Q("begin-primary")==null,"No old action duplicate in settings");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"action-wheel.png"));yield return new WaitForSecondsRealtime(.2f);
-            string before=session.ExportSave();PickAction("primary");yield return null;
+            string before=session.ExportSave();
+            ToggleHeroWheel(1);ToggleHeroWheel(2);yield return new WaitForSecondsRealtime(1);
+            Check(!mainFlow && !cameraFollow && browsingWheels.Contains(1) && browsingWheels.Contains(2),"Multiple inspection rings coexist without follow");
+            Check(root.Q("skill-wheel-anchor-1")!=null && root.Q("skill-wheel-anchor-2")!=null,"Both inspection rings rendered");
+            Check(root.Q(className:"flow-return")!=null && root.Q("action-wheel")==null,"Free mode offers return and hides operation ring");
+            Render();Check(browsingWheels.Count>=2 && !mainFlow,"UI refresh preserves free browsing");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"free-multiple-rings.png"));yield return new WaitForSecondsRealtime(.3f);
+            ReturnMainFlow();yield return new WaitForSecondsRealtime(.5f);
+            Check(mainFlow && cameraFollow && browsingWheels.Count==0 && root.Q("action-wheel")!=null,"Return clears inspected rings and restores actor choices");
+            Check(session.ExportSave()==before,"Browsing and returning do not mutate rules");
+            PickAction("primary");yield return null;
             Check(renderedView.PrimaryPreview?.Kind=="attack_target" && LegalCells(renderedView).Count>0,"Authoritative attack preview before BeginPrimary");
             Check(session.ExportSave()==before && root.Q("action-wheel")==null,"Entering targeting leaves entire state unchanged and closes ring");
             ReturnWorldChoice();Check(session.ExportSave()==before && root.Q("action-wheel")!=null,"Return restores action ring without command");
             PickAction("secondary");Check(LegalCells(renderedView).Count>0,"Secondary movement destinations visible");ReturnWorldChoice();Check(session.ExportSave()==before,"Movement cancellation is read-only");
             PickAction("primary");chosenCell=renderedView.Units.Single(u=>u.Id=="hero:1").Position;Render();yield return new WaitForSecondsRealtime(1);
-            var confirm=root.Q<Button>("world-confirm");Check(confirm!=null && confirm.enabledInHierarchy,"Map target has confirmation check");
-            Check(Vector2.Distance(confirm!.worldBound.center,board!.PanelCenter(chosenCell.Value))<95,"Check stays beside selected target");
+            var confirm=root.Q<Button>("flow-confirm");Check(confirm!=null && confirm.enabledInHierarchy,"Map target has confirmation check");
+            Check(confirm!.worldBound.xMin>Screen.width-250 && root.Q("flow-withdraw").worldBound.yMin>confirm.worldBound.yMax,"Confirm and withdraw stacked at right edge");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"target-confirm.png"));yield return new WaitForSecondsRealtime(.2f);
-            ConfirmCurrent();yield return null;Check(renderedView.Pending?.Kind=="defense" && renderedView.Revision>0,"Single confirmation begins actual defender response");
+            ConfirmCurrent();ConfirmCurrent();yield return new WaitForSecondsRealtime(.5f);Check(renderedView.Pending?.Kind=="defense" && renderedView.Revision>0,"Single confirmation begins actual defender response");
             Check(actionChoice=="" && root.Q("world-return")==null,"Cannot undo committed attack from response");
-            seat=1;Render();yield return new WaitForSecondsRealtime(3);WheelPick("wasp-00-闪耀之刃");WheelConfirm();yield return new WaitForSecondsRealtime(3);
+            seat=1;Render();yield return new WaitForSecondsRealtime(3);WheelPick("wasp-00-闪耀之刃");yield return new WaitForSecondsRealtime(.5f);
+            Check(root.Q<Button>("flow-confirm")?.enabledInHierarchy==true,"Defender preselection exposes right confirmation");
+            Check(root.Q(className:"flow-mine")!=null,"Defender sees personal red prompt");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"defense-dock.png"));yield return new WaitForSecondsRealtime(.3f);
+            ConfirmCurrent();yield return new WaitForSecondsRealtime(3);
             Check(renderedView.Pending?.Kind=="hero_respawn","Defense completes and opens respawn");
-            chosenCell=renderedView.RespawnCells.First();Render();yield return null;Check(root.Q("world-confirm")!=null,"Respawn confirms on battlefield");ConfirmCurrent();yield return null;
+            chosenCell=renderedView.RespawnCells.First();Render();yield return null;Check(root.Q("flow-confirm")!=null,"Respawn confirms on battlefield");ConfirmCurrent();yield return new WaitForSecondsRealtime(.5f);
             Check(renderedView.Phase==Phase.Action,"Respawn continues original card");
             Load("throwing-axe-reflection",10);yield return new WaitForSecondsRealtime(3);before=session.ExportSave();PickAction("primary");
             Check(renderedView.PrimaryPreview==null && session.ExportSave()==before,"Pre-discard card requires explicit start confirmation");
@@ -56,20 +72,34 @@ namespace Goa2.Presentation
             for(int i=0;i<3;i++)
             {
                 chosenCell=renderedView.Units.First(u=>renderedView.RoundMinionRemovals.Contains(u.Id)).Position;Render();
-                Check(root.Q("world-confirm")!=null,"Captain minion removal check "+i);ConfirmCurrent();yield return null;
+                Check(root.Q("flow-confirm")!=null,"Captain minion removal check "+i);ConfirmCurrent();yield return new WaitForSecondsRealtime(.5f);
             }
             Check(renderedView.Pending?.Kind=="minion_spawn","Captain advances into blocked spawn choice");
-            chosenCell=LegalCells(renderedView).First();Render();ConfirmCurrent();yield return null;
+            chosenCell=LegalCells(renderedView).First();Render();ConfirmCurrent();yield return new WaitForSecondsRealtime(.5f);
             seat=0;Render();yield return null;Check(renderedView.UpgradeOptions.Count>0,"Spawn completion resumes upgrades");
             int upgrades=0;
             while(renderedView.UpgradeOptions.Count>0 && upgrades++<5)
             {
                 upgradeCardId=renderedView.UpgradeOptions.First().CardId;Render();yield return null;yield return null;
-                Check(confirmButton!=null && root.Q("upgrade-zone").Contains(confirmButton),"Upgrade confirmation belongs to card layer");
+                Check(confirmButton!=null && root.Q("decision-dock").Contains(confirmButton),"Upgrade confirmation uses right dock");
                 Check(root.Query<VisualElement>(className:"upgrade-row").ToList().Count==3,"Six upgrade candidates retain three color rows");
-                ConfirmCurrent();yield return null;
+                ConfirmCurrent();yield return new WaitForSecondsRealtime(.5f);
             }
             Check(renderedView.Phase==Phase.Planning && !rightExpanded,"Minion battle, spawn and upgrades reach next round without settings");
+            ReturnMainFlow();yield return new WaitForSecondsRealtime(.4f);
+            ToggleHeroWheel(1);ReturnMainFlow();yield return null;
+            Check(mainFlow && wheelSeat==seat,"Returning during hidden planning restores own ring");
+            Check(root.Q("skill-wheel-anchor-1")==null,"Inspected opponent ring closed on return to planning");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"planning-return.png"));yield return new WaitForSecondsRealtime(.3f);
+            Load("combat-defense",7);yield return new WaitForSecondsRealtime(.5f);PickAction("pass");
+            before=session.ExportSave();AnimateDecision(()=>Submit(CommandKind.Pass));LeaveMainFlow();Render();
+            yield return new WaitForSecondsRealtime(.5f);Check(session.ExportSave()==before,"Leaving main flow during exit animation cancels stale confirmation");
+            ReturnMainFlow();PickAction("primary");WithdrawPreview();Check(actionChoice=="" && session.ExportSave()==before,"Withdraw restores choices without rule mutation");
+            bool sent=false;AnimateDecision(()=>sent=true);chosenCell=new Hex(999,999);
+            yield return new WaitForSecondsRealtime(.4f);Check(!sent,"Changing preselection during exit animation invalidates captured confirmation");
+            ClearPending();Render();AnimateDecision(()=>sent=true);renderedView.Revision++;
+            yield return new WaitForSecondsRealtime(.4f);Check(!sent,"Newer projected revision invalidates captured confirmation");
+            Render();
         }
     }
 }

@@ -1,10 +1,14 @@
-param([int]$Width=1600,[int]$Height=1000,[switch]$SettingsOnly,[switch]$SkillBadgesOnly,[switch]$TerrainOnly,[switch]$BattlefieldOnly,[switch]$ActionSequenceOnly,[switch]$WorldDecisionsOnly)
+param([int]$Width=1600,[int]$Height=1000,[switch]$SettingsOnly,[switch]$SkillBadgesOnly,[switch]$TerrainOnly,[switch]$BattlefieldOnly,[switch]$ActionSequenceOnly,[switch]$WorldDecisionsOnly,[switch]$Player)
 $ErrorActionPreference='Stop'
 $uiRoot=Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $uiUnity=Join-Path $env:USERPROFILE 'UnityEditors/6000.3.23f1/Editor/Unity.exe'
 $uiOutput=Join-Path $uiRoot ('artifacts/ui3d/audit-'+$Width+'x'+$Height+'-'+[DateTime]::Now.ToString('yyyyMMdd-HHmmss'))
 New-Item -ItemType Directory -Force $uiOutput | Out-Null
 $uiArgs='-batchmode -projectPath "'+(Join-Path $uiRoot 'unity')+'" -executeMethod Goa2.UI3D.Editor.Board3DAuditRunner.Run -goaCardReadingEditor -screen-width '+$Width+' -screen-height '+$Height+' -goa3dAudit "'+$uiOutput+'" -logFile "'+(Join-Path $uiOutput 'editor.log')+'"'
+if($Player) {
+ $uiUnity=Join-Path $uiRoot 'artifacts/player/Goa2V1.exe'
+ $uiArgs='-screen-fullscreen 0 -screen-width '+$Width+' -screen-height '+$Height+' -goa3dAudit "'+$uiOutput+'" -goaAuditScenarios "'+(Join-Path $uiRoot 'tests/scenarios')+'" -goaSavePath "'+(Join-Path $uiOutput 'isolated-save.json')+'" -logFile "'+(Join-Path $uiOutput 'player.log')+'"'
+}
 if($BattlefieldOnly) {$uiArgs+=' -goaBattlefieldAuditOnly'}
 if($WorldDecisionsOnly) {$uiArgs+=' -goaWorldDecisionsAuditOnly'}
 if($ActionSequenceOnly) {$uiArgs+=' -goaActionSequenceAuditOnly'}

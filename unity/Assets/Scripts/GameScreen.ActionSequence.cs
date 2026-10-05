@@ -16,7 +16,7 @@ namespace Goa2.Presentation
             if(actionRail==null)actionRail=new ActionSequenceRail(cue=>actionAudio.Play(cue));
             actionRail.Browsing=HideCardPreview;
             float width=Mathf.Clamp(Screen.width*.215f,304,344);
-            bool CanChoose(ActionCardView n)=>NetworkCanAct && view.Pending?.Kind=="initiative" && view.Pending.ChooserSeat==seat && view.Pending.CandidateSeats.Contains(n.Seat) && n.IsMain && !n.Started;
+            bool CanChoose(ActionCardView n)=>mainFlow && NetworkCanAct && view.Pending?.Kind=="initiative" && view.Pending.ChooserSeat==seat && view.Pending.CandidateSeats.Contains(n.Seat) && n.IsMain && !n.Started;
             string Key(ActionCardView n)
             {
                 var p=view.Players.First(x=>x.Seat==n.Seat);

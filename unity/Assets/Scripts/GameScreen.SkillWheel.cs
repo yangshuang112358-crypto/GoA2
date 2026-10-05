@@ -11,6 +11,7 @@ namespace Goa2.Presentation {
   private readonly SkillWheelState wheelState=new SkillWheelState();
   private SkillWheel? skillWheel;private VisualElement? wheelFrame;
   private float wheelOpened;private bool wheelNeedsFocus;private float wheelFocusedBeat=-1;
+  private int? lastBrowsedSeat;
   private int? wheelSeat;private string wheelContext="",wheelPreview="";private bool wheelDecline;
   private VisualElement? skillPopup,skillPopupOwner;
   private Vector2 skillPopupPointer;
@@ -19,28 +20,23 @@ namespace Goa2.Presentation {
   private List<string> WheelChoices(GameView v)=>v.Pending?.Kind=="recover_discard" ? v.RecoverableCards : v.Pending?.Kind=="discard_attack" ? v.DiscardAttackCards : v.Pending?.Kind=="card_swap" ? v.CardSwapOptions : v.Pending?.Kind=="defense" ? v.DefenseOptions.Select(o=>o.CardId).ToList() : v.Pending?.Kind=="forced_discard" ? v.ForcedDiscardCards : v.Pending?.Kind=="optional_discard" ? v.OptionalDiscardCards : v.Pending?.Kind=="minion_protection" ? v.MinionProtectionCards : new List<string>();
   private void ObserveWheel() {
    if(wheelState.Observe(renderedView,Time.realtimeSinceStartup)){wheelContext="";wheelSeat=null;wheelPreview="";wheelDecline=false;wheelFocusedBeat=-1;}
+   if(!mainFlow){while(wheelState.Discards.Count>0 && Time.realtimeSinceStartup-wheelState.Discards.Peek().Start>2.4f)wheelState.Discards.Dequeue();wheelSeat=null;return;}
    string context=renderedView.MatchId+":"+seat+":"+renderedView.Round+":"+renderedView.Turn+":"+renderedView.Phase+":"+renderedView.Pending?.Id;
-   if(context!=wheelContext){wheelOpened=Time.realtimeSinceStartup;wheelContext=context;wheelPreview="";wheelDecline=false;wheelSeat=renderedView.Phase==Phase.Planning ? seat : CameraFollowPolicy.ResponseSeat(renderedView);wheelNeedsFocus=CameraFollowPolicy.ResponseSeat(renderedView).HasValue;}
+   if(context!=wheelContext){wheelOpened=Time.realtimeSinceStartup;wheelContext=context;wheelPreview="";wheelDecline=false;wheelSeat=renderedView.Phase==Phase.Planning ? seat : CameraFollowPolicy.ResponseSeat(renderedView) ?? (renderedView.Phase==Phase.Action ? renderedView.ActiveSeat : null);wheelNeedsFocus=CameraFollowPolicy.ResponseSeat(renderedView).HasValue;}
    if(wheelState.Discards.Count>0){var beat=wheelState.Discards.Peek();wheelSeat=beat.Seat;if(wheelFocusedBeat!=beat.Start){wheelFocusedBeat=beat.Start;wheelNeedsFocus=true;}}
   }
   private void ToggleHeroWheel(int target) {
-   if(wheelState.Discards.Count>0)return;
-   if(renderedView.Phase==Phase.Action && target==seat){actionRingClosed=false;actionChoice="";moveMode=null;chosenCell=null;}
-   else if(renderedView.Phase==Phase.Action)actionRingClosed=true;
-   HideHeroHover();HideSkillInfo();
-   if(wheelSeat==target){CloseHeroWheel();return;}
-   Sound("open");wheelOpened=Time.realtimeSinceStartup;wheelSeat=target;wheelPreview="";wheelDecline=false;Render();
-   var unit=renderedView.Units.FirstOrDefault(u=>u.Seat==target);
-   var currentBoard=board;int focusVersion=cameraFocusVersion;
-   if(unit!=null)root.schedule.Execute(()=>{if(board==currentBoard && wheelSeat==target && focusVersion==cameraFocusVersion)board?.FollowAt(Board3DGeometry.World(unit.Position),board3DViewport.Enabled ? 3f : 2.6f);}).StartingIn(30);
+   if(decisionAnimating)return;
+   LeaveMainFlow();HideHeroHover();HideSkillInfo();
+   if(!browsingWheels.Remove(target)){browsingWheels.Add(target);Sound("open");}else Sound("close");
+   lastBrowsedSeat=target;wheelOpened=Time.realtimeSinceStartup;Render();
   }
   private void CloseHeroWheel() {
-   if(wheelState.Discards.Count>0)return;
-   if(wheelSeat.HasValue || root.Q("action-wheel")!=null)Sound("close");
-   actionRingClosed=true;root.Q("action-wheel")?.RemoveFromHierarchy();
-   wheelSeat=null;wheelPreview="";wheelDecline=false;HideSkillInfo();
-   if(confirmButton==skillWheel?.Confirm){confirmButton=null;confirmAction=null;root.Q("floating-confirm")?.RemoveFromHierarchy();}
-   skillWheel?.Collapse();
+   if(decisionAnimating)return;
+   int? closing=mainFlow ? wheelSeat ?? renderedView.ActiveSeat : lastBrowsedSeat;
+   LeaveMainFlow();if(closing.HasValue)browsingWheels.Remove(closing.Value);
+   lastBrowsedSeat=browsingWheels.Count>0 ? browsingWheels.Last() : (int?)null;
+   HideSkillInfo();Sound("close");Render();
   }
   private void WheelPick(string id) {
    if(!NetworkCanAct || wheelState.Discards.Count>0 || wheelSeat!=seat)return;
@@ -85,15 +81,19 @@ namespace Goa2.Presentation {
    skillPopupPointer=pointer;popup.RegisterCallback<GeometryChangedEvent>(_=>PositionSkillInfo(skillPopupPointer));root.Add(popup);PositionSkillInfo(pointer);
   }
   private void BuildSkillWheel() {
-   skillWheel=null;wheelFrame=null;if(board==null || !wheelSeat.HasValue)return;
-   int target=wheelSeat.Value;if(renderedView.Phase==Phase.Action && target==seat && wheelState.Discards.Count==0)return;var player=renderedView.Players.Single(p=>p.Seat==target);
+   skillWheel=null;wheelFrame=null;if(board==null)return;
+   if(mainFlow){if(wheelSeat.HasValue)BuildSkillWheelFor(wheelSeat.Value);}
+   else foreach(int target in browsingWheels.OrderBy(x=>x))BuildSkillWheelFor(target);
+  }
+  private void BuildSkillWheelFor(int target) {
+   if(mainFlow && renderedView.Phase==Phase.Action && target==seat && wheelState.Discards.Count==0)return;var player=renderedView.Players.Single(p=>p.Seat==target);
    var unit=renderedView.Units.FirstOrDefault(u=>u.Seat==target);Hex location;if(unit!=null)location=unit.Position;else if(!wheelState.LastPositions.TryGetValue(target,out location))return;
-   bool beat=wheelState.Discards.Count>0;var eventBeat=beat ? wheelState.Discards.Peek() : null;
-   bool own=target==seat && !beat,planning=renderedView.Phase==Phase.Planning;
+   bool beat=mainFlow && wheelState.Discards.Count>0;var eventBeat=beat ? wheelState.Discards.Peek() : null;
+   bool own=mainFlow && target==seat && !beat,planning=renderedView.Phase==Phase.Planning;
    bool canConfirm=own && (planning ? !renderedView.QuickSelection && !player.Confirmed && renderedView.OwnCards.Any(c=>c.Zone==CardZone.Selected) : WheelChoices(renderedView).Contains(wheelPreview) || wheelDecline);
    string caption=beat ? "弃牌" : canConfirm ? wheelDecline ? renderedView.Pending?.Kind=="defense" ? "确认不防御？" : "确认被击败？" : "确认？" : own && planning ? player.Confirmed ? "已确认" : "选牌" : renderedView.Pending?.Kind=="defense" ? "防御" : WheelDiscard(renderedView) ? "弃牌" : "查看";
-   var frame=new VisualElement{pickingMode=PickingMode.Ignore,name="skill-wheel-anchor"};frame.style.position=Position.Absolute;frame.style.width=520;frame.style.height=520;frame.style.transformOrigin=new TransformOrigin(0,0,0);board.Add(frame);wheelFrame=frame;
-   var wheel=new SkillWheel(player.Team,caption,WheelConfirm,WheelAlternative);skillWheel=wheel;wheel.ResumeOpen(beat ? eventBeat!.Start : wheelOpened);frame.Add(wheel);wheel.Confirm.SetEnabled(canConfirm);wheel.Confirm.style.display=canConfirm?DisplayStyle.Flex:DisplayStyle.None;
+   var frame=new VisualElement{pickingMode=PickingMode.Ignore,name="skill-wheel-anchor-"+target};frame.style.position=Position.Absolute;frame.style.width=520;frame.style.height=520;frame.style.transformOrigin=new TransformOrigin(0,0,0);board.Add(frame);wheelFrame=frame;
+   var wheel=new SkillWheel(player.Team,caption,WheelConfirm,WheelAlternative);skillWheel=wheel;wheel.ResumeOpen(beat ? eventBeat!.Start : wheelOpened);frame.Add(wheel);wheel.Confirm.SetEnabled(canConfirm);wheel.Confirm.style.display=DisplayStyle.None;
    bool alt=own && (renderedView.Pending?.Kind=="defense" || renderedView.Pending?.Kind=="optional_discard" || renderedView.Pending?.Kind=="minion_protection" || renderedView.CanDeclineRetaliationDiscard || renderedView.Pending?.Kind=="recover_discard" || renderedView.Pending?.Kind=="card_swap");
    wheel.Alternative.style.display=alt ? DisplayStyle.Flex:DisplayStyle.None;wheel.Alternative.text=renderedView.Pending?.Kind=="recover_discard" ? "不取回，继续" : renderedView.Pending?.Kind=="card_swap" ? "不交换，继续" : renderedView.Pending?.Kind=="defense" ? "不防御" : renderedView.CanDeclineRetaliationDiscard ? "不弃牌，选择被击败" : "不弃牌，继续";
    if(canConfirm){confirmButton=wheel.Confirm;confirmAction=WheelConfirm;}
@@ -112,7 +112,7 @@ namespace Goa2.Presentation {
     if(renderedView.Pending?.Kind=="defense" && card!=null){var option=renderedView.DefenseOptions.FirstOrDefault(o=>o.CardId==card.Id);if(option!=null && CardDisplay.WarnDefense(card,option.Assessment)){disc.style.backgroundColor=new Color(.48f,.22f,.28f,.48f);disc.tooltip="防御数值偏低";}}
     wheel.AddSkill(disc,i);
    }
-   if(wheelNeedsFocus && cameraFollow){wheelNeedsFocus=false;var currentBoard=board;int focusVersion=cameraFocusVersion;root.schedule.Execute(()=>{if(cameraFollow && board==currentBoard && focusVersion==cameraFocusVersion)board?.FollowAt(Board3DGeometry.World(location),board3DViewport.Enabled ? 3f : 2.6f);}).StartingIn(30);}
+   if(mainFlow && wheelNeedsFocus && cameraFollow){wheelNeedsFocus=false;var currentBoard=board;int focusVersion=cameraFocusVersion;root.schedule.Execute(()=>{if(cameraFollow && board==currentBoard && focusVersion==cameraFocusVersion)board?.FollowAt(Board3DGeometry.World(location),board3DViewport.Enabled ? 3f : 2.6f);}).StartingIn(30);}
    frame.schedule.Execute(()=>{
     if(board==null || frame.panel==null)return;Vector2 size=board.contentRect.size;
     // World anchor may leave the viewport; never clamp it to a screen edge.

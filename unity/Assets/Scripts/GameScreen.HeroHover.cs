@@ -13,6 +13,7 @@ namespace Goa2.Presentation
   private void ShowHeroHover(int? target,Vector2 at)
   {
    if(!target.HasValue){HideHeroHover();return;}
+   if(mainFlow){LeaveMainFlow();Render();}
    if(target==hoverHeroSeat && heroPopup?.panel!=null){HideHeroHover();return;}
    HideHeroHover();hoverHeroSeat=target.Value;
    var player=renderedView.Players.Single(p=>p.Seat==target);

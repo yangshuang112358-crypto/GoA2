@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="50" result="Passed" total="50" passed="50" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.1568706">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2320" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.156871" total="50" passed="50" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3735" name="Goa2.UI3D.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.UI3D.Tests.dll" runstate="Runnable" testcasecount="108" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.068297" total="50" passed="50" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6344" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="3736" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="108" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.067557" total="50" passed="50" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="3737" name="UI3D" fullname="Goa2.UI3D" runstate="Runnable" testcasecount="108" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.066974" total="50" passed="50" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="3738" name="Tests" fullname="Goa2.UI3D.Tests" runstate="Runnable" testcasecount="108" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.066379" total="50" passed="50" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="3633" name="CameraFollowTests" fullname="Goa2.UI3D.Tests.CameraFollowTests" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.039174" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="3638" name="AttackResponseFocusesChooser" fullname="Goa2.UI3D.Tests.CameraFollowTests.AttackResponseFocusesChooser" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.017707" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3636" name="AttackResponseFocusesChooser(Action)" fullname="Goa2.UI3D.Tests.CameraFollowTests.AttackResponseFocusesChooser(Action)" methodname="AttackResponseFocusesChooser" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="47361645" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.012889" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3637" name="AttackResponseFocusesChooser(EffectChoice)" fullname="Goa2.UI3D.Tests.CameraFollowTests.AttackResponseFocusesChooser(EffectChoice)" methodname="AttackResponseFocusesChooser" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1508911014" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000097" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="3648" name="CaptainBoardChoicesOverrideActor" fullname="Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.001758" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3643" name="CaptainBoardChoicesOverrideActor(&quot;round_minion_removal&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(&quot;round_minion_removal&quot;)" methodname="CaptainBoardChoicesOverrideActor" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1737761172" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000346" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3644" name="CaptainBoardChoicesOverrideActor(&quot;action_minion_removal&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(&quot;action_minion_removal&quot;)" methodname="CaptainBoardChoicesOverrideActor" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1777134114" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000048" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3645" name="CaptainBoardChoicesOverrideActor(&quot;minion_spawn&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(&quot;minion_spawn&quot;)" methodname="CaptainBoardChoicesOverrideActor" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="888682163" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000038" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3646" name="CaptainBoardChoicesOverrideActor(&quot;minion_return&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(&quot;minion_return&quot;)" methodname="CaptainBoardChoicesOverrideActor" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1695489574" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000038" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3647" name="CaptainBoardChoicesOverrideActor(&quot;spawn_order_unresolved&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.CaptainBoardChoicesOverrideActor(&quot;spawn_order_unresolved&quot;)" methodname="CaptainBoardChoicesOverrideActor" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="234692003" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000035" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3653" name="DefeatedActorDoesNotInventAPosition" fullname="Goa2.UI3D.Tests.CameraFollowTests.DefeatedActorDoesNotInventAPosition" methodname="DefeatedActorDoesNotInventAPosition" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1944465009" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3642" name="DiscardResponseTracksChooserForEveryViewer" fullname="Goa2.UI3D.Tests.CameraFollowTests.DiscardResponseTracksChooserForEveryViewer" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.001076" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3639" name="DiscardResponseTracksChooserForEveryViewer(&quot;forced_discard&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.DiscardResponseTracksChooserForEveryViewer(&quot;forced_discard&quot;)" methodname="DiscardResponseTracksChooserForEveryViewer" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="2006714697" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000209" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3640" name="DiscardResponseTracksChooserForEveryViewer(&quot;optional_discard&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.DiscardResponseTracksChooserForEveryViewer(&quot;optional_discard&quot;)" methodname="DiscardResponseTracksChooserForEveryViewer" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="2090753098" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000051" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3641" name="DiscardResponseTracksChooserForEveryViewer(&quot;minion_protection&quot;)" fullname="Goa2.UI3D.Tests.CameraFollowTests.DiscardResponseTracksChooserForEveryViewer(&quot;minion_protection&quot;)" methodname="DiscardResponseTracksChooserForEveryViewer" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1844724100" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000046" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3654" name="FollowSmoothlyMovesWithoutChangingZoomOrRotation" fullname="Goa2.UI3D.Tests.CameraFollowTests.FollowSmoothlyMovesWithoutChangingZoomOrRotation" methodname="FollowSmoothlyMovesWithoutChangingZoomOrRotation" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1174657041" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.003362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3655" name="ManualPanStopsPendingCameraMotion" fullname="Goa2.UI3D.Tests.CameraFollowTests.ManualPanStopsPendingCameraMotion" methodname="ManualPanStopsPendingCameraMotion" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="581416722" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3634" name="PlanningTracksOwnSeatNotActiveOrChooser" fullname="Goa2.UI3D.Tests.CameraFollowTests.PlanningTracksOwnSeatNotActiveOrChooser" methodname="PlanningTracksOwnSeatNotActiveOrChooser" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="897887677" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000150" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3652" name="UndecidedOrFinishedUsesOverview" fullname="Goa2.UI3D.Tests.CameraFollowTests.UndecidedOrFinishedUsesOverview" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.003631" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3649" name="UndecidedOrFinishedUsesOverview(InitiativeChoice)" fullname="Goa2.UI3D.Tests.CameraFollowTests.UndecidedOrFinishedUsesOverview(InitiativeChoice)" methodname="UndecidedOrFinishedUsesOverview" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="200923833" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000125" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3650" name="UndecidedOrFinishedUsesOverview(Finished)" fullname="Goa2.UI3D.Tests.CameraFollowTests.UndecidedOrFinishedUsesOverview(Finished)" methodname="UndecidedOrFinishedUsesOverview" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1144092296" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000078" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3651" name="UndecidedOrFinishedUsesOverview(HeroSelection)" fullname="Goa2.UI3D.Tests.CameraFollowTests.UndecidedOrFinishedUsesOverview(HeroSelection)" methodname="UndecidedOrFinishedUsesOverview" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="1097896789" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000059" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3635" name="UpgradeTracksSelfEvenAfterOwnUpgradeCompleted" fullname="Goa2.UI3D.Tests.CameraFollowTests.UpgradeTracksSelfEvenAfterOwnUpgradeCompleted" methodname="UpgradeTracksSelfEvenAfterOwnUpgradeCompleted" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="883967526" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000184" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3656" name="WheelOverridesOverviewZoomButRetainsFollow" fullname="Goa2.UI3D.Tests.CameraFollowTests.WheelOverridesOverviewZoomButRetainsFollow" methodname="WheelOverridesOverviewZoomButRetainsFollow" classname="Goa2.UI3D.Tests.CameraFollowTests" runstate="Runnable" seed="724808009" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.001781" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3665" name="MainFlowPolicyTests" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.009611" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="3687" name="PendingPromptsChooserNotSuspendedActor" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.006188" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3666" name="PendingPromptsChooserNotSuspendedActor(&quot;initiative&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;initiative&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1916470222" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.003217" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3667" name="PendingPromptsChooserNotSuspendedActor(&quot;defense&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;defense&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1526658666" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000065" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3668" name="PendingPromptsChooserNotSuspendedActor(&quot;forced_discard&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;forced_discard&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="464438004" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000059" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3669" name="PendingPromptsChooserNotSuspendedActor(&quot;optional_discard&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;optional_discard&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="804560806" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000055" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3670" name="PendingPromptsChooserNotSuspendedActor(&quot;minion_protection&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;minion_protection&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="726730776" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000055" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3671" name="PendingPromptsChooserNotSuspendedActor(&quot;recover_discard&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;recover_discard&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="195021949" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000052" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3672" name="PendingPromptsChooserNotSuspendedActor(&quot;discard_attack&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;discard_attack&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="89296794" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000053" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3673" name="PendingPromptsChooserNotSuspendedActor(&quot;card_swap&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;card_swap&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1946359694" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000050" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3674" name="PendingPromptsChooserNotSuspendedActor(&quot;attack_target&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;attack_target&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="349414195" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000051" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3675" name="PendingPromptsChooserNotSuspendedActor(&quot;effect_target&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;effect_target&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1038273170" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000052" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3676" name="PendingPromptsChooserNotSuspendedActor(&quot;effect_minion&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;effect_minion&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="16266371" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000054" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3677" name="PendingPromptsChooserNotSuspendedActor(&quot;effect_move&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;effect_move&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1757714182" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000051" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3678" name="PendingPromptsChooserNotSuspendedActor(&quot;placement&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;placement&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1294306558" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000051" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3679" name="PendingPromptsChooserNotSuspendedActor(&quot;primary_option&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;primary_option&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="517997300" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000052" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3680" name="PendingPromptsChooserNotSuspendedActor(&quot;gold_transfer&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;gold_transfer&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1953519041" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000052" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3681" name="PendingPromptsChooserNotSuspendedActor(&quot;hero_respawn&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;hero_respawn&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="454831906" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000052" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3682" name="PendingPromptsChooserNotSuspendedActor(&quot;round_minion_removal&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;round_minion_removal&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="807716104" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000051" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3683" name="PendingPromptsChooserNotSuspendedActor(&quot;action_minion_removal&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;action_minion_removal&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="2126245908" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000052" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3684" name="PendingPromptsChooserNotSuspendedActor(&quot;minion_spawn&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;minion_spawn&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="47809394" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000052" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3685" name="PendingPromptsChooserNotSuspendedActor(&quot;minion_return&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;minion_return&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="566714417" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000051" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3686" name="PendingPromptsChooserNotSuspendedActor(&quot;spawn_order_unresolved&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;spawn_order_unresolved&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1824350433" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000050" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3690" name="RoundEndResolutionIsAnAction" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.RoundEndResolutionIsAnAction" methodname="RoundEndResolutionIsAnAction" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1905763307" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3688" name="SecretSelectionDoesNotChangePublicSummary" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.SecretSelectionDoesNotChangePublicSummary" methodname="SecretSelectionDoesNotChangePublicSummary" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="2130424846" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.001658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3689" name="UpgradesOnlyPromptViewerWithCandidates" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.UpgradesOnlyPromptViewerWithCandidates" methodname="UpgradesOnlyPromptViewerWithCandidates" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1154365518" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000312" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3691" name="VictorySuppressesStalePendingPrompt" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.VictorySuppressesStalePendingPrompt" methodname="VictorySuppressesStalePendingPrompt" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="580719553" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3714" name="SkillWheelTests" fullname="Goa2.UI3D.Tests.SkillWheelTests" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.012234" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3715" name="DiscardAnimationIsPublicResultOnlyAndConsumedOnce" fullname="Goa2.UI3D.Tests.SkillWheelTests.DiscardAnimationIsPublicResultOnlyAndConsumedOnce" methodname="DiscardAnimationIsPublicResultOnlyAndConsumedOnce" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="190421750" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.004786" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3717" name="DiscardBeatsRemainSequential" fullname="Goa2.UI3D.Tests.SkillWheelTests.DiscardBeatsRemainSequential" methodname="DiscardBeatsRemainSequential" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="707088951" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000739" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3720" name="MidGameCoinUsesFastHalfTurnTiming" fullname="Goa2.UI3D.Tests.SkillWheelTests.MidGameCoinUsesFastHalfTurnTiming" methodname="MidGameCoinUsesFastHalfTurnTiming" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="927758889" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.003533" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3718" name="OtherHeroSlotNeverUsesPrivateHand" fullname="Goa2.UI3D.Tests.SkillWheelTests.OtherHeroSlotNeverUsesPrivateHand" methodname="OtherHeroSlotNeverUsesPrivateHand" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="126384411" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.001133" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3719" name="OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection" fullname="Goa2.UI3D.Tests.SkillWheelTests.OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection" methodname="OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="864890629" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000416" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3716" name="RestoreDoesNotReplayHistoryAndRewindClearsFuture" fullname="Goa2.UI3D.Tests.SkillWheelTests.RestoreDoesNotReplayHistoryAndRewindClearsFuture" methodname="RestoreDoesNotReplayHistoryAndRewindClearsFuture" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="614140063" result="Passed" start-time="2026-10-05 07:33:52Z" end-time="2026-10-05 07:33:52Z" duration="0.000350" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\main-flow-b3ddc39163344e34bbf73e3b6a8c0ea3.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

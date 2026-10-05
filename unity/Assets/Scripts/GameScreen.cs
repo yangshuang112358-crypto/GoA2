@@ -207,12 +207,15 @@ namespace Goa2.Presentation
             board3DViewport.Presentation.Observe(catalog,renderedView,Time.realtimeSinceStartup,cameraFollow ? board3DViewport.Focus : (Vector3?)null);
             if (!renderedView.EffectAreas.ContainsKey(effectAreaId)) effectAreaId="";
             ObserveAudio();
+            ObserveMainFlow();
             ObserveWorldDecisions();
             ObserveWheel();
             BuildLayout(renderedView);
             BuildCameraOverlays();
             BuildSkillWheel();
             BuildWorldDecisions();
+            BuildDecisionDock();
+            BuildMainFlowStatus();
             ApplyNetworkInputGate();
             if (galleryOpen) RenderGallery();
             if (publicCardsOpen) RenderPublicCards(renderedView);

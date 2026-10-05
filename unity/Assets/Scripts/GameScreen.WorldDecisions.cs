@@ -63,7 +63,7 @@ namespace Goa2.Presentation
                     parent.Add(Text("确认启动“"+card.Name+"”。开始后按牌文处理前置步骤；已发生效果不能撤回。"));
                     Confirm(parent,"启动主要行动",()=>Submit(CommandKind.BeginPrimary));return;
                 }
-                parent.Add(Text(preview.Kind=="attack_target" ? "选择高亮目标，再点击目标旁的勾。确认前可返回选择其他行动。" : "选择高亮落点，再点击勾。确认前可返回选择其他行动。"));
+                parent.Add(Text(preview.Kind=="attack_target" ? "选择高亮目标，再点击右侧确认按钮。确认前可返回选择其他行动。" : "选择高亮落点，再点击右侧确认。确认前可返回选择其他行动。"));
                 if(chosenCell.HasValue && PrimaryPreviewCells(view)!.Contains(chosenCell.Value))
                 {
                     var target=view.Units.FirstOrDefault(u=>u.Position==chosenCell.Value);
@@ -75,7 +75,7 @@ namespace Goa2.Presentation
             }
             bool prelude=moveMode==MoveMode.Secondary ? view.CanStartSecondaryMoveWithPrelude : view.CanStartFastMoveWithPrelude;
             if(prelude){parent.Add(Text("本次移动有行动前能力。确认启动后先处理紫卡效果，之后选择落点。"));Confirm(parent,"启动移动前置流程",()=>Submit(CommandKind.Move,"begin",mode:moveMode!.Value));return;}
-            parent.Add(Text("选择高亮落点。勾选确认前可以更换落点或返回选择行动。"));
+            parent.Add(Text("选择高亮落点。右侧确认前可以更换落点或返回选择行动。"));
             var moves=moveMode==MoveMode.Secondary ? view.SecondaryMoves : view.FastMoves;
             if(chosenCell.HasValue && moves.Any(m=>m.Destination==chosenCell.Value))Confirm(parent,"确认移动至 "+chosenCell.Value,()=>Submit(CommandKind.Move,destination:chosenCell!.Value,mode:moveMode!.Value));
         }
@@ -88,7 +88,7 @@ namespace Goa2.Presentation
         }
         private void BuildWorldDecisions()
         {
-            var view=renderedView;if(board==null || showDebug && rightExpanded || debugAttack || debugTeleport)return;
+            var view=renderedView;if(!mainFlow || board==null || showDebug && rightExpanded || debugAttack || debugTeleport)return;
             var source=new VisualElement();RenderDecisionSource(source,view);
             var labels=source.Query<Label>().ToList().Where(l=>l.GetFirstAncestorOfType<ScrollView>()==null && !InsideCardDetail(l)).Select(l=>l.text).Where(t=>!string.IsNullOrWhiteSpace(t)).ToList();
             var options=source.Query<Button>().ToList().Where(b=>b!=confirmButton && b.text!="取消" && !InsideCardDetail(b)).ToList();
@@ -103,7 +103,7 @@ namespace Goa2.Presentation
                 // Keep the existing six-card, two-column upgrade layout. Its confirmation
                 // belongs to that layer, not to a hidden settings drawer.
                 var upgrade=root.Q("upgrade-zone");
-                if(upgrade!=null && confirmButton!=null){confirmButton.RemoveFromHierarchy();upgrade.Add(confirmButton);}
+                // Confirmation is mounted by BuildDecisionDock, never inside the upgrade panel.
                 var chosen=view.UpgradeOptions.FirstOrDefault(o=>o.CardId==upgradeCardId);
                 if(chosen!=null && chosen.Color!="purple")upgrade?.Add(Text("永久"+chosen.Bonus+" +1 · 来源："+catalog.Card(chosen.RejectedCardId).Name,"muted"));
                 return;
@@ -111,15 +111,6 @@ namespace Goa2.Presentation
             if(cards) {BuildWorldHint(layer,labels);return;}
             if(view.Phase==Phase.Action && actionChoice=="" && actionRingClosed)return;
             if(wheelState.Discards.Count>0)return;
-            if(mine && confirmButton!=null)
-            {
-                var button=confirmButton;button.RemoveFromHierarchy();button.tooltip=button.text;button.text="✓";button.name="world-confirm";button.AddToClassList("world-map-confirm");layer.Add(button);
-                AnchorWorldControl(button,chosenCell,view.Pending?.ChooserSeat ?? view.ActiveSeat ?? seat,72);
-            }
-            if(mine && ((view.Phase==Phase.Action && actionChoice!="") || geometry || chosenCell.HasValue))
-            {
-                var back=Button("↶",ReturnWorldChoice,"world-return","world-return");back.tooltip=view.Phase==Phase.Action ? "返回行动选择（尚未提交）" : "改选当前步骤；已发生效果保留";layer.Add(back);
-            }
             bool expanded=!geometry || worldOptionsOpen;
             if(options.Count>0 && mine)
             {

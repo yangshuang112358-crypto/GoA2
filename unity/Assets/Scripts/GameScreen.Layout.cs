@@ -19,7 +19,7 @@ namespace Goa2.Presentation
         {
             RefreshFollowControls();
             UpdatePresentationFocus();
-            if(Input.GetKeyDown(KeyCode.Escape)) { if(skillPopup!=null){skillPopup.RemoveFromHierarchy();skillPopup=null;}else if(heroPopup!=null)HideHeroHover();else if(keywordGlossaryOpen) CloseKeywordGlossary();else if(rightExpanded && !galleryOpen && !historyOpen && !newMatchPending && !debugPresetsOpen) {rightExpanded=false;showHotkeys=false;Render();}else if(wheelSeat.HasValue)ToggleHeroWheel(wheelSeat.Value);else HideCardPreview();return; }
+            if(Input.GetKeyDown(KeyCode.Escape)) { if(skillPopup!=null){skillPopup.RemoveFromHierarchy();skillPopup=null;}else if(heroPopup!=null)HideHeroHover();else if(keywordGlossaryOpen) CloseKeywordGlossary();else if(rightExpanded && !galleryOpen && !historyOpen && !newMatchPending && !debugPresetsOpen) {rightExpanded=false;showHotkeys=false;Render();}else if(wheelSeat.HasValue)ToggleHeroWheel(wheelSeat.Value);else if(browsingWheels.Count>0)CloseHeroWheel();else HideCardPreview();return; }
             if(keywordGlossaryOpen) return;
             if(Input.GetKeyDown(KeyCode.F1) && HasGameView && !startupFailed && !newMatchPending && !debugPresetsOpen && !IsEditingText()) { OpenKeywordGlossary(previewCard);return; }
             if (!HasGameView || startupFailed || galleryOpen || publicCardsOpen || historyOpen || newMatchPending || debugPresetsOpen || IsEditingText()) return;
@@ -43,7 +43,7 @@ namespace Goa2.Presentation
         private void SwitchSeat(int next)
         {
             if(NetworkMode){ToggleHeroWheel(next);return;}
-            seat = next; ClearPending();
+            seat = next; browsingWheels.Clear(); mainFlow=true; cameraFollow=true; wheelContext=""; ClearPending();
             debugUnitId = renderedView.Units.FirstOrDefault(u => u.Seat == seat)?.Id ?? "";
             notice = "正在操控" + PlayerName(seat) + "。"; Render();
             var roster=root.Q<ScrollView>("goa-scroll-roster");
@@ -69,10 +69,6 @@ namespace Goa2.Presentation
         {
             var shell=Box("battlefield-shell");shell.name="battlefield-workspace";shell.StretchToParentSize();root.Add(shell);
             BuildBoard(shell,view);
-            var phase=Box("phase-overlay");phase.name="match-phase";root.Add(phase);
-            phase.Add(Text("第 "+view.Round+" 轮 · 回合 "+view.Turn+"/4","muted"));
-            var title=Text(PhaseName(view),"phase-title");title.name="match-stage";phase.Add(title);
-            if(NetworkMode && !NetworkCanAct)phase.Add(Text(networkSession!.Connection==Goa2.Network.Client.ConnectionState.Connected ? "等待操作确认" : "已断线 · 设置中重连","network-status"));
             if(view.UpgradeOptions.Count==0)BuildRevealedStrip(root,view);
             var handLayer=Box("hand-overlay");handLayer.name="hand-overlay";root.Add(handLayer);BuildHand(handLayer,view);
             if(handLayer.childCount==0)handLayer.style.display=DisplayStyle.None;
@@ -100,7 +96,7 @@ namespace Goa2.Presentation
         private void BuildBoard(VisualElement parent, GameView view)
         {
             var field = Box("field");field.name="battlefield-map"; parent.Add(field);
-            var targets = LegalCells(view);
+            var targets = mainFlow ? LegalCells(view) : new System.Collections.Generic.List<Hex>();
             board = new BattlefieldSurface(catalog, view, targets, chosenCell, cell =>
             {
                 if (!targets.Contains(cell)) { notice = "此格不可用于当前操作。"; return; }
@@ -109,7 +105,13 @@ namespace Goa2.Presentation
             board.HeroHover=ShowHeroHover;
             board.HeroClick=ToggleHeroWheel;
             board.EmptyClick=CloseHeroWheel;
-            board.ManualPan=()=>SetCameraFollow(false);
+            board.ManualPan=()=>{
+                if(!mainFlow)return;LeaveMainFlow();
+                root.Q("main-flow-status")?.RemoveFromHierarchy();BuildMainFlowStatus();
+                if(root.Q("world-decisions")!=null)root.Q("world-decisions").style.display=DisplayStyle.None;
+                if(decisionDock!=null)decisionDock.style.display=DisplayStyle.None;
+            };
+            board.RegisterCallback<PointerUpEvent>(e=>{if((e.button==1 || e.button==2) && !mainFlow)root.schedule.Execute(Render);});
             board.ViewportChanged = RequestCapture;
             field.Add(board);
             cellInfo = Text(BoardHint(view,targets.Count == 0 ? "滚轮缩放 · 中/右键拖动 · Home全图" : targets.Count + " 个合法目标 · 点击后确认"), "tiny");
@@ -117,7 +119,7 @@ namespace Goa2.Presentation
         }
         private void BuildHand(VisualElement parent, GameView view)
         {
-            if(wheelState.Discards.Count>0 || view.UpgradeOptions.Count==0) return;
+            if(!mainFlow || wheelState.Discards.Count>0 || view.UpgradeOptions.Count==0) return;
             PrepareUpgradeSelection(view);
             var panel = Box(bottomExpanded ? "hand" : "collapsed-row");panel.name=view.UpgradeOptions.Count>0 ? "upgrade-zone" : "hand-zone"; parent.Add(panel);
             if(view.UpgradeOptions.Count>0) panel.AddToClassList("upgrade-panel");
