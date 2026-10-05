@@ -56,6 +56,7 @@ public static class Program
             // Validate using existing Restore before calling the export usable.
             _ = LocalGameFactory.Restore(ContentLoader.LoadDirectory(root), saved);
             File.WriteAllText(Path.Combine(output, "authority.private.save.json"), saved);
+            File.WriteAllText(Path.Combine(output, "coin-trajectories.json"), room.ExportCoinTrajectories());
             File.WriteAllText(Path.Combine(output, "restore-check.json"), "{\"passed\":true}");
         }
         return 0;

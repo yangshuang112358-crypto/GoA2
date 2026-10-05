@@ -23,6 +23,7 @@ namespace Goa2.Presentation
             if(board==null) return;
             if(StagePresenting){board.StopFollowing();return;}
             if(!cameraFollow) {board.StopFollowing();return;}
+            if(CombatPresenting){var shot=board3DViewport.Presentation.Combat.Current(Time.realtimeSinceStartup);if(shot!=null)board.FollowAt(Board3DGeometry.World(shot.Target.Position),2.5f);return;}
             var target=CameraFollowPolicy.Target(renderedView,seat);
             bool overview=!target.HasValue;
             float? zoom=!followInitialized && !overview ? (board3DViewport.Enabled ? heroZoom : heroZoom2D) : (float?)null;
@@ -67,6 +68,8 @@ namespace Goa2.Presentation
             if(renderedView.Winner.HasValue) {
                 var victory=Text((renderedView.Winner==Goa2.Domain.Team.Blue ? "蓝队" : "红队")+"获胜","world-victory");victory.name="world-victory";victory.pickingMode=PickingMode.Ignore;victory.style.display=DisplayStyle.None;root.Add(victory);
                 float until=board3DViewport.Presentation.Crowns.Select(c=>c.Started+2.4f).DefaultIfEmpty(Time.realtimeSinceStartup).Max();
+                until=Mathf.Max(until,board3DViewport.Presentation.Combat.BusyUntil);
+                until=Mathf.Max(until,board3DViewport.Presentation.Combat.Rewards.Select(r=>r.Arrival).DefaultIfEmpty(until).Max());
                 victory.schedule.Execute(()=>victory.style.display=DisplayStyle.Flex).StartingIn((long)(Mathf.Max(0,until-Time.realtimeSinceStartup)*1000));
             }
             var current=board;

@@ -12,7 +12,7 @@ namespace Goa2.Presentation
         private UnityEngine.Vector2 lastSkillSoundPosition=new UnityEngine.Vector2(-10000,-10000);
         private void HoverSkillSound(UnityEngine.Vector2 position){if((position-lastSkillSoundPosition).sqrMagnitude<4)return;lastSkillSoundPosition=position;Sound("hover");}
         private void CommandSound(CommandKind kind,bool accepted){Sound(!accepted?"reject":kind==CommandKind.SelectCard?"select":kind==CommandKind.CancelCardSelection?"cancel":"confirm");}
-        private void ObserveAudio(){var cue=audioState.Observe(renderedView,seat);if(cue!="")Sound(cue);}
+        private void ObserveAudio(){GetComponent<BackgroundMusic>()?.SetDraft(renderedView.Phase==Phase.HeroSelection && renderedView.Opening!=null);var cue=audioState.Observe(renderedView,seat);if(cue!="")Sound(cue);}
         private void BuildAudioSettings(VisualElement parent)
         {
             var music=new Slider("背景音乐",0,1){name="music-volume",value=BackgroundMusic.Volume};

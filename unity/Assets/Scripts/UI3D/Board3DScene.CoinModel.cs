@@ -18,7 +18,7 @@ namespace Goa2.Presentation.UI3D
             instance.transform.localScale=Vector3.one*scale;instance.transform.localPosition=-localCenter*scale;
             foreach(var renderer in renderers){renderer.sharedMaterials=renderer.sharedMaterials.Select(source=>{
                 string name=source==null?"":source.name;bool red=name.StartsWith("RedGem"),blue=name.StartsWith("BlueGem");
-                var material=Own(new Material(Resources.Load<Shader>("UI3D/Coin")){color=ColorOf(red?"#C82642":blue?"#236BD6":name.StartsWith("Oxidized")?"#69502D":name.StartsWith("Polished")?"#F0D089":"#C89A47")});material.SetFloat("_Metallic",red||blue?.2f:.86f);return material;
+                var material=Own(new Material(Resources.Load<Shader>("UI3D/Coin")){color=ColorOf(red?"#C82642":blue?"#236BD6":name.StartsWith("Oxidized")?"#493019":name.StartsWith("Polished")?"#E6B950":"#BA791D")});material.SetFloat("_Metallic",red||blue?.2f:.92f);material.SetFloat("_Roughness",red||blue?.12f:name.StartsWith("Oxidized")?.62f:.24f);material.SetFloat("_Gem",red||blue?1:0);return material;
             }).ToArray();}
             return pivot.transform;
         }

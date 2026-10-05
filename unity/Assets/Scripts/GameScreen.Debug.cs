@@ -26,8 +26,12 @@ namespace Goa2.Presentation
             if (view.Phase == Phase.Finished) { RenderVictory(parent, view); return; }
             if (!view.Sandbox) { parent.Add(Text("这是普通确认对局。创建新的测试对局后可使用调试工具。", "body")); return; }
             parent.Add(Text("界面演出样例", "section-title"));
+            parent.Add(Button("新建 BP / 两次真实投币演示",()=>{rightExpanded=false;NewMatch();},"choice-button","opening-presentation-demo"));
+            parent.Add(Button("新建卡边局面 / 四人投票重抛",PrepareCoinVoteDemo,"choice-button","coin-vote-demo"));
             parent.Add(Button("英雄 / 小兵 / 金币美术样例",()=>OpenArtSamples(0),"choice-button","art-samples-open"));
+            parent.Add(Button("新建战斗动作 / 击杀金币演示局面",PrepareCombatDemo,"choice-button","combat-presentation-demo"));
             parent.Add(Button("升级环样例：9 / 6 / 3 / 紫卡",()=>{OpenDebugPositions();debugPresetFilter="upgrades";selectedDebugPosition="upgrades";Render();},"choice-button","upgrade-samples-open"));
+            parent.Add(Button("重播中央石台盘旋合拢",()=>{board3DViewport.Presentation.RockFormationStarted=UnityEngine.Time.realtimeSinceStartup;rightExpanded=false;cameraFollow=false;board3DViewport.StopFollowing();board3DViewport.Focus=(Goa2.Presentation.UI3D.Board3DGeometry.World(new Hex(0,0))+Goa2.Presentation.UI3D.Board3DGeometry.World(new Hex(0,1)))*.5f;board3DViewport.Zoom=3;Render();},"choice-button","rock-formation-preview"));
             var stageSamples=Box("debug-button-row");parent.Add(stageSamples);
             foreach(string label in new[]{"暗选阶段","战斗阶段\n"+HeroName(view.Players[seat].HeroId)+"行动","战斗阶段\n"+HeroName(view.Players[seat].HeroId)+"防御","小兵战斗阶段","升级阶段","开局抛币阶段"})
                 stageSamples.Add(Button(label.Replace("\n"," · "),()=>PreviewStageBanner(label),"compact-button"));

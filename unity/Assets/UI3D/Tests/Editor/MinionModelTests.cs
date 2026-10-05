@@ -59,14 +59,16 @@ namespace Goa2.UI3D.Tests
                 var coin=Resources.FindObjectsOfTypeAll<Transform>().Single(t=>t.gameObject.scene==board.Camera.gameObject.scene && t.name=="decision coin");
                 var coinRenderers=coin.GetComponentsInChildren<Renderer>();var coinBounds=coinRenderers[0].bounds;
                 foreach(var r in coinRenderers)coinBounds.Encapsulate(r.bounds);
-                Assert.That(coinBounds.size.y,Is.LessThan(.20f),"Minted coin lies flat on tray before animation");
+                Assert.That(coinBounds.size.y,Is.LessThan(coinBounds.size.x*.36f),"Thick bevel and gems remain flatter than coin diameter");
                 Assert.That(coinBounds.size.x,Is.EqualTo(.965f).Within(.03f));
-                var rock=Resources.FindObjectsOfTypeAll<MeshFilter>().Single(m=>m.gameObject.scene==board.Camera.gameObject.scene && m.sharedMesh!=null && m.sharedMesh.name=="connected symmetric rocks").sharedMesh;
-                Assert.That(rock.vertices.All(v=>!float.IsNaN(v.x) && !float.IsNaN(v.y) && !float.IsNaN(v.z)),Is.True);
+                var rock=board.Camera.transform.parent.GetComponentsInChildren<MeshFilter>().Single(m=>m.gameObject.name=="connected rocks");
+                var vertices=rock.sharedMesh.vertices.Select(rock.transform.TransformPoint).ToArray();
+                Assert.That(vertices.All(v=>!float.IsNaN(v.x) && !float.IsNaN(v.y) && !float.IsNaN(v.z)),Is.True);
                 var center=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f;
-                string Key(Vector3 v)=>Mathf.RoundToInt(v.x*1000)+":"+Mathf.RoundToInt(v.y*1000)+":"+Mathf.RoundToInt(v.z*1000);
-                var points=rock.vertices.Select(Key).ToHashSet();
-                foreach(var v in rock.vertices)Assert.That(points.Contains(Key(new Vector3(center.x*2-v.x,v.y,center.z*2-v.z))),Is.True,"Rock mesh retains exact central symmetry");
+                foreach(var v in vertices.Distinct()){
+                    var mirror=new Vector3(center.x*2-v.x,v.y,center.z*2-v.z);
+                    Assert.That(vertices.Any(p=>(p-mirror).sqrMagnitude<.000001f),Is.True,"FBX world geometry retains central symmetry within 1 mm");
+                }
                 Assert.That(board.Labels.Any(x=>x.text=="重"),Is.True);
                 Assert.That(board.Labels.Any(x=>x.text=="远"),Is.True);
                 board.Render(1600,1000);

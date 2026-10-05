@@ -1,0 +1,42 @@
+  private IEnumerator FlattenDemo(IEnumerator start){
+   var stack=new System.Collections.Generic.Stack<IEnumerator>();stack.Push(start);
+   while(stack.Count>0){var current=stack.Peek();if(!current.MoveNext()){stack.Pop();continue;}if(current.Current is IEnumerator nested){stack.Push(nested);continue;}yield return current.Current;}
+  }
+  private IEnumerator VideoSequence(){
+   yield return null;yield return null;QualitySettings.vSyncCount=0;UnityEngine.Application.targetFrameRate=30;
+   DemoCheck(!startupFailed,"Startup failed");SettingsAudio.Played+=CaptureCue;File.WriteAllText(Path.Combine(demoFolder,"audio-events.tsv"),"");
+   demoCaption="真实 Unity 渲染 · 自动演示 · BP 与两次物理投币";BeginVideo("01-bp-opening");
+   var report=new BoardAuditReport();yield return AuditOpening(demoFolder,report);StopVideo();
+   File.WriteAllText(Path.Combine(demoFolder,"opening-checks.json"),JsonUtility.ToJson(report,true));
+   PrepareCoinVoteDemo();yield return new WaitForSecondsRealtime(5.5f);
+   demoCaption="调试模拟卡边 · 四席全部同意后才重投";BeginVideo("04-four-vote-reroll");yield return new WaitForSecondsRealtime(1.5f);
+   string stuckToss=renderedView.Opening!.TossId;
+   for(int voter=0;voter<4;voter++){SwitchSeat(voter);Submit(CommandKind.VoteCoinReroll,stuckToss);yield return new WaitForSecondsRealtime(1);}
+   DemoCheck(renderedView.Opening.TossId!=stuckToss,"Four votes must create a new toss");
+   demoCaption="第四票已接受 · 创建新投币编号，重新真实物理抛掷";yield return new WaitForSecondsRealtime(8);StopVideo();
+   PrepareCombatDemo();yield return new WaitForSecondsRealtime(6);cameraFollow=false;mainFlow=false;browsingWheels.Clear();wheelSeat=null;Render();
+   var anchor=renderedView.Units.Single(u=>u.Seat==1).Position;
+   board3DViewport.Focus=Board3DGeometry.World(anchor);board3DViewport.Zoom=2.6f;yield return new WaitForSecondsRealtime(1);
+   demoCaption="小兵动作 · 调试攻击使用实际规则与奖励事件";BeginVideo("02-combat-rewards");yield return new WaitForSecondsRealtime(2);
+   mainFlow=true;cameraFollow=false;Submit(CommandKind.DebugAttack,"hero:1|9");
+   yield return new WaitForSecondsRealtime(5.4f);
+   demoCaption="准备：取箭搭弓、45°举剑、重型展开八足、前举盾";
+   yield return new WaitForSecondsRealtime(2.6f);
+   seat=1;Render();Submit(CommandKind.Defend,renderedView.DefenseOptions.OrderBy(d=>d.Assessment.FinalDefense).First().CardId);
+   demoCaption="防御弃牌 → 收环出招 → 命中与金币";
+   yield return new WaitForSecondsRealtime(9);
+   demoCaption="金币滚动3秒，再分别飞向击杀者与助攻者；真实等级仍在轮末升级";
+   yield return new WaitForSecondsRealtime(2);StopVideo();
+   mainFlow=false;cameraFollow=false;browsingWheels.Clear();wheelSeat=null;Render();
+   board3DViewport.Focus=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f;board3DViewport.Zoom=4.6f;yield return new WaitForSecondsRealtime(.5f);
+   demoCaption="Blender 原创中央石台 · 双石盘旋合拢";BeginVideo("03-rocks-coin");
+   board3DViewport.Presentation.HideCoin=true;board3DViewport.Presentation.RockFormationStarted=Time.realtimeSinceStartup;
+   yield return new WaitForSecondsRealtime(3.5f);board3DViewport.Presentation.HideCoin=false;
+   yield return new WaitForSecondsRealtime(1.4f);demoCaption="双面金属宝石币 · 普通换面只快速翻转半圈";
+   Submit(CommandKind.DebugSetCoin,renderedView.DecisionCoin==Team.Red?"blue":"red");yield return new WaitForSecondsRealtime(2);
+   yield return DemoTravel(BattlePresentationState.Center(catalog),1.25f,4);
+   demoCaption="连接岩石与完整六角底座 · 中心对称，规则格位保持不变";yield return new WaitForSecondsRealtime(2);StopVideo();
+  }
+ }
+}
+#endif

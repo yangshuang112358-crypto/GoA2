@@ -19,6 +19,7 @@ namespace Goa2.Presentation.UI3D {
   private static void Tri(List<Vector3> v,Vector3 a,Vector3 b,Vector3 c){v.Add(a);v.Add(b);v.Add(c);}
   // A shared top edge and no interior walls make neighboring obstacle cells one rock mass.
   private void BuildConnectedRocks() {
+   if(BuildSculptedRocks())return;
    var obstacles=cells.Values.Where(c=>c.Obstacle).ToList();var vertices=new List<Vector3>();
    var centers=obstacles.Select(c=>Board3DGeometry.World(c.Position)).ToList();
    var symmetryCenter=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f;

@@ -38,10 +38,13 @@ namespace Goa2.Presentation
                     var arc=new VisualElement{name="upgrade-arc-"+g+"-"+branch,pickingMode=PickingMode.Ignore};arc.StretchToParentSize();ring.Add(arc);
                     float origin=UpgradeWheelLayout.Angle(colors.Length,g,1),target=UpgradeWheelLayout.Angle(colors.Length,g,branch);
                     arc.generateVisualContent+=context=>{
-                        var p=context.painter2D;float sign=Mathf.Sign(target-origin),from=origin+sign*16,to=target-sign*16;
-                        Vector2 Point(float angle)=>new Vector2(320,320)+new Vector2(Mathf.Cos(angle*Mathf.Deg2Rad),Mathf.Sin(angle*Mathf.Deg2Rad))*237;
-                        p.strokeColor=new Color(1,.77f,.30f);p.lineWidth=4;p.BeginPath();p.MoveTo(Point(from));
-                        for(int i=1;i<=24;i++)p.LineTo(Point(Mathf.Lerp(from,to,i/24f)));p.Stroke();
+                        var p=context.painter2D;float sign=Mathf.Sign(target-origin),from=origin+sign*10,to=target-sign*10;
+                        // Inner orbit leaves the arrows visible between the large numbered skill rims.
+                        Vector2 Point(float angle)=>new Vector2(320,320)+new Vector2(Mathf.Cos(angle*Mathf.Deg2Rad),Mathf.Sin(angle*Mathf.Deg2Rad))*166;
+                        foreach(bool shadow in new[]{true,false}){
+                            p.strokeColor=shadow?new Color(.06f,.08f,.10f,.95f):new Color(1,.77f,.30f);p.lineWidth=shadow?9:4;p.BeginPath();p.MoveTo(Point(from));
+                            for(int i=1;i<=24;i++)p.LineTo(Point(Mathf.Lerp(from,to,i/24f)));p.Stroke();
+                        }
                         var tip=Point(to);var tangent=sign*new Vector2(-Mathf.Sin(to*Mathf.Deg2Rad),Mathf.Cos(to*Mathf.Deg2Rad));var normal=new Vector2(-tangent.y,tangent.x);
                         p.fillColor=new Color(1,.85f,.44f);p.BeginPath();p.MoveTo(tip);p.LineTo(tip-tangent*11+normal*6);p.LineTo(tip-tangent*11-normal*6);p.ClosePath();p.Fill();
                     };
@@ -72,7 +75,7 @@ namespace Goa2.Presentation
             }
             var chosen=view.UpgradeOptions.FirstOrDefault(o=>o.CardId==upgradeCardId);
             var benefit=new Label(chosen==null?"选择升级方向，查看永久加成":chosen.Color=="purple"?"获得满级技能": "永久"+chosen.Bonus+" +1\n来自未选路线"){name="upgrade-benefit",pickingMode=PickingMode.Ignore};
-            benefit.style.position=Position.Absolute;benefit.style.left=155;benefit.style.top=424;benefit.style.width=330;benefit.style.height=52;benefit.style.whiteSpace=WhiteSpace.Normal;benefit.style.fontSize=20;benefit.style.unityTextAlign=TextAnchor.MiddleCenter;benefit.style.color=new Color(.51f,1,.64f);benefit.style.unityTextOutlineColor=new Color(.03f,.08f,.06f);benefit.style.unityTextOutlineWidth=1;ring.Add(benefit);
+            benefit.style.position=Position.Absolute;benefit.style.left=185;benefit.style.top=424;benefit.style.width=270;benefit.style.height=52;benefit.style.whiteSpace=WhiteSpace.Normal;benefit.style.fontSize=20;benefit.style.unityTextAlign=TextAnchor.MiddleCenter;benefit.style.color=new Color(.70f,1,.78f);benefit.style.backgroundColor=new Color(.04f,.07f,.08f,.85f);benefit.style.borderTopLeftRadius=6;benefit.style.borderTopRightRadius=6;benefit.style.borderBottomLeftRadius=6;benefit.style.borderBottomRightRadius=6;ring.Add(benefit);
             if(chosen!=null){
                 // Dock owns confirmation; ring stays free of central action buttons.
                 var captured=chosen.CardId;confirmButton=new Button(){text="升级为 "+catalog.Card(captured).Name};

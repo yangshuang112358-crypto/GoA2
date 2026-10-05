@@ -62,7 +62,7 @@ namespace Goa2.Presentation
         private void BuildDecisionDock()
         {
             decisionDock=null;
-            if(!mainFlow || wheelState.Discards.Count>0 || !NetworkCanAct || ScenarioRunning)return;
+            if(!mainFlow || wheelState.Discards.Count>0 || !NetworkCanAct || ScenarioRunning || renderedView.Phase==Phase.HeroSelection && renderedView.Opening!=null)return;
             var captured=confirmAction;bool canConfirm=captured!=null && confirmButton!=null && confirmButton.enabledSelf;
             bool canBack=CanWithdrawPreview();
             if(!canConfirm && !canBack)return;

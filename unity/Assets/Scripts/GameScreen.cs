@@ -112,7 +112,7 @@ namespace Goa2.Presentation
             if(NetworkMode)return;
             startupFailed=false; newMatchError="";
             scenario = null;
-            session = LocalGameFactory.Create(catalog, Guid.NewGuid().ToString("N"), new[] { "玩家 1", "玩家 2", "玩家 3", "玩家 4" }, UnityEngine.Random.Range(0, int.MaxValue), true);
+            session = LocalGameFactory.Create(catalog, Guid.NewGuid().ToString("N"), new[] { "玩家 1", "玩家 2", "玩家 3", "玩家 4" }, UnityEngine.Random.Range(0, int.MaxValue), true, physicalOpening:true);
             seat = 0; newMatchPending = false; notice = "测试对局已建立。可手工选英雄，或打开调试工具自动准备。";
             ClearPending(); Render();
         }
@@ -218,8 +218,10 @@ namespace Goa2.Presentation
             BuildUpgradeWheel();
             BuildDecisionDock();
             BuildMainFlowStatus();
+            BuildOpening();
             BuildStageBanner();
             ApplyNetworkInputGate();
+            ApplyCombatPresentationGate();
             if (galleryOpen) RenderGallery();
             if (publicCardsOpen) RenderPublicCards(renderedView);
             if (historyOpen) RenderHistory(renderedView);
@@ -385,6 +387,7 @@ namespace Goa2.Presentation
             switch (view.Phase)
             {
                 case Phase.HeroSelection:
+                    if(view.Opening!=null)break;
                     sidebar.Add(Text("每人选择不同英雄。六名英雄均可加入任一队伍。", "body"));
                     foreach (var hero in catalog.Heroes)
                     {

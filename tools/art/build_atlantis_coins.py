@@ -46,24 +46,25 @@ for i,variant in enumerate(('A-TideTrident','B-SunkenGate','C-WaveEye')):
     bpy.ops.export_scene.fbx(filepath=str(out/(variant+'.fbx')),use_selection=True,object_types={'MESH'},add_leaf_bones=False,bake_anim=False,axis_forward='-Z',axis_up='Y')
     coin.location.x=(i-1)*1.22;coins.append(coin)
 # Separate two-sided decision coin: original ornate minting, red/blue six-sided gems.
-parts=[];disk('Decision gold body',.50,0,.05,gold)
+parts=[];disk('Decision gold body',.50,0,.13,gold)
 red=mat('RedGem',(.48,.018,.035),.25,.18);blue=mat('BlueGem',(.025,.11,.55),.25,.18)
 for side,gem in ((1,red),(-1,blue)):
-    disk('Decision recessed field',.432,side*.028,.008,dark)
-    ring(.469,side*.029,light,.018);ring(.425,side*.033,light,.013)
-    ring(.315,side*.035,gold,.012)
+    disk('Decision recessed field',.433,side*.070,.010,dark)
+    ring(.467,side*.073,light,.032);ring(.425,side*.076,gold,.017)
+    ring(.307,side*.085,light,.021)
     for j in range(12):
         a=j*math.tau/12
-        line('Curved sun ray',[(math.cos(a)*.33,math.sin(a)*.33,side*.038),(math.cos(a+.09)*.373,math.sin(a+.09)*.373,side*.039),(math.cos(a+.17)*.408,math.sin(a+.17)*.408,side*.037)],light,.014)
-    bpy.ops.mesh.primitive_cylinder_add(vertices=6,radius=.27,depth=.028,location=(0,0,side*.034));socket=bpy.context.object;socket.name='Hexagonal jewel socket';socket.data.materials.append(light);parts.append(socket)
+        line('Rounded raised sun ray',[(math.cos(a)*.33,math.sin(a)*.33,side*.086),(math.cos(a+.11)*.373,math.sin(a+.11)*.373,side*.090),(math.cos(a+.20)*.409,math.sin(a+.20)*.409,side*.084)],light,.020)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=6,radius=.276,depth=.058,location=(0,0,side*.086));socket=bpy.context.object;socket.name='Hexagonal jewel socket';socket.data.materials.append(light);parts.append(socket)
+    bevel=socket.modifiers.new('Softly worn jewel setting','BEVEL');bevel.width=.012;bevel.segments=3
     verts=[]
-    for radius,z in ((.225,side*.039),(.232,side*.053),(.17,side*.075)):
+    for radius,z in ((.225,side*.104),(.238,side*.122),(.170,side*.156)):
         for j in range(6):verts.append((math.cos(j*math.tau/6)*radius,math.sin(j*math.tau/6)*radius,z))
     faces=[tuple(range(12,18))]+[(ringidx*6+j,ringidx*6+(j+1)%6,(ringidx+1)*6+(j+1)%6,(ringidx+1)*6+j) for ringidx in range(2) for j in range(6)]
     if side<0:faces=[tuple(reversed(f)) for f in faces]
     mesh=bpy.data.meshes.new('Six sided gem');mesh.from_pydata(verts,[],faces);mesh.update();obj=bpy.data.objects.new(gem.name,mesh);bpy.context.collection.objects.link(obj);mesh.materials.append(gem);parts.append(obj)
 for j in range(48):
-    a=j*math.tau/48;line('Decision milled edge',[(math.cos(a)*.494,math.sin(a)*.494,-.017),(math.cos(a)*.494,math.sin(a)*.494,.017)],light,.006)
+    a=j*math.tau/48;line('Decision milled edge',[(math.cos(a)*.497,math.sin(a)*.497,-.05),(math.cos(a)*.497,math.sin(a)*.497,.05)],light,.007)
 bpy.ops.object.select_all(action='DESELECT')
 for obj in parts:obj.select_set(True)
 bpy.context.view_layer.objects.active=parts[0];bpy.ops.object.convert(target='MESH');bpy.ops.object.join();decision=bpy.context.object;decision.name='DecisionCoin'

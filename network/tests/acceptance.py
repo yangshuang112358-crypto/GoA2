@@ -20,7 +20,7 @@ from fault_proxy import FaultProxy
 
 
 class Run:
-    def __init__(self, fixture=None, steps=0, csharp=False, faults=False):
+    def __init__(self, fixture=None, steps=0, csharp=False, faults=False, physical=False):
         self.output = ROOT / "artifacts/network" / (time.strftime("%Y%m%d-%H%M%S-") + uuid.uuid4().hex[:8])
         self.output.mkdir(parents=True)
         self.checks = []
@@ -42,6 +42,10 @@ class Run:
         log = open(self.output / "server.log", "x", encoding="utf-8")
         self.logs.append(log)
         command = [str(dotnet), str(assembly), "serve", str(ROOT), str(self.output / "private")]
+        if not fixture and not physical:
+            test_host = ROOT / "network/tests/Goa2.Network.TestHost/bin/Release/net10.0/Goa2.Network.TestHost.dll"
+            command = [str(dotnet), str(test_host), str(ROOT), str(self.output / "private"), "legacy", "0"]
+            self.report["fixture"] = {"source": "explicit legacy opening; physical BP covered by opening.py", "sandbox": False}
         if fixture:
             test_host = ROOT / "network/tests/Goa2.Network.TestHost/bin/Release/net10.0/Goa2.Network.TestHost.dll"
             command = [str(dotnet), str(test_host), str(ROOT), str(self.output / "private"), str(ROOT / fixture), str(steps)]
@@ -126,7 +130,9 @@ class Run:
                 sock.sendall(prefix)
             else:
                 send(body)
-            return receive()
+            response=receive()
+            while response['Type']=='Presence':response=receive()
+            return response
 
     def boundaries(self):
         for seat in range(4):

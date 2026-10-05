@@ -12,6 +12,9 @@ namespace Goa2.Presentation.UI3D
         }
 
         private AudioSource source;
+        private AudioSource draftSource;
+        private bool draft;
+        public void SetDraft(bool value){draft=value;if(draft && draftSource!=null && !draftSource.isPlaying)draftSource.Play();}
 
         private void Awake()
         {
@@ -21,6 +24,7 @@ namespace Goa2.Presentation.UI3D
             source.spatialBlend = 0;
             source.volume = 0;
             source.clip = Resources.Load<AudioClip>("UI3D/Audio/atlantean-dusk");
+            draftSource=gameObject.AddComponent<AudioSource>();draftSource.playOnAwake=false;draftSource.loop=true;draftSource.spatialBlend=0;draftSource.volume=0;draftSource.clip=Resources.Load<AudioClip>("UI3D/Audio/atlantean-draft");
             if (FindFirstObjectByType<AudioListener>() == null) gameObject.AddComponent<AudioListener>();
             if (source.clip == null) Debug.LogWarning("Background music asset was not found.");
         }
@@ -29,8 +33,10 @@ namespace Goa2.Presentation.UI3D
         private void Update()
         {
             // Muting is immediate; other volume changes ease in without abrupt jumps.
-            source.volume = Volume <= 0 ? 0 : Mathf.MoveTowards(source.volume, Volume, Time.unscaledDeltaTime * .35f);
+            source.volume = Volume <= 0 ? 0 : Mathf.MoveTowards(source.volume, draft?0:Volume, Time.unscaledDeltaTime * .35f);
+            draftSource.volume=Volume<=0?0:Mathf.MoveTowards(draftSource.volume,draft?Volume:0,Time.unscaledDeltaTime*.35f);
+            if(!draft && draftSource.volume<=0 && draftSource.isPlaying)draftSource.Stop();
         }
-        private void OnDisable() { if (source != null) source.Stop(); }
+        private void OnDisable() { if (source != null) source.Stop();if(draftSource!=null)draftSource.Stop(); }
     }
 }

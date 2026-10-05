@@ -1,5 +1,6 @@
 """Real TCP service, four authenticated clients; no Unity/OS or four-machine claim."""
 import json, os, subprocess, sys, time, uuid, hashlib
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'network/client'))
@@ -56,7 +57,16 @@ def main():
         duplicate=players[0].submit('ReportCoinToss',{'Value':'draft:1|Red|0,0,0,1'},command_id=r['CommandId'],revision=r['Snapshot']['Revision']-1)
         check(duplicate['Duplicate'],'accepted result duplicate is idempotent')
         command(0,'ChooseHero','wasp',False)
-        for seat,hero in [(1,'wasp'),(0,'shargatha'),(2,'brogan'),(3,'arien')]:command(seat,'ChooseHero',hero)
+        command(1,'ChooseHero','wasp')
+        sync()
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            attempts={s:pool.submit(players[s].submit,'ChooseHero',{'Value':'shargatha'}) for s in (0,2)}
+            outcomes={s:f.result(timeout=10) for s,f in attempts.items()}
+        winners=[s for s,r in outcomes.items() if r.get('Accepted')]
+        check(len(winners)==1,'same-team concurrent claims accept exactly one hero owner')
+        sync();loser=2-winners[0]
+        command(loser,'ChooseHero','shargatha',False)
+        command(loser,'ChooseHero','brogan');command(3,'ChooseHero','arien')
         check(all(p.view['Opening']['DraftComplete'] for p in players),'1-2-1 consistent on all clients')
         for captain in [0,1]:
             while players[captain].view['Deployments']:
@@ -80,5 +90,8 @@ def main():
         try:proc.wait(timeout=12)
         except subprocess.TimeoutExpired:proc.terminate();proc.wait()
         log.close()
+        if (out/'private/coin-trajectories.json').exists():
+            trajectory=json.loads((out/'private/coin-trajectories.json').read_text())
+            check({f['TossId'] for f in trajectory['Frames']}=={'draft:1','opening:2','opening:3'},'normal stop exports accepted motion trajectories for both purposes and reroll')
         (out/'report.json').write_text(json.dumps({'checks':checks,'assembly_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'working_tree':subprocess.check_output(['git','diff','--stat'],cwd=ROOT,text=True),'ui_tested':False,'remote_four_machines':False},ensure_ascii=False,indent=2),encoding='utf8')
 if __name__=='__main__':main()

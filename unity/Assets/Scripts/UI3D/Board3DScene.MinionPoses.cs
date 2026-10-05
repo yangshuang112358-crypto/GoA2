@@ -25,6 +25,8 @@ namespace Goa2.Presentation.UI3D
             public MinionPoseMotion Motion=null!;
             public Vector3 Center;
             public LineRenderer? String,Arrow;
+            public string IdlePose="idle";public bool IdleRise;
+            public Quaternion IdleFacing;
         }
         private readonly List<MinionRig> minionRigs=new List<MinionRig>();
         private void RegisterMinionRig(GameObject instance,string id,string kind)
@@ -49,7 +51,7 @@ namespace Goa2.Presentation.UI3D
             int? attackerSeat=view.Attack?.AttackerSeat ?? view.ActiveSeat;
             var attacker=attackerSeat.HasValue?view.Units.FirstOrDefault(u=>u.Seat==attackerSeat):null;
             foreach(var rig in minionRigs){
-                var unit=view.Units.First(u=>u.Id==rig.Id);bool support=influence.EnemySupportSources.Contains(rig.Id),guard=influence.FriendlyGuardSources.Contains(rig.Id);
+                var unit=view.Units.FirstOrDefault(u=>u.Id==rig.Id) ?? visualGhosts[rig.Id];bool support=influence.EnemySupportSources.Contains(rig.Id),guard=influence.FriendlyGuardSources.Contains(rig.Id);
                 string pose=guard?"guard":support?"support":"idle";
                 if(view.Sandbox && state.MinionPreviewPose!="")pose=state.MinionPreviewPose;
                 rig.Center=Board3DGeometry.World(unit.Position,.04f);
@@ -59,6 +61,7 @@ namespace Goa2.Presentation.UI3D
                 rig.Motion.TargetFacing=direction.sqrMagnitude>.001f?Quaternion.LookRotation(direction,Vector3.up):Quaternion.Euler(0,unit.Team==Team.Blue?0:180,0);
                 bool rise=rig.Kind=="heavy" && (view.RemovableMinions.Contains(rig.Id) || pose!="idle");
                 rig.Motion.Set(pose,rise,Time.realtimeSinceStartup);
+                rig.IdlePose=pose;rig.IdleRise=rise;rig.IdleFacing=rig.Motion.TargetFacing;
                 if(support || guard){
                     var hue=ColorOf(unit.Team==Team.Blue?"#48B7FF":"#FF4E61");
                     Add(Own(Board3DGeometry.Ring(48,.78f)),Board3DGeometry.World(unit.Position,.11f),Vector3.one*.92f,hue,"base combat minion highlight "+unit.Id);
@@ -70,7 +73,16 @@ namespace Goa2.Presentation.UI3D
         {
             float now=Time.realtimeSinceStartup;
             foreach(var rig in minionRigs){
-                var m=rig.Motion;m.Advance(now);
+                var shot=state.Presentation.Combat.Current(now);
+                bool attacking=shot!=null && shot.Support.Any(u=>u.Id==rig.Id),defending=shot!=null && shot.Guard.Any(u=>u.Id==rig.Id);
+                var m=rig.Motion;
+                if(attacking || defending)
+                {
+                    var target=defending?shot!.Source:shot!.Target;var direction=Board3DGeometry.World(target.Position)-rig.Center;direction.y=0;
+                    m.TargetFacing=Quaternion.LookRotation(direction,Vector3.up);m.Set(defending?"guard":"support",rig.Kind=="heavy",now);
+                }
+                else {m.TargetFacing=rig.IdleFacing;m.Set(rig.IdlePose,rig.IdleRise,now);}
+                m.Advance(now);
                 rig.Root.rotation=m.Facing;
                 foreach(var pair in rig.Bones.Values){pair.bone.localRotation=pair.rotation;pair.bone.localPosition=pair.position;pair.bone.localScale=pair.scale;}
                 void Turn(string name,float degrees,Vector3 axis){if(rig.Bones.TryGetValue(name,out var b))b.bone.rotation=Quaternion.AngleAxis(degrees,axis)*b.bone.rotation;}
@@ -86,11 +98,18 @@ namespace Goa2.Presentation.UI3D
                     Turn("UpperLeg.L",32*guard,right);Turn("LowerLeg.L",-68*guard,right);Turn("UpperLeg.R",-28*guard,right);Turn("LowerLeg.R",45*guard,right);
                 }
                 if(rig.Kind=="ranged"){
-                    BowPose(rig,Mathf.Max(m.Support,m.Guard),now-m.Changed);
+                    BowPose(rig,Mathf.Max(m.Support,m.Guard),attacking?now-shot!.PrepareStarted:now-m.Changed);
+                    if(m.Pose=="idle")rig.Arrow!.enabled=false;
+                    if(attacking && now>=shot!.Start+.12f){rig.Arrow!.enabled=false;var p=rig.String!.GetPosition(0);var q=rig.String.GetPosition(2);rig.String.SetPosition(1,(p+q)*.5f);}
                 }else{
                     float h=MinionHeight(rig.Kind);Vector3 At(float x,float y,float z)=>rig.Center+right*x*h+Vector3.up*y*h+forward*z*h;
                     PoseHand(rig,"L",At(-.11f,rig.Kind=="heavy"?.50f:.46f,.24f),guard,Quaternion.identity,At(-.38f,.40f,.05f));
                     Vector3 sword=rig.Kind=="heavy"?(-right+forward*.16f+Vector3.up*.10f).normalized:(forward+Vector3.up).normalized;
+                    if(attacking && now>=shot!.Start)
+                    {
+                        float swing=Mathf.SmoothStep(0,1,Mathf.Clamp01((now-shot.Start)/.55f));
+                        sword=rig.Kind=="heavy"?Quaternion.AngleAxis(-140*swing,Vector3.up)*sword:Vector3.Slerp(sword,(forward-Vector3.up*.8f).normalized,swing);
+                    }
                     PoseHand(rig,"R",At(rig.Kind=="heavy"?.23f:.21f,rig.Kind=="heavy"?.58f:.47f,.19f),support,Quaternion.FromToRotation(Vector3.up,sword),At(.44f,.48f,.03f));
                     Turn("Spine",8*guard,right);
                 }

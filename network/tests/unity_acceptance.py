@@ -14,8 +14,8 @@ from acceptance import Run, ROOT
 
 
 class UnityRun(Run):
-    def __init__(self, fixture=None, steps=0, faults=False):
-        super().__init__(fixture, steps, faults=faults)
+    def __init__(self, fixture=None, steps=0, faults=False, physical=False):
+        super().__init__(fixture, steps, faults=faults,physical=physical)
         for process in self.clients:
             process.terminate()
             process.wait(timeout=10)

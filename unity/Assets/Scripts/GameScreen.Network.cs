@@ -42,6 +42,7 @@ namespace Goa2.Presentation
             if(networkDestroyed || networkSession==null)return;
             var next=networkSession.View;var state=networkSession.Connection;
             bool changed=next!=null && (networkView==null || next.MatchId!=networkView.MatchId || next.Revision!=networkView.Revision);
+            if(state==ConnectionState.Connected && previousConnection!=ConnectionState.Connected)board3DViewport.Presentation.Combat.Reset();
             if(changed || previousConnection!=state)ClearNetworkPreview();
             previousConnection=state;
             if(next!=null){networkView=next;seat=networkSession.AuthenticatedSeat!.Value;}
@@ -97,11 +98,14 @@ namespace Goa2.Presentation
             board?.SetConnected(false);
             root.Q("decision-content")?.SetEnabled(false);root.Q("hand-zone")?.SetEnabled(false);root.Q("upgrade-zone")?.SetEnabled(false);
             root.Q("world-decisions")?.SetEnabled(false);root.Q("decision-dock")?.SetEnabled(false);
+            root.Q("draft-confirm")?.SetEnabled(false);root.Q("coin-reroll")?.SetEnabled(false);
             skillWheel?.SetEnabled(false);root.Q("floating-confirm")?.SetEnabled(false);
             confirmAction=null;confirmButton=null;
         }
         private void OnDestroy()
         {
+            physicalCoin?.Dispose();physicalCoin=null;
+            rewardWorld?.Dispose();rewardWorld=null;
             networkDestroyed=true;if(networkSession!=null){networkSession.StateUpdated-=OnNetworkUpdated;networkSession.Dispose();}
         }
     }

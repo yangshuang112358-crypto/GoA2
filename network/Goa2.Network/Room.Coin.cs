@@ -5,6 +5,8 @@ namespace Goa2.Network;
 public sealed partial class Room
 {
     private CoinMotion? motion;
+    private readonly List<CoinMotion> motionHistory=new();
+    private int tossFrameCount;
     private readonly HashSet<string> acceptedOpeningCommands=new();
     private DateTime motionReceived;
     private CoinMotion? CurrentMotion()
@@ -34,9 +36,13 @@ public sealed partial class Room
         var previous=CurrentMotion();var now=DateTime.UtcNow;
         if(previous!=null && (frame.Sequence<=previous.Sequence || frame.Time<previous.Time ||
             frame.Time-previous.Time>(now-motionReceived).TotalSeconds+.75)) throw new WireError("stale_coin_motion");
-        motion=frame;motionReceived=now;
+        if(previous==null)tossFrameCount=0;
+        if(tossFrameCount>=4096)throw new WireError("coin_motion_limit");
+        motion=frame;motionReceived=now;tossFrameCount++;motionHistory.Add(frame);
         for(int i=0;i<4;i++) if(i!=peer.Seat) peers[i]?.Send(new {Type="CoinMotion",Generation=generations[i],Frame=frame});
     }
+    // Public animation facts stored beside the private authority export; not rule inputs on replay.
+    public string ExportCoinTrajectories(){lock(gate)return JsonSerializer.Serialize(new{MatchId=Id,Frames=motionHistory},Wire.Json);}
     private void ValidateOpeningIntent(Command command)
     {
         if(acceptedOpeningCommands.Contains(command.Id))return; // Core still compares the full command fingerprint.

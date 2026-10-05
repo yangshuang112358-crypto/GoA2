@@ -64,7 +64,7 @@ namespace Goa2.Presentation.UI3D
                 foreach(var token in scene.Labels)
                 {
                     var hero=view.Units.FirstOrDefault(u=>u.Seat.HasValue && u.Position==token.cell);
-                    if(hero!=null) {state.Presentation.Levels.TryGetValue(hero.Seat!.Value,out var levelMotion);var plate=new HeroPlate(catalog,view,view.Players.Single(p=>p.Seat==hero.Seat),ownSeat,levelMotion);plate.pickingMode=PickingMode.Position;var heroCell=token.cell;int heroSeat=hero.Seat!.Value;
+                    if(hero!=null) {state.Presentation.Levels.TryGetValue(hero.Seat!.Value,out var levelMotion);var player=view.Players.Single(p=>p.Seat==hero.Seat);var plate=new HeroPlate(catalog,view,player,ownSeat,levelMotion,()=>state.Presentation.Combat.VisibleGold(player.Seat,player.Gold,Time.realtimeSinceStartup));plate.pickingMode=PickingMode.Position;var heroCell=token.cell;int heroSeat=hero.Seat!.Value;
                         plate.RegisterCallback<PointerDownEvent>(e=>{if(e.button==1){HeroHover?.Invoke(heroSeat,e.position);e.StopPropagation();}});
                         plate.RegisterCallback<PointerDownEvent>(e=>{if(e.button==0){if(connected && this.legal.Contains(heroCell))choose(heroCell);else HeroClick?.Invoke(heroSeat);e.StopPropagation();}});
                         Add(plate);heroPlates.Add((plate,token.cell));continue;}

@@ -18,6 +18,8 @@ namespace Goa2.Presentation
         private void Update()
         {
             UpdateStageBanner();
+            UpdateOpening();
+            UpdateCombatPresentation();
             UpdatePresentationFocus();
             if(artSamplesOpen){if(Input.GetKeyDown(KeyCode.Escape)){artSamplesOpen=false;Render();}return;}
             if(Input.GetKeyDown(KeyCode.Escape)) { if(skillPopup!=null){skillPopup.RemoveFromHierarchy();skillPopup=null;}else if(heroPopup!=null)HideHeroHover();else if(keywordGlossaryOpen) CloseKeywordGlossary();else if(rightExpanded && !galleryOpen && !historyOpen && !newMatchPending && !debugPresetsOpen) {rightExpanded=false;showHotkeys=false;Render();}else if(wheelSeat.HasValue)ToggleHeroWheel(wheelSeat.Value);else if(browsingWheels.Count>0)CloseHeroWheel();else HideCardPreview();return; }

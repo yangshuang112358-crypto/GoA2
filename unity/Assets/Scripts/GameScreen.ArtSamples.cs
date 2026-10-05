@@ -17,7 +17,7 @@ namespace Goa2.Presentation
             for(int i=0;i<titles.Length;i++){int index=i;heading.Add(Button(titles[i],()=>OpenArtSamples(index),"choice-button"));}
             heading.Add(Button("返回战场",()=>{artSamplesOpen=false;Render();},"quiet-button","close-art-samples"));
             var image=new Image{image=Resources.Load<Texture2D>("UI3D/ArtSamples/"+assets[artSample]),scaleMode=ScaleMode.ScaleToFit,pickingMode=PickingMode.Ignore};image.style.flexGrow=1;image.style.minHeight=0;overlay.Add(image);
-            overlay.Add(Text(artSample==3?"红蓝宝石双面决策币。模型已接入战场；真实物理投币协议待下一批。":artSample==2?"从左至右：A 三叉戟与潮线 · B 沉城之门 · C 潮汐之眼。已选 C，上下三段折线中心对称；奖励金币演出待接入。":artSample==0?"从左至右：黄蜂、夏尔加萨、布罗根、艾瑞恩、虎爪、萨彼娜。原创轮廓初稿，非最终人物精度。":"近战剑盾 · 远程弓箭与箭筒 · 重型圆盾、宝石剑、八足底盘。动作可在调试页切换样例。","body"));
+            overlay.Add(Text(artSample==3?"红蓝宝石双面决策币。新对局含BP与开局两次房主物理投币，其余切面为快速半圈。":artSample==2?"从左至右：A 三叉戟与潮线 · B 沉城之门 · C 潮汐之眼。已选 C，上下三段折线中心对称；击杀奖励读取规则事件。":artSample==0?"从左至右：黄蜂、夏尔加萨、布罗根、艾瑞恩、虎爪、萨彼娜。原创轮廓初稿，非最终人物精度。":"近战剑盾 · 远程弓箭与箭筒 · 重型圆盾、宝石剑、八足底盘。动作可在调试页切换样例。","body"));
             overlay.RegisterCallback<PointerDownEvent>(e=>e.StopPropagation());overlay.RegisterCallback<WheelEvent>(e=>e.StopPropagation());root.Add(overlay);
         }
     }

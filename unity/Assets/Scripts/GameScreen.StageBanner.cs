@@ -13,6 +13,8 @@ namespace Goa2.Presentation
         private bool StagePresenting=>Time.realtimeSinceStartup-stageStarted<StageBannerPolicy.Duration;
         private void ObserveStageBanner()
         {
+            if(CombatPresenting)return;
+            if(renderedView.Opening?.Status=="settled" && (openingSubmitting || physicalCoin!=null && physicalCoin.Finishing && !physicalCoin.Complete))return;
             var stage=StageBannerPolicy.Describe(renderedView,s=>HeroName(renderedView.Players.FirstOrDefault(p=>p.Seat==s)?.HeroId));
             string key=renderedView.MatchId+":"+stage.key;
             if(key==stageKey)return;
@@ -41,6 +43,7 @@ namespace Goa2.Presentation
             stageWaiting=false;root.Q("stage-banner")?.RemoveFromHierarchy();
             // Local free-view remains free. Returning to main flow uses its current actor.
             if(mainFlow && cameraFollow)ApplyCameraFollow();
+            if(renderedView.Opening!=null)Render();
         }
         private void PreviewStageBanner(string title)
         {

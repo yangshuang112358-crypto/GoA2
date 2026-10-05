@@ -23,6 +23,8 @@ namespace Goa2.Presentation.UI3D
         public static string Summary(GameView view, Func<int,string> hero)
         {
             if(view.Winner.HasValue || view.Phase==Phase.Finished)return "对局已结束";
+            if(view.Opening!=null && view.Opening.Status!="settled")return view.Opening.Status=="stuck"?"四位玩家 · 重投共识":"房主 · 投掷决策币";
+            if(view.Phase==Phase.HeroSelection && view.Opening!=null)return (view.DraftTeam==Team.Red?"红队":"蓝队")+" · 选择英雄";
             if(view.Pending!=null)return hero(view.Pending.ChooserSeat)+" · "+Step(view.Pending.Kind);
             if(view.RoundEndStage=="upgrades")return "全体玩家 · 英雄升级";
             if(view.Phase==Phase.Action && view.ActiveSeat.HasValue)return hero(view.ActiveSeat.Value)+" · 执行卡牌行动";
@@ -31,11 +33,12 @@ namespace Goa2.Presentation.UI3D
         public static bool NeedsInput(GameView view,int seat)
         {
             if(view.Winner.HasValue || view.Phase==Phase.Finished)return false;
+            if(view.Opening!=null && view.Opening.Status!="settled")return view.Opening.Status=="stuck" && !view.Opening.RerollVotes.Contains(seat) && view.ConnectedSeats.Count==4;
             if(view.Pending!=null)return view.Pending.ChooserSeat==seat;
             if(view.CanResolveRoundEnd)return true;
             if(view.RoundEndStage=="upgrades")return view.UpgradeOptions.Count>0;
             if(view.Phase==Phase.Action)return view.ActiveSeat==seat;
-            if(view.Phase==Phase.HeroSelection)return view.Players.FirstOrDefault(p=>p.Seat==seat)?.HeroId==null;
+            if(view.Phase==Phase.HeroSelection)return view.Players.FirstOrDefault(p=>p.Seat==seat)?.HeroId==null && (view.Opening==null || view.Players.First(p=>p.Seat==seat).Team==view.DraftTeam);
             if(view.Phase==Phase.Deployment)return view.Deployments.Count>0;
             if(view.Phase==Phase.Planning)return view.Players.Any(p=>p.Seat==seat && !p.Confirmed) && (!view.QuickSelection || !view.OwnCards.Any(c=>c.Zone==CardZone.Selected));
             return false;
@@ -43,6 +46,7 @@ namespace Goa2.Presentation.UI3D
         public static string Instruction(GameView view,int seat)
         {
             if(!NeedsInput(view,seat))return view.Phase==Phase.Finished ? "可自由查看战场与记录" : "等待其他玩家操作，可自由观看";
+            if(view.Opening?.Status=="stuck")return "决定是否重新投掷决策币";
             if(view.Pending!=null)return Step(view.Pending.Kind)+(view.CanDeclineRetaliationDiscard ? "，或选择被击败" : "");
             if(view.CanResolveRoundEnd)return "开始轮末结算";
             if(view.UpgradeOptions.Count>0)return "选择升级技能";

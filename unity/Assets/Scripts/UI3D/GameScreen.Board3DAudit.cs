@@ -32,7 +32,8 @@ namespace Goa2.Presentation
         {
             Directory.CreateDirectory(output);
             var report=new BoardAuditReport {UnityVersion=UnityEngine.Application.unityVersion,Width=Screen.width,Height=Screen.height};
-            var routine=Environment.GetCommandLineArgs().Contains("-goaWorldDecisionsAuditOnly") ? AuditWorldDecisions(output,report) : Environment.GetCommandLineArgs().Contains("-goaActionSequenceAuditOnly") ? AuditActionSequence(output,report) : Environment.GetCommandLineArgs().Contains("-goaBattlefieldAuditOnly") ? AuditBattlefieldLayout(output,report) : Environment.GetCommandLineArgs().Contains("-goaTerrainAuditOnly") ? AuditTerrain(output,report) : Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
+            var routine=Environment.GetCommandLineArgs().Contains("-goaOpeningAuditOnly") ? AuditOpening(output,report) : Environment.GetCommandLineArgs().Contains("-goaWorldDecisionsAuditOnly") ? AuditWorldDecisions(output,report) : Environment.GetCommandLineArgs().Contains("-goaActionSequenceAuditOnly") ? AuditActionSequence(output,report) : Environment.GetCommandLineArgs().Contains("-goaBattlefieldAuditOnly") ? AuditBattlefieldLayout(output,report) : Environment.GetCommandLineArgs().Contains("-goaTerrainAuditOnly") ? AuditTerrain(output,report) : Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
+            if(Environment.GetCommandLineArgs().Contains("-goaCombatPresentationAuditOnly"))routine=AuditCombatPresentation(output,report);
             while(true)
             {
                 object? next=null;bool more=false;
@@ -115,10 +116,12 @@ namespace Goa2.Presentation
             board3DViewport.Zoom=1;topExpanded=false;Render();yield return new WaitForSecondsRealtime(.5f);
             string before=session.ExportSave();
             var filters=board!.Scene!.Camera.transform.parent.GetComponentsInChildren<MeshFilter>();
-            var rocks=filters.Single(f=>f.name=="connected rocks");var vertices=rocks.sharedMesh.vertices;
+            var rocks=filters.Single(f=>f.name=="connected rocks");var vertices=rocks.sharedMesh.triangles.Select(i=>rocks.transform.TransformPoint(rocks.sharedMesh.vertices[i])).ToArray();
             Check(vertices.Length>0,"Connected rock mesh present");
             var center=board3DViewport.Focus;
             Check(vertices.All(v=>vertices.Any(w=>(w-new Vector3(2*center.x-v.x,v.y,2*center.z-v.z)).sqrMagnitude<.000001f)),"Rock vertices are centrally symmetric within 1 mm");
+            var platform=filters.Where(f=>f.name.StartsWith("central spiral half")).ToList();
+            if(platform.Count>0)vertices=platform.SelectMany(f=>f.sharedMesh.triangles.Select(i=>f.transform.TransformPoint(f.sharedMesh.vertices[i]))).ToArray();
             float Surface(Vector3 point){
                 float height=float.NegativeInfinity;
                 for(int i=0;i<vertices.Length;i+=3){
@@ -130,7 +133,7 @@ namespace Goa2.Presentation
                 }return height;
             }
             var samples=Enumerable.Range(0,16).Select(i=>center+new Vector3(Mathf.Cos(i*Mathf.PI/8),0,Mathf.Sin(i*Mathf.PI/8))*.4825f).Append(center);
-            Check(samples.All(p=>Mathf.Abs(Surface(p)-Board3DScene.WallHeight)<.001f),"Coin center and 16 perimeter samples lie on a flat covered top");
+            Check(samples.All(p=>Mathf.Abs(Surface(p)-(platform.Count>0?1.14f:Board3DScene.WallHeight))<.002f),"Coin center and 16 perimeter samples lie on a flat covered top");
             Check(filters.Any(f=>f.name=="coin platform engraving"),"Coin platform engraved ring present");
             Check(filters.Count(f=>f.name=="spawn rune backing")==filters.Count(f=>f.name.StartsWith("spawn rune ") && f.name!="spawn rune backing"),"Every spawn rune has contrast backing");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"map-overview.png"));yield return new WaitForSecondsRealtime(.3f);

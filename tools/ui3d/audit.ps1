@@ -1,4 +1,4 @@
-param([int]$Width=1600,[int]$Height=1000,[switch]$SettingsOnly,[switch]$SkillBadgesOnly,[switch]$TerrainOnly,[switch]$BattlefieldOnly,[switch]$ActionSequenceOnly,[switch]$WorldDecisionsOnly,[switch]$Player)
+param([int]$Width=1600,[int]$Height=1000,[switch]$SettingsOnly,[switch]$SkillBadgesOnly,[switch]$TerrainOnly,[switch]$BattlefieldOnly,[switch]$ActionSequenceOnly,[switch]$WorldDecisionsOnly,[switch]$OpeningOnly,[switch]$CombatPresentationOnly,[switch]$Player)
 $ErrorActionPreference='Stop'
 $uiRoot=Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $uiUnity=Join-Path $env:USERPROFILE 'UnityEditors/6000.3.23f1/Editor/Unity.exe'
@@ -10,6 +10,8 @@ if($Player) {
  $uiArgs='-screen-fullscreen 0 -screen-width '+$Width+' -screen-height '+$Height+' -goa3dAudit "'+$uiOutput+'" -goaAuditScenarios "'+(Join-Path $uiRoot 'tests/scenarios')+'" -goaSavePath "'+(Join-Path $uiOutput 'isolated-save.json')+'" -logFile "'+(Join-Path $uiOutput 'player.log')+'"'
 }
 if($BattlefieldOnly) {$uiArgs+=' -goaBattlefieldAuditOnly'}
+if($OpeningOnly) {$uiArgs+=' -goaOpeningAuditOnly'}
+if($CombatPresentationOnly) {$uiArgs+=' -goaCombatPresentationAuditOnly'}
 if($WorldDecisionsOnly) {$uiArgs+=' -goaWorldDecisionsAuditOnly'}
 if($ActionSequenceOnly) {$uiArgs+=' -goaActionSequenceAuditOnly'}
 if($TerrainOnly) {$uiArgs+=' -goaTerrainAuditOnly'}

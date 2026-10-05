@@ -50,18 +50,24 @@ namespace Goa2.Presentation.UI3D
                 if (selected == cell.Position) Add(ring,Board3DGeometry.World(cell.Position,.29f),Vector3.one,ColorOf("#FFE39A"),"selected");
             }
             BuildConnectedRocks();
-            foreach (var unit in view.Units)
+            foreach(var ghost in state.Presentation.Combat.Ghosts(view,Time.realtimeSinceStartup)){
+                var copy=new UnitState{Id="ghost:"+ghost.Id,Kind=ghost.Kind,Seat=ghost.Seat,Team=ghost.Team,Position=ghost.Position};visualGhosts[copy.Id]=copy;
+            }
+            foreach (var unit in view.Units.Concat(visualGhosts.Values))
             {
+                int previousChildren=host.transform.childCount;bool ghost=visualGhosts.ContainsKey(unit.Id);
                 float radius=unit.Seat.HasValue ? .55f : .52f, height=unit.Seat.HasValue ? HeroHeight : .34f;
                 string text=unit.Seat.HasValue
                     ? catalog.Heroes.FirstOrDefault(h=>h.Id==view.Players.FirstOrDefault(p=>p.Seat==unit.Seat)?.HeroId)?.Name ?? "英雄"
                     : unit.Kind=="heavy" ? "重" : unit.Kind=="ranged" ? "远" : "近";
                 if(unit.Seat.HasValue && BuildHero(view.Players.First(p=>p.Seat==unit.Seat).HeroId ?? "",unit.Team,unit.Position)){
+                    if(ghost){RememberGhost(unit,previousChildren);continue;}
                     Add(circle,Board3DGeometry.World(unit.Position,.026f),Vector3.one*.62f,ColorOf(unit.Team==Team.Blue?"#559EDB":"#D77C79"),"hero team rim");
                     tokens.Add((unit.Position,radius,HeroHeight+.055f,text));continue;
                 }
                 if(!unit.Seat.HasValue && BuildMinion(unit.Kind,unit.Team,unit.Position,unit.Id))
                 {
+                    if(ghost){RememberGhost(unit,previousChildren);continue;}
                     height=MinionHeight(unit.Kind);
                     // Ground team ring keeps allegiances legible without obscuring the armor.
                     Add(circle,Board3DGeometry.World(unit.Position,.026f),Vector3.one*.64f,
@@ -75,6 +81,7 @@ namespace Goa2.Presentation.UI3D
                 tokens.Add((unit.Position,radius,height+.055f,text));
             }
             ConfigureMinionPoses(view,selected);
+            BuildCombatProjectiles();
             BuildWorldHud(catalog,view);
             if (!state.Initialized) { Reset();state.Zoom=1.6f; }
         }
@@ -133,7 +140,7 @@ namespace Goa2.Presentation.UI3D
             float extentY=points.Count==0 ? 1 : (points.Max(p=>p.y)-points.Min(p=>p.y))*.5f+3;
             float fittedSize=Mathf.Max(extentY,extentX/Camera.aspect);
             Camera.orthographicSize=fittedSize/state.Zoom;
-            AnimateWorldHud();AnimateHeroAuras();AnimateMinionPoses();Camera.Render();
+            AnimateSculptedRocks();AnimateWorldHud();AnimateHeroAuras();AnimateMinionPoses();AnimateCombat();Camera.Render();
         }
         public float ZoomForRegion(IEnumerable<Hex> region)
         {
