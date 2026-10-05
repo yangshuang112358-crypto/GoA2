@@ -1,0 +1,20 @@
+{
+    "Method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard",
+    "UnityVersion": "6000.3.23f1",
+    "Error": "",
+    "Width": 1600,
+    "Height": 1000,
+    "Passed": true,
+    "Checks": [
+        "Content loaded",
+        "Connected rock mesh present",
+        "Rock vertices are centrally symmetric within 1 mm",
+        "Every exterior rock foot corner matches its canonical hex corner within 1 mm",
+        "Ordinary rock roof relief stays below 12 cm across the board",
+        "Joined rocks have no open seams above the ground contact",
+        "Coin center and 16 perimeter samples lie on a flat covered top",
+        "Coin platform engraved ring present",
+        "Every spawn rune has contrast backing",
+        "Camera and visuals do not mutate game rules"
+    ]
+}
