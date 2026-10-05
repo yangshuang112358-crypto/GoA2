@@ -53,10 +53,14 @@ namespace Goa2.Presentation.UI3D
         }
         private Mesh DiskCollider()
         {
-            var vertices=new List<Vector3>();var triangles=new List<int>();const int n=32;
-            for(int side=0;side<2;side++)for(int i=0;i<n;i++){float a=i*2*Mathf.PI/n;vertices.Add(new Vector3(Mathf.Cos(a)*.8f,side==0?-.25f:.25f,Mathf.Sin(a)*.8f));}
-            for(int i=0;i<n;i++){int j=(i+1)%n;triangles.AddRange(new[]{i,j,i+n,j,j+n,i+n});if(i>0&&i<n-1)triangles.AddRange(new[]{0,i+1,i,n,n+i,n+i+1});}
-            var mesh=new Mesh{name="32 sided convex minted disc"};mesh.SetVertices(vertices);mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();owned.Add(mesh);return mesh;
+            var vertices=new List<Vector3>();var triangles=new List<int>();const int n=24;
+            // The raised gems are tall only near the centre. A full-height cylinder
+            // incorrectly gives the outer edge a broad flat face that stands too easily.
+            var profile=new[]{(.29f,-.25f),(.73f,-.16f),(.80f,-.09f),(.80f,.09f),(.73f,.16f),(.29f,.25f)};
+            foreach(var ring in profile)for(int i=0;i<n;i++){float a=i*2*Mathf.PI/n;vertices.Add(new Vector3(Mathf.Cos(a)*ring.Item1,ring.Item2,Mathf.Sin(a)*ring.Item1));}
+            for(int level=0;level<profile.Length-1;level++)for(int i=0;i<n;i++){int j=(i+1)%n,a=level*n+i,b=level*n+j,c=a+n,d=b+n;triangles.AddRange(new[]{a,b,c,b,d,c});}
+            int top=(profile.Length-1)*n;for(int i=1;i<n-1;i++)triangles.AddRange(new[]{0,i+1,i,top,top+i,top+i+1});
+            var mesh=new Mesh{name="bevelled convex coin and gem profile"};mesh.SetVertices(vertices);mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();owned.Add(mesh);return mesh;
         }
         private void Boundary(string name,Vector3 position,Vector3 scale)
         {var go=new GameObject(name);go.transform.SetParent(root.transform,false);go.transform.localPosition=position;go.AddComponent<BoxCollider>().size=scale;}
@@ -100,7 +104,7 @@ namespace Goa2.Presentation.UI3D
             parkDuration=.32f;parkAt=Time.realtimeSinceStartup-(animate?0:1);
         }
         private static float Parse(string s)=>float.Parse(s,System.Globalization.CultureInfo.InvariantCulture);
-        public void Tick(bool simulate,bool allowed,float delta=-1)
+        public void Tick(bool simulate,bool allowed,float delta=-1,bool render=true)
         {
             if(Finishing)
             {
@@ -129,7 +133,7 @@ namespace Goa2.Presentation.UI3D
             }
             else if(remote!=null && !simulate)
             {SetPose(Vector3.Lerp(body.position,V(remote.Position),1-Mathf.Exp(-Time.unscaledDeltaTime*18)),Quaternion.Slerp(body.rotation,Q(remote.Rotation),1-Mathf.Exp(-Time.unscaledDeltaTime*18)));}
-            camera.Render();
+            if(render)camera.Render();
         }
         public void RetryResult(){reported=false;}
         // Explicit local sandbox sample only; never determines a real toss result.

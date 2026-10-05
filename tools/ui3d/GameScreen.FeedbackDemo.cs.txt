@@ -6,7 +6,7 @@
    yield return null;yield return null;QualitySettings.vSyncCount=0;UnityEngine.Application.targetFrameRate=30;
    DemoCheck(!startupFailed,"Startup failed");SettingsAudio.Played+=CaptureCue;File.WriteAllText(Path.Combine(demoFolder,"audio-events.tsv"),"");
    demoCaption="真实 Unity 渲染 · 自动演示 · BP 与两次物理投币";BeginVideo("01-bp-opening");
-   var report=new BoardAuditReport();yield return AuditOpening(demoFolder,report);StopVideo();
+   var report=new BoardAuditReport{Width=Screen.width,Height=Screen.height,UnityVersion=UnityEngine.Application.unityVersion};yield return AuditOpening(demoFolder,report);report.Passed=true;StopVideo();
    File.WriteAllText(Path.Combine(demoFolder,"opening-checks.json"),JsonUtility.ToJson(report,true));
    PrepareCoinVoteDemo();yield return new WaitForSecondsRealtime(5.5f);
    demoCaption="调试模拟卡边 · 四席全部同意后才重投";BeginVideo("04-four-vote-reroll");yield return new WaitForSecondsRealtime(1.5f);

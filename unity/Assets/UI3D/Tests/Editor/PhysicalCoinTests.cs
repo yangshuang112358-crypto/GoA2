@@ -32,6 +32,20 @@ namespace Goa2.UI3D.Tests
             finally{Random.state=original;}
         }
         [Test,Category("RequiresGraphics")]
+        public void BevelledEdgeUsuallySettlesWithoutForcingEitherFace()
+        {
+            var original=Random.state;int flat=0;
+            try{
+                for(int seed=0;seed<8;seed++){
+                    Random.InitState(4300+seed);using var stage=new PhysicalCoinStage("sample:"+seed);bool done=false;
+                    stage.Settled=(_,__)=>{flat++;done=true;};stage.Stuck=()=>done=true;
+                    for(int step=0;step<940&&!done;step++)stage.Tick(true,true,.02f,false);
+                    Assert.That(done,Is.True,"Every sample reaches a result or the explicit reroll state");
+                }
+                Assert.That(flat,Is.GreaterThanOrEqualTo(6),"Raised gem must not make the entire rim a thick standing cylinder");
+            }finally{Random.state=original;}
+        }
+        [Test,Category("RequiresGraphics")]
         public void ViewerNeverReportsOrStartsIndependentSimulation()
         {
             using var stage=new PhysicalCoinStage("draft:2");int reports=0;stage.FrameReady=_=>reports++;stage.Settled=(_,__)=>reports++;stage.Stuck=()=>reports++;
