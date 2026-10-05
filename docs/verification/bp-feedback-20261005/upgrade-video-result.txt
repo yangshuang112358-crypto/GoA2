@@ -1,0 +1,1 @@
+PASS: real Unity rendered frames; scripted UI events; no OS input claims.

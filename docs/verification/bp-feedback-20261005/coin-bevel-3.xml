@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-05 13:15:45Z" end-time="2026-10-05 13:15:45Z" duration="0.2222155">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2363" result="Passed" start-time="2026-10-05 13:15:45Z" end-time="2026-10-05 13:15:45Z" duration="0.222216" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3789" name="Goa2.UI3D.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.UI3D.Tests.dll" runstate="Runnable" testcasecount="141" result="Passed" start-time="2026-10-05 13:15:45Z" end-time="2026-10-05 13:15:45Z" duration="0.123735" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="25128" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+      <test-suite type="TestSuite" id="3790" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="141" result="Passed" start-time="2026-10-05 13:15:45Z" end-time="2026-10-05 13:15:45Z" duration="0.121357" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+        <test-suite type="TestSuite" id="3791" name="UI3D" fullname="Goa2.UI3D" runstate="Runnable" testcasecount="141" result="Passed" start-time="2026-10-05 13:15:45Z" end-time="2026-10-05 13:15:45Z" duration="0.119600" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+          <test-suite type="TestSuite" id="3792" name="Tests" fullname="Goa2.UI3D.Tests" runstate="Runnable" testcasecount="141" result="Passed" start-time="2026-10-05 13:15:45Z" end-time="2026-10-05 13:15:45Z" duration="0.117746" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            <test-suite type="TestFixture" id="3730" name="PhysicalCoinTests" fullname="Goa2.UI3D.Tests.PhysicalCoinTests" classname="Goa2.UI3D.Tests.PhysicalCoinTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-05 13:15:45Z" end-time="2026-10-05 13:15:45Z" duration="0.107265" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              <test-case id="3732" name="BevelledEdgeUsuallySettlesWithoutForcingEitherFace" fullname="Goa2.UI3D.Tests.PhysicalCoinTests.BevelledEdgeUsuallySettlesWithoutForcingEitherFace" methodname="BevelledEdgeUsuallySettlesWithoutForcingEitherFace" classname="Goa2.UI3D.Tests.PhysicalCoinTests" runstate="Runnable" seed="299608251" result="Passed" start-time="2026-10-05 13:15:36Z" end-time="2026-10-05 13:15:39Z" duration="3.163519" asserts="0">
+                <properties>
+                  <property name="Category" value="RequiresGraphics" />
+                </properties>
+                <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              </test-case>
+              <test-case id="3731" name="HostCoinFallsByPhysicsAndResultMatchesLastFrame" fullname="Goa2.UI3D.Tests.PhysicalCoinTests.HostCoinFallsByPhysicsAndResultMatchesLastFrame" methodname="HostCoinFallsByPhysicsAndResultMatchesLastFrame" classname="Goa2.UI3D.Tests.PhysicalCoinTests" runstate="Runnable" seed="722780860" result="Passed" start-time="2026-10-05 13:15:39Z" end-time="2026-10-05 13:15:42Z" duration="3.137286" asserts="0">
+                <properties>
+                  <property name="Category" value="RequiresGraphics" />
+                </properties>
+                <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              </test-case>
+              <test-case id="3733" name="ViewerNeverReportsOrStartsIndependentSimulation" fullname="Goa2.UI3D.Tests.PhysicalCoinTests.ViewerNeverReportsOrStartsIndependentSimulation" methodname="ViewerNeverReportsOrStartsIndependentSimulation" classname="Goa2.UI3D.Tests.PhysicalCoinTests" runstate="Runnable" seed="14400622" result="Passed" start-time="2026-10-05 13:15:42Z" end-time="2026-10-05 13:15:45Z" duration="2.986295" asserts="0">
+                <properties>
+                  <property name="Category" value="RequiresGraphics" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\physical-coin-bevel-f6c0190c06ae4d69984840529664b986.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

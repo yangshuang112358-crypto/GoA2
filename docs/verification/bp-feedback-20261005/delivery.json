@@ -1,0 +1,22 @@
+{
+  "source_commit": "9a5947541dc92fcdec9c62908092a06680f512b3",
+  "engine_version": 98,
+  "built_utc": "2026-10-05T13:38:52.3429672Z",
+  "build_info_sha256": "99aac42f829f3bc6433ca1db09feb3ea1db7cc8115a27e42152393c52076170d",
+  "player_source_inventory_verified": true,
+  "package_verified": true,
+  "package_files": 377,
+  "package_folder": "artifacts/releases/Goa2V1-Multiplayer-bp-feedback-preview-20261005-134007-401e4e",
+  "archive": "artifacts/releases/Goa2V1-Multiplayer-bp-feedback-preview-20261005-134007-401e4e.zip",
+  "archive_sha256": "f02784816bb10b2f141019c99295f7f706e16edcf1310f728dfdc073d5de8e81",
+  "video_control": "Scripted real Unity rendering, silent MP4, not OS input",
+  "core_checks": 2205,
+  "related_unity_checks": 41,
+  "physical_coin_final_checks": 3,
+  "tcp_opening_checks": 33,
+  "four_local_unity_checks": 12,
+  "world_decisions_prior_cosmetic_checks": 119,
+  "final_player_combat_checks": 9,
+  "user_visual_accepted": false,
+  "four_remote_players_accepted": false
+}

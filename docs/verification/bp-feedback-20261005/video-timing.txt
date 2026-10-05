@@ -1,0 +1,4 @@
+01-bp-opening-raw.mp4: frames=2075, duration=69.16666, wall=69.20985, exit=0
+04-four-vote-reroll-raw.mp4: frames=416, duration=13.86667, wall=13.91232, exit=0
+02-combat-rewards-raw.mp4: frames=638, duration=21.26667, wall=21.28246, exit=0
+03-rocks-coin-raw.mp4: frames=407, duration=13.56667, wall=13.59995, exit=0
