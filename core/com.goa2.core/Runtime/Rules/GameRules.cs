@@ -28,6 +28,10 @@ namespace Goa2.Rules
             Require(state.Phase != Phase.Finished, "match_finished", "本局已经结束，请创建新对局。");
             switch (command.Kind)
             {
+                case CommandKind.StartDraft: StartDraft(state,command);break;
+                case CommandKind.ReportCoinToss: ReportCoinToss(state,command);break;
+                case CommandKind.MarkCoinStuck: MarkCoinStuck(state,command);break;
+                case CommandKind.VoteCoinReroll: VoteCoinReroll(state,command);break;
                 case CommandKind.ChooseHero: ChooseHero(catalog, state, command); break;
                 case CommandKind.DeployHero: DeployHero(catalog, state, command); break;
                 case CommandKind.CancelCardSelection: CancelCardSelection(state, command); break;
@@ -109,11 +113,13 @@ namespace Goa2.Rules
             Require(catalog.Heroes.Any(h => h.Id == command.Value), "unknown_hero", "英雄不存在。");
             Require(!state.Players.Any(p => p.Seat != command.ActorSeat && p.HeroId == command.Value), "hero_taken", "英雄已被其他席位选择。");
             var player = state.Players[command.ActorSeat];
+            if(state.Opening!=null){Require(player.HeroId==null && DraftTeam(state)==player.Team,"invalid_draft_pick","当前不是你的队伍选人，或你已选定英雄。");}
             player.HeroId = command.Value;
             player.Cards = catalog.Cards.Where(c => c.HeroId == command.Value && (c.Color == "gold" || c.Color == "silver" || c.Level == 1))
                 .Select(c => new CardInstance { CardId = c.Id, Zone = CardZone.InHand }).ToList();
             Require(player.Cards.Count == catalog.Rules.HandSize, "invalid_content", "英雄起始牌不完整。");
             Emit(state, command, "HeroChosen", command.ActorSeat, detail: command.Value);
+            if(state.Opening!=null){int count=state.Players.Count(p=>p.HeroId!=null);if(count==1 || count==3)state.DecisionCoin=OtherTeam(state.DecisionCoin);if(count==4)state.Opening.DraftComplete=true;}
             if (state.Players.All(p => p.HeroId != null))
             {
                 state.Phase = Phase.Deployment;

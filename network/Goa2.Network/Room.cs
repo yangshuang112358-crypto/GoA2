@@ -20,7 +20,7 @@ public sealed class Peer : IDisposable
     public void Dispose() { Lifetime.Cancel(); Outbound.Writer.TryComplete(); }
 }
 
-public sealed class Room
+public sealed partial class Room
 {
     private readonly object gate = new();
     private readonly GameSession session;
@@ -31,7 +31,7 @@ public sealed class Room
     public object Capabilities { get; }
     private readonly ContentCatalog catalog;
     public Room(ContentCatalog content, string id) : this(content,
-        LocalGameFactory.Create(content, id, ["Player 1", "Player 2", "Player 3", "Player 4"], RandomNumberGenerator.GetInt32(int.MaxValue))) { }
+        LocalGameFactory.Create(content, id, ["Player 1", "Player 2", "Player 3", "Player 4"], RandomNumberGenerator.GetInt32(int.MaxValue), physicalOpening:true)) { }
     internal Room(ContentCatalog content, GameSession initial)
     {
         catalog = content; session = initial; Id = initial.View(0).MatchId;
@@ -57,12 +57,14 @@ public sealed class Room
             if (seat < 0) throw new WireError("invalid_credentials");
             peers[seat]?.Dispose();
             peer.Seat = seat; peer.Generation = ++generations[seat]; peers[seat] = peer;
-            peer.Send(new { Type = "Welcome", RoomId = Id, Seat = seat, Generation = peer.Generation, Capabilities, Snapshot = View(seat) });
+            peer.Send(new { Type = "Welcome", RoomId = Id, Seat = seat, Generation = peer.Generation, Capabilities, Snapshot = View(seat), CoinMotion = CurrentMotion() });
+            BroadcastPresence();
         }
     }
     private GameView View(int seat)
     {
         var view = session.View(seat);
+        view.ConnectedSeats=Enumerable.Range(0,4).Where(i=>peers[i]!=null && !peers[i]!.Lifetime.IsCancellationRequested).ToList();
         // Transport privacy narrowing only; never compute or add candidates here.
         // Core currently projects Pending candidate metadata to every seat.
         if (view.Pending != null && view.Pending.ChooserSeat != seat)
@@ -77,8 +79,11 @@ public sealed class Room
         {
             if (peer.Seat < 0 || !ReferenceEquals(peers[peer.Seat], peer) || generations[peer.Seat] != peer.Generation)
                 throw new WireError("connection_replaced");
+            if(Wire.Text(item,"Type")=="CoinMotion") { ReceiveMotion(peer,item); return; }
             var command = Wire.Intent(item, peer.Seat);
+            ValidateOpeningIntent(command);
             var result = session.Execute(peer.Seat, command);
+            if(result.Accepted && (command.Kind==CommandKind.ReportCoinToss || command.Kind==CommandKind.MarkCoinStuck || command.Kind==CommandKind.VoteCoinReroll)) acceptedOpeningCommands.Add(command.Id);
             peer.Send(new { Type = "Result", CommandId = command.Id, result.Accepted, result.Duplicate, result.Code, result.Message,
                 Generation = peer.Generation, Snapshot = View(peer.Seat) });
             if (result.Accepted && !result.Duplicate)
@@ -90,7 +95,7 @@ public sealed class Room
     }
     public void Detach(Peer peer)
     {
-        lock (gate) if (peer.Seat >= 0 && ReferenceEquals(peers[peer.Seat], peer)) peers[peer.Seat] = null;
+        lock (gate) if (peer.Seat >= 0 && ReferenceEquals(peers[peer.Seat], peer)) { peers[peer.Seat] = null; BroadcastPresence(); }
         peer.Dispose();
     }
     // Operator-only evidence export. Never exposed through the network protocol.

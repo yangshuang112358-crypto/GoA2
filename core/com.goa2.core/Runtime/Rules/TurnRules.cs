@@ -10,7 +10,7 @@ namespace Goa2.Rules
     {
         public static List<Hex> LegalDeployments(ContentCatalog catalog, GameState state, int actor, int target)
         {
-            if (state.Phase != Phase.Deployment || actor < 0 || actor > 3 || target < 0 || target > 3) return new List<Hex>();
+            if (state.Phase != Phase.Deployment || actor < 0 || actor > 3 || target < 0 || target > 3 || state.Opening!=null && !state.Opening.DraftComplete) return new List<Hex>();
             var player = state.Players[target];
             if (actor != Captain(state, player.Team) || state.Units.Any(u => u.Seat == target)) return new List<Hex>();
             string spawn = player.Team == Team.Blue ? "blueHeroSpawn" : "redHeroSpawn";
@@ -24,7 +24,7 @@ namespace Goa2.Rules
             state.Units.Add(new UnitState { Id = "hero:" + player.Seat, Kind = "hero", Team = player.Team, Seat = player.Seat, Position = command.Destination });
             Emit(state, command, "HeroDeployed", player.Seat, detail: command.Destination.ToString());
             state.Events.Last().To = command.Destination;
-            if (state.Units.Count(u => u.Kind == "hero") == 4) StartPlanning(state, command);
+            if (state.Units.Count(u => u.Kind == "hero") == 4){if(state.Opening!=null && !state.Opening.OpeningComplete)NextCoinToss(state,command,"opening");else StartPlanning(state, command);}
         }
         private static void StartPlanning(GameState state, Command command)
         {

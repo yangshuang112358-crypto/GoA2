@@ -26,6 +26,7 @@ namespace Goa2.Network.Client
         private CancellationTokenSource? lifetime;
         private TaskCompletionSource<bool>? welcome;
         private GameView? view;
+        private CoinMotion? coinMotion;
         private int? seat;
         private long epoch, generation;
         private bool disposed;
@@ -48,6 +49,18 @@ namespace Goa2.Network.Client
             if(!(IPAddress.IsLoopback(address) || bytes[0]==10 || bytes[0]==192 && bytes[1]==168 || bytes[0]==172 && bytes[1]>=16 && bytes[1]<=31)) throw new ArgumentException("Only local or private LAN endpoints are supported.");
         }
         public int? AuthenticatedSeat { get { lock (gate) return seat; } }
+        public CoinMotion? LatestCoinMotion { get {lock(gate)return coinMotion==null?null:JsonConvert.DeserializeObject<CoinMotion>(JsonConvert.SerializeObject(coinMotion,Json),Json);} }
+        public async Task SendCoinMotionAsync(CoinMotion frame)
+        {
+            long currentEpoch;CancellationToken token;
+            lock(gate)
+            {
+                if(connection!=ConnectionState.Connected || view?.Opening?.HostSeat!=seat)return;
+                currentEpoch=epoch;token=lifetime?.Token ?? new CancellationToken(true);
+            }
+            try { await Send(new JObject{["Type"]="CoinMotion",["Frame"]=JObject.FromObject(frame)}.ToString(Formatting.None),currentEpoch,token).ConfigureAwait(false); }
+            catch(Exception e) when(e is IOException || e is SocketException || e is OperationCanceledException || e is ObjectDisposedException){DisconnectEpoch(currentEpoch);}
+        }
         public ConnectionState Connection { get { lock (gate) return connection; } }
         // Return detached DTOs so UI mutation cannot corrupt revision/identity tracking.
         public GameView? View { get { lock (gate) return view == null ? null : JsonConvert.DeserializeObject<GameView>(JsonConvert.SerializeObject(view, Json), Json); } }
@@ -188,11 +201,19 @@ namespace Goa2.Network.Client
                             connection = ConnectionState.Connected; changed = true;
                         }
                         else if (message["Generation"] != null && (long)message["Generation"]! != generation) continue;
+                        if(type=="CoinMotion")
+                        {
+                            var frame=message["Frame"]!.ToObject<CoinMotion>(JsonSerializer.Create(Json))!;
+                            if(frame.TossId==view?.Opening?.TossId && (coinMotion?.TossId!=frame.TossId || frame.Sequence>coinMotion.Sequence))coinMotion=frame;
+                            continue; // Camera reads the frame; do not rebuild the entire UI at stream frequency.
+                        }
                         if (message["Snapshot"] is JObject projection)
                         {
                             var next = projection.ToObject<GameView>(JsonSerializer.Create(Json))!;
-                            if (view == null || next.MatchId == view.MatchId && next.Revision > view.Revision) { view = next; changed = true; }
+                            if (view == null || next.MatchId == view.MatchId && (next.Revision > view.Revision || type=="Welcome" && next.Revision==view.Revision)) { view = next; changed = true; }
                         }
+                        if(type=="Welcome")coinMotion=message["CoinMotion"]?.Type==JTokenType.Object?message["CoinMotion"]!.ToObject<CoinMotion>(JsonSerializer.Create(Json)):null;
+                        if(type=="Presence" && view!=null){view.ConnectedSeats=message["ConnectedSeats"]!.ToObject<List<int>>()!;changed=true;}
                         if (type == "Welcome") welcome?.TrySetResult(true);
                         if (type == "Result" || type == "Error")
                         {

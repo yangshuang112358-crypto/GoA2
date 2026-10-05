@@ -18,6 +18,7 @@ public static class Wire
     // Per-kind transport syntax only. All legality and candidates remain in GameSession.
     public static readonly Dictionary<string, string[]> Fields = new()
     {
+        ["ReportCoinToss"] = ["Value"], ["MarkCoinStuck"] = ["Value"], ["VoteCoinReroll"] = ["Value"],
         ["ChooseHero"] = ["Value"], ["DeployHero"] = ["TargetSeat", "Destination"],
         ["SelectCard"] = ["Value"], ["ConfirmCard"] = [], ["CancelCardSelection"] = [], ["ChooseInitiative"] = ["TargetSeat"],
         ["Move"] = ["MoveMode", "Destination?", "Value?"], ["Pass"] = [],

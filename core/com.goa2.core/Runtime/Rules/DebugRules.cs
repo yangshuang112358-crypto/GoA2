@@ -145,6 +145,8 @@ namespace Goa2.Rules
         private static void DebugPrepare(ContentCatalog catalog, GameState state, Command command)
         {
             Require(state.Phase == Phase.HeroSelection || state.Phase == Phase.Deployment, "wrong_phase", "自动准备只在选英雄或出生阶段可用。");
+            // Explicit sandbox shortcut skips the interactive draft/toss, never network play.
+            state.Opening=null;
             var requested = string.IsNullOrWhiteSpace(command.Value) ? Array.Empty<string>() : command.Value.Split(',');
             Require(requested.Length == 0 || (requested.Length == 4 && requested.Distinct().Count() == 4 && requested.All(id => catalog.Heroes.Any(h => h.Id == id))), "invalid_heroes", "指定英雄时需要四个不重复的正式英雄ID。");
             if (state.Phase == Phase.HeroSelection)

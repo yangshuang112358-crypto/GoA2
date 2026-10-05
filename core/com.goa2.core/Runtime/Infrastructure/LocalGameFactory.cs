@@ -9,8 +9,12 @@ namespace Goa2.Infrastructure
 {
     public static class LocalGameFactory
     {
-        public static GameSession Create(ContentCatalog catalog, string matchId, string[] names, int seed, bool sandbox = false, int engineVersion = GameState.CurrentEngineVersion)
-            => new GameSession(catalog,new JsonStateCodec(),InitialState(catalog,matchId,names,seed,sandbox,engineVersion));
+        public static GameSession Create(ContentCatalog catalog, string matchId, string[] names, int seed, bool sandbox = false, int engineVersion = GameState.CurrentEngineVersion,bool physicalOpening=false)
+        {
+            var session=new GameSession(catalog,new JsonStateCodec(),InitialState(catalog,matchId,names,seed,sandbox,engineVersion));
+            if(physicalOpening){var result=session.Execute(0,new Command{Id="opening-start",MatchId=matchId,ExpectedRevision=0,ActorSeat=0,Kind=CommandKind.StartDraft});if(!result.Accepted)throw new RuleViolation(result.Code,result.Message);}
+            return session;
+        }
         private static GameState InitialState(ContentCatalog catalog,string matchId,string[] names,int seed,bool sandbox,int engineVersion)
         {
             var initial = new GameRules().Create(catalog, matchId, names, seed, engineVersion);

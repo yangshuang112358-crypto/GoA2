@@ -96,6 +96,7 @@ namespace Goa2.Application
             var snapshot = codec.Read(codec.Write(state));
             var view = new GameView
             {
+                Opening=snapshot.Opening,DraftTeam=GameRules.DraftTeam(snapshot),ConnectedSeats=Enumerable.Range(0,4).ToList(),
                 MatchId = snapshot.MatchId, Revision = snapshot.Revision, Phase = snapshot.Phase, Round = snapshot.Round, Turn = snapshot.Turn,
                 Sandbox = snapshot.Sandbox, QuickSelection = snapshot.QuickSelection,
                 DecisionCoin = snapshot.DecisionCoin, ActiveSeat = snapshot.ActiveSeat, BlueCaptain = snapshot.BlueCaptain, RedCaptain = snapshot.RedCaptain,

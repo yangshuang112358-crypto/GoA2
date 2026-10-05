@@ -117,6 +117,9 @@ namespace Goa2.Domain
         public PendingChoice? Pending;
         public List<CardInstance> OwnCards = new List<CardInstance>();
         public List<string> AvailableHeroes = new List<string>();
+        public MatchOpening? Opening;
+        public Team? DraftTeam;
+        public List<int> ConnectedSeats=new List<int>();
         public Dictionary<int, List<Hex>> Deployments = new Dictionary<int, List<Hex>>();
         public List<MoveOption> SecondaryMoves = new List<MoveOption>();
         public List<MoveOption> FastMoves = new List<MoveOption>();

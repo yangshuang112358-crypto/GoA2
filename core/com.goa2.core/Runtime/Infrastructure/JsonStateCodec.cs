@@ -16,6 +16,8 @@ namespace Goa2.Infrastructure
             protected override JsonProperty CreateProperty(MemberInfo member,MemberSerialization serialization)
             {
                 var property=base.CreateProperty(member,serialization);
+                if(member.DeclaringType==typeof(GameState) && member.Name==nameof(GameState.Opening))property.DefaultValueHandling=DefaultValueHandling.Ignore;
+                if(member.DeclaringType==typeof(MatchOpening) && member.Name==nameof(MatchOpening.TossId))property.Ignored=true;
                 // New execution facts must not add default fields to historical captures.
                 if(member.DeclaringType==typeof(CardExecution) && (member.Name==nameof(CardExecution.ActionInstanceId) || member.Name==nameof(CardExecution.ApproachRepeated) || member.Name==nameof(CardExecution.RecoveredCard) || member.Name==nameof(CardExecution.FromDiscard) || member.Name==nameof(CardExecution.PreAttackMoved) || member.Name==nameof(CardExecution.AttackTargetCell) || member.Name==nameof(CardExecution.DisplacedMinions) || member.Name==nameof(CardExecution.ReturningMinionId) || member.Name==nameof(CardExecution.RemainingUnitTargets) || member.Name==nameof(CardExecution.AffectedHeroTargets) || member.Name==nameof(CardExecution.ReturnSourceAtEnd) || member.Name==nameof(CardExecution.ActionStopped) || member.Name==nameof(CardExecution.Completion) || member.Name==nameof(CardExecution.ForcedPayment) || member.Name==nameof(CardExecution.UltimateRepeatUsed) || member.Name==nameof(CardExecution.UltimateRepeatExcludedTarget)))
                     property.DefaultValueHandling=DefaultValueHandling.Ignore;

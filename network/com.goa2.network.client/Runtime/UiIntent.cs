@@ -11,6 +11,7 @@ namespace Goa2.Network.Client
         {
             switch (kind)
             {
+                case CommandKind.ReportCoinToss: case CommandKind.MarkCoinStuck: case CommandKind.VoteCoinReroll:
                 case CommandKind.CommitPrimaryAttack:
                 case CommandKind.ChooseHero: case CommandKind.SelectCard: case CommandKind.ChooseAttackTarget:
                 case CommandKind.Defend: case CommandKind.ChooseRoundMinionRemoval: case CommandKind.ChooseUpgrade:

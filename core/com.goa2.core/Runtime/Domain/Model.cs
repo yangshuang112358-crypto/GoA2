@@ -18,7 +18,8 @@ namespace Goa2.Domain
         BeginPrimary, ChooseAttackTarget, Defend, DeclineDefense, RespawnHero, DebugDefeatHero,
         ResolveRoundEnd, ChooseRoundMinionRemoval, ChooseUpgrade, UpgradeEngine, ForcedDiscard, ChooseOptionalDiscard, DebugAttack,
         DeclineRetaliationDiscard, ChooseEffectMove, ChooseRecoveredCard, ChooseEffectTarget, ChooseCardSwap, ChooseGoldTransfer, ChoosePlacement, ChooseMinionReturn, ChoosePrimaryOption, ChooseMinionProtection, ChooseDiscardAttack, CancelCardSelection,
-        CommitPrimaryAttack, CommitPrimaryMove, CommitPrimaryPlacement
+        CommitPrimaryAttack, CommitPrimaryMove, CommitPrimaryPlacement,
+        StartDraft, ReportCoinToss, MarkCoinStuck, VoteCoinReroll
     }
     public enum MoveMode { Secondary, Fast }
 
@@ -214,7 +215,7 @@ namespace Goa2.Domain
     public sealed class GameState
     {
         public const string CurrentProtocol = "1.0.0";
-        public const int CurrentEngineVersion = 97;
+        public const int CurrentEngineVersion = 98;
         public int InitialEngineVersion;
         public int EngineVersion;
         public string ProtocolVersion = CurrentProtocol;
@@ -224,6 +225,7 @@ namespace Goa2.Domain
         public string RulesVersion = "";
         public long Revision;
         public int Seed;
+        public MatchOpening? Opening;
         public bool Sandbox;
         public bool QuickSelection;
         public Phase Phase;
