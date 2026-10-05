@@ -7,6 +7,14 @@ namespace Goa2.UI3D.Tests
 {
     public sealed class PresentationRefreshTests
     {
+        [Test] public void StageInstructionsSeparateDeploymentDefenseRespawnAndDiscard()
+        {
+            var v=new GameView{Phase=Phase.Deployment};Assert.That(StageBannerPolicy.Detail(v),Is.EqualTo("双方队长选择出生点。"));
+            v.Phase=Phase.Action;v.Pending=new PendingChoice{Kind="defense",ChooserSeat=1};Assert.That(StageBannerPolicy.Detail(v),Does.Contain("防御"));
+            v.Pending.Kind="hero_respawn";Assert.That(StageBannerPolicy.Detail(v),Does.Contain("被击败"));
+            v.Pending.Kind="optional_discard";Assert.That(StageBannerPolicy.Detail(v),Does.Contain("手牌"));
+            Assert.That(StageBannerPolicy.Describe(v,s=>"英雄").title,Does.Contain("弃牌"));
+        }
         [Test] public void StageDoesNotRestartWhenOnlyLocalSelectionChanges()
         {
             var v=new GameView{Round=1,Turn=2,Phase=Phase.Action,ActiveSeat=0};

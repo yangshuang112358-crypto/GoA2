@@ -13,7 +13,7 @@ namespace Goa2.Presentation.UI3D
         private readonly Dictionary<string, Material> minionMaterials = new Dictionary<string, Material>();
         public int ModeledMinionCount { get; private set; }
         public static string MinionAsset(string kind) => kind == "heavy" ? "Heavy" : kind == "ranged" ? "Ranged" : "Melee";
-        public static float MinionHeight(string kind) => kind == "heavy" ? 3.24f : kind == "ranged" ? 2.60f : 2.44f;
+        public static float MinionHeight(string kind) => HeroHeight * .8f;
 
         private bool BuildMinion(string kind, Team team, Hex cell, string id)
         {

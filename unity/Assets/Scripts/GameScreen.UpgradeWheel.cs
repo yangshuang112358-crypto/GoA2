@@ -33,6 +33,20 @@ namespace Goa2.Presentation
                 }
             };
             var colors=new[]{"red","green","blue","purple"}.Where(color=>view.UpgradeOptions.Any(o=>o.Color==color)).ToArray();
+            if(!colors.Contains("purple")){
+                for(int g=0;g<colors.Length;g++)foreach(int branch in new[]{0,2}){
+                    var arc=new VisualElement{name="upgrade-arc-"+g+"-"+branch,pickingMode=PickingMode.Ignore};arc.StretchToParentSize();ring.Add(arc);
+                    float origin=UpgradeWheelLayout.Angle(colors.Length,g,1),target=UpgradeWheelLayout.Angle(colors.Length,g,branch);
+                    arc.generateVisualContent+=context=>{
+                        var p=context.painter2D;float sign=Mathf.Sign(target-origin),from=origin+sign*16,to=target-sign*16;
+                        Vector2 Point(float angle)=>new Vector2(320,320)+new Vector2(Mathf.Cos(angle*Mathf.Deg2Rad),Mathf.Sin(angle*Mathf.Deg2Rad))*237;
+                        p.strokeColor=new Color(1,.77f,.30f);p.lineWidth=4;p.BeginPath();p.MoveTo(Point(from));
+                        for(int i=1;i<=24;i++)p.LineTo(Point(Mathf.Lerp(from,to,i/24f)));p.Stroke();
+                        var tip=Point(to);var tangent=sign*new Vector2(-Mathf.Sin(to*Mathf.Deg2Rad),Mathf.Cos(to*Mathf.Deg2Rad));var normal=new Vector2(-tangent.y,tangent.x);
+                        p.fillColor=new Color(1,.85f,.44f);p.BeginPath();p.MoveTo(tip);p.LineTo(tip-tangent*11+normal*6);p.LineTo(tip-tangent*11-normal*6);p.ClosePath();p.Fill();
+                    };
+                }
+            }
             for(int group=0;group<colors.Length;group++){
                 string color=colors[group];var options=view.UpgradeOptions.Where(o=>o.Color==color).OrderBy(o=>o.CardId,StringComparer.Ordinal).ToArray();
                 bool purple=color=="purple";
@@ -48,7 +62,7 @@ namespace Goa2.Presentation
                         upgradeCardId=upgradeCardId==card.Id?"":card.Id;upgradeColor=color;Sound(upgradeCardId==""?"cancel":"select");Render();
                     },()=>{}){name=(original?"upgrade-current-":"upgrade-card-")+card.Id};
                     disc.style.left=320+Mathf.Cos(angle)*237-78;disc.style.top=320+Mathf.Sin(angle)*237-78;
-                    disc.tooltip=original?"当前技能":purple?"满级技能":"升级方向 · 未选方向提供永久"+option!.Bonus+" +1";
+                    disc.tooltip=original?"当前技能":purple?"满级技能":"获得永久"+option!.Bonus+" +1（来自未选路线）";
                     disc.Inspect=at=>ShowUpgradeInfo(previous,card,original,disc,at);
                     disc.RegisterCallback<PointerEnterEvent>(e=>HoverSkillSound(e.position));
                     disc.RegisterCallback<PointerMoveEvent>(e=>{if(skillPopupOwner==disc)PositionSkillInfo(e.position);});
@@ -57,6 +71,8 @@ namespace Goa2.Presentation
                 }
             }
             var chosen=view.UpgradeOptions.FirstOrDefault(o=>o.CardId==upgradeCardId);
+            var benefit=new Label(chosen==null?"选择升级方向，查看永久加成":chosen.Color=="purple"?"获得满级技能": "永久"+chosen.Bonus+" +1\n来自未选路线"){name="upgrade-benefit",pickingMode=PickingMode.Ignore};
+            benefit.style.position=Position.Absolute;benefit.style.left=155;benefit.style.top=424;benefit.style.width=330;benefit.style.height=52;benefit.style.whiteSpace=WhiteSpace.Normal;benefit.style.fontSize=20;benefit.style.unityTextAlign=TextAnchor.MiddleCenter;benefit.style.color=new Color(.51f,1,.64f);benefit.style.unityTextOutlineColor=new Color(.03f,.08f,.06f);benefit.style.unityTextOutlineWidth=1;ring.Add(benefit);
             if(chosen!=null){
                 // Dock owns confirmation; ring stays free of central action buttons.
                 var captured=chosen.CardId;confirmButton=new Button(){text="升级为 "+catalog.Card(captured).Name};
@@ -82,6 +98,10 @@ namespace Goa2.Presentation
             popup.style.width=Mathf.Min(480,root.contentRect.width-24);
             if(previous!=null && !original){RenderCardDetail(popup,previous,false);var arrow=Text("↓","upgrade-comparison-arrow");arrow.style.fontSize=32;arrow.style.color=new Color(1,.78f,.26f);arrow.style.unityTextAlign=TextAnchor.MiddleCenter;popup.Add(arrow);}
             RenderCardDetail(popup,next,false);
+            var option=renderedView.UpgradeOptions.FirstOrDefault(o=>o.CardId==next.Id);
+            if(!original && option!=null && !string.IsNullOrEmpty(option.Bonus)){
+                var benefit=Text("此次升级获得：永久"+option.Bonus+" +1（来自未选路线）","body");benefit.name="upgrade-detail-benefit";benefit.style.color=new Color(.40f,1,.55f);popup.Add(benefit);
+            }
             popup.pickingMode=PickingMode.Ignore;popup.Query<VisualElement>().ForEach(e=>e.pickingMode=PickingMode.Ignore);
             // Scale the complete comparison as a unit if the viewport is short; no clipped card text.
             popup.style.transformOrigin=new TransformOrigin(0,0,0);

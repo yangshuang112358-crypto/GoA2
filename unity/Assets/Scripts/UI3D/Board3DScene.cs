@@ -13,7 +13,7 @@ namespace Goa2.Presentation.UI3D
     public sealed partial class Board3DScene : IDisposable
     {
         private const int Layer = 30;
-        public const float WallHeight = 1.05f, HeroHeight = WallHeight * 2;
+        public const float WallHeight = 1.05f, HeroHeight = WallHeight * 2 * 1.2f;
         private readonly GameObject host;
         private readonly List<Object> owned = new List<Object>();
         private readonly Dictionary<Color, Material> materials = new Dictionary<Color, Material>();

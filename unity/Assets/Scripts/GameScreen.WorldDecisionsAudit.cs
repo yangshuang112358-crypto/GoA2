@@ -24,7 +24,7 @@ namespace Goa2.Presentation
                 for(int i=0;i<count;i++)Check(runner.Next().Passed,"Fixture "+name+" step "+i);
                 session=runner.Session;seat=0;ClearPending();wheelState.Discards.Clear();worldContext="";wheelContext="";cameraFollow=true;mainFlow=true;browsingWheels.Clear();rightExpanded=false;Render();
             }
-            yield return null;Load("combat-defense",7);yield return new WaitForSecondsRealtime(3);
+            yield return null;Load("combat-defense",7);yield return new WaitForSecondsRealtime(9);
             Check(root.Q("action-wheel")!=null && root.Q("operation-panel").resolvedStyle.display==DisplayStyle.None,"Action choices on hero with settings closed");
             Check(root.Q("operation-panel").Q("begin-primary")==null,"No old action duplicate in settings");
             var guide=root.Q("main-flow-status");
@@ -58,23 +58,23 @@ namespace Goa2.Presentation
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"target-confirm.png"));yield return new WaitForSecondsRealtime(.2f);
             ConfirmCurrent();ConfirmCurrent();yield return new WaitForSecondsRealtime(.5f);Check(renderedView.Pending?.Kind=="defense" && renderedView.Revision>0,"Single confirmation begins actual defender response");
             Check(actionChoice=="" && root.Q("world-return")==null,"Cannot undo committed attack from response");
-            seat=1;Render();yield return new WaitForSecondsRealtime(3);WheelPick("wasp-00-闪耀之刃");yield return new WaitForSecondsRealtime(.5f);
+            seat=1;Render();yield return new WaitForSecondsRealtime(9);WheelPick("wasp-00-闪耀之刃");yield return new WaitForSecondsRealtime(.5f);
             Check(root.Q<Button>("flow-confirm")?.enabledInHierarchy==true,"Defender preselection exposes right confirmation");
             Check(root.Q(className:"flow-mine")!=null,"Defender sees personal red prompt");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"defense-dock.png"));yield return new WaitForSecondsRealtime(.3f);
-            ConfirmCurrent();yield return new WaitForSecondsRealtime(3);
+            ConfirmCurrent();yield return new WaitForSecondsRealtime(9);
             Check(renderedView.Pending?.Kind=="hero_respawn","Defense completes and opens respawn");
             chosenCell=renderedView.RespawnCells.First();Render();yield return null;Check(root.Q("flow-confirm")!=null,"Respawn confirms on battlefield");ConfirmCurrent();yield return new WaitForSecondsRealtime(.5f);
             Check(renderedView.Phase==Phase.Action,"Respawn continues original card");
-            Load("throwing-axe-reflection",10);yield return new WaitForSecondsRealtime(3);before=session.ExportSave();PickAction("primary");
+            Load("throwing-axe-reflection",10);yield return new WaitForSecondsRealtime(9);before=session.ExportSave();PickAction("primary");
             Check(renderedView.PrimaryPreview==null && session.ExportSave()==before,"Pre-discard card requires explicit start confirmation");
-            ConfirmCurrent();yield return new WaitForSecondsRealtime(3);Check(renderedView.Pending?.Kind=="optional_discard","Confirmed start enters pre-discard ring");
-            WheelPick("brogan-00-猛攻");WheelConfirm();yield return new WaitForSecondsRealtime(3);
+            ConfirmCurrent();yield return new WaitForSecondsRealtime(9);Check(renderedView.Pending?.Kind=="optional_discard","Confirmed start enters pre-discard ring");
+            WheelPick("brogan-00-猛攻");WheelConfirm();yield return new WaitForSecondsRealtime(9);
             before=session.ExportSave();ReturnWorldChoice();Check(session.ExportSave()==before && renderedView.Pending?.Kind=="attack_target","Returning after discard cannot roll back paid card");
             Check(root.Q("begin-primary")==null,"Committed prelude cannot select a different action type");
-            chosenCell=renderedView.Units.Single(u=>u.Id=="hero:1").Position;worldOptionsOpen=false;Render();ConfirmCurrent();yield return new WaitForSecondsRealtime(3);
-            seat=1;Render();WheelPick("wasp-10-反射屏障");WheelConfirm();yield return new WaitForSecondsRealtime(3);
-            seat=0;Render();WheelPick("brogan-06-铜墙铁壁");WheelConfirm();yield return new WaitForSecondsRealtime(3);
+            chosenCell=renderedView.Units.Single(u=>u.Id=="hero:1").Position;worldOptionsOpen=false;Render();ConfirmCurrent();yield return new WaitForSecondsRealtime(9);
+            seat=1;Render();WheelPick("wasp-10-反射屏障");WheelConfirm();yield return new WaitForSecondsRealtime(9);
+            seat=0;Render();WheelPick("brogan-06-铜墙铁壁");WheelConfirm();yield return new WaitForSecondsRealtime(9);
             Check(renderedView.ActionSequence.Cards.Any(c=>c.CardId=="brogan-06-铜墙铁壁"),"Nested response remains present after battlefield-only choices");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"nested-after.png"));yield return new WaitForSecondsRealtime(.2f);
             Check(!rightExpanded,"Full attack, defense, discard and respawn did not open settings");
@@ -93,8 +93,8 @@ namespace Goa2.Presentation
                 upgradeCardId=renderedView.UpgradeOptions.First().CardId;Render();yield return null;yield return null;
                 Check(confirmButton!=null && root.Q("decision-dock").Contains(confirmButton),"Upgrade confirmation uses right dock");
                 Check(root.Q("upgrade-wheel")!=null && root.Query<VisualElement>().ToList().Count(e=>e.name.StartsWith("upgrade-card-"))==renderedView.UpgradeOptions.Count && root.Query<VisualElement>().ToList().Count(e=>e.name.StartsWith("upgrade-current-"))==renderedView.UpgradeOptions.Select(o=>o.Color).Distinct().Count(),"Upgrade ring contains exactly projected routes and their current cards");
-                yield return new WaitForSecondsRealtime(4);
-                ScreenCapture.CaptureScreenshot(Path.Combine(output,"upgrade-layout-"+upgrades+".png"));yield return new WaitForSecondsRealtime(.2f);
+                yield return new WaitForSecondsRealtime(9);
+                Check(root.Query<VisualElement>().ToList().Count(e=>e.name.StartsWith("upgrade-arc-"))==renderedView.UpgradeOptions.Count,"Every non-purple upgrade route has a curved direction arrow"); Check(root.Q<Label>("upgrade-benefit").text.Contains(renderedView.UpgradeOptions.First().Bonus),"Selected route shows authoritative permanent bonus"); ScreenCapture.CaptureScreenshot(Path.Combine(output,"upgrade-layout-"+upgrades+".png"));yield return new WaitForSecondsRealtime(.2f);
                 if(upgrades==1){
                     var option=renderedView.UpgradeOptions.First();var owner=root.Q("upgrade-card-"+option.CardId);
                     ShowUpgradeInfo(catalog.Card(option.PreviousCardId),catalog.Card(option.CardId),false,owner,owner.worldBound.center);
@@ -121,13 +121,13 @@ namespace Goa2.Presentation
             PreviewStageBanner("暗选阶段");var focusBefore=board3DViewport.Focus;
             yield return new WaitForSecondsRealtime(.35f);
             Check(root.Q("stage-banner")!=null && Vector3.Distance(focusBefore,board3DViewport.Focus)<.001f,"Stage banner precedes camera movement");
-            ScreenCapture.CaptureScreenshot(Path.Combine(output,"stage-banner.png"));yield return new WaitForSecondsRealtime(1.1f);
-            Check(root.Q("stage-banner")==null,"Stage banner disappears after presentation");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"stage-banner.png"));yield return new WaitForSecondsRealtime(StageBannerPolicy.Duration);
+            Check(root.Q("stage-banner")==null,"Stage banner disappears after five-second presentation");
             OpenArtSamples(2);yield return new WaitForSecondsRealtime(.3f);
             Check(root.Q("art-samples")!=null,"Debug art gallery displays prepared Blender samples");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"atlantis-emblems-gallery.png"));yield return new WaitForSecondsRealtime(.2f);
             artSamplesOpen=false;Render();
-            Load("round-upgrades",22);yield return new WaitForSecondsRealtime(4);
+            Load("round-upgrades",22);yield return new WaitForSecondsRealtime(9);
             Check(renderedView.UpgradeOptions.Count==1 && root.Q("upgrade-wheel")!=null && root.Query<VisualElement>().ToList().All(e=>!e.name.StartsWith("upgrade-current-")),"Level eight retains a single purple upgrade ring choice");
             upgradeCardId=renderedView.UpgradeOptions.Single().CardId;var purpleChoice=upgradeCardId;Render();yield return new WaitForSecondsRealtime(.5f);
             var purpleAnchor=root.Q("upgrade-zone");var purpleHero=renderedView.Units.Single(u=>u.Seat==seat);

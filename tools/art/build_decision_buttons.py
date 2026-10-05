@@ -77,16 +77,21 @@ for kind,caption in [('confirm','确认'),('withdraw','撤回')]:
         parts=[obj,icon]
     else:
         cx,cy,r=-1.28,0,.29
-        points=[(cx+math.cos(math.radians(a))*r,cy+math.sin(math.radians(a))*r,.478) for a in range(-40,211,8)]
+        # Stop exactly at the leftmost point: counterclockwise tangent points down.
+        # A filled arrowhead replaces the asymmetric rounded V stroke.
+        points=[(cx+math.cos(math.radians(-35+i*215/64))*r,cy+math.sin(math.radians(-35+i*215/64))*r,.478) for i in range(65)]
         icon=line('withdraw curved arrow',points,letters,.043)
         ex,ey,ez=points[-1]
         # Arc increases counterclockwise: arrow points along the analytic tangent,
         # perpendicular to the radius. Symmetric shoulders share that direction.
         rx,ry=(ex-cx)/r,(ey-cy)/r
         tx,ty=-ry,rx
-        head=line('withdraw arrowhead',[(ex-tx*.19+rx*.13,ey-ty*.19+ry*.13,ez),
-                                       (ex,ey,ez),
-                                       (ex-tx*.19-rx*.13,ey-ty*.19-ry*.13,ez)],letters,.043)
+        tip=(ex+tx*.09,ey+ty*.09,ez)
+        mesh=bpy.data.meshes.new('Exact tangent return arrowhead')
+        mesh.from_pydata([tip,(ex-tx*.12+rx*.13,ey-ty*.12+ry*.13,ez),(ex-tx*.12-rx*.13,ey-ty*.12-ry*.13,ez)],[],[(0,1,2)])
+        mesh.update();head=bpy.data.objects.new(mesh.name,mesh);bpy.context.collection.objects.link(head);mesh.materials.append(letters)
+        depth=head.modifiers.new('Relief depth','SOLIDIFY');depth.thickness=.04
+        bevel=head.modifiers.new('Soft edge','BEVEL');bevel.width=.01;bevel.segments=2
         parts=[obj,icon,head]
     for part in parts:part.parent=inset
     variants[kind]=parts
