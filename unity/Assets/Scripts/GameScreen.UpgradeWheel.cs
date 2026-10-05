@@ -75,7 +75,7 @@ namespace Goa2.Presentation
             }
             var chosen=view.UpgradeOptions.FirstOrDefault(o=>o.CardId==upgradeCardId);
             var benefit=new Label(chosen==null?"选择升级方向，查看永久加成":chosen.Color=="purple"?"获得满级技能": "永久"+chosen.Bonus+" +1\n来自未选路线"){name="upgrade-benefit",pickingMode=PickingMode.Ignore};
-            benefit.style.position=Position.Absolute;benefit.style.left=185;benefit.style.top=424;benefit.style.width=270;benefit.style.height=52;benefit.style.whiteSpace=WhiteSpace.Normal;benefit.style.fontSize=20;benefit.style.unityTextAlign=TextAnchor.MiddleCenter;benefit.style.color=new Color(.70f,1,.78f);benefit.style.backgroundColor=new Color(.04f,.07f,.08f,.85f);benefit.style.borderTopLeftRadius=6;benefit.style.borderTopRightRadius=6;benefit.style.borderBottomLeftRadius=6;benefit.style.borderBottomRightRadius=6;ring.Add(benefit);
+            benefit.style.position=Position.Absolute;benefit.style.left=185;benefit.style.top=644;benefit.style.width=270;benefit.style.height=52;benefit.style.whiteSpace=WhiteSpace.Normal;benefit.style.fontSize=20;benefit.style.unityTextAlign=TextAnchor.MiddleCenter;benefit.style.color=new Color(.70f,1,.78f);benefit.style.backgroundColor=new Color(.04f,.07f,.08f,.85f);benefit.style.borderTopLeftRadius=6;benefit.style.borderTopRightRadius=6;benefit.style.borderBottomLeftRadius=6;benefit.style.borderBottomRightRadius=6;ring.Add(benefit);
             if(chosen!=null){
                 // Dock owns confirmation; ring stays free of central action buttons.
                 var captured=chosen.CardId;confirmButton=new Button(){text="升级为 "+catalog.Card(captured).Name};

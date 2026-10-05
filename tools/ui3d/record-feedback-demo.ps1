@@ -1,4 +1,4 @@
-param([int]$Width=1280,[int]$Height=720)
+param([int]$Width=1280,[int]$Height=720,[switch]$UpgradeOnly)
 $ErrorActionPreference='Stop'
 $demoRoot=Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $demoSource=Join-Path $demoRoot 'unity/Assets/Scripts/UI3D/GameScreen.VideoDemo.cs'
@@ -9,7 +9,9 @@ New-Item -ItemType Directory -Force -Path $demoOutput | Out-Null
 try {
  $demoPrefix=(Get-Content -LiteralPath (Join-Path $PSScriptRoot 'GameScreen.TerrainDemo.cs.txt') -Raw).Split('  private IEnumerator VideoSequence(){')[0]
  $demoPrefix=$demoPrefix.Replace('var demo=VideoSequence();','var demo=FlattenDemo(VideoSequence());')
- $demoText=$demoPrefix+(Get-Content -LiteralPath (Join-Path $PSScriptRoot 'GameScreen.FeedbackDemo.cs.txt') -Raw)
+ if($UpgradeOnly){$demoPrefix=$demoPrefix.Replace('demoLabel.text=demoCaption;','demoLabel.text=demoCaption;demoLabel.style.left=20;demoLabel.style.right=StyleKeyword.Auto;demoLabel.style.bottom=StyleKeyword.Auto;demoLabel.style.top=70;demoLabel.style.width=240;demoLabel.style.height=110;demoLabel.style.fontSize=20;demoLabel.style.whiteSpace=WhiteSpace.Normal;')}
+ $demoSuffix=if($UpgradeOnly){'GameScreen.UpgradeDemo.cs.txt'}else{'GameScreen.FeedbackDemo.cs.txt'}
+ $demoText=$demoPrefix+(Get-Content -LiteralPath (Join-Path $PSScriptRoot $demoSuffix) -Raw)
  [IO.File]::WriteAllText($demoSource,$demoText)
  $demoArgs='-batchmode -projectPath "'+(Join-Path $demoRoot 'unity')+'" -executeMethod Goa2.UI3D.Editor.Board3DAuditRunner.Run -goaCardReadingEditor -screen-width '+$Width+' -screen-height '+$Height+' -goaVideoDemo "'+$demoOutput+'" -goaVideoFfmpeg "'+$demoFfmpeg+'" -logFile "'+(Join-Path $demoOutput 'editor.log')+'"'
  $demoProcess=Start-Process -FilePath (Join-Path $env:USERPROFILE 'UnityEditors/6000.3.23f1/Editor/Unity.exe') -ArgumentList $demoArgs -WindowStyle Hidden -PassThru

@@ -1,0 +1,27 @@
+  private IEnumerator FlattenDemo(IEnumerator start){
+   var stack=new System.Collections.Generic.Stack<IEnumerator>();stack.Push(start);
+   while(stack.Count>0){var current=stack.Peek();if(!current.MoveNext()){stack.Pop();continue;}if(current.Current is IEnumerator nested){stack.Push(nested);continue;}yield return current.Current;}
+  }
+  private IEnumerator VideoSequence(){
+   yield return null;yield return null;QualitySettings.vSyncCount=0;UnityEngine.Application.targetFrameRate=30;
+   var folder=Path.GetFullPath(Path.Combine(UnityEngine.Application.dataPath,"../../tests/scenarios"));
+   var definition=Goa2.Infrastructure.Scenarios.ScenarioRunner.Load(File.ReadAllText(Path.Combine(folder,"round-upgrades.json")));
+   var runner=new Goa2.Infrastructure.Scenarios.ScenarioRunner(catalog,definition);
+   for(int i=0;i<5;i++)DemoCheck(runner.Next().Passed,"Upgrade fixture step "+i);
+   session=runner.Session;seat=0;ClearPending();wheelState.Discards.Clear();worldContext="";wheelContext="";cameraFollow=true;mainFlow=true;browsingWheels.Clear();rightExpanded=false;Render();
+   yield return new WaitForSecondsRealtime(9);
+   demoCaption="升级 9 → 6 → 3 个选项 · 金色弧箭头指向两条升级路线";BeginVideo("05-upgrade-routes");
+   for(int choice=0;choice<3;choice++){
+    upgradeCardId=renderedView.UpgradeOptions.First().CardId;Render();yield return new WaitForSecondsRealtime(1);
+    DemoCheck(root.Query<VisualElement>().ToList().Count(e=>e.name.StartsWith("upgrade-arc-"))==renderedView.UpgradeOptions.Count,"Each upgrade route keeps an arrow");
+    var benefit=root.Q("upgrade-benefit");DemoCheck(benefit.worldBound.yMax<Screen.height,"Permanent benefit fits viewport below arrows");
+    DemoShot("upgrade-final-"+choice);yield return new WaitForSecondsRealtime(2);
+    if(choice==0){var option=renderedView.UpgradeOptions.First();var owner=root.Q("upgrade-card-"+option.CardId);ShowUpgradeInfo(catalog.Card(option.PreviousCardId),catalog.Card(option.CardId),false,owner,owner.worldBound.center);yield return new WaitForSecondsRealtime(3);HideSkillInfo();}
+    demoCaption="此路线获得：永久"+renderedView.UpgradeOptions.First().Bonus+" +1（来自未选路线）";
+    ConfirmCurrent();yield return new WaitForSecondsRealtime(2);
+   }
+   StopVideo();
+  }
+ }
+}
+#endif
