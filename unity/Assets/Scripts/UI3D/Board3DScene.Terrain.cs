@@ -25,26 +25,26 @@ namespace Goa2.Presentation.UI3D {
    var symmetryCenter=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f;
    Vector3 Bottom(Vector3 top,float inset,float y){var near=centers.Where(c=>Vector2.Distance(new Vector2(c.x,c.z),new Vector2(top.x,top.z))<1.12f).ToList();var average=near.Aggregate(Vector3.zero,(a,b)=>a+b)/near.Count;var p=Vector3.Lerp(top,average,inset);p.y=y;return p;}
    foreach(var cell in obstacles){
-    var center=Board3DGeometry.World(cell.Position);var top=new Vector3[6];
+    var center=Board3DGeometry.World(cell.Position);var top=new Vector3[6];var foot=new Vector3[6];
     bool central=cell.Position==new Hex(0,0)||cell.Position==new Hex(0,1);
     for(int i=0;i<6;i++){
-     float a=(-30+i*60)*Mathf.Deg2Rad;top[i]=center+new Vector3(Mathf.Cos(a),WallHeight,Mathf.Sin(a));
+     float a=(-30+i*60)*Mathf.Deg2Rad;foot[i]=center+new Vector3(Mathf.Cos(a),0,Mathf.Sin(a));top[i]=Bottom(foot[i],.045f,WallHeight);
      if(!central){var d=top[i]-symmetryCenter;d.y=0;float noise=Mathf.Cos(d.x*3.7f)+Mathf.Cos(d.z*2.3f);
       // The same world vertex gives the same perturbation on adjacent rocks;
       // cosine and radial offset preserve exact central symmetry.
-      top[i]+=d.normalized*(noise*.035f);top[i].y+=.08f+noise*.055f;}
+      top[i]=Bottom(foot[i],.045f+noise*.006f,1.08f+noise*.018f);}
     }
-    var baseTile=Add(Own(Board3DGeometry.Prism(6,-30)),center,new Vector3(.995f,.09f,.995f),ColorOf("#686659"),"rock hex foundation");
+    var baseTile=Add(Own(Board3DGeometry.Prism(6,-30)),center,new Vector3(1,.07f,1),ColorOf("#686659"),"rock hex foundation");
     baseTile.GetComponent<MeshRenderer>().sharedMaterial=TerrainMaterial("rock",ColorOf("#686659"));
     // Canonical mirrored coordinates preserve exact 180-degree shape symmetry about (0, .5).
     var h=cell.Position;int x=h.X,y=h.Y;if(x<0 || x==0 && y<1){x=-x;y=1-y;}
-    float peak=central?WallHeight:WallHeight+.12f+((x*31+y*17)&7)*.025f;
+    float peak=central?WallHeight:1.12f+((x*31+y*17)&7)*.003f;
     for(int i=0;i<6;i++){
      int j=(i+1)%6;Tri(vertices,center+Vector3.up*peak,top[j],top[i]);
-     var midpoint=(top[i]+top[j])*.5f;var other=Board3DGeometry.HexAt(center+(midpoint-center)*1.1f);
+     var midpoint=(foot[i]+foot[j])*.5f;var other=Board3DGeometry.HexAt(center+(midpoint-center)*1.1f);
      if(cells.TryGetValue(other,out var neighbor)&&neighbor.Obstacle)continue;
-     var lowerA=Bottom(top[i],.28f,0);var lowerB=Bottom(top[j],.28f,0);
-     var bevelA=Bottom(top[i],.06f,WallHeight*.70f);var bevelB=Bottom(top[j],.06f,WallHeight*.70f);
+     var lowerA=foot[i];var lowerB=foot[j];
+     var bevelA=Bottom(foot[i],.012f,.84f);var bevelB=Bottom(foot[j],.012f,.84f);
      Tri(vertices,lowerA,bevelA,bevelB);Tri(vertices,lowerA,bevelB,lowerB);
      Tri(vertices,bevelA,top[i],top[j]);Tri(vertices,bevelA,top[j],bevelB);
     }

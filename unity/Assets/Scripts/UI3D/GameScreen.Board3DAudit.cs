@@ -120,6 +120,21 @@ namespace Goa2.Presentation
             Check(vertices.Length>0,"Connected rock mesh present");
             var center=board3DViewport.Focus;
             Check(vertices.All(v=>vertices.Any(w=>(w-new Vector3(2*center.x-v.x,v.y,2*center.z-v.z)).sqrMagnitude<.000001f)),"Rock vertices are centrally symmetric within 1 mm");
+            var obstacleCenters=catalog.Cells.Where(c=>c.Obstacle).Select(c=>Board3DGeometry.World(c.Position)).ToArray();
+            var footprint=obstacleCenters.SelectMany(c=>Enumerable.Range(0,6).Select(i=>c+new Vector3(Mathf.Cos((-30+i*60)*Mathf.Deg2Rad),0,Mathf.Sin((-30+i*60)*Mathf.Deg2Rad))))
+                .Where(p=>obstacleCenters.Count(c=>Vector3.Distance(p,c)<1.001f)<3).ToArray();
+            float floor=vertices.Min(v=>v.y);var bottom=vertices.Where(v=>Mathf.Abs(v.y-floor)<.001f).Select(v=>new Vector3(v.x,0,v.z)).ToArray();
+            File.WriteAllLines(Path.Combine(output,"rock-footprint.tsv"),footprint.Select(p=>"expected\t"+p.x+"\t"+p.z+"\t"+bottom.Min(v=>Vector3.Distance(v,p))).Concat(bottom.Distinct().Select(p=>"actual\t"+p.x+"\t"+p.z+"\t"+footprint.Min(v=>Vector3.Distance(v,p)))));
+            Check(footprint.All(p=>bottom.Any(v=>(v-p).sqrMagnitude<.000001f)) && bottom.All(v=>footprint.Any(p=>(v-p).sqrMagnitude<.000001f)),"Every exterior rock foot corner matches its canonical hex corner within 1 mm");
+            var roof=Enumerable.Range(0,vertices.Length/3).Select(i=>new[]{vertices[i*3],vertices[i*3+1],vertices[i*3+2]}).Where(t=>t.All(v=>v.y>1.05f)).SelectMany(t=>t).ToArray();
+            Check(roof.Length>0 && roof.Max(v=>v.y)-roof.Min(v=>v.y)<=.12f,"Ordinary rock roof relief stays below 12 cm across the board");
+            string Key(Vector3 p)=>Mathf.RoundToInt(p.x*10000)+","+Mathf.RoundToInt(p.y*10000)+","+Mathf.RoundToInt(p.z*10000);
+            var edges=new System.Collections.Generic.Dictionary<string,(int count,bool floor)>();
+            for(int i=0;i<vertices.Length;i+=3)for(int j=0;j<3;j++){
+                var a=vertices[i+j];var b=vertices[i+(j+1)%3];string ka=Key(a),kb=Key(b),key=string.CompareOrdinal(ka,kb)<0?ka+"/"+kb:kb+"/"+ka;
+                edges.TryGetValue(key,out var previous);edges[key]=(previous.count+1,Mathf.Abs(a.y-floor)<.001f && Mathf.Abs(b.y-floor)<.001f);
+            }
+            Check(edges.Values.All(e=>e.count==2 || e.count==1 && e.floor),"Joined rocks have no open seams above the ground contact");
             var platform=filters.Where(f=>f.name.StartsWith("central spiral half")).ToList();
             if(platform.Count>0)vertices=platform.SelectMany(f=>f.sharedMesh.triangles.Select(i=>f.transform.TransformPoint(f.sharedMesh.vertices[i]))).ToArray();
             float Surface(Vector3 point){
@@ -139,6 +154,8 @@ namespace Goa2.Presentation
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"map-overview.png"));yield return new WaitForSecondsRealtime(.3f);
             board3DViewport.Zoom=3;Render();yield return new WaitForSecondsRealtime(.5f);
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"central-platform.png"));yield return new WaitForSecondsRealtime(.3f);
+            board3DViewport.Focus=Board3DGeometry.World(new Hex(-7,1));board3DViewport.Zoom=2.2f;Render();yield return new WaitForSecondsRealtime(.5f);
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"connected-wall.png"));yield return new WaitForSecondsRealtime(.3f);
             Check(session.ExportSave()==before,"Camera and visuals do not mutate game rules");
         }
 

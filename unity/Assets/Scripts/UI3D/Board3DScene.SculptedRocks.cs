@@ -20,7 +20,7 @@ namespace Goa2.Presentation.UI3D
             var rocks=InstantiateStone(rock,"connected rocks",dimensions.width,center);
             foreach(var cell in cells.Values.Where(c=>c.Obstacle))
             {
-                var tile=Add(Own(Board3DGeometry.Prism(6,-30)),Board3DGeometry.World(cell.Position),new Vector3(.995f,.07f,.995f),ColorOf("#676D6B"),"rock hex foundation");tile.GetComponent<MeshRenderer>().sharedMaterial=TerrainMaterial("rock",ColorOf("#676D6B"));
+                var tile=Add(Own(Board3DGeometry.Prism(6,-30)),Board3DGeometry.World(cell.Position),new Vector3(1,.07f,1),ColorOf("#676D6B"),"rock hex foundation");tile.GetComponent<MeshRenderer>().sharedMaterial=TerrainMaterial("rock",ColorOf("#676D6B"));
             }
             for(int side=0;side<2;side++)
             {

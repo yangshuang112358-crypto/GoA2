@@ -1,5 +1,6 @@
 """Editable, centrally symmetric connected rock mesh and two spiral altar halves.
-Blender coordinates x,-world-z,height; deterministic art noise, no rule data mutation.
+Blender plan uses x,world-z,height, calibrated against Unity's FBX handedness.
+Deterministic art noise; no rule data mutation.
 """
 import bpy,json,math,sys
 from pathlib import Path
@@ -8,41 +9,49 @@ root=Path(sys.argv[sys.argv.index('--')+1]);out=root/'unity/Assets/Resources/UI3
 out.mkdir(parents=True,exist_ok=True);source.mkdir(parents=True,exist_ok=True)
 bpy.ops.wm.read_factory_settings(use_empty=True);bpy.context.preferences.filepaths.save_version=0
 cells=[c for c in json.loads((root/'content/canonical/map.json').read_text(encoding='utf8'))['cells'] if c['obstacle']]
-def world(x,y):return Vector((math.sqrt(3)*(x+y*.5),1.5*y,0))
+def world(x,y):return Vector((math.sqrt(3)*(x+y*.5),-1.5*y,0))
 center=world(0,.5);centers=[world(c['x'],c['y']) for c in cells];verts=[];faces=[]
 def tri(a,b,c):
     index=len(verts);verts.extend([tuple(a),tuple(b),tuple(c)]);faces.append((index,index+1,index+2))
 def noise(p):
     d=p-center;return math.cos(d.x*3.7)+math.cos(d.y*2.3)
+def inset_corner(p,amount,height):
+    # Shared corners use the same adjacent-cell centroid, so adjoining roofs
+    # meet exactly. The foot always remains on the canonical hex boundary.
+    near=[c for c in centers if (p-c).length<1.001]
+    average=sum(near,Vector())/len(near);v=p.lerp(average,amount);v.z=height;return v
 for cell in cells:
-    if (cell['x'],cell['y']) in [(0,0),(0,1)]:continue
-    at=world(cell['x'],cell['y']);corners=[]
+    central=(cell['x'],cell['y']) in [(0,0),(0,1)]
+    at=world(cell['x'],cell['y']);foot=[];corners=[]
     for i in range(6):
-        angle=math.radians(30+i*60);p=at+Vector((math.cos(angle),math.sin(angle),0));d=p-center
-        p+=d.normalized()*noise(p)*.057;p.z=1.04+noise(p)*.08;corners.append(p)
-    d=at-center;peak=at+d.normalized()*.12;peak.z=1.21+.11*math.cos(d.x*2+d.y*3)
+        angle=math.radians(30+i*60);p=at+Vector((math.cos(angle),math.sin(angle),0));foot.append(p)
+        corners.append(inset_corner(p,.045+noise(p)*.006,.34 if central else 1.08+noise(p)*.018))
+    d=at-center;peak=at.copy();peak.z=.34 if central else 1.12+.025*math.cos(d.x*2+d.y*3)
     for i in range(6):
-        a=corners[i];b=corners[(i+1)%6];mid=(a+b)*.5
+        a=corners[i];b=corners[(i+1)%6];base_a=foot[i];base_b=foot[(i+1)%6];mid=(base_a+base_b)*.5
         tri(peak,a,b)
         other=at+(mid-at)*2
         other.z=0
-        if any((other-c).length<.18 for c in centers if (c-at).length>.2):continue
-        def lower(p,t,z):
-            near=[c for c in centers if Vector((p.x-c.x,p.y-c.y,0)).length<1.14]
-            average=sum(near,Vector())/len(near);v=p.lerp(average,t);v.z=z;return v
-        rings=[(a,b)]
-        for inset,z in [(.04,.80),(.14,.63),(.105,.49),(.25,.27),(.32,.07)]:rings.append((lower(a,inset,z),lower(b,inset,z)))
+        if any((other-c).length<.001 for c in centers if (c-at).length>.2):continue
+        rings=[(a,b),(inset_corner(base_a,.012,.25 if central else .84),inset_corner(base_b,.012,.25 if central else .84)),(base_a,base_b)]
         for j in range(len(rings)-1):
             a,b=rings[j];c,d=rings[j+1];tri(a,c,d);tri(a,d,b)
 def mesh(name,v,f):
-    data=bpy.data.meshes.new(name);data.from_pydata(v,[],f);data.update();obj=bpy.data.objects.new(name,data);bpy.context.collection.objects.link(obj)
+    # Weld coincident corners, including shared roof seams, into one connected
+    # mass per obstacle cluster. Flat faces retain the restrained stone facets.
+    index={};welded=[];remap=[]
+    for point in v:
+        key=tuple(round(x,6) for x in point)
+        if key not in index:index[key]=len(welded);welded.append(point)
+        remap.append(index[key])
+    data=bpy.data.meshes.new(name);data.from_pydata(welded,[],[tuple(remap[i] for i in face) for face in f]);data.update();obj=bpy.data.objects.new(name,data);bpy.context.collection.objects.link(obj)
     mat=bpy.data.materials.get('Atlantis hewn stone')
     if not mat:
         mat=bpy.data.materials.new('Atlantis hewn stone');mat.diffuse_color=(.31,.34,.33,1);mat.use_nodes=True;node=next(n for n in mat.node_tree.nodes if n.type=='BSDF_PRINCIPLED');node.inputs['Base Color'].default_value=mat.diffuse_color;node.inputs['Roughness'].default_value=.74
     data.materials.append(mat)
     return obj
 rock=mesh('ConnectedRocks',verts,faces)
-(out/'rock-layout.json').write_text(json.dumps({'width':max(v[0] for v in verts)-min(v[0] for v in verts),'height':max(v[2] for v in verts),'centerX':center.x,'centerZ':-center.y}),encoding='utf8')
+(out/'rock-layout.json').write_text(json.dumps({'width':max(v[0] for v in verts)-min(v[0] for v in verts),'height':max(v[2] for v in verts),'centerX':center.x,'centerZ':center.y}),encoding='utf8')
 def export(obj,name):
     bpy.ops.object.select_all(action='DESELECT');obj.select_set(True);bpy.context.view_layer.objects.active=obj
     bpy.ops.export_scene.fbx(filepath=str(out/(name+'.fbx')),use_selection=True,object_types={'MESH'},bake_anim=False,axis_forward='-Z',axis_up='Y')
