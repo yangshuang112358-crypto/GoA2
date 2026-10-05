@@ -1,0 +1,1158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="186" result="Passed" total="186" passed="186" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-05 10:30:42Z" end-time="2026-10-05 10:36:41Z" duration="359.318005">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2351" result="Passed" start-time="2026-10-05 10:30:42Z" end-time="2026-10-05 10:36:41Z" duration="359.318005" total="186" passed="186" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3572" name="Goa2.Core.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.Core.Tests.dll" runstate="Runnable" testcasecount="2191" result="Passed" start-time="2026-10-05 10:30:42Z" end-time="2026-10-05 10:36:41Z" duration="359.302027" total="186" passed="186" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="14424" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="3573" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="2191" result="Passed" start-time="2026-10-05 10:30:42Z" end-time="2026-10-05 10:36:41Z" duration="359.288338" total="186" passed="186" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="3574" name="Tests" fullname="Goa2.Tests" runstate="Runnable" testcasecount="2191" result="Passed" start-time="2026-10-05 10:30:42Z" end-time="2026-10-05 10:36:41Z" duration="359.284202" total="186" passed="186" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1576" name="DebugPositionTests" fullname="Goa2.Tests.DebugPositionTests" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" testcasecount="186" result="Passed" start-time="2026-10-05 10:30:42Z" end-time="2026-10-05 10:36:41Z" duration="359.256258" total="186" passed="186" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1757" name="FailedPreparedPositionDoesNotReturnAPartiallyExecutedSession" fullname="Goa2.Tests.DebugPositionTests.FailedPreparedPositionDoesNotReturnAPartiallyExecutedSession" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 10:30:42Z" end-time="2026-10-05 10:30:46Z" duration="4.305148" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1755" name="FailedPreparedPositionDoesNotReturnAPartiallyExecutedSession(&quot;final_phase&quot;)" fullname="Goa2.Tests.DebugPositionTests.FailedPreparedPositionDoesNotReturnAPartiallyExecutedSession(&quot;final_phase&quot;)" methodname="FailedPreparedPositionDoesNotReturnAPartiallyExecutedSession" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1186188569" result="Passed" start-time="2026-10-05 10:30:42Z" end-time="2026-10-05 10:30:45Z" duration="2.919689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1756" name="FailedPreparedPositionDoesNotReturnAPartiallyExecutedSession(&quot;step_expectation&quot;)" fullname="Goa2.Tests.DebugPositionTests.FailedPreparedPositionDoesNotReturnAPartiallyExecutedSession(&quot;step_expectation&quot;)" methodname="FailedPreparedPositionDoesNotReturnAPartiallyExecutedSession" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1667590175" result="Passed" start-time="2026-10-05 10:30:45Z" end-time="2026-10-05 10:30:46Z" duration="1.380356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1749" name="ManualCardPositionsStartBeforeTheirActionAndExplainHowToPlayThem" fullname="Goa2.Tests.DebugPositionTests.ManualCardPositionsStartBeforeTheirActionAndExplainHowToPlayThem" methodname="ManualCardPositionsStartBeforeTheirActionAndExplainHowToPlayThem" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="578641458" result="Passed" start-time="2026-10-05 10:30:46Z" end-time="2026-10-05 10:31:42Z" duration="55.922307" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1754" name="OpeningTheSamePreparedPositionCreatesIndependentMatches" fullname="Goa2.Tests.DebugPositionTests.OpeningTheSamePreparedPositionCreatesIndependentMatches" methodname="OpeningTheSamePreparedPositionCreatesIndependentMatches" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2035903598" result="Passed" start-time="2026-10-05 10:31:42Z" end-time="2026-10-05 10:31:46Z" duration="4.126156" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1763" name="PreparedDataRejectsInvalidOrUnverifiedDefinitions" fullname="Goa2.Tests.DebugPositionTests.PreparedDataRejectsInvalidOrUnverifiedDefinitions" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-05 10:31:46Z" end-time="2026-10-05 10:31:52Z" duration="5.368116" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1758" name="PreparedDataRejectsInvalidOrUnverifiedDefinitions(&quot;duplicate_id&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedDataRejectsInvalidOrUnverifiedDefinitions(&quot;duplicate_id&quot;)" methodname="PreparedDataRejectsInvalidOrUnverifiedDefinitions" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2057765839" result="Passed" start-time="2026-10-05 10:31:46Z" end-time="2026-10-05 10:31:47Z" duration="1.125876" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1759" name="PreparedDataRejectsInvalidOrUnverifiedDefinitions(&quot;unknown_field&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedDataRejectsInvalidOrUnverifiedDefinitions(&quot;unknown_field&quot;)" methodname="PreparedDataRejectsInvalidOrUnverifiedDefinitions" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1680233797" result="Passed" start-time="2026-10-05 10:31:47Z" end-time="2026-10-05 10:31:48Z" duration="1.037178" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1760" name="PreparedDataRejectsInvalidOrUnverifiedDefinitions(&quot;boolean_version&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedDataRejectsInvalidOrUnverifiedDefinitions(&quot;boolean_version&quot;)" methodname="PreparedDataRejectsInvalidOrUnverifiedDefinitions" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="671703624" result="Passed" start-time="2026-10-05 10:31:48Z" end-time="2026-10-05 10:31:49Z" duration="1.043019" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1761" name="PreparedDataRejectsInvalidOrUnverifiedDefinitions(&quot;formal_session&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedDataRejectsInvalidOrUnverifiedDefinitions(&quot;formal_session&quot;)" methodname="PreparedDataRejectsInvalidOrUnverifiedDefinitions" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="982423376" result="Passed" start-time="2026-10-05 10:31:49Z" end-time="2026-10-05 10:31:50Z" duration="1.085242" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1762" name="PreparedDataRejectsInvalidOrUnverifiedDefinitions(&quot;unchecked_replay&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedDataRejectsInvalidOrUnverifiedDefinitions(&quot;unchecked_replay&quot;)" methodname="PreparedDataRejectsInvalidOrUnverifiedDefinitions" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="207616997" result="Passed" start-time="2026-10-05 10:31:50Z" end-time="2026-10-05 10:31:52Z" duration="1.056662" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1748" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" testcasecount="171" result="Passed" start-time="2026-10-05 10:31:52Z" end-time="2026-10-05 10:36:34Z" duration="282.465710" total="171" passed="171" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1577" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;ui-upgrades-purple&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;ui-upgrades-purple&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1818663976" result="Passed" start-time="2026-10-05 10:31:52Z" end-time="2026-10-05 10:31:54Z" duration="2.617919" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1578" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;ui-upgrades-three&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;ui-upgrades-three&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1676358568" result="Passed" start-time="2026-10-05 10:31:54Z" end-time="2026-10-05 10:31:56Z" duration="1.673876" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1579" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;ui-upgrades-six&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;ui-upgrades-six&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1939125942" result="Passed" start-time="2026-10-05 10:31:56Z" end-time="2026-10-05 10:31:57Z" duration="1.418697" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1580" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;axe-ready&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;axe-ready&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="31506964" result="Passed" start-time="2026-10-05 10:31:57Z" end-time="2026-10-05 10:31:59Z" duration="1.400833" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1581" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;axe-cost&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;axe-cost&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1005279738" result="Passed" start-time="2026-10-05 10:31:59Z" end-time="2026-10-05 10:32:00Z" duration="1.387869" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1582" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;axe-reflection&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;axe-reflection&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1797858808" result="Passed" start-time="2026-10-05 10:32:00Z" end-time="2026-10-05 10:32:01Z" duration="1.405159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1583" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;spear-existing&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;spear-existing&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="618225321" result="Passed" start-time="2026-10-05 10:32:01Z" end-time="2026-10-05 10:32:03Z" duration="1.375253" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1584" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;riposte&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;riposte&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="355623362" result="Passed" start-time="2026-10-05 10:32:03Z" end-time="2026-10-05 10:32:04Z" duration="1.374456" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1585" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;upgrades&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;upgrades&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="10071674" result="Passed" start-time="2026-10-05 10:32:04Z" end-time="2026-10-05 10:32:06Z" duration="1.390030" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1586" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;respawn&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;respawn&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1645173884" result="Passed" start-time="2026-10-05 10:32:06Z" end-time="2026-10-05 10:32:07Z" duration="1.486828" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1587" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;occupied-spawn&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;occupied-spawn&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="30891641" result="Passed" start-time="2026-10-05 10:32:07Z" end-time="2026-10-05 10:32:08Z" duration="1.330912" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1588" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;riposte-empty&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;riposte-empty&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1159069394" result="Passed" start-time="2026-10-05 10:32:08Z" end-time="2026-10-05 10:32:10Z" duration="1.470393" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1589" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;riposte-victory&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;riposte-victory&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="232206670" result="Passed" start-time="2026-10-05 10:32:10Z" end-time="2026-10-05 10:32:11Z" duration="1.409131" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1590" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;sneak-move&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;sneak-move&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1809964752" result="Passed" start-time="2026-10-05 10:32:11Z" end-time="2026-10-05 10:32:13Z" duration="1.366348" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1591" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;sneak-static&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;sneak-static&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1615699790" result="Passed" start-time="2026-10-05 10:32:13Z" end-time="2026-10-05 10:32:14Z" duration="1.377497" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1592" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;loyal-recover&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;loyal-recover&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1405023169" result="Passed" start-time="2026-10-05 10:32:14Z" end-time="2026-10-05 10:32:15Z" duration="1.412240" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1593" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;loyal-defense&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;loyal-defense&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="797098110" result="Passed" start-time="2026-10-05 10:32:15Z" end-time="2026-10-05 10:32:17Z" duration="1.432112" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1594" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;loyal-silence&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;loyal-silence&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1933058826" result="Passed" start-time="2026-10-05 10:32:17Z" end-time="2026-10-05 10:32:18Z" duration="1.425496" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1595" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shadow-choice&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shadow-choice&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="741388887" result="Passed" start-time="2026-10-05 10:32:18Z" end-time="2026-10-05 10:32:20Z" duration="1.408594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1596" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shadow-static&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shadow-static&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1575997994" result="Passed" start-time="2026-10-05 10:32:20Z" end-time="2026-10-05 10:32:21Z" duration="1.359992" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1597" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;raid-combo&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;raid-combo&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2002272086" result="Passed" start-time="2026-10-05 10:32:21Z" end-time="2026-10-05 10:32:22Z" duration="1.369339" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1598" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;raid-static&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;raid-static&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1968377372" result="Passed" start-time="2026-10-05 10:32:22Z" end-time="2026-10-05 10:32:24Z" duration="1.412975" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1599" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;war-drum&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;war-drum&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1752183330" result="Passed" start-time="2026-10-05 10:32:24Z" end-time="2026-10-05 10:32:25Z" duration="1.557535" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1600" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;war-drum-silence&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;war-drum-silence&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1112804703" result="Passed" start-time="2026-10-05 10:32:25Z" end-time="2026-10-05 10:32:27Z" duration="1.641304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1601" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;minstrel&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;minstrel&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2088976071" result="Passed" start-time="2026-10-05 10:32:27Z" end-time="2026-10-05 10:32:29Z" duration="1.598841" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1602" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;minstrel-aura&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;minstrel-aura&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1095763604" result="Passed" start-time="2026-10-05 10:32:29Z" end-time="2026-10-05 10:32:30Z" duration="1.471064" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1603" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;war-drum-reflection&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;war-drum-reflection&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1654231074" result="Passed" start-time="2026-10-05 10:32:30Z" end-time="2026-10-05 10:32:32Z" duration="1.477097" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1604" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;pincer-support&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;pincer-support&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1861143659" result="Passed" start-time="2026-10-05 10:32:32Z" end-time="2026-10-05 10:32:33Z" duration="1.489928" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1605" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;pincer-alone&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;pincer-alone&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1549913689" result="Passed" start-time="2026-10-05 10:32:33Z" end-time="2026-10-05 10:32:35Z" duration="1.486169" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1606" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;boomerang&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;boomerang&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1356014174" result="Passed" start-time="2026-10-05 10:32:35Z" end-time="2026-10-05 10:32:36Z" duration="1.419801" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1607" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;boomerang-no-target&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;boomerang-no-target&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="782112646" result="Passed" start-time="2026-10-05 10:32:36Z" end-time="2026-10-05 10:32:37Z" duration="1.460577" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1608" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;thunder-repeat&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;thunder-repeat&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="587459814" result="Passed" start-time="2026-10-05 10:32:37Z" end-time="2026-10-05 10:32:39Z" duration="1.438821" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1609" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;crossfire&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;crossfire&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1002018359" result="Passed" start-time="2026-10-05 10:32:39Z" end-time="2026-10-05 10:32:40Z" duration="1.480671" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1610" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;crossfire-frontline&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;crossfire-frontline&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1229507822" result="Passed" start-time="2026-10-05 10:32:40Z" end-time="2026-10-05 10:32:42Z" duration="1.651087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1611" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;storm-ranged&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;storm-ranged&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="986918048" result="Passed" start-time="2026-10-05 10:32:42Z" end-time="2026-10-05 10:32:43Z" duration="1.436322" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1612" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;pointblank-push&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;pointblank-push&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1891862991" result="Passed" start-time="2026-10-05 10:32:43Z" end-time="2026-10-05 10:32:45Z" duration="1.357618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1613" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;pointblank-blocked&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;pointblank-blocked&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1889005104" result="Passed" start-time="2026-10-05 10:32:45Z" end-time="2026-10-05 10:32:46Z" duration="1.401916" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1614" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;mighty-blow&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;mighty-blow&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1077481142" result="Passed" start-time="2026-10-05 10:32:46Z" end-time="2026-10-05 10:32:48Z" duration="1.404039" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1615" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;mighty-frontline&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;mighty-frontline&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="600975018" result="Passed" start-time="2026-10-05 10:32:48Z" end-time="2026-10-05 10:32:49Z" duration="1.575810" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1616" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;sidestep&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;sidestep&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="290727308" result="Passed" start-time="2026-10-05 10:32:49Z" end-time="2026-10-05 10:32:51Z" duration="1.419906" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1617" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;sidestep-push&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;sidestep-push&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1639555452" result="Passed" start-time="2026-10-05 10:32:51Z" end-time="2026-10-05 10:32:52Z" duration="1.391147" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1618" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shadowstep&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shadowstep&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="704467809" result="Passed" start-time="2026-10-05 10:32:52Z" end-time="2026-10-05 10:32:54Z" duration="1.488587" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1619" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shadowstep-empty&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shadowstep-empty&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1768766912" result="Passed" start-time="2026-10-05 10:32:54Z" end-time="2026-10-05 10:32:55Z" duration="1.496850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1620" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;charge&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;charge&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="654583049" result="Passed" start-time="2026-10-05 10:32:55Z" end-time="2026-10-05 10:32:56Z" duration="1.403724" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1621" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;charge-frontline&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;charge-frontline&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="380226198" result="Passed" start-time="2026-10-05 10:32:56Z" end-time="2026-10-05 10:32:58Z" duration="1.534836" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1622" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;brave-charge&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;brave-charge&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="985426063" result="Passed" start-time="2026-10-05 10:32:58Z" end-time="2026-10-05 10:32:59Z" duration="1.373844" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1623" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;onward&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;onward&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="542816891" result="Passed" start-time="2026-10-05 10:32:59Z" end-time="2026-10-05 10:33:01Z" duration="1.387100" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1624" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;blink-strike&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;blink-strike&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1756751115" result="Passed" start-time="2026-10-05 10:33:01Z" end-time="2026-10-05 10:33:02Z" duration="1.404731" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1625" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;blink-block&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;blink-block&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2017533227" result="Passed" start-time="2026-10-05 10:33:02Z" end-time="2026-10-05 10:33:04Z" duration="1.440122" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1626" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;drill&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;drill&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1920084032" result="Passed" start-time="2026-10-05 10:33:04Z" end-time="2026-10-05 10:33:05Z" duration="1.472062" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1627" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;drill-support&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;drill-support&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="566131176" result="Passed" start-time="2026-10-05 10:33:05Z" end-time="2026-10-05 10:33:07Z" duration="1.673673" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1628" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;battledrill&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;battledrill&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="946574793" result="Passed" start-time="2026-10-05 10:33:07Z" end-time="2026-10-05 10:33:08Z" duration="1.477868" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1629" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;battledrill-support&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;battledrill-support&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1536027551" result="Passed" start-time="2026-10-05 10:33:08Z" end-time="2026-10-05 10:33:10Z" duration="1.742395" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1630" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;battlearms&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;battlearms&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="191677759" result="Passed" start-time="2026-10-05 10:33:10Z" end-time="2026-10-05 10:33:11Z" duration="1.458256" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1631" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;battlearms-support&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;battlearms-support&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="899571470" result="Passed" start-time="2026-10-05 10:33:11Z" end-time="2026-10-05 10:33:13Z" duration="1.797475" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1632" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;battlearms-challenger&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;battlearms-challenger&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1997770251" result="Passed" start-time="2026-10-05 10:33:13Z" end-time="2026-10-05 10:33:15Z" duration="1.760894" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1633" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shield-bash&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shield-bash&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2071658885" result="Passed" start-time="2026-10-05 10:33:15Z" end-time="2026-10-05 10:33:16Z" duration="1.455673" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1634" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;close-support&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;close-support&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="826321239" result="Passed" start-time="2026-10-05 10:33:16Z" end-time="2026-10-05 10:33:18Z" duration="1.518569" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1635" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shock&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shock&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="90014540" result="Passed" start-time="2026-10-05 10:33:18Z" end-time="2026-10-05 10:33:19Z" duration="1.419071" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1636" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;wave&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;wave&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2056999781" result="Passed" start-time="2026-10-05 10:33:19Z" end-time="2026-10-05 10:33:21Z" duration="1.448459" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1637" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;pickpocket&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;pickpocket&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="143627734" result="Passed" start-time="2026-10-05 10:33:21Z" end-time="2026-10-05 10:33:22Z" duration="1.519253" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1638" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;sleight&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;sleight&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="904565309" result="Passed" start-time="2026-10-05 10:33:22Z" end-time="2026-10-05 10:33:24Z" duration="1.534455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1639" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;master-thief&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;master-thief&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="953193320" result="Passed" start-time="2026-10-05 10:33:24Z" end-time="2026-10-05 10:33:25Z" duration="1.526842" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1640" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;pike&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;pike&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="801541147" result="Passed" start-time="2026-10-05 10:33:25Z" end-time="2026-10-05 10:33:27Z" duration="1.466313" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1641" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tidal-power&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tidal-power&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="863061238" result="Passed" start-time="2026-10-05 10:33:27Z" end-time="2026-10-05 10:33:28Z" duration="1.439216" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1642" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;flashing-blade&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;flashing-blade&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1590915474" result="Passed" start-time="2026-10-05 10:33:28Z" end-time="2026-10-05 10:33:30Z" duration="1.397474" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1643" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;command-minion&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;command-minion&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="157051035" result="Passed" start-time="2026-10-05 10:33:30Z" end-time="2026-10-05 10:33:31Z" duration="1.501149" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1644" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;strategic-control&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;strategic-control&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1150182495" result="Passed" start-time="2026-10-05 10:33:31Z" end-time="2026-10-05 10:33:33Z" duration="1.535889" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1645" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;strategic-advantage&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;strategic-advantage&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="823046704" result="Passed" start-time="2026-10-05 10:33:33Z" end-time="2026-10-05 10:33:34Z" duration="1.595751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1646" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;arcane-swap&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;arcane-swap&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1871320446" result="Passed" start-time="2026-10-05 10:33:34Z" end-time="2026-10-05 10:33:36Z" duration="1.535589" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1647" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;side-by-side&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;side-by-side&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1663501712" result="Passed" start-time="2026-10-05 10:33:36Z" end-time="2026-10-05 10:33:37Z" duration="1.418384" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1648" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;power-boost&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;power-boost&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1867100615" result="Passed" start-time="2026-10-05 10:33:37Z" end-time="2026-10-05 10:33:39Z" duration="1.434086" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1649" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;kinetic-blast&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;kinetic-blast&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1332083808" result="Passed" start-time="2026-10-05 10:33:39Z" end-time="2026-10-05 10:33:40Z" duration="1.412615" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1650" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;iron-wall&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;iron-wall&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="450661579" result="Passed" start-time="2026-10-05 10:33:40Z" end-time="2026-10-05 10:33:42Z" duration="1.463725" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1651" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;opportune-moment&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;opportune-moment&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2083926189" result="Passed" start-time="2026-10-05 10:33:42Z" end-time="2026-10-05 10:33:43Z" duration="1.528407" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1652" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;armed-conspiracy&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;armed-conspiracy&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1297804277" result="Passed" start-time="2026-10-05 10:33:43Z" end-time="2026-10-05 10:33:44Z" duration="1.387411" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1653" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;guard-minion&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;guard-minion&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="199610460" result="Passed" start-time="2026-10-05 10:33:44Z" end-time="2026-10-05 10:33:46Z" duration="1.625952" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1654" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shield-minion&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shield-minion&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1097600281" result="Passed" start-time="2026-10-05 10:33:46Z" end-time="2026-10-05 10:33:48Z" duration="1.685165" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1655" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;thunderstorm&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;thunderstorm&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="732578505" result="Passed" start-time="2026-10-05 10:33:48Z" end-time="2026-10-05 10:33:50Z" duration="2.513678" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1656" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;heavy-weaponry&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;heavy-weaponry&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1103550008" result="Passed" start-time="2026-10-05 10:33:50Z" end-time="2026-10-05 10:33:52Z" duration="2.176212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1657" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;heavy-weaponry-blocked&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;heavy-weaponry-blocked&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="552946713" result="Passed" start-time="2026-10-05 10:33:52Z" end-time="2026-10-05 10:33:55Z" duration="2.256206" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1658" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;phantasm&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;phantasm&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2044963606" result="Passed" start-time="2026-10-05 10:33:55Z" end-time="2026-10-05 10:33:57Z" duration="2.257529" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1659" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;phantasm-defense&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;phantasm-defense&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1991094079" result="Passed" start-time="2026-10-05 10:33:57Z" end-time="2026-10-05 10:33:59Z" duration="2.181146" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1660" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;phantasm-empty&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;phantasm-empty&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1777313304" result="Passed" start-time="2026-10-05 10:33:59Z" end-time="2026-10-05 10:34:02Z" duration="2.609477" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1661" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;cloak-repeat&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;cloak-repeat&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="789882998" result="Passed" start-time="2026-10-05 10:34:02Z" end-time="2026-10-05 10:34:05Z" duration="2.967054" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1662" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;cloak-fail&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;cloak-fail&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1983021500" result="Passed" start-time="2026-10-05 10:34:05Z" end-time="2026-10-05 10:34:08Z" duration="2.900355" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1663" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;one-man-first&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;one-man-first&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1198915910" result="Passed" start-time="2026-10-05 10:34:08Z" end-time="2026-10-05 10:34:10Z" duration="2.271485" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1664" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;one-man-captain&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;one-man-captain&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="810340600" result="Passed" start-time="2026-10-05 10:34:10Z" end-time="2026-10-05 10:34:12Z" duration="2.274965" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1665" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;lord-tides-army&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;lord-tides-army&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="329936352" result="Passed" start-time="2026-10-05 10:34:12Z" end-time="2026-10-05 10:34:15Z" duration="2.863808" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1666" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;lord-tides-heavy&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;lord-tides-heavy&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1136631444" result="Passed" start-time="2026-10-05 10:34:15Z" end-time="2026-10-05 10:34:17Z" duration="2.398766" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1667" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;lord-tides-enemy&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;lord-tides-enemy&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1967687753" result="Passed" start-time="2026-10-05 10:34:17Z" end-time="2026-10-05 10:34:20Z" duration="2.135282" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1668" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;fortify-pay&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;fortify-pay&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1062683865" result="Passed" start-time="2026-10-05 10:34:20Z" end-time="2026-10-05 10:34:21Z" duration="1.809948" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1669" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;fortify-protected&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;fortify-protected&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="987466602" result="Passed" start-time="2026-10-05 10:34:21Z" end-time="2026-10-05 10:34:23Z" duration="1.748473" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1670" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;defensive-counter-pay&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;defensive-counter-pay&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="691458884" result="Passed" start-time="2026-10-05 10:34:23Z" end-time="2026-10-05 10:34:25Z" duration="1.442558" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1671" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;counterattack-defense&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;counterattack-defense&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="147099574" result="Passed" start-time="2026-10-05 10:34:25Z" end-time="2026-10-05 10:34:26Z" duration="1.413074" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1672" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;counterattack-nested&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;counterattack-nested&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="734990143" result="Passed" start-time="2026-10-05 10:34:26Z" end-time="2026-10-05 10:34:28Z" duration="1.505147" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1673" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;undying-loyalty-recover&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;undying-loyalty-recover&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1898758136" result="Passed" start-time="2026-10-05 10:34:28Z" end-time="2026-10-05 10:34:29Z" duration="1.463915" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1674" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;duelist-failed-respawn&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;duelist-failed-respawn&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="967225765" result="Passed" start-time="2026-10-05 10:34:29Z" end-time="2026-10-05 10:34:30Z" duration="1.480452" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1675" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;legendary-duelist-failed-respawn&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;legendary-duelist-failed-respawn&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1939005458" result="Passed" start-time="2026-10-05 10:34:30Z" end-time="2026-10-05 10:34:32Z" duration="1.480345" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1676" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;siren-song-two-targets&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;siren-song-two-targets&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="936794371" result="Passed" start-time="2026-10-05 10:34:32Z" end-time="2026-10-05 10:34:33Z" duration="1.413706" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1677" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;siren-song-minion-return&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;siren-song-minion-return&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="828375028" result="Passed" start-time="2026-10-05 10:34:33Z" end-time="2026-10-05 10:34:35Z" duration="1.434929" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1678" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tide-static-boundary&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tide-static-boundary&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1540118043" result="Passed" start-time="2026-10-05 10:34:35Z" end-time="2026-10-05 10:34:36Z" duration="1.383940" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1679" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tide-vacated-hero-spawn&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tide-vacated-hero-spawn&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="933704411" result="Passed" start-time="2026-10-05 10:34:36Z" end-time="2026-10-05 10:34:38Z" duration="1.464620" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1680" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tide-vacated-minion-spawn&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tide-vacated-minion-spawn&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="146212781" result="Passed" start-time="2026-10-05 10:34:38Z" end-time="2026-10-05 10:34:39Z" duration="1.445443" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1681" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;magic-water-third-ring&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;magic-water-third-ring&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="256582320" result="Passed" start-time="2026-10-05 10:34:39Z" end-time="2026-10-05 10:34:41Z" duration="1.430967" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1682" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;magic-water-vacated-minion-spawn&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;magic-water-vacated-minion-spawn&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="846514208" result="Passed" start-time="2026-10-05 10:34:41Z" end-time="2026-10-05 10:34:42Z" duration="1.427110" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1683" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;covering-fire-pay&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;covering-fire-pay&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1761974632" result="Passed" start-time="2026-10-05 10:34:42Z" end-time="2026-10-05 10:34:43Z" duration="1.473196" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1684" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;covering-fire-counterattack&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;covering-fire-counterattack&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1085365972" result="Passed" start-time="2026-10-05 10:34:43Z" end-time="2026-10-05 10:34:45Z" duration="1.482973" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1685" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;energy-explosion-pay&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;energy-explosion-pay&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="255235217" result="Passed" start-time="2026-10-05 10:34:45Z" end-time="2026-10-05 10:34:46Z" duration="1.429357" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1686" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;energy-explosion-counterattack&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;energy-explosion-counterattack&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1749250840" result="Passed" start-time="2026-10-05 10:34:46Z" end-time="2026-10-05 10:34:48Z" duration="1.450508" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1687" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;punch-two-steps&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;punch-two-steps&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1798159791" result="Passed" start-time="2026-10-05 10:34:48Z" end-time="2026-10-05 10:34:49Z" duration="1.442718" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1688" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;punch-minion-return&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;punch-minion-return&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="974058604" result="Passed" start-time="2026-10-05 10:34:49Z" end-time="2026-10-05 10:34:51Z" duration="1.439631" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1689" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;crushing-punch-move&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;crushing-punch-move&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="93742734" result="Passed" start-time="2026-10-05 10:34:51Z" end-time="2026-10-05 10:34:52Z" duration="1.448217" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1690" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;savage-kick-hero&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;savage-kick-hero&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1133948179" result="Passed" start-time="2026-10-05 10:34:52Z" end-time="2026-10-05 10:34:54Z" duration="1.460332" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1691" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;savage-kick-phantasm&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;savage-kick-phantasm&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1504053068" result="Passed" start-time="2026-10-05 10:34:54Z" end-time="2026-10-05 10:34:56Z" duration="2.216584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1692" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;surge-same-target&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;surge-same-target&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="246147775" result="Passed" start-time="2026-10-05 10:34:56Z" end-time="2026-10-05 10:34:57Z" duration="1.462909" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1693" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;surge-counter&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;surge-counter&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1060954877" result="Passed" start-time="2026-10-05 10:34:57Z" end-time="2026-10-05 10:34:59Z" duration="1.466831" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1694" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;rising-tide-push&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;rising-tide-push&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1323363663" result="Passed" start-time="2026-10-05 10:34:59Z" end-time="2026-10-05 10:35:00Z" duration="1.461850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1695" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tsunami-move-push&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tsunami-move-push&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="11658149" result="Passed" start-time="2026-10-05 10:35:00Z" end-time="2026-10-05 10:35:02Z" duration="1.389698" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1696" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tsunami-counter&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tsunami-counter&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1027523385" result="Passed" start-time="2026-10-05 10:35:02Z" end-time="2026-10-05 10:35:03Z" duration="1.471961" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1697" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;mind-control-enemy&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;mind-control-enemy&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="391999564" result="Passed" start-time="2026-10-05 10:35:03Z" end-time="2026-10-05 10:35:05Z" duration="1.476864" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1698" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;mind-control-minion&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;mind-control-minion&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1494194082" result="Passed" start-time="2026-10-05 10:35:05Z" end-time="2026-10-05 10:35:06Z" duration="1.500118" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1699" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;heart-control-repeat&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;heart-control-repeat&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="820246143" result="Passed" start-time="2026-10-05 10:35:06Z" end-time="2026-10-05 10:35:07Z" duration="1.409260" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1700" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;heart-control-minion&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;heart-control-minion&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1833898907" result="Passed" start-time="2026-10-05 10:35:07Z" end-time="2026-10-05 10:35:09Z" duration="1.466587" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1701" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shifting-step-enemy&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shifting-step-enemy&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2051116340" result="Passed" start-time="2026-10-05 10:35:09Z" end-time="2026-10-05 10:35:10Z" duration="1.444799" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1702" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shifting-step-minion&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;shifting-step-minion&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="600817847" result="Passed" start-time="2026-10-05 10:35:10Z" end-time="2026-10-05 10:35:12Z" duration="1.477304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1703" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;torrent-pay&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;torrent-pay&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="879634013" result="Passed" start-time="2026-10-05 10:35:12Z" end-time="2026-10-05 10:35:13Z" duration="1.438962" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1704" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;torrent-no-rear&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;torrent-no-rear&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="640624924" result="Passed" start-time="2026-10-05 10:35:13Z" end-time="2026-10-05 10:35:15Z" duration="1.483037" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1705" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;torrent-counterattack&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;torrent-counterattack&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="303562005" result="Passed" start-time="2026-10-05 10:35:15Z" end-time="2026-10-05 10:35:16Z" duration="1.467178" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1706" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tidal-wave-pay&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tidal-wave-pay&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1348936046" result="Passed" start-time="2026-10-05 10:35:16Z" end-time="2026-10-05 10:35:18Z" duration="1.466733" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1707" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tidal-wave-two-payments&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tidal-wave-two-payments&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1546529788" result="Passed" start-time="2026-10-05 10:35:18Z" end-time="2026-10-05 10:35:19Z" duration="1.453815" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1708" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tidal-wave-counterattack&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;tidal-wave-counterattack&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1379868342" result="Passed" start-time="2026-10-05 10:35:19Z" end-time="2026-10-05 10:35:21Z" duration="1.469305" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1709" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;telekinesis-enemy&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;telekinesis-enemy&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1306078470" result="Passed" start-time="2026-10-05 10:35:21Z" end-time="2026-10-05 10:35:22Z" duration="1.397021" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1710" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;telekinesis-minion&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;telekinesis-minion&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1943267781" result="Passed" start-time="2026-10-05 10:35:22Z" end-time="2026-10-05 10:35:23Z" duration="1.461439" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1711" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;gravity-control-same&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;gravity-control-same&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="275174980" result="Passed" start-time="2026-10-05 10:35:23Z" end-time="2026-10-05 10:35:25Z" duration="1.445697" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1712" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;gravity-control-minion&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;gravity-control-minion&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1160312317" result="Passed" start-time="2026-10-05 10:35:25Z" end-time="2026-10-05 10:35:26Z" duration="1.438130" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1713" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;psychic-vortex-three&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;psychic-vortex-three&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1111259195" result="Passed" start-time="2026-10-05 10:35:26Z" end-time="2026-10-05 10:35:28Z" duration="1.427499" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1714" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;psychic-vortex-minion&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;psychic-vortex-minion&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1844881298" result="Passed" start-time="2026-10-05 10:35:28Z" end-time="2026-10-05 10:35:29Z" duration="1.443857" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1715" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;charm-activate&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;charm-activate&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1520730984" result="Passed" start-time="2026-10-05 10:35:29Z" end-time="2026-10-05 10:35:31Z" duration="1.468192" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1716" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;charm-defense&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;charm-defense&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2090852437" result="Passed" start-time="2026-10-05 10:35:31Z" end-time="2026-10-05 10:35:32Z" duration="1.647790" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1717" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;charm-dual&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;charm-dual&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="221046868" result="Passed" start-time="2026-10-05 10:35:32Z" end-time="2026-10-05 10:35:34Z" duration="1.749102" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1718" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;dominion-activate&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;dominion-activate&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="113549938" result="Passed" start-time="2026-10-05 10:35:34Z" end-time="2026-10-05 10:35:36Z" duration="1.579592" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1719" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;dominion-defense&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;dominion-defense&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="555105383" result="Passed" start-time="2026-10-05 10:35:36Z" end-time="2026-10-05 10:35:37Z" duration="1.699711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1720" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;dominion-ranged&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;dominion-ranged&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="728169159" result="Passed" start-time="2026-10-05 10:35:37Z" end-time="2026-10-05 10:35:39Z" duration="1.772935" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1721" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;dominance-activate&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;dominance-activate&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1485955300" result="Passed" start-time="2026-10-05 10:35:39Z" end-time="2026-10-05 10:35:41Z" duration="1.562837" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1722" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;dominance-defense&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;dominance-defense&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="993629149" result="Passed" start-time="2026-10-05 10:35:41Z" end-time="2026-10-05 10:35:42Z" duration="1.703287" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1723" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;slippery-secondary&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;slippery-secondary&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="968941131" result="Passed" start-time="2026-10-05 10:35:42Z" end-time="2026-10-05 10:35:44Z" duration="1.464311" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1724" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;slippery-primary&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;slippery-primary&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2001002070" result="Passed" start-time="2026-10-05 10:35:44Z" end-time="2026-10-05 10:35:45Z" duration="1.468261" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1725" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;slippery-outside&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;slippery-outside&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1334889463" result="Passed" start-time="2026-10-05 10:35:45Z" end-time="2026-10-05 10:35:48Z" duration="2.651272" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1726" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;flood-secondary&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;flood-secondary&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2048435446" result="Passed" start-time="2026-10-05 10:35:48Z" end-time="2026-10-05 10:35:51Z" duration="3.037404" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1727" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;flood-outside&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;flood-outside&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1821518913" result="Passed" start-time="2026-10-05 10:35:51Z" end-time="2026-10-05 10:35:55Z" duration="3.674561" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1728" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;poison-dagger-cast&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;poison-dagger-cast&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="575394473" result="Passed" start-time="2026-10-05 10:35:55Z" end-time="2026-10-05 10:35:59Z" duration="4.662388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1729" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;poison-dagger-attack&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;poison-dagger-attack&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="955567616" result="Passed" start-time="2026-10-05 10:35:59Z" end-time="2026-10-05 10:36:05Z" duration="5.937549" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1730" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;poison-dart-cast&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;poison-dart-cast&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="911482073" result="Passed" start-time="2026-10-05 10:36:05Z" end-time="2026-10-05 10:36:07Z" duration="2.164212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1731" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;poison-dart-attack&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;poison-dart-attack&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="544794807" result="Passed" start-time="2026-10-05 10:36:07Z" end-time="2026-10-05 10:36:10Z" duration="2.565517" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1732" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;binding-cast&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;binding-cast&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1481664593" result="Passed" start-time="2026-10-05 10:36:10Z" end-time="2026-10-05 10:36:11Z" duration="1.462101" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1733" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;binding-gold&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;binding-gold&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="719871900" result="Passed" start-time="2026-10-05 10:36:11Z" end-time="2026-10-05 10:36:13Z" duration="1.581652" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1734" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;binding-red&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;binding-red&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1247289151" result="Passed" start-time="2026-10-05 10:36:13Z" end-time="2026-10-05 10:36:15Z" duration="1.644298" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1735" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;binding-blue&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;binding-blue&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="242580088" result="Passed" start-time="2026-10-05 10:36:15Z" end-time="2026-10-05 10:36:16Z" duration="1.604996" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1736" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;death-grasp-cast&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;death-grasp-cast&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1803248120" result="Passed" start-time="2026-10-05 10:36:16Z" end-time="2026-10-05 10:36:18Z" duration="1.436649" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1737" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;death-grasp-gold&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;death-grasp-gold&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="2114363842" result="Passed" start-time="2026-10-05 10:36:18Z" end-time="2026-10-05 10:36:19Z" duration="1.629583" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1738" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;death-grasp-red&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;death-grasp-red&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1121349708" result="Passed" start-time="2026-10-05 10:36:19Z" end-time="2026-10-05 10:36:21Z" duration="1.628542" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1739" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-cast&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-cast&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="781803967" result="Passed" start-time="2026-10-05 10:36:21Z" end-time="2026-10-05 10:36:22Z" duration="1.441232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1740" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-placement&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-placement&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1053782818" result="Passed" start-time="2026-10-05 10:36:22Z" end-time="2026-10-05 10:36:24Z" duration="1.482227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1741" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-dynamic&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-dynamic&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="202721052" result="Passed" start-time="2026-10-05 10:36:24Z" end-time="2026-10-05 10:36:25Z" duration="1.430040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1742" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-eye-cast&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-eye-cast&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="418291449" result="Passed" start-time="2026-10-05 10:36:25Z" end-time="2026-10-05 10:36:27Z" duration="1.437294" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1743" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-eye-placement&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-eye-placement&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1815463781" result="Passed" start-time="2026-10-05 10:36:27Z" end-time="2026-10-05 10:36:28Z" duration="1.506378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1744" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-eye-dynamic&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-eye-dynamic&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="297958600" result="Passed" start-time="2026-10-05 10:36:28Z" end-time="2026-10-05 10:36:30Z" duration="1.416328" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1745" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-gaze-cast&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-gaze-cast&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="858773199" result="Passed" start-time="2026-10-05 10:36:30Z" end-time="2026-10-05 10:36:31Z" duration="1.439257" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1746" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-gaze-placement&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-gaze-placement&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="343740751" result="Passed" start-time="2026-10-05 10:36:31Z" end-time="2026-10-05 10:36:33Z" duration="1.443469" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1747" name="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-gaze-dynamic&quot;)" fullname="Goa2.Tests.DebugPositionTests.PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice(&quot;petrify-gaze-dynamic&quot;)" methodname="PreparedPositionsExecuteRealCommandsAndRestoreAtTheirAdvertisedChoice" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1282372227" result="Passed" start-time="2026-10-05 10:36:33Z" end-time="2026-10-05 10:36:34Z" duration="1.400624" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1764" name="PublishedPresetPackageFitsThePayloadBudgetAndOversizedInputIsStillRejected" fullname="Goa2.Tests.DebugPositionTests.PublishedPresetPackageFitsThePayloadBudgetAndOversizedInputIsStillRejected" methodname="PublishedPresetPackageFitsThePayloadBudgetAndOversizedInputIsStillRejected" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1880565783" result="Passed" start-time="2026-10-05 10:36:34Z" end-time="2026-10-05 10:36:35Z" duration="1.265321" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1767" name="SourceMetadataCannotEscapeTheScenarioDirectoryOrUseBooleanStepCounts" fullname="Goa2.Tests.DebugPositionTests.SourceMetadataCannotEscapeTheScenarioDirectoryOrUseBooleanStepCounts" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 10:36:35Z" end-time="2026-10-05 10:36:35Z" duration="0.047465" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1765" name="SourceMetadataCannotEscapeTheScenarioDirectoryOrUseBooleanStepCounts(&quot;scenario_path&quot;)" fullname="Goa2.Tests.DebugPositionTests.SourceMetadataCannotEscapeTheScenarioDirectoryOrUseBooleanStepCounts(&quot;scenario_path&quot;)" methodname="SourceMetadataCannotEscapeTheScenarioDirectoryOrUseBooleanStepCounts" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1110788975" result="Passed" start-time="2026-10-05 10:36:35Z" end-time="2026-10-05 10:36:35Z" duration="0.034211" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1766" name="SourceMetadataCannotEscapeTheScenarioDirectoryOrUseBooleanStepCounts(&quot;boolean_step&quot;)" fullname="Goa2.Tests.DebugPositionTests.SourceMetadataCannotEscapeTheScenarioDirectoryOrUseBooleanStepCounts(&quot;boolean_step&quot;)" methodname="SourceMetadataCannotEscapeTheScenarioDirectoryOrUseBooleanStepCounts" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="144679773" result="Passed" start-time="2026-10-05 10:36:35Z" end-time="2026-10-05 10:36:35Z" duration="0.012366" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1753" name="UpgradeUiSamplesExposeTheIntendedNumberOfRoutes" fullname="Goa2.Tests.DebugPositionTests.UpgradeUiSamplesExposeTheIntendedNumberOfRoutes" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-05 10:36:35Z" end-time="2026-10-05 10:36:41Z" duration="5.746596" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1750" name="UpgradeUiSamplesExposeTheIntendedNumberOfRoutes(&quot;ui-upgrades-six&quot;,4)" fullname="Goa2.Tests.DebugPositionTests.UpgradeUiSamplesExposeTheIntendedNumberOfRoutes(&quot;ui-upgrades-six&quot;,4)" methodname="UpgradeUiSamplesExposeTheIntendedNumberOfRoutes" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="232942282" result="Passed" start-time="2026-10-05 10:36:35Z" end-time="2026-10-05 10:36:37Z" duration="1.439322" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1751" name="UpgradeUiSamplesExposeTheIntendedNumberOfRoutes(&quot;ui-upgrades-three&quot;,2)" fullname="Goa2.Tests.DebugPositionTests.UpgradeUiSamplesExposeTheIntendedNumberOfRoutes(&quot;ui-upgrades-three&quot;,2)" methodname="UpgradeUiSamplesExposeTheIntendedNumberOfRoutes" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1493032468" result="Passed" start-time="2026-10-05 10:36:37Z" end-time="2026-10-05 10:36:38Z" duration="1.617266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1752" name="UpgradeUiSamplesExposeTheIntendedNumberOfRoutes(&quot;ui-upgrades-purple&quot;,1)" fullname="Goa2.Tests.DebugPositionTests.UpgradeUiSamplesExposeTheIntendedNumberOfRoutes(&quot;ui-upgrades-purple&quot;,1)" methodname="UpgradeUiSamplesExposeTheIntendedNumberOfRoutes" classname="Goa2.Tests.DebugPositionTests" runstate="Runnable" seed="1162617455" result="Passed" start-time="2026-10-05 10:36:38Z" end-time="2026-10-05 10:36:41Z" duration="2.689215" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\upgrade-sample-presets-f3dd5d00a30f4286896476c6a6bbf12f.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

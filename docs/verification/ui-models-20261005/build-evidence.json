@@ -1,0 +1,10 @@
+{
+  "sourceCommit": "e6bd8137432ff941da689fcd91a0b008c11ddb82",
+  "engineVersion": 97,
+  "builtUtc": "2026-10-05T10:52:19.539004Z",
+  "exeSha256": "82efd5a8c297a5046f6bb72c240dab8972e64003851935eba0a46ad121ce0305",
+  "manifestSha256": "0d87540371c7f271e811a23849ed352186a8820658d13aff961e87f0b29d5bae",
+  "sourceFiles": 897,
+  "payloadFiles": 158,
+  "sourceInventoryVerification": "PASS"
+}

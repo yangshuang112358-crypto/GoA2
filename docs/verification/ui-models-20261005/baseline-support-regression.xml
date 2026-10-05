@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="69" result="Passed" total="69" passed="69" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-05 10:24:33Z" end-time="2026-10-05 10:24:43Z" duration="10.0677558">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2345" result="Passed" start-time="2026-10-05 10:24:33Z" end-time="2026-10-05 10:24:43Z" duration="10.067756" total="69" passed="69" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3565" name="Goa2.Core.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.Core.Tests.dll" runstate="Runnable" testcasecount="2185" result="Passed" start-time="2026-10-05 10:24:33Z" end-time="2026-10-05 10:24:43Z" duration="10.041161" total="69" passed="69" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="18840" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="3566" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="2185" result="Passed" start-time="2026-10-05 10:24:33Z" end-time="2026-10-05 10:24:43Z" duration="10.038107" total="69" passed="69" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="3567" name="Tests" fullname="Goa2.Tests" runstate="Runnable" testcasecount="2185" result="Passed" start-time="2026-10-05 10:24:33Z" end-time="2026-10-05 10:24:43Z" duration="10.033444" total="69" passed="69" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1378" name="CombatFlowTests" fullname="Goa2.Tests.CombatFlowTests" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-05 10:24:33Z" end-time="2026-10-05 10:24:36Z" duration="2.889901" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1391" name="AttackWithNoLegalTargetsEndsTheCommittedCard" fullname="Goa2.Tests.CombatFlowTests.AttackWithNoLegalTargetsEndsTheCommittedCard" methodname="AttackWithNoLegalTargetsEndsTheCommittedCard" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="1699031482" result="Passed" start-time="2026-10-05 10:24:33Z" end-time="2026-10-05 10:24:33Z" duration="0.351100" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1388" name="ChallengerResponseIgnoresBothSignsWithoutMovingOrDeletingMinions" fullname="Goa2.Tests.CombatFlowTests.ChallengerResponseIgnoresBothSignsWithoutMovingOrDeletingMinions" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 10:24:33Z" end-time="2026-10-05 10:24:34Z" duration="0.397161" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1386" name="ChallengerResponseIgnoresBothSignsWithoutMovingOrDeletingMinions(2,0)" fullname="Goa2.Tests.CombatFlowTests.ChallengerResponseIgnoresBothSignsWithoutMovingOrDeletingMinions(2,0)" methodname="ChallengerResponseIgnoresBothSignsWithoutMovingOrDeletingMinions" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="677271706" result="Passed" start-time="2026-10-05 10:24:33Z" end-time="2026-10-05 10:24:34Z" duration="0.215560" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1387" name="ChallengerResponseIgnoresBothSignsWithoutMovingOrDeletingMinions(0,2)" fullname="Goa2.Tests.CombatFlowTests.ChallengerResponseIgnoresBothSignsWithoutMovingOrDeletingMinions(0,2)" methodname="ChallengerResponseIgnoresBothSignsWithoutMovingOrDeletingMinions" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="631131239" result="Passed" start-time="2026-10-05 10:24:34Z" end-time="2026-10-05 10:24:34Z" duration="0.179373" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1389" name="EmptyDefenseHandDefeatsWithoutRequestingAFakeCard" fullname="Goa2.Tests.CombatFlowTests.EmptyDefenseHandDefeatsWithoutRequestingAFakeCard" methodname="EmptyDefenseHandDefeatsWithoutRequestingAFakeCard" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="1689401521" result="Passed" start-time="2026-10-05 10:24:34Z" end-time="2026-10-05 10:24:34Z" duration="0.158846" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1382" name="FailedDefensePaysRewardsAndRespawnContinuesTheVictimsNextCard" fullname="Goa2.Tests.CombatFlowTests.FailedDefensePaysRewardsAndRespawnContinuesTheVictimsNextCard" methodname="FailedDefensePaysRewardsAndRespawnContinuesTheVictimsNextCard" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="967864008" result="Passed" start-time="2026-10-05 10:24:34Z" end-time="2026-10-05 10:24:34Z" duration="0.179415" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1397" name="FullyOccupiedHeroSpawnsRemainPendingUntilAnActualSpawnBecomesFree" fullname="Goa2.Tests.CombatFlowTests.FullyOccupiedHeroSpawnsRemainPendingUntilAnActualSpawnBecomesFree" methodname="FullyOccupiedHeroSpawnsRemainPendingUntilAnActualSpawnBecomesFree" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="1662250" result="Passed" start-time="2026-10-05 10:24:34Z" end-time="2026-10-05 10:24:34Z" duration="0.208077" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1396" name="HeavyAttackResumesItsExactCardStepAfterCaptainSpawnAndRestore" fullname="Goa2.Tests.CombatFlowTests.HeavyAttackResumesItsExactCardStepAfterCaptainSpawnAndRestore" methodname="HeavyAttackResumesItsExactCardStepAfterCaptainSpawnAndRestore" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="1983846083" result="Passed" start-time="2026-10-05 10:24:34Z" end-time="2026-10-05 10:24:35Z" duration="0.241986" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1395" name="MinionAttackPaysTheCorrectRewardWithoutAHeroDefenseWindow" fullname="Goa2.Tests.CombatFlowTests.MinionAttackPaysTheCorrectRewardWithoutAHeroDefenseWindow" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-05 10:24:35Z" end-time="2026-10-05 10:24:35Z" duration="0.458355" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1392" name="MinionAttackPaysTheCorrectRewardWithoutAHeroDefenseWindow(&quot;melee&quot;,2)" fullname="Goa2.Tests.CombatFlowTests.MinionAttackPaysTheCorrectRewardWithoutAHeroDefenseWindow(&quot;melee&quot;,2)" methodname="MinionAttackPaysTheCorrectRewardWithoutAHeroDefenseWindow" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="1596233735" result="Passed" start-time="2026-10-05 10:24:35Z" end-time="2026-10-05 10:24:35Z" duration="0.135910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1393" name="MinionAttackPaysTheCorrectRewardWithoutAHeroDefenseWindow(&quot;ranged&quot;,2)" fullname="Goa2.Tests.CombatFlowTests.MinionAttackPaysTheCorrectRewardWithoutAHeroDefenseWindow(&quot;ranged&quot;,2)" methodname="MinionAttackPaysTheCorrectRewardWithoutAHeroDefenseWindow" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="1378082539" result="Passed" start-time="2026-10-05 10:24:35Z" end-time="2026-10-05 10:24:35Z" duration="0.124902" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1394" name="MinionAttackPaysTheCorrectRewardWithoutAHeroDefenseWindow(&quot;heavy&quot;,4)" fullname="Goa2.Tests.CombatFlowTests.MinionAttackPaysTheCorrectRewardWithoutAHeroDefenseWindow(&quot;heavy&quot;,4)" methodname="MinionAttackPaysTheCorrectRewardWithoutAHeroDefenseWindow" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="1862847746" result="Passed" start-time="2026-10-05 10:24:35Z" end-time="2026-10-05 10:24:35Z" duration="0.196542" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1381" name="PrimaryActionLocksOtherActionsAndBothChoicesRestore" fullname="Goa2.Tests.CombatFlowTests.PrimaryActionLocksOtherActionsAndBothChoicesRestore" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 10:24:35Z" end-time="2026-10-05 10:24:35Z" duration="0.319397" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1379" name="PrimaryActionLocksOtherActionsAndBothChoicesRestore(&quot;sabina&quot;,&quot;sabina-01-拔枪&quot;)" fullname="Goa2.Tests.CombatFlowTests.PrimaryActionLocksOtherActionsAndBothChoicesRestore(&quot;sabina&quot;,&quot;sabina-01-拔枪&quot;)" methodname="PrimaryActionLocksOtherActionsAndBothChoicesRestore" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="615280332" result="Passed" start-time="2026-10-05 10:24:35Z" end-time="2026-10-05 10:24:35Z" duration="0.156698" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1380" name="PrimaryActionLocksOtherActionsAndBothChoicesRestore(&quot;shargatha&quot;,&quot;shargatha-02-快速突刺&quot;)" fullname="Goa2.Tests.CombatFlowTests.PrimaryActionLocksOtherActionsAndBothChoicesRestore(&quot;shargatha&quot;,&quot;shargatha-02-快速突刺&quot;)" methodname="PrimaryActionLocksOtherActionsAndBothChoicesRestore" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="326456539" result="Passed" start-time="2026-10-05 10:24:35Z" end-time="2026-10-05 10:24:35Z" duration="0.161819" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1385" name="PrimaryBlockDiscardsPrivatelyWithoutBorrowingHigherCardEffects" fullname="Goa2.Tests.CombatFlowTests.PrimaryBlockDiscardsPrivatelyWithoutBorrowingHigherCardEffects" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 10:24:35Z" end-time="2026-10-05 10:24:36Z" duration="0.248555" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1383" name="PrimaryBlockDiscardsPrivatelyWithoutBorrowingHigherCardEffects(&quot;wasp&quot;,&quot;wasp-07-抵挡屏障&quot;,&quot;green&quot;)" fullname="Goa2.Tests.CombatFlowTests.PrimaryBlockDiscardsPrivatelyWithoutBorrowingHigherCardEffects(&quot;wasp&quot;,&quot;wasp-07-抵挡屏障&quot;,&quot;green&quot;)" methodname="PrimaryBlockDiscardsPrivatelyWithoutBorrowingHigherCardEffects" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="1303431334" result="Passed" start-time="2026-10-05 10:24:35Z" end-time="2026-10-05 10:24:36Z" duration="0.128000" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1384" name="PrimaryBlockDiscardsPrivatelyWithoutBorrowingHigherCardEffects(&quot;tigerclaw&quot;,&quot;tigerclaw-18-躲闪&quot;,&quot;blue&quot;)" fullname="Goa2.Tests.CombatFlowTests.PrimaryBlockDiscardsPrivatelyWithoutBorrowingHigherCardEffects(&quot;tigerclaw&quot;,&quot;tigerclaw-18-躲闪&quot;,&quot;blue&quot;)" methodname="PrimaryBlockDiscardsPrivatelyWithoutBorrowingHigherCardEffects" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="1706606093" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.119662" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1398" name="StructuralDebugToolsCannotAlterAnOutstandingDefense" fullname="Goa2.Tests.CombatFlowTests.StructuralDebugToolsCannotAlterAnOutstandingDefense" methodname="StructuralDebugToolsCannotAlterAnOutstandingDefense" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="1049966937" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.128220" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1390" name="UnimplementedPrimaryResponseWaitsRatherThanPretendingTheHandIsEmpty" fullname="Goa2.Tests.CombatFlowTests.UnimplementedPrimaryResponseWaitsRatherThanPretendingTheHandIsEmpty" methodname="UnimplementedPrimaryResponseWaitsRatherThanPretendingTheHandIsEmpty" classname="Goa2.Tests.CombatFlowTests" runstate="Runnable" seed="2122741771" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.180993" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1399" name="CombatMathTests" fullname="Goa2.Tests.CombatMathTests" classname="Goa2.Tests.CombatMathTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.004046" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1400" name="AttackReportsEnemySupportAndOnlyFriendlyMeleeGuard" fullname="Goa2.Tests.CombatMathTests.AttackReportsEnemySupportAndOnlyFriendlyMeleeGuard" methodname="AttackReportsEnemySupportAndOnlyFriendlyMeleeGuard" classname="Goa2.Tests.CombatMathTests" runstate="Runnable" seed="477211089" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.002407" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1402" name="DefenseUsesInclusiveComparisonAndIgnoringMinionsAffectsBothSigns" fullname="Goa2.Tests.CombatMathTests.DefenseUsesInclusiveComparisonAndIgnoringMinionsAffectsBothSigns" methodname="DefenseUsesInclusiveComparisonAndIgnoringMinionsAffectsBothSigns" classname="Goa2.Tests.CombatMathTests" runstate="Runnable" seed="554515528" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.000210" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1401" name="NegativeAttackIsPreservedAndSkillRangeIsNotRanged" fullname="Goa2.Tests.CombatMathTests.NegativeAttackIsPreservedAndSkillRangeIsNotRanged" methodname="NegativeAttackIsPreservedAndSkillRangeIsNotRanged" classname="Goa2.Tests.CombatMathTests" runstate="Runnable" seed="1831318371" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.000297" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1403" name="UnblockablePreventsBlockingButStillAllowsNumericDefense" fullname="Goa2.Tests.CombatMathTests.UnblockablePreventsBlockingButStillAllowsNumericDefense" methodname="UnblockablePreventsBlockingButStillAllowsNumericDefense" classname="Goa2.Tests.CombatMathTests" runstate="Runnable" seed="1240385441" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.000145" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1404" name="CombatQueryTests" fullname="Goa2.Tests.CombatQueryTests" classname="Goa2.Tests.CombatQueryTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.054449" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1408" name="ChallengerIgnoresBothMinionSignsAndOnlyHandCardsCanRespond" fullname="Goa2.Tests.CombatQueryTests.ChallengerIgnoresBothMinionSignsAndOnlyHandCardsCanRespond" methodname="ChallengerIgnoresBothMinionSignsAndOnlyHandCardsCanRespond" classname="Goa2.Tests.CombatQueryTests" runstate="Runnable" seed="734222546" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.012699" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1405" name="OnlyReviewedAttackTextIsBoundToTheProgram" fullname="Goa2.Tests.CombatQueryTests.OnlyReviewedAttackTextIsBoundToTheProgram" methodname="OnlyReviewedAttackTextIsBoundToTheProgram" classname="Goa2.Tests.CombatQueryTests" runstate="Runnable" seed="1061342006" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.008121" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1406" name="TargetsRespectMinimumDistanceRangedBonusTeamAndHeavyProtection" fullname="Goa2.Tests.CombatQueryTests.TargetsRespectMinimumDistanceRangedBonusTeamAndHeavyProtection" methodname="TargetsRespectMinimumDistanceRangedBonusTeamAndHeavyProtection" classname="Goa2.Tests.CombatQueryTests" runstate="Runnable" seed="90588067" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.011561" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1409" name="UnknownPrimaryDefenseStaysExplicitAndSecondaryDefenseDoesNotBorrowItsMainText" fullname="Goa2.Tests.CombatQueryTests.UnknownPrimaryDefenseStaysExplicitAndSecondaryDefenseDoesNotBorrowItsMainText" methodname="UnknownPrimaryDefenseStaysExplicitAndSecondaryDefenseDoesNotBorrowItsMainText" classname="Goa2.Tests.CombatQueryTests" runstate="Runnable" seed="957089227" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.011956" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1407" name="WaspBlockRequiresNonAdjacentRangedWhileTigerBlockAllowsAdjacentRanged" fullname="Goa2.Tests.CombatQueryTests.WaspBlockRequiresNonAdjacentRangedWhileTigerBlockAllowsAdjacentRanged" methodname="WaspBlockRequiresNonAdjacentRangedWhileTigerBlockAllowsAdjacentRanged" classname="Goa2.Tests.CombatQueryTests" runstate="Runnable" seed="690626807" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.008707" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1427" name="ConditionalDefenseTests" fullname="Goa2.Tests.ConditionalDefenseTests" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:43Z" duration="6.975805" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1433" name="EmptyHandOnlyDefeatsTheAttackerForRiposte" fullname="Goa2.Tests.ConditionalDefenseTests.EmptyHandOnlyDefeatsTheAttackerForRiposte" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.328173" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1431" name="EmptyHandOnlyDefeatsTheAttackerForRiposte(&quot;tigerclaw-14-近身格挡&quot;,False)" fullname="Goa2.Tests.ConditionalDefenseTests.EmptyHandOnlyDefeatsTheAttackerForRiposte(&quot;tigerclaw-14-近身格挡&quot;,False)" methodname="EmptyHandOnlyDefeatsTheAttackerForRiposte" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1267461402" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.171362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1432" name="EmptyHandOnlyDefeatsTheAttackerForRiposte(&quot;tigerclaw-17-近身还击&quot;,True)" fullname="Goa2.Tests.ConditionalDefenseTests.EmptyHandOnlyDefeatsTheAttackerForRiposte(&quot;tigerclaw-17-近身还击&quot;,True)" methodname="EmptyHandOnlyDefeatsTheAttackerForRiposte" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1810220204" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:36Z" duration="0.156148" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1452" name="EvenAdjacentRangedAttackCannotBeBlockedAndExplainsWhyToOnlyTheDefender" fullname="Goa2.Tests.ConditionalDefenseTests.EvenAdjacentRangedAttackCannotBeBlockedAndExplainsWhyToOnlyTheDefender" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:37Z" duration="0.335239" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1450" name="EvenAdjacentRangedAttackCannotBeBlockedAndExplainsWhyToOnlyTheDefender(&quot;tigerclaw-14-近身格挡&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.EvenAdjacentRangedAttackCannotBeBlockedAndExplainsWhyToOnlyTheDefender(&quot;tigerclaw-14-近身格挡&quot;)" methodname="EvenAdjacentRangedAttackCannotBeBlockedAndExplainsWhyToOnlyTheDefender" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1225897014" result="Passed" start-time="2026-10-05 10:24:36Z" end-time="2026-10-05 10:24:37Z" duration="0.160197" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1451" name="EvenAdjacentRangedAttackCannotBeBlockedAndExplainsWhyToOnlyTheDefender(&quot;tigerclaw-17-近身还击&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.EvenAdjacentRangedAttackCannotBeBlockedAndExplainsWhyToOnlyTheDefender(&quot;tigerclaw-17-近身还击&quot;)" methodname="EvenAdjacentRangedAttackCannotBeBlockedAndExplainsWhyToOnlyTheDefender" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="518369680" result="Passed" start-time="2026-10-05 10:24:37Z" end-time="2026-10-05 10:24:37Z" duration="0.171554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1456" name="ForcedDiscardRequiresAnOwnedCardAndIsAtomicAndIdempotent" fullname="Goa2.Tests.ConditionalDefenseTests.ForcedDiscardRequiresAnOwnedCardAndIsAtomicAndIdempotent" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 10:24:37Z" end-time="2026-10-05 10:24:37Z" duration="0.485313" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1454" name="ForcedDiscardRequiresAnOwnedCardAndIsAtomicAndIdempotent(&quot;tigerclaw-14-近身格挡&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.ForcedDiscardRequiresAnOwnedCardAndIsAtomicAndIdempotent(&quot;tigerclaw-14-近身格挡&quot;)" methodname="ForcedDiscardRequiresAnOwnedCardAndIsAtomicAndIdempotent" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="635795057" result="Passed" start-time="2026-10-05 10:24:37Z" end-time="2026-10-05 10:24:37Z" duration="0.249455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1455" name="ForcedDiscardRequiresAnOwnedCardAndIsAtomicAndIdempotent(&quot;tigerclaw-17-近身还击&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.ForcedDiscardRequiresAnOwnedCardAndIsAtomicAndIdempotent(&quot;tigerclaw-17-近身还击&quot;)" methodname="ForcedDiscardRequiresAnOwnedCardAndIsAtomicAndIdempotent" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1792655289" result="Passed" start-time="2026-10-05 10:24:37Z" end-time="2026-10-05 10:24:37Z" duration="0.234846" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1482" name="FourthTurnFinalAttackCanBeCounterDefeatedThenReachUpgradesAndRespawnNextRound" fullname="Goa2.Tests.ConditionalDefenseTests.FourthTurnFinalAttackCanBeCounterDefeatedThenReachUpgradesAndRespawnNextRound" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 10:24:37Z" end-time="2026-10-05 10:24:39Z" duration="2.104402" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1480" name="FourthTurnFinalAttackCanBeCounterDefeatedThenReachUpgradesAndRespawnNextRound(False)" fullname="Goa2.Tests.ConditionalDefenseTests.FourthTurnFinalAttackCanBeCounterDefeatedThenReachUpgradesAndRespawnNextRound(False)" methodname="FourthTurnFinalAttackCanBeCounterDefeatedThenReachUpgradesAndRespawnNextRound" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="95833872" result="Passed" start-time="2026-10-05 10:24:37Z" end-time="2026-10-05 10:24:38Z" duration="1.054489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1481" name="FourthTurnFinalAttackCanBeCounterDefeatedThenReachUpgradesAndRespawnNextRound(True)" fullname="Goa2.Tests.ConditionalDefenseTests.FourthTurnFinalAttackCanBeCounterDefeatedThenReachUpgradesAndRespawnNextRound(True)" methodname="FourthTurnFinalAttackCanBeCounterDefeatedThenReachUpgradesAndRespawnNextRound" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1279925461" result="Passed" start-time="2026-10-05 10:24:38Z" end-time="2026-10-05 10:24:39Z" duration="1.048986" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1435" name="FriendlyAdjacentMinionEnablesLeadChargeAgainstNonRangedAttack" fullname="Goa2.Tests.ConditionalDefenseTests.FriendlyAdjacentMinionEnablesLeadChargeAgainstNonRangedAttack" methodname="FriendlyAdjacentMinionEnablesLeadChargeAgainstNonRangedAttack" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="258583785" result="Passed" start-time="2026-10-05 10:24:39Z" end-time="2026-10-05 10:24:39Z" duration="0.113706" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1449" name="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes" fullname="Goa2.Tests.ConditionalDefenseTests.LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-05 10:24:39Z" end-time="2026-10-05 10:24:40Z" duration="0.843338" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1439" name="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;melee&quot;,Red,1,False,True)" fullname="Goa2.Tests.ConditionalDefenseTests.LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;melee&quot;,Red,1,False,True)" methodname="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1901469976" result="Passed" start-time="2026-10-05 10:24:39Z" end-time="2026-10-05 10:24:39Z" duration="0.090667" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1440" name="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;ranged&quot;,Red,1,False,True)" fullname="Goa2.Tests.ConditionalDefenseTests.LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;ranged&quot;,Red,1,False,True)" methodname="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1083339684" result="Passed" start-time="2026-10-05 10:24:39Z" end-time="2026-10-05 10:24:40Z" duration="0.083403" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1441" name="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;heavy&quot;,Red,1,False,True)" fullname="Goa2.Tests.ConditionalDefenseTests.LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;heavy&quot;,Red,1,False,True)" methodname="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="2120990795" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:40Z" duration="0.080454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1442" name="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;melee&quot;,Red,1,True,True)" fullname="Goa2.Tests.ConditionalDefenseTests.LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;melee&quot;,Red,1,True,True)" methodname="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="535041391" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:40Z" duration="0.089737" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1443" name="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;ranged&quot;,Red,1,True,True)" fullname="Goa2.Tests.ConditionalDefenseTests.LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;ranged&quot;,Red,1,True,True)" methodname="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1981443590" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:40Z" duration="0.081263" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1444" name="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;heavy&quot;,Red,1,True,True)" fullname="Goa2.Tests.ConditionalDefenseTests.LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;heavy&quot;,Red,1,True,True)" methodname="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="774345239" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:40Z" duration="0.080765" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1445" name="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;melee&quot;,Blue,1,False,False)" fullname="Goa2.Tests.ConditionalDefenseTests.LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;melee&quot;,Blue,1,False,False)" methodname="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="125757879" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:40Z" duration="0.089523" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1446" name="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;hero&quot;,Red,1,False,False)" fullname="Goa2.Tests.ConditionalDefenseTests.LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;hero&quot;,Red,1,False,False)" methodname="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1194753740" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:40Z" duration="0.082199" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1447" name="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;marker&quot;,Red,1,True,False)" fullname="Goa2.Tests.ConditionalDefenseTests.LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;marker&quot;,Red,1,True,False)" methodname="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="3399821" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:40Z" duration="0.081847" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1448" name="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;melee&quot;,Red,2,True,False)" fullname="Goa2.Tests.ConditionalDefenseTests.LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes(&quot;melee&quot;,Red,2,True,False)" methodname="LeadChargeRequiresAnAdjacentFriendlyMinionAndAcceptsBothAttackTypes" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="598745533" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:40Z" duration="0.080169" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1453" name="MissingFriendlyMinionExplainsTheUnavailableLeadChargeWithoutLeakingItsName" fullname="Goa2.Tests.ConditionalDefenseTests.MissingFriendlyMinionExplainsTheUnavailableLeadChargeWithoutLeakingItsName" methodname="MissingFriendlyMinionExplainsTheUnavailableLeadChargeWithoutLeakingItsName" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="538253870" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:40Z" duration="0.110093" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1468" name="MovementUseDoesNotTriggerAnyDefenseResponse" fullname="Goa2.Tests.ConditionalDefenseTests.MovementUseDoesNotTriggerAnyDefenseResponse" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:41Z" duration="0.590370" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1462" name="MovementUseDoesNotTriggerAnyDefenseResponse(&quot;tigerclaw-14-近身格挡&quot;,Secondary)" fullname="Goa2.Tests.ConditionalDefenseTests.MovementUseDoesNotTriggerAnyDefenseResponse(&quot;tigerclaw-14-近身格挡&quot;,Secondary)" methodname="MovementUseDoesNotTriggerAnyDefenseResponse" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1209924679" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:40Z" duration="0.077821" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1463" name="MovementUseDoesNotTriggerAnyDefenseResponse(&quot;tigerclaw-14-近身格挡&quot;,Fast)" fullname="Goa2.Tests.ConditionalDefenseTests.MovementUseDoesNotTriggerAnyDefenseResponse(&quot;tigerclaw-14-近身格挡&quot;,Fast)" methodname="MovementUseDoesNotTriggerAnyDefenseResponse" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1986578298" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:40Z" duration="0.072829" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1464" name="MovementUseDoesNotTriggerAnyDefenseResponse(&quot;tigerclaw-17-近身还击&quot;,Secondary)" fullname="Goa2.Tests.ConditionalDefenseTests.MovementUseDoesNotTriggerAnyDefenseResponse(&quot;tigerclaw-17-近身还击&quot;,Secondary)" methodname="MovementUseDoesNotTriggerAnyDefenseResponse" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="463847105" result="Passed" start-time="2026-10-05 10:24:40Z" end-time="2026-10-05 10:24:41Z" duration="0.083923" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1465" name="MovementUseDoesNotTriggerAnyDefenseResponse(&quot;tigerclaw-17-近身还击&quot;,Fast)" fullname="Goa2.Tests.ConditionalDefenseTests.MovementUseDoesNotTriggerAnyDefenseResponse(&quot;tigerclaw-17-近身还击&quot;,Fast)" methodname="MovementUseDoesNotTriggerAnyDefenseResponse" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="2052928320" result="Passed" start-time="2026-10-05 10:24:41Z" end-time="2026-10-05 10:24:41Z" duration="0.076155" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1466" name="MovementUseDoesNotTriggerAnyDefenseResponse(&quot;sabina-08-带头冲锋&quot;,Secondary)" fullname="Goa2.Tests.ConditionalDefenseTests.MovementUseDoesNotTriggerAnyDefenseResponse(&quot;sabina-08-带头冲锋&quot;,Secondary)" methodname="MovementUseDoesNotTriggerAnyDefenseResponse" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1581187407" result="Passed" start-time="2026-10-05 10:24:41Z" end-time="2026-10-05 10:24:41Z" duration="0.143354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1467" name="MovementUseDoesNotTriggerAnyDefenseResponse(&quot;sabina-08-带头冲锋&quot;,Fast)" fullname="Goa2.Tests.ConditionalDefenseTests.MovementUseDoesNotTriggerAnyDefenseResponse(&quot;sabina-08-带头冲锋&quot;,Fast)" methodname="MovementUseDoesNotTriggerAnyDefenseResponse" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1362654672" result="Passed" start-time="2026-10-05 10:24:41Z" end-time="2026-10-05 10:24:41Z" duration="0.134152" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1430" name="NonRangedBlockRunsAfterTheOriginalAttackTextAndAcceptsAttackerDiscard" fullname="Goa2.Tests.ConditionalDefenseTests.NonRangedBlockRunsAfterTheOriginalAttackTextAndAcceptsAttackerDiscard" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 10:24:41Z" end-time="2026-10-05 10:24:41Z" duration="0.246519" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1428" name="NonRangedBlockRunsAfterTheOriginalAttackTextAndAcceptsAttackerDiscard(&quot;tigerclaw-14-近身格挡&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.NonRangedBlockRunsAfterTheOriginalAttackTextAndAcceptsAttackerDiscard(&quot;tigerclaw-14-近身格挡&quot;)" methodname="NonRangedBlockRunsAfterTheOriginalAttackTextAndAcceptsAttackerDiscard" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="658716211" result="Passed" start-time="2026-10-05 10:24:41Z" end-time="2026-10-05 10:24:41Z" duration="0.128710" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1429" name="NonRangedBlockRunsAfterTheOriginalAttackTextAndAcceptsAttackerDiscard(&quot;tigerclaw-17-近身还击&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.NonRangedBlockRunsAfterTheOriginalAttackTextAndAcceptsAttackerDiscard(&quot;tigerclaw-17-近身还击&quot;)" methodname="NonRangedBlockRunsAfterTheOriginalAttackTextAndAcceptsAttackerDiscard" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1515807037" result="Passed" start-time="2026-10-05 10:24:41Z" end-time="2026-10-05 10:24:41Z" duration="0.116838" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1438" name="NonRangedConditionDependsOnAttackTypeRatherThanDistanceOrNumber" fullname="Goa2.Tests.ConditionalDefenseTests.NonRangedConditionDependsOnAttackTypeRatherThanDistanceOrNumber" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 10:24:41Z" end-time="2026-10-05 10:24:41Z" duration="0.172417" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1436" name="NonRangedConditionDependsOnAttackTypeRatherThanDistanceOrNumber(&quot;tigerclaw-14-近身格挡&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.NonRangedConditionDependsOnAttackTypeRatherThanDistanceOrNumber(&quot;tigerclaw-14-近身格挡&quot;)" methodname="NonRangedConditionDependsOnAttackTypeRatherThanDistanceOrNumber" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="350295568" result="Passed" start-time="2026-10-05 10:24:41Z" end-time="2026-10-05 10:24:41Z" duration="0.085573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1437" name="NonRangedConditionDependsOnAttackTypeRatherThanDistanceOrNumber(&quot;tigerclaw-17-近身还击&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.NonRangedConditionDependsOnAttackTypeRatherThanDistanceOrNumber(&quot;tigerclaw-17-近身还击&quot;)" methodname="NonRangedConditionDependsOnAttackTypeRatherThanDistanceOrNumber" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="890485339" result="Passed" start-time="2026-10-05 10:24:41Z" end-time="2026-10-05 10:24:41Z" duration="0.085786" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1472" name="OrdinaryDiscardDoesNotRunDefenseTextAndSpentCardCannotDefend" fullname="Goa2.Tests.ConditionalDefenseTests.OrdinaryDiscardDoesNotRunDefenseTextAndSpentCardCannotDefend" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-05 10:24:41Z" end-time="2026-10-05 10:24:42Z" duration="0.360495" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1469" name="OrdinaryDiscardDoesNotRunDefenseTextAndSpentCardCannotDefend(&quot;tigerclaw-14-近身格挡&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.OrdinaryDiscardDoesNotRunDefenseTextAndSpentCardCannotDefend(&quot;tigerclaw-14-近身格挡&quot;)" methodname="OrdinaryDiscardDoesNotRunDefenseTextAndSpentCardCannotDefend" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="847546119" result="Passed" start-time="2026-10-05 10:24:41Z" end-time="2026-10-05 10:24:41Z" duration="0.115643" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1470" name="OrdinaryDiscardDoesNotRunDefenseTextAndSpentCardCannotDefend(&quot;tigerclaw-17-近身还击&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.OrdinaryDiscardDoesNotRunDefenseTextAndSpentCardCannotDefend(&quot;tigerclaw-17-近身还击&quot;)" methodname="OrdinaryDiscardDoesNotRunDefenseTextAndSpentCardCannotDefend" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="153346613" result="Passed" start-time="2026-10-05 10:24:41Z" end-time="2026-10-05 10:24:42Z" duration="0.126541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1471" name="OrdinaryDiscardDoesNotRunDefenseTextAndSpentCardCannotDefend(&quot;sabina-08-带头冲锋&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.OrdinaryDiscardDoesNotRunDefenseTextAndSpentCardCannotDefend(&quot;sabina-08-带头冲锋&quot;)" methodname="OrdinaryDiscardDoesNotRunDefenseTextAndSpentCardCannotDefend" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="236868167" result="Passed" start-time="2026-10-05 10:24:42Z" end-time="2026-10-05 10:24:42Z" duration="0.117112" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1461" name="PreviousEngineAndChangedFormalTextDoNotAcquireNewResponses" fullname="Goa2.Tests.ConditionalDefenseTests.PreviousEngineAndChangedFormalTextDoNotAcquireNewResponses" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-05 10:24:42Z" end-time="2026-10-05 10:24:42Z" duration="0.291225" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1458" name="PreviousEngineAndChangedFormalTextDoNotAcquireNewResponses(&quot;tigerclaw-14-近身格挡&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.PreviousEngineAndChangedFormalTextDoNotAcquireNewResponses(&quot;tigerclaw-14-近身格挡&quot;)" methodname="PreviousEngineAndChangedFormalTextDoNotAcquireNewResponses" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1760297538" result="Passed" start-time="2026-10-05 10:24:42Z" end-time="2026-10-05 10:24:42Z" duration="0.103495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1459" name="PreviousEngineAndChangedFormalTextDoNotAcquireNewResponses(&quot;tigerclaw-17-近身还击&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.PreviousEngineAndChangedFormalTextDoNotAcquireNewResponses(&quot;tigerclaw-17-近身还击&quot;)" methodname="PreviousEngineAndChangedFormalTextDoNotAcquireNewResponses" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="901226283" result="Passed" start-time="2026-10-05 10:24:42Z" end-time="2026-10-05 10:24:42Z" duration="0.096215" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1460" name="PreviousEngineAndChangedFormalTextDoNotAcquireNewResponses(&quot;sabina-08-带头冲锋&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.PreviousEngineAndChangedFormalTextDoNotAcquireNewResponses(&quot;sabina-08-带头冲锋&quot;)" methodname="PreviousEngineAndChangedFormalTextDoNotAcquireNewResponses" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="716198595" result="Passed" start-time="2026-10-05 10:24:42Z" end-time="2026-10-05 10:24:42Z" duration="0.090241" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1434" name="RiposteCrystalVictoryDoesNotResumeTheAlreadyFinishedMatch" fullname="Goa2.Tests.ConditionalDefenseTests.RiposteCrystalVictoryDoesNotResumeTheAlreadyFinishedMatch" methodname="RiposteCrystalVictoryDoesNotResumeTheAlreadyFinishedMatch" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1887798223" result="Passed" start-time="2026-10-05 10:24:42Z" end-time="2026-10-05 10:24:42Z" duration="0.170524" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1457" name="RiposteDefeatKeepsItsCardSourcePrivateWhilePublishingVictimLocationAndRewards" fullname="Goa2.Tests.ConditionalDefenseTests.RiposteDefeatKeepsItsCardSourcePrivateWhilePublishingVictimLocationAndRewards" methodname="RiposteDefeatKeepsItsCardSourcePrivateWhilePublishingVictimLocationAndRewards" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1576885838" result="Passed" start-time="2026-10-05 10:24:42Z" end-time="2026-10-05 10:24:42Z" duration="0.169314" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1479" name="UpgradeRecordsTheUnselectedCandidateAndItsPassive" fullname="Goa2.Tests.ConditionalDefenseTests.UpgradeRecordsTheUnselectedCandidateAndItsPassive" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-05 10:24:42Z" end-time="2026-10-05 10:24:43Z" duration="0.649592" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1473" name="UpgradeRecordsTheUnselectedCandidateAndItsPassive(&quot;tigerclaw-14-近身格挡&quot;,&quot;攻击&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.UpgradeRecordsTheUnselectedCandidateAndItsPassive(&quot;tigerclaw-14-近身格挡&quot;,&quot;攻击&quot;)" methodname="UpgradeRecordsTheUnselectedCandidateAndItsPassive" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1976667309" result="Passed" start-time="2026-10-05 10:24:42Z" end-time="2026-10-05 10:24:42Z" duration="0.087273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1474" name="UpgradeRecordsTheUnselectedCandidateAndItsPassive(&quot;tigerclaw-15-侧步&quot;,&quot;防御&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.UpgradeRecordsTheUnselectedCandidateAndItsPassive(&quot;tigerclaw-15-侧步&quot;,&quot;防御&quot;)" methodname="UpgradeRecordsTheUnselectedCandidateAndItsPassive" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1632303208" result="Passed" start-time="2026-10-05 10:24:42Z" end-time="2026-10-05 10:24:43Z" duration="0.092143" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1475" name="UpgradeRecordsTheUnselectedCandidateAndItsPassive(&quot;tigerclaw-17-近身还击&quot;,&quot;远程&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.UpgradeRecordsTheUnselectedCandidateAndItsPassive(&quot;tigerclaw-17-近身还击&quot;,&quot;远程&quot;)" methodname="UpgradeRecordsTheUnselectedCandidateAndItsPassive" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="1218932282" result="Passed" start-time="2026-10-05 10:24:43Z" end-time="2026-10-05 10:24:43Z" duration="0.142951" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1476" name="UpgradeRecordsTheUnselectedCandidateAndItsPassive(&quot;tigerclaw-16-暗影步&quot;,&quot;攻击&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.UpgradeRecordsTheUnselectedCandidateAndItsPassive(&quot;tigerclaw-16-暗影步&quot;,&quot;攻击&quot;)" methodname="UpgradeRecordsTheUnselectedCandidateAndItsPassive" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="460327855" result="Passed" start-time="2026-10-05 10:24:43Z" end-time="2026-10-05 10:24:43Z" duration="0.145963" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1477" name="UpgradeRecordsTheUnselectedCandidateAndItsPassive(&quot;sabina-08-带头冲锋&quot;,&quot;先攻&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.UpgradeRecordsTheUnselectedCandidateAndItsPassive(&quot;sabina-08-带头冲锋&quot;,&quot;先攻&quot;)" methodname="UpgradeRecordsTheUnselectedCandidateAndItsPassive" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="708788821" result="Passed" start-time="2026-10-05 10:24:43Z" end-time="2026-10-05 10:24:43Z" duration="0.084817" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1478" name="UpgradeRecordsTheUnselectedCandidateAndItsPassive(&quot;sabina-09-战略控制&quot;,&quot;攻击&quot;)" fullname="Goa2.Tests.ConditionalDefenseTests.UpgradeRecordsTheUnselectedCandidateAndItsPassive(&quot;sabina-09-战略控制&quot;,&quot;攻击&quot;)" methodname="UpgradeRecordsTheUnselectedCandidateAndItsPassive" classname="Goa2.Tests.ConditionalDefenseTests" runstate="Runnable" seed="64359508" result="Passed" start-time="2026-10-05 10:24:43Z" end-time="2026-10-05 10:24:43Z" duration="0.094353" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\baseline-support-regression-84ba04872c014980bc34569a40d0ca93.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
