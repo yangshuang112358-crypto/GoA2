@@ -102,7 +102,7 @@ namespace Goa2.UI3D.Tests
                 display.MinionPreviewPose=pose;
                 using(var board=new Board3DScene(catalog,lineup,new Hex[0],null,new Hex[0],display)){
                     float now=Time.realtimeSinceStartup;
-                    foreach(var motion in display.Presentation.MinionMotions.Values){motion.LastTime=now-2;for(int i=0;i<=100;i++)motion.Advance(now-2+i*.02f);}
+                    foreach(var motion in display.Presentation.MinionMotions.Values){motion.Changed=now-2;motion.LastTime=now-2;for(int i=0;i<=100;i++)motion.Advance(now-2+i*.02f);}
                     board.Render(1600,1000);Capture(board,Path.Combine(root,"artifacts/minion-models/unity-pose-"+pose+".png"));
                 }
             }

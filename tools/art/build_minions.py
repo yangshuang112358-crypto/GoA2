@@ -242,11 +242,13 @@ def ranged():
         sphere('Brass cuff '+side,(s*.40,-.12,.79),(.13,.10,.10),'Bronze','LowerArm.'+side)
         sphere('Gloved caster hand '+side,(s*.425,-.17,.75),(.09,.09,.10),'Leather','Hand.'+side)
     # Bow in left hand and a rear quiver; no staff or spell scroll.
-    bow=[(-.24,-.26,.29),(-.42,-.30,.47),(-.51,-.31,.76),(-.40,-.30,1.12),(-.22,-.26,1.36)]
+    # Bow lies in the forward/up plane. The middle wooden grip touches the palm;
+    # both tips and the string are behind it, toward the archer.
+    bow=[(-.425,.015,.22),(-.425,-.105,.42),(-.425,-.17,.75),(-.425,-.105,1.06),(-.425,.015,1.28)]
     stripe('Recurve bow limbs',bow,.043,'Leather','Weapon.L')
     stripe('Bow limb inlay',[(x,y-.036,z) for x,y,z in bow],.014,'Bronze','Weapon.L')
-    rod('Bow string',bow[0],bow[-1],.008,'Parchment','Weapon.L',6)
-    rod('Bow grip',(-.45,-.31,.69),(-.47,-.31,.86),.054,'Bronze','Weapon.L')
+    # The string is rendered dynamically in Unity, following the draw hand.
+    rod('Bow grip',(-.425,-.17,.67),(-.425,-.17,.83),.054,'Leather','Weapon.L')
     rod('Back quiver',(.16,.22,.63),(.27,.28,1.31),.12,'Leather','Spine',12)
     rod('Quiver mouth',(.262,.28,1.25),(.28,.28,1.35),.14,'Bronze','Spine',12)
     for j in range(5):
@@ -320,7 +322,10 @@ def rig_and_export(kind):
     bpy.ops.object.mode_set(mode='EDIT')
     specs=[('Root',(0,0,0),(0,0,.2),None),('Hips',(0,0,.4),(0,0,.68),'Root'),('Spine',(0,0,.68),(0,0,1.07),'Hips'),('Head',(0,0,1.07),(0,0,1.65),'Spine')]
     for side,s in [('L',-1),('R',1)]:
-        specs += [('UpperArm.'+side,(s*.24,0,1.05),(s*.4,0,.85),'Spine'),('LowerArm.'+side,(s*.4,0,.85),(s*.44,-.12,.7),'UpperArm.'+side),('Hand.'+side,(s*.44,-.12,.7),(s*.44,-.12,.6),'LowerArm.'+side),('Weapon.'+side,(s*.44,-.12,.7),(s*.44,-.12,.95),'Hand.'+side),('UpperLeg.'+side,(s*.16,0,.59),(s*.16,0,.37),'Hips'),('LowerLeg.'+side,(s*.16,0,.37),(s*.16,0,.15),'UpperLeg.'+side),('Foot.'+side,(s*.16,0,.15),(s*.16,-.20,.1),'LowerLeg.'+side)]
+        shoulder=(s*.46,0,1.2) if kind=='Heavy' else (s*.275,0,1.07) if kind=='Ranged' else (s*.30,0,1.05)
+        elbow=(s*.54,.035,.96) if kind=='Heavy' else (s*.40,-.12,.88) if kind=='Ranged' else (s*.40,0,.85)
+        hand=(s*.59,-.085,.83) if kind=='Heavy' else (s*.425,-.17,.75) if kind=='Ranged' else (s*.43,-.13,.70)
+        specs += [('UpperArm.'+side,shoulder,elbow,'Spine'),('LowerArm.'+side,elbow,hand,'UpperArm.'+side),('Hand.'+side,hand,(hand[0],hand[1],hand[2]-.1),'LowerArm.'+side),('Weapon.'+side,hand,(hand[0],hand[1],hand[2]+.25),'Hand.'+side),('UpperLeg.'+side,(s*.16,0,.59),(s*.16,0,.37),'Hips'),('LowerLeg.'+side,(s*.16,0,.37),(s*.16,0,.15),'UpperLeg.'+side),('Foot.'+side,(s*.16,0,.15),(s*.16,-.20,.1),'LowerLeg.'+side)]
     if kind=='Heavy':
         for i in range(8):
             a=math.tau*i/8;specs.append(('SpiderLeg.'+str(i),(.35*math.cos(a),.35*math.sin(a),.30),(.65*math.cos(a),.65*math.sin(a),.38),'Root'))
@@ -333,8 +338,16 @@ def rig_and_export(kind):
         names=[g.name for g in obj.vertex_groups]
         side='L' if 'Weapon.L' in names else 'R' if 'Weapon.R' in names else None
         if side:
-            pivot=Vector((-.44 if side=='L' else .44,-.12,.70));inverse=obj.matrix_world.inverted()
-            for v in obj.data.vertices:v.co=inverse @ (pivot+(obj.matrix_world @ v.co-pivot)*1.12)
+            sign=-1 if side=='L' else 1
+            pivot=Vector((sign*.59,-.085,.83) if kind=='Heavy' else (sign*.425,-.17,.75) if kind=='Ranged' else (sign*.43,-.13,.70));inverse=obj.matrix_world.inverted()
+            for v in obj.data.vertices:
+                point=obj.matrix_world @ v.co
+                if side=='R' and kind!='Ranged':
+                    grip=Vector((.64,-.25,.71) if kind=='Heavy' else (.49,-.13,.70))
+                    delta=point-grip
+                    # Edges face front/back rather than left/right; grip stays in the fist.
+                    point=pivot+Vector((-delta.y,delta.x,delta.z))
+                v.co=inverse @ (pivot+(point-pivot)*(1 if kind=='Ranged' else 1.12))
     # Keep a clean skinned runtime mesh while source objects remain available in a collection.
     copies=[]
     for obj in parts:

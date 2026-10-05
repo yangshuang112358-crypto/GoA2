@@ -17,12 +17,12 @@
         "TeamInset"
       ],
       "height": 1.888,
-      "width": 1.55
+      "width": 1.408
     },
     {
       "kind": "Ranged",
-      "triangles": 12416,
-      "vertices": 6338,
+      "triangles": 12252,
+      "vertices": 6254,
       "bones": 18,
       "materials": [
         "Leather",
@@ -34,7 +34,7 @@
         "Parchment"
       ],
       "height": 1.845,
-      "width": 1.09
+      "width": 1.06
     },
     {
       "kind": "Heavy",
@@ -51,8 +51,8 @@
         "Glow",
         "Shadow"
       ],
-      "height": 1.963,
-      "width": 1.961
+      "height": 2.014,
+      "width": 1.917
     }
   ]
 }

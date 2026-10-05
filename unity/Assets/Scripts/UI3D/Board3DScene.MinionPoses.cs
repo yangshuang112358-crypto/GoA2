@@ -11,8 +11,10 @@ namespace Goa2.Presentation.UI3D
         public float LastTime=-1,Changed;
         public string Pose="idle";
         public bool Rise;
+        public Quaternion Facing=Quaternion.identity,TargetFacing=Quaternion.identity;
+        public bool FacingInitialized;
         public void Set(string pose,bool rise,float now){if(Pose!=pose || Rise!=rise){Changed=now;Pose=pose;Rise=rise;}}
-        public void Advance(float now){float dt=LastTime<0?0:Mathf.Clamp(now-LastTime,0,.05f);LastTime=now;float t=1-Mathf.Exp(-dt*7);Raised=Mathf.Lerp(Raised,Rise?1:0,t);Support=Mathf.Lerp(Support,Pose=="support"?1:0,t);Guard=Mathf.Lerp(Guard,Pose=="guard"?1:0,t);}
+        public void Advance(float now){float dt=LastTime<0?0:Mathf.Clamp(now-LastTime,0,.05f);LastTime=now;float t=1-Mathf.Exp(-dt*7);Raised=Mathf.Lerp(Raised,Rise?1:0,t);Support=Mathf.Lerp(Support,Pose=="support"?1:0,t);Guard=Mathf.Lerp(Guard,Pose=="guard"?1:0,t);Facing=Quaternion.Slerp(Facing,TargetFacing,t);}
     }
     public sealed partial class Board3DScene
     {
@@ -21,24 +23,40 @@ namespace Goa2.Presentation.UI3D
             public Transform Root=null!;public string Id="",Kind="";
             public readonly Dictionary<string,(Transform bone,Quaternion rotation,Vector3 position,Vector3 scale)> Bones=new Dictionary<string,(Transform,Quaternion,Vector3,Vector3)>();
             public MinionPoseMotion Motion=null!;
+            public Vector3 Center;
+            public LineRenderer? String,Arrow;
         }
         private readonly List<MinionRig> minionRigs=new List<MinionRig>();
         private void RegisterMinionRig(GameObject instance,string id,string kind)
         {
             if(!state.Presentation.MinionMotions.TryGetValue(id,out var motion))state.Presentation.MinionMotions[id]=motion=new MinionPoseMotion();
             var rig=new MinionRig{Id=id,Kind=kind,Root=instance.transform,Motion=motion};
-            foreach(var bone in instance.GetComponentsInChildren<Transform>())if(bone.name=="Hips" || bone.name=="Spine" || bone.name.StartsWith("Upper") || bone.name.StartsWith("Lower") || bone.name.StartsWith("SpiderLeg."))rig.Bones[bone.name]=(bone,bone.localRotation,bone.localPosition,bone.localScale);
+            foreach(var bone in instance.GetComponentsInChildren<Transform>())if(bone.name=="Hips" || bone.name=="Spine" || bone.name.StartsWith("Upper") || bone.name.StartsWith("Lower") || bone.name.StartsWith("Hand.") || bone.name.StartsWith("Weapon.") || bone.name.StartsWith("SpiderLeg."))rig.Bones[bone.name]=(bone,bone.localRotation,bone.localPosition,bone.localScale);
+            if(!motion.FacingInitialized){motion.FacingInitialized=true;motion.Facing=motion.TargetFacing=instance.transform.rotation;}
+            if(kind=="ranged") {rig.String=MinionLine("bow string "+id,.012f,new Color(.84f,.78f,.59f));rig.Arrow=MinionLine("nocked arrow "+id,.022f,new Color(.67f,.42f,.18f));}
             minionRigs.Add(rig);
+        }
+        private LineRenderer MinionLine(string name,float width,Color color)
+        {
+            var go=new GameObject(name){layer=Layer,hideFlags=HideFlags.HideAndDontSave};go.transform.SetParent(host.transform,false);var line=go.AddComponent<LineRenderer>();line.useWorldSpace=true;line.startWidth=line.endWidth=width;line.numCapVertices=2;
+            line.sharedMaterial=Own(new Material(Shader.Find("Sprites/Default")){color=color});line.startColor=line.endColor=Color.white;return line;
         }
         private void ConfigureMinionPoses(GameView view,Hex? selected)
         {
             var target=view.Attack==null?null:view.Units.FirstOrDefault(u=>u.Id==view.Attack.TargetUnitId);
             if(target==null && selected.HasValue){var unit=view.Units.FirstOrDefault(u=>u.Position==selected.Value && u.Kind=="hero");if(unit!=null && (view.AttackTargets.Contains(unit.Id) || view.PrimaryPreview?.Kind=="attack_target" && view.PrimaryPreview.Targets.Contains(unit.Id)))target=unit;}
             var influence=target==null?new AttackBreakdown():MinionCombatBaseline.Sources(view.Units,target);
+            int? attackerSeat=view.Attack?.AttackerSeat ?? view.ActiveSeat;
+            var attacker=attackerSeat.HasValue?view.Units.FirstOrDefault(u=>u.Seat==attackerSeat):null;
             foreach(var rig in minionRigs){
                 var unit=view.Units.First(u=>u.Id==rig.Id);bool support=influence.EnemySupportSources.Contains(rig.Id),guard=influence.FriendlyGuardSources.Contains(rig.Id);
                 string pose=guard?"guard":support?"support":"idle";
                 if(view.Sandbox && state.MinionPreviewPose!="")pose=state.MinionPreviewPose;
+                rig.Center=Board3DGeometry.World(unit.Position,.04f);
+                var facingTarget=guard?attacker:support?target:null;
+                if(view.Sandbox && state.MinionPreviewPose!="")facingTarget=view.Units.Where(u=>u.Team!=unit.Team).OrderBy(u=>u.Position.Distance(unit.Position)).FirstOrDefault();
+                Vector3 direction=facingTarget==null?Vector3.zero:Board3DGeometry.World(facingTarget.Position)-Board3DGeometry.World(unit.Position);
+                rig.Motion.TargetFacing=direction.sqrMagnitude>.001f?Quaternion.LookRotation(direction,Vector3.up):Quaternion.Euler(0,unit.Team==Team.Blue?0:180,0);
                 bool rise=rig.Kind=="heavy" && (view.RemovableMinions.Contains(rig.Id) || pose!="idle");
                 rig.Motion.Set(pose,rise,Time.realtimeSinceStartup);
                 if(support || guard){
@@ -53,6 +71,7 @@ namespace Goa2.Presentation.UI3D
             float now=Time.realtimeSinceStartup;
             foreach(var rig in minionRigs){
                 var m=rig.Motion;m.Advance(now);
+                rig.Root.rotation=m.Facing;
                 foreach(var pair in rig.Bones.Values){pair.bone.localRotation=pair.rotation;pair.bone.localPosition=pair.position;pair.bone.localScale=pair.scale;}
                 void Turn(string name,float degrees,Vector3 axis){if(rig.Bones.TryGetValue(name,out var b))b.bone.rotation=Quaternion.AngleAxis(degrees,axis)*b.bone.rotation;}
                 void Shift(string name,Vector3 delta){if(rig.Bones.TryGetValue(name,out var b))b.bone.position+=delta;}
@@ -60,21 +79,54 @@ namespace Goa2.Presentation.UI3D
                 float ready=rig.Kind=="heavy"?Mathf.InverseLerp(.35f,.8f,m.Raised):1;
                 float guard=m.Guard*ready,support=m.Support*ready;
                 if(rig.Kind=="heavy"){
-                    Shift("Hips",Vector3.up*(-.15f+.40f*m.Raised));
+                    Shift("Hips",Vector3.up*(-.15f*(1-m.Raised)));
                     foreach(var pair in rig.Bones.Where(p=>p.Key.StartsWith("SpiderLeg.")))pair.Value.bone.localScale=pair.Value.scale*Mathf.Lerp(.06f,1,m.Raised);
                 }else if(rig.Kind=="melee"){
-                    Shift("Hips",Vector3.down*.24f*guard+forward*.15f*support);
+                    Shift("Hips",Vector3.down*.22f*guard+forward*(.16f*guard+.10f*support));
                     Turn("UpperLeg.L",32*guard,right);Turn("LowerLeg.L",-68*guard,right);Turn("UpperLeg.R",-28*guard,right);Turn("LowerLeg.R",45*guard,right);
                 }
                 if(rig.Kind=="ranged"){
-                    float draw=Mathf.Clamp01((now-m.Changed)/.75f);float reach=Mathf.Sin(draw*Mathf.PI)*support;
-                    Turn("UpperArm.L",-75*support,right);Turn("LowerArm.L",-15*support,right);
-                    Turn("UpperArm.R",(-60*support-75*reach),right);Turn("LowerArm.R",-50*support,rig.Root.up);
+                    BowPose(rig,Mathf.Max(m.Support,m.Guard),now-m.Changed);
                 }else{
-                    Turn("UpperArm.L",-62*guard,right);Turn("LowerArm.L",-36*guard,right);
-                    Turn("UpperArm.R",-40*support,right);Turn("LowerArm.R",-32*support,right);Turn("Spine",-8*guard,right);
+                    float h=MinionHeight(rig.Kind);Vector3 At(float x,float y,float z)=>rig.Center+right*x*h+Vector3.up*y*h+forward*z*h;
+                    PoseHand(rig,"L",At(-.11f,rig.Kind=="heavy"?.50f:.46f,.24f),guard,Quaternion.identity,At(-.38f,.40f,.05f));
+                    Vector3 sword=rig.Kind=="heavy"?(-right+forward*.16f+Vector3.up*.10f).normalized:(forward+Vector3.up).normalized;
+                    PoseHand(rig,"R",At(rig.Kind=="heavy"?.23f:.21f,rig.Kind=="heavy"?.58f:.47f,.19f),support,Quaternion.FromToRotation(Vector3.up,sword),At(.44f,.48f,.03f));
+                    Turn("Spine",8*guard,right);
                 }
             }
+        }
+        private static void PoseHand(MinionRig rig,string side,Vector3 target,float weight,Quaternion orientation,Vector3 elbowPole)
+        {
+            if(weight<.001f || !rig.Bones.TryGetValue("UpperArm."+side,out var a) || !rig.Bones.TryGetValue("LowerArm."+side,out var b) || !rig.Bones.TryGetValue("Hand."+side,out var c))return;
+            var upper=a.bone;var lower=b.bone;var hand=c.bone;var restRotation=hand.rotation;target=Vector3.Lerp(hand.position,target,weight);
+            float l1=Vector3.Distance(upper.position,lower.position),l2=Vector3.Distance(lower.position,hand.position);var delta=target-upper.position;
+            float distance=Mathf.Clamp(delta.magnitude,Mathf.Abs(l1-l2)+.001f,l1+l2-.001f);var direction=delta.normalized;
+            if(direction.sqrMagnitude<.01f)return;
+            var bend=Vector3.ProjectOnPlane(elbowPole-upper.position,direction).normalized;if(bend.sqrMagnitude<.01f)bend=rig.Root.right;
+            float along=(l1*l1-l2*l2+distance*distance)/(2*distance);float outwards=Mathf.Sqrt(Mathf.Max(0,l1*l1-along*along));
+            var elbow=upper.position+direction*along+bend*outwards;
+            upper.rotation=Quaternion.FromToRotation(lower.position-upper.position,elbow-upper.position)*upper.rotation;
+            lower.rotation=Quaternion.FromToRotation(hand.position-lower.position,upper.position+direction*distance-lower.position)*lower.rotation;
+            hand.rotation=Quaternion.Slerp(restRotation,orientation*restRotation,weight);
+        }
+        private void BowPose(MinionRig rig,float weight,float elapsed)
+        {
+            float h=MinionHeight(rig.Kind);var f=rig.Root.forward;var r=rig.Root.right;
+            Vector3 At(float x,float y,float z)=>rig.Center+r*x*h+Vector3.up*y*h+f*z*h;
+            // Reach over the head to the quiver, bring the arrow around the shoulder,
+            // nock in front, then draw the string back. No teleport between key poses.
+            Vector3[] keys={At(.22f,.39f,.08f),At(.12f,.81f,-.08f),At(.18f,.89f,.04f),At(.03f,.67f,.22f),At(.13f,.66f,-.01f)};
+            float t=Mathf.Clamp(elapsed/.44f,0,3.999f);int index=Mathf.FloorToInt(t);float blend=Mathf.SmoothStep(0,1,t-index);
+            var draw=Vector3.Lerp(keys[index],keys[index+1],blend);
+            PoseHand(rig,"L",At(-.12f,.65f,.235f),weight,Quaternion.identity,At(-.36f,.55f,.11f));
+            PoseHand(rig,"R",draw,weight,Quaternion.identity,At(.42f,.64f,-.04f));
+            var bow=rig.Bones["Hand.L"].bone.position;var hand=rig.Bones["Hand.R"].bone.position;
+            var top=bow+Vector3.up*(h*.28f)-f*(h*.10f);var bottom=bow-Vector3.up*(h*.28f)-f*(h*.10f);
+            float pulled=weight*Mathf.SmoothStep(0,1,(elapsed-1.30f)/.46f);var nock=Vector3.Lerp((top+bottom)*.5f,hand,pulled);
+            rig.String!.positionCount=3;rig.String.SetPositions(new[]{bottom,nock,top});
+            bool carrying=weight>.05f && elapsed>.40f;rig.Arrow!.enabled=carrying;
+            if(carrying){var shaftStart=elapsed<1.3f?hand:nock;var axis=elapsed<1.3f?Vector3.Slerp(Vector3.up,f,Mathf.Clamp01((elapsed-.55f)/.75f)):f;rig.Arrow.positionCount=2;rig.Arrow.SetPositions(new[]{shaftStart,shaftStart+axis*h*.42f});}
         }
     }
 }
