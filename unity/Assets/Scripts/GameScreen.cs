@@ -222,6 +222,7 @@ namespace Goa2.Presentation
             BuildStageBanner();
             ApplyNetworkInputGate();
             ApplyCombatPresentationGate();
+            BuildInitiativePresentation();
             if (galleryOpen) RenderGallery();
             if (publicCardsOpen) RenderPublicCards(renderedView);
             if (historyOpen) RenderHistory(renderedView);

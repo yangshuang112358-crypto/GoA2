@@ -30,8 +30,8 @@ namespace Goa2.Presentation
             parent.Add(Button("新建卡边局面 / 四人投票重抛",PrepareCoinVoteDemo,"choice-button","coin-vote-demo"));
             parent.Add(Button("英雄 / 小兵 / 金币美术样例",()=>OpenArtSamples(0),"choice-button","art-samples-open"));
             parent.Add(Button("新建战斗动作 / 击杀金币演示局面",PrepareCombatDemo,"choice-button","combat-presentation-demo"));
+            parent.Add(Button("四人同先攻 / 决策币顺序",PrepareFourTieDemo,"choice-button","four-tie-demo"));
             parent.Add(Button("升级环样例：9 / 6 / 3 / 紫卡",()=>{OpenDebugPositions();debugPresetFilter="upgrades";selectedDebugPosition="upgrades";Render();},"choice-button","upgrade-samples-open"));
-            parent.Add(Button("重播中央石台盘旋合拢",()=>{board3DViewport.Presentation.RockFormationStarted=UnityEngine.Time.realtimeSinceStartup;rightExpanded=false;cameraFollow=false;board3DViewport.StopFollowing();board3DViewport.Focus=(Goa2.Presentation.UI3D.Board3DGeometry.World(new Hex(0,0))+Goa2.Presentation.UI3D.Board3DGeometry.World(new Hex(0,1)))*.5f;board3DViewport.Zoom=3;Render();},"choice-button","rock-formation-preview"));
             var stageSamples=Box("debug-button-row");parent.Add(stageSamples);
             foreach(string label in new[]{"暗选阶段","战斗阶段\n"+HeroName(view.Players[seat].HeroId)+"行动","战斗阶段\n"+HeroName(view.Players[seat].HeroId)+"防御","小兵战斗阶段","升级阶段","开局抛币阶段"})
                 stageSamples.Add(Button(label.Replace("\n"," · "),()=>PreviewStageBanner(label),"compact-button"));

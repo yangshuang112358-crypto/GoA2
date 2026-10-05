@@ -33,6 +33,7 @@ namespace Goa2.Presentation {
   }
   private void CloseHeroWheel() {
    if(decisionAnimating)return;
+   if(actionChoice!="" || moveMode.HasValue || chosenCell.HasValue){HideSkillInfo();return;}
    int? closing=mainFlow ? wheelSeat ?? renderedView.ActiveSeat : lastBrowsedSeat;
    LeaveMainFlow();if(closing.HasValue)browsingWheels.Remove(closing.Value);
    lastBrowsedSeat=browsingWheels.Count>0 ? browsingWheels.Last() : (int?)null;
@@ -94,6 +95,15 @@ namespace Goa2.Presentation {
    string caption=beat ? "弃牌" : canConfirm ? wheelDecline ? renderedView.Pending?.Kind=="defense" ? "确认不防御？" : "确认被击败？" : "确认？" : own && planning ? player.Confirmed ? "已确认" : "选牌" : renderedView.Pending?.Kind=="defense" ? "防御" : WheelDiscard(renderedView) ? "弃牌" : "查看";
    var frame=new VisualElement{pickingMode=PickingMode.Ignore,name="skill-wheel-anchor-"+target};frame.style.position=Position.Absolute;frame.style.width=520;frame.style.height=520;frame.style.transformOrigin=new TransformOrigin(0,0,0);board.Add(frame);wheelFrame=frame;
    var wheel=new SkillWheel(player.Team,caption,WheelConfirm,WheelAlternative);skillWheel=wheel;wheel.ResumeOpen(beat ? eventBeat!.Start : wheelOpened);frame.Add(wheel);wheel.Confirm.SetEnabled(canConfirm);wheel.Confirm.style.display=DisplayStyle.None;
+   if(renderedView.Pending?.Kind=="defense" && renderedView.Attack!=null && renderedView.Attack.DefenderSeat==target)
+   {
+    var calculation=new Label(AttackFormula(renderedView.Attack)){name="public-attack-formula",pickingMode=PickingMode.Ignore};
+    calculation.style.position=Position.Absolute;calculation.style.left=-50;calculation.style.top=-48;calculation.style.width=620;calculation.style.minHeight=54;
+    calculation.style.whiteSpace=WhiteSpace.Normal;calculation.style.unityTextAlign=TextAnchor.MiddleCenter;calculation.style.fontSize=23;
+    calculation.style.color=new Color(1,.86f,.58f);calculation.style.backgroundColor=new Color(.035f,.05f,.065f,.94f);
+    calculation.style.paddingLeft=10;calculation.style.paddingRight=10;calculation.style.paddingTop=8;calculation.style.paddingBottom=8;
+    calculation.style.borderTopLeftRadius=8;calculation.style.borderTopRightRadius=8;calculation.style.borderBottomLeftRadius=8;calculation.style.borderBottomRightRadius=8;frame.Add(calculation);
+   }
    bool alt=own && (renderedView.Pending?.Kind=="defense" || renderedView.Pending?.Kind=="optional_discard" || renderedView.Pending?.Kind=="minion_protection" || renderedView.CanDeclineRetaliationDiscard || renderedView.Pending?.Kind=="recover_discard" || renderedView.Pending?.Kind=="card_swap");
    wheel.Alternative.style.display=alt ? DisplayStyle.Flex:DisplayStyle.None;wheel.Alternative.text=renderedView.Pending?.Kind=="recover_discard" ? "不取回，继续" : renderedView.Pending?.Kind=="card_swap" ? "不交换，继续" : renderedView.Pending?.Kind=="defense" ? "不防御" : renderedView.CanDeclineRetaliationDiscard ? "不弃牌，选择被击败" : "不弃牌，继续";
    if(canConfirm){confirmButton=wheel.Confirm;confirmAction=WheelConfirm;}

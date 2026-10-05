@@ -146,7 +146,7 @@ namespace Goa2.Presentation
             }
             radius = fittedRadius * viewport.Zoom;
             origin = contentRect.center - viewport.Focus * radius;
-            foreach(var entry in heroPlates) {var point=Center(entry.unit.Position);entry.plate.style.left=point.x-112;entry.plate.style.top=point.y-95;entry.plate.style.display=point.x>=0 && point.x<=contentRect.width && point.y>=0 && point.y<=contentRect.height ? DisplayStyle.Flex : DisplayStyle.None;}
+            foreach(var entry in heroPlates) {var point=Center(entry.unit.Position);entry.plate.style.left=point.x-HeroPlate.Width/2;entry.plate.style.top=point.y-HeroPlate.Height-3;entry.plate.style.display=point.x>=0 && point.x<=contentRect.width && point.y>=0 && point.y<=contentRect.height ? DisplayStyle.Flex : DisplayStyle.None;}
             foreach (var pair in labels)
             {
                 var center = Center(pair.unit.Position);

@@ -1,0 +1,46 @@
+  private IEnumerator FlattenDemo(IEnumerator start){
+   var stack=new System.Collections.Generic.Stack<IEnumerator>();stack.Push(start);
+   while(stack.Count>0){var current=stack.Peek();if(!current.MoveNext()){stack.Pop();continue;}if(current.Current is IEnumerator nested){stack.Push(nested);continue;}yield return current.Current;}
+  }
+  private IEnumerator VideoSequence(){
+   yield return null;yield return null;QualitySettings.vSyncCount=0;UnityEngine.Application.targetFrameRate=30;
+   DemoCheck(!startupFailed,"Startup failed");SettingsAudio.Played+=CaptureCue;File.WriteAllText(Path.Combine(demoFolder,"audio-events.tsv"),"");
+   PrepareFourTieDemo();yield return new WaitForSecondsRealtime(5.5f);
+   demoCaption="四人同先攻 · 黄蜂选最后一张牌";BeginVideo("01-initiative-camera");yield return new WaitForSecondsRealtime(2);
+   Submit(CommandKind.SelectCard,"wasp-06-静电封锁");
+   demoCaption="先解释蓝队先行，再翻币交出下次决策权";
+   while(InitiativePresenting || StagePresenting)yield return null;
+   yield return new WaitForSecondsRealtime(1);
+   SwitchSeat(0);demoCaption="蓝队队长选择艾瑞恩先行动";yield return new WaitForSecondsRealtime(1.5f);Submit(CommandKind.ChooseInitiative,target:2);
+   while(StagePresenting)yield return null;
+   SwitchSeat(2);yield return new WaitForSecondsRealtime(3);PickAction("fast");yield return new WaitForSecondsRealtime(1.5f);
+   DemoCheck(LegalCells(renderedView).Count>0,"Fast move fixture has no destinations");chosenCell=LegalCells(renderedView).Last();Render();yield return new WaitForSecondsRealtime(.4f);
+   var selection=DecisionSelectionKey();BrowseCamera();demoCaption="快速移动选点保留 · 可以自由拖动与缩放";
+   yield return DemoTravel(board3DViewport.Focus+new Vector3(3,0,-2),2.7f,2.5f);
+   DemoCheck(DecisionSelectionKey()==selection,"Panning lost target selection");yield return new WaitForSecondsRealtime(1.4f);
+   demoCaption="空格 / 右下窗口：收起浏览环、重置预选、回到当前行动";ReturnMainFlow();yield return new WaitForSecondsRealtime(3);
+   Submit(CommandKind.Pass);demoCaption="艾瑞恩结束后：这次由红队先行";
+   while(InitiativePresenting || StagePresenting)yield return null;
+   yield return new WaitForSecondsRealtime(1.5f);StopVideo();
+
+   PrepareCombatDemo();yield return new WaitForSecondsRealtime(5.5f);mainFlow=false;cameraFollow=false;board3DViewport.StopFollowing();browsingWheels.Clear();wheelSeat=null;Render();
+   var archer=renderedView.Units.First(u=>u.Team==Team.Blue && u.Kind=="ranged");board3DViewport.Focus=Board3DGeometry.World(archer.Position)+Vector3.up*.8f;board3DViewport.Zoom=6;yield return new WaitForSecondsRealtime(1);
+   demoCaption="修订小兵姿态 · 真实 Unity 模型与平滑转换";BeginVideo("02-minions-level-meter");
+   foreach(string kind in new[]{"ranged","melee","heavy"}){
+    var unit=renderedView.Units.First(u=>u.Team==Team.Blue && u.Kind==kind);
+    board3DViewport.MinionPreviewPose="";Render();yield return DemoTravel(Board3DGeometry.World(unit.Position)+Vector3.up*.8f,6,2);
+    demoCaption=kind=="ranged"?"远程兵：取箭、搭弓、拉弦；弦连接真实弓梢":kind=="melee"?"近战兵：持剑手一侧斜举，压低重心举盾":"重型兵：八足展开，再举剑与举盾";
+    yield return new WaitForSecondsRealtime(1.2f);board3DViewport.MinionPreviewPose="support";Render();yield return new WaitForSecondsRealtime(3.2f);
+    board!.Rotate(3);yield return new WaitForSecondsRealtime(2);
+    board3DViewport.MinionPreviewPose="guard";Render();yield return new WaitForSecondsRealtime(2.7f);
+    board.Rotate(-3);yield return new WaitForSecondsRealtime(.6f);board3DViewport.MinionPreviewPose="";Render();yield return new WaitForSecondsRealtime(1.5f);
+   }
+   var hero=renderedView.Units.Single(u=>u.Seat==0);yield return DemoTravel(Board3DGeometry.World(hero.Position),5,2);
+   demoCaption="金币到账仅预告升级 · x→y 在圆内，真实等级仍为1";
+   foreach(int gold in new[]{1,3,5,6}){Submit(CommandKind.DebugSetGold,gold.ToString(),0);yield return new WaitForSecondsRealtime(2.7f);}
+   DemoCheck(renderedView.Players[0].Level==1,"UI forecast changed actual level");
+   demoCaption="经验环显示预告升级后的剩余进度 · 箭头先升出再回落点停住";yield return new WaitForSecondsRealtime(2);StopVideo();
+  }
+ }
+}
+#endif

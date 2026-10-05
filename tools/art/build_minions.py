@@ -329,6 +329,10 @@ def rig_and_export(kind):
     if kind=='Heavy':
         for i in range(8):
             a=math.tau*i/8;specs.append(('SpiderLeg.'+str(i),(.35*math.cos(a),.35*math.sin(a),.30),(.65*math.cos(a),.65*math.sin(a),.38),'Root'))
+    if kind=='Ranged':
+        # Runtime strings attach to the real wooden tips after any hand/arm pose.
+        for name,point in [('BowGrip',(-.425,-.17,.75)),('BowTip.Top',(-.425,.015,1.28)),('BowTip.Bottom',(-.425,.015,.22))]:
+            specs.append((name,point,(point[0],point[1],point[2]+.025),'Weapon.L'))
     for name,head,tail,parent in specs:
         b=data.edit_bones.new(name);b.head=head;b.tail=tail
         if parent:b.parent=data.edit_bones[parent]

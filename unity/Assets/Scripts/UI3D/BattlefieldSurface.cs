@@ -88,7 +88,7 @@ namespace Goa2.Presentation.UI3D
             });
             RegisterCallback<PointerMoveEvent>(e=>
             {
-                if(scene==null) return;
+                if(scene==null || !(contentRect.width>0 && contentRect.height>0)) return;
                 if(dragging && e.pointerId==pointerId)
                 {if(((Vector2)e.localPosition-lastPointer).sqrMagnitude>0) ManualPan?.Invoke();state.Focus+=scene.Ground(lastPointer,contentRect.size)-scene.Ground(e.localPosition,contentRect.size);lastPointer=e.localPosition;Repaint();e.StopPropagation();return;}
                 var cell=scene.Hit(e.localPosition,contentRect.size);if(cell!=null) hover(cell);
@@ -127,27 +127,28 @@ namespace Goa2.Presentation.UI3D
         public Vector2 PanelCenter(Hex hex) => fallback!=null ? fallback.PanelCenter(hex) : this.LocalToWorld(scene?.Project(hex,contentRect.size) ?? Vector2.zero);
         private void Zoom(Vector2 pointer,float factor)
         {
-            if(scene==null || contentRect.width<=0 || contentRect.height<=0) return;
-            state.ManualZoom();var before=scene.Ground(pointer,contentRect.size);state.Zoom=Mathf.Clamp(state.Zoom*factor,.6f,8);Repaint();
+            if(scene==null || !(contentRect.width>0 && contentRect.height>0)) return;
+            if(float.IsNaN(pointer.x) || float.IsNaN(pointer.y) || float.IsNaN(factor) || float.IsInfinity(factor))return;
+            ManualPan?.Invoke();state.ManualZoom();var before=scene.Ground(pointer,contentRect.size);state.Zoom=Mathf.Clamp(state.Zoom*factor,.6f,8);Repaint();
             state.Focus+=before-scene.Ground(pointer,contentRect.size);Repaint();
         }
         private void Repaint(bool notify=true)
         {
-            if(scene==null || image==null || contentRect.width<=0 || contentRect.height<=0) return;
+            if(scene==null || image==null || !(contentRect.width>0 && contentRect.height>0)) return;
             scene.Render(Mathf.CeilToInt(contentRect.width),Mathf.CeilToInt(contentRect.height));image.image=scene.Texture;
             var placed=new List<Rect>();leaders.Clear();
             foreach(var entry in heroPlates.OrderByDescending(e=>scene.Project(e.cell,contentRect.size,Board3DScene.HeroHeight).y)) {
                 var p=scene.Project(entry.cell,contentRect.size,Board3DScene.HeroHeight+.12f);
                 bool visible=p.x>=0 && p.x<=contentRect.width && p.y>=0 && p.y<=contentRect.height;
                 entry.plate.style.display=visible ? DisplayStyle.Flex : DisplayStyle.None;if(!visible)continue;
-                var offsets=new List<Vector2>{new Vector2(-112,-94),new Vector2(-234,-65),new Vector2(10,-65),new Vector2(-112,8),new Vector2(-112,-190)};
+                var offsets=new List<Vector2>{new Vector2(-HeroPlate.Width/2,-HeroPlate.Height-2),new Vector2(-HeroPlate.Width-10,-75),new Vector2(10,-75),new Vector2(-HeroPlate.Width/2,8),new Vector2(-HeroPlate.Width/2,-224)};
                 foreach(var occupied in placed) {
                     offsets.Add(new Vector2(occupied.x-226-p.x,-94));offsets.Add(new Vector2(occupied.xMax+2-p.x,-94));
-                    offsets.Add(new Vector2(-112,occupied.y-94-p.y));offsets.Add(new Vector2(-112,occupied.yMax+2-p.y));
+                    offsets.Add(new Vector2(-HeroPlate.Width/2,occupied.y-HeroPlate.Height-2-p.y));offsets.Add(new Vector2(-HeroPlate.Width/2,occupied.yMax+2-p.y));
                 }
                 Rect rect=default;float best=float.PositiveInfinity;
                 foreach(var offset in offsets) {
-                    var candidate=new Rect(Mathf.Clamp(p.x+offset.x,0,Mathf.Max(0,contentRect.width-224)),Mathf.Clamp(p.y+offset.y,0,Mathf.Max(0,contentRect.height-92)),224,92);
+                    var candidate=new Rect(Mathf.Clamp(p.x+offset.x,0,Mathf.Max(0,contentRect.width-HeroPlate.Width)),Mathf.Clamp(p.y+offset.y,0,Mathf.Max(0,contentRect.height-HeroPlate.Height)),HeroPlate.Width,HeroPlate.Height);
                     float cost=placed.Count(r=>r.Overlaps(candidate))*100000+Vector2.Distance(new Vector2(candidate.center.x,candidate.yMax),p);
                     if(cost<best) {best=cost;rect=candidate;}
                 }

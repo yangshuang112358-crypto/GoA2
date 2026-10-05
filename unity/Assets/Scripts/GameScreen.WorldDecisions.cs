@@ -88,7 +88,7 @@ namespace Goa2.Presentation
         }
         private void BuildWorldDecisions()
         {
-            flowDetails="";var view=renderedView;if(!mainFlow || board==null || showDebug && rightExpanded || debugAttack || debugTeleport)return;
+            flowDetails="";var view=renderedView;if(!DecisionFlow || board==null || showDebug && rightExpanded || debugAttack || debugTeleport)return;
             var source=new VisualElement();RenderDecisionSource(source,view);
             var labels=source.Query<Label>().ToList().Where(l=>l.GetFirstAncestorOfType<ScrollView>()==null && !InsideCardDetail(l)).Select(l=>l.text).Where(t=>!string.IsNullOrWhiteSpace(t)).ToList();
             flowDetails=string.Join("\n",labels);

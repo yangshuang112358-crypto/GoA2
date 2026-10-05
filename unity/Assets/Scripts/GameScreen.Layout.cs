@@ -18,6 +18,7 @@ namespace Goa2.Presentation
         private void Update()
         {
             UpdateStageBanner();
+            UpdateInitiativePresentation();
             UpdateOpening();
             UpdateCombatPresentation();
             UpdatePresentationFocus();
@@ -98,22 +99,17 @@ namespace Goa2.Presentation
         private void BuildBoard(VisualElement parent, GameView view)
         {
             var field = Box("field");field.name="battlefield-map"; parent.Add(field);
-            var targets = mainFlow ? LegalCells(view) : new System.Collections.Generic.List<Hex>();
+            var targets = DecisionFlow ? LegalCells(view) : new System.Collections.Generic.List<Hex>();
             board = new BattlefieldSurface(catalog, view, targets, chosenCell, cell =>
             {
+                if(InitiativePresenting)return;
                 if (!targets.Contains(cell)) { notice = "此格不可用于当前操作。"; return; }
                 Sound("target");chosenCell = cell; worldOptionsOpen=false;wheelSeat=null; notice = "已选地图格 " + cell + "，确认后应用。"; Render();
             }, cell => cellInfo.text = BoardHint(view,RegionName(cell.Region) + " · " + cell.Position + (targets.Contains(cell.Position) ? " · 可选" : "")), viewport, SelectedEffectArea(view), board3DViewport, seat);
             board.HeroHover=ShowHeroHover;
             board.HeroClick=ToggleHeroWheel;
             board.EmptyClick=CloseHeroWheel;
-            board.ManualPan=()=>{
-                if(!mainFlow)return;LeaveMainFlow();
-                root.Q("main-flow-status")?.RemoveFromHierarchy();BuildMainFlowStatus();
-                if(root.Q("world-decisions")!=null)root.Q("world-decisions").style.display=DisplayStyle.None;
-                if(decisionDock!=null)decisionDock.style.display=DisplayStyle.None;
-            };
-            board.RegisterCallback<PointerUpEvent>(e=>{if((e.button==1 || e.button==2) && !mainFlow)root.schedule.Execute(Render);});
+            board.ManualPan=BrowseCamera;
             board.ViewportChanged = RequestCapture;
             field.Add(board);
             cellInfo = Text(BoardHint(view,targets.Count == 0 ? "滚轮缩放 · 中/右键拖动 · Home全图" : targets.Count + " 个合法目标 · 点击后确认"), "tiny");

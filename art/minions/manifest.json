@@ -23,7 +23,7 @@
       "kind": "Ranged",
       "triangles": 12252,
       "vertices": 6254,
-      "bones": 18,
+      "bones": 21,
       "materials": [
         "Leather",
         "TeamCloth",

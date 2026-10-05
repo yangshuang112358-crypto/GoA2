@@ -14,6 +14,14 @@ namespace Goa2.Presentation
         private string flowMatch="",flowDetails="";
         private readonly HashSet<int> browsingWheels=new HashSet<int>();
         private VisualElement? decisionDock;
+        // Browsing/camera focus must not discard an unsubmitted map action.
+        private bool DecisionFlow=>mainFlow || actionChoice!="" || moveMode.HasValue || chosenCell.HasValue;
+        private void BrowseCamera()
+        {
+            if(!cameraFollow)return;
+            cameraFollow=false;cameraFocusVersion++;board?.StopFollowing();cinematicResumeZoom=null;
+            root.Q("main-flow-status")?.RemoveFromHierarchy();BuildMainFlowStatus();
+        }
         private void ObserveMainFlow()
         {
             if(flowMatch==renderedView.MatchId)return;
@@ -25,7 +33,7 @@ namespace Goa2.Presentation
             if(!mainFlow)return;
             if(wheelSeat.HasValue){browsingWheels.Add(wheelSeat.Value);lastBrowsedSeat=wheelSeat;}
             mainFlow=false;cameraFollow=false;cameraFocusVersion++;board?.StopFollowing();
-            ClearPending();actionRingClosed=true;wheelSeat=null;wheelPreview="";wheelDecline=false;
+            actionRingClosed=true;wheelSeat=null;
             confirmButton=null;confirmAction=null;
         }
         private void ReturnMainFlow()
@@ -49,7 +57,7 @@ namespace Goa2.Presentation
             if(mine && renderedView.UpgradeOptions.Count>0)instruction="选择升级技能 · 还可升级 "+UpgradeWheelLayout.Remaining(renderedView,seat)+" 次";
             if(NetworkMode && !NetworkCanAct)instruction=networkBusy?"正在等待操作回执":uncertainCommand!=""?"操作结果待核实，请在设置中查询原操作":"连接已中断，请在设置中重连";
             var prompt=Text((mine?"到你行动 · ":"")+instruction,"flow-prompt");prompt.EnableInClassList("flow-mine",mine);panel.Add(prompt);
-            if(!mainFlow)panel.Add(Text("回到当前行动","flow-return"));
+            if(!mainFlow || !cameraFollow)panel.Add(Text("回到当前行动","flow-return"));
             panel.tooltip="点击或空格：回到当前行动；暗选时返回自己的选牌界面"+(flowDetails==""?"":"\n\n"+flowDetails);
             panel.Query<VisualElement>().ForEach(e=>{if(e!=panel)e.pickingMode=PickingMode.Ignore;});root.Add(panel);
         }
@@ -62,7 +70,7 @@ namespace Goa2.Presentation
         private void BuildDecisionDock()
         {
             decisionDock=null;
-            if(!mainFlow || wheelState.Discards.Count>0 || !NetworkCanAct || ScenarioRunning || renderedView.Phase==Phase.HeroSelection && renderedView.Opening!=null)return;
+            if(!DecisionFlow || wheelState.Discards.Count>0 || !NetworkCanAct || ScenarioRunning || renderedView.Phase==Phase.HeroSelection && renderedView.Opening!=null)return;
             var captured=confirmAction;bool canConfirm=captured!=null && confirmButton!=null && confirmButton.enabledSelf;
             bool canBack=CanWithdrawPreview();
             if(!canConfirm && !canBack)return;
@@ -84,7 +92,7 @@ namespace Goa2.Presentation
             var dock=decisionDock;long revision=renderedView.Revision;string match=renderedView.MatchId,selection=DecisionSelectionKey();int actor=seat;
             float start=Time.realtimeSinceStartup;
             var animation=root.schedule.Execute(()=>{float t=Mathf.Clamp01((Time.realtimeSinceStartup-start)/.16f);if(dock!=null){dock.style.translate=new Translate(240*t*t,0);dock.style.opacity=1-t;}}).Every(16);
-            root.schedule.Execute(()=>{animation.Pause();decisionAnimating=false;if(mainFlow && seat==actor && renderedView.MatchId==match && renderedView.Revision==revision && selection==DecisionSelectionKey() && NetworkCanAct)action();else Render();}).StartingIn(170);
+            root.schedule.Execute(()=>{animation.Pause();decisionAnimating=false;if(DecisionFlow && seat==actor && renderedView.MatchId==match && renderedView.Revision==revision && selection==DecisionSelectionKey() && NetworkCanAct)action();else Render();}).StartingIn(170);
         }
         private string DecisionSelectionKey()=>string.Join("|",chosenHero,chosenCell?.ToString(),moveMode,initiativeSeat,passPending,deploymentSeat,
             defenseCardId,discardCardId,declineDefensePending,declineRetaliationPending,goldTransferTarget,goldTransferAmount,

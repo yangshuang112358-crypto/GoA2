@@ -140,7 +140,7 @@ namespace Goa2.Presentation.UI3D
             float extentY=points.Count==0 ? 1 : (points.Max(p=>p.y)-points.Min(p=>p.y))*.5f+3;
             float fittedSize=Mathf.Max(extentY,extentX/Camera.aspect);
             Camera.orthographicSize=fittedSize/state.Zoom;
-            AnimateSculptedRocks();AnimateWorldHud();AnimateHeroAuras();AnimateMinionPoses();AnimateCombat();Camera.Render();
+            AnimateWorldHud();AnimateHeroAuras();AnimateMinionPoses();AnimateCombat();Camera.Render();
         }
         public float ZoomForRegion(IEnumerable<Hex> region)
         {
@@ -162,7 +162,7 @@ namespace Goa2.Presentation.UI3D
         }
         public CellDefinition? Hit(Vector2 pointer,Vector2 size)
         {
-            if(size.x<=0 || size.y<=0 || pointer.x<0 || pointer.y<0 || pointer.x>size.x || pointer.y>size.y) return null;
+            if(!(size.x>0 && size.y>0) || float.IsNaN(pointer.x) || float.IsNaN(pointer.y) || pointer.x<0 || pointer.y<0 || pointer.x>size.x || pointer.y>size.y) return null;
             // Check visible cylinder tops first, then the exact ground hex. No physics raycasts.
             foreach(var token in tokens.OrderBy(t=>Vector3.Distance(Camera.transform.position,Board3DGeometry.World(t.cell,t.top))))
             {

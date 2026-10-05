@@ -49,7 +49,13 @@ namespace Goa2.Presentation
             Check(renderedView.PrimaryPreview?.Kind=="attack_target" && LegalCells(renderedView).Count>0,"Authoritative attack preview before BeginPrimary");
             Check(session.ExportSave()==before && root.Q("action-wheel")==null,"Entering targeting leaves entire state unchanged and closes ring");
             ReturnWorldChoice();Check(session.ExportSave()==before && root.Q("action-wheel")!=null,"Return restores action ring without command");
-            PickAction("secondary");Check(LegalCells(renderedView).Count>0,"Secondary movement destinations visible");ReturnWorldChoice();Check(session.ExportSave()==before,"Movement cancellation is read-only");
+            PickAction("secondary");Check(LegalCells(renderedView).Count>0,"Secondary movement destinations visible");
+            var moves=LegalCells(renderedView).ToArray();chosenCell=moves.First();Render();string selection=DecisionSelectionKey();
+            board!.ManualPan?.Invoke();board.ZoomAtCenter(1.1f);board.EmptyClick?.Invoke();yield return null;
+            Check(DecisionSelectionKey()==selection && moves.SequenceEqual(LegalCells(renderedView)),"Pan zoom and empty click preserve pending movement and legal cells");
+            Check(root.Q(className:"flow-return")!=null && root.Q<Button>("flow-confirm")?.enabledInHierarchy==true,"Free camera keeps move confirmation available");
+            ReturnMainFlow();Check(actionChoice=="" && chosenCell==null && session.ExportSave()==before,"Return resets only local choice and camera");
+            PickAction("secondary");ReturnWorldChoice();Check(session.ExportSave()==before,"Movement cancellation is read-only");
             PickAction("primary");chosenCell=renderedView.Units.Single(u=>u.Id=="hero:1").Position;Render();yield return new WaitForSecondsRealtime(1);
             var confirm=root.Q<Button>("flow-confirm");Check(confirm!=null && confirm.enabledInHierarchy,"Map target has confirmation check");
             Check(confirm!.worldBound.xMin>Screen.width-250 && root.Q("flow-withdraw").worldBound.yMin>=confirm.worldBound.yMax,"Confirm and withdraw stacked at right edge");
@@ -59,6 +65,9 @@ namespace Goa2.Presentation
             ConfirmCurrent();ConfirmCurrent();yield return new WaitForSecondsRealtime(.5f);Check(renderedView.Pending?.Kind=="defense" && renderedView.Revision>0,"Single confirmation begins actual defender response");
             Check(actionChoice=="" && root.Q("world-return")==null,"Cannot undo committed attack from response");
             seat=1;Render();yield return new WaitForSecondsRealtime(9);WheelPick("wasp-00-闪耀之刃");yield return new WaitForSecondsRealtime(.5f);
+            string formula=AttackFormula(renderedView.Attack!);
+            for(int viewer=0;viewer<4;viewer++){seat=viewer;Render();yield return null;Check(root.Q<Label>("public-attack-formula")?.text==formula,"Same public attack calculation for viewer "+viewer);}
+            seat=1;Render();WheelPick("wasp-00-闪耀之刃");yield return new WaitForSecondsRealtime(.3f);
             Check(root.Q<Button>("flow-confirm")?.enabledInHierarchy==true,"Defender preselection exposes right confirmation");
             Check(root.Q(className:"flow-mine")!=null,"Defender sees personal red prompt");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"defense-dock.png"));yield return new WaitForSecondsRealtime(.3f);
@@ -110,8 +119,8 @@ namespace Goa2.Presentation
             Check(root.Q("skill-wheel-anchor-1")==null,"Inspected opponent ring closed on return to planning");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"planning-return.png"));yield return new WaitForSecondsRealtime(.3f);
             Load("combat-defense",7);yield return new WaitForSecondsRealtime(.5f);PickAction("pass");
-            before=session.ExportSave();AnimateDecision(()=>Submit(CommandKind.Pass));LeaveMainFlow();Render();
-            yield return new WaitForSecondsRealtime(.5f);Check(session.ExportSave()==before,"Leaving main flow during exit animation cancels stale confirmation");
+            before=session.ExportSave();AnimateDecision(()=>Submit(CommandKind.Pass));WithdrawPreview();Render();
+            yield return new WaitForSecondsRealtime(.5f);Check(session.ExportSave()==before,"Withdrawing during exit animation cancels stale confirmation");
             ReturnMainFlow();PickAction("primary");WithdrawPreview();Check(actionChoice=="" && session.ExportSave()==before,"Withdraw restores choices without rule mutation");
             bool sent=false;AnimateDecision(()=>sent=true);chosenCell=new Hex(999,999);
             yield return new WaitForSecondsRealtime(.4f);Check(!sent,"Changing preselection during exit animation invalidates captured confirmation");

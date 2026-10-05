@@ -102,7 +102,7 @@ namespace Goa2.Presentation.UI3D
         private Vector3? followTarget;
         private Vector3 followVelocity;
         private float? followZoom;
-        public void Follow(Vector3 target,float? zoom=null) {followTarget=target;if(zoom.HasValue) followZoom=zoom;}
+        public void Follow(Vector3 target,float? zoom=null) {if(float.IsNaN(Focus.sqrMagnitude) || float.IsInfinity(Focus.sqrMagnitude)){Focus=target;followVelocity=Vector3.zero;}followTarget=target;if(zoom.HasValue) followZoom=zoom;}
         public void StopFollowing() {followTarget=null;followZoom=null;followVelocity=Vector3.zero;}
         public void ManualZoom() {followZoom=null;}
         public float Zoom = 1;

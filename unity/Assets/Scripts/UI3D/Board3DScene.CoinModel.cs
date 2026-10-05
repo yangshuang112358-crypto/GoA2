@@ -6,6 +6,8 @@ namespace Goa2.Presentation.UI3D
 {
     public sealed partial class Board3DScene
     {
+        public const float DecisionCoinDiameter=2.08f;
+        public const float DecisionCoinCenterHeight=1.14f+DecisionCoinDiameter*.162f;
         private Transform? BuildDecisionCoinModel(Vector3 origin)
         {
             var asset=Resources.Load<GameObject>("UI3D/DecisionCoin");if(asset==null)return null;
@@ -14,7 +16,7 @@ namespace Goa2.Presentation.UI3D
             foreach(var child in instance.GetComponentsInChildren<Transform>()){child.gameObject.layer=Layer;child.gameObject.hideFlags=HideFlags.HideAndDontSave;}
             var renderers=instance.GetComponentsInChildren<Renderer>();if(renderers.Length==0){Destroy(pivot);return null;}
             var bounds=renderers[0].bounds;foreach(var r in renderers)bounds.Encapsulate(r.bounds);
-            float scale=.965f/Mathf.Max(bounds.size.x,bounds.size.z);var localCenter=bounds.center-origin;
+            float scale=DecisionCoinDiameter/Mathf.Max(bounds.size.x,bounds.size.z);var localCenter=bounds.center-origin;
             instance.transform.localScale=Vector3.one*scale;instance.transform.localPosition=-localCenter*scale;
             foreach(var renderer in renderers){renderer.sharedMaterials=renderer.sharedMaterials.Select(source=>{
                 string name=source==null?"":source.name;bool red=name.StartsWith("RedGem"),blue=name.StartsWith("BlueGem");

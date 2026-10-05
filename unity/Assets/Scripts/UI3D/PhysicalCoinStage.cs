@@ -23,7 +23,8 @@ namespace Goa2.Presentation.UI3D
         private Vector3 parkFrom;
         private Quaternion parkRotation,parkTo;
         private long sequence;
-        private bool started,reported;
+        private bool started,reported,draftFraming;
+        public bool Flipping {get;private set;}
         public readonly string TossId;
         public readonly RenderTexture Texture;
         public bool Finishing=>parkAt>=0;
@@ -92,6 +93,7 @@ namespace Goa2.Presentation.UI3D
         public void Park(Team side,string finalPose="")
         {
             if(Finishing)return;
+            Flipping=false;
             body.isKinematic=true;parkAt=Time.realtimeSinceStartup;parkFrom=body.position;parkRotation=body.rotation;
             parkTo=side==Team.Red?Quaternion.identity:Quaternion.Euler(180,0,0);
             // Authoritative final pose survives reconnect even if the last motion frame was lost.
@@ -100,6 +102,7 @@ namespace Goa2.Presentation.UI3D
         }
         public void DisplaySide(Team side,bool animate)
         {
+            Flipping=true;
             body.isKinematic=true;parkFrom=body.position;parkRotation=body.rotation;parkTo=side==Team.Red?Quaternion.identity:Quaternion.Euler(180,0,0);
             parkDuration=.32f;parkAt=Time.realtimeSinceStartup-(animate?0:1);
         }
@@ -133,6 +136,7 @@ namespace Goa2.Presentation.UI3D
             }
             else if(remote!=null && !simulate)
             {SetPose(Vector3.Lerp(body.position,V(remote.Position),1-Mathf.Exp(-Time.unscaledDeltaTime*18)),Quaternion.Slerp(body.rotation,Q(remote.Rotation),1-Mathf.Exp(-Time.unscaledDeltaTime*18)));}
+            if(draftFraming)camera.transform.position=body.position-camera.transform.forward*20;
             if(render)camera.Render();
         }
         public void RetryResult(){reported=false;}
@@ -141,9 +145,18 @@ namespace Goa2.Presentation.UI3D
         public Bounds ArtBounds {get{var renderers=body.GetComponentsInChildren<Renderer>();var b=renderers[0].bounds;foreach(var r in renderers)b.Encapsulate(r.bounds);return b;}}
         public void SetParkingFraming(float progress)
         {
+            draftFraming=false;
             camera.orthographicSize=Mathf.Lerp(5.2f,1.05f,progress);
             camera.transform.position=Vector3.up*Mathf.Lerp(1,.25f,progress)-camera.transform.forward*20;
         }
+        public void SetDraftFraming(float progress)
+        {
+            // Close framing travels with the physical object. Its panel position
+            // is projected separately, so a large toss cannot leave a tiny coin.
+            draftFraming=true;camera.orthographicSize=1.05f;
+            camera.transform.position=body.position-camera.transform.forward*20;
+        }
+        public Vector2 DraftViewportPoint=>new Vector2(.5f+Vector3.Dot(camera.transform.right,body.position-Vector3.up)/13.866667f,.5f-Vector3.Dot(camera.transform.up,body.position-Vector3.up)/10.4f);
         private void SetPose(Vector3 position,Quaternion rotation){body.position=position;body.rotation=rotation;body.transform.SetPositionAndRotation(position,rotation);}
         private void Apply(CoinMotion f){SetPose(V(f.Position),Q(f.Rotation));}
         private void EmitFrame()=>FrameReady?.Invoke(new CoinMotion{TossId=TossId,Sequence=++sequence,Time=elapsed,Position=A(body.position),Rotation=new[]{body.rotation.x,body.rotation.y,body.rotation.z,body.rotation.w},Velocity=A(body.linearVelocity),AngularVelocity=A(body.angularVelocity)});

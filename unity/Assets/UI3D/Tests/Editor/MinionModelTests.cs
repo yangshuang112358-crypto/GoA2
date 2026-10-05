@@ -60,7 +60,7 @@ namespace Goa2.UI3D.Tests
                 var coinRenderers=coin.GetComponentsInChildren<Renderer>();var coinBounds=coinRenderers[0].bounds;
                 foreach(var r in coinRenderers)coinBounds.Encapsulate(r.bounds);
                 Assert.That(coinBounds.size.y,Is.LessThan(coinBounds.size.x*.36f),"Thick bevel and gems remain flatter than coin diameter");
-                Assert.That(coinBounds.size.x,Is.EqualTo(.965f).Within(.03f));
+                Assert.That(coinBounds.size.x,Is.EqualTo(Board3DScene.DecisionCoinDiameter).Within(.03f));
                 var rock=board.Camera.transform.parent.GetComponentsInChildren<MeshFilter>().Single(m=>m.gameObject.name=="connected rocks");
                 var vertices=rock.sharedMesh.vertices.Select(rock.transform.TransformPoint).ToArray();
                 Assert.That(vertices.All(v=>!float.IsNaN(v.x) && !float.IsNaN(v.y) && !float.IsNaN(v.z)),Is.True);

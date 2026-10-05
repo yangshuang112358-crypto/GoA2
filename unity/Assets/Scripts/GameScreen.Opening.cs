@@ -55,13 +55,23 @@ namespace Goa2.Presentation
             if(renderedView.Phase==Phase.HeroSelection && physicalCoin.Complete && displayedDraftCoin!=renderedView.DecisionCoin){physicalCoin.DisplaySide(renderedView.DecisionCoin,true);displayedDraftCoin=renderedView.DecisionCoin;completedToss="";}
             physicalCoin.Tick(host,connected && !StagePresenting && !openingSubmitting && opening.Status=="throwing" && uncertainCommand=="");
             board3DViewport.Presentation.HideCoin=!opening.OpeningComplete || !physicalCoin.Complete;
-            if(opening.Purpose=="draft" && physicalCoin.Finishing)physicalCoin.SetParkingFraming(physicalCoin.ParkProgress*.78f);
+            if(opening.Purpose=="draft")
+            {
+                float t=physicalCoin.Flipping?1:physicalCoin.Finishing?1-Mathf.Pow(1-physicalCoin.ParkProgress,3):0;
+                physicalCoin.SetDraftFraming(t);
+                if(coinImage!=null){
+                    float width=Mathf.Lerp(380,270,t),height=width*.75f;var point=physicalCoin.DraftViewportPoint;
+                    float x=Mathf.Lerp(Mathf.Clamp(point.x*920,width*.5f,920-width*.5f),271,t);
+                    float y=Mathf.Lerp(Mathf.Clamp(point.y*610,height*.5f,610-height*.5f),295,t);
+                    Place(coinImage,x-width*.5f,y-height*.5f,width,height);
+                }
+            }
             if(opening.Purpose=="opening" && physicalCoin.Finishing && coinImage!=null && board?.Scene!=null)
             {
                 float t=physicalCoin.ParkProgress,ease=1-Mathf.Pow(1-t,3);physicalCoin.SetParkingFraming(ease);
-                var world=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f+Vector3.up*(Board3DScene.WallHeight+.245f);
+                var world=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f+Vector3.up*Board3DScene.DecisionCoinCenterHeight;
                 var p=board.Scene.Camera.WorldToViewportPoint(world);var rect=board.worldBound;
-                float width=.965f*rect.height/(2*board.Scene.Camera.orthographicSize)*1.75f;
+                float width=Board3DScene.DecisionCoinDiameter*rect.height/(2*board.Scene.Camera.orthographicSize)*1.75f;
                 float x=rect.x+p.x*rect.width,y=rect.y+(1-p.y)*rect.height;
                 coinImage.style.right=StyleKeyword.Auto;coinImage.style.bottom=StyleKeyword.Auto;
                 Place(coinImage,Mathf.Lerp(0,x-width*.5f,ease),Mathf.Lerp(0,y-width*.375f,ease),Mathf.Lerp(Screen.width,width,ease),Mathf.Lerp(Screen.height,width*.75f,ease));
@@ -108,13 +118,13 @@ namespace Goa2.Presentation
             {
                 var overlay=new VisualElement{name="draft-overlay",pickingMode=PickingMode.Ignore};overlay.style.position=Position.Absolute;overlay.style.left=0;overlay.style.right=0;overlay.style.top=0;overlay.style.bottom=0;overlay.style.backgroundColor=new Color(.02f,.04f,.06f,.65f);root.Add(overlay);
                 var panel=new VisualElement{name="draft-panel"};panel.style.position=Position.Absolute;panel.style.width=920;panel.style.height=610;panel.style.left=Length.Percent(50);panel.style.top=Length.Percent(50);panel.style.translate=new Translate(Length.Percent(-50),Length.Percent(-50));
-                float scale=Mathf.Min(1,(Screen.width-48)/920f,(Screen.height-40)/610f);panel.style.scale=new Scale(new Vector3(scale,scale,1));
+                float scale=Mathf.Min(2,(Screen.width-48)/920f,(Screen.height-40)/610f);panel.style.scale=new Scale(new Vector3(scale,scale,1));panel.style.overflow=Overflow.Hidden;
                 panel.style.backgroundColor=new Color(.11f,.135f,.16f,.98f);panel.style.borderTopWidth=4;panel.style.borderBottomWidth=4;panel.style.borderLeftWidth=4;panel.style.borderRightWidth=4;
                 var gold=new Color(.57f,.43f,.24f);panel.style.borderTopColor=gold;panel.style.borderBottomColor=gold;panel.style.borderLeftColor=gold;panel.style.borderRightColor=gold;overlay.Add(panel);
                 var heading=OpeningLabel("选择你的英雄",28,new Color(1,.83f,.47f));Place(heading,24,14,500,45);panel.Add(heading);
                 var ring=new VisualElement{name="draft-hero-ring"};Place(ring,14,62,515,465);panel.Add(ring);
                 ring.generateVisualContent+=ctx=>{var p=ctx.painter2D;p.strokeColor=new Color(.58f,.45f,.28f,.7f);p.lineWidth=4;p.BeginPath();p.Arc(new Vector2(257,233),178,0,360);p.Stroke();};
-                coinImage=new Image{name="draft-coin",pickingMode=PickingMode.Ignore,scaleMode=ScaleMode.ScaleToFit};Place(coinImage,78,96,360,270);ring.Add(coinImage);
+                coinImage=new Image{name="draft-coin",pickingMode=PickingMode.Ignore,scaleMode=ScaleMode.ScaleToFit};Place(coinImage,136,193.75f,270,202.5f);panel.Add(coinImage);
                 if(physicalCoin!=null)coinImage.image=physicalCoin.Texture;
                 int i=0;
                 foreach(var hero in catalog.Heroes)
@@ -138,12 +148,8 @@ namespace Goa2.Presentation
                     var confirm=Button("选择 "+HeroName(selected.Id),()=>Submit(CommandKind.ChooseHero,selected.Id),"button","draft-confirm");Place(confirm,0,412,326,64);confirm.style.fontSize=23;confirm.SetEnabled(NetworkCanAct && !StagePresenting && (physicalCoin==null || physicalCoin.Complete));details.Add(confirm);
                     if(confirm.enabledSelf){confirmAction=()=>Submit(CommandKind.ChooseHero,selected.Id);confirmButton=confirm;}
                 }
-                if(!NetworkMode)
-                {
-                    var seats=new VisualElement();seats.style.flexDirection=FlexDirection.Row;Place(seats,0,335,330,55);
-                    foreach(var player in renderedView.Players){int s=player.Seat;var b=Button((s+1)+" "+(player.Team==Team.Red?"红":"蓝"),()=>SwitchSeat(s),"quiet-button","draft-seat-"+s);b.style.width=78;b.style.fontSize=18;seats.Add(b);}details.Add(seats);
-                }
                 AddReroll(details,opening,278);
+                coinImage.BringToFront();
             }
             else if(physicalCoin!=null && (!physicalCoin.Complete || opening.Status=="stuck"))
             {

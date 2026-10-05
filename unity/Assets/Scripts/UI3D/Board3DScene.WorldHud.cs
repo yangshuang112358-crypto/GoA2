@@ -74,11 +74,11 @@ namespace Goa2.Presentation.UI3D
      fragments.Add((tr,effect,at,new Vector3(Mathf.Cos(a)*2,2+i*.23f,Mathf.Sin(a)*2)));
     }
    }
-   // The shared edge of the two central radius-.965 hexes is .965 units long.
-   coinOrigin=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f+Vector3.up*(WallHeight+.245f);
+   // Fill the circular tray inside its raised lip, with the lower gem above stone.
+   coinOrigin=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f+Vector3.up*DecisionCoinCenterHeight;
    decisionCoin=BuildDecisionCoinModel(coinOrigin);
    if(decisionCoin!=null)return;
-   decisionCoin=Add(Own(BeveledCoin()),coinOrigin,new Vector3(.4825f,.12f,.4825f),ColorOf("#BD873B"),"decision coin").transform;
+   decisionCoin=Add(Own(BeveledCoin()),coinOrigin,new Vector3(DecisionCoinDiameter*.5f,.12f,DecisionCoinDiameter*.5f),ColorOf("#BD873B"),"decision coin").transform;
    Polish(decisionCoin,.85f);
    foreach(var side in new[]{-1,1}) {
     foreach(float radius in new[]{.94f,.78f,.6f}) {
@@ -121,9 +121,9 @@ namespace Goa2.Presentation.UI3D
    foreach(var c in crowns) {float t=Mathf.Clamp01((now-c.flight.Started)/2.4f),s=t*t*(3-2*t);c.transform.localPosition=Vector3.Lerp(c.flight.From,c.to,s)+Vector3.up*(Mathf.Sin(t*Mathf.PI)*3);c.transform.localRotation=Quaternion.Euler(0,360*t,0);}
    foreach(var p in pendingCrystals)p.transform.gameObject.SetActive(now<p.until);
    foreach(var f in fragments) {float t=now-f.effect.Started;f.transform.gameObject.SetActive(t>=0 && t<1.5f);if(t>=0){f.transform.localPosition=f.origin+f.velocity*t-Vector3.up*3*t*t;f.transform.localScale=Vector3.one*.18f*Mathf.Clamp01(1-t/1.5f);}}
-   if(decisionCoin!=null) {decisionCoin.gameObject.SetActive(!presentation.HideCoin && now-presentation.RockFormationStarted>=3.2f);float t=Mathf.Clamp01((now-presentation.CoinStarted)/presentation.CoinDuration);float turn=presentation.CoinTo==Team.Blue ? 180 : 0;
-    decisionCoin.localPosition=coinOrigin+Vector3.up*(Mathf.Sin(t*Mathf.PI)*(presentation.CoinOpening ? 1.5f : .5f));
-    float from=presentation.CoinFrom==Team.Blue ? 180 : 0;float ease=t*t*(3-2*t);
+   if(decisionCoin!=null) {decisionCoin.gameObject.SetActive(!presentation.HideCoin);var conflict=presentation.Conflict(now);float t=Mathf.Clamp01((now-(conflict?.Flip??presentation.CoinStarted))/presentation.CoinDuration);float turn=(conflict?.Next??presentation.CoinTo)==Team.Blue ? 180 : 0;
+    decisionCoin.localPosition=coinOrigin+Vector3.up*(Mathf.Sin(t*Mathf.PI)*(presentation.CoinOpening ? 1.5f : .85f));
+    float from=(conflict?.Winner??presentation.CoinFrom)==Team.Blue ? 180 : 0;float ease=t*t*(3-2*t);
     decisionCoin.localRotation=Quaternion.Euler(0,0,from+(turn-from+(presentation.CoinOpening ? 720 : 0))*ease);}
   }
  }

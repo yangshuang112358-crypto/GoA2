@@ -31,7 +31,8 @@ namespace Goa2.Presentation.UI3D
             }
             platformGlyph=Add(Own(Board3DGeometry.Ring(96,.94f)),center+Vector3.up*1.145f,new Vector3(.8f,1,.39f),ColorOf("#3C3830"),"coin platform engraving").transform;
             platformGlyph.localRotation=Quaternion.Euler(0,60,0);
-            AnimateSculptedRocks();return true;
+            foreach(var entry in spiralRocks)entry.pivot.localRotation=Quaternion.Euler(0,entry.side*180,0);
+            return true;
         }
         private GameObject InstantiateStone(GameObject asset,string name,float width,Vector3 center)
         {
@@ -45,17 +46,6 @@ namespace Goa2.Presentation.UI3D
         {
             foreach(var t in go.GetComponentsInChildren<Transform>()){t.gameObject.layer=Layer;t.gameObject.hideFlags=HideFlags.HideAndDontSave;}
             foreach(var renderer in go.GetComponentsInChildren<Renderer>()){renderer.gameObject.name=name;renderer.sharedMaterials=renderer.sharedMaterials.Select(_=>TerrainMaterial("rock",ColorOf("#7A817D"))).ToArray();}
-        }
-        private void AnimateSculptedRocks()
-        {
-            float t=Mathf.Clamp01((Time.realtimeSinceStartup-state.Presentation.RockFormationStarted)/3.2f),ease=t*t*(3-2*t);
-            foreach(var entry in spiralRocks)
-            {
-                float angle=entry.side*180+(1-ease)*-130;entry.pivot.localRotation=Quaternion.Euler(0,angle,0);
-                var center=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f;
-                entry.pivot.localPosition=center+Quaternion.Euler(0,angle,0)*Vector3.right*((1-ease)*.85f)+Vector3.down*((1-ease)*.55f);
-            }
-            if(platformGlyph!=null)platformGlyph.gameObject.SetActive(t>.94f);
         }
     }
 }

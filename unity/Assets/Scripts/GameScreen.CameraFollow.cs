@@ -14,13 +14,13 @@ namespace Goa2.Presentation
         private void SetCameraFollow(bool enabled)
         {
             if(enabled){ReturnMainFlow();return;}
-            if(mainFlow){LeaveMainFlow();Render();}
-            else {cameraFollow=false;cameraFocusVersion++;board?.StopFollowing();}
+            BrowseCamera();
             cinematicResumeZoom=null;RequestCapture();
         }
         private void ApplyCameraFollow(bool reenabled=false)
         {
             if(board==null) return;
+            if(InitiativePresenting && Time.realtimeSinceStartup>=board3DViewport.Presentation.Conflict(Time.realtimeSinceStartup)!.Start){if(cameraFollow)board.FollowAt(BattlePresentationState.Center(catalog),3f);return;}
             if(StagePresenting){board.StopFollowing();return;}
             if(!cameraFollow) {board.StopFollowing();return;}
             if(CombatPresenting){var shot=board3DViewport.Presentation.Combat.Current(Time.realtimeSinceStartup);if(shot!=null)board.FollowAt(Board3DGeometry.World(shot.Target.Position),2.5f);return;}
@@ -57,7 +57,7 @@ namespace Goa2.Presentation
         }
         private void ConfirmCurrent()
         {
-            if(!mainFlow || decisionAnimating || ScenarioRunning || confirmButton==null || !confirmButton.enabledInHierarchy) return;
+            if(!DecisionFlow || decisionAnimating || ScenarioRunning || confirmButton==null || !confirmButton.enabledInHierarchy) return;
             var action=confirmAction;confirmAction=null;action?.Invoke();
         }
         private readonly StoneSettingsButton.Motion settingsMotion = new StoneSettingsButton.Motion();

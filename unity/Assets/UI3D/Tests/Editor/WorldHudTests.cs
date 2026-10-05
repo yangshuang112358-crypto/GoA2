@@ -7,6 +7,29 @@ namespace Goa2.UI3D.Tests {
  public sealed class WorldHudTests {
   private static ContentCatalog Catalog() {var c=new ContentCatalog {Rules=new RuleSettings{StartingCrystalLife=7}};c.Cells.Add(new CellDefinition{Position=new Hex(0,0),Region="mid"});c.Cells.Add(new CellDefinition{Position=new Hex(6,0),Region="redNear"});c.Cells.Add(new CellDefinition{Position=new Hex(10,0),Region="redFountain",Spawn="redHeroSpawn"});return c;}
   private static GameView View()=>new GameView {MatchId="a",Revision=1,BlueCrystal=7,RedCrystal=7,CombatRegion="mid",Players={new PlayerView{Seat=1,Team=Team.Red}}};
+  [TestCase(1,3,3,0,3)][TestCase(1,5,3,2,3)][TestCase(7,7,8,0,0)][TestCase(3,2,3,2,3)]
+  public void ExperienceRingUsesRemainderAfterForecast(int level,int gold,int target,int remaining,int cost){var p=LevelPreview.Progress(level,gold);Assert.That(p.Level,Is.EqualTo(target));Assert.That(p.Gold,Is.EqualTo(remaining));Assert.That(p.Cost,Is.EqualTo(cost));if(cost>0)Assert.That(p.Gold,Is.LessThan(cost));}
+  [Test] public void ConflictShowsWinningSideBeforeFlippingAndDoesNotReplay()
+  {
+   var v=View();var p=new BattlePresentationState();var c=Catalog();p.Observe(c,v,0);
+   v.Events.Add(new GameEvent{Sequence=1,Kind="DecisionCoinFlipped",Detail="Blue wins; now Red"});v.DecisionCoin=Team.Red;v.Revision++;
+   p.Observe(c,v,1,Vector3.zero);p.Observe(c,v,1.1f,Vector3.zero);
+   Assert.That(p.CoinConflicts.Count,Is.EqualTo(1));var beat=p.Conflict(1);Assert.That(beat.Winner,Is.EqualTo(Team.Blue));Assert.That(beat.Next,Is.EqualTo(Team.Red));Assert.That(beat.Flip-beat.Start,Is.GreaterThanOrEqualTo(3.6f));Assert.That(beat.End-beat.Flip,Is.GreaterThan(1));
+   Assert.That(p.Conflict(beat.End+.01f),Is.Null);
+   var loaded=new BattlePresentationState();loaded.Observe(c,v,10);Assert.That(loaded.CoinConflicts,Is.Empty);
+  }
+  [Test] public void ArrowDisappearsBeforeReentryAndStopsSmoothly()
+  {
+   Assert.That(LevelPreview.ArrowOpacity(1),Is.Zero);Assert.That(LevelPreview.ArrowY(0),Is.EqualTo(101));Assert.That(LevelPreview.ArrowY(3),Is.EqualTo(69));
+   Assert.That(LevelPreview.ArrowY(1.99f)-LevelPreview.ArrowY(2),Is.LessThan(.01f));
+  }
+  [Test] public void InvalidTransientCameraDoesNotPoisonConflictTiming()
+  {
+   var v=View();var p=new BattlePresentationState();var c=Catalog();p.Observe(c,v,0);
+   v.Events.Add(new GameEvent{Sequence=1,Kind="DecisionCoinFlipped",Detail="Red wins; now Blue"});v.Revision++;
+   p.Observe(c,v,1,new Vector3(float.NaN,0,0));Assert.That(p.Conflict(1),Is.Not.Null);Assert.That(float.IsNaN(p.Conflict(1).End),Is.False);
+   var camera=new Board3DViewport{Focus=new Vector3(float.NaN,0,0)};camera.Follow(Vector3.one);camera.Advance(.016f);Assert.That(camera.Focus,Is.EqualTo(Vector3.one));
+  }
   [Test] public void DeathAndCrownConsumeEachPublicEventOnlyOnce() {
    var c=Catalog();var v=View();var p=new BattlePresentationState();p.Observe(c,v,0);
    v.Events.Add(new GameEvent{Sequence=1,Kind="HeroDefeated",Seat=1});v.Events.Add(new GameEvent{Sequence=2,Kind="CrystalDamaged",Seat=1,Detail="2"});

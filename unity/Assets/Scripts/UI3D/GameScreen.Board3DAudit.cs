@@ -34,6 +34,7 @@ namespace Goa2.Presentation
             var report=new BoardAuditReport {UnityVersion=UnityEngine.Application.unityVersion,Width=Screen.width,Height=Screen.height};
             var routine=Environment.GetCommandLineArgs().Contains("-goaOpeningAuditOnly") ? AuditOpening(output,report) : Environment.GetCommandLineArgs().Contains("-goaWorldDecisionsAuditOnly") ? AuditWorldDecisions(output,report) : Environment.GetCommandLineArgs().Contains("-goaActionSequenceAuditOnly") ? AuditActionSequence(output,report) : Environment.GetCommandLineArgs().Contains("-goaBattlefieldAuditOnly") ? AuditBattlefieldLayout(output,report) : Environment.GetCommandLineArgs().Contains("-goaTerrainAuditOnly") ? AuditTerrain(output,report) : Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
             if(Environment.GetCommandLineArgs().Contains("-goaCombatPresentationAuditOnly"))routine=AuditCombatPresentation(output,report);
+            if(Environment.GetCommandLineArgs().Contains("-goaRevisionAuditOnly"))routine=AuditUIRevision(output,report);
             while(true)
             {
                 object? next=null;bool more=false;
@@ -147,7 +148,7 @@ namespace Goa2.Presentation
                     if(u>=-.00001f && v>=-.00001f && w>=-.00001f)height=Mathf.Max(height,u*a.y+v*b.y+w*c.y);
                 }return height;
             }
-            var samples=Enumerable.Range(0,16).Select(i=>center+new Vector3(Mathf.Cos(i*Mathf.PI/8),0,Mathf.Sin(i*Mathf.PI/8))*.4825f).Append(center);
+            var samples=Enumerable.Range(0,16).Select(i=>center+new Vector3(Mathf.Cos(i*Mathf.PI/8),0,Mathf.Sin(i*Mathf.PI/8))*(Board3DScene.DecisionCoinDiameter*.5f)).Append(center);
             Check(samples.All(p=>Mathf.Abs(Surface(p)-(platform.Count>0?1.14f:Board3DScene.WallHeight))<.002f),"Coin center and 16 perimeter samples lie on a flat covered top");
             Check(filters.Any(f=>f.name=="coin platform engraving"),"Coin platform engraved ring present");
             Check(filters.Count(f=>f.name=="spawn rune backing")==filters.Count(f=>f.name.StartsWith("spawn rune ") && f.name!="spawn rune backing"),"Every spawn rune has contrast backing");
@@ -413,7 +414,7 @@ namespace Goa2.Presentation
             board3DViewport.Focus=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f;board3DViewport.Zoom=8;yield return new WaitForSecondsRealtime(.25f);
             var renderedObjects=board.Scene!.Camera.transform.parent.GetComponentsInChildren<Transform>();
             var mintedCoin=renderedObjects.Single(t=>t.name=="decision coin");var restingPosition=mintedCoin.localPosition;
-            Check(Mathf.Abs(mintedCoin.localScale.x*2-.965f)<.001f,"Coin diameter equals central shared terrain edge");
+            Check(Mathf.Abs(mintedCoin.localScale.x*2-Board3DScene.DecisionCoinDiameter)<.001f,"Coin diameter fills the central tray");
             Check(renderedObjects.Count(t=>t.name.StartsWith("crystal life "))==renderedView.BlueCrystal+renderedView.RedCrystal,"No extra oversized decorative crystal");
             var life=renderedObjects.First(t=>t.name.StartsWith("crystal life "));var lifePosition=life.localPosition;
             yield return new WaitForSecondsRealtime(.3f);

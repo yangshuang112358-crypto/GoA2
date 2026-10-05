@@ -13,6 +13,7 @@ namespace Goa2.Presentation
         private bool StagePresenting=>Time.realtimeSinceStartup-stageStarted<StageBannerPolicy.Duration;
         private void ObserveStageBanner()
         {
+            if(InitiativePresenting){stageStarted=-100;stageWaiting=false;return;}
             if(CombatPresenting)return;
             if(renderedView.Opening?.Status=="settled" && (openingSubmitting || physicalCoin!=null && physicalCoin.Finishing && !physicalCoin.Complete))return;
             var stage=StageBannerPolicy.Describe(renderedView,s=>HeroName(renderedView.Players.FirstOrDefault(p=>p.Seat==s)?.HeroId));

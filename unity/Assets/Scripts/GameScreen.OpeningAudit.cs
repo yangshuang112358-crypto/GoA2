@@ -18,6 +18,8 @@ namespace Goa2.Presentation
             Check(root.Query<Button>().ToList().Count(b=>b.name.StartsWith("draft-hero-"))==6,"Six browseable heroes around coin");
             Check(root.Q("stage-banner")!=null,"Five-second stage introduction before throw");
             yield return new WaitForSecondsRealtime(5.6f);ScreenCapture.CaptureScreenshot(Path.Combine(output,"draft-toss.png"));
+            float tossWidth=root.Q("draft-coin").worldBound.width;
+            Check(root.Query<Button>().ToList().All(b=>!b.name.StartsWith("draft-seat-")),"No seat-number strip in draft window");
             float deadline=Time.realtimeSinceStartup+40;
             while(renderedView.Opening!.Status!="settled")
             {
@@ -29,11 +31,14 @@ namespace Goa2.Presentation
             var first=renderedView.DraftTeam!.Value;int captain=first==Team.Blue?0:1;SwitchSeat(captain);chosenHero="wasp";Render();yield return null;yield return null;
             Check(root.Q<Button>("draft-confirm")?.enabledInHierarchy==true,"Eligible team can confirm after toss and banner");
             Check(root.Q("draft-panel").worldBound.xMin>=0 && root.Q("draft-panel").worldBound.xMax<=Screen.width,"Draft modal fits resolution");
+            float settledWidth=root.Q("draft-coin").worldBound.width;Check(tossWidth>settledWidth*1.3f,"Tossed coin is substantially larger than parked coin");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"draft-select.png"));yield return new WaitForSecondsRealtime(.4f);
             int[] seats={captain,1-captain,3-captain,captain+2};string[] heroes={"wasp","shargatha","brogan","arien"};
             for(int i=0;i<4;i++)
             {
-                SwitchSeat(seats[i]);chosenHero=heroes[i];Render();yield return new WaitForSecondsRealtime(.5f);Submit(CommandKind.ChooseHero,heroes[i]);yield return new WaitForSecondsRealtime(.7f);
+                SwitchSeat(seats[i]);chosenHero=heroes[i];Render();yield return new WaitForSecondsRealtime(.5f);Submit(CommandKind.ChooseHero,heroes[i]);yield return new WaitForSecondsRealtime(.12f);
+                if(i<3)Check(Mathf.Abs(root.Q("draft-coin").worldBound.width-settledWidth)<1,"Team flip preserves displayed coin size "+i);
+                yield return new WaitForSecondsRealtime(.6f);
                 Check(renderedView.Players[seats[i]].HeroId==heroes[i],"BP accepted pick "+(i+1));
                 if(i==1){ScreenCapture.CaptureScreenshot(Path.Combine(output,"draft-team-colors.png"));yield return new WaitForSecondsRealtime(.3f);}
             }

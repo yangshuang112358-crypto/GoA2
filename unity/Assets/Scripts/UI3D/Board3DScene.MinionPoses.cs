@@ -24,6 +24,7 @@ namespace Goa2.Presentation.UI3D
             public readonly Dictionary<string,(Transform bone,Quaternion rotation,Vector3 position,Vector3 scale)> Bones=new Dictionary<string,(Transform,Quaternion,Vector3,Vector3)>();
             public MinionPoseMotion Motion=null!;
             public Vector3 Center;
+            public float Handedness=1;
             public LineRenderer? String,Arrow;
             public string IdlePose="idle";public bool IdleRise;
             public Quaternion IdleFacing;
@@ -33,7 +34,8 @@ namespace Goa2.Presentation.UI3D
         {
             if(!state.Presentation.MinionMotions.TryGetValue(id,out var motion))state.Presentation.MinionMotions[id]=motion=new MinionPoseMotion();
             var rig=new MinionRig{Id=id,Kind=kind,Root=instance.transform,Motion=motion};
-            foreach(var bone in instance.GetComponentsInChildren<Transform>())if(bone.name=="Hips" || bone.name=="Spine" || bone.name.StartsWith("Upper") || bone.name.StartsWith("Lower") || bone.name.StartsWith("Hand.") || bone.name.StartsWith("Weapon.") || bone.name.StartsWith("SpiderLeg."))rig.Bones[bone.name]=(bone,bone.localRotation,bone.localPosition,bone.localScale);
+            foreach(var bone in instance.GetComponentsInChildren<Transform>())if(bone.name=="Hips" || bone.name=="Spine" || bone.name=="Head" || bone.name.StartsWith("Upper") || bone.name.StartsWith("Lower") || bone.name.StartsWith("Hand.") || bone.name.StartsWith("Weapon.") || bone.name.StartsWith("SpiderLeg.") || bone.name.StartsWith("Bow"))rig.Bones[bone.name]=(bone,bone.localRotation,bone.localPosition,bone.localScale);
+            rig.Handedness=Mathf.Sign(Vector3.Dot(rig.Bones["Hand.R"].bone.position-rig.Bones["Hand.L"].bone.position,rig.Root.right));
             if(!motion.FacingInitialized){motion.FacingInitialized=true;motion.Facing=motion.TargetFacing=instance.transform.rotation;}
             if(kind=="ranged") {rig.String=MinionLine("bow string "+id,.012f,new Color(.84f,.78f,.59f));rig.Arrow=MinionLine("nocked arrow "+id,.022f,new Color(.67f,.42f,.18f));}
             minionRigs.Add(rig);
@@ -87,7 +89,9 @@ namespace Goa2.Presentation.UI3D
                 foreach(var pair in rig.Bones.Values){pair.bone.localRotation=pair.rotation;pair.bone.localPosition=pair.position;pair.bone.localScale=pair.scale;}
                 void Turn(string name,float degrees,Vector3 axis){if(rig.Bones.TryGetValue(name,out var b))b.bone.rotation=Quaternion.AngleAxis(degrees,axis)*b.bone.rotation;}
                 void Shift(string name,Vector3 delta){if(rig.Bones.TryGetValue(name,out var b))b.bone.position+=delta;}
-                var right=rig.Root.right;var forward=rig.Root.forward;
+                // FBX changes handedness. Use the model's actual sword-hand side,
+                // rather than moving that arm across the torso toward Unity +X.
+                var right=rig.Root.right*rig.Handedness;var forward=rig.Root.forward;
                 float ready=rig.Kind=="heavy"?Mathf.InverseLerp(.35f,.8f,m.Raised):1;
                 float guard=m.Guard*ready,support=m.Support*ready;
                 if(rig.Kind=="heavy"){
@@ -95,7 +99,7 @@ namespace Goa2.Presentation.UI3D
                     foreach(var pair in rig.Bones.Where(p=>p.Key.StartsWith("SpiderLeg.")))pair.Value.bone.localScale=pair.Value.scale*Mathf.Lerp(.06f,1,m.Raised);
                 }else if(rig.Kind=="melee"){
                     Shift("Hips",Vector3.down*.22f*guard+forward*(.16f*guard+.10f*support));
-                    Turn("UpperLeg.L",32*guard,right);Turn("LowerLeg.L",-68*guard,right);Turn("UpperLeg.R",-28*guard,right);Turn("LowerLeg.R",45*guard,right);
+                    Turn("UpperLeg.L",32*guard,rig.Root.right);Turn("LowerLeg.L",-68*guard,rig.Root.right);Turn("UpperLeg.R",-28*guard,rig.Root.right);Turn("LowerLeg.R",45*guard,rig.Root.right);
                 }
                 if(rig.Kind=="ranged"){
                     BowPose(rig,Mathf.Max(m.Support,m.Guard),attacking?now-shot!.PrepareStarted:now-m.Changed);
@@ -103,15 +107,15 @@ namespace Goa2.Presentation.UI3D
                     if(attacking && now>=shot!.Start+.12f){rig.Arrow!.enabled=false;var p=rig.String!.GetPosition(0);var q=rig.String.GetPosition(2);rig.String.SetPosition(1,(p+q)*.5f);}
                 }else{
                     float h=MinionHeight(rig.Kind);Vector3 At(float x,float y,float z)=>rig.Center+right*x*h+Vector3.up*y*h+forward*z*h;
-                    PoseHand(rig,"L",At(-.11f,rig.Kind=="heavy"?.50f:.46f,.24f),guard,Quaternion.identity,At(-.38f,.40f,.05f));
-                    Vector3 sword=rig.Kind=="heavy"?(-right+forward*.16f+Vector3.up*.10f).normalized:(forward+Vector3.up).normalized;
+                    Turn("Spine",8*guard,rig.Root.right);
+                    PoseHand(rig,"L",At(-.19f,rig.Kind=="heavy"?.53f:.49f,.28f),guard,Quaternion.identity,At(-.40f,.42f,.10f));
+                    Vector3 sword=rig.Kind=="heavy"?(-right+forward*.42f+Vector3.up*.10f).normalized:(forward+Vector3.up).normalized;
                     if(attacking && now>=shot!.Start)
                     {
                         float swing=Mathf.SmoothStep(0,1,Mathf.Clamp01((now-shot.Start)/.55f));
                         sword=rig.Kind=="heavy"?Quaternion.AngleAxis(-140*swing,Vector3.up)*sword:Vector3.Slerp(sword,(forward-Vector3.up*.8f).normalized,swing);
                     }
-                    PoseHand(rig,"R",At(rig.Kind=="heavy"?.23f:.21f,rig.Kind=="heavy"?.58f:.47f,.19f),support,Quaternion.FromToRotation(Vector3.up,sword),At(.44f,.48f,.03f));
-                    Turn("Spine",8*guard,right);
+                    PoseHand(rig,"R",At(rig.Kind=="heavy"?.37f:.29f,rig.Kind=="heavy"?.59f:.58f,rig.Kind=="heavy"?.30f:.16f),support,Quaternion.FromToRotation(Vector3.up,sword),At(.48f,.48f,.02f));
                 }
             }
         }
@@ -131,21 +135,26 @@ namespace Goa2.Presentation.UI3D
         }
         private void BowPose(MinionRig rig,float weight,float elapsed)
         {
-            float h=MinionHeight(rig.Kind);var f=rig.Root.forward;var r=rig.Root.right;
+            float h=MinionHeight(rig.Kind);var f=rig.Root.forward;var r=rig.Root.right*rig.Handedness;
             Vector3 At(float x,float y,float z)=>rig.Center+r*x*h+Vector3.up*y*h+f*z*h;
+            // Open the shoulders into an archery stance. Keep the large hood
+            // looking at the target and clear of the drawn string/arrow.
+            var head=rig.Bones["Head"].bone;var headRotation=head.rotation;
+            var torso=rig.Bones["Spine"].bone;torso.rotation=Quaternion.AngleAxis(rig.Handedness*45*weight,Vector3.up)*torso.rotation;
+            head.rotation=headRotation;head.position+=(-f*.09f+Vector3.up*.025f)*h*weight;
             // Reach over the head to the quiver, bring the arrow around the shoulder,
             // nock in front, then draw the string back. No teleport between key poses.
-            Vector3[] keys={At(.22f,.39f,.08f),At(.12f,.81f,-.08f),At(.18f,.89f,.04f),At(.03f,.67f,.22f),At(.13f,.66f,-.01f)};
+            Vector3[] keys={At(.22f,.39f,.08f),At(.18f,.80f,-.10f),At(.22f,.86f,.04f),At(-.02f,.64f,.30f),At(.02f,.64f,.15f)};
             float t=Mathf.Clamp(elapsed/.44f,0,3.999f);int index=Mathf.FloorToInt(t);float blend=Mathf.SmoothStep(0,1,t-index);
             var draw=Vector3.Lerp(keys[index],keys[index+1],blend);
-            PoseHand(rig,"L",At(-.12f,.65f,.235f),weight,Quaternion.identity,At(-.36f,.55f,.11f));
-            PoseHand(rig,"R",draw,weight,Quaternion.identity,At(.42f,.64f,-.04f));
-            var bow=rig.Bones["Hand.L"].bone.position;var hand=rig.Bones["Hand.R"].bone.position;
-            var top=bow+Vector3.up*(h*.28f)-f*(h*.10f);var bottom=bow-Vector3.up*(h*.28f)-f*(h*.10f);
+            PoseHand(rig,"L",At(-.02f,.64f,.35f),weight,Quaternion.identity,At(-.27f,.60f,.25f));
+            PoseHand(rig,"R",draw,weight,Quaternion.identity,At(.37f,.68f,-.04f));
+            var hand=rig.Bones["Hand.R"].bone.position;
+            var top=rig.Bones["BowTip.Top"].bone.position;var bottom=rig.Bones["BowTip.Bottom"].bone.position;
             float pulled=weight*Mathf.SmoothStep(0,1,(elapsed-1.30f)/.46f);var nock=Vector3.Lerp((top+bottom)*.5f,hand,pulled);
             rig.String!.positionCount=3;rig.String.SetPositions(new[]{bottom,nock,top});
             bool carrying=weight>.05f && elapsed>.40f;rig.Arrow!.enabled=carrying;
-            if(carrying){var shaftStart=elapsed<1.3f?hand:nock;var axis=elapsed<1.3f?Vector3.Slerp(Vector3.up,f,Mathf.Clamp01((elapsed-.55f)/.75f)):f;rig.Arrow.positionCount=2;rig.Arrow.SetPositions(new[]{shaftStart,shaftStart+axis*h*.42f});}
+            if(carrying){var shaftStart=elapsed<1.3f?hand:nock;var aim=(rig.Bones["BowGrip"].bone.position-nock).normalized;var axis=elapsed<1.3f?Vector3.Slerp(Vector3.up,f,Mathf.Clamp01((elapsed-.55f)/.75f)):aim;rig.Arrow.positionCount=2;rig.Arrow.SetPositions(new[]{shaftStart,shaftStart+axis*h*.48f});}
         }
     }
 }

@@ -29,8 +29,8 @@
    yield return new WaitForSecondsRealtime(2);StopVideo();
    mainFlow=false;cameraFollow=false;browsingWheels.Clear();wheelSeat=null;Render();
    board3DViewport.Focus=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f;board3DViewport.Zoom=4.6f;yield return new WaitForSecondsRealtime(.5f);
-   demoCaption="Blender 原创中央石台 · 双石盘旋合拢";BeginVideo("03-rocks-coin");
-   board3DViewport.Presentation.HideCoin=true;board3DViewport.Presentation.RockFormationStarted=Time.realtimeSinceStartup;
+   demoCaption="Blender 原创中央石台 · 静态雕纹与大决策币";BeginVideo("03-rocks-coin");
+   board3DViewport.Presentation.HideCoin=false;
    yield return new WaitForSecondsRealtime(3.5f);board3DViewport.Presentation.HideCoin=false;
    yield return new WaitForSecondsRealtime(1.4f);demoCaption="双面金属宝石币 · 普通换面只快速翻转半圈";
    Submit(CommandKind.DebugSetCoin,renderedView.DecisionCoin==Team.Red?"blue":"red");yield return new WaitForSecondsRealtime(2);

@@ -9,6 +9,9 @@ namespace Goa2.Presentation.UI3D
  {
   public sealed class CrownFlight {public Team Team;public Vector3 From;public float Started;public int Index;}
   public sealed class Shatter {public Team Team;public int Index;public float Started;}
+  public sealed class CoinConflict {public Team Winner,Next;public float Start,Flip,End;public long Sequence;}
+  public readonly List<CoinConflict> CoinConflicts=new List<CoinConflict>();
+  public CoinConflict? Conflict(float now)=>CoinConflicts.FirstOrDefault(c=>now<c.End);
   public readonly List<CrownFlight> Crowns=new List<CrownFlight>();
   public readonly List<Shatter> Shards=new List<Shatter>();
   public readonly Dictionary<string,MinionPoseMotion> MinionMotions=new Dictionary<string,MinionPoseMotion>();
@@ -16,7 +19,6 @@ namespace Goa2.Presentation.UI3D
   public readonly CombatPresentationTimeline Combat=new CombatPresentationTimeline();
   public int BlueCapacity,RedCapacity;
   public float CoinStarted=-100,DeathUntil=-100;
-  public float RockFormationStarted=-100;
   public bool CoinOpening;
   public bool HideCoin;
   public float CoinDuration => CoinOpening ? 2.4f : .32f;
@@ -25,7 +27,7 @@ namespace Goa2.Presentation.UI3D
   private string match="";
   private bool initialized;
   private long sequence,lastRevision;
-  private static float Travel(Vector3? from,Vector3 to)=>from.HasValue ? 1.8f+Vector3.Distance(from.Value,to)/14 : 0;
+  private static float Travel(Vector3? from,Vector3 to){float distance=from.HasValue?Vector3.Distance(from.Value,to):0;return float.IsNaN(distance)||float.IsInfinity(distance)?1.8f:from.HasValue?1.8f+distance/14:0;}
   public static Vector3 Center(ContentCatalog catalog,string region="") {
    var points=catalog.Cells.Where(c=>region=="" || c.Region==region).Select(c=>Board3DGeometry.World(c.Position)).ToList();
    return points.Count==0 ? Vector3.zero : new Vector3((points.Min(p=>p.x)+points.Max(p=>p.x))*.5f,0,(points.Min(p=>p.z)+points.Max(p=>p.z))*.5f);
@@ -36,7 +38,7 @@ namespace Goa2.Presentation.UI3D
    Combat.Observe(view,now);
    lastRevision=view.Revision;
    if(fresh) {initialized=true;match=view.MatchId;sequence=0;Crowns.Clear();Shards.Clear();DeathUntil=-100;CoinFrom=CoinTo=view.DecisionCoin;CoinOpening=view.Revision==0;CoinStarted=view.Revision==0 ? now+Travel(cameraPosition,Center(catalog)) : -100;}
-   if(fresh){Levels.Clear();MinionMotions.Clear();RockFormationStarted=-100;HideCoin=view.Opening!=null && !view.Opening.OpeningComplete;}
+   if(fresh){Levels.Clear();MinionMotions.Clear();CoinConflicts.Clear();HideCoin=view.Opening!=null && !view.Opening.OpeningComplete;}
    foreach(var player in view.Players){
     if(!Levels.TryGetValue(player.Seat,out var motion))Levels[player.Seat]=motion=new LevelPreview.Motion();
     if(view.RoundEndStage!="upgrades" || !view.UpgradingSeats.Contains(player.Seat))motion.Observe(LevelPreview.Target(player.Level,Combat.VisibleGold(player.Seat,player.Gold,now))-player.Level,now);
@@ -48,7 +50,12 @@ namespace Goa2.Presentation.UI3D
     if(e.Kind=="DebugCrystalSet") {var parts=e.Detail.Split(':');if(parts.Length==2 && int.TryParse(parts[1],out int n)) {if(parts[0]=="Blue")blue=BlueCapacity=n;else red=RedCapacity=n;}}
     if(e.Kind=="MinionRemoved" || e.Kind=="MinionDefeated")removed=e.From;
     bool added=!fresh && e.Sequence>sequence;
-    if(added && e.Kind=="CoinTossStarted" && e.Detail.StartsWith("opening:"))RockFormationStarted=now+StageBannerPolicy.Duration;
+    if(added && e.Kind=="DecisionCoinFlipped") {
+     var winner=e.Detail.StartsWith("Blue")?Team.Blue:Team.Red;
+     float start=System.Math.Max(now, System.Math.Max(Combat.BusyUntil,CoinConflicts.Select(c=>c.End).DefaultIfEmpty(now).Max()));
+     float arrive=Travel(cameraPosition,Center(catalog));
+     CoinConflicts.Add(new CoinConflict{Winner=winner,Next=winner==Team.Blue?Team.Red:Team.Blue,Start=start,Flip=start+arrive+1.8f,End=start+arrive+3.0f,Sequence=e.Sequence});
+    }
     if(e.Kind=="CrystalDamaged" && e.Seat.HasValue && int.TryParse(e.Detail,out int damage)) {
      var team=view.Players.Single(p=>p.Seat==e.Seat).Team;int capacity=team==Team.Blue ? BlueCapacity : RedCapacity;int old=team==Team.Blue ? blue : red;
      if(added)for(int i=0;i<damage && old-i>0;i++)Shards.Add(new Shatter{Team=team,Index=capacity-old+i,Started=Combat.HeroImpact(e.Seat.Value,now)+Travel(cameraPosition,Center(catalog,team==Team.Blue ? "blueFountain" : "redFountain"))+i*.12f});
@@ -69,6 +76,7 @@ namespace Goa2.Presentation.UI3D
    sequence=view.Events.Count==0 ? sequence : System.Math.Max(sequence,view.Events.Max(e=>e.Sequence));
    BlueCapacity=Mathf.Max(BlueCapacity,view.BlueCrystal);RedCapacity=Mathf.Max(RedCapacity,view.RedCrystal);
    Crowns.RemoveAll(c=>now-c.Started>4);Shards.RemoveAll(c=>now-c.Started>2);
+   CoinConflicts.RemoveAll(c=>now>=c.End);
   }
  }
 }
