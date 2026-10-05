@@ -40,7 +40,7 @@ namespace Goa2.Presentation
                     arc.generateVisualContent+=context=>{
                         var p=context.painter2D;float sign=Mathf.Sign(target-origin),from=origin+sign*10,to=target-sign*10;
                         // Inner orbit leaves the arrows visible between the large numbered skill rims.
-                        Vector2 Point(float angle)=>new Vector2(320,320)+new Vector2(Mathf.Cos(angle*Mathf.Deg2Rad),Mathf.Sin(angle*Mathf.Deg2Rad))*166;
+                        Vector2 Point(float angle)=>new Vector2(320,320)+new Vector2(Mathf.Cos(angle*Mathf.Deg2Rad),Mathf.Sin(angle*Mathf.Deg2Rad))*140;
                         foreach(bool shadow in new[]{true,false}){
                             p.strokeColor=shadow?new Color(.06f,.08f,.10f,.95f):new Color(1,.77f,.30f);p.lineWidth=shadow?9:4;p.BeginPath();p.MoveTo(Point(from));
                             for(int i=1;i<=24;i++)p.LineTo(Point(Mathf.Lerp(from,to,i/24f)));p.Stroke();
