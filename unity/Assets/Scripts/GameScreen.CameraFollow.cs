@@ -21,6 +21,7 @@ namespace Goa2.Presentation
         private void ApplyCameraFollow(bool reenabled=false)
         {
             if(board==null) return;
+            if(StagePresenting){board.StopFollowing();return;}
             if(!cameraFollow) {board.StopFollowing();return;}
             var target=CameraFollowPolicy.Target(renderedView,seat);
             bool overview=!target.HasValue;

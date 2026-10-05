@@ -29,7 +29,7 @@ namespace Goa2.Tests
         public void ManualCardPositionsStartBeforeTheirActionAndExplainHowToPlayThem()
         {
             var catalog=BattlefieldTests.Catalog();var metadata=JArray.Parse(File.ReadAllText(Path.Combine(Root,"tools","debug-positions.json")));
-            foreach(var position in DebugPositions.Read(Prepared()).Where(p=>!new[]{"upgrades","respawn","occupied-spawn"}.Contains(p.Id)))
+            foreach(var position in DebugPositions.Read(Prepared()).Where(p=>!p.Id.StartsWith("ui-upgrades-",StringComparison.Ordinal) && !new[]{"upgrades","respawn","occupied-spawn"}.Contains(p.Id)))
             {
                 var session=DebugPositions.Open(catalog,position);var state=new JsonStateCodec().Read(session.ExportSave());
                 Assert.That(state.Pending,Is.Null,position.Id);Assert.That(state.Execution,Is.Null,position.Id);
@@ -45,6 +45,14 @@ namespace Goa2.Tests
                 }
                 Assert.That(metadata.Single(m=>m["id"]!.Value<string>()==position.Id)["instructions"]?.Value<string>(),Does.Contain("操作"),position.Id);
             }
+        }
+        [TestCase("ui-upgrades-six",4)][TestCase("ui-upgrades-three",2)][TestCase("ui-upgrades-purple",1)]
+        public void UpgradeUiSamplesExposeTheIntendedNumberOfRoutes(string id,int expected)
+        {
+            var position=DebugPositions.Read(Prepared()).Single(p=>p.Id==id);
+            var view=DebugPositions.Open(BattlefieldTests.Catalog(),position).View(0);
+            Assert.That(view.UpgradeOptions.Count,Is.EqualTo(expected));
+            Assert.That(view.RoundEndStage,Is.EqualTo("upgrades"));
         }
         [Test]
         public void OpeningTheSamePreparedPositionCreatesIndependentMatches()

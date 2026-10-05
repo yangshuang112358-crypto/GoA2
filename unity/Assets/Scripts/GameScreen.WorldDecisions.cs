@@ -101,12 +101,7 @@ namespace Goa2.Presentation
             var layer=new VisualElement{name="world-decisions",pickingMode=PickingMode.Ignore};layer.StretchToParentSize();root.Add(layer);
             if(view.UpgradeOptions.Count>0)
             {
-                // Keep the existing six-card, two-column upgrade layout. Its confirmation
-                // belongs to that layer, not to a hidden settings drawer.
-                var upgrade=root.Q("upgrade-zone");
-                // Confirmation is mounted by BuildDecisionDock, never inside the upgrade panel.
-                var chosen=view.UpgradeOptions.FirstOrDefault(o=>o.CardId==upgradeCardId);
-                if(chosen!=null && chosen.Color!="purple")upgrade?.Add(Text("永久"+chosen.Bonus+" +1 · 来源："+catalog.Card(chosen.RejectedCardId).Name,"muted"));
+                // Upgrade ring is built after this detached decision source.
                 return;
             }
             if(cards)return;

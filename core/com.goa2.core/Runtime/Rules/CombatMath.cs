@@ -18,8 +18,7 @@ namespace Goa2.Rules
             int Support(UnitState unit)
             {
                 string kind=Kind(unit);int distance=unit.Position.Distance(target!.Position);
-                return ((kind=="melee" || kind=="heavy" || kind=="melee_ranged") && distance==1 ? 1 : 0) +
-                    ((kind=="ranged" || kind=="melee_ranged") && distance<=2 ? 1 : 0);
+                return MinionCombatBaseline.SupportPoints(kind,distance);
             }
             var result = new AttackBreakdown
             {

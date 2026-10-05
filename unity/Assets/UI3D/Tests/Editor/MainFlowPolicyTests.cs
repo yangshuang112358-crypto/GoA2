@@ -25,7 +25,7 @@ namespace Goa2.UI3D.Tests
             string before=MainFlowPolicy.Summary(v,s=>s.ToString());
             v.OwnCards.Add(new CardInstance{CardId="secret",Zone=CardZone.Selected});
             Assert.That(MainFlowPolicy.Summary(v,s=>s.ToString()),Is.EqualTo(before));
-            Assert.That(MainFlowPolicy.Instruction(v,0),Does.Contain("确认本回合"));
+            Assert.That(MainFlowPolicy.Instruction(v,0),Does.Contain("本回合出牌"));
             v.QuickSelection=true;Assert.That(MainFlowPolicy.NeedsInput(v,0),Is.False);
         }
         [Test] public void UpgradesOnlyPromptViewerWithCandidates()
@@ -39,6 +39,11 @@ namespace Goa2.UI3D.Tests
             var v=new GameView{Phase=Phase.RoundEnd,CanResolveRoundEnd=true};
             Assert.That(MainFlowPolicy.NeedsInput(v,0),Is.True);
             Assert.That(MainFlowPolicy.Instruction(v,0),Is.EqualTo("开始轮末结算"));
+        }
+        [Test] public void InstructionsDescribeActionsRatherThanButtons()
+        {
+            var v=new GameView{Phase=Phase.HeroSelection};v.Players.Add(new PlayerView{Seat=0});
+            Assert.That(MainFlowPolicy.Instruction(v,0),Does.Not.Contain("确认"));
         }
         [Test] public void VictorySuppressesStalePendingPrompt()
         {

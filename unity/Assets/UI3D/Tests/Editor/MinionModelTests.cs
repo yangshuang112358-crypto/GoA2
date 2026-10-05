@@ -55,6 +55,18 @@ namespace Goa2.UI3D.Tests
             {
                 Assert.That(board.ModeledMinionCount,Is.EqualTo(view.Units.Count(u=>!u.Seat.HasValue)));
                 Assert.That(board.TokenCount,Is.EqualTo(view.Units.Count));
+                Assert.That(board.ModeledHeroCount,Is.EqualTo(4));
+                var coin=Resources.FindObjectsOfTypeAll<Transform>().Single(t=>t.gameObject.scene==board.Camera.gameObject.scene && t.name=="decision coin");
+                var coinRenderers=coin.GetComponentsInChildren<Renderer>();var coinBounds=coinRenderers[0].bounds;
+                foreach(var r in coinRenderers)coinBounds.Encapsulate(r.bounds);
+                Assert.That(coinBounds.size.y,Is.LessThan(.20f),"Minted coin lies flat on tray before animation");
+                Assert.That(coinBounds.size.x,Is.EqualTo(.965f).Within(.03f));
+                var rock=Resources.FindObjectsOfTypeAll<MeshFilter>().Single(m=>m.gameObject.scene==board.Camera.gameObject.scene && m.sharedMesh!=null && m.sharedMesh.name=="connected symmetric rocks").sharedMesh;
+                Assert.That(rock.vertices.All(v=>!float.IsNaN(v.x) && !float.IsNaN(v.y) && !float.IsNaN(v.z)),Is.True);
+                var center=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f;
+                string Key(Vector3 v)=>Mathf.RoundToInt(v.x*1000)+":"+Mathf.RoundToInt(v.y*1000)+":"+Mathf.RoundToInt(v.z*1000);
+                var points=rock.vertices.Select(Key).ToHashSet();
+                foreach(var v in rock.vertices)Assert.That(points.Contains(Key(new Vector3(center.x*2-v.x,v.y,center.z*2-v.z))),Is.True,"Rock mesh retains exact central symmetry");
                 Assert.That(board.Labels.Any(x=>x.text=="重"),Is.True);
                 Assert.That(board.Labels.Any(x=>x.text=="远"),Is.True);
                 board.Render(1600,1000);
@@ -85,6 +97,14 @@ namespace Goa2.UI3D.Tests
                 display.Advance(1);
                 board.Render(1600,1000);
                 Capture(board,Path.Combine(root,"artifacts/minion-models/unity-lineup-reverse.png"));
+            }
+            foreach(string pose in new[]{"support","guard"}){
+                display.MinionPreviewPose=pose;
+                using(var board=new Board3DScene(catalog,lineup,new Hex[0],null,new Hex[0],display)){
+                    float now=Time.realtimeSinceStartup;
+                    foreach(var motion in display.Presentation.MinionMotions.Values){motion.LastTime=now-2;for(int i=0;i<=100;i++)motion.Advance(now-2+i*.02f);}
+                    board.Render(1600,1000);Capture(board,Path.Combine(root,"artifacts/minion-models/unity-pose-"+pose+".png"));
+                }
             }
             Assert.That(game.ExportSave(),Is.EqualTo(before));
         }

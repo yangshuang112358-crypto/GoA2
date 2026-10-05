@@ -29,6 +29,7 @@ namespace Goa2.Presentation.UI3D
         public Board3DScene(ContentCatalog catalog, GameView view, IEnumerable<Hex> legal, Hex? selected,
             IEnumerable<Hex> effectArea, Board3DViewport state)
         {
+            state.Presentation.Observe(catalog,view,Time.realtimeSinceStartup);
             this.state = state; cells = catalog.Cells.ToDictionary(c => c.Position);
             host = new GameObject("UI3D isolated board") { hideFlags = HideFlags.HideAndDontSave };
             // A private preview scene also prevents unrelated cameras and scene lights seeing this board.
@@ -55,6 +56,10 @@ namespace Goa2.Presentation.UI3D
                 string text=unit.Seat.HasValue
                     ? catalog.Heroes.FirstOrDefault(h=>h.Id==view.Players.FirstOrDefault(p=>p.Seat==unit.Seat)?.HeroId)?.Name ?? "英雄"
                     : unit.Kind=="heavy" ? "重" : unit.Kind=="ranged" ? "远" : "近";
+                if(unit.Seat.HasValue && BuildHero(view.Players.First(p=>p.Seat==unit.Seat).HeroId ?? "",unit.Team,unit.Position)){
+                    Add(circle,Board3DGeometry.World(unit.Position,.026f),Vector3.one*.62f,ColorOf(unit.Team==Team.Blue?"#559EDB":"#D77C79"),"hero team rim");
+                    tokens.Add((unit.Position,radius,HeroHeight+.055f,text));continue;
+                }
                 if(!unit.Seat.HasValue && BuildMinion(unit.Kind,unit.Team,unit.Position,unit.Id))
                 {
                     height=MinionHeight(unit.Kind);
@@ -69,6 +74,7 @@ namespace Goa2.Presentation.UI3D
                     ColorOf(unit.Seat.HasValue && unit.Seat==view.ActiveSeat ? "#FFE39A" : "#DDE8EA"),"token rim");
                 tokens.Add((unit.Position,radius,height+.055f,text));
             }
+            ConfigureMinionPoses(view,selected);
             BuildWorldHud(catalog,view);
             if (!state.Initialized) { Reset();state.Zoom=1.6f; }
         }
@@ -127,7 +133,7 @@ namespace Goa2.Presentation.UI3D
             float extentY=points.Count==0 ? 1 : (points.Max(p=>p.y)-points.Min(p=>p.y))*.5f+3;
             float fittedSize=Mathf.Max(extentY,extentX/Camera.aspect);
             Camera.orthographicSize=fittedSize/state.Zoom;
-            AnimateWorldHud();Camera.Render();
+            AnimateWorldHud();AnimateHeroAuras();AnimateMinionPoses();Camera.Render();
         }
         public float ZoomForRegion(IEnumerable<Hex> region)
         {

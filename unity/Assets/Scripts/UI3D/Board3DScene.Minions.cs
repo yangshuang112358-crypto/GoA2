@@ -13,7 +13,7 @@ namespace Goa2.Presentation.UI3D
         private readonly Dictionary<string, Material> minionMaterials = new Dictionary<string, Material>();
         public int ModeledMinionCount { get; private set; }
         public static string MinionAsset(string kind) => kind == "heavy" ? "Heavy" : kind == "ranged" ? "Ranged" : "Melee";
-        public static float MinionHeight(string kind) => kind == "heavy" ? 1.62f : kind == "ranged" ? 1.30f : 1.22f;
+        public static float MinionHeight(string kind) => kind == "heavy" ? 3.24f : kind == "ranged" ? 2.60f : 2.44f;
 
         private bool BuildMinion(string kind, Team team, Hex cell, string id)
         {
@@ -34,7 +34,7 @@ namespace Goa2.Presentation.UI3D
             var bounds = renderers[0].bounds;
             foreach (var renderer in renderers) bounds.Encapsulate(renderer.bounds);
             float height = MinionHeight(kind);
-            float scale = Mathf.Min(height / Mathf.Max(.001f, bounds.size.y), 1.44f / Mathf.Max(.001f, bounds.size.x));
+            float scale = height / Mathf.Max(.001f, bounds.size.y);
             instance.transform.localScale = Vector3.one * scale;
             instance.transform.localRotation = Quaternion.Euler(0, team == Team.Blue ? 0 : 180, 0);
             var bottomCenter = new Vector3(bounds.center.x, bounds.min.y, bounds.center.z);
@@ -48,6 +48,7 @@ namespace Goa2.Presentation.UI3D
                 renderer.shadowCastingMode = ShadowCastingMode.Off;
                 renderer.receiveShadows = false;
             }
+            RegisterMinionRig(instance,id,kind);
             ModeledMinionCount++;
             return true;
         }

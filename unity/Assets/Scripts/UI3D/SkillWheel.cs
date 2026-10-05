@@ -37,7 +37,7 @@ namespace Goa2.Presentation.UI3D {
   private Vector2 center=>new Vector2(78,78+motion.Press*5-motion.Hover*5);
   public SkillDisc(string color,CardDefinition? card,PlayerView player,CardZone zone,bool preview,bool allowed,SkillWheelState.Motion motion,float flipAt,Action click,Action right) {
    this.motion=motion;this.flipAt=flipAt;pressed=zone==CardZone.Selected || zone==CardZone.PlayedResolved || zone==CardZone.PlayedUnresolved || preview;discarded=zone==CardZone.Discarded;
-   rim=Board3DScene.ColorOf(color switch {"gold"=>"#E9BD54","silver"=>"#CAD3E0","red"=>"#E25464","green"=>"#52C586",_=>"#589CED"});
+   rim=Board3DScene.ColorOf(color switch {"gold"=>"#E9BD54","silver"=>"#CAD3E0","red"=>"#E25464","green"=>"#52C586","purple"=>"#B16DE8",_=>"#589CED"});
    if(!motion.Ready){motion.Ready=true;motion.Press=pressed?1:0;motion.Flip=discarded && flipAt<=0 ? Mathf.PI:0;}
    name="skill-"+color;style.position=Position.Absolute;style.width=156;style.height=156;style.overflow=Overflow.Visible;
    caption=new Label(card!=null && card.Name.Length==4 ? card.Name.Substring(0,2)+"\n"+card.Name.Substring(2) : card?.Name ?? "?"){pickingMode=PickingMode.Ignore};caption.style.position=Position.Absolute;caption.style.left=39;caption.style.top=51;caption.style.width=78;caption.style.height=54;caption.style.fontSize=19;caption.style.whiteSpace=WhiteSpace.Normal;caption.style.unityTextAlign=TextAnchor.MiddleCenter;caption.style.unityFontStyleAndWeight=FontStyle.Bold;caption.style.color=Color.white;caption.style.marginLeft=0;caption.style.marginRight=0;Add(caption);

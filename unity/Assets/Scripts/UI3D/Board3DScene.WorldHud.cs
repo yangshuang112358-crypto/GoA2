@@ -75,7 +75,9 @@ namespace Goa2.Presentation.UI3D
     }
    }
    // The shared edge of the two central radius-.965 hexes is .965 units long.
-   coinOrigin=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f+Vector3.up*(WallHeight+.053f);
+   coinOrigin=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f+Vector3.up*(WallHeight+.165f);
+   decisionCoin=BuildDecisionCoinModel(coinOrigin);
+   if(decisionCoin!=null)return;
    decisionCoin=Add(Own(BeveledCoin()),coinOrigin,new Vector3(.4825f,.12f,.4825f),ColorOf("#BD873B"),"decision coin").transform;
    Polish(decisionCoin,.85f);
    foreach(var side in new[]{-1,1}) {

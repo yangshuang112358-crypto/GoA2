@@ -92,8 +92,15 @@ namespace Goa2.Presentation
             {
                 upgradeCardId=renderedView.UpgradeOptions.First().CardId;Render();yield return null;yield return null;
                 Check(confirmButton!=null && root.Q("decision-dock").Contains(confirmButton),"Upgrade confirmation uses right dock");
-                Check(root.Query<VisualElement>(className:"upgrade-row").ToList().Count==3,"Six upgrade candidates retain three color rows");
-                if(upgrades==1){ScreenCapture.CaptureScreenshot(Path.Combine(output,"upgrade-layout.png"));yield return new WaitForSecondsRealtime(.2f);}
+                Check(root.Q("upgrade-wheel")!=null && root.Query<VisualElement>().ToList().Count(e=>e.name.StartsWith("upgrade-card-"))==renderedView.UpgradeOptions.Count && root.Query<VisualElement>().ToList().Count(e=>e.name.StartsWith("upgrade-current-"))==renderedView.UpgradeOptions.Select(o=>o.Color).Distinct().Count(),"Upgrade ring contains exactly projected routes and their current cards");
+                yield return new WaitForSecondsRealtime(4);
+                ScreenCapture.CaptureScreenshot(Path.Combine(output,"upgrade-layout-"+upgrades+".png"));yield return new WaitForSecondsRealtime(.2f);
+                if(upgrades==1){
+                    var option=renderedView.UpgradeOptions.First();var owner=root.Q("upgrade-card-"+option.CardId);
+                    ShowUpgradeInfo(catalog.Card(option.PreviousCardId),catalog.Card(option.CardId),false,owner,owner.worldBound.center);
+                    yield return new WaitForSecondsRealtime(.5f);
+                    ScreenCapture.CaptureScreenshot(Path.Combine(output,"upgrade-comparison.png"));yield return new WaitForSecondsRealtime(.2f);HideSkillInfo();
+                }
                 ConfirmCurrent();yield return new WaitForSecondsRealtime(.5f);
             }
             Check(renderedView.Phase==Phase.Planning && !rightExpanded,"Minion battle, spawn and upgrades reach next round without settings");
@@ -111,6 +118,21 @@ namespace Goa2.Presentation
             ClearPending();Render();AnimateDecision(()=>sent=true);renderedView.Revision++;
             yield return new WaitForSecondsRealtime(.4f);Check(!sent,"Newer projected revision invalidates captured confirmation");
             Render();
+            PreviewStageBanner("暗选阶段");var focusBefore=board3DViewport.Focus;
+            yield return new WaitForSecondsRealtime(.35f);
+            Check(root.Q("stage-banner")!=null && Vector3.Distance(focusBefore,board3DViewport.Focus)<.001f,"Stage banner precedes camera movement");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"stage-banner.png"));yield return new WaitForSecondsRealtime(1.1f);
+            Check(root.Q("stage-banner")==null,"Stage banner disappears after presentation");
+            OpenArtSamples(2);yield return new WaitForSecondsRealtime(.3f);
+            Check(root.Q("art-samples")!=null,"Debug art gallery displays prepared Blender samples");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"atlantis-emblems-gallery.png"));yield return new WaitForSecondsRealtime(.2f);
+            artSamplesOpen=false;Render();
+            Load("round-upgrades",22);yield return new WaitForSecondsRealtime(4);
+            Check(renderedView.UpgradeOptions.Count==1 && root.Q("upgrade-wheel")!=null && root.Query<VisualElement>().ToList().All(e=>!e.name.StartsWith("upgrade-current-")),"Level eight retains a single purple upgrade ring choice");
+            upgradeCardId=renderedView.UpgradeOptions.Single().CardId;var purpleChoice=upgradeCardId;Render();yield return null;
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"upgrade-purple.png"));yield return new WaitForSecondsRealtime(.2f);
+            ConfirmCurrent();yield return new WaitForSecondsRealtime(.6f);
+            Check(renderedView.Players.Single(p=>p.Seat==seat).PurpleCardId==purpleChoice,"Purple ring confirmation equips the chosen ultimate");
         }
     }
 }

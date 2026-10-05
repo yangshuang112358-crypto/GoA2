@@ -11,6 +11,8 @@ namespace Goa2.Presentation.UI3D
   public sealed class Shatter {public Team Team;public int Index;public float Started;}
   public readonly List<CrownFlight> Crowns=new List<CrownFlight>();
   public readonly List<Shatter> Shards=new List<Shatter>();
+  public readonly Dictionary<string,MinionPoseMotion> MinionMotions=new Dictionary<string,MinionPoseMotion>();
+  public readonly Dictionary<int,LevelPreview.Motion> Levels=new Dictionary<int,LevelPreview.Motion>();
   public int BlueCapacity,RedCapacity;
   public float CoinStarted=-100,DeathUntil=-100;
   public bool CoinOpening;
@@ -30,6 +32,11 @@ namespace Goa2.Presentation.UI3D
    bool fresh=!initialized || match!=view.MatchId || view.Revision<lastRevision;
    lastRevision=view.Revision;
    if(fresh) {initialized=true;match=view.MatchId;sequence=0;Crowns.Clear();Shards.Clear();DeathUntil=-100;CoinFrom=CoinTo=view.DecisionCoin;CoinOpening=view.Revision==0;CoinStarted=view.Revision==0 ? now+Travel(cameraPosition,Center(catalog)) : -100;}
+   if(fresh){Levels.Clear();MinionMotions.Clear();}
+   foreach(var player in view.Players){
+    if(!Levels.TryGetValue(player.Seat,out var motion))Levels[player.Seat]=motion=new LevelPreview.Motion();
+    if(view.RoundEndStage!="upgrades" || !view.UpgradingSeats.Contains(player.Seat))motion.Observe(LevelPreview.Target(player.Level,player.Gold)-player.Level,now);
+   }
    BlueCapacity=RedCapacity=catalog.Rules.StartingCrystalLife;
    int blue=BlueCapacity,red=RedCapacity;Hex? removed=null;
    int blueMark=0,redMark=0;

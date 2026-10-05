@@ -1,0 +1,38 @@
+[
+  {
+    "hero": "wasp",
+    "triangles": 5212,
+    "bones": 14,
+    "stage": "approved-feature blockout; rigid weights, no finished animation"
+  },
+  {
+    "hero": "shargatha",
+    "triangles": 6848,
+    "bones": 14,
+    "stage": "approved-feature blockout; rigid weights, no finished animation"
+  },
+  {
+    "hero": "brogan",
+    "triangles": 6056,
+    "bones": 14,
+    "stage": "approved-feature blockout; rigid weights, no finished animation"
+  },
+  {
+    "hero": "arien",
+    "triangles": 4868,
+    "bones": 14,
+    "stage": "approved-feature blockout; rigid weights, no finished animation"
+  },
+  {
+    "hero": "tigerclaw",
+    "triangles": 5964,
+    "bones": 14,
+    "stage": "approved-feature blockout; rigid weights, no finished animation"
+  },
+  {
+    "hero": "sabina",
+    "triangles": 5672,
+    "bones": 14,
+    "stage": "approved-feature blockout; rigid weights, no finished animation"
+  }
+]

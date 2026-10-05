@@ -21,14 +21,23 @@ namespace Goa2.Presentation.UI3D {
   private void BuildConnectedRocks() {
    var obstacles=cells.Values.Where(c=>c.Obstacle).ToList();var vertices=new List<Vector3>();
    var centers=obstacles.Select(c=>Board3DGeometry.World(c.Position)).ToList();
-   Vector3 Bottom(Vector3 top,float inset,float y){var near=centers.Where(c=>Vector2.Distance(new Vector2(c.x,c.z),new Vector2(top.x,top.z))<1.002f).ToList();var average=near.Aggregate(Vector3.zero,(a,b)=>a+b)/near.Count;var p=Vector3.Lerp(top,average,inset);p.y=y;return p;}
+   var symmetryCenter=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f;
+   Vector3 Bottom(Vector3 top,float inset,float y){var near=centers.Where(c=>Vector2.Distance(new Vector2(c.x,c.z),new Vector2(top.x,top.z))<1.12f).ToList();var average=near.Aggregate(Vector3.zero,(a,b)=>a+b)/near.Count;var p=Vector3.Lerp(top,average,inset);p.y=y;return p;}
    foreach(var cell in obstacles){
     var center=Board3DGeometry.World(cell.Position);var top=new Vector3[6];
-    for(int i=0;i<6;i++){float a=(-30+i*60)*Mathf.Deg2Rad;top[i]=center+new Vector3(Mathf.Cos(a),WallHeight,Mathf.Sin(a));}
     bool central=cell.Position==new Hex(0,0)||cell.Position==new Hex(0,1);
+    for(int i=0;i<6;i++){
+     float a=(-30+i*60)*Mathf.Deg2Rad;top[i]=center+new Vector3(Mathf.Cos(a),WallHeight,Mathf.Sin(a));
+     if(!central){var d=top[i]-symmetryCenter;d.y=0;float noise=Mathf.Cos(d.x*3.7f)+Mathf.Cos(d.z*2.3f);
+      // The same world vertex gives the same perturbation on adjacent rocks;
+      // cosine and radial offset preserve exact central symmetry.
+      top[i]+=d.normalized*(noise*.035f);top[i].y+=.08f+noise*.055f;}
+    }
+    var baseTile=Add(Own(Board3DGeometry.Prism(6,-30)),center,new Vector3(.995f,.09f,.995f),ColorOf("#686659"),"rock hex foundation");
+    baseTile.GetComponent<MeshRenderer>().sharedMaterial=TerrainMaterial("rock",ColorOf("#686659"));
     // Canonical mirrored coordinates preserve exact 180-degree shape symmetry about (0, .5).
     var h=cell.Position;int x=h.X,y=h.Y;if(x<0 || x==0 && y<1){x=-x;y=1-y;}
-    float peak=central?WallHeight:WallHeight+.025f+((x*31+y*17)&7)*.012f;
+    float peak=central?WallHeight:WallHeight+.12f+((x*31+y*17)&7)*.025f;
     for(int i=0;i<6;i++){
      int j=(i+1)%6;Tri(vertices,center+Vector3.up*peak,top[j],top[i]);
      var midpoint=(top[i]+top[j])*.5f;var other=Board3DGeometry.HexAt(center+(midpoint-center)*1.1f);
@@ -41,7 +50,21 @@ namespace Goa2.Presentation.UI3D {
    }
    var go=Add(Own(Faces(vertices,"connected symmetric rocks")),Vector3.zero,Vector3.one,ColorOf("#817D70"),"connected rocks");
    go.GetComponent<MeshRenderer>().sharedMaterial=TerrainMaterial("rock",ColorOf("#817D70"));
-   var origin=(Board3DGeometry.World(new Hex(0,0))+Board3DGeometry.World(new Hex(0,1)))*.5f+Vector3.up*(WallHeight+.003f);
+   var tray=Add(Own(Board3DGeometry.Prism(96,0)),symmetryCenter+Vector3.up*WallHeight,new Vector3(1.12f,.09f,1.12f),ColorOf("#8B877B"),"central circular tray");
+   tray.GetComponent<MeshRenderer>().sharedMaterial=TerrainMaterial("rock",ColorOf("#8B877B"));
+   var trayRim=new List<Vector3>();
+   for(int i=0;i<96;i++){
+    float a=i*Mathf.PI/48,b=(i+1)*Mathf.PI/48;
+    Vector3 Point(float angle,float r,float h)=>symmetryCenter+new Vector3(Mathf.Cos(angle)*r,WallHeight+h,Mathf.Sin(angle)*r);
+    foreach(float radius in new[]{1.12f,1.045f}){
+     var p=Point(a,radius,.09f);var q=Point(b,radius,.09f);var r=Point(a,radius,.23f);var s=Point(b,radius,.23f);
+     if(radius>1.1f){Tri(trayRim,p,r,s);Tri(trayRim,p,s,q);}else{Tri(trayRim,p,s,r);Tri(trayRim,p,q,s);}
+    }
+    Tri(trayRim,Point(a,1.045f,.23f),Point(b,1.12f,.23f),Point(a,1.12f,.23f));
+    Tri(trayRim,Point(a,1.045f,.23f),Point(b,1.045f,.23f),Point(b,1.12f,.23f));
+   }
+   Add(Own(Faces(trayRim,"vertical circular tray rim")),Vector3.zero,Vector3.one,ColorOf("#B09B6A"),"central tray upright rim");
+   var origin=symmetryCenter+Vector3.up*(WallHeight+.094f);
    var engraving=Add(Own(Board3DGeometry.Ring(64,.94f)),origin,new Vector3(.81f,1,.39f),ColorOf("#39332D"),"coin platform engraving");engraving.transform.localRotation=Quaternion.Euler(0,60,0);
    var cuts=new List<Vector3>();var rotation=Quaternion.Euler(0,60,0);
    for(int sign=-1;sign<=1;sign+=2){var tip=origin+rotation*new Vector3(sign*.67f,.001f,0);var a=rotation*new Vector3(.10f,0,0);var b=rotation*new Vector3(0,0,.075f);Tri(cuts,tip-a,tip+b,tip+a);Tri(cuts,tip-a,tip+a,tip-b);}

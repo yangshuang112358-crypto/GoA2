@@ -17,6 +17,7 @@ namespace Goa2.Presentation
         private void ObserveMainFlow()
         {
             if(flowMatch==renderedView.MatchId)return;
+            board3DViewport.MinionPreviewPose="";
             flowMatch=renderedView.MatchId;mainFlow=true;cameraFollow=true;browsingWheels.Clear();decisionAnimating=false;
         }
         private void LeaveMainFlow()
@@ -42,9 +43,10 @@ namespace Goa2.Presentation
             string Hero(int who)=>HeroName(renderedView.Players.FirstOrDefault(p=>p.Seat==who)?.HeroId);
             panel.Add(Text(MainFlowPolicy.Summary(renderedView,Hero),"flow-summary"));
             bool mine=MainFlowPolicy.NeedsInput(renderedView,seat) && NetworkCanAct;
-            string instruction=MainFlowPolicy.Instruction(renderedView,seat);
-            if(mine && renderedView.Phase==Phase.Action && actionChoice!="")instruction=actionChoice=="pass"?"确认放弃此牌":chosenCell.HasValue?"检查目标后点击右侧确认":actionChoice=="primary"?"选择高亮目标，或确认启动牌文流程":"选择高亮落点";
-            if(mine && (wheelPreview!="" || wheelDecline))instruction="检查所选响应，点击右侧确认";
+            string instruction=mine ? MainFlowPolicy.Instruction(renderedView,seat) : MainFlowPolicy.Summary(renderedView,Hero);
+            if(mine && renderedView.Phase==Phase.Action && actionChoice!="")instruction=actionChoice=="pass"?"放弃此牌":chosenCell.HasValue?"决定本次行动目标":actionChoice=="primary"?"执行主要行动":"选择移动落点";
+            if(mine && (wheelPreview!="" || wheelDecline))instruction=wheelDecline ? renderedView.Pending?.Kind=="defense" ? "不防御" : "不弃牌，选择被击败" : MainFlowPolicy.Step(renderedView.Pending?.Kind ?? "");
+            if(mine && renderedView.UpgradeOptions.Count>0)instruction="选择升级技能 · 还可升级 "+UpgradeWheelLayout.Remaining(renderedView,seat)+" 次";
             if(NetworkMode && !NetworkCanAct)instruction=networkBusy?"正在等待操作回执":uncertainCommand!=""?"操作结果待核实，请在设置中查询原操作":"连接已中断，请在设置中重连";
             var prompt=Text((mine?"到你行动 · ":"")+instruction,"flow-prompt");prompt.EnableInClassList("flow-mine",mine);panel.Add(prompt);
             if(!mainFlow)panel.Add(Text("回到当前行动","flow-return"));

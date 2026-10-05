@@ -80,7 +80,13 @@ for kind,caption in [('confirm','确认'),('withdraw','撤回')]:
         points=[(cx+math.cos(math.radians(a))*r,cy+math.sin(math.radians(a))*r,.478) for a in range(-40,211,8)]
         icon=line('withdraw curved arrow',points,letters,.043)
         ex,ey,ez=points[-1]
-        head=line('withdraw arrowhead',[(ex-.13,ey+.14,ez),(ex,ey,ez),(ex+.19,ey+.03,ez)],letters,.043)
+        # Arc increases counterclockwise: arrow points along the analytic tangent,
+        # perpendicular to the radius. Symmetric shoulders share that direction.
+        rx,ry=(ex-cx)/r,(ey-cy)/r
+        tx,ty=-ry,rx
+        head=line('withdraw arrowhead',[(ex-tx*.19+rx*.13,ey-ty*.19+ry*.13,ez),
+                                       (ex,ey,ez),
+                                       (ex-tx*.19-rx*.13,ey-ty*.19-ry*.13,ez)],letters,.043)
         parts=[obj,icon,head]
     for part in parts:part.parent=inset
     variants[kind]=parts

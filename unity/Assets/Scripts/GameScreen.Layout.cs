@@ -17,7 +17,9 @@ namespace Goa2.Presentation
         private readonly Board3DViewport board3DViewport = new Board3DViewport();
         private void Update()
         {
+            UpdateStageBanner();
             UpdatePresentationFocus();
+            if(artSamplesOpen){if(Input.GetKeyDown(KeyCode.Escape)){artSamplesOpen=false;Render();}return;}
             if(Input.GetKeyDown(KeyCode.Escape)) { if(skillPopup!=null){skillPopup.RemoveFromHierarchy();skillPopup=null;}else if(heroPopup!=null)HideHeroHover();else if(keywordGlossaryOpen) CloseKeywordGlossary();else if(rightExpanded && !galleryOpen && !historyOpen && !newMatchPending && !debugPresetsOpen) {rightExpanded=false;showHotkeys=false;Render();}else if(wheelSeat.HasValue)ToggleHeroWheel(wheelSeat.Value);else if(browsingWheels.Count>0)CloseHeroWheel();else HideCardPreview();return; }
             if(keywordGlossaryOpen) return;
             if(Input.GetKeyDown(KeyCode.F1) && HasGameView && !startupFailed && !newMatchPending && !debugPresetsOpen && !IsEditingText()) { OpenKeywordGlossary(previewCard);return; }
@@ -69,8 +71,7 @@ namespace Goa2.Presentation
             var shell=Box("battlefield-shell");shell.name="battlefield-workspace";shell.StretchToParentSize();root.Add(shell);
             BuildBoard(shell,view);
             if(view.UpgradeOptions.Count==0)BuildRevealedStrip(root,view);
-            var handLayer=Box("hand-overlay");handLayer.name="hand-overlay";root.Add(handLayer);BuildHand(handLayer,view);
-            if(handLayer.childCount==0)handLayer.style.display=DisplayStyle.None;
+            // Upgrade candidates are anchored to the hero by BuildUpgradeWheel.
             BuildScenarioBar(root);
             BuildRightPanel(root,view);
         }
@@ -115,45 +116,6 @@ namespace Goa2.Presentation
             field.Add(board);
             cellInfo = Text(BoardHint(view,targets.Count == 0 ? "滚轮缩放 · 中/右键拖动 · Home全图" : targets.Count + " 个合法目标 · 点击后确认"), "tiny");
             // Cell details remain available to QA and operations; no permanent footer.
-        }
-        private void BuildHand(VisualElement parent, GameView view)
-        {
-            if(!mainFlow || wheelState.Discards.Count>0 || view.UpgradeOptions.Count==0) return;
-            PrepareUpgradeSelection(view);
-            var panel = Box(bottomExpanded ? "hand" : "collapsed-row");panel.name=view.UpgradeOptions.Count>0 ? "upgrade-zone" : "hand-zone"; parent.Add(panel);
-            if(view.UpgradeOptions.Count>0) panel.AddToClassList("upgrade-panel");
-            var heading = Box("panel-heading"); panel.Add(heading);
-            heading.Add(Text((view.UpgradeOptions.Count > 0 ? "升级候选 · " : "手牌 · ") + PlayerName(seat), "section-title"));
-            heading.Add(Button(bottomExpanded ? "▼" : "▲ 展开手牌", () => { bottomExpanded = !bottomExpanded; Render(); }, "edge-button", "toggle-bottom"));
-            if (!bottomExpanded) return;
-            if (view.UpgradeOptions.Count > 0) { BuildUpgradeCards(panel, view); return; }
-            if (view.OwnCards.Count == 0) { panel.Add(Text("选择英雄后获得五张起始牌", "empty-hand")); return; }
-            var row = new ScrollView(ScrollViewMode.Horizontal) {name="goa-scroll-hand",verticalScrollerVisibility=ScrollerVisibility.Hidden};row.AddToClassList("hand-row");row.contentContainer.style.flexDirection=FlexDirection.Row;panel.Add(row);
-            row.horizontalScroller.style.height=18;row.horizontalScroller.style.minHeight=18;
-            foreach (var instance in view.OwnCards)
-            {
-                var card = catalog.Card(instance.CardId);
-                var tile = Button("", () =>
-                {
-                    if (view.Pending?.Kind == "defense" && view.Pending.ChooserSeat == seat && view.DefenseOptions.Any(o => o.CardId == card.Id))
-                    { defenseCardId = card.Id; declineDefensePending = false; showDebug = false; showHotkeys=false; Render(); }
-                    else if (view.ForcedDiscardCards.Contains(card.Id) || view.OptionalDiscardCards.Contains(card.Id) || view.MinionProtectionCards.Contains(card.Id) || view.CardSwapOptions.Contains(card.Id)) { discardCardId=card.Id;declineRetaliationPending=false;showDebug=false;showHotkeys=false;Render(); }
-                    else if (view.Phase == Phase.Planning && !view.Players[seat].Confirmed && (instance.Zone == CardZone.InHand || instance.Zone == CardZone.Selected)) Submit(CommandKind.SelectCard, card.Id);
-                    else { galleryHero = card.HeroId; galleryOpen = true; Render(); }
-                }, "hand-card");
-                tile.name = "hand-" + card.Color;
-                tile.AddToClassList("color-" + card.Color);
-                if (instance == view.OwnCards.Last()) tile.AddToClassList("last-card");
-                if (instance.Zone == CardZone.Selected || defenseCardId == card.Id || discardCardId == card.Id) tile.AddToClassList("chosen");
-                if (instance.Zone == CardZone.PlayedResolved || instance.Zone == CardZone.Discarded) tile.AddToClassList("spent");
-                tile.Add(Text(card.Name,"card-name"));
-                CardRulesPreview(tile,card,"hand-rules-"+card.Color);
-                CompactCardNumbers(tile,card,view.Players[seat],instance.Zone==CardZone.Selected || defenseCardId==card.Id,"hand-"+card.Color);
-                string status = instance.Zone == CardZone.Selected ? (view.QuickSelection ? "已选 · 等待其他人" : view.Players[seat].Confirmed ? "已确认" : "已选 · 待确认") : ZoneName(instance);
-                if(view.DefenseRestrictions.ContainsKey(card.Id)) status="本次不能防御";
-                tile.Add(Text(status,"card-zone")); row.Add(tile);
-                AttachCardReading(tile,card,view.Players[seat]);
-            }
         }
         private void BuildRightPanel(VisualElement parent, GameView view)
         {

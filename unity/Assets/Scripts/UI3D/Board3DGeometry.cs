@@ -66,6 +66,7 @@ namespace Goa2.Presentation.UI3D
     // View preferences only. Not part of saves, commands, authentication or GameState.
     public sealed class Board3DViewport
     {
+        public string MinionPreviewPose="";
         public readonly BattlePresentationState Presentation=new BattlePresentationState();
         public bool Enabled = !Array.Exists(Environment.GetCommandLineArgs(), a => a == "-goa2d");
         public int Step;

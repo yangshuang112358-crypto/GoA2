@@ -1,5 +1,32 @@
 [
   {
+    "id": "ui-upgrades-purple",
+    "title": "UI样例：满级单紫卡领取",
+    "scenario": "round-upgrades",
+    "through_step": 22,
+    "phase": "RoundEnd",
+    "pending": "",
+    "instructions": "操作：右键圆盘看详情，左键选择升级方向，再用右侧按钮领取。这个局面用真实轮末升级规则构建，可检查圆环排列、比较浮窗、剩余次数与收展动画。"
+  },
+  {
+    "id": "ui-upgrades-three",
+    "title": "UI样例：三选项升级环",
+    "scenario": "round-upgrades",
+    "through_step": 11,
+    "phase": "RoundEnd",
+    "pending": "",
+    "instructions": "操作：右键圆盘看详情，左键选择升级方向，再用右侧按钮领取。这个局面用真实轮末升级规则构建，可检查圆环排列、比较浮窗、剩余次数与收展动画。"
+  },
+  {
+    "id": "ui-upgrades-six",
+    "title": "UI样例：六选项升级环",
+    "scenario": "round-upgrades",
+    "through_step": 7,
+    "phase": "RoundEnd",
+    "pending": "",
+    "instructions": "操作：右键圆盘看详情，左键选择升级方向，再用右侧按钮领取。这个局面用真实轮末升级规则构建，可检查圆环排列、比较浮窗、剩余次数与收展动画。"
+  },
+  {
     "id": "axe-ready",
     "title": "飞斧：准备攻击",
     "scenario": "throwing-axe-reflection",
@@ -51,7 +78,7 @@
     "through_step": 5,
     "phase": "RoundEnd",
     "pending": "",
-    "instructions": "操作：在升级窗口选择卡牌，处理两名角色待完成的升级。分支：不同颜色候选会产生不同手牌配置；用此公共规则用例检查候选列表与升级轮次。"
+    "instructions": "操作：升级英雄周围有9个圆盘（3张当前技能与6个方向）。右键方向盘查看原技能→升级技能；左键预选，右侧绿色按钮升级。每次升级收环后重排为6个、3个；右下显示剩余次数。按1/2切换其他升级者；确认前可撤回。"
   },
   {
     "id": "respawn",

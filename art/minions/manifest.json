@@ -3,8 +3,8 @@
   "models": [
     {
       "kind": "Melee",
-      "triangles": 9460,
-      "vertices": 4846,
+      "triangles": 8628,
+      "vertices": 4424,
       "bones": 18,
       "materials": [
         "Leather",
@@ -17,12 +17,12 @@
         "TeamInset"
       ],
       "height": 1.888,
-      "width": 1.678
+      "width": 1.55
     },
     {
       "kind": "Ranged",
-      "triangles": 12548,
-      "vertices": 6402,
+      "triangles": 12416,
+      "vertices": 6338,
       "bones": 18,
       "materials": [
         "Leather",
@@ -33,26 +33,26 @@
         "Glow",
         "Parchment"
       ],
-      "height": 1.95,
-      "width": 1.366
+      "height": 1.845,
+      "width": 1.09
     },
     {
       "kind": "Heavy",
-      "triangles": 8400,
-      "vertices": 4332,
-      "bones": 18,
+      "triangles": 14724,
+      "vertices": 7524,
+      "bones": 26,
       "materials": [
         "Steel",
         "Bronze",
-        "Shadow",
         "SteelLight",
-        "TeamInset",
         "TeamCloth",
         "Leather",
-        "Glow"
+        "TeamInset",
+        "Glow",
+        "Shadow"
       ],
-      "height": 1.982,
-      "width": 1.57
+      "height": 1.963,
+      "width": 1.961
     }
   ]
 }

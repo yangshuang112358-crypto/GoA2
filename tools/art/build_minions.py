@@ -21,6 +21,7 @@ EXPORT = ROOT / 'unity/Assets/Scripts/UI3D/Resources/UI3D/Minions'
 PREVIEW = ROOT / 'artifacts/minion-models'
 for path in (SOURCE, EXPORT, PREVIEW):
     path.mkdir(parents=True, exist_ok=True)
+bpy.context.preferences.filepaths.save_version=0
 bpy.ops.object.select_all(action='SELECT')
 bpy.ops.object.delete(use_global=False)
 
@@ -198,12 +199,11 @@ def melee():
         sphere('Shoulder inset '+side,(s*.36,-.023,1.083),(.16,.18,.09),'Steel','UpperArm.'+side)
         rod('Arm sleeve '+side,(s*.38,0,.95),(s*.43,-.10,.75),.105,'TeamCloth','UpperArm.'+side)
         sphere('Gauntlet '+side,(s*.43,-.13,.70),(.13,.115,.135),'Leather','Hand.'+side)
-    # Right hand axe: wide blade and visible forged edge.
-    rod('Axe haft',(.45,-.12,.40),(.50,-.16,1.31),.04,'Leather','Weapon.R')
-    for z in (.48,.56,.64):rod('Axe grip',(.45,-.12,z),(.452,-.123,z+.027),.047,'Bronze','Weapon.R')
-    prism('Axe blade',[(.49,1.28),(.72,1.41),(.88,1.31),(.87,1.07),(.70,1.02),(.5,1.12)],-.18,-.08,'Steel','Weapon.R')
-    prism('Axe honed edge',[(.78,1.38),(.88,1.31),(.87,1.07),(.70,1.02),(.73,1.10),(.80,1.14)],-.198,-.179,'SteelLight','Weapon.R',.005)
-    box('Axe socket',(.5,-.13,1.23),(.11,.18,.22),'Bronze','Weapon.R',.016)
+    # Large knight sword with a readable bevel and brass guard.
+    rod('Sword grip',(.49,-.13,.45),(.49,-.13,.78),.05,'Leather','Weapon.R')
+    box('Sword guard',(.49,-.13,.80),(.38,.13,.075),'Bronze','Weapon.R',.014)
+    prism('Sword blade',[(.405,.84),(.41,1.49),(.49,1.69),(.57,1.49),(.575,.84)],-.19,-.10,'Steel','Weapon.R')
+    stripe('Sword ridge',[(.49,-.215,.85),(.49,-.215,1.54)],.018,'SteelLight','Weapon.R')
     # Left kite shield, double border and central embossed diamond.
     outline=[(-.80,.99),(-.47,1.08),(-.28,.96),(-.33,.52),(-.55,.34),(-.77,.52)]
     prism('Kite shield rim',outline,-.35,-.24,'Bronze','Weapon.L',.025)
@@ -241,25 +241,31 @@ def ranged():
         rod('Wide sleeve '+side,(s*.30,0,.99),(s*.40,-.12,.78),.13,'TeamCloth','UpperArm.'+side,12)
         sphere('Brass cuff '+side,(s*.40,-.12,.79),(.13,.10,.10),'Bronze','LowerArm.'+side)
         sphere('Gloved caster hand '+side,(s*.425,-.17,.75),(.09,.09,.10),'Leather','Hand.'+side)
-    # Open scroll: thick rolled ends and engraved (non-linguistic) strokes.
-    prism('Scroll parchment',[(-.64,.96),(-.28,.90),(-.32,.56),(-.66,.62)],-.34,-.31,'Parchment','Weapon.L',.005)
-    rod('Top scroll roller',(-.69,-.32,.97),(-.24,-.32,.9),.04,'Bronze','Weapon.L')
-    rod('Bottom scroll roller',(-.68,-.32,.60),(-.28,-.32,.55),.035,'Bronze','Weapon.L')
-    for i in range(4):rod('Scroll ink',(-.57,-.351,.86-i*.059),(-.37+(i%2)*.05,-.351,.82-i*.059),.007,'Leather','Weapon.L',6)
-    # Long staff with a three-prong setting and faceted arcane crystal.
-    rod('Staff shaft',(.51,-.09,.12),(.51,-.09,1.60),.04,'Leather','Weapon.R',12)
-    for z in (.20,.60,.87,1.27,1.46):cone('Staff bronze band',(.51,-.09,z),.054,.054,.055,'Bronze','Weapon.R')
-    sphere('Staff crystal',(.51,-.09,1.72),(.13,.13,.235),'TeamInset','Weapon.R',6,4)
-    for j in range(3):
-        a=2*math.pi*j/3
-        x,y=.51+.14*math.cos(a),-.09+.14*math.sin(a)
-        rod('Staff crown prong',(.51,-.09,1.43),(x,y,1.66),.027,'Bronze','Weapon.R')
-        rod('Staff crown tip',(x,y,1.66),(x*.9+.051,y*.9-.009,1.83),.023,'Bronze','Weapon.R')
-    sphere('Crystal core',(.51,-.203,1.735),(.04,.02,.085),'Glow','Weapon.R',8,4)
+    # Bow in left hand and a rear quiver; no staff or spell scroll.
+    bow=[(-.24,-.26,.29),(-.42,-.30,.47),(-.51,-.31,.76),(-.40,-.30,1.12),(-.22,-.26,1.36)]
+    stripe('Recurve bow limbs',bow,.043,'Leather','Weapon.L')
+    stripe('Bow limb inlay',[(x,y-.036,z) for x,y,z in bow],.014,'Bronze','Weapon.L')
+    rod('Bow string',bow[0],bow[-1],.008,'Parchment','Weapon.L',6)
+    rod('Bow grip',(-.45,-.31,.69),(-.47,-.31,.86),.054,'Bronze','Weapon.L')
+    rod('Back quiver',(.16,.22,.63),(.27,.28,1.31),.12,'Leather','Spine',12)
+    rod('Quiver mouth',(.262,.28,1.25),(.28,.28,1.35),.14,'Bronze','Spine',12)
+    for j in range(5):
+        x=.20+(j%3)*.055;y=.28+(j//3)*.06
+        rod('Quiver arrow',(x,y,1.02),(x+.08,y,1.60),.009,'Parchment','Spine',6)
+        prism('Arrow fletching',[(x+.04,1.43),(x+.08,1.60),(x+.115,1.47)],y-.01,y+.01,'TeamCloth')
+
 
 
 def heavy():
-    legs(True)
+    # Non-human round chassis, articulated radial legs retract into its skirt.
+    cone('Round armored chassis',(0,0,.24),.57,.48,.30,'Steel','Hips',32)
+    cone('Chassis brass skirt',(0,0,.135),.59,.59,.06,'Bronze','Hips',32)
+    for i in range(8):
+        a=math.tau*i/8;bone='SpiderLeg.'+str(i)
+        points=[(.35*math.cos(a),.35*math.sin(a),.30),(.65*math.cos(a),.65*math.sin(a),.38),(.82*math.cos(a),.82*math.sin(a),.035)]
+        rod('Eight-leg upper '+str(i),points[0],points[1],.055,'SteelLight',bone)
+        rod('Eight-leg lower '+str(i),points[1],points[2],.045,'Steel',bone)
+        sphere('Leg joint '+str(i),points[1],(.075,.075,.075),'Bronze',bone)
     lathe('Heavy armored skirt',[(.45,.36),(.57,.38),(.75,.32)],'TeamCloth',segments=12,folds=.035)
     sphere('Barrel torso',(0,.035,1.0),(.40,.29,.36),'Steel')
     box('Reinforced belt',(0,0,.69),(.69,.51,.12),'Leather',bevel=.045)
@@ -290,11 +296,17 @@ def heavy():
         sphere('Elbow hinge '+side,(s*.54,.035,.96),(.145,.16,.15),'Bronze','LowerArm.'+side,12,8)
         box('Power gauntlet border '+side,(s*.59,-.08,.81),(.39,.50,.43),'Bronze','Hand.'+side,.055)
         box('Power gauntlet shell '+side,(s*.59,-.085,.83),(.35,.46,.38),'Steel','Hand.'+side,.045)
-        box('Fist knuckle plate '+side,(s*.59,-.338,.84),(.38,.10,.30),'SteelLight','Hand.'+side,.03)
-        for x in (-.105,0,.105):box('Armored knuckle '+side,(s*.59+x,-.402,.87),(.081,.076,.14),'Bronze','Hand.'+side,.012)
         diamond('Gauntlet inset '+side,s*.59,-.40,.70,.16,.105,'TeamInset','Hand.'+side)
         # Mechanical piston detail ties the super-minion mass into the shared fantasy armor.
         rod('Forearm piston '+side,(s*.70,.11,.91),(s*.67,.12,1.15),.033,'SteelLight','LowerArm.'+side)
+    # Round shield and broad gem sword replace the empty powered fists.
+    rod('Heavy round shield',(-.64,-.43,1.01),(-.64,-.54,1.01),.37,'Bronze','Weapon.L',32)
+    rod('Heavy shield face',(-.64,-.54,1.01),(-.64,-.565,1.01),.32,'Steel','Weapon.L',32)
+    sphere('Heavy shield boss',(-.64,-.61,1.01),(.11,.065,.11),'TeamInset','Weapon.L')
+    rod('Gem sword grip',(.64,-.25,.56),(.64,-.25,.86),.055,'Leather','Weapon.R')
+    box('Gem sword guard',(.64,-.25,.89),(.39,.14,.085),'Bronze','Weapon.R')
+    prism('Heavy gem blade',[(.52,.94),(.50,1.48),(.64,1.79),(.78,1.48),(.76,.94)],-.30,-.18,'TeamInset','Weapon.R')
+    stripe('Gem sword spine',[(.64,-.33,.96),(.64,-.33,1.59)],.03,'Glow','Weapon.R')
     # Small rear standard makes red/blue allegiance readable from behind.
     rod('Banner mast',(0,.26,.84),(0,.26,1.76),.031,'Bronze')
     prism('Rear team pennant',[(-.16,1.76),(.16,1.76),(.16,1.26),(0,1.17),(-.16,1.26)],.27,.29,'TeamCloth',bevel=.008)
@@ -309,10 +321,20 @@ def rig_and_export(kind):
     specs=[('Root',(0,0,0),(0,0,.2),None),('Hips',(0,0,.4),(0,0,.68),'Root'),('Spine',(0,0,.68),(0,0,1.07),'Hips'),('Head',(0,0,1.07),(0,0,1.65),'Spine')]
     for side,s in [('L',-1),('R',1)]:
         specs += [('UpperArm.'+side,(s*.24,0,1.05),(s*.4,0,.85),'Spine'),('LowerArm.'+side,(s*.4,0,.85),(s*.44,-.12,.7),'UpperArm.'+side),('Hand.'+side,(s*.44,-.12,.7),(s*.44,-.12,.6),'LowerArm.'+side),('Weapon.'+side,(s*.44,-.12,.7),(s*.44,-.12,.95),'Hand.'+side),('UpperLeg.'+side,(s*.16,0,.59),(s*.16,0,.37),'Hips'),('LowerLeg.'+side,(s*.16,0,.37),(s*.16,0,.15),'UpperLeg.'+side),('Foot.'+side,(s*.16,0,.15),(s*.16,-.20,.1),'LowerLeg.'+side)]
+    if kind=='Heavy':
+        for i in range(8):
+            a=math.tau*i/8;specs.append(('SpiderLeg.'+str(i),(.35*math.cos(a),.35*math.sin(a),.30),(.65*math.cos(a),.65*math.sin(a),.38),'Root'))
     for name,head,tail,parent in specs:
         b=data.edit_bones.new(name);b.head=head;b.tail=tail
         if parent:b.parent=data.edit_bones[parent]
     bpy.ops.object.mode_set(mode='OBJECT')
+    # Enlarge weapons/shields another 12% around their hand anchor.
+    for obj in parts:
+        names=[g.name for g in obj.vertex_groups]
+        side='L' if 'Weapon.L' in names else 'R' if 'Weapon.R' in names else None
+        if side:
+            pivot=Vector((-.44 if side=='L' else .44,-.12,.70));inverse=obj.matrix_world.inverted()
+            for v in obj.data.vertices:v.co=inverse @ (pivot+(obj.matrix_world @ v.co-pivot)*1.12)
     # Keep a clean skinned runtime mesh while source objects remain available in a collection.
     copies=[]
     for obj in parts:
@@ -351,7 +373,7 @@ for i,(rig,mesh) in enumerate(models):
     rig.location.x=(i-1)*2.05
     if i == 2: rig.scale = (1.3, 1.3, 1.3)
 scene=bpy.context.scene
-scene.render.engine='CYCLES';scene.cycles.samples=48
+scene.render.engine='CYCLES';scene.cycles.samples=24
 scene.cycles.use_denoising=True
 scene.world.color=(.14,.14,.14)
 scene.world.use_nodes=True

@@ -208,14 +208,17 @@ namespace Goa2.Presentation
             if (!renderedView.EffectAreas.ContainsKey(effectAreaId)) effectAreaId="";
             ObserveAudio();
             ObserveMainFlow();
+            ObserveStageBanner();
             ObserveWorldDecisions();
             ObserveWheel();
             BuildLayout(renderedView);
             BuildCameraOverlays();
             BuildSkillWheel();
             BuildWorldDecisions();
+            BuildUpgradeWheel();
             BuildDecisionDock();
             BuildMainFlowStatus();
+            BuildStageBanner();
             ApplyNetworkInputGate();
             if (galleryOpen) RenderGallery();
             if (publicCardsOpen) RenderPublicCards(renderedView);
@@ -223,6 +226,7 @@ namespace Goa2.Presentation
             if (newMatchPending) RenderNewMatchDialog();
             if (debugPresetsOpen) RenderDebugPositions();
             if (keywordGlossaryOpen) RenderKeywordGlossary();
+            BuildArtSamples();
             root.Query<ScrollView>().ForEach(scroll =>
             {
                 if (scrollPositions.TryGetValue(scroll.name, out var offset)) scroll.schedule.Execute(() => scroll.scrollOffset = offset);

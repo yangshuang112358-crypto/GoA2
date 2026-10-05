@@ -45,8 +45,8 @@ namespace Goa2.Presentation.UI3D
             if(!NeedsInput(view,seat))return view.Phase==Phase.Finished ? "可自由查看战场与记录" : "等待其他玩家操作，可自由观看";
             if(view.Pending!=null)return Step(view.Pending.Kind)+(view.CanDeclineRetaliationDiscard ? "，或选择被击败" : "");
             if(view.CanResolveRoundEnd)return "开始轮末结算";
-            if(view.UpgradeOptions.Count>0)return "选择升级卡牌并确认";
-            return view.Phase switch {Phase.HeroSelection=>"选择英雄并确认",Phase.Deployment=>"选择队员和出生位置并确认",Phase.Planning=>view.OwnCards.Any(c=>c.Zone==CardZone.Selected)?"确认本回合出牌，也可换选":"在自己的技能环选择本回合卡牌",Phase.Action=>"选择主要行动、移动或放弃此牌",_=>"完成当前选择"};
+            if(view.UpgradeOptions.Count>0)return "选择升级技能";
+            return view.Phase switch {Phase.HeroSelection=>"选择英雄",Phase.Deployment=>"安排队员出生位置",Phase.Planning=>view.OwnCards.Any(c=>c.Zone==CardZone.Selected)?"决定本回合出牌，也可换选":"在自己的技能环选择本回合卡牌",Phase.Action=>"选择主要行动、移动或放弃此牌",_=>"完成当前选择"};
         }
     }
 }

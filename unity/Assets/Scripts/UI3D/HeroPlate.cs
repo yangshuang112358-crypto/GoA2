@@ -22,8 +22,13 @@ namespace Goa2.Presentation.UI3D
         private readonly PlayerView player;
         private readonly int[] states;
         private readonly Label title;
-        public HeroPlate(ContentCatalog catalog,GameView view,PlayerView player,int ownSeat)
+        private readonly LevelPreview.Motion progress;
+        public HeroPlate(ContentCatalog catalog,GameView view,PlayerView player,int ownSeat,LevelPreview.Motion? motion=null)
         {
+            progress=motion ?? new LevelPreview.Motion();
+            int forecast=LevelPreview.Target(player.Level,player.Gold)-player.Level;
+            int count=view.RoundEndStage=="upgrades" ? player.Seat==ownSeat ? UpgradeWheelLayout.Remaining(view,ownSeat) : view.UpgradingSeats.Contains(player.Seat) ? progress.Count : 0 : forecast;
+            progress.Observe(count,Time.realtimeSinceStartup);
             name="hero-plate-"+(player.Seat+1);this.player=player;states=Colors.Select(c=>Status(view,player,c,catalog,ownSeat)).ToArray();
             pickingMode=PickingMode.Ignore;style.position=Position.Absolute;style.width=224;style.height=92;
             title=new Label(catalog.Heroes.FirstOrDefault(h=>h.Id==player.HeroId)?.Name ?? "英雄") {pickingMode=PickingMode.Ignore};
@@ -32,12 +37,33 @@ namespace Goa2.Presentation.UI3D
             var level=new Label(player.Level.ToString()) {pickingMode=PickingMode.Ignore};level.style.position=Position.Absolute;
             level.style.left=4;level.style.top=38;level.style.width=42;level.style.height=42;level.style.fontSize=26;
             level.style.marginLeft=0;level.style.marginRight=0;level.style.marginTop=0;level.style.marginBottom=0;level.style.paddingLeft=0;level.style.paddingRight=0;level.style.paddingTop=0;level.style.paddingBottom=0;level.style.color=Color.white;level.style.unityTextAlign=TextAnchor.MiddleCenter;Add(level);
+            if(forecast>0){
+                var preview=new Label("→ "+LevelPreview.Target(player.Level,player.Gold)){name="level-preview",pickingMode=PickingMode.Ignore};
+                preview.style.position=Position.Absolute;preview.style.left=48;preview.style.top=28;preview.style.fontSize=19;
+                preview.style.color=new Color(1,.82f,.35f);preview.style.unityFontStyleAndWeight=FontStyle.Bold;
+                preview.style.unityTextOutlineColor=Color.black;preview.style.unityTextOutlineWidth=1;Add(preview);
+                tooltip="等级 "+player.Level+" → "+LevelPreview.Target(player.Level,player.Gold)+"（轮末升级，本轮仍为"+player.Level+"级）";
+            }
             generateVisualContent+=Draw;
-            if(player.Level>=8)schedule.Execute(MarkDirtyRepaint).Every(50);
+            if(player.Level>=8 || progress.Count>0)schedule.Execute(MarkDirtyRepaint).Every(32);
         }
         private void Draw(MeshGenerationContext c)
         {
             var p=c.painter2D;bool max=player.Level>=8;float t=Time.realtimeSinceStartup;
+            if(progress.Count>0){
+                float age=t-progress.Changed;
+                float y=age<.5f ? Mathf.Lerp(79,38,age/.5f) : age<1.05f ? Mathf.Lerp(79,59,(age-.5f)/.55f) : 59;
+                float pulse=age<.25f ? .78f+.22f*Mathf.Sin(age/.25f*Mathf.PI*.5f) : 1;
+                float size=(progress.Count>=3 ? 12 : 8)*pulse;
+                p.fillColor=new Color(1,.78f,.22f);p.strokeColor=new Color(.2f,.12f,.02f);p.lineWidth=1.5f;
+                int count=progress.Count==2?2:1;
+                for(int i=0;i<count;i++){
+                    float x=-13,cy=y+i*10-(count-1)*5;
+                    p.BeginPath();p.MoveTo(new Vector2(x,cy-size));p.LineTo(new Vector2(x+size,cy));
+                    p.LineTo(new Vector2(x+size*.4f,cy));p.LineTo(new Vector2(x+size*.4f,cy+size*.65f));
+                    p.LineTo(new Vector2(x-size*.4f,cy+size*.65f));p.LineTo(new Vector2(x-size*.4f,cy));p.LineTo(new Vector2(x-size,cy));p.ClosePath();p.Fill();p.Stroke();
+                }
+            }
             p.fillColor=new Color(.035f,.04f,.065f,.95f);p.BeginPath();p.Arc(new Vector2(25,61),21,0,360);p.Fill();
             // Inner beveled rim remains separate from the segmented experience ring.
             p.strokeColor=new Color(.62f,.67f,.73f,.65f);p.lineWidth=1;p.BeginPath();p.Arc(new Vector2(25,61),15.5f,200,340);p.Stroke();

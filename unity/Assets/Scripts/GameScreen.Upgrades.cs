@@ -14,30 +14,6 @@ namespace Goa2.Presentation
             if (!view.UpgradeOptions.Any(o => o.Color == upgradeColor)) upgradeColor = view.UpgradeOptions.FirstOrDefault()?.Color ?? "";
             if (!view.UpgradeOptions.Any(o => o.CardId == upgradeCardId)) upgradeCardId = "";
         }
-        private void BuildUpgradeCards(VisualElement parent, GameView view)
-        {
-            var scroll=new ScrollView {name="goa-scroll-upgrades"};scroll.style.flexGrow=1;parent.Add(scroll);
-            bool purple=view.UpgradeOptions[0].Color=="purple";
-            foreach(string color in purple ? new[]{"purple"} : new[]{"red","green","blue"})
-            {
-                var row=Box("upgrade-row");row.name="upgrade-row-"+color;scroll.Add(row);
-                int level=view.UpgradeOptions[0].CardLevel;
-                foreach(var card in catalog.Cards.Where(c=>c.HeroId==view.Players[seat].HeroId && c.Color==color && c.Level==level).OrderBy(c=>c.Id,System.StringComparer.Ordinal))
-                {
-                    string id=card.Id;var option=view.UpgradeOptions.SingleOrDefault(o=>o.CardId==id);
-                    var tile=Button("",()=>{upgradeCardId=id;upgradeColor=card.Color;showDebug=false;showHotkeys=false;Render();},"upgrade-card","upgrade-card-"+id);
-                    tile.AddToClassList("color-"+color);tile.SetEnabled(option!=null);
-                    tile.style.borderTopColor=CardColor(color);
-                    if(upgradeCardId==id) tile.AddToClassList("chosen");
-                    tile.Add(Text(card.Name+" · "+level+"级","card-name"));
-                    CardRulesPreview(tile,card,"upgrade-rules-"+id);
-                    CompactCardNumbers(tile,card,view.Players[seat],false,"upgrade-"+id);
-                    tile.Add(Text(option==null ? "此色本阶段已升级" : purple ? "8级唯一紫卡 · 仍须确认" : "永久"+option.Bonus+" +1（未选卡）","card-zone"));
-                    AttachCardReading(tile,card,view.Players[seat]);
-                    row.Add(tile);
-                }
-            }
-        }
         private void RenderRoundEnd(VisualElement parent, GameView view)
         {
             if (view.CanResolveRoundEnd)

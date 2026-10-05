@@ -25,6 +25,18 @@ namespace Goa2.Presentation
             }
             if (view.Phase == Phase.Finished) { RenderVictory(parent, view); return; }
             if (!view.Sandbox) { parent.Add(Text("这是普通确认对局。创建新的测试对局后可使用调试工具。", "body")); return; }
+            parent.Add(Text("界面演出样例", "section-title"));
+            parent.Add(Button("英雄 / 小兵 / 金币美术样例",()=>OpenArtSamples(0),"choice-button","art-samples-open"));
+            parent.Add(Button("升级环样例：9 / 6 / 3 / 紫卡",()=>{OpenDebugPositions();debugPresetFilter="upgrades";selectedDebugPosition="upgrades";Render();},"choice-button","upgrade-samples-open"));
+            var stageSamples=Box("debug-button-row");parent.Add(stageSamples);
+            foreach(string label in new[]{"暗选阶段","战斗阶段\n"+HeroName(view.Players[seat].HeroId)+"行动","战斗阶段\n"+HeroName(view.Players[seat].HeroId)+"防御","小兵战斗阶段","升级阶段","开局抛币阶段"})
+                stageSamples.Add(Button(label.Replace("\n"," · "),()=>PreviewStageBanner(label),"compact-button"));
+            parent.Add(Text("样例只演示横幅，不提交游戏行动。升级环请在真实升级阶段验收；金币调试可检验预期等级。","tiny"));
+            var poses=Box("debug-button-row");parent.Add(poses);
+            foreach(var choice in new[]{("正常兵姿",""),("举剑 / 挽弓","support"),("举盾姿态","guard")}){
+                var captured=choice;poses.Add(Button(captured.Item1,()=>{board3DViewport.MinionPreviewPose=captured.Item2;rightExpanded=false;Render();},"compact-button"));
+            }
+            parent.Add(Text("兵姿为动作初稿。样例会保持到选择正常兵姿；不修改规则。实战仅高亮基础兵位修正。","tiny"));
             parent.Add(Text(PlayerName(seat), "section-title"));
             var attackValue=new IntegerField("基础攻击") {value=debugAttackValue,name="debug-attack-value"};attackValue.AddToClassList("debug-input");
             attackValue.RegisterValueChangedCallback(e=>debugAttackValue=e.newValue);parent.Add(attackValue);

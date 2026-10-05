@@ -112,7 +112,7 @@ namespace Goa2.Presentation {
     if(renderedView.Pending?.Kind=="defense" && card!=null){var option=renderedView.DefenseOptions.FirstOrDefault(o=>o.CardId==card.Id);if(option!=null && CardDisplay.WarnDefense(card,option.Assessment)){disc.style.backgroundColor=new Color(.48f,.22f,.28f,.48f);disc.tooltip="防御数值偏低";}}
     wheel.AddSkill(disc,i);
    }
-   if(mainFlow && wheelNeedsFocus && cameraFollow){wheelNeedsFocus=false;var currentBoard=board;int focusVersion=cameraFocusVersion;root.schedule.Execute(()=>{if(cameraFollow && board==currentBoard && focusVersion==cameraFocusVersion)board?.FollowAt(Board3DGeometry.World(location),board3DViewport.Enabled ? 3f : 2.6f);}).StartingIn(30);}
+   if(mainFlow && !StagePresenting && wheelNeedsFocus && cameraFollow){wheelNeedsFocus=false;var currentBoard=board;int focusVersion=cameraFocusVersion;root.schedule.Execute(()=>{if(!StagePresenting && cameraFollow && board==currentBoard && focusVersion==cameraFocusVersion)board?.FollowAt(Board3DGeometry.World(location),board3DViewport.Enabled ? 3f : 2.6f);}).StartingIn(30);}
    frame.schedule.Execute(()=>{
     if(board==null || frame.panel==null)return;Vector2 size=board.contentRect.size;
     // World anchor may leave the viewport; never clamp it to a screen edge.
