@@ -1,0 +1,2 @@
+01-initiative-camera-raw.mp4: frames=1357, duration=45.23333, wall=45.29705, exit=0
+02-minions-level-meter-raw.mp4: frames=1728, duration=57.6, wall=57.63362, exit=0

@@ -1,0 +1,29 @@
+{
+    "Method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard",
+    "UnityVersion": "6000.3.23f1",
+    "Error": "",
+    "Width": 1600,
+    "Height": 1000,
+    "Passed": true,
+    "Checks": [
+        "Manual four-tie fixture begins before reveal",
+        "Manual instructions describe final selection and both captains",
+        "Fourth selection triggers live coin explanation",
+        "UI explains winner while authority already holds next colour",
+        "Winner explanation stays visible before half flip",
+        "Blue captain selects teammate to act first",
+        "Four-tie fixture supplies real fast-move destinations",
+        "Fast-move selection survives camera changes and empty click",
+        "Main-flow return resets UI without executing a move",
+        "Next unresolved tie now gives red team priority; 操作已确认。 phase=InitiativeChoice seat=2 pending=initiative",
+        "Red captain can choose yellow Wasp next",
+        "Entire level forecast is inside larger circular boss",
+        "Level meter never changes authoritative level or spends gold",
+        "Board coin spans 2.08 m, fitting tray inner diameter",
+        "Coin underside rests above stone surface",
+        "Central stone halves remain completely static",
+        "Real bow-tip string endpoints stay attached in idle",
+        "Real bow-tip string endpoints stay attached in support",
+        "Real bow-tip string endpoints stay attached in guard"
+    ]
+}
