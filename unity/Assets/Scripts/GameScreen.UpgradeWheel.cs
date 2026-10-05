@@ -22,7 +22,9 @@ namespace Goa2.Presentation
             string key=view.MatchId+":"+seat+":"+view.Round+":"+string.Join(",",view.UpgradeOptions.Select(o=>o.CardId+"/"+o.HeroLevel));
             if(key!=upgradeWheelKey){upgradeWheelKey=key;upgradeWheelOpened=Time.realtimeSinceStartup;}
             var anchor=new VisualElement{name="upgrade-zone",pickingMode=PickingMode.Ignore};
-            anchor.style.position=Position.Absolute;anchor.style.width=640;anchor.style.height=640;anchor.style.transformOrigin=new TransformOrigin(0,0,0);board.Add(anchor);
+            anchor.style.position=Position.Absolute;anchor.style.width=640;anchor.style.height=640;anchor.style.transformOrigin=new TransformOrigin(0,0,0);
+            // Render rebuilds before the first layout/projection tick; never flash at (0,0).
+            anchor.style.opacity=0;board.Add(anchor);
             var ring=new VisualElement{name="upgrade-wheel",pickingMode=PickingMode.Ignore};ring.StretchToParentSize();ring.style.transformOrigin=new TransformOrigin(320,320,0);anchor.Add(ring);
             ring.generateVisualContent+=c=>{
                 var p=c.painter2D;
@@ -69,7 +71,7 @@ namespace Goa2.Presentation
             anchor.schedule.Execute(()=>{
                 if(board==null || anchor.panel==null)return;
                 float scale=Mathf.Clamp(Mathf.Min(board.contentRect.width/1300f,board.contentRect.height/820f),.56f,1);
-                Vector2 point=board.ProjectHero(unit.Position);anchor.style.left=point.x-320*scale;anchor.style.top=point.y-320*scale;anchor.style.scale=new Scale(new Vector3(scale,scale,1));
+                Vector2 point=board.ProjectHero(unit.Position);anchor.style.left=point.x-320*scale;anchor.style.top=point.y-320*scale;anchor.style.scale=new Scale(new Vector3(scale,scale,1));anchor.style.opacity=1;
                 if(!decisionAnimating){float t=Mathf.Clamp01((Time.realtimeSinceStartup-upgradeWheelOpened)/.28f),s=1-Mathf.Pow(1-t,3);ring.style.opacity=t;ring.style.scale=new Scale(new Vector3(Mathf.Max(.01f,s),Mathf.Max(.01f,s),1));}
             }).Every(16);
         }

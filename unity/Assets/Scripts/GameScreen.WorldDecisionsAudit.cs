@@ -129,7 +129,9 @@ namespace Goa2.Presentation
             artSamplesOpen=false;Render();
             Load("round-upgrades",22);yield return new WaitForSecondsRealtime(4);
             Check(renderedView.UpgradeOptions.Count==1 && root.Q("upgrade-wheel")!=null && root.Query<VisualElement>().ToList().All(e=>!e.name.StartsWith("upgrade-current-")),"Level eight retains a single purple upgrade ring choice");
-            upgradeCardId=renderedView.UpgradeOptions.Single().CardId;var purpleChoice=upgradeCardId;Render();yield return null;
+            upgradeCardId=renderedView.UpgradeOptions.Single().CardId;var purpleChoice=upgradeCardId;Render();yield return new WaitForSecondsRealtime(.5f);
+            var purpleAnchor=root.Q("upgrade-zone");var purpleHero=renderedView.Units.Single(u=>u.Seat==seat);
+            Check(Vector2.Distance(purpleAnchor.worldBound.center,board.LocalToWorld(board.ProjectHero(purpleHero.Position)))<4,"Purple upgrade ring remains centered on its hero after refresh");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"upgrade-purple.png"));yield return new WaitForSecondsRealtime(.2f);
             ConfirmCurrent();yield return new WaitForSecondsRealtime(.6f);
             Check(renderedView.Players.Single(p=>p.Seat==seat).PurpleCardId==purpleChoice,"Purple ring confirmation equips the chosen ultimate");
