@@ -14,6 +14,7 @@ import time
 import uuid
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'client'))
 from player import Player
+from packaged_draft import complete_packaged_draft
 
 def port():
     with socket.socket() as s: s.bind(('127.0.0.1',0)); return s.getsockname()[1]
@@ -69,12 +70,7 @@ def run(package, public=False, relay_only=False, peer=None):
             ticket=json.loads(Path(v['Ticket']).read_text())
             client=Player(ticket);players.append(client);client.connect()
             check(f'actual TCP seat {seat}',client.seat==seat)
-        revision=0
-        for seat,hero in enumerate(('wasp','sabina','tigerclaw','arien')):
-            players[seat].wait(lambda:players[seat].view['Revision']>=revision)
-            result=players[seat].submit('ChooseHero',{'Value':hero})
-            check(f'authority accepts seat {seat} hero',result.get('Accepted') is True)
-            revision=result['Snapshot']['Revision']
+        revision=complete_packaged_draft(players,check)
         for seat,p in enumerate(players):
             p.wait(lambda:p.view['Revision']==revision)
             check(f'projection agrees seat {seat}',[x['HeroId'] for x in p.view['Players']]==['wasp','sabina','tigerclaw','arien'])

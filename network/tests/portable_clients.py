@@ -5,6 +5,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "client"))
 from player import Player
+from packaged_draft import complete_packaged_draft
 
 
 def run(room):
@@ -20,12 +21,7 @@ def run(room):
             players.append(player)
             player.connect()
             check(f"authenticated seat {seat}", player.seat == seat)
-        revision = 0
-        for seat, hero in enumerate(("wasp", "sabina", "tigerclaw", "arien")):
-            players[seat].wait(lambda: players[seat].view["Revision"] >= revision)
-            result = players[seat].submit("ChooseHero", {"Value": hero})
-            check(f"choose hero {seat}", result.get("Accepted") is True)
-            revision = result["Snapshot"]["Revision"]
+        revision = complete_packaged_draft(players, check)
         for seat, player in enumerate(players):
             player.wait(lambda: player.view["Revision"] == revision)
             check(f"public heroes agree {seat}", [p["HeroId"] for p in player.view["Players"]] == ["wasp", "sabina", "tigerclaw", "arien"])

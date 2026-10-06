@@ -31,6 +31,8 @@ def verify(folder):
                          "launcher/BootstrapWorker.ps1", "launcher/OwnedProcessJob.cs", "easytier/easytier-core.exe",
                          "easytier/easytier-cli.exe", "easytier/component.json", "easytier/LICENSE-LGPL-3.0.txt",
                          "easytier/DEPENDENCY-NOTICES.txt", "easytier/Goa2-EasyTier-2.6.4-modified-source.zip"})
+    if manifest.get("UnifiedHomeVersion") == 1:
+        required.update({"开始游戏.cmd", "launcher/HomeLauncher.ps1", "launcher/HomeTools.ps1", "README.txt", "version.txt"})
     require(required <= names, "Incomplete portable package")
     require(not any(".private." in n or n.endswith(".log") for n in names), "Session data in distribution")
     for entry in manifest["Files"]:
@@ -61,17 +63,24 @@ def create(root, host, destination):
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(root / "content" / name, target)
     (destination / "launcher").mkdir()
-    for name in ("RoomTools.ps1", "Launcher.ps1", "AutoLauncher.ps1", "ManualLauncher.ps1", "BootstrapTools.ps1", "BootstrapWorker.ps1", "OwnedProcessJob.cs", "Start-Multiplayer.cmd", "README.txt"):
+    for name in ("RoomTools.ps1", "Launcher.ps1", "AutoLauncher.ps1", "ManualLauncher.ps1", "HomeLauncher.ps1", "HomeTools.ps1", "BootstrapTools.ps1", "BootstrapWorker.ps1", "OwnedProcessJob.cs", "Start-Multiplayer.cmd", "开始游戏.cmd", "README.txt"):
         target = destination / "launcher" / name if name.endswith((".ps1", ".cs")) else destination / name
         # Windows PowerShell 5.1 requires BOM for Chinese text in scripts.
         text = (root / "network/launcher" / name).read_text(encoding="utf-8-sig")
         target.write_text(text, encoding="utf-8-sig" if name.endswith(".ps1") else "utf-8", newline="\r\n")
     shutil.copytree(prepare_easytier(root), destination / "easytier")
-    source_names = subprocess.check_output(["git", "ls-files", "--cached", "--others", "--exclude-standard"], cwd=root, text=True).splitlines()
+    source_names = subprocess.check_output(["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"], cwd=root).decode("utf-8").split("\0")
     source_names = [n for n in source_names if n.startswith(("core/", "network/", "tools/")) or n in ("Directory.Build.props", "global.json")]
+    source_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
+    player_info = strict_json((destination / "player/build-info.json").read_text(encoding="utf-8"))
+    (destination / "version.txt").write_text(
+        "Goa2V1 完整试玩包 · engine" + str(player_info["EngineVersion"]) + " · " + source_commit[:7] + "\n"
+        "四人使用同一完整包；运行入口：开始游戏.cmd。\n"
+        "包含本地对局、邀请联机、十章教程与使用说明。\n", encoding="utf-8-sig")
     manifest = {"SchemaVersion": 1,
                 "AutomaticInviteVersion": 1,
-                "SourceCommit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip(),
+                "UnifiedHomeVersion": 1,
+                "SourceCommit": source_commit,
                 "SourceFiles": [{"Path": n, "Sha256": file_digest(root / n)} for n in sorted(source_names) if (root / n).is_file()],
                 "Files": records(destination)}
     (destination / "multiplayer-build.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
@@ -79,10 +88,10 @@ def create(root, host, destination):
     archive = destination.with_suffix(".zip")
     with zipfile.ZipFile(archive, "x", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as output:
         for entry in records(destination):
-            output.write(destination / entry["Path"], "Goa2V1-Multiplayer/" + entry["Path"])
+            output.write(destination / entry["Path"], "Goa2V1/" + entry["Path"])
     with zipfile.ZipFile(archive) as check:
         require(check.testzip() is None, "Archive CRC failure")
-        expected = {"Goa2V1-Multiplayer/" + e["Path"] for e in records(destination)}
+        expected = {"Goa2V1/" + e["Path"] for e in records(destination)}
         require(set(check.namelist()) == expected, "Archive inventory mismatch")
     checksum = file_digest(archive)
     archive.with_suffix(".zip.sha256").write_text(checksum + "  " + archive.name + "\n", encoding="ascii")
