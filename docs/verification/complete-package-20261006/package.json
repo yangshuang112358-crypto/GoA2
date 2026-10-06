@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "files": 379,
+  "player": {
+    "engine_version": 98,
+    "unity_version": "6000.3.23f1",
+    "payload_files": 158,
+    "payload_bytes": 134330597,
+    "primary_cards": 89,
+    "defense_cards": 13
+  },
+  "source_commit": "ad1067a49595fe9e85600fe2681891273f88d311",
+  "folder": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\GoA2\\Goa2V1\\artifacts\\releases\\Goa2V1-Multiplayer-complete-home-20261006-091654-c6cf43",
+  "archive": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\GoA2\\Goa2V1\\artifacts\\releases\\Goa2V1-Multiplayer-complete-home-20261006-091654-c6cf43.zip",
+  "archive_sha256": "da60b787d30717696db505f19eb9c77e9a0d043da6fad680cee75799425fa96b"
+}

@@ -1,0 +1,27 @@
+{
+  "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/tag/complete-20261006-engine98",
+  "tag": "complete-20261006-engine98",
+  "target": "ad1067a49595fe9e85600fe2681891273f88d311",
+  "prerelease": true,
+  "download_head": 200,
+  "assets": [
+    {
+      "name": "Goa2V1-Complete-20261006-ad1067a.zip",
+      "bytes": 108429323,
+      "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/complete-20261006-engine98/Goa2V1-Complete-20261006-ad1067a.zip",
+      "digest": "sha256:da60b787d30717696db505f19eb9c77e9a0d043da6fad680cee75799425fa96b"
+    },
+    {
+      "name": "Goa2V1-Complete-20261006-ad1067a.zip.sha256",
+      "bytes": 104,
+      "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/complete-20261006-engine98/Goa2V1-Complete-20261006-ad1067a.zip.sha256",
+      "digest": "sha256:3c4ef54da03b15f4db9e74789cd463e6cba66ab6c0231cceb28dc7a584ac75f6"
+    },
+    {
+      "name": "Goa2V1-Guide-zh-CN.txt",
+      "bytes": 8716,
+      "url": "https://github.com/yangshuang112358-crypto/GoA2/releases/download/complete-20261006-engine98/Goa2V1-Guide-zh-CN.txt",
+      "digest": "sha256:4e78f79da262c215dd03c8ff478288b7bc2c70bd50e6aa1d41df3c1726aad2d5"
+    }
+  ]
+}

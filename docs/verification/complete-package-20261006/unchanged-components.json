@@ -1,0 +1,27 @@
+[
+  {
+    "file": "launcher/BootstrapTools.ps1",
+    "sha256": "3fef933cf03f94c536968d9c260841174486323f65cfa873158f5d39b10d14d5",
+    "same_as_17_invite_test_candidate": true
+  },
+  {
+    "file": "launcher/BootstrapWorker.ps1",
+    "sha256": "e95652f9f687fee63731a232ab73123b595699da127ede2b548d97166d25a812",
+    "same_as_17_invite_test_candidate": true
+  },
+  {
+    "file": "launcher/RoomTools.ps1",
+    "sha256": "a3bdf85f36efb7493b20bb782e63fc45855414ec6d3baa742f901ab6cbcb6d2f",
+    "same_as_17_invite_test_candidate": true
+  },
+  {
+    "file": "launcher/AutoLauncher.ps1",
+    "sha256": "742be7d0efbb7300ecbffdd794f4a0f5cd30ebf5accf4a7fef6ebb43998856ae",
+    "same_as_17_invite_test_candidate": true
+  },
+  {
+    "file": "player/build-info.json",
+    "sha256": "4945fc35c348dba9bea4bfa7a49dfb4e2e36ce11768bc3b104b3455d4db70051",
+    "same_as_17_invite_test_candidate": true
+  }
+]

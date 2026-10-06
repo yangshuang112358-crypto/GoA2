@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "mode": "same PC public bootstrap",
+  "peers": [
+    "tcp://38.147.105.185:11010"
+  ],
+  "relay_only": false,
+  "checks": [
+    "host automatic network ready",
+    "three separate seat invitations",
+    "three isolated guest transport identities",
+    "all three guests authenticate",
+    "actual TCP seat 0",
+    "actual TCP seat 1",
+    "actual TCP seat 2",
+    "actual TCP seat 3",
+    "packaged ReportCoinToss seat 0",
+    "packaged ChooseHero seat 1",
+    "packaged ChooseHero seat 0",
+    "packaged ChooseHero seat 2",
+    "packaged ChooseHero seat 3",
+    "projection agrees seat 0",
+    "projection agrees seat 1",
+    "projection agrees seat 2",
+    "projection agrees seat 3",
+    "client reconnect through forwarding",
+    "same-seat duplicate worker rejected",
+    "ACL probe forwarding configured",
+    "host ACL blocks unrelated local TCP service",
+    "guest stop releases only its connection",
+    "saved invitation reconnects same seat/revision",
+    "cancel unreachable network saves room",
+    "version rejection before starting network",
+    "abnormal worker exit leaves no owned core",
+    "host graceful stop validates save",
+    "all three owned host bridges stopped"
+  ],
+  "source_commit": "ad1067a49595fe9e85600fe2681891273f88d311"
+}

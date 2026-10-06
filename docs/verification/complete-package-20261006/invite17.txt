@@ -1,0 +1,18 @@
+PASS valid invite roundtrip
+PASS reject seat 0
+PASS reject seat 4
+PASS reject seat 1
+PASS reject wrong network profile
+PASS reject shell/config injection
+PASS reject non-loopback game endpoint
+PASS reject incompatible version
+PASS reject unsafe peer URI
+PASS reject URI config injection
+PASS reject oversized invitation
+PASS reject legacy ticket at automatic entry
+PASS network secret changes each room
+PASS host config only exposes authority TCP
+PASS guest forward binds loopback only
+PASS reject string relay mode
+PASS relay compatibility mode disables hole punching
+Unified invitation checks: 17
