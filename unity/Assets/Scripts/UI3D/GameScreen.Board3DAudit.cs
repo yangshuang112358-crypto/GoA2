@@ -166,6 +166,13 @@ namespace Goa2.Presentation
             yield return null;yield return null;
             Check(!startupFailed,"Startup content loaded");Submit(CommandKind.DebugPrepare,"wasp,shargatha,brogan,arien");
             yield return new WaitForSecondsRealtime(5.6f);
+            // Phase banner, initial coin and eased camera movement run consecutively.
+            // A world-anchored ring may legitimately be offscreen during this travel.
+            var heroPoint=Board3DGeometry.World(renderedView.Units.First(u=>u.Seat==seat).Position);
+            float deadline=Time.realtimeSinceStartup+15;
+            while(Time.realtimeSinceStartup<deadline && (StagePresenting || wasCinematic || Vector3.Distance(board3DViewport.Focus,heroPoint)>.05f))yield return null;
+            Check(!StagePresenting && !wasCinematic && Vector3.Distance(board3DViewport.Focus,heroPoint)<=.05f,"Initial presentation finishes and camera settles before inspecting disc bounds");
+            yield return null;yield return null;
             string before=session.ExportSave();
             var discs=root.Query<SkillDisc>().ToList();Check(discs.Count==5,"Five skill discs visible");
             foreach(var disc in discs){
