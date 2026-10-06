@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="13" result="Passed" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-06 06:16:33Z" end-time="2026-10-06 06:16:36Z" duration="2.4930208">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2383" result="Passed" start-time="2026-10-06 06:16:33Z" end-time="2026-10-06 06:16:36Z" duration="2.493021" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3593" name="Goa2.Core.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.Core.Tests.dll" runstate="Runnable" testcasecount="2208" result="Passed" start-time="2026-10-06 06:16:33Z" end-time="2026-10-06 06:16:36Z" duration="2.460280" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="18644" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="3594" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="2208" result="Passed" start-time="2026-10-06 06:16:33Z" end-time="2026-10-06 06:16:36Z" duration="2.435997" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="3595" name="Tests" fullname="Goa2.Tests" runstate="Runnable" testcasecount="2208" result="Passed" start-time="2026-10-06 06:16:33Z" end-time="2026-10-06 06:16:36Z" duration="2.413117" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="3522" name="TutorialTests" fullname="Goa2.Tests.TutorialTests" classname="Goa2.Tests.TutorialTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-06 06:16:33Z" end-time="2026-10-06 06:16:36Z" duration="2.382982" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="3533" name="CompleteChapterWithAcceptedCommandsAndReplay" fullname="Goa2.Tests.TutorialTests.CompleteChapterWithAcceptedCommandsAndReplay" classname="Goa2.Tests.TutorialTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-06 06:16:33Z" end-time="2026-10-06 06:16:35Z" duration="2.004457" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3523" name="CompleteChapterWithAcceptedCommandsAndReplay(0)" fullname="Goa2.Tests.TutorialTests.CompleteChapterWithAcceptedCommandsAndReplay(0)" methodname="CompleteChapterWithAcceptedCommandsAndReplay" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="1004714557" result="Passed" start-time="2026-10-06 06:16:33Z" end-time="2026-10-06 06:16:34Z" duration="0.371205" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3524" name="CompleteChapterWithAcceptedCommandsAndReplay(1)" fullname="Goa2.Tests.TutorialTests.CompleteChapterWithAcceptedCommandsAndReplay(1)" methodname="CompleteChapterWithAcceptedCommandsAndReplay" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="220165593" result="Passed" start-time="2026-10-06 06:16:34Z" end-time="2026-10-06 06:16:34Z" duration="0.211933" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3525" name="CompleteChapterWithAcceptedCommandsAndReplay(2)" fullname="Goa2.Tests.TutorialTests.CompleteChapterWithAcceptedCommandsAndReplay(2)" methodname="CompleteChapterWithAcceptedCommandsAndReplay" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="1979896730" result="Passed" start-time="2026-10-06 06:16:34Z" end-time="2026-10-06 06:16:34Z" duration="0.158980" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3526" name="CompleteChapterWithAcceptedCommandsAndReplay(3)" fullname="Goa2.Tests.TutorialTests.CompleteChapterWithAcceptedCommandsAndReplay(3)" methodname="CompleteChapterWithAcceptedCommandsAndReplay" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="893126569" result="Passed" start-time="2026-10-06 06:16:34Z" end-time="2026-10-06 06:16:34Z" duration="0.147140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3527" name="CompleteChapterWithAcceptedCommandsAndReplay(4)" fullname="Goa2.Tests.TutorialTests.CompleteChapterWithAcceptedCommandsAndReplay(4)" methodname="CompleteChapterWithAcceptedCommandsAndReplay" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="452287544" result="Passed" start-time="2026-10-06 06:16:34Z" end-time="2026-10-06 06:16:34Z" duration="0.131751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3528" name="CompleteChapterWithAcceptedCommandsAndReplay(5)" fullname="Goa2.Tests.TutorialTests.CompleteChapterWithAcceptedCommandsAndReplay(5)" methodname="CompleteChapterWithAcceptedCommandsAndReplay" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="570003982" result="Passed" start-time="2026-10-06 06:16:34Z" end-time="2026-10-06 06:16:34Z" duration="0.144100" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3529" name="CompleteChapterWithAcceptedCommandsAndReplay(6)" fullname="Goa2.Tests.TutorialTests.CompleteChapterWithAcceptedCommandsAndReplay(6)" methodname="CompleteChapterWithAcceptedCommandsAndReplay" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="866613147" result="Passed" start-time="2026-10-06 06:16:34Z" end-time="2026-10-06 06:16:35Z" duration="0.198555" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3530" name="CompleteChapterWithAcceptedCommandsAndReplay(7)" fullname="Goa2.Tests.TutorialTests.CompleteChapterWithAcceptedCommandsAndReplay(7)" methodname="CompleteChapterWithAcceptedCommandsAndReplay" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="1217176969" result="Passed" start-time="2026-10-06 06:16:35Z" end-time="2026-10-06 06:16:35Z" duration="0.124459" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3531" name="CompleteChapterWithAcceptedCommandsAndReplay(8)" fullname="Goa2.Tests.TutorialTests.CompleteChapterWithAcceptedCommandsAndReplay(8)" methodname="CompleteChapterWithAcceptedCommandsAndReplay" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="293188609" result="Passed" start-time="2026-10-06 06:16:35Z" end-time="2026-10-06 06:16:35Z" duration="0.398471" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3532" name="CompleteChapterWithAcceptedCommandsAndReplay(9)" fullname="Goa2.Tests.TutorialTests.CompleteChapterWithAcceptedCommandsAndReplay(9)" methodname="CompleteChapterWithAcceptedCommandsAndReplay" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="529185089" result="Passed" start-time="2026-10-06 06:16:35Z" end-time="2026-10-06 06:16:35Z" duration="0.111551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="3535" name="ConfirmationCannotRevealBeforeAllFourAndBotsNeverOperateLearner" fullname="Goa2.Tests.TutorialTests.ConfirmationCannotRevealBeforeAllFourAndBotsNeverOperateLearner" methodname="ConfirmationCannotRevealBeforeAllFourAndBotsNeverOperateLearner" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="925827296" result="Passed" start-time="2026-10-06 06:16:35Z" end-time="2026-10-06 06:16:35Z" duration="0.165186" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3536" name="TutorialProgressIsVersionedAndCorruptDataFallsBackWithoutTouchingMatchSave" fullname="Goa2.Tests.TutorialTests.TutorialProgressIsVersionedAndCorruptDataFallsBackWithoutTouchingMatchSave" methodname="TutorialProgressIsVersionedAndCorruptDataFallsBackWithoutTouchingMatchSave" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="219090090" result="Passed" start-time="2026-10-06 06:16:35Z" end-time="2026-10-06 06:16:35Z" duration="0.039570" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3534" name="WrongCommandsNeverAdvanceOrMutateAndRetryCreatesSeparateMatch" fullname="Goa2.Tests.TutorialTests.WrongCommandsNeverAdvanceOrMutateAndRetryCreatesSeparateMatch" methodname="WrongCommandsNeverAdvanceOrMutateAndRetryCreatesSeparateMatch" classname="Goa2.Tests.TutorialTests" runstate="Runnable" seed="1857571228" result="Passed" start-time="2026-10-06 06:16:35Z" end-time="2026-10-06 06:16:36Z" duration="0.166400" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\tutorial-final-aca0407f06494c40883c2e8014b3a49a.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

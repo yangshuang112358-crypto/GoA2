@@ -1,0 +1,21 @@
+{
+    "Method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard",
+    "UnityVersion": "6000.3.23f1",
+    "Error": "System.InvalidOperationException: Read real learner red disc\r\n  at Goa2.Presentation.GameScreen+<>c__DisplayClass295_0.<AuditTutorial>g__Check|0 (System.Boolean value, System.String name) [0x0001b] in C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\GoA2\\Goa2V1\\unity\\Assets\\Scripts\\GameScreen.TutorialAudit.cs:17 \r\n  at Goa2.Presentation.GameScreen+<AuditTutorial>d__295.MoveNext () [0x004d1] in C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\GoA2\\Goa2V1\\unity\\Assets\\Scripts\\GameScreen.TutorialAudit.cs:47 \r\n  at Goa2.Presentation.GameScreen+<BoardAuditGuard>d__399.MoveNext () [0x0020a] in C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\GoA2\\Goa2V1\\unity\\Assets\\Scripts\\UI3D\\GameScreen.Board3DAudit.cs:42 ",
+    "Width": 1280,
+    "Height": 720,
+    "Passed": false,
+    "Checks": [
+        "Dedicated chapter entry",
+        "Clickable tutorial-chapter-0",
+        "Presentation completes c0 welcome",
+        "Learner remains seat0 welcome",
+        "Script healthy welcome",
+        "Coach stays onscreen welcome",
+        "Clickable tutorial-next",
+        "Presentation completes c0 read-card",
+        "Learner remains seat0 read-card",
+        "Script healthy read-card",
+        "Coach stays onscreen read-card"
+    ]
+}

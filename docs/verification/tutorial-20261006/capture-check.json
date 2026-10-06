@@ -1,0 +1,42 @@
+[
+  {
+    "passed": true,
+    "file": "attack-hero.png",
+    "variation": 641
+  },
+  {
+    "passed": true,
+    "file": "defend.png",
+    "variation": 722
+  },
+  {
+    "passed": true,
+    "file": "finish.png",
+    "variation": 735
+  },
+  {
+    "passed": true,
+    "file": "hand-bar.png",
+    "variation": 641
+  },
+  {
+    "passed": true,
+    "file": "move-preview.png",
+    "variation": 722
+  },
+  {
+    "passed": true,
+    "file": "ultimate-pick.png",
+    "variation": 722
+  },
+  {
+    "passed": true,
+    "file": "upgrade-pick.png",
+    "variation": 722
+  },
+  {
+    "passed": true,
+    "file": "welcome.png",
+    "variation": 644
+  }
+]

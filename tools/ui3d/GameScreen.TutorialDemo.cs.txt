@@ -1,0 +1,27 @@
+  private IEnumerator VideoSequence(){
+   yield return null;yield return null;QualitySettings.vSyncCount=0;UnityEngine.Application.targetFrameRate=30;
+   DemoCheck(!startupFailed,"Startup failed");OpenTutorialMenu();StartTutorialChapter(0);
+   float deadline=Time.realtimeSinceStartup+25;while(TutorialPresenting && Time.realtimeSinceStartup<deadline)yield return null;
+   DemoCheck(!TutorialPresenting,"Initial focus timed out");
+   demoCaption="新手教程 · 本人操作，另外三席由陪练配合";BeginVideo("tutorial-demo");yield return new WaitForSecondsRealtime(7);
+   TutorialReadNext();yield return new WaitForSecondsRealtime(3);ToggleHeroWheel(0);yield return new WaitForSecondsRealtime(1);
+   var disc=root.Q<SkillDisc>("skill-red");DemoCheck(disc!=null,"Read-card disc missing");DemoEnter(disc);DemoDown(disc,1);yield return new WaitForSecondsRealtime(5);DemoLeave(disc);HideSkillInfo();ReturnMainFlow();
+   demoCaption="① 移动：看左上石标；先预览，再决定";yield return new WaitForSecondsRealtime(7);
+   PickAction("secondary");yield return new WaitForSecondsRealtime(4);WithdrawPreview();yield return new WaitForSecondsRealtime(3);
+   PickAction("secondary");chosenCell=renderedView.SecondaryMoves.First(m=>m.Destination!=renderedView.Units.Single(u=>u.Seat==0).Position).Destination;Render();yield return new WaitForSecondsRealtime(3);
+   var yes=root.Q("flow-confirm");DemoCheck(yes!=null,"Move confirmation missing");DemoEnter(yes);ConfirmCurrent();yield return new WaitForSecondsRealtime(6);DemoCheck(tutorial!.Complete,"Move lesson incomplete");
+   demoCaption="下一个独立教学局面 · 敌人攻击你，你自己防御";StartTutorialChapter(3);
+   deadline=Time.realtimeSinceStartup+25;while(TutorialPresenting && Time.realtimeSinceStartup<deadline)yield return null;
+   yield return new WaitForSecondsRealtime(5);TutorialReadNext();
+   deadline=Time.realtimeSinceStartup+30;while((renderedView.Pending?.Kind!="defense" || TutorialPresenting) && Time.realtimeSinceStartup<deadline)yield return null;
+   DemoCheck(renderedView.Pending?.ChooserSeat==0 && !TutorialPresenting,"Defender focus timed out");
+   demoCaption="⑤ 防御：右上石标，对照环上方的公开攻击算式";yield return new WaitForSecondsRealtime(8);
+   WheelPick("sabina-01-拔枪");yield return new WaitForSecondsRealtime(3);ConfirmCurrent();
+   deadline=Time.realtimeSinceStartup+25;while((TutorialPresenting || decisionAnimating || wheelState.Discards.Count>0 || tutorial!.Line.Id=="defend") && Time.realtimeSinceStartup<deadline)yield return null;
+   DemoCheck(tutorial!.Line.Id=="hand-bar","Defense lesson not accepted");
+   demoCaption="攻防之后解释：五色条是手牌状态，防御牌进入弃牌区";yield return new WaitForSecondsRealtime(8);
+   StopVideo();
+  }
+ }
+}
+#endif
