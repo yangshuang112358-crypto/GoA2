@@ -32,6 +32,9 @@ namespace Goa2.Presentation
                     while((TutorialPresenting || decisionAnimating || wheelState.Discards.Count>0) && Time.realtimeSinceStartup<deadline)yield return null;
                     Check(!TutorialPresenting && !decisionAnimating,"Presentation completes c"+chapter+" "+tutorial!.Line.Id);
                     yield return new WaitForSecondsRealtime(.35f);
+                    // A paced bot can confirm the last card during layout settling.
+                    // Re-evaluate after that transition instead of inspecting a hidden banner frame.
+                    if(TutorialPresenting || decisionAnimating)continue;
                     var line=tutorial.Line.Id;
                     Check(seat==0,"Learner remains seat0 "+line);
                     Check(tutorial.Error=="", "Script healthy "+line);
@@ -39,6 +42,7 @@ namespace Goa2.Presentation
                     if(line=="welcome" || line=="move-preview" || line=="attack-hero" || line=="defend" || line=="hand-bar" || line=="upgrade-pick" || line=="ultimate-pick" || line=="finish")
                     {
                         ScreenCapture.CaptureScreenshot(Path.Combine(output,line+".png"));yield return new WaitForSecondsRealtime(.3f);
+                        if(TutorialPresenting || tutorial.Line.Id!=line)continue;
                     }
                     if(tutorial.Line.Reading){Click("tutorial-next");continue;}
                     if(line=="read-card")
