@@ -18,7 +18,7 @@ namespace Goa2.Ai.Cli
     {
         public int Seed, Swap, Decisions, Commands, IllegalCommands, Exceptions;
         public string Stop="running", Winner="", Failure="", StateHash="", ReplayHash="";
-        public double Seconds, CpuSeconds, DecisionsPerSecond, PeakWorkingSetMiB;
+        public double Seconds, CpuSeconds, DecisionsPerSecond, PeakWorkingSetMiB, VerificationSeconds;
         public bool RestoreVerified, ScenarioVerified;
         public Dictionary<string,int> Choices = new Dictionary<string,int>();
     }
@@ -59,6 +59,7 @@ namespace Goa2.Ai.Cli
                 Configuration=new { Matchup=matchup, Workers=1, FixedRoster=new[]{"wasp","brogan","arien","sabina"}, Coin="seeded-environment-uniform-v1", Training=false },
                 OpponentPool=new[]{"random-v1","simple-v1"}, Evaluation="summary.json", StartedUtc=DateTime.UtcNow, Runtime=Environment.Version.ToString(), LogicalProcessors=Environment.ProcessorCount,
                 Assemblies=Directory.GetFiles(AppContext.BaseDirectory,"Goa2.*.dll").ToDictionary(p=>Path.GetFileName(p)!,p=>Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(p))).ToLowerInvariant()) });
+            var pipelineWatch=Stopwatch.StartNew();
             var results=new List<RunResult>();
             for(int pair=0;pair<pairs;pair++) for(int swap=0;swap<2;swap++)
             {
@@ -71,6 +72,8 @@ namespace Goa2.Ai.Cli
                     int policySeed=unchecked(runSeed*1009+(s^swap)*7919);
                     return simple?(IPolicy)new SimplePolicy(catalog,policySeed):new RandomPolicy(policySeed);
                 }).ToArray();
+                Write(dir,"seed-streams.json",new { GameSeed=runSeed, EnvironmentCoinSeed=runSeed ^ 0x43e19a,
+                    Policies=Enumerable.Range(0,4).Select(s=>new { Seat=s, Policy=policies[s] is SimplePolicy?"simple-v1":"random-v1", Seed=unchecked(runSeed*1009+(s^swap)*7919) }) });
                 var definition=new ScenarioDefinition { SchemaVersion=1, Id=id, Name=id, Seed=runSeed, Sandbox=false, Players=new[]{"AI 0","AI 1","AI 2","AI 3"}, VerifyReplayAfterEachStep=false };
                 using var trace=new StreamWriter(new GZipStream(File.Create(Path.Combine(dir,"policy-trace.jsonl.gz")),CompressionLevel.Fastest),new UTF8Encoding(false));
                 using var spectator=new StreamWriter(new GZipStream(File.Create(Path.Combine(dir,"spectator-events.jsonl.gz")),CompressionLevel.Fastest),new UTF8Encoding(false));
@@ -119,6 +122,7 @@ namespace Goa2.Ai.Cli
                     r.PeakWorkingSetMiB=Math.Max(r.PeakWorkingSetMiB,process.PeakWorkingSet64/1048576.0); r.DecisionsPerSecond=r.Decisions/r.Seconds;
                     string save=env.ExportSave(); File.WriteAllText(Path.Combine(dir,"final-save.json"),save); r.StateHash=Hash(save);
                     Write(dir,"commands.json",definition);
+                    var verifyWatch=Stopwatch.StartNew();
                     try
                     {
                         r.RestoreVerified=LocalGameFactory.Restore(catalog,save).ExportSave()==save;
@@ -134,16 +138,23 @@ namespace Goa2.Ai.Cli
                         if(!r.RestoreVerified || definition.Steps.Count<=1000 && !r.ScenarioVerified) throw new InvalidOperationException("Replay mismatch");
                     }
                     catch(Exception error) { r.Stop="failure"; r.Exceptions++; r.Failure+="\n"+error; }
+                    r.VerificationSeconds=verifyWatch.Elapsed.TotalSeconds;
                     Write(dir,"result.json",r); Write(output,"results.json",results);
                     Console.WriteLine($"{id}: {r.Stop}, {r.Decisions} decisions, {r.Seconds:F2}s, {r.DecisionsPerSecond:F2}/s, {r.Winner} {r.Failure}");
                 }
             }
             var completed=results.Where(r=>r.Stop=="terminated").Select(r=>r.Seconds).OrderBy(x=>x).ToArray();
-            double? Percentile(double p) => completed.Length==0?(double?)null:completed[(int)Math.Ceiling(p*(completed.Length-1))];
+            double? Percentile(double p)
+            {
+                if(completed.Length==0) return null;
+                double position=p*(completed.Length-1); int low=(int)Math.Floor(position), high=(int)Math.Ceiling(position);
+                return completed[low]+(completed[high]-completed[low])*(position-low);
+            }
             Write(output,"summary.json",new { Games=results.Count, Completed=completed.Length, CompleteRate=(double)completed.Length/results.Count,
                 TruncationRate=(double)results.Count(r=>r.Stop=="truncated")/results.Count, ExceptionRate=(double)results.Count(r=>r.Exceptions>0)/results.Count,
                 IllegalCommandRate=(double)results.Sum(r=>r.IllegalCommands)/Math.Max(1,results.Sum(r=>r.Commands+r.IllegalCommands)),
-                DecisionsPerSecond=results.Sum(r=>r.Decisions)/results.Sum(r=>r.Seconds), CompleteSeconds=new { P50=Percentile(.5), P90=Percentile(.9), Min=completed.FirstOrDefault(), Max=completed.LastOrDefault() },
+                DecisionsPerSecond=results.Sum(r=>r.Decisions)/results.Sum(r=>r.Seconds), CompleteSeconds=new { P50=Percentile(.5), P90=Percentile(.9), Min=Percentile(0), Max=Percentile(1) },
+                VerifiedPipelineSeconds=pipelineWatch.Elapsed.TotalSeconds, VerifiedPipelineDecisionsPerSecond=results.Sum(r=>r.Decisions)/pipelineWatch.Elapsed.TotalSeconds,
                 AverageCpuPercent=100*results.Sum(r=>r.CpuSeconds)/results.Sum(r=>r.Seconds)/Environment.ProcessorCount, PeakWorkingSetMiB=results.Max(r=>r.PeakWorkingSetMiB),
                 TeamRewards=results.Select(r=>new {r.Seed,r.Swap,r.Stop,Blue=r.Stop=="terminated"?(int?)(r.Winner=="Blue"?1:-1):null,Red=r.Stop=="terminated"?(int?)(r.Winner=="Red"?1:-1):null}), Results=results });
             return results.Any(r=>r.Stop=="failure")?1:0;

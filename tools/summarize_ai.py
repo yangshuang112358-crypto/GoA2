@@ -15,7 +15,7 @@ def summarize(path):
     completed = [r['Seconds'] for r in results if r['Stop'] == 'terminated']
     start = dt.datetime.fromisoformat(manifest['StartedUtc'].replace('Z', '+00:00')).timestamp()
     # Existing v1 collector times gameplay separately. File mtime provides an explicitly labelled wall-time estimate.
-    wall = summary_path.stat().st_mtime - start
+    wall = summary.get('VerifiedPipelineSeconds', summary_path.stat().st_mtime - start)
     decisions = sum(r['Decisions'] for r in results)
     return dict(directory=str(path), source_commit=manifest['SourceCommit'], matchup=manifest['Configuration']['Matchup'],
                 games=len(results), completed=len(completed), truncated=sum(r['Stop'] == 'truncated' for r in results),
@@ -23,7 +23,7 @@ def summarize(path):
                 illegal_commands=sum(r['IllegalCommands'] for r in results), exceptions=sum(r['Exceptions'] for r in results),
                 gameplay_seconds=sum(r['Seconds'] for r in results), decisions_per_second=summary['DecisionsPerSecond'],
                 completed_seconds=completed, completed_median_seconds=statistics.median(completed) if completed else None,
-                wall_seconds_from_artifact_timestamp=wall,
+                wall_seconds=wall, wall_measurement='stopwatch' if 'VerifiedPipelineSeconds' in summary else 'artifact_timestamp_estimate',
                 verified_pipeline_decisions_per_second_estimate=decisions / wall if wall > 0 else None,
                 average_process_cpu_percent=summary['AverageCpuPercent'], peak_working_set_mib=summary['PeakWorkingSetMiB'],
                 terminated_rate=summary['CompleteRate'], truncated_rate=summary['TruncationRate'],

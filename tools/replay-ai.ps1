@@ -1,6 +1,7 @@
 param(
     [Parameter(Mandatory)][string]$Episode,
     [Parameter(Mandatory)][string]$Player,
+    [string]$BuildSourceRoot,
     [string]$Output,
     [ValidateRange(10,3600)][int]$TimeoutSeconds=300,
     [switch]$Visual
@@ -10,10 +11,26 @@ $aiRoot=Split-Path -Parent $PSScriptRoot
 $aiEpisode=(Resolve-Path -LiteralPath $Episode).Path
 $aiPlayer=(Resolve-Path -LiteralPath $Player).Path
 $aiBuild=Get-Content -LiteralPath (Join-Path (Split-Path -Parent $aiPlayer) 'build-info.json') -Raw | ConvertFrom-Json
+if (-not $BuildSourceRoot) { $BuildSourceRoot=$aiRoot }
+$aiNormalized=@()
+$aiTextExtensions=@('.cs','.json','.meta','.asmdef','.shader','.uss','.uxml')
+$aiUtf8=[Text.UTF8Encoding]::new($false,$true)
 # AI adds no Unity sources. Verify that the supplied existing Player was built from these exact game sources.
 foreach ($aiSource in $aiBuild.SourceFiles) {
     $aiSourcePath=Join-Path $aiRoot $aiSource.Path
-    if ((Get-FileHash -LiteralPath $aiSourcePath).Hash.ToLowerInvariant() -ne $aiSource.Sha256) { throw "Player source mismatch: $($aiSource.Path)" }
+    $aiBuiltSourcePath=Join-Path $BuildSourceRoot $aiSource.Path
+    if ((Get-FileHash -LiteralPath $aiBuiltSourcePath).Hash.ToLowerInvariant() -ne $aiSource.Sha256) { throw "Player build source mismatch: $($aiSource.Path)" }
+    if ((Get-FileHash -LiteralPath $aiSourcePath).Hash.ToLowerInvariant() -ne $aiSource.Sha256) {
+        if ([IO.Path]::GetExtension($aiSourcePath) -notin $aiTextExtensions) { throw "Player binary source mismatch: $($aiSource.Path)" }
+        $aiCurrentText=$aiUtf8.GetString([IO.File]::ReadAllBytes($aiSourcePath)).Replace("`r`n","`n")
+        $aiBuiltText=$aiUtf8.GetString([IO.File]::ReadAllBytes($aiBuiltSourcePath)).Replace("`r`n","`n")
+        if ($aiCurrentText -cne $aiBuiltText) { throw "Player source differs beyond line endings: $($aiSource.Path)" }
+        $aiNormalized+=$aiSource.Path
+    }
+}
+foreach ($aiFile in $aiBuild.Files) {
+    $aiPayload=Join-Path (Split-Path -Parent $aiPlayer) $aiFile.Path
+    if ((Get-FileHash -LiteralPath $aiPayload).Hash.ToLowerInvariant() -ne $aiFile.Sha256) { throw "Player payload mismatch: $($aiFile.Path)" }
 }
 $aiInput=Join-Path $aiEpisode 'scenario.json'
 if (-not (Test-Path -LiteralPath $aiInput)) { throw 'No compatible scenario export (existing Unity scenario limit: 1000 commands). Use authoritative save verification instead.' }
@@ -29,7 +46,7 @@ if ($Visual) { $aiArguments+=' -goaScenarioDelay 0.1 -goaScenarioQuit -screen-fu
 else { $aiArguments+=' -batchmode -nographics' }
 $aiStart=[DateTime]::UtcNow
 $aiProcess=if ($Visual) { Start-Process -FilePath $aiPlayer -ArgumentList $aiArguments -PassThru } else { Start-Process -FilePath $aiPlayer -ArgumentList $aiArguments -WindowStyle Hidden -PassThru }
-$aiEvidence=[ordered]@{ player=$aiPlayer; input=$aiInput; inputSha256=(Get-FileHash -LiteralPath $aiInput).Hash.ToLowerInvariant(); expectedHash=$aiExpected.StateHash; sourceFilesVerified=$aiBuild.SourceFiles.Count; startedUtc=$aiStart; visual=[bool]$Visual; passed=$false; error='' }
+$aiEvidence=[ordered]@{ player=$aiPlayer; input=$aiInput; inputSha256=(Get-FileHash -LiteralPath $aiInput).Hash.ToLowerInvariant(); expectedHash=$aiExpected.StateHash; buildSourceRoot=$BuildSourceRoot; sourceFilesVerified=$aiBuild.SourceFiles.Count; payloadFilesVerified=$aiBuild.Files.Count; lineEndingOnlyDifferences=$aiNormalized; startedUtc=$aiStart; visual=[bool]$Visual; passed=$false; error='' }
 try {
     while (-not $aiProcess.HasExited) {
         if (([DateTime]::UtcNow-$aiStart).TotalSeconds -gt $TimeoutSeconds) { $aiProcess.Kill(); throw 'Unity replay timeout.' }
