@@ -110,7 +110,12 @@ namespace Goa2.Presentation
                     yield return new WaitForSecondsRealtime(.5f);
                     ScreenCapture.CaptureScreenshot(Path.Combine(output,"upgrade-comparison.png"));yield return new WaitForSecondsRealtime(.2f);HideSkillInfo();
                 }
-                ConfirmCurrent();yield return new WaitForSecondsRealtime(.5f);
+                long upgradeRevision=renderedView.Revision;string expectedUpgrade=upgradeCardId;
+                ConfirmCurrent();float upgradeDeadline=Time.realtimeSinceStartup+5;
+                while(Time.realtimeSinceStartup<upgradeDeadline && (decisionAnimating || renderedView.Revision==upgradeRevision))yield return null;
+                Check(!decisionAnimating && renderedView.Revision>upgradeRevision,"Upgrade animation completes and accepted command advances revision");
+                Check(renderedView.OwnCards.Any(c=>c.CardId==expectedUpgrade),"Confirmed upgrade is equipped before choosing the next route");
+                yield return null;yield return null;
             }
             Check(renderedView.Phase==Phase.Planning && !rightExpanded,"Minion battle, spawn and upgrades reach next round without settings");
             ReturnMainFlow();yield return new WaitForSecondsRealtime(.4f);
@@ -142,7 +147,8 @@ namespace Goa2.Presentation
             var purpleAnchor=root.Q("upgrade-zone");var purpleHero=renderedView.Units.Single(u=>u.Seat==seat);
             Check(Vector2.Distance(purpleAnchor.worldBound.center,board.LocalToWorld(board.ProjectHero(purpleHero.Position)))<4,"Purple upgrade ring remains centered on its hero after refresh");
             ScreenCapture.CaptureScreenshot(Path.Combine(output,"upgrade-purple.png"));yield return new WaitForSecondsRealtime(.2f);
-            ConfirmCurrent();yield return new WaitForSecondsRealtime(.6f);
+            long purpleRevision=renderedView.Revision;ConfirmCurrent();float purpleDeadline=Time.realtimeSinceStartup+5;
+            while(Time.realtimeSinceStartup<purpleDeadline && (decisionAnimating || renderedView.Revision==purpleRevision))yield return null;
             Check(renderedView.Players.Single(p=>p.Seat==seat).PurpleCardId==purpleChoice,"Purple ring confirmation equips the chosen ultimate");
         }
     }
