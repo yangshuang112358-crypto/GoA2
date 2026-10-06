@@ -25,6 +25,7 @@ namespace Goa2.Presentation
             if(!NetworkCanAct)return;
             Sound("select");debugTeleport=false;actionChoice=value;chosenCell=null;moveMode=value=="secondary" ? MoveMode.Secondary : value=="fast" ? MoveMode.Fast : (MoveMode?)null;
             wheelSeat=null;worldOptionsOpen=false;Render();
+            if(value=="secondary")TutorialSignal("move-preview");
         }
         private void ReturnWorldChoice()
         {
@@ -82,7 +83,7 @@ namespace Goa2.Presentation
         private void RenderSidebar(VisualElement parent,GameView view)
         {
             parent.Add(Text("对局操作已迁至战场圆环与地图确认。","muted"));
-            if(!NetworkMode)RenderDebugGuideShortcut(parent,view);
+            if(!NetworkMode && !TutorialActive)RenderDebugGuideShortcut(parent,view);
             if(view.CanUpgradeEngine)parent.Add(Button("采用当前规则",()=>Submit(CommandKind.UpgradeEngine,GameState.CurrentEngineVersion.ToString()),"quiet-button","upgrade-engine"));
             RenderActiveEffects(parent,view);RenderRecentEvents(parent,view);
         }

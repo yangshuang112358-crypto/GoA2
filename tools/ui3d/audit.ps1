@@ -1,4 +1,4 @@
-param([int]$Width=1600,[int]$Height=1000,[switch]$SettingsOnly,[switch]$SkillBadgesOnly,[switch]$TerrainOnly,[switch]$BattlefieldOnly,[switch]$ActionSequenceOnly,[switch]$WorldDecisionsOnly,[switch]$OpeningOnly,[switch]$CombatPresentationOnly,[switch]$RevisionOnly,[switch]$Player)
+param([int]$Width=1600,[int]$Height=1000,[switch]$SettingsOnly,[switch]$SkillBadgesOnly,[switch]$TerrainOnly,[switch]$BattlefieldOnly,[switch]$ActionSequenceOnly,[switch]$WorldDecisionsOnly,[switch]$OpeningOnly,[switch]$CombatPresentationOnly,[switch]$RevisionOnly,[switch]$TutorialOnly,[int]$TutorialFrom=0,[switch]$Player)
 $ErrorActionPreference='Stop'
 $uiRoot=Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $uiUnity=Join-Path $env:USERPROFILE 'UnityEditors/6000.3.23f1/Editor/Unity.exe'
@@ -18,6 +18,7 @@ if($ActionSequenceOnly) {$uiArgs+=' -goaActionSequenceAuditOnly'}
 if($TerrainOnly) {$uiArgs+=' -goaTerrainAuditOnly'}
 if($SettingsOnly) {$uiArgs+=' -goaSettingsAuditOnly'}
 if($SkillBadgesOnly) {$uiArgs+=' -goaSkillBadgesAuditOnly'}
+if($TutorialOnly) {$uiArgs+=' -goaTutorialAuditOnly -goaTutorialFrom '+$TutorialFrom+' -goaTutorialProgress "'+(Join-Path $uiOutput 'tutorial-progress.json')+'"'}
 # A Player graphic audit must display its test window: Hidden can produce black captures.
 if($Player) {$uiProcess=Start-Process -FilePath $uiUnity -ArgumentList $uiArgs -PassThru}
 else {$uiProcess=Start-Process -FilePath $uiUnity -ArgumentList $uiArgs -WindowStyle Hidden -PassThru}

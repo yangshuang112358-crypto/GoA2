@@ -86,6 +86,7 @@ namespace Goa2.Presentation
                 int networkIndex=Array.IndexOf(arguments,"-goaNetworkTicket");
                 if(networkIndex>=0 && networkIndex+1<arguments.Length){StartNetwork(arguments[networkIndex+1]);return;}
                 if (arguments.Contains("-goaScenario")) { SetupScenario(arguments); return; }
+                if(arguments.Contains("-goaTutorial")){OpenTutorialMenu();return;}
                 int loadIndex = Array.IndexOf(arguments, "-goaLoad");
                 if (loadIndex >= 0 && loadIndex + 1 < arguments.Length)
                 {
@@ -128,6 +129,14 @@ namespace Goa2.Presentation
         private void Submit(CommandKind kind, string value = "", int target = -1, Hex destination = default, MoveMode mode = MoveMode.Secondary)
         {
             if(NetworkMode){SubmitNetwork(kind,value,target,destination,mode);return;}
+            if(tutorial!=null)
+            {
+                if(tutorialMenu || tutorialHelp || StagePresenting || CombatPresenting)return;
+                var teaching=tutorial.Execute(kind,value,target,destination,mode);
+                CompleteTutorialChapter();
+                tutorialMessage=teaching.Accepted?"":teaching.Message;
+                CommandSound(kind,teaching.Accepted);ClearPending();Render();return;
+            }
             if (ScenarioRunning) { notice = "场景执行期间可查看角色和地图；完成后可转为手工操作。"; Render(); return; }
             var view = session.View(seat);
             var result = session.Execute(seat, new Command
@@ -205,6 +214,7 @@ namespace Goa2.Presentation
             confirmAction=null; confirmButton=null;
             renderedView = NetworkMode ? networkView! : session.View(seat);
             board3DViewport.Presentation.Observe(catalog,renderedView,Time.realtimeSinceStartup,cameraFollow ? board3DViewport.Focus : (Vector3?)null);
+            if(TutorialActive && tutorialFreshSnapshot){board3DViewport.Presentation.CoinStarted=-100;board3DViewport.Presentation.DeathUntil=-100;tutorialFreshSnapshot=false;}
             if (!renderedView.EffectAreas.ContainsKey(effectAreaId)) effectAreaId="";
             ObserveAudio();
             ObserveMainFlow();
@@ -230,6 +240,7 @@ namespace Goa2.Presentation
             if (debugPresetsOpen) RenderDebugPositions();
             if (keywordGlossaryOpen) RenderKeywordGlossary();
             BuildArtSamples();
+            BuildTutorial();
             root.Query<ScrollView>().ForEach(scroll =>
             {
                 if (scrollPositions.TryGetValue(scroll.name, out var offset)) scroll.schedule.Execute(() => scroll.scrollOffset = offset);
@@ -770,6 +781,7 @@ namespace Goa2.Presentation
         }
         private bool SaveCurrent()
         {
+            if(TutorialActive){SaveTutorialProgress();notice="已保存教程章节进度。";return true;}
             if(NetworkMode){notice="联机存档由服务端管理。";return false;}
             try
             {
@@ -785,7 +797,7 @@ namespace Goa2.Presentation
         private void Save() { SaveCurrent(); Render(); }
         private void Load()
         {
-            if(NetworkMode)return;
+            if(NetworkMode || TutorialActive)return;
             try
             {
                 var restored = LocalGameFactory.Restore(catalog, File.ReadAllText(SavePath, System.Text.Encoding.UTF8));

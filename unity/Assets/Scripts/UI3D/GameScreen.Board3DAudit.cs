@@ -35,6 +35,7 @@ namespace Goa2.Presentation
             var routine=Environment.GetCommandLineArgs().Contains("-goaOpeningAuditOnly") ? AuditOpening(output,report) : Environment.GetCommandLineArgs().Contains("-goaWorldDecisionsAuditOnly") ? AuditWorldDecisions(output,report) : Environment.GetCommandLineArgs().Contains("-goaActionSequenceAuditOnly") ? AuditActionSequence(output,report) : Environment.GetCommandLineArgs().Contains("-goaBattlefieldAuditOnly") ? AuditBattlefieldLayout(output,report) : Environment.GetCommandLineArgs().Contains("-goaTerrainAuditOnly") ? AuditTerrain(output,report) : Environment.GetCommandLineArgs().Contains("-goaSkillBadgesAuditOnly") ? AuditSkillBadges(output,report) : Environment.GetCommandLineArgs().Contains("-goaSettingsAuditOnly") ? AuditSettingsButton(output,report) : AuditBoard3D(output,report);
             if(Environment.GetCommandLineArgs().Contains("-goaCombatPresentationAuditOnly"))routine=AuditCombatPresentation(output,report);
             if(Environment.GetCommandLineArgs().Contains("-goaRevisionAuditOnly"))routine=AuditUIRevision(output,report);
+            if(Environment.GetCommandLineArgs().Contains("-goaTutorialAuditOnly"))routine=AuditTutorial(output,report);
             while(true)
             {
                 object? next=null;bool more=false;

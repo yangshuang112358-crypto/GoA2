@@ -57,6 +57,7 @@ namespace Goa2.Presentation
         }
         private void ConfirmCurrent()
         {
+            if(tutorialMenu || tutorialHelp)return;
             if(!DecisionFlow || decisionAnimating || ScenarioRunning || confirmButton==null || !confirmButton.enabledInHierarchy) return;
             var action=confirmAction;confirmAction=null;action?.Invoke();
         }

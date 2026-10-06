@@ -64,8 +64,10 @@ namespace Goa2.Presentation
         private bool CanWithdrawPreview()=>chosenHero!=null || chosenCell.HasValue || wheelPreview!="" || wheelDecline || upgradeCardId!="" || actionChoice!="" || moveMode.HasValue || goldTransferAmount>=0 || deploymentSeat>=0 || (renderedView.Pending?.Kind=="primary_option" && primaryOptionChoice!="");
         private void WithdrawPreview()
         {
+            bool tutorialMove=moveMode==MoveMode.Secondary;
             // Only unsubmitted UI state is cancelled. Never send a rollback command.
             ClearPending();primaryOptionChoice="";wheelPreview="";wheelDecline=false;actionRingClosed=false;Sound("cancel");Render();
+            if(tutorialMove)TutorialSignal("move-cancel");
         }
         private void BuildDecisionDock()
         {

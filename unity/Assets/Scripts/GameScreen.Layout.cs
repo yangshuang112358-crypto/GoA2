@@ -22,6 +22,8 @@ namespace Goa2.Presentation
             UpdateOpening();
             UpdateCombatPresentation();
             UpdatePresentationFocus();
+            UpdateTutorial();
+            if(tutorialMenu || tutorialHelp)return;
             if(artSamplesOpen){if(Input.GetKeyDown(KeyCode.Escape)){artSamplesOpen=false;Render();}return;}
             if(Input.GetKeyDown(KeyCode.Escape)) { if(skillPopup!=null){skillPopup.RemoveFromHierarchy();skillPopup=null;}else if(heroPopup!=null)HideHeroHover();else if(keywordGlossaryOpen) CloseKeywordGlossary();else if(rightExpanded && !galleryOpen && !historyOpen && !newMatchPending && !debugPresetsOpen) {rightExpanded=false;showHotkeys=false;Render();}else if(wheelSeat.HasValue)ToggleHeroWheel(wheelSeat.Value);else if(browsingWheels.Count>0)CloseHeroWheel();else HideCardPreview();return; }
             if(keywordGlossaryOpen) return;
@@ -46,7 +48,7 @@ namespace Goa2.Presentation
         }
         private void SwitchSeat(int next)
         {
-            if(NetworkMode){ToggleHeroWheel(next);return;}
+            if(NetworkMode || TutorialActive){ToggleHeroWheel(next);return;}
             seat = next; browsingWheels.Clear(); mainFlow=true; cameraFollow=true; wheelContext=""; ClearPending();
             debugUnitId = renderedView.Units.FirstOrDefault(u => u.Seat == seat)?.Id ?? "";
             notice = "正在操控" + PlayerName(seat) + "。"; Render();
@@ -73,7 +75,7 @@ namespace Goa2.Presentation
         {
             var shell=Box("battlefield-shell");shell.name="battlefield-workspace";shell.StretchToParentSize();root.Add(shell);
             BuildBoard(shell,view);
-            if(view.UpgradeOptions.Count==0)BuildRevealedStrip(root,view);
+            if(view.UpgradeOptions.Count==0 && (!TutorialActive || tutorial!.Line.Id=="initiative"))BuildRevealedStrip(root,view);
             // Upgrade candidates are anchored to the hero by BuildUpgradeWheel.
             BuildScenarioBar(root);
             BuildRightPanel(root,view);
@@ -81,11 +83,15 @@ namespace Goa2.Presentation
         private void BuildSettingsCommands(VisualElement parent,GameView view)
         {
             var controls=Box("settings-commands");controls.name="settings-commands";parent.Add(controls);
-            if(!NetworkMode)controls.Add(Button(view.QuickSelection ? "测试 · 选完揭示" : "手动确认",()=>{showDebug=true;showHotkeys=false;Render();},"quiet-button"));
+            if(!NetworkMode && !TutorialActive)controls.Add(Button(view.QuickSelection ? "测试 · 选完揭示" : "手动确认",()=>{showDebug=true;showHotkeys=false;Render();},"quiet-button"));
+            controls.Add(Button("操作与规则帮助",()=>{tutorialHelp=true;rightExpanded=false;Render();},"quiet-button","tutorial-help-open"));
+            if(!TutorialActive)controls.Add(Button((tutorialProgress?.Hints??true)?"首次对局提示：开":"首次对局提示：关",ToggleTutorialHints,"quiet-button","tutorial-hints-toggle"));
+            if(!NetworkMode && !ScenarioRunning)controls.Add(Button(TutorialActive?"教程目录":"新手教程 · 独立练习",OpenTutorialMenu,"quiet-button","tutorial-open"));
             controls.Add(Button("图鉴 108",()=>{galleryOpen=true;galleryHero=catalog.Heroes[0].Id;Render();},"quiet-button"));
             controls.Add(Button("术语",()=>OpenKeywordGlossary(),"quiet-button","keyword-open"));
             controls.Add(Button("出牌记录",()=>{publicCardsOpen=true;Render();},"quiet-button"));
             if(NetworkMode)RenderNetworkControls(controls);
+            else if(TutorialActive){controls.Add(Button("退出教程，返回对局",ExitTutorial,"quiet-button","tutorial-exit-settings"));}
             else {
                 controls.Add(Button("保存",Save,"quiet-button"));
                 var load=Button("读取",Load,"quiet-button");load.SetEnabled(!ScenarioRunning);controls.Add(load);
@@ -121,7 +127,7 @@ namespace Goa2.Presentation
             panel.style.display=rightExpanded ? DisplayStyle.Flex : DisplayStyle.None;
             var heading = Box("panel-heading"); panel.Add(heading);
             heading.Add(Button("行动", () => { showDebug = false; showHotkeys=false; debugTeleport = false; ClearPending(); Render(); }, !showDebug && !showHotkeys ? "active-tab" : "tab-button"));
-            if(!NetworkMode) heading.Add(Button("调试", () => { showDebug = true; showHotkeys=false; Render(); }, showDebug && !showHotkeys ? "active-tab" : "tab-button"));
+            if(!NetworkMode && !TutorialActive) heading.Add(Button("调试", () => { showDebug = true; showHotkeys=false; Render(); }, showDebug && !showHotkeys ? "active-tab" : "tab-button"));
             heading.Add(Button("热键",()=>{showHotkeys=true;Render();},showHotkeys ? "active-tab" : "tab-button","hotkeys-tab"));
             heading.Add(Button("×", () => { rightExpanded = false; showHotkeys=false; Render(); }, "edge-button", "toggle-right"));
             var scroll = new ScrollView { name = "goa-scroll-right-" + (showDebug ? "debug" : "action") }; scroll.AddToClassList("sidebar"); panel.Add(scroll);

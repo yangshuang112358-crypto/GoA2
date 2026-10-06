@@ -75,6 +75,7 @@ namespace Goa2.Presentation
         }
         private void OnApplicationQuit()
         {
+            if(TutorialActive)SaveTutorialProgress();
             if (scenario == null || scenarioReported) return;
             try { ScenarioPlayer.WriteReport(scenarioArguments,scenario); } catch (Exception error) { Debug.LogError(error.Message); }
         }

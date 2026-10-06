@@ -27,7 +27,9 @@ namespace Goa2.Presentation {
   }
   private void ToggleHeroWheel(int target) {
    if(decisionAnimating)return;
+   bool actionOnly=mainFlow && renderedView.Phase==Phase.Action && target==seat && wheelState.Discards.Count==0;
    LeaveMainFlow();HideHeroHover();HideSkillInfo();
+   if(actionOnly)browsingWheels.Remove(target);
    if(!browsingWheels.Remove(target)){browsingWheels.Add(target);Sound("open");}else Sound("close");
    lastBrowsedSeat=target;wheelOpened=Time.realtimeSinceStartup;Render();
   }
@@ -80,6 +82,7 @@ namespace Goa2.Presentation {
    popup.style.width=Mathf.Min(540,root.contentRect.width-24);RenderCardDetail(popup,card,false);
    popup.pickingMode=PickingMode.Ignore;popup.Query<VisualElement>().ForEach(e=>e.pickingMode=PickingMode.Ignore);
    skillPopupPointer=pointer;popup.RegisterCallback<GeometryChangedEvent>(_=>PositionSkillInfo(skillPopupPointer));root.Add(popup);PositionSkillInfo(pointer);
+   if(card.Id=="sabina-01-拔枪")TutorialSignal("read-card");
   }
   private void BuildSkillWheel() {
    skillWheel=null;wheelFrame=null;if(board==null)return;
