@@ -1,0 +1,29 @@
+{
+  "Seed": 101,
+  "Swap": 1,
+  "Decisions": 900,
+  "Commands": 903,
+  "IllegalCommands": 0,
+  "Exceptions": 0,
+  "Stop": "truncated",
+  "Winner": "",
+  "Failure": "",
+  "StateHash": "29ee39b7f6f82f44218f08a09b7b70758173120326b6e82573f400fbcb3ef965",
+  "ReplayHash": "29ee39b7f6f82f44218f08a09b7b70758173120326b6e82573f400fbcb3ef965",
+  "Seconds": 92.0387312,
+  "CpuSeconds": 82.640625,
+  "DecisionsPerSecond": 9.778492035535578,
+  "PeakWorkingSetMiB": 138.6875,
+  "RestoreVerified": true,
+  "ScenarioVerified": true,
+  "Choices": {
+    "HeroSelection": 4,
+    "Deployment": 4,
+    "Planning": 560,
+    "Action": 278,
+    "initiative": 13,
+    "RoundEnd": 33,
+    "primary_option": 7,
+    "effect_move": 1
+  }
+}

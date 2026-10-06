@@ -1,0 +1,42 @@
+{
+  "SourceCommit": "eca66a29f270fd3455127e1f6b5f398eede1f102",
+  "SourceStatus": "",
+  "EngineVersion": 98,
+  "RulesVersion": "1.0.0-draft.1",
+  "ContentVersion": "1.0.0",
+  "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+  "ObservationVersion": 1,
+  "ActionVersion": 1,
+  "RewardVersion": 1,
+  "Seed": 101,
+  "Pairs": 1,
+  "StepLimit": 900,
+  "Configuration": {
+    "Matchup": "random-random",
+    "Workers": 1,
+    "FixedRoster": [
+      "wasp",
+      "brogan",
+      "arien",
+      "sabina"
+    ],
+    "Coin": "seeded-environment-uniform-v1",
+    "Training": false
+  },
+  "OpponentPool": [
+    "random-v1",
+    "simple-v1"
+  ],
+  "Evaluation": "summary.json",
+  "StartedUtc": "2026-10-06T18:27:46.7477493Z",
+  "Runtime": "10.0.12",
+  "LogicalProcessors": 16,
+  "Assemblies": {
+    "Goa2.Ai.Cli.dll": "f828c19ec99c5bcb764e727385c7c0e0c747ffd0d1b8a7bb7670348b79c948a1",
+    "Goa2.Ai.dll": "41cb8a177bf72a2c912fc2b5e45fe1645e7cbbca1eee934483d4ac08ffc00448",
+    "Goa2.Application.dll": "e69b854466bd0864223f64c7e088834002b7fead0902a6c68df1d35f5ec1a7a9",
+    "Goa2.Domain.dll": "2fddda4bcf8aadeec8b874646cf55f1a2a3537e5dbf63619f7c2279225920c83",
+    "Goa2.Infrastructure.dll": "56d7c8045c8c7f62c5b178c5bbf6a2f7d301a16dae7be6b94f2d9494562ff840",
+    "Goa2.Rules.dll": "26200fd98d5992b01a822728591ff167bc9e671bcc6f3698180ae5de8410ac78"
+  }
+}

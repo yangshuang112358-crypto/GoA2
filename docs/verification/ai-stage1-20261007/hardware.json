@@ -1,0 +1,13 @@
+{
+  "CPU": {
+    "Name": "AMD Ryzen 9 5900HX with Radeon Graphics        ",
+    "NumberOfCores": 8,
+    "NumberOfLogicalProcessors": 16
+  },
+  "Memory": {
+    "TotalVisibleMemorySize": 16153184,
+    "FreePhysicalMemory": 5903244
+  },
+  "GPU": "NVIDIA GeForce RTX 3070 Laptop GPU, 471.51, 8192 MiB",
+  "CheckedUtc": "2026-10-06T18:27:03.8929918Z"
+}

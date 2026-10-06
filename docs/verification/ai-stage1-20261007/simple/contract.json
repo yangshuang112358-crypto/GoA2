@@ -1,0 +1,13 @@
+{
+  "ObservationVersion": 1,
+  "ActionVersion": 1,
+  "EngineVersion": 98,
+  "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+  "RulesVersion": "1.0.0-draft.1",
+  "ContentVersion": "1.0.0",
+  "AuthorityHashes": {
+    "Goa2.Domain": "4872820830fc3f6617976ee192f0365db46dfd9d0324542328956ada15dfb076",
+    "Goa2.Rules": "53000587bce9f587df4d3c34d46e5e457e79e76210419d173fefd8b58d47b1ab",
+    "Goa2.Application": "b295de197e55c28f41dca16d410806e69e222f8039be32f70c931431af3828ce"
+  }
+}

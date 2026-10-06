@@ -1,0 +1,24 @@
+{
+  "games": 10,
+  "completed": 8,
+  "truncated": 2,
+  "decisions": 5098,
+  "commands": 5128,
+  "gameplay_seconds": 328.0284279,
+  "decisions_per_second": 15.541335952608758,
+  "completed_seconds": [
+    17.4277149,
+    8.178668,
+    13.5531232,
+    13.2958397,
+    8.6430198,
+    7.8254525,
+    42.8043454,
+    28.26158
+  ],
+  "completed_median": 13.42448145,
+  "max_final_hero_level": 7,
+  "repeated_full_games_hash_equal": true,
+  "policy_inputs": 5098,
+  "multiple_candidate_inputs_excluding_fixed_draft": 3405
+}

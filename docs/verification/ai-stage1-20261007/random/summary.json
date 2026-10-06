@@ -1,0 +1,94 @@
+{
+  "Games": 2,
+  "Completed": 0,
+  "CompleteRate": 0.0,
+  "TruncationRate": 1.0,
+  "ExceptionRate": 0.0,
+  "IllegalCommandRate": 0.0,
+  "DecisionsPerSecond": 9.572498370447013,
+  "CompleteSeconds": {
+    "P50": null,
+    "P90": null,
+    "Min": 0.0,
+    "Max": 0.0
+  },
+  "AverageCpuPercent": 5.721063479212472,
+  "PeakWorkingSetMiB": 138.6875,
+  "TeamRewards": [
+    {
+      "Seed": 101,
+      "Swap": 0,
+      "Stop": "truncated",
+      "Blue": null,
+      "Red": null
+    },
+    {
+      "Seed": 101,
+      "Swap": 1,
+      "Stop": "truncated",
+      "Blue": null,
+      "Red": null
+    }
+  ],
+  "Results": [
+    {
+      "Seed": 101,
+      "Swap": 0,
+      "Decisions": 900,
+      "Commands": 903,
+      "IllegalCommands": 0,
+      "Exceptions": 0,
+      "Stop": "truncated",
+      "Winner": "",
+      "Failure": "",
+      "StateHash": "1149d208c3a4589f810c954d4161b58c4cb057a6c60decde843d21fd8a5c1dd4",
+      "ReplayHash": "1149d208c3a4589f810c954d4161b58c4cb057a6c60decde843d21fd8a5c1dd4",
+      "Seconds": 95.9999532,
+      "CpuSeconds": 89.484375,
+      "DecisionsPerSecond": 9.37500457031473,
+      "PeakWorkingSetMiB": 122.76171875,
+      "RestoreVerified": true,
+      "ScenarioVerified": true,
+      "Choices": {
+        "HeroSelection": 4,
+        "Deployment": 4,
+        "Planning": 566,
+        "Action": 280,
+        "initiative": 9,
+        "RoundEnd": 33,
+        "primary_option": 2,
+        "effect_move": 1,
+        "effect_target": 1
+      }
+    },
+    {
+      "Seed": 101,
+      "Swap": 1,
+      "Decisions": 900,
+      "Commands": 903,
+      "IllegalCommands": 0,
+      "Exceptions": 0,
+      "Stop": "truncated",
+      "Winner": "",
+      "Failure": "",
+      "StateHash": "29ee39b7f6f82f44218f08a09b7b70758173120326b6e82573f400fbcb3ef965",
+      "ReplayHash": "29ee39b7f6f82f44218f08a09b7b70758173120326b6e82573f400fbcb3ef965",
+      "Seconds": 92.0387312,
+      "CpuSeconds": 82.640625,
+      "DecisionsPerSecond": 9.778492035535578,
+      "PeakWorkingSetMiB": 138.6875,
+      "RestoreVerified": true,
+      "ScenarioVerified": true,
+      "Choices": {
+        "HeroSelection": 4,
+        "Deployment": 4,
+        "Planning": 560,
+        "Action": 278,
+        "initiative": 13,
+        "RoundEnd": 33,
+        "primary_option": 7,
+        "effect_move": 1
+      }
+    }
+  ]
+}

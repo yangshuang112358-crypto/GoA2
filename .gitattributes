@@ -15,3 +15,5 @@ sources/** -text -whitespace
 # Historical Player fixtures and inputs preserve the captured bytes and SHA-256.
 tests/fixtures/engine*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 tests/fixtures/legacy-v1-roundend.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Preserve captured AI/Unity evidence bytes and their SHA256 across platforms.
+docs/verification/ai-stage1-20261007/** -text -whitespace
