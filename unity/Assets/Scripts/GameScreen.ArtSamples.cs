@@ -1,6 +1,10 @@
 #nullable enable
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Linq;
+using System.Collections.Generic;
+using Goa2.Domain;
+using Goa2.Presentation.UI3D;
 namespace Goa2.Presentation
 {
     public sealed partial class GameScreen
@@ -13,12 +17,40 @@ namespace Goa2.Presentation
             if(!artSamplesOpen)return;
             var overlay=new VisualElement{name="art-samples"};overlay.StretchToParentSize();overlay.style.backgroundColor=new Color(.025f,.035f,.05f,.98f);overlay.style.paddingLeft=24;overlay.style.paddingRight=24;overlay.style.paddingTop=18;overlay.style.paddingBottom=18;
             var heading=Box("debug-button-row");overlay.Add(heading);
-            string[] titles={"六英雄造型初稿","三类小兵装备初稿","三版亚特兰蒂斯金币","双面决策币"};string[] assets={"heroes","minions","coins","decision"};
+            string[] titles={"六英雄造型初稿","三类小兵装备初稿","三版亚特兰蒂斯金币","双面决策币","技能石标"};string[] assets={"heroes","minions","coins","decision"};
             for(int i=0;i<titles.Length;i++){int index=i;heading.Add(Button(titles[i],()=>OpenArtSamples(index),"choice-button"));}
             heading.Add(Button("返回战场",()=>{artSamplesOpen=false;Render();},"quiet-button","close-art-samples"));
+            if(artSample==4){BuildSkillDiscSamples(overlay);overlay.RegisterCallback<PointerDownEvent>(e=>e.StopPropagation());overlay.RegisterCallback<WheelEvent>(e=>e.StopPropagation());root.Add(overlay);return;}
             var image=new Image{image=Resources.Load<Texture2D>("UI3D/ArtSamples/"+assets[artSample]),scaleMode=ScaleMode.ScaleToFit,pickingMode=PickingMode.Ignore};image.style.flexGrow=1;image.style.minHeight=0;overlay.Add(image);
             overlay.Add(Text(artSample==3?"红蓝宝石双面决策币。新对局含BP与开局两次房主物理投币，其余切面为快速半圈。":artSample==2?"从左至右：A 三叉戟与潮线 · B 沉城之门 · C 潮汐之眼。已选 C，上下三段折线中心对称；击杀奖励读取规则事件。":artSample==0?"从左至右：黄蜂、夏尔加萨、布罗根、艾瑞恩、虎爪、萨彼娜。原创轮廓初稿，非最终人物精度。":"近战剑盾 · 远程弓箭与箭筒 · 重型圆盾、宝石剑、八足底盘。动作可在调试页切换样例。","body"));
             overlay.RegisterCallback<PointerDownEvent>(e=>e.StopPropagation());overlay.RegisterCallback<WheelEvent>(e=>e.StopPropagation());root.Add(overlay);
+        }
+        private void BuildSkillDiscSamples(VisualElement parent)
+        {
+            parent.Add(Text("雕刻石标 · 数字嵌入圆框边缘","panel-title"));
+            var scroll=new ScrollView{name="skill-disc-samples"};scroll.style.flexGrow=1;parent.Add(scroll);
+            var grid=new VisualElement();grid.style.width=Length.Percent(100);grid.style.maxWidth=1040;grid.style.alignSelf=Align.Center;grid.style.flexDirection=FlexDirection.Row;grid.style.flexWrap=Wrap.Wrap;grid.style.justifyContent=Justify.Center;scroll.Add(grid);
+            var basic=catalog.Cards.First(c=>c.Id=="wasp-01-电击");
+            void Sample(string key,string title,CardDefinition card,CardZone zone,int bonus=0)
+            {
+                var box=new VisualElement();box.style.width=230;box.style.height=242;box.style.marginLeft=10;box.style.marginRight=10;grid.Add(box);
+                var heading=Text(title,"body");heading.style.unityTextAlign=TextAnchor.MiddleCenter;heading.style.fontSize=18;box.Add(heading);
+                var samplePlayer=new PlayerView{EffectiveBonuses=new Dictionary<string,int>{{"攻击",bonus},{"先攻",bonus},{"防御",bonus},{"移动",bonus>0?1:0}}};
+                var disc=new SkillDisc(card.Color,card,samplePlayer,zone,false,false,new SkillWheelState.Motion(),0,()=>{},()=>{}){name="sample-"+key};
+                disc.style.left=37;disc.style.top=40;box.Add(disc);
+                disc.Inspect=at=>ShowSkillInfo(card,disc,at);
+                disc.RegisterCallback<PointerMoveEvent>(e=>{if(skillPopupOwner==disc)PositionSkillInfo(e.position);});
+                disc.RegisterCallback<PointerLeaveEvent>(_=>{if(skillPopupOwner==disc)HideSkillInfo();});
+            }
+            Sample("normal","正常白字",basic,CardZone.InHand);
+            Sample("boosted","加成绿字 · 双位数",basic,CardZone.InHand,7);
+            Sample("reduced","减值红字 · 负数压力样例",basic,CardZone.InHand,-8);
+            Sample("infinity","条件防御 · ∞",catalog.Cards.First(c=>c.Exclamation && c.PrimaryFamily=="defense"),CardZone.InHand);
+            Sample("selected","已选 · 压下",basic,CardZone.Selected);
+            Sample("played","已出 · 保留暗色",basic,CardZone.PlayedResolved);
+            Sample("discarded","弃置 · 金属背面",basic,CardZone.Discarded);
+            Sample("ranged","远程石标",catalog.Cards.First(c=>c.Subtype=="远程" && c.SubtypeValue.HasValue),CardZone.InHand);
+            parent.Add(Text("左上移动 / 右上防御 / 左下主要行动 / 右下范围或远程 / 底部先攻。悬停观察倾斜，右键读牌；样例数值不改变对局。","body"));
         }
     }
 }

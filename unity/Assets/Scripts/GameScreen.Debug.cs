@@ -29,6 +29,7 @@ namespace Goa2.Presentation
             parent.Add(Button("新建 BP / 两次真实投币演示",()=>{rightExpanded=false;NewMatch();},"choice-button","opening-presentation-demo"));
             parent.Add(Button("新建卡边局面 / 四人投票重抛",PrepareCoinVoteDemo,"choice-button","coin-vote-demo"));
             parent.Add(Button("英雄 / 小兵 / 金币美术样例",()=>OpenArtSamples(0),"choice-button","art-samples-open"));
+            parent.Add(Button("技能环 / 雕刻石标样例",()=>OpenArtSamples(4),"choice-button","skill-stones-open"));
             parent.Add(Button("新建战斗动作 / 击杀金币演示局面",PrepareCombatDemo,"choice-button","combat-presentation-demo"));
             parent.Add(Button("四人同先攻 / 决策币顺序",PrepareFourTieDemo,"choice-button","four-tie-demo"));
             parent.Add(Button("升级环样例：9 / 6 / 3 / 紫卡",()=>{OpenDebugPositions();debugPresetFilter="upgrades";selectedDebugPosition="upgrades";Render();},"choice-button","upgrade-samples-open"));

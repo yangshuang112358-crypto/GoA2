@@ -165,7 +165,7 @@ namespace Goa2.Presentation
             void Check(bool condition,string text){if(!condition)throw new InvalidOperationException(text);report.Checks.Add(text);}
             yield return null;yield return null;
             Check(!startupFailed,"Startup content loaded");Submit(CommandKind.DebugPrepare,"wasp,shargatha,brogan,arien");
-            yield return new WaitForSecondsRealtime(4);
+            yield return new WaitForSecondsRealtime(5.6f);
             string before=session.ExportSave();
             var discs=root.Query<SkillDisc>().ToList();Check(discs.Count==5,"Five skill discs visible");
             foreach(var disc in discs){
@@ -173,7 +173,9 @@ namespace Goa2.Presentation
                 Check(init!=null && primary!=null,"Initiative and primary badges present: "+disc.name);
                 Check(init.worldBound.center.y>primary.worldBound.center.y && Mathf.Abs(init.worldBound.center.x-disc.worldBound.center.x)<3,"Initiative centered below primary: "+disc.name);
                 foreach(var badge in disc.Query<SkillBadge>().ToList()){
-                    var number=badge.Q<Label>("badge-number");Check(number.worldBound.center.y<badge.worldBound.yMin+5,"Number floats above its symbol: "+disc.name+"/"+badge.name);
+                    var number=badge.Q<Label>("badge-number");
+                    Check(number.worldBound.yMin>=badge.worldBound.yMin-.5f && number.worldBound.yMax<=badge.worldBound.yMax+.5f,"Number is inset in its stone: "+disc.name+"/"+badge.name);
+                    Check(badge.worldBound.xMin>=disc.worldBound.xMin-.5f && badge.worldBound.xMax<=disc.worldBound.xMax+.5f && badge.worldBound.yMin>=disc.worldBound.yMin-.5f && badge.worldBound.yMax<=disc.worldBound.yMax+.5f,"Stone stays within disc footprint: "+disc.name+"/"+badge.name);
                     Check(number.worldBound.xMin>=0 && number.worldBound.xMax<=Screen.width && number.worldBound.yMin>=0 && badge.worldBound.yMax<=Screen.height,"Badge fits viewport: "+disc.name+"/"+badge.name);
                 }
                 var movement=disc.Q<SkillBadge>("badge-movement");var defense=disc.Q<SkillBadge>("badge-defense");var range=disc.Q<SkillBadge>("badge-range");
@@ -186,6 +188,22 @@ namespace Goa2.Presentation
             var gold=root.Q<SkillDisc>("skill-gold");using(var e=PointerEnterEvent.GetPooled(new Event{type=EventType.MouseMove,mousePosition=gold.worldBound.center})){e.target=gold;gold.SendEvent(e);}
             yield return new WaitForSecondsRealtime(.4f);ScreenCapture.CaptureScreenshot(Path.Combine(output,"skill-badges-hover.png"));yield return new WaitForSecondsRealtime(.25f);
             Check(session.ExportSave()==before,"Visual inspection does not alter rules");
+            foreach(string asset in new[]{"front","back","boot","shield","sword","spark","range","arrow","speed"})Check(SkillDiscArtwork.Texture(asset)!=null,"Blender art imported: "+asset);
+            OpenArtSamples(4);yield return new WaitForSecondsRealtime(1);
+            Check(root.Q("skill-disc-samples")!=null,"Debug gallery exposes live skill samples");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"skill-stone-samples.png"));yield return new WaitForSecondsRealtime(.3f);
+            var sampleImage=new Texture2D(2,2,TextureFormat.RGBA32,false);
+            try{
+                sampleImage.LoadImage(File.ReadAllBytes(Path.Combine(output,"skill-stone-samples.png")));
+                var reverse=root.Q<SkillDisc>("sample-discarded");var point=reverse.worldBound.center-new Vector2(0,60);
+                Color pixel=sampleImage.GetPixel(Mathf.RoundToInt(point.x),sampleImage.height-1-Mathf.RoundToInt(point.y));
+                Check(pixel.r+pixel.g+pixel.b>.65f,"Discarded reverse gold casing remains visible after full half turn");
+            }finally{UnityEngine.Object.Destroy(sampleImage);}
+            var positive=root.Q<SkillDisc>("sample-boosted").Q<SkillBadge>("badge-primary").Q<Label>("badge-number");
+            var negative=root.Q<SkillDisc>("sample-reduced").Q<SkillBadge>("badge-primary").Q<Label>("badge-number");
+            Check(positive.resolvedStyle.color.g>positive.resolvedStyle.color.r && negative.resolvedStyle.color.r>negative.resolvedStyle.color.g,"Live bonus values retain green increases and red reductions");
+            Check(root.Q<SkillDisc>("sample-infinity").Q<SkillBadge>("badge-primary").Q<Label>("badge-number").text=="∞","Conditional defense retains infinity");
+            Check(session.ExportSave()==before,"Gallery samples do not change real rules or player bonuses");
         }
 
         private IEnumerator AuditSettingsButton(string output, BoardAuditReport report)
