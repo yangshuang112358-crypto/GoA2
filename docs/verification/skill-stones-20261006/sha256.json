@@ -1,0 +1,20 @@
+{
+  "build-info.json": "476c396bacf0ff376b298268c03f68beed2465e7e491f8e8190823fb3d5b7c80",
+  "defense.png": "b1d8a3a8530877042afaf5df36aa9bdef37d9794faa75808bb646dd97efece14",
+  "earlier-camera-timing-failure.json": "d703bcd160d1cd03b2be8145aa43953ab132e89b9cbb9d38e190a5236fe08696",
+  "earlier-upgrade-timing-failure.json": "8bbc959938e42228761338641aca21a2d32350ec870eec6235c472c937eb8e59",
+  "editor-1280.json": "63a4d4436c14aa50b774d5bc9a4866bcd10a4cca1ea75e179dd82c10de766a68",
+  "editor-1600.json": "db6ff98bf938f5d958919ceb86c2d13433cc9f7a8c7f026cece6a3029d87e915",
+  "live-hover.png": "2fab70a65221882e68d579756a76b4ba76e88a09ed02d91eab89f75cee79d312",
+  "live-wheel.png": "98a44f6c69aa414b13677038367cee74ef51e42bbac58567cd1fa3673ac4e215",
+  "player-samples.png": "0414d36416aa4ea85421796e8b15220d5c6c8c5d20fac0f4c64f5a54af745596",
+  "player-stones.json": "63a4d4436c14aa50b774d5bc9a4866bcd10a4cca1ea75e179dd82c10de766a68",
+  "player-world-decisions.json": "3a49083485ab44a309fe684a4fb2f56ac1c436de0baf85cd12df09bbb5187d4d",
+  "README.md": "2a246c2e9aafc3be557cc33b7486250499d64d686b2d33ef26120c88790456ee",
+  "stone-samples.png": "1ef081a53740c74a3c1ed58a7a9c0807430fb9ded0085a852baf21ae2099a53d",
+  "unity-10.xml": "84f966a98469d01792cad649455a256c6e294446b0fc5b57181304d9ded5772d",
+  "upgrade-nine.png": "b30327f7295a429d99f407da1aad3a055df6456449fffa1e0dd7ed4fdb4112c4",
+  "upgrade-purple.png": "c2f991018107a76b484070330e8c03de1b03ed1a980c6061971336b43251e500",
+  "upgrade-six.png": "d034a4dcef650c45be7b3e3a6886bd799c726a53d038b3d939a413787f74edfe",
+  "upgrade-three.png": "8fdfcb2c71d5b6ea63638d3c8dff7915d4c1bf068586d25aacbc0204eb2f2f93"
+}
