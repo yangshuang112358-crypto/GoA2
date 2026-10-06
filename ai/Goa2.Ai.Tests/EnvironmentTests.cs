@@ -101,7 +101,7 @@ namespace Goa2.Ai.Tests
         public void ResponseWindowsFromRealScenarioPrefixesExposeOnlyAcceptedCandidates()
         {
             var c=Catalog(); var codec=new JsonStateCodec(); var checkedWindows=new HashSet<string>(); var coverage=new Dictionary<string,int>();
-            string[] names={"cloak-repeat","cloak-move","advantage-return","blink-shadowstep","throwing-axe-reflection","lord-tides","counterattack","fortify","loyal-recover","wall-recover","master-two","tidal-wave-two","defensive-counter"};
+            string[] names={"cloak-repeat","cloak-move","advantage-return","blink-shadowstep","throwing-axe-reflection","lord-tides","counterattack","fortify","loyal-recover","wall-recover","master-two","tidal-wave-two","defensive-counter","spawn-order","round-frontline"};
             var paths=Directory.GetFiles(Path.Combine(Root,"tests","scenarios"),"*.json").Where(p=>names.Any(n=>Path.GetFileNameWithoutExtension(p).Contains(n,StringComparison.Ordinal))).ToList();
             foreach(var path in paths)
             {
@@ -124,7 +124,7 @@ namespace Goa2.Ai.Tests
                 }
             }
             TestContext.WriteLine(Json(coverage)); Assert.That(checkedWindows.Count,Is.GreaterThanOrEqualTo(25));
-            foreach(var kind in new[]{"discard_attack/","action_minion_removal/","forced_discard/","recover_discard/","gold_transfer/","minion_protection/"})
+            foreach(var kind in new[]{"discard_attack/","action_minion_removal/","forced_discard/","recover_discard/","gold_transfer/","minion_protection/","minion_spawn/","round_minion_removal/"})
                 Assert.That(checkedWindows.Any(w=>w.StartsWith(kind,StringComparison.Ordinal)),Is.True,"missing coverage: "+kind);
         }
     }
