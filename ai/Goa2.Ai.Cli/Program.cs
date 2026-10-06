@@ -36,6 +36,15 @@ namespace Goa2.Ai.Cli
         }
         public static int Main(string[] args)
         {
+            if(args.Length==4 && args[0]=="verify")
+            {
+                var c=ContentLoader.LoadDirectory(Path.GetFullPath(args[1]));
+                var contract=JsonConvert.DeserializeObject<ArtifactContract>(File.ReadAllText(Path.Combine(args[2],"contract.json")))??throw new InvalidDataException("Missing contract");
+                contract.RequireCompatible(ArtifactContract.Current(c));
+                string save=File.ReadAllText(Path.Combine(args[3],"final-save.json"));
+                if(LocalGameFactory.Restore(c,save).ExportSave()!=save) throw new InvalidDataException("Replay mismatch");
+                Console.WriteLine("Compatible artifact; authoritative replay verified: "+Hash(save)); return 0;
+            }
             if(args.Length!=6) { Console.Error.WriteLine("Usage: <root> <new-output> <seed> <pairs 1..16> <limit 1..9000> <simple-random|random-random|simple-simple>"); return 2; }
             var root=Path.GetFullPath(args[0]); var output=Path.GetFullPath(args[1]);
             int seed=int.Parse(args[2]),pairs=int.Parse(args[3]),limit=int.Parse(args[4]); string matchup=args[5];
@@ -43,11 +52,12 @@ namespace Goa2.Ai.Cli
             if(Directory.Exists(output) || File.Exists(output)) throw new IOException("Output must be new; previous failures are immutable.");
             Directory.CreateDirectory(output);
             var catalog=ContentLoader.LoadDirectory(root);
+            Write(output,"contract.json",ArtifactContract.Current(catalog));
             Write(output,"manifest.json",new { SourceCommit=Git(root,"rev-parse","HEAD"), SourceStatus=Git(root,"status","--porcelain"),
                 EngineVersion=GameState.CurrentEngineVersion, RulesVersion=catalog.Rules.Version, ContentVersion=catalog.Version, ContentHash=catalog.Hash,
                 ObservationVersion=Observation.Format, ActionVersion=Candidate.Format, RewardVersion=1, Seed=seed, Pairs=pairs, StepLimit=limit,
                 Configuration=new { Matchup=matchup, Workers=1, FixedRoster=new[]{"wasp","brogan","arien","sabina"}, Coin="seeded-environment-uniform-v1", Training=false },
-                OpponentPool=new[]{"random-v1","simple-v1"}, StartedUtc=DateTime.UtcNow, Runtime=Environment.Version.ToString(), LogicalProcessors=Environment.ProcessorCount,
+                OpponentPool=new[]{"random-v1","simple-v1"}, Evaluation="summary.json", StartedUtc=DateTime.UtcNow, Runtime=Environment.Version.ToString(), LogicalProcessors=Environment.ProcessorCount,
                 Assemblies=Directory.GetFiles(AppContext.BaseDirectory,"Goa2.*.dll").ToDictionary(p=>Path.GetFileName(p)!,p=>Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(p))).ToLowerInvariant()) });
             var results=new List<RunResult>();
             for(int pair=0;pair<pairs;pair++) for(int swap=0;swap<2;swap++)
@@ -92,7 +102,7 @@ namespace Goa2.Ai.Cli
                         else action=policies[current.Observation.Seat].Choose(current.Observation,current.Actions);
                         trace.WriteLine(JsonConvert.SerializeObject(new { current.Revision, current.Observation, current.Actions, Selected=action }));
                         env.Submit(current.Revision,action); r.Decisions++;
-                        if(r.Decisions%100==0) { process.Refresh(); r.PeakWorkingSetMiB=Math.Max(r.PeakWorkingSetMiB,process.WorkingSet64/1048576.0); Console.WriteLine($"{id} decisions={r.Decisions} elapsed={watch.Elapsed.TotalSeconds:F1}s"); }
+                        if(r.Decisions%100==0) { process.Refresh(); r.PeakWorkingSetMiB=Math.Max(r.PeakWorkingSetMiB,process.PeakWorkingSet64/1048576.0); Console.WriteLine($"{id} decisions={r.Decisions} elapsed={watch.Elapsed.TotalSeconds:F1}s"); }
                     }
                     var final=env.Spectator; r.Stop=final.Phase==Phase.Finished?"terminated":"truncated"; r.Winner=final.Winner?.ToString()??"";
                 }
@@ -106,7 +116,7 @@ namespace Goa2.Ai.Cli
                 finally
                 {
                     watch.Stop(); process.Refresh(); r.Seconds=watch.Elapsed.TotalSeconds; r.CpuSeconds=(process.TotalProcessorTime-cpu).TotalSeconds;
-                    r.PeakWorkingSetMiB=Math.Max(r.PeakWorkingSetMiB,process.WorkingSet64/1048576.0); r.DecisionsPerSecond=r.Decisions/r.Seconds;
+                    r.PeakWorkingSetMiB=Math.Max(r.PeakWorkingSetMiB,process.PeakWorkingSet64/1048576.0); r.DecisionsPerSecond=r.Decisions/r.Seconds;
                     string save=env.ExportSave(); File.WriteAllText(Path.Combine(dir,"final-save.json"),save); r.StateHash=Hash(save);
                     Write(dir,"commands.json",definition);
                     try
