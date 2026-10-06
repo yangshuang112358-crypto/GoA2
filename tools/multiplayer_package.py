@@ -1,6 +1,7 @@
 """Portable four-player distribution. Never packages local room/ticket directories."""
 import argparse
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -33,6 +34,8 @@ def verify(folder):
                          "easytier/DEPENDENCY-NOTICES.txt", "easytier/Goa2-EasyTier-2.6.4-modified-source.zip"})
     if manifest.get("UnifiedHomeVersion") == 1:
         required.update({"开始游戏.cmd", "launcher/HomeLauncher.ps1", "launcher/HomeTools.ps1", "README.txt", "version.txt"})
+    if manifest.get("UnifiedHomeVersion") == 2:
+        required.update({"开始游戏.exe", "README.txt", "version.txt"})
     require(required <= names, "Incomplete portable package")
     require(not any(".private." in n or n.endswith(".log") for n in names), "Session data in distribution")
     for entry in manifest["Files"]:
@@ -63,23 +66,28 @@ def create(root, host, destination):
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(root / "content" / name, target)
     (destination / "launcher").mkdir()
-    for name in ("RoomTools.ps1", "Launcher.ps1", "AutoLauncher.ps1", "ManualLauncher.ps1", "HomeLauncher.ps1", "HomeTools.ps1", "BootstrapTools.ps1", "BootstrapWorker.ps1", "OwnedProcessJob.cs", "Start-Multiplayer.cmd", "开始游戏.cmd", "README.txt"):
+    for name in ("RoomTools.ps1", "Launcher.ps1", "AutoLauncher.ps1", "ManualLauncher.ps1", "BootstrapTools.ps1", "BootstrapWorker.ps1", "OwnedProcessJob.cs", "Start-Multiplayer.cmd", "README.txt"):
         target = destination / "launcher" / name if name.endswith((".ps1", ".cs")) else destination / name
         # Windows PowerShell 5.1 requires BOM for Chinese text in scripts.
         text = (root / "network/launcher" / name).read_text(encoding="utf-8-sig")
         target.write_text(text, encoding="utf-8-sig" if name.endswith(".ps1") else "utf-8", newline="\r\n")
     shutil.copytree(prepare_easytier(root), destination / "easytier")
+    compiler = Path(os.environ["WINDIR"]) / "Microsoft.NET/Framework64/v4.0.30319/csc.exe"
+    subprocess.run([str(compiler), "/nologo", "/target:winexe", "/platform:x64", "/optimize+",
+                    "/reference:System.Windows.Forms.dll", "/reference:System.Drawing.dll",
+                    "/out:" + str(destination / "开始游戏.exe"),
+                    str(root / "network/launcher/HomeLauncher.cs")], check=True)
     source_names = subprocess.check_output(["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"], cwd=root).decode("utf-8").split("\0")
     source_names = [n for n in source_names if n.startswith(("core/", "network/", "tools/")) or n in ("Directory.Build.props", "global.json")]
     source_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
     player_info = strict_json((destination / "player/build-info.json").read_text(encoding="utf-8"))
     (destination / "version.txt").write_text(
         "Goa2V1 完整试玩包 · engine" + str(player_info["EngineVersion"]) + " · " + source_commit[:7] + "\n"
-        "四人使用同一完整包；运行入口：开始游戏.cmd。\n"
+        "四人使用同一完整包；运行入口：开始游戏.exe。\n"
         "包含本地对局、邀请联机、十章教程与使用说明。\n", encoding="utf-8-sig")
     manifest = {"SchemaVersion": 1,
                 "AutomaticInviteVersion": 1,
-                "UnifiedHomeVersion": 1,
+                "UnifiedHomeVersion": 2,
                 "SourceCommit": source_commit,
                 "SourceFiles": [{"Path": n, "Sha256": file_digest(root / n)} for n in sorted(source_names) if (root / n).is_file()],
                 "Files": records(destination)}
