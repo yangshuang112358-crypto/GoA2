@@ -1,0 +1,452 @@
+[
+  {
+    "Path": "tests/scenarios/backstab.json",
+    "Group": "backstab",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/binding-gold.json",
+    "Group": "binding-gold",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/blink-block.json",
+    "Group": "blink",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/blink-numeric.json",
+    "Group": "blink",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/blink-shadowstep.json",
+    "Group": "blink",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/boomerang-block.json",
+    "Group": "boomerang-block",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/bravecharge-counter.json",
+    "Group": "bravecharge-counter",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/charge-counter.json",
+    "Group": "charge-counter",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/cleave.json",
+    "Group": "cleave",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/conspiracy-attacker-defeat.json",
+    "Group": "conspiracy",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/conspiracy-bard.json",
+    "Group": "conspiracy",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/conspiracy-block.json",
+    "Group": "conspiracy",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/conspiracy-defeat.json",
+    "Group": "conspiracy",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/conspiracy-expiry.json",
+    "Group": "conspiracy",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/conspiracy-no-support.json",
+    "Group": "conspiracy",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/death-grasp-gold.json",
+    "Group": "death-grasp",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/death-grasp-red.json",
+    "Group": "death-grasp",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/death-spin.json",
+    "Group": "death-spin",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/duelist-failed-respawn.json",
+    "Group": "duelist",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/duelist-success.json",
+    "Group": "duelist",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/flashing-boundary.json",
+    "Group": "flashing",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/flashing-friendly.json",
+    "Group": "flashing",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/flashing-invalid.json",
+    "Group": "flashing",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/flashing-skip.json",
+    "Group": "flashing",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/flashing-enemy.json",
+    "Group": "flashing",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/flashing-return.json",
+    "Group": "flashing",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/heavy-weaponry-blocked.json",
+    "Group": "heavy-weaponry",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/heavy-weaponry-empty.json",
+    "Group": "heavy-weaponry",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/heavy-weaponry-followup.json",
+    "Group": "heavy-weaponry",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/heavy-weaponry-invalid.json",
+    "Group": "heavy-weaponry",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/heavy-weaponry-pay.json",
+    "Group": "heavy-weaponry",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/heavy-weaponry-defeat.json",
+    "Group": "heavy-weaponry",
+    "Split": "train",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/legendary-duelist-failed-respawn.json",
+    "Group": "legendary-duelist",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/legendary-duelist-retaliation.json",
+    "Group": "legendary-duelist",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/legendary-duelist-success.json",
+    "Group": "legendary-duelist",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/melee-block.json",
+    "Group": "melee-block",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/mighty-counter.json",
+    "Group": "mighty-counter",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/moment-immune.json",
+    "Group": "moment",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/moment-shock.json",
+    "Group": "moment",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/moment-suppressed.json",
+    "Group": "moment",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/onward-counter.json",
+    "Group": "onward-counter",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/pointblank-blocked.json",
+    "Group": "pointblank",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/pointblank-push.json",
+    "Group": "pointblank",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/pincer-block.json",
+    "Group": "pincer",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  },
+  {
+    "Path": "tests/scenarios/pincer-numeric.json",
+    "Group": "pincer",
+    "Split": "holdout",
+    "Decisions": [
+      "defense",
+      "attack_target",
+      "discard_attack"
+    ]
+  }
+]

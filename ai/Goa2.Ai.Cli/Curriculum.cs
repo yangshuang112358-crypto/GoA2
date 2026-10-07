@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -16,6 +17,7 @@ namespace Goa2.Ai.Cli
     internal sealed class TeachingSource
     {
         public string Path="", Group="", Split="";
+        public string[] Decisions=Array.Empty<string>();
     }
     internal static class Curriculum
     {
@@ -41,7 +43,14 @@ namespace Goa2.Ai.Cli
                 for(int index=0;index<sources.Count;index++)
                 {
                     var source=sources[index]; current=source.Path;
-                    string raw=File.ReadAllText(System.IO.Path.Combine(root,source.Path));
+                    string sourcePath=System.IO.Path.Combine(root,source.Path);
+                    string raw;
+                    if(sourcePath.EndsWith(".gz",StringComparison.OrdinalIgnoreCase))
+                    {
+                        using var file=File.OpenRead(sourcePath); using var gzip=new GZipStream(file,CompressionMode.Decompress);
+                        using var reader=new StreamReader(gzip); raw=reader.ReadToEnd();
+                    }
+                    else raw=File.ReadAllText(sourcePath);
                     string hash=Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(raw))).ToLowerInvariant();
                     File.WriteAllText(System.IO.Path.Combine(output,"authority",index+"-source.json"),raw);
                     var definition=ScenarioRunner.Load(raw); definition.VerifyReplayAfterEachStep=false;
@@ -55,6 +64,8 @@ namespace Goa2.Ai.Cli
                         if(state.Phase==Phase.Finished || state.Phase==Phase.HeroSelection) continue;
                         var env=new HeadlessEnvironment(c,new GameSession(c,codec,state),1,"teaching");
                         var d=env.Next()!;
+                        // Explicit teaching scope, never a live-game decision skip.
+                        if(source.Decisions.Length>0 && !source.Decisions.Contains(d.Observation.Decision)) continue;
                         var labels=teacher.Preferred(d.Observation,d.Actions);
                         if(labels.Count==d.Actions.Count){uninformative++;continue;}
                         // Revision is audit identity, not policy input or a feature.

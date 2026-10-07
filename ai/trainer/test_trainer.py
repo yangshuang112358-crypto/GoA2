@@ -9,6 +9,7 @@ from bridge import Bridge
 from policy import CandidateNetwork, Encoder, advantages, update
 from train import checkpoint, load_checkpoint
 from curriculum import examples, imitation_loss
+from defense import defense_ranking_loss, load_data
 
 ROOT = Path(__file__).resolve().parents[2]
 DOTNET = Path(os.environ["LOCALAPPDATA"]) / "Goa2V1Toolchain/dotnet/dotnet.exe"
@@ -34,6 +35,28 @@ class TrainerTests(unittest.TestCase):
         self.assertEqual(self.reply["Decision"]["Observation"]["Seat"], 0)
         got = advantages([0., 1.], [.5, .2], [.8, 0.], [True, True], gamma=1)
         self.assertAlmostEqual(got[0], .3); self.assertAlmostEqual(got[1], .8)
+
+    def test_defense_contrast_gradient_and_permutation(self):
+        logits = torch.tensor([2., -1., 1.], requires_grad=True)
+        good = torch.tensor([False, True, False])
+        loss = defense_ranking_loss(logits, good)
+        self.assertTrue(torch.equal(loss, defense_ranking_loss(logits.flip(0), good.flip(0))))
+        loss.backward()
+        self.assertLess(logits.grad[1].item(), 0.)
+        self.assertTrue((logits.grad[~good] > 0).all())
+        with self.assertRaisesRegex(ValueError, "both"):
+            defense_ranking_loss(logits, torch.zeros(3, dtype=torch.bool))
+
+    def test_combined_teaching_rejects_cross_directory_leakage(self):
+        enc = Encoder(self.description); d = self.reply["Decision"]
+        directories = [Path(self.temp.name) / name for name in ("data-a", "data-b")]
+        for path, split in zip(directories, ("train", "holdout")):
+            path.mkdir()
+            (path / "contract.json").write_text(json.dumps(enc.contract))
+            row = dict(Group="same-game", SourceHash="same-file", Split=split, Decision=d, Preferred=[d["Actions"][0]["Id"]])
+            (path / "policy.jsonl").write_text(json.dumps(row))
+        with self.assertRaisesRegex(ValueError, "cross-dataset"):
+            load_data(directories, enc)
 
     def test_candidate_permutation_preserves_logits_by_stable_id(self):
         enc = Encoder(self.description)
