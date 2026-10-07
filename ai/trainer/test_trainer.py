@@ -9,7 +9,7 @@ from bridge import Bridge
 from policy import CandidateNetwork, Encoder, advantages, update
 from train import checkpoint, load_checkpoint
 from curriculum import examples, imitation_loss
-from defense import defense_ranking_loss, load_data
+from defense import defense_ranking_loss, load_data, teaching_family, fine_tune_batch
 
 ROOT = Path(__file__).resolve().parents[2]
 DOTNET = Path(os.environ["LOCALAPPDATA"]) / "Goa2V1Toolchain/dotnet/dotnet.exe"
@@ -46,6 +46,30 @@ class TrainerTests(unittest.TestCase):
         self.assertTrue((logits.grad[~good] > 0).all())
         with self.assertRaisesRegex(ValueError, "both"):
             defense_ranking_loss(logits, torch.zeros(3, dtype=torch.bool))
+
+    def test_granular_action_sampling_preserves_ties_and_all_candidates(self):
+        d = dict(Observation=dict(Decision="Action"), Actions=[
+            dict(Id="m1", Kind="Move"), dict(Id="m2", Kind="Move"),
+            dict(Id="p", Kind="BeginPrimary"), dict(Id="skip", Kind="Pass")])
+        before = copy.deepcopy(d)
+        self.assertEqual(teaching_family(d, ["m2", "m1"], True), "Action/Move")
+        self.assertEqual(teaching_family(d, ["p"], True), "Action/BeginPrimary")
+        self.assertEqual(teaching_family(d, ["p", "m1"], True), "Action/BeginPrimary+Move")
+        self.assertEqual(teaching_family(d, ["m1"]), "Action")
+        self.assertEqual(d, before)
+
+    def test_navigation_batch_updates_actor_without_fake_value_targets(self):
+        model = CandidateNetwork(2, 2, hidden=8)
+        s, a = torch.zeros(2), torch.eye(2)
+        row = (s, a, torch.tensor([0]), "Action/Move", torch.tensor([True, False]), "train")
+        families = {"Action/Move": [row], "Planning": [row]}
+        loss = fine_tune_batch(model, families, [row], "navigation")
+        loss.backward()
+        self.assertTrue(torch.isfinite(loss))
+        self.assertTrue(any(p.grad is not None and p.grad.abs().sum() > 0 for p in model.actor.parameters()))
+        self.assertTrue(all(p.grad is None for p in model.critic.parameters()))
+        with self.assertRaisesRegex(ValueError, "missing navigation"):
+            fine_tune_batch(model, {"Action/Move": [row]}, [row], "navigation")
 
     def test_combined_teaching_rejects_cross_directory_leakage(self):
         enc = Encoder(self.description); d = self.reply["Decision"]
