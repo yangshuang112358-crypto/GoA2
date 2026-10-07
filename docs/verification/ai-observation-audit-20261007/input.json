@@ -1,0 +1,564 @@
+{
+  "Revision": 1,
+  "Observation": {
+    "Rules": {
+      "Id": "victory-v1-life-7-marks-3",
+      "StartingCrystalLife": 7,
+      "VictoryMarksRequired": 3,
+      "TurnsPerRound": 4,
+      "HandSize": 5
+    },
+    "Schema": 3,
+    "Seat": 0,
+    "Round": 1,
+    "Turn": 1,
+    "BlueCrystal": 7,
+    "RedCrystal": 7,
+    "BlueMarks": 0,
+    "RedMarks": 0,
+    "Phase": "Planning",
+    "Decision": "Planning",
+    "CombatRegion": "mid",
+    "Coin": "Blue",
+    "ActiveSeat": null,
+    "CurrentCard": "",
+    "Attack": null,
+    "Players": [
+      {
+        "Seat": 0,
+        "Level": 1,
+        "Gold": 0,
+        "HandCount": 5,
+        "Team": "Blue",
+        "Hero": "sabina",
+        "Purple": "",
+        "Confirmed": false,
+        "AwaitingRespawn": false,
+        "Poisoned": false,
+        "PoisonDefense": false,
+        "Petrified": false,
+        "Cards": [
+          {
+            "Id": "sabina-00",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "sabina-01",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "sabina-06",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "sabina-07",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "sabina-17",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          }
+        ]
+      },
+      {
+        "Seat": 1,
+        "Level": 1,
+        "Gold": 0,
+        "HandCount": 5,
+        "Team": "Red",
+        "Hero": "wasp",
+        "Purple": "",
+        "Confirmed": false,
+        "AwaitingRespawn": false,
+        "Poisoned": false,
+        "PoisonDefense": false,
+        "Petrified": false,
+        "Cards": [
+          {
+            "Id": "wasp-00",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "wasp-01",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "wasp-06",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "wasp-07",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "wasp-13",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          }
+        ]
+      },
+      {
+        "Seat": 2,
+        "Level": 1,
+        "Gold": 0,
+        "HandCount": 5,
+        "Team": "Blue",
+        "Hero": "brogan",
+        "Purple": "",
+        "Confirmed": false,
+        "AwaitingRespawn": false,
+        "Poisoned": false,
+        "PoisonDefense": false,
+        "Petrified": false,
+        "Cards": [
+          {
+            "Id": "brogan-00",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "brogan-01",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "brogan-06",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "brogan-07",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "brogan-13",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          }
+        ]
+      },
+      {
+        "Seat": 3,
+        "Level": 1,
+        "Gold": 0,
+        "HandCount": 5,
+        "Team": "Red",
+        "Hero": "arien",
+        "Purple": "",
+        "Confirmed": false,
+        "AwaitingRespawn": false,
+        "Poisoned": false,
+        "PoisonDefense": false,
+        "Petrified": false,
+        "Cards": [
+          {
+            "Id": "arien-00",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "arien-01",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "arien-06",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "arien-07",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          },
+          {
+            "Id": "arien-13",
+            "Zone": "InHand",
+            "PlayedRound": null,
+            "PlayedTurn": null
+          }
+        ]
+      }
+    ],
+    "Units": [
+      {
+        "Id": "minion:-1,-3",
+        "Kind": "melee",
+        "Team": "Red",
+        "Seat": null,
+        "Position": {
+          "X": -1,
+          "Y": -3
+        }
+      },
+      {
+        "Id": "minion:1,-1",
+        "Kind": "ranged",
+        "Team": "Red",
+        "Seat": null,
+        "Position": {
+          "X": 1,
+          "Y": -1
+        }
+      },
+      {
+        "Id": "minion:4,-1",
+        "Kind": "melee",
+        "Team": "Red",
+        "Seat": null,
+        "Position": {
+          "X": 4,
+          "Y": -1
+        }
+      },
+      {
+        "Id": "minion:-3,0",
+        "Kind": "heavy",
+        "Team": "Red",
+        "Seat": null,
+        "Position": {
+          "X": -3,
+          "Y": 0
+        }
+      },
+      {
+        "Id": "minion:1,0",
+        "Kind": "melee",
+        "Team": "Blue",
+        "Seat": null,
+        "Position": {
+          "X": 1,
+          "Y": 0
+        }
+      },
+      {
+        "Id": "minion:3,0",
+        "Kind": "melee",
+        "Team": "Red",
+        "Seat": null,
+        "Position": {
+          "X": 3,
+          "Y": 0
+        }
+      },
+      {
+        "Id": "minion:-3,1",
+        "Kind": "melee",
+        "Team": "Blue",
+        "Seat": null,
+        "Position": {
+          "X": -3,
+          "Y": 1
+        }
+      },
+      {
+        "Id": "minion:-1,1",
+        "Kind": "melee",
+        "Team": "Red",
+        "Seat": null,
+        "Position": {
+          "X": -1,
+          "Y": 1
+        }
+      },
+      {
+        "Id": "minion:3,1",
+        "Kind": "heavy",
+        "Team": "Blue",
+        "Seat": null,
+        "Position": {
+          "X": 3,
+          "Y": 1
+        }
+      },
+      {
+        "Id": "minion:-4,2",
+        "Kind": "melee",
+        "Team": "Blue",
+        "Seat": null,
+        "Position": {
+          "X": -4,
+          "Y": 2
+        }
+      },
+      {
+        "Id": "minion:-1,2",
+        "Kind": "ranged",
+        "Team": "Blue",
+        "Seat": null,
+        "Position": {
+          "X": -1,
+          "Y": 2
+        }
+      },
+      {
+        "Id": "minion:1,4",
+        "Kind": "melee",
+        "Team": "Blue",
+        "Seat": null,
+        "Position": {
+          "X": 1,
+          "Y": 4
+        }
+      },
+      {
+        "Id": "hero:0",
+        "Kind": "hero",
+        "Team": "Blue",
+        "Seat": 0,
+        "Position": {
+          "X": -8,
+          "Y": 7
+        }
+      },
+      {
+        "Id": "hero:1",
+        "Kind": "hero",
+        "Team": "Red",
+        "Seat": 1,
+        "Position": {
+          "X": 7,
+          "Y": -9
+        }
+      },
+      {
+        "Id": "hero:2",
+        "Kind": "hero",
+        "Team": "Blue",
+        "Seat": 2,
+        "Position": {
+          "X": -7,
+          "Y": 8
+        }
+      },
+      {
+        "Id": "hero:3",
+        "Kind": "hero",
+        "Team": "Red",
+        "Seat": 3,
+        "Position": {
+          "X": 7,
+          "Y": -7
+        }
+      }
+    ],
+    "OwnCards": [
+      {
+        "Id": "sabina-00",
+        "Zone": "InHand",
+        "PlayedRound": null,
+        "PlayedTurn": null
+      },
+      {
+        "Id": "sabina-01",
+        "Zone": "InHand",
+        "PlayedRound": null,
+        "PlayedTurn": null
+      },
+      {
+        "Id": "sabina-06",
+        "Zone": "InHand",
+        "PlayedRound": null,
+        "PlayedTurn": null
+      },
+      {
+        "Id": "sabina-07",
+        "Zone": "InHand",
+        "PlayedRound": null,
+        "PlayedTurn": null
+      },
+      {
+        "Id": "sabina-17",
+        "Zone": "InHand",
+        "PlayedRound": null,
+        "PlayedTurn": null
+      }
+    ],
+    "PublicHistory": [
+      {
+        "Kind": "HeroChosen",
+        "Card": "",
+        "Seat": 0,
+        "From": null,
+        "To": null
+      },
+      {
+        "Kind": "HeroChosen",
+        "Card": "",
+        "Seat": 1,
+        "From": null,
+        "To": null
+      },
+      {
+        "Kind": "HeroChosen",
+        "Card": "",
+        "Seat": 2,
+        "From": null,
+        "To": null
+      },
+      {
+        "Kind": "HeroChosen",
+        "Card": "",
+        "Seat": 3,
+        "From": null,
+        "To": null
+      },
+      {
+        "Kind": "DeploymentStarted",
+        "Card": "",
+        "Seat": null,
+        "From": null,
+        "To": null
+      },
+      {
+        "Kind": "HeroDeployed",
+        "Card": "",
+        "Seat": 0,
+        "From": null,
+        "To": {
+          "X": -8,
+          "Y": 7
+        }
+      },
+      {
+        "Kind": "HeroDeployed",
+        "Card": "",
+        "Seat": 1,
+        "From": null,
+        "To": {
+          "X": 7,
+          "Y": -9
+        }
+      },
+      {
+        "Kind": "HeroDeployed",
+        "Card": "",
+        "Seat": 2,
+        "From": null,
+        "To": {
+          "X": -7,
+          "Y": 8
+        }
+      },
+      {
+        "Kind": "HeroDeployed",
+        "Card": "",
+        "Seat": 3,
+        "From": null,
+        "To": {
+          "X": 7,
+          "Y": -7
+        }
+      },
+      {
+        "Kind": "PlanningStarted",
+        "Card": "",
+        "Seat": null,
+        "From": null,
+        "To": null
+      }
+    ],
+    "Effects": []
+  },
+  "Actions": [
+    {
+      "Id": "SelectCard|sabina-00|-1|0|0|Secondary",
+      "Kind": "SelectCard",
+      "Value": "sabina-00",
+      "Mode": "Secondary",
+      "TargetSeat": -1,
+      "Destination": {
+        "X": 0,
+        "Y": 0
+      },
+      "HasDestination": false,
+      "SuccessfulDefense": false,
+      "ImmediateSkip": false
+    },
+    {
+      "Id": "SelectCard|sabina-01|-1|0|0|Secondary",
+      "Kind": "SelectCard",
+      "Value": "sabina-01",
+      "Mode": "Secondary",
+      "TargetSeat": -1,
+      "Destination": {
+        "X": 0,
+        "Y": 0
+      },
+      "HasDestination": false,
+      "SuccessfulDefense": false,
+      "ImmediateSkip": false
+    },
+    {
+      "Id": "SelectCard|sabina-06|-1|0|0|Secondary",
+      "Kind": "SelectCard",
+      "Value": "sabina-06",
+      "Mode": "Secondary",
+      "TargetSeat": -1,
+      "Destination": {
+        "X": 0,
+        "Y": 0
+      },
+      "HasDestination": false,
+      "SuccessfulDefense": false,
+      "ImmediateSkip": false
+    },
+    {
+      "Id": "SelectCard|sabina-07|-1|0|0|Secondary",
+      "Kind": "SelectCard",
+      "Value": "sabina-07",
+      "Mode": "Secondary",
+      "TargetSeat": -1,
+      "Destination": {
+        "X": 0,
+        "Y": 0
+      },
+      "HasDestination": false,
+      "SuccessfulDefense": false,
+      "ImmediateSkip": false
+    },
+    {
+      "Id": "SelectCard|sabina-17|-1|0|0|Secondary",
+      "Kind": "SelectCard",
+      "Value": "sabina-17",
+      "Mode": "Secondary",
+      "TargetSeat": -1,
+      "Destination": {
+        "X": 0,
+        "Y": 0
+      },
+      "HasDestination": false,
+      "SuccessfulDefense": false,
+      "ImmediateSkip": false
+    }
+  ]
+}

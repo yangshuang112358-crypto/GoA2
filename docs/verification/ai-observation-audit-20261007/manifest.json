@@ -1,0 +1,21 @@
+{
+  "source_commit": "652b75e6a31c0369bb5c1f639079de91eabdb401",
+  "sources": {
+    "ai/Goa2.Ai/ObservationProjector.cs": "abf9e65515b17bfc9cb5a22edc30dd2259d00235187d6034bb71a82e086e10db",
+    "ai/Goa2.Ai/Protocol.cs": "0c892a2ae5ee2ffd8016d4dd32d4260dbd5a7ad3f7bdf0c2ccf26439a57f4e6e",
+    "ai/trainer/policy.py": "4eefc4e05a2bf38b43b9d6d9bfac48abd1728b6d46a5b00ccf0e08f945130c85",
+    "core/com.goa2.core/Runtime/Domain/Views.cs": "54dc0e76c58d75c079b4b586c1d1a7a376e8b33ac231c2b2a2bd18d7da25de78",
+    "core/com.goa2.core/Runtime/Domain/Effects.cs": "70ed361c95ecab1f64867b85a83eda2f25cde7ec1ed679d9df0397233e2dd9c0",
+    "core/com.goa2.core/Runtime/Application/GameSession.cs": "389d0c881e74b1168c0c0849b029315947b1a0e98600e9e9b606ca706708ff4a",
+    "tools/audit-ai-observation.py": "60940971cf7b3aaf405d69f21d0379294cc77d8e57e4e2a6a99a5b83051d502b",
+    "tools/draw-ai-model-architecture.py": "86fded7b0836801977d7f7a533df59ed221f283a86bb3b7ed82f208591e8f85f"
+  },
+  "files": {
+    "current-model.png": "6a3c6df82542980b821a915bef9d0c69b6f1194fb7bdfd9a80b6e59cb7e72b52",
+    "current-model.svg": "699bea6e1e0f0a5339912202bb80ede2aa363a1bdd778e7463e30706b038f9ff",
+    "input.json": "11b7e75e615a92bdab3bd8cb7b9f7dce8f48d830ca158b8bce3ca613dc468f4d",
+    "report.json": "5b71a108c18a58798ca51ce5492c2a7c379edea6bd6f79793da6b1e3e773e86e"
+  },
+  "complete": false,
+  "training": false
+}

@@ -1,0 +1,118 @@
+{
+  "complete": false,
+  "meaning": "Known-gap characterization only; unchanged means exactly identical full state and candidate tensors with actions held fixed.",
+  "observation_version": 3,
+  "encoder_version": 2,
+  "model_shape": {
+    "state_dim": 1805,
+    "action_dim": 242,
+    "hidden": 64
+  },
+  "actor_parameters": 131137,
+  "critic_parameters": 115649,
+  "probes": [
+    {
+      "name": "other_card_zone",
+      "field": "Players[].Cards[].Zone",
+      "state_changed": true,
+      "candidate_features_changed": false,
+      "encoded": true,
+      "expected_for_v2": true
+    },
+    {
+      "name": "own_card_zone",
+      "field": "OwnCards[].Zone",
+      "state_changed": true,
+      "candidate_features_changed": false,
+      "encoded": true,
+      "expected_for_v2": true
+    },
+    {
+      "name": "revealed_current_card",
+      "field": "CurrentCard",
+      "state_changed": true,
+      "candidate_features_changed": false,
+      "encoded": true,
+      "expected_for_v2": true
+    },
+    {
+      "name": "other_purple",
+      "field": "Players[].Purple",
+      "state_changed": false,
+      "candidate_features_changed": false,
+      "encoded": false,
+      "expected_for_v2": false
+    },
+    {
+      "name": "own_purple",
+      "field": "Players[].Purple",
+      "state_changed": false,
+      "candidate_features_changed": false,
+      "encoded": false,
+      "expected_for_v2": false
+    },
+    {
+      "name": "poison_defense_scope",
+      "field": "Players[].PoisonDefense",
+      "state_changed": false,
+      "candidate_features_changed": false,
+      "encoded": false,
+      "expected_for_v2": false
+    },
+    {
+      "name": "card_play_time",
+      "field": "Players[].Cards[].PlayedRound/PlayedTurn",
+      "state_changed": false,
+      "candidate_features_changed": false,
+      "encoded": false,
+      "expected_for_v2": false
+    },
+    {
+      "name": "public_history",
+      "field": "PublicHistory",
+      "state_changed": false,
+      "candidate_features_changed": false,
+      "encoded": false,
+      "expected_for_v2": false
+    },
+    {
+      "name": "persistent_effect",
+      "field": "Effects",
+      "state_changed": false,
+      "candidate_features_changed": false,
+      "encoded": false,
+      "expected_for_v2": false
+    },
+    {
+      "name": "active_seat",
+      "field": "ActiveSeat",
+      "state_changed": false,
+      "candidate_features_changed": false,
+      "encoded": false,
+      "expected_for_v2": false
+    },
+    {
+      "name": "response_kind",
+      "field": "Decision",
+      "state_changed": false,
+      "candidate_features_changed": false,
+      "encoded": false,
+      "expected_for_v2": false
+    },
+    {
+      "name": "enemy_identity_position_association",
+      "field": "Units[].Seat/Position association",
+      "state_changed": false,
+      "candidate_features_changed": false,
+      "encoded": false,
+      "expected_for_v2": false
+    }
+  ],
+  "source_commit": "652b75e6a31c0369bb5c1f639079de91eabdb401",
+  "script_sha256": "60940971cf7b3aaf405d69f21d0379294cc77d8e57e4e2a6a99a5b83051d502b",
+  "policy_sha256": "4eefc4e05a2bf38b43b9d6d9bfac48abd1728b6d46a5b00ccf0e08f945130c85",
+  "catalog_sha256": "4d0633970b749e26f33069df95b615d5bcaee55067170e79397cebc2729bfc38",
+  "data_sha256": "acb7a0ece80b6b00e912c9e41a81cc6286cf45bf6040394d1bd0bea0e0780c7a",
+  "source_group": "combat-defense",
+  "boundary": "Public observation only; no checkpoint loading, rule mutation, training or real-game strength claim."
+}
