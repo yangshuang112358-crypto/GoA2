@@ -36,6 +36,8 @@ namespace Goa2.Ai.Cli
         }
         public static int Main(string[] args)
         {
+            Console.InputEncoding=new UTF8Encoding(false);
+            Console.OutputEncoding=new UTF8Encoding(false);
             if(args.Length==4 && args[0]=="curriculum") return Curriculum.Export(Path.GetFullPath(args[1]),Path.GetFullPath(args[2]),Path.GetFullPath(args[3]));
             if(args.Length==4 && args[0]=="teaching-replay") return TeachingReplay.Export(Path.GetFullPath(args[1]),Path.GetFullPath(args[2]),Path.GetFullPath(args[3]));
             if(args.Length==3 && args[0]=="serve") return TrainingServer.Run(Path.GetFullPath(args[1]),Path.GetFullPath(args[2]));

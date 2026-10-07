@@ -1,5 +1,7 @@
 # Goa2V1 开发约定
 
+2026-10-08 AI原子输入重构：用户允许不兼容重做。观察4/行动2/编码器3改为逐角色、卡实例、精确单位/地图、持续效果、公开行动链及时间化历史；删除队伍资源/牌区汇总、本人牌区副本、单位均值与最近距离。新增关系图编码＋64维两层消息传递＋候选注意力，静态出生点/地形与数值牌面接入；旧检查点明确拒绝。字段清单ai/observation-coverage.json仍complete=false：完整牌文机制描述、部分公开事件原因和历史算式未全编码，不能声称模型已获得全部决策语义。12项C#和17项Python、33真实响应145候选已检查；本批正式基线、影子推理和两次更新验证按后续验收原件为准。入口docs/development/AI原子观察与关系模型重构-2026-10-08.md。无共享规则/Command/View、网络、存档或GameScreen改动，无子代理/驱动更改/长训，保护main/engine34和Workbench.blend。
+
 2026-10-07 AI选型与输入解释：用户追问为何MLP、GAN等候选及每个输入值。新增docs/development/AI模型选型与逐项输入字典-2026-10-07.md和tools/export-ai-feature-dictionary.py；按实际编码器导出1805状态+242候选=2047坐标字典，含索引/公式/缺省/真实公开例值。明确单隐藏层MLP=Linear→tanh→Linear，GAN/GAIL属于另一训练框架，实体注意力/GNN/记忆为候选未实施；选择64/tanh仅原型起点非架构胜率对照结论。1728卡牌展开维占状态95.7%，不代表信息完整；继续以补齐公开状态和关联为先。本批仅解释/字典/资料核对，无模型修改或训练，main/engine34与Workbench.blend不动。
 
 2026-10-07 AI输入审计：用户追问所有可见决策信息（他人剩余/弃牌、持续效果、紫卡）并要求流程图。确认当前观察3/编码器2不完整：牌区进入网络但队伍汇总；Purple/Effects/PublicHistory/出牌时间/PoisonDefense/ActiveSeat/响应种类未编码；有效与永久属性加成、效果区域/范围/豁免、完整行动队列等尚未完整投影。12项字段变化探针复现3项有编码、9项不可区分，report.complete=false；是已知缺口诊断，非完整性通过。tools/audit-ai-observation.py和技术流程PNG/SVG可重现；入口docs/development/AI可见信息完整性与模型架构-2026-10-07.md，原件docs/verification/ai-observation-audit-20261007。下一步优先版本化白名单与逐角色/单位/效果关联编码、公开/私有不变性及变化测试，不先扩大旧输入训练。旧检查点不能自动加载新格式；本轮只审计/文档/图，无规则/Command/View、网络、存档、GameScreen或模型行为修改，无训练/子代理，main/engine34与Workbench.blend不动。

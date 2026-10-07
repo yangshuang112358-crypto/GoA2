@@ -6,7 +6,7 @@ import tempfile
 import unittest
 import torch
 from bridge import Bridge
-from policy import CandidateNetwork, Encoder, advantages, update
+from policy import CandidateNetwork, Encoder, Graph, advantages, update
 from train import checkpoint, load_checkpoint
 from curriculum import examples, imitation_loss
 from defense import defense_ranking_loss, load_data, teaching_family, fine_tune_batch
@@ -14,15 +14,26 @@ from defense import defense_ranking_loss, load_data, teaching_family, fine_tune_
 ROOT = Path(__file__).resolve().parents[2]
 DOTNET = Path(os.environ["LOCALAPPDATA"]) / "Goa2V1Toolchain/dotnet/dotnet.exe"
 
+def bandit():
+    return Graph(torch.eye(2),torch.tensor([[1],[2]]),torch.empty((3,0),dtype=torch.long)),torch.arange(2)
+
+def equal_graph(a,b):
+    return all(torch.equal(getattr(a,k),getattr(b,k)) for k in ('numbers','categories','edges'))
+
 
 class TrainerTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         torch.set_num_threads(2)
+        torch.use_deterministic_algorithms(True)
         cls.temp = tempfile.TemporaryDirectory()
         with Bridge(ROOT, DOTNET, Path(cls.temp.name) / "probe") as b:
             cls.description = b.call(op="describe")
             cls.reply = b.call(op="reset", seed=19, learner=0, swap=0, limit=1)
+            planning = b.call(op="reset", seed=19, learner=0, swap=0, limit=50)
+            while planning['Decision']['Observation']['Phase']!='Planning':
+                d=planning['Decision'];planning=b.call(op='step',revision=d['Revision'],action=d['Actions'][0]['Id'])
+            cls.planning=planning['Decision']
 
     @classmethod
     def tearDownClass(cls):
@@ -59,8 +70,8 @@ class TrainerTests(unittest.TestCase):
         self.assertEqual(d, before)
 
     def test_navigation_batch_updates_actor_without_fake_value_targets(self):
-        model = CandidateNetwork(2, 2, hidden=8)
-        s, a = torch.zeros(2), torch.eye(2)
+        model = CandidateNetwork(2, 1, 3, 2, hidden=8)
+        s, a = bandit()
         row = (s, a, torch.tensor([0]), "Action/Move", torch.tensor([True, False]), "train")
         families = {"Action/Move": [row], "Planning": [row]}
         loss = fine_tune_batch(model, families, [row], "navigation")
@@ -86,7 +97,7 @@ class TrainerTests(unittest.TestCase):
         enc = Encoder(self.description)
         d = copy.deepcopy(self.reply["Decision"])
         s, a = enc.encode(d)
-        model = CandidateNetwork(len(s), a.shape[1])
+        model = CandidateNetwork(**enc.model_kwargs)
         original, _ = model(s, a)
         d["Actions"].reverse()
         s2, a2 = enc.encode(d)
@@ -101,7 +112,7 @@ class TrainerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "profile"):
             enc.encode(d)
         d = copy.deepcopy(self.reply["Decision"])
-        d["Actions"][0]["Value"] = "x" * 65
+        enc.max_nodes = 2
         with self.assertRaisesRegex(ValueError, "capacity"):
             enc.encode(d)
         old = copy.deepcopy(self.description); old["Contract"]["ObservationVersion"] = 2
@@ -119,26 +130,27 @@ class TrainerTests(unittest.TestCase):
         other.update(Group="separate-game", SourceHash="different-source")
         path.write_text(json.dumps(row) + "\n" + json.dumps(other))
         rows = examples(path, enc); s, a, _, family = rows["train"][0]
-        model = CandidateNetwork(len(s), a.shape[1])
+        model = CandidateNetwork(**enc.model_kwargs)
         # All tied candidates carry probability one; adding labels never increases the loss.
         all_tied = (s, a, torch.arange(len(a)), family)
         self.assertAlmostEqual(imitation_loss(model, all_tied).item(), 0., places=5)
         self.assertGreater(imitation_loss(model, rows["train"][0]).item(), 0.)
 
-    def test_public_features_respond_to_current_card_attack_and_enemy_equipment(self):
+    def test_public_features_respond_to_individual_status_equipment_and_times(self):
         enc = Encoder(self.description); d = copy.deepcopy(self.reply["Decision"])
         original, _ = enc.encode(d)
-        d["Observation"]["CurrentCard"] = enc.card_ids[0]
-        d["Observation"]["Attack"] = dict(Final=8, Attacker=2, Defender=0, Ranged=True)
         opponent = next(p for p in d["Observation"]["Players"] if p["Seat"] == 1)
         opponent["Cards"][0]["Zone"] = "Discarded"
+        opponent["Cards"][0]["PlayedRound"] = 3
+        opponent['Purple'] = enc.card_ids[0]
+        opponent['PoisonDefense'] = True
         changed, _ = enc.encode(d)
-        self.assertFalse(torch.equal(original, changed))
+        self.assertFalse(equal_graph(original, changed))
 
     def test_checkpoint_restores_rng_optimizer_and_rejects_contract(self):
         enc = Encoder(self.description)
         s, a = enc.encode(self.reply["Decision"])
-        model = CandidateNetwork(len(s), a.shape[1]); opt = torch.optim.Adam(model.parameters())
+        model = CandidateNetwork(**enc.model_kwargs); opt = torch.optim.Adam(model.parameters())
         d, v = model(s, a); (v.square() - d.log_prob(torch.tensor(0))).backward(); opt.step()
         path = Path(self.temp.name) / "checkpoint.pt"
         cuda_initialized = torch.cuda.is_initialized()
@@ -153,15 +165,77 @@ class TrainerTests(unittest.TestCase):
             optimizer.zero_grad(); d, v = net(s, a)
             (v.square() - d.log_prob(torch.tensor(0))).backward(); optimizer.step()
         for k, value in model.state_dict().items():
-            self.assertTrue(torch.equal(value, restored.state_dict()[k]))
+            self.assertTrue(torch.equal(value, restored.state_dict()[k]), k)
         enc.contract = copy.deepcopy(enc.contract); enc.contract["ContentHash"] = "wrong"
         with self.assertRaisesRegex(ValueError, "incompatible"):
             load_checkpoint(path, enc, "cpu")
 
+    def test_individual_redistribution_and_exact_hero_positions_are_distinguishable(self):
+        enc=Encoder(self.description);original,_=enc.encode(self.planning)
+        mutations={}
+        d=copy.deepcopy(self.planning);d['Observation']['Players'][0]['Gold']+=1;d['Observation']['Players'][2]['Gold']-=1
+        mutations['same-team gold redistribution']=d
+        d=copy.deepcopy(self.planning)
+        heroes=[u for u in d['Observation']['Units'] if u['Kind']=='hero' and u['Team']=='Red']
+        self.assertEqual(len(heroes),2)
+        heroes[0]['Position'],heroes[1]['Position']=heroes[1]['Position'],heroes[0]['Position']
+        mutations['same-team same-kind position swap']=d
+        for name,d in mutations.items():
+            with self.subTest(name=name): self.assertFalse(equal_graph(original,enc.encode(d)[0]))
+
+    def test_previously_ignored_fields_each_reach_encoder(self):
+        enc=Encoder(self.description);original,_=enc.encode(self.planning)
+        changes=[('purple',lambda o:o['Players'][1].update(Purple=enc.card_ids[-1])),
+            ('poison defense',lambda o:o['Players'][1].update(PoisonDefense=True)),
+            ('played round',lambda o:o['Players'][1]['Cards'][0].update(PlayedRound=2)),
+            ('played turn',lambda o:o['Players'][1]['Cards'][0].update(PlayedTurn=3)),
+            ('effective bonus',lambda o:o['Players'][1]['Effective'].update(Attack=-3)),
+            ('permanent bonus',lambda o:o['Players'][1]['Permanent'].update(Attack=3)),
+            ('active actor',lambda o:o.update(ActiveSeat=2)),
+            ('decision kind',lambda o:o.update(Decision='defense')),
+            ('public event time',lambda o:o['PublicHistory'][0].update(Round=2))]
+        for name,fn in changes:
+            d=copy.deepcopy(self.planning);fn(d['Observation'])
+            with self.subTest(name=name):self.assertFalse(equal_graph(original,enc.encode(d)[0]))
+        effect=dict(Kind='MovementBoundary',Card=enc.card_ids[0],SourceUnit='hero:1',ProtectedUnit='hero:2',
+            Controller=1,CreatedRound=1,CreatedTurn=1,Order=0,StartRound=1,StartTurn=1,EndRound=1,EndTurn=2,
+            BaseRadius=2,PersistsThroughDefeat=False,ExemptSeat=None,Duration='ThisTurn',AreaKind='SkillRange',Area=[dict(X=0,Y=0)])
+        d=copy.deepcopy(self.planning);d['Observation']['Effects']=[effect];base=enc.encode(d)[0]
+        for key,value in [('EndTurn',3),('ExemptSeat',2),('BaseRadius',3),('PersistsThroughDefeat',True),('SourceUnit','hero:3'),('Area',[dict(X=1,Y=0)])]:
+            changed=copy.deepcopy(d);changed['Observation']['Effects'][0][key]=value
+            with self.subTest(effect_field=key):self.assertFalse(equal_graph(base,enc.encode(changed)[0]))
+
+    def test_entity_order_and_references_are_not_learned_array_indexes(self):
+        enc=Encoder(self.description);s,a=enc.encode(self.planning)
+        d=copy.deepcopy(self.planning)
+        d['Observation']['Players'].reverse();d['Observation']['Units'].reverse()
+        for p in d['Observation']['Players']:p['Cards'].reverse()
+        other,b=enc.encode(d);self.assertTrue(equal_graph(s,other));self.assertTrue(torch.equal(a,b))
+        net=CandidateNetwork(**enc.model_kwargs)
+        self.assertTrue(torch.equal(net(s,a)[0].logits,net(other,b)[0].logits))
+
+    def test_null_is_not_zero_and_unknown_fields_fail_instead_of_disappearing(self):
+        enc=Encoder(self.description);s,_=enc.encode(self.planning)
+        d=copy.deepcopy(self.planning);d['Observation']['Players'][0]['Cards'][0]['PlayedRound']=0
+        self.assertFalse(equal_graph(s,enc.encode(d)[0]))
+        for key in ('FutureMechanic','DebugField'):
+            d=copy.deepcopy(self.planning);d['Observation'][key]=1
+            with self.assertRaisesRegex(ValueError,'unconsumed'):enc.encode(d)
+        d=copy.deepcopy(self.planning);d['Observation']['Players'][1]['Cards'][0]['Zone']='Selected'
+        with self.assertRaisesRegex(ValueError,'hidden'):enc.encode(d)
+
+    def test_static_map_spawn_and_lane_reach_the_network(self):
+        enc=Encoder(self.description);s,_=enc.encode(self.planning)
+        for key,value in [('Lane',True),('Spawn','blueHeroSpawn')]:
+            description=copy.deepcopy(self.description);description['Cells'][0][key]=value
+            changed=Encoder(description);s2,_=changed.encode(self.planning)
+            self.assertNotEqual(enc.signature,changed.signature)
+            self.assertFalse(equal_graph(s,s2))
+
     def test_ppo_improves_synthetic_bandit_separate_from_game_strength(self):
         torch.manual_seed(321)
-        s, a = torch.zeros(3), torch.eye(2)
-        model = CandidateNetwork(3, 2, hidden=16)
+        s, a = bandit()
+        model = CandidateNetwork(2, 1, 3, 2, hidden=16)
         opt = torch.optim.Adam(model.parameters(), lr=.01)
         initial = model(s, a)[0].probs[1].item()
         for _ in range(12):

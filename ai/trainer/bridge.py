@@ -17,9 +17,13 @@ class Bridge:
             stderr=self.stderr, text=True, encoding="utf-8", bufsize=1,
             creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
         def read():
-            for line in self.process.stdout:
-                self.messages.put(line)
-            self.messages.put(None)
+            try:
+                for line in self.process.stdout:
+                    self.messages.put(line)
+            except Exception as error:
+                self.messages.put(error)
+            finally:
+                self.messages.put(None)
         self.reader = threading.Thread(target=read, daemon=True)
         self.reader.start()
 
@@ -32,6 +36,8 @@ class Bridge:
             raise TimeoutError("C# environment response timed out; no fallback action submitted")
         if line is None:
             raise RuntimeError(f"C# environment exited: {self.process.poll()}")
+        if isinstance(line, Exception):
+            raise RuntimeError('C# protocol read failed') from line
         value = json.loads(line)
         if value.get("Protocol") != 1 or "Error" in value:
             raise RuntimeError(f"Environment protocol failure: {value}")

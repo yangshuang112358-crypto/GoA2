@@ -1,137 +1,49 @@
-"""Small variable-candidate actor/critic. Only public input enters this module."""
-import hashlib
-import json
+"""Relational entity actor/critic, observation 4/action 2/encoder 3.
+PPO and imitation losses are independent of the observation representation.
+"""
 import torch
 from torch import nn
-
-ENCODER_VERSION = 2
-PHASES = ["HeroSelection", "Deployment", "Planning", "InitiativeChoice", "Action", "RoundEnd", "EffectChoice", "Finished"]
-ZONES = ["InHand", "Selected", "PlayedUnresolved", "PlayedResolved", "Discarded"]
-KINDS = ["hero", "melee", "ranged", "heavy"]
-
-
-class Encoder:
-    def __init__(self, description):
-        self.contract = description["Contract"]
-        if self.contract["ObservationVersion"] != 3 or self.contract["ActionVersion"] != 1:
-            raise ValueError("unsupported observation/action format")
-        self.cards = {c["Id"]: c for c in description["Cards"]}
-        self.card_ids = sorted(self.cards)
-        self.families = sorted({c["PrimaryFamily"] for c in self.cards.values()})
-        self.kinds = description["ActionKinds"]
-        self.cells = {(c["Position"]["X"], c["Position"]["Y"]): c for c in description["Cells"]}
-        self.signature = hashlib.sha256(json.dumps(description, sort_keys=True).encode()).hexdigest()
-
-    def encode(self, decision):
-        o, actions = decision["Observation"], decision["Actions"]
-        if o["Schema"] != 3 or o["Rules"] != self.contract["RuleProfile"]:
-            raise ValueError("unvalidated rule profile or observation version")
-        if o["Phase"] not in PHASES:
-            raise ValueError("unknown phase")
-        if not actions or len({a["Id"] for a in actions}) != len(actions):
-            raise ValueError("empty/duplicate candidates")
-        own = next(p for p in o["Players"] if p["Seat"] == o["Seat"])
-        team = own["Team"]
-        friendly = "Blue" if team == "Blue" else "Red"
-        enemy = "Red" if team == "Blue" else "Blue"
-        rules = o["Rules"]
-        life, marks = rules["StartingCrystalLife"], rules["VictoryMarksRequired"]
-        f = [float(o["Phase"] == p) for p in PHASES]
-        f += [o["Round"] / 20, o["Turn"] / rules["TurnsPerRound"], life / 10, marks / 5,
-              o[friendly + "Crystal"] / life, o[enemy + "Crystal"] / life,
-              o[friendly + "Marks"] / marks, o[enemy + "Marks"] / marks,
-              o[friendly + "Crystal"] / 10, o[enemy + "Crystal"] / 10,
-              o[friendly + "Marks"] / 5, o[enemy + "Marks"] / 5,
-              float(o["Coin"] == team), rules["HandSize"] / 5]
-        for same in (True, False):
-            ps = [p for p in o["Players"] if (p["Team"] == team) == same]
-            f += [sum(p[key] for p in ps) / scale for key, scale in
-                  [("Level", 16), ("Gold", 40), ("HandCount", 10), ("AwaitingRespawn", 2), ("Poisoned", 2), ("Petrified", 2)]]
-            for kind in KINDS:
-                us = [u for u in o["Units"] if (u["Team"] == team) == same and u["Kind"] == kind]
-                f += [len(us) / 10, sum(u["Position"]["X"] for u in us) / max(1, len(us)) / 20,
-                      sum(u["Position"]["Y"] for u in us) / max(1, len(us)) / 20]
-        unknown = {u["Kind"] for u in o["Units"]} - set(KINDS)
-        if unknown:
-            raise ValueError(f"unsupported unit kinds: {unknown}")
-        self_unit = next((u for u in o["Units"] if u["Seat"] == o["Seat"]), None)
-        pos = self_unit["Position"] if self_unit else {"X": 0, "Y": 0}
-        f += [float(self_unit is not None), pos["X"] / 20, pos["Y"] / 20, own["Level"] / 8, own["Gold"] / 20]
-        own_cards = {c["Id"]: c["Zone"] for c in o["OwnCards"]}
-        if set(own_cards) - set(self.cards) or set(own_cards.values()) - set(ZONES):
-            raise ValueError("unknown card or zone")
-        f += [float(own_cards.get(c) == z) for c in self.card_ids for z in ZONES]
-        if o["CurrentCard"] and o["CurrentCard"] not in self.cards:
-            raise ValueError("unknown current card")
-        f += [float(o["CurrentCard"] == c) for c in self.card_ids]
-        for same in (True, False):
-            public = [c for p in o["Players"] if p["Seat"] != o["Seat"] and (p["Team"] == team) == same for c in p["Cards"]]
-            if any(c["Id"] not in self.cards or c["Zone"] not in ZONES for c in public):
-                raise ValueError("unknown public card or zone")
-            f += [sum(c["Id"] == cid and c["Zone"] == z for c in public) / max(1, len(o["Players"])) for cid in self.card_ids for z in ZONES]
-        attack = o["Attack"] or {}
-        f += [float(bool(attack)), float(attack.get("Attacker") == o["Seat"]), float(attack.get("Defender") == o["Seat"])]
-        f += [(attack.get(k) or 0) / 10 for k in ("Base", "Bonus", "Support", "Guard", "Final", "TextBonus", "UltimateBonus")]
-        f += [float(attack.get(k, False)) for k in ("Ranged", "Unblockable")]
-        # Geometry of public positions only; legality and attack/defense calculations stay in C#.
-        def distance(p, q):
-            dx, dy = p["X"] - q["X"], p["Y"] - q["Y"]
-            return max(abs(dx), abs(dy), abs(dx + dy))
-        enemies = [u for u in o["Units"] if u["Team"] != team]
-        nonheroes = [u for u in enemies if u["Kind"] != "hero"] or enemies
-        nearest = lambda at, us: min((distance(at, u["Position"]) for u in us), default=40) / 20
-        f += [nearest(pos, enemies), nearest(pos, nonheroes)]
-        rows = []
-        units = {u["Id"]: u for u in o["Units"]}
-        for a in actions:
-            if a["Kind"] not in self.kinds:
-                raise ValueError("unknown action kind")
-            # Literal stable value bytes distinguish branch IDs; no candidate index is used as a feature.
-            raw = a["Value"].encode("utf-8")
-            if len(raw) > 64:
-                raise ValueError("action_value_capacity_exceeded: extend encoder version")
-            row = [float(a["Kind"] == k) for k in self.kinds]
-            row += [float(a["Value"] == c) for c in self.card_ids]
-            row += [v / 255 for v in raw] + [0.] * (64 - len(raw))
-            target = units.get(a["Value"])
-            dst = a["Destination"]
-            cell = self.cells.get((dst["X"], dst["Y"])) if a["HasDestination"] else None
-            card = self.cards.get(a["Value"], {})
-            row += [float(card.get("PrimaryFamily") == family) for family in self.families]
-            row += [nearest(dst, enemies) if a["HasDestination"] else 0.,
-                    nearest(dst, nonheroes) if a["HasDestination"] else 0.,
-                    distance(dst, pos) / 20 if a["HasDestination"] and self_unit else 0.,
-                    distance(target["Position"], pos) / 20 if target and self_unit else 0.]
-            row += [float(a["SuccessfulDefense"]), float(a["ImmediateSkip"]), float(a["HasDestination"]),
-                    dst["X"] / 20 if a["HasDestination"] else 0., dst["Y"] / 20 if a["HasDestination"] else 0.,
-                    float(a["Mode"] == "Fast"), float(a["Value"] == "skip"),
-                    float(target is not None and target["Team"] == team), float(target is not None),
-                    float(cell is not None and cell["Region"] == o["CombatRegion"]),
-                    (card.get("PrimaryValue") or 0) / 10, (card.get("SecondaryDefense") or 0) / 10,
-                    (card.get("SecondaryMovement") or 0) / 10, (card.get("Initiative") or 0) / 10]
-            row += [float(target is not None and target["Kind"] == k) for k in KINDS]
-            row += [(target["Position"]["X"] - pos["X"]) / 20 if target else 0.,
-                    (target["Position"]["Y"] - pos["Y"]) / 20 if target else 0.,
-                    float(a["TargetSeat"] == o["Seat"]),
-                    float(a["TargetSeat"] >= 0 and any(p["Seat"] == a["TargetSeat"] and p["Team"] == team for p in o["Players"]))]
-            rows.append(row)
-        state, candidates = torch.tensor(f, dtype=torch.float32), torch.tensor(rows, dtype=torch.float32)
-        if not torch.isfinite(state).all() or not torch.isfinite(candidates).all():
-            raise ValueError("nonfinite features")
-        return state, candidates
+from entities import Encoder, Graph, ENCODER_VERSION, PHASES, ZONES, KINDS
 
 
 class CandidateNetwork(nn.Module):
-    def __init__(self, state_dim, action_dim, hidden=64):
+    def __init__(self, numeric_dim, category_dim, vocabulary_size, relation_count, hidden=64):
         super().__init__()
-        self.shape = dict(state_dim=state_dim, action_dim=action_dim, hidden=hidden)
-        self.actor = nn.Sequential(nn.Linear(state_dim + action_dim, hidden), nn.Tanh(), nn.Linear(hidden, 1))
-        self.critic = nn.Sequential(nn.Linear(state_dim, hidden), nn.Tanh(), nn.Linear(hidden, 1))
+        self.shape = dict(numeric_dim=numeric_dim, category_dim=category_dim,
+                          vocabulary_size=vocabulary_size, relation_count=relation_count, hidden=hidden)
+        self.symbols = nn.Embedding(vocabulary_size, 16, padding_idx=0)
+        self.input = nn.Sequential(nn.Linear(numeric_dim + category_dim*16, hidden), nn.SiLU(), nn.LayerNorm(hidden))
+        self.relations = nn.Embedding(relation_count, hidden)
+        self.messages = nn.ModuleList([nn.Sequential(nn.Linear(hidden*2, hidden), nn.SiLU(), nn.Linear(hidden, hidden)) for _ in range(2)])
+        self.norms = nn.ModuleList([nn.LayerNorm(hidden) for _ in range(2)])
+        self.actor = nn.ModuleDict(dict(attention=nn.MultiheadAttention(hidden, 4, dropout=0., batch_first=True),
+                                       score=nn.Sequential(nn.Linear(hidden*2, hidden), nn.SiLU(), nn.Linear(hidden, 1))))
+        self.value_query = nn.Parameter(torch.zeros(1, 1, hidden))
+        self.value_attention = nn.MultiheadAttention(hidden, 4, dropout=0., batch_first=True)
+        self.critic = nn.Sequential(nn.Linear(hidden, hidden), nn.SiLU(), nn.Linear(hidden, 1))
 
     def forward(self, state, candidates):
-        # There are no padded/illegal actions. All and only legal candidates enter the distribution.
-        logits = self.actor(torch.cat((state.expand(len(candidates), -1), candidates), dim=1)).squeeze(-1)
-        return torch.distributions.Categorical(logits=logits), self.critic(state).squeeze(-1)
+        if not isinstance(state, Graph) or candidates.ndim != 1 or len(candidates) == 0:
+            raise ValueError("expected entity graph and candidate node pointers")
+        h = self.input(torch.cat((state.numbers, self.symbols(state.categories).flatten(1)), dim=1))
+        source, target, relation = state.edges
+        r = self.relations(relation)
+        # Sum preserves multiplicity of supports/guards. No pooling occurs before
+        # the unit->cell, owner->card and source->effect relations are processed.
+        for message, norm in zip(self.messages, self.norms):
+            m = message(torch.cat((h[source], r), dim=1))
+            aggregate = torch.zeros_like(h).index_add(0, target, m)
+            degree = torch.zeros(len(h), device=h.device).index_add(0, target, torch.ones(len(target), device=h.device))
+            h = norm(h + aggregate / degree.clamp_min(1).sqrt().unsqueeze(1))
+        queries = h[candidates].unsqueeze(0)
+        attended, _ = self.actor['attention'](queries, h.unsqueeze(0), h.unsqueeze(0), need_weights=False)
+        logits = self.actor['score'](torch.cat((queries, attended), dim=-1)).squeeze(0).squeeze(-1)
+        pooled, _ = self.value_attention(self.value_query, h.unsqueeze(0), h.unsqueeze(0), need_weights=False)
+        value = self.critic(pooled).reshape(())
+        if not torch.isfinite(logits).all() or not torch.isfinite(value):
+            raise FloatingPointError("nonfinite entity model output")
+        return torch.distributions.Categorical(logits=logits), value
+
 
 
 def advantages(rewards, values, next_values, boundaries, gamma=.99, lam=.95):

@@ -73,7 +73,7 @@ namespace Goa2.Ai
                 var semantic=ids.Value(value); string key=StableIds.Action(kind,semantic,target,at,mode);
                 if(intents.ContainsKey(key)) throw new InvalidOperationException("duplicate_action_id:"+key);
                 intents.Add(key,Intent(own,seat,kind,value,target,at,mode));
-                outstanding.Actions.Add(new Candidate { Id=key, Kind=kind.ToString(), Value=semantic, TargetSeat=target, Destination=at, Mode=mode.ToString(), HasDestination=cell, SuccessfulDefense=defense, ImmediateSkip=kind==CommandKind.BeginPrimary && own.PrimaryImmediatelySkips });
+                outstanding.Actions.Add(new Candidate { Id=key, Kind=kind.ToString(), Value=semantic, TargetSeat=target, Destination=at, Mode=mode.ToString(), HasDestination=cell, SuccessfulDefense=defense, ImmediateSkip=kind==CommandKind.BeginPrimary && own.PrimaryImmediatelySkips, Facts=ObservationProjector.Facts(own,kind,value,at,mode,ids) });
             }
             void Values(CommandKind kind,IEnumerable<string> values,bool skip=false) { foreach(var x in values) Add(kind,x); if(skip) Add(kind,"skip"); }
             void Cells(CommandKind kind,IEnumerable<Hex> cells,bool skip=false) { foreach(var x in cells) Add(kind,at:x,cell:true); if(skip) Add(kind,"skip"); }

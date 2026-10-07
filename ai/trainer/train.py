@@ -133,7 +133,7 @@ def main():
             if not probe["Truncated"]:
                 raise RuntimeError("probe expected a learner-boundary truncation")
             cursor, iteration = 0, 0
-            model = CandidateNetwork(len(s), a.shape[1]).to(device)
+            model = CandidateNetwork(**encoder.model_kwargs).to(device)
             optimizer = torch.optim.Adam(model.parameters(), lr=.0003, eps=1e-5)
             if args.resume:
                 model, data = load_checkpoint(args.resume, encoder, device)

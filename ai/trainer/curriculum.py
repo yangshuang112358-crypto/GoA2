@@ -99,7 +99,7 @@ def main():
             write(args.output / "public-catalog.json", description)
             data = examples(args.data / "policy.jsonl", encoder)
             s, a = data["train"][0][:2]
-            model = CandidateNetwork(len(s), a.shape[1]); optimizer = torch.optim.Adam(model.parameters(), lr=.0003, eps=1e-5)
+            model = CandidateNetwork(**encoder.model_kwargs); optimizer = torch.optim.Adam(model.parameters(), lr=.0003, eps=1e-5)
             def evaluate(label, cursor, metrics):
                 boundary()
                 target = args.output / (label + ".pt")
