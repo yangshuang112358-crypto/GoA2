@@ -1,0 +1,4 @@
+{
+  "error": "Traceback (most recent call last):\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\trainer\\train.py\", line 160, in main\n    evaluate(\"initial\")\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\trainer\\train.py\", line 153, in evaluate\n    require_interactive_memory()\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\trainer\\resources.py\", line 43, in require_interactive_memory\n    raise MemoryError(\"Less than 4 GiB available; stopped at episode boundary to preserve interaction\")\nMemoryError: Less than 4 GiB available; stopped at episode boundary to preserve interaction\n",
+  "seconds": 5.906288600002881
+}

@@ -1,0 +1,97 @@
+{
+  "seconds": 286.99341349999304,
+  "parameter_l1_change": 43.756308283656836,
+  "checkpoint_inference_equal": true,
+  "iterations": 2,
+  "learner_samples": 485,
+  "training_episodes": [
+    {
+      "seed": 701,
+      "swap": 0,
+      "learner_decisions": 96,
+      "environment_steps": 371,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 12.397341699994286
+    },
+    {
+      "seed": 701,
+      "swap": 1,
+      "learner_decisions": 206,
+      "environment_steps": 874,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 96.35672429999977
+    },
+    {
+      "seed": 702,
+      "swap": 0,
+      "learner_decisions": 101,
+      "environment_steps": 406,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 15.65935129999707
+    },
+    {
+      "seed": 702,
+      "swap": 1,
+      "learner_decisions": 82,
+      "environment_steps": 375,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 12.528903999991599
+    }
+  ],
+  "evaluation": [
+    {
+      "seed": 9001,
+      "swap": 0,
+      "learner_decisions": 139,
+      "environment_steps": 582,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 39.9734776999976,
+      "checkpoint": "initial.pt"
+    },
+    {
+      "seed": 9001,
+      "swap": 1,
+      "learner_decisions": 147,
+      "environment_steps": 649,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 48.77395930000057,
+      "checkpoint": "initial.pt"
+    },
+    {
+      "seed": 9001,
+      "swap": 0,
+      "learner_decisions": 102,
+      "environment_steps": 388,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 13.203108399990015,
+      "checkpoint": "checkpoint-002.pt"
+    },
+    {
+      "seed": 9001,
+      "swap": 1,
+      "learner_decisions": 150,
+      "environment_steps": 626,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 43.837513699996634,
+      "checkpoint": "checkpoint-002.pt"
+    }
+  ],
+  "gpu_allocated_mib": 0,
+  "conclusion": "Learning pipeline validation only; no demonstrated strength gain."
+}

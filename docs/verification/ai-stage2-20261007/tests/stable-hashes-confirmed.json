@@ -1,0 +1,26 @@
+[
+  {
+    "Path": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\Goa2.Ai.Cli\\bin\\Release\\net10.0\\Goa2.Ai.Cli.dll",
+    "Hash": "329B6176F4F738154B8D79A21E116528187BEF707731C3E55E3F96C772191EEC"
+  },
+  {
+    "Path": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\Goa2.Ai.Cli\\bin\\Release\\net10.0\\Goa2.Ai.dll",
+    "Hash": "792A7DA7129ECB3A2F24AD85489CF515E8641C600497BB71F8CE7264DD198580"
+  },
+  {
+    "Path": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\Goa2.Ai.Cli\\bin\\Release\\net10.0\\Goa2.Application.dll",
+    "Hash": "483FE35D2EEB3DB50FA5FD7EB5376B2B28F20F5230641C96B60D7E92ED572498"
+  },
+  {
+    "Path": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\Goa2.Ai.Cli\\bin\\Release\\net10.0\\Goa2.Domain.dll",
+    "Hash": "59D6943FC817CEB43E95A3E6B30D7F7820B90B17770413ACE4226EF0CB6DB692"
+  },
+  {
+    "Path": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\Goa2.Ai.Cli\\bin\\Release\\net10.0\\Goa2.Infrastructure.dll",
+    "Hash": "C9169885733E19FBD6EE03A3360E0000F484DEDA7E5707F0AF917559D066CF6D"
+  },
+  {
+    "Path": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\Goa2.Ai.Cli\\bin\\Release\\net10.0\\Goa2.Rules.dll",
+    "Hash": "4F930EE6BEACEB9DD14251033006BE5988FF04A273A9AF55E7514714218268CD"
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "seed": 9001,
+    "swap": 0,
+    "learner_decisions": 139,
+    "environment_steps": 582,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 39.9734776999976,
+    "checkpoint": "initial.pt"
+  },
+  {
+    "seed": 9001,
+    "swap": 1,
+    "learner_decisions": 147,
+    "environment_steps": 649,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 48.77395930000057,
+    "checkpoint": "initial.pt"
+  },
+  {
+    "seed": 9001,
+    "swap": 0,
+    "learner_decisions": 102,
+    "environment_steps": 388,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 13.203108399990015,
+    "checkpoint": "checkpoint-002.pt"
+  },
+  {
+    "seed": 9001,
+    "swap": 1,
+    "learner_decisions": 150,
+    "environment_steps": 626,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 43.837513699996634,
+    "checkpoint": "checkpoint-002.pt"
+  }
+]

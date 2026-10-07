@@ -1,0 +1,17 @@
+{
+  "initial": {
+    "decisions": 286,
+    "primary_available": 40,
+    "pass_with_primary_available": 29
+  },
+  "ppo2": {
+    "decisions": 252,
+    "primary_available": 34,
+    "pass_with_primary_available": 34
+  },
+  "ppo3": {
+    "decisions": 274,
+    "primary_available": 35,
+    "pass_with_primary_available": 0
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "formal_episodes": 5,
+  "completed": 5,
+  "truncated": 0,
+  "environment_steps": 2771,
+  "commands": 2786,
+  "learner_decisions": 698,
+  "multichoice_decisions": 468,
+  "trace_violations": [],
+  "authority_failures": 0,
+  "all_restore_verified": true,
+  "excluded_transport_probes": 1,
+  "elapsed_seconds": 185.73865520000982,
+  "raw_steps_per_pipeline_second": 14.918811579722547,
+  "learner_steps_per_pipeline_second": 3.757968416689404,
+  "resources": {
+    "process_tree_peak_rss_mib": 524.15625,
+    "system_min_available_mib": 5725.0078125,
+    "process_tree_cpu_seconds": 244.0625,
+    "cpu_percent_of_machine": 8.211999288724627,
+    "sampled_seconds": 185.75143170000229
+  },
+  "checkpoints": {
+    "checkpoint-003.pt": "ccca8dcc5d52bfe037fb25248a74c5e26d3b601f69cd2ce3bba9453e50b20b0d",
+    "initial.pt": "9f8730b38d2316e2b0fbf7edf5552fd5efb9696c25b6f694a5922a562ea91e2e"
+  }
+}

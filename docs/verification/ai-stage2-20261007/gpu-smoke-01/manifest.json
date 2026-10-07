@@ -1,0 +1,39 @@
+{
+  "root": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training",
+  "dotnet": "C:\\Users\\29383\\AppData\\Local\\Goa2V1Toolchain\\dotnet\\dotnet.exe",
+  "output": "artifacts\\ai-training\\gpu-smoke-01",
+  "device": "cuda",
+  "iterations": 2,
+  "rollout": 128,
+  "limit": 900,
+  "seed": 701,
+  "eval_pairs": 1,
+  "max_minutes": 15,
+  "resume": null,
+  "source_commit": "0be8b6a4fd6b23f0174d4f0c3f2118e13dd6ce6a",
+  "source_status": "",
+  "torch_version": "2.5.1+cu118",
+  "python_files": {
+    "bridge.py": "191ac0bdcf67b904d27fe62274761200400e18a3adeb96edb25075d55787b46c",
+    "policy.py": "703d5cd0d7a174078c265f153906df42f080bbfe7d644d25a9a6d0e444d3803e",
+    "resources.py": "1a829e95beb8bee8e4eeef13e7dc16be28326f0bebf90cd2e2fff796c629bf23",
+    "test_trainer.py": "b3e64a463e4ef32012bcfe6bd5331288f221247a3daec7ff20a1500222b6345d",
+    "train.py": "51b383db805c1ec95740690826e16a95b3153c0b5bc75bf8f45ac0eda7989be4"
+  },
+  "opponent_pool": [
+    "simple-v1"
+  ],
+  "gamma": 0.99,
+  "gae_lambda": 0.95,
+  "clip": 0.2,
+  "entropy": 0.01,
+  "lr": 0.0003,
+  "reward": "team-terminal-only-v1",
+  "discount_clock": "learner_decisions",
+  "threads": 2,
+  "seat": "wasp swapped 0/1",
+  "curriculum": "fixed-roster-formal-genesis",
+  "evaluation_seeds": [
+    9001
+  ]
+}

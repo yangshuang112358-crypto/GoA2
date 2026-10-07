@@ -1,0 +1,74 @@
+{
+  "format": 1,
+  "encoder_version": 1,
+  "encoder_signature": "4181ee21cc687c409856f9a440600cc5242d19734725c2ecbf05598be3ae34de",
+  "contract": {
+    "ObservationVersion": 2,
+    "ActionVersion": 1,
+    "EngineVersion": 98,
+    "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+    "RulesVersion": "1.0.0-draft.1",
+    "ContentVersion": "1.0.0",
+    "AuthorityHashes": {
+      "Goa2.Domain": "59d6943fc817ceb43e95a3e6b30d7f7820b90b17770413ace4226ef0cb6db692",
+      "Goa2.Rules": "4f930ee6beaceb9dd14251033006be5988ff04a273a9af55e7514714218268cd",
+      "Goa2.Application": "483fe35d2eeb3db50fa5fd7eb5376b2b28f20f5230641c96b60d7e92ed572498",
+      "Goa2.Infrastructure": "c9169885733e19fbd6ee03a3360e0000f484deda7e5707f0af917559d066cf6d",
+      "Goa2.Ai": "792a7da7129ecb3a2f24ad85489cf515e8641c600497bb71f8ce7264dd198580"
+    },
+    "RuleProfile": {
+      "Id": "victory-v1-life-7-marks-3",
+      "StartingCrystalLife": 7,
+      "VictoryMarksRequired": 3,
+      "TurnsPerRound": 4,
+      "HandSize": 5
+    }
+  },
+  "shape": {
+    "state_dim": 603,
+    "action_dim": 233,
+    "hidden": 64
+  },
+  "config": {
+    "root": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training",
+    "dotnet": "C:\\Users\\29383\\AppData\\Local\\Goa2V1Toolchain\\dotnet\\dotnet.exe",
+    "output": "artifacts\\ai-training\\cpu-resume-01",
+    "device": "cpu",
+    "iterations": 1,
+    "rollout": 128,
+    "limit": 900,
+    "seed": 701,
+    "eval_pairs": 1,
+    "max_minutes": 8,
+    "resume": "artifacts\\ai-training\\cpu-smoke-01\\checkpoint-002.pt",
+    "source_commit": "4514f92c66718f942ee1e0472e52a699e3fcfd66",
+    "source_status": "",
+    "torch_version": "2.5.1+cu118",
+    "python_files": {
+      "bridge.py": "191ac0bdcf67b904d27fe62274761200400e18a3adeb96edb25075d55787b46c",
+      "policy.py": "703d5cd0d7a174078c265f153906df42f080bbfe7d644d25a9a6d0e444d3803e",
+      "resources.py": "1a829e95beb8bee8e4eeef13e7dc16be28326f0bebf90cd2e2fff796c629bf23",
+      "test_trainer.py": "48eb7edae52ad0f23ac8be290c2b8c23136be7bc24fd91accedca5225e67aabc",
+      "train.py": "0a4252908ed9f4574ecbaa9946f641f79020f6cb821217f6111765fa1d39bc6d"
+    },
+    "opponent_pool": [
+      "simple-v1"
+    ],
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip": 0.2,
+    "entropy": 0.01,
+    "lr": 0.0003,
+    "reward": "team-terminal-only-v1",
+    "discount_clock": "learner_decisions",
+    "threads": 2,
+    "seat": "wasp swapped 0/1",
+    "curriculum": "fixed-roster-formal-genesis",
+    "evaluation_seeds": [
+      9001
+    ]
+  },
+  "cursor": 4,
+  "iteration": 2,
+  "metrics": []
+}

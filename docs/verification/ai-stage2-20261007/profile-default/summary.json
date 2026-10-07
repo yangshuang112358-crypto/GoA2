@@ -1,0 +1,111 @@
+{
+  "Games": 2,
+  "Completed": 2,
+  "CompleteRate": 1.0,
+  "TruncationRate": 0.0,
+  "ExceptionRate": 0.0,
+  "IllegalCommandRate": 0.0,
+  "DecisionsPerSecond": 11.595410548148969,
+  "CompleteSeconds": {
+    "P50": 51.52900775,
+    "P90": 82.35149563,
+    "Min": 13.0008979,
+    "Max": 90.0571176
+  },
+  "VerifiedPipelineSeconds": 237.9910931,
+  "VerifiedPipelineDecisionsPerSecond": 5.021195577920369,
+  "AverageCpuPercent": 5.82670138112644,
+  "PeakWorkingSetMiB": 124.7890625,
+  "TeamRewards": [
+    {
+      "Seed": 211,
+      "Swap": 0,
+      "Stop": "terminated",
+      "Blue": -1,
+      "Red": 1
+    },
+    {
+      "Seed": 211,
+      "Swap": 1,
+      "Stop": "terminated",
+      "Blue": 1,
+      "Red": -1
+    }
+  ],
+  "Results": [
+    {
+      "Seed": 211,
+      "Swap": 0,
+      "Decisions": 348,
+      "Commands": 351,
+      "IllegalCommands": 0,
+      "Exceptions": 0,
+      "Stop": "terminated",
+      "Winner": "Red",
+      "Failure": "",
+      "StateHash": "8a64d65add37a3af553bd9a57ee8e6d4c358321960cc49dd8639518fbaa65f9a",
+      "ReplayHash": "8a64d65add37a3af553bd9a57ee8e6d4c358321960cc49dd8639518fbaa65f9a",
+      "Seconds": 13.0008979,
+      "CpuSeconds": 13.859375,
+      "DecisionsPerSecond": 26.76738196674862,
+      "PeakWorkingSetMiB": 91.34765625,
+      "VerificationSeconds": 14.4473662,
+      "RestoreVerified": true,
+      "ScenarioVerified": true,
+      "Choices": {
+        "HeroSelection": 4,
+        "Deployment": 4,
+        "Planning": 164,
+        "Action": 82,
+        "effect_move": 17,
+        "initiative": 5,
+        "effect_target": 12,
+        "attack_target": 20,
+        "placement": 3,
+        "RoundEnd": 18,
+        "round_minion_removal": 8,
+        "defense": 9,
+        "hero_respawn": 1,
+        "optional_discard": 1
+      }
+    },
+    {
+      "Seed": 211,
+      "Swap": 1,
+      "Decisions": 847,
+      "Commands": 850,
+      "IllegalCommands": 0,
+      "Exceptions": 0,
+      "Stop": "terminated",
+      "Winner": "Blue",
+      "Failure": "",
+      "StateHash": "4745f47bf860b066d6b1efb8ed3a2acf70d8434bf8d8ff7442ae96df02dc5abd",
+      "ReplayHash": "4745f47bf860b066d6b1efb8ed3a2acf70d8434bf8d8ff7442ae96df02dc5abd",
+      "Seconds": 90.0571176,
+      "CpuSeconds": 82.21875,
+      "DecisionsPerSecond": 9.40514223164522,
+      "PeakWorkingSetMiB": 124.7890625,
+      "VerificationSeconds": 120.3676336,
+      "RestoreVerified": true,
+      "ScenarioVerified": true,
+      "Choices": {
+        "HeroSelection": 4,
+        "Deployment": 4,
+        "Planning": 394,
+        "Action": 196,
+        "effect_move": 46,
+        "initiative": 19,
+        "effect_target": 43,
+        "attack_target": 45,
+        "placement": 20,
+        "RoundEnd": 32,
+        "round_minion_removal": 14,
+        "defense": 21,
+        "hero_respawn": 1,
+        "minion_return": 3,
+        "primary_option": 4,
+        "forced_discard": 1
+      }
+    }
+  ]
+}

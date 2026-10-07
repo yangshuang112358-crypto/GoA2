@@ -1,0 +1,11 @@
+{
+  "rejected": true,
+  "reason": "incompatible_checkpoint: migrate explicitly and evaluate again",
+  "requested_profile": {
+    "Id": "victory-v1-life-10-marks-4",
+    "StartingCrystalLife": 10,
+    "VictoryMarksRequired": 4,
+    "TurnsPerRound": 4,
+    "HandSize": 5
+  }
+}

@@ -1,0 +1,13 @@
+[
+  {
+    "seed": 9001,
+    "swap": 0,
+    "learner_decisions": 139,
+    "environment_steps": 582,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 39.90827700000955,
+    "checkpoint": "initial.pt"
+  }
+]

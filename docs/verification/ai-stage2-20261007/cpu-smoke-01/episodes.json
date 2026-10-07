@@ -1,0 +1,42 @@
+[
+  {
+    "seed": 701,
+    "swap": 0,
+    "learner_decisions": 96,
+    "environment_steps": 371,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 12.397341699994286
+  },
+  {
+    "seed": 701,
+    "swap": 1,
+    "learner_decisions": 206,
+    "environment_steps": 874,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 96.35672429999977
+  },
+  {
+    "seed": 702,
+    "swap": 0,
+    "learner_decisions": 101,
+    "environment_steps": 406,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 15.65935129999707
+  },
+  {
+    "seed": 702,
+    "swap": 1,
+    "learner_decisions": 82,
+    "environment_steps": 375,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 12.528903999991599
+  }
+]

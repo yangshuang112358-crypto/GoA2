@@ -1,0 +1,11 @@
+test_bad_action_fails_and_preserves_authority (__main__.TrainerTests.test_bad_action_fails_and_preserves_authority) ... ok
+test_candidate_permutation_preserves_logits_by_stable_id (__main__.TrainerTests.test_candidate_permutation_preserves_logits_by_stable_id) ... ok
+test_checkpoint_restores_rng_optimizer_and_rejects_contract (__main__.TrainerTests.test_checkpoint_restores_rng_optimizer_and_rejects_contract) ... ok
+test_explicit_capacity_and_profile_rejection (__main__.TrainerTests.test_explicit_capacity_and_profile_rejection) ... ok
+test_ppo_improves_synthetic_bandit_separate_from_game_strength (__main__.TrainerTests.test_ppo_improves_synthetic_bandit_separate_from_game_strength) ... ok
+test_truncation_bootstraps_and_does_not_cross_reset (__main__.TrainerTests.test_truncation_bootstraps_and_does_not_cross_reset) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 5.480s
+
+OK

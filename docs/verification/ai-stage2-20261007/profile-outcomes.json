@@ -1,0 +1,70 @@
+[
+  {
+    "run": "profile-default",
+    "episode": "ai-211-0",
+    "commands": 351,
+    "reason": "crystal",
+    "marks": [
+      1,
+      1
+    ],
+    "required": 3,
+    "life": [
+      0,
+      7
+    ],
+    "max_level": 5,
+    "purple_players": 0
+  },
+  {
+    "run": "profile-default",
+    "episode": "ai-211-1",
+    "commands": 850,
+    "reason": "frontline_marks",
+    "marks": [
+      3,
+      2
+    ],
+    "required": 3,
+    "life": [
+      7,
+      4
+    ],
+    "max_level": 7,
+    "purple_players": 0
+  },
+  {
+    "run": "profile-life10-marks4",
+    "episode": "ai-211-0",
+    "commands": 418,
+    "reason": "crystal",
+    "marks": [
+      1,
+      2
+    ],
+    "required": 4,
+    "life": [
+      -1,
+      10
+    ],
+    "max_level": 6,
+    "purple_players": 0
+  },
+  {
+    "run": "profile-life10-marks4",
+    "episode": "ai-211-1",
+    "commands": 999,
+    "reason": "frontline_marks",
+    "marks": [
+      4,
+      2
+    ],
+    "required": 4,
+    "life": [
+      10,
+      1
+    ],
+    "max_level": 8,
+    "purple_players": 1
+  }
+]
