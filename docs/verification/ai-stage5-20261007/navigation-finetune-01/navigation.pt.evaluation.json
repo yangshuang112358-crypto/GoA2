@@ -1,0 +1,71 @@
+{
+  "checkpoint_sha256": "4dc17a3ba103886a35df403bb20c159a66a54ee45156c98595cce36ff39ce6fa",
+  "contract": {
+    "ObservationVersion": 3,
+    "ActionVersion": 1,
+    "EngineVersion": 98,
+    "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+    "RulesVersion": "1.0.0-draft.1",
+    "ContentVersion": "1.0.0",
+    "AuthorityHashes": {
+      "Goa2.Domain": "59d6943fc817ceb43e95a3e6b30d7f7820b90b17770413ace4226ef0cb6db692",
+      "Goa2.Rules": "4f930ee6beaceb9dd14251033006be5988ff04a273a9af55e7514714218268cd",
+      "Goa2.Application": "483fe35d2eeb3db50fa5fd7eb5376b2b28f20f5230641c96b60d7e92ed572498",
+      "Goa2.Infrastructure": "c9169885733e19fbd6ee03a3360e0000f484deda7e5707f0af917559d066cf6d",
+      "Goa2.Ai": "2f966bea0b2362e5e1cfae8f809965df50e4143de191feae441de2f95795ff4b"
+    },
+    "RuleProfile": {
+      "Id": "victory-v1-life-7-marks-3",
+      "StartingCrystalLife": 7,
+      "VictoryMarksRequired": 3,
+      "TurnsPerRound": 4,
+      "HandSize": 5
+    }
+  },
+  "results": [
+    {
+      "seed": 31001,
+      "swap": 0,
+      "learner_decisions": 159,
+      "environment_steps": 646,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 51.31508229998872,
+      "checkpoint": "navigation"
+    },
+    {
+      "seed": 31001,
+      "swap": 1,
+      "learner_decisions": 114,
+      "environment_steps": 447,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 20.42529219998687,
+      "checkpoint": "navigation"
+    },
+    {
+      "seed": 31002,
+      "swap": 0,
+      "learner_decisions": 126,
+      "environment_steps": 467,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 23.11431290001201,
+      "checkpoint": "navigation"
+    },
+    {
+      "seed": 31002,
+      "swap": 1,
+      "learner_decisions": 91,
+      "environment_steps": 354,
+      "terminated": true,
+      "truncated": false,
+      "reward": 1,
+      "seconds": 12.611606200007373,
+      "checkpoint": "navigation"
+    }
+  ]
+}

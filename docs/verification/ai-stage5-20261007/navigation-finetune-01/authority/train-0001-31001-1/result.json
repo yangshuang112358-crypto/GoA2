@@ -1,0 +1,9 @@
+{
+  "Stop": "terminated",
+  "Reward": -1,
+  "EnvironmentSteps": 712,
+  "Commands": 715,
+  "Seconds": 63.1038085,
+  "RestoreVerified": true,
+  "Winner": "Blue"
+}

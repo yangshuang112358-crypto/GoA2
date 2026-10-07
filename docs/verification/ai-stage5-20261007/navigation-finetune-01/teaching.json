@@ -1,0 +1,1032 @@
+{
+  "parent": {
+    "train": {
+      "count": 1255,
+      "accuracy": 0.8191235059760956,
+      "macro_accuracy": 0.9312989342836047,
+      "families": {
+        "Planning": {
+          "count": 509,
+          "correct": 365,
+          "probability": 0.6238214833852204,
+          "accuracy": 0.7170923379174853
+        },
+        "Action/BeginPrimary": {
+          "count": 327,
+          "correct": 327,
+          "probability": 0.8606205582618713,
+          "accuracy": 1.0
+        },
+        "defense": {
+          "count": 61,
+          "correct": 61,
+          "probability": 0.9972695395594737,
+          "accuracy": 1.0
+        },
+        "hero_respawn": {
+          "count": 6,
+          "correct": 5,
+          "probability": 0.6957149505615234,
+          "accuracy": 0.8333333333333334
+        },
+        "attack_target": {
+          "count": 15,
+          "correct": 15,
+          "probability": 0.9979726115862528,
+          "accuracy": 1.0
+        },
+        "effect_move": {
+          "count": 81,
+          "correct": 79,
+          "probability": 0.4525239152120955,
+          "accuracy": 0.9753086419753086
+        },
+        "Action/Move": {
+          "count": 191,
+          "correct": 111,
+          "probability": 0.34598414034763086,
+          "accuracy": 0.581151832460733
+        },
+        "forced_discard": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.9999629259109497,
+          "accuracy": 1.0
+        },
+        "Deployment": {
+          "count": 16,
+          "correct": 16,
+          "probability": 0.8032499514520168,
+          "accuracy": 1.0
+        },
+        "placement": {
+          "count": 21,
+          "correct": 21,
+          "probability": 0.623774610105015,
+          "accuracy": 1.0
+        },
+        "effect_target": {
+          "count": 16,
+          "correct": 16,
+          "probability": 0.9989263154566288,
+          "accuracy": 1.0
+        },
+        "optional_discard": {
+          "count": 10,
+          "correct": 10,
+          "probability": 0.9999568998813629,
+          "accuracy": 1.0
+        },
+        "recover_discard": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.9999748468399048,
+          "accuracy": 1.0
+        }
+      },
+      "defense": {
+        "windows": 51,
+        "correct": 51,
+        "mean_probability": 0.997831404209137,
+        "details": [
+          {
+            "group": "combat-defense",
+            "success": true,
+            "probability": 0.9973018169403076
+          },
+          {
+            "group": "counterattack-defense",
+            "success": true,
+            "probability": 0.9999997019767761
+          },
+          {
+            "group": "riposte-victory",
+            "success": true,
+            "probability": 0.9992334842681885
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9939190149307251
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9999854564666748
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9999977946281433
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9996306896209717
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9997715353965759
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9993427991867065
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9995050430297852
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9999730587005615
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9999973773956299
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9995147585868835
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9993442296981812
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9957159161567688
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9973663687705994
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9916324019432068
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9998894929885864
+          },
+          {
+            "group": "binding-gold",
+            "success": true,
+            "probability": 0.9999997615814209
+          },
+          {
+            "group": "blink",
+            "success": true,
+            "probability": 0.9999991655349731
+          },
+          {
+            "group": "blink",
+            "success": true,
+            "probability": 0.9999992251396179
+          },
+          {
+            "group": "blink",
+            "success": true,
+            "probability": 0.9999992251396179
+          },
+          {
+            "group": "blink",
+            "success": true,
+            "probability": 0.9999990463256836
+          },
+          {
+            "group": "boomerang-block",
+            "success": true,
+            "probability": 0.9992298483848572
+          },
+          {
+            "group": "bravecharge-counter",
+            "success": true,
+            "probability": 0.9948880076408386
+          },
+          {
+            "group": "charge-counter",
+            "success": true,
+            "probability": 0.9948679208755493
+          },
+          {
+            "group": "conspiracy",
+            "success": true,
+            "probability": 0.9997109174728394
+          },
+          {
+            "group": "conspiracy",
+            "success": true,
+            "probability": 0.9996945858001709
+          },
+          {
+            "group": "conspiracy",
+            "success": true,
+            "probability": 0.9997109174728394
+          },
+          {
+            "group": "conspiracy",
+            "success": true,
+            "probability": 0.9997109174728394
+          },
+          {
+            "group": "conspiracy",
+            "success": true,
+            "probability": 0.9997109174728394
+          },
+          {
+            "group": "conspiracy",
+            "success": true,
+            "probability": 0.9990372657775879
+          },
+          {
+            "group": "death-grasp",
+            "success": true,
+            "probability": 0.9999997615814209
+          },
+          {
+            "group": "death-grasp",
+            "success": true,
+            "probability": 0.9999998211860657
+          },
+          {
+            "group": "duelist",
+            "success": true,
+            "probability": 0.9913854598999023
+          },
+          {
+            "group": "flashing",
+            "success": true,
+            "probability": 0.9995484352111816
+          },
+          {
+            "group": "flashing",
+            "success": true,
+            "probability": 0.9997052550315857
+          },
+          {
+            "group": "flashing",
+            "success": true,
+            "probability": 0.9997042417526245
+          },
+          {
+            "group": "flashing",
+            "success": true,
+            "probability": 0.9997051358222961
+          },
+          {
+            "group": "flashing",
+            "success": true,
+            "probability": 0.9997050762176514
+          },
+          {
+            "group": "flashing",
+            "success": true,
+            "probability": 0.9997042417526245
+          },
+          {
+            "group": "heavy-weaponry",
+            "success": true,
+            "probability": 0.9946308135986328
+          },
+          {
+            "group": "heavy-weaponry",
+            "success": true,
+            "probability": 0.9999995231628418
+          },
+          {
+            "group": "heavy-weaponry",
+            "success": true,
+            "probability": 0.9936774373054504
+          },
+          {
+            "group": "heavy-weaponry",
+            "success": true,
+            "probability": 0.9946379065513611
+          },
+          {
+            "group": "heavy-weaponry",
+            "success": true,
+            "probability": 0.9946379065513611
+          },
+          {
+            "group": "heavy-weaponry",
+            "success": true,
+            "probability": 0.9946379065513611
+          },
+          {
+            "group": "model-training-1701",
+            "success": true,
+            "probability": 0.9996743202209473
+          },
+          {
+            "group": "model-training-1701",
+            "success": true,
+            "probability": 0.9943966865539551
+          },
+          {
+            "group": "model-training-1701",
+            "success": true,
+            "probability": 0.9966138005256653
+          },
+          {
+            "group": "model-training-1701",
+            "success": true,
+            "probability": 0.9783592224121094
+          }
+        ]
+      }
+    },
+    "holdout": {
+      "count": 514,
+      "accuracy": 0.8190661478599222,
+      "macro_accuracy": 0.9511114779355122,
+      "families": {
+        "Planning": {
+          "count": 233,
+          "correct": 168,
+          "probability": 0.6326520906505475,
+          "accuracy": 0.721030042918455
+        },
+        "Action/BeginPrimary": {
+          "count": 123,
+          "correct": 123,
+          "probability": 0.898914289183733,
+          "accuracy": 1.0
+        },
+        "attack_target": {
+          "count": 9,
+          "correct": 9,
+          "probability": 0.9982531004481845,
+          "accuracy": 1.0
+        },
+        "defense": {
+          "count": 18,
+          "correct": 18,
+          "probability": 0.9927589860227373,
+          "accuracy": 1.0
+        },
+        "Deployment": {
+          "count": 7,
+          "correct": 7,
+          "probability": 0.8048184428896222,
+          "accuracy": 1.0
+        },
+        "Action/Move": {
+          "count": 91,
+          "correct": 63,
+          "probability": 0.3889025723418364,
+          "accuracy": 0.6923076923076923
+        },
+        "effect_move": {
+          "count": 15,
+          "correct": 15,
+          "probability": 0.830141544342041,
+          "accuracy": 1.0
+        },
+        "placement": {
+          "count": 6,
+          "correct": 6,
+          "probability": 0.6894135574499766,
+          "accuracy": 1.0
+        },
+        "effect_target": {
+          "count": 9,
+          "correct": 9,
+          "probability": 0.9990670151180692,
+          "accuracy": 1.0
+        },
+        "minion_spawn": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.5686466693878174,
+          "accuracy": 1.0
+        },
+        "hero_respawn": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.7741230130195618,
+          "accuracy": 1.0
+        },
+        "minion_return": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.5114955902099609,
+          "accuracy": 1.0
+        }
+      },
+      "defense": {
+        "windows": 16,
+        "correct": 16,
+        "mean_probability": 0.9918647557497025,
+        "details": [
+          {
+            "group": "thunder-defense",
+            "success": true,
+            "probability": 0.9946435689926147
+          },
+          {
+            "group": "thunder-defense",
+            "success": true,
+            "probability": 0.9986154437065125
+          },
+          {
+            "group": "pike-defense",
+            "success": true,
+            "probability": 0.9946479201316833
+          },
+          {
+            "group": "legendary-duelist",
+            "success": true,
+            "probability": 0.974168062210083
+          },
+          {
+            "group": "legendary-duelist",
+            "success": true,
+            "probability": 0.9948445558547974
+          },
+          {
+            "group": "legendary-duelist",
+            "success": true,
+            "probability": 0.9771878123283386
+          },
+          {
+            "group": "melee-block",
+            "success": true,
+            "probability": 0.9993579387664795
+          },
+          {
+            "group": "mighty-counter",
+            "success": true,
+            "probability": 0.999258279800415
+          },
+          {
+            "group": "moment",
+            "success": true,
+            "probability": 0.9999921917915344
+          },
+          {
+            "group": "moment",
+            "success": true,
+            "probability": 0.954703688621521
+          },
+          {
+            "group": "moment",
+            "success": true,
+            "probability": 0.991818904876709
+          },
+          {
+            "group": "onward-counter",
+            "success": true,
+            "probability": 0.994882345199585
+          },
+          {
+            "group": "pointblank",
+            "success": true,
+            "probability": 0.9995615482330322
+          },
+          {
+            "group": "pointblank",
+            "success": true,
+            "probability": 0.999565064907074
+          },
+          {
+            "group": "pincer",
+            "success": true,
+            "probability": 0.9984446167945862
+          },
+          {
+            "group": "pincer",
+            "success": true,
+            "probability": 0.9981441497802734
+          }
+        ]
+      }
+    }
+  },
+  "navigation": {
+    "train": {
+      "count": 1255,
+      "accuracy": 0.9370517928286852,
+      "macro_accuracy": 0.9735866752585021,
+      "families": {
+        "Planning": {
+          "count": 509,
+          "correct": 436,
+          "probability": 0.8189547523519496,
+          "accuracy": 0.8565815324165029
+        },
+        "Action/BeginPrimary": {
+          "count": 327,
+          "correct": 327,
+          "probability": 0.7378139271192959,
+          "accuracy": 1.0
+        },
+        "defense": {
+          "count": 61,
+          "correct": 61,
+          "probability": 0.9997048749298346,
+          "accuracy": 1.0
+        },
+        "hero_respawn": {
+          "count": 6,
+          "correct": 5,
+          "probability": 0.7955261717240015,
+          "accuracy": 0.8333333333333334
+        },
+        "attack_target": {
+          "count": 15,
+          "correct": 15,
+          "probability": 0.9999969760576884,
+          "accuracy": 1.0
+        },
+        "effect_move": {
+          "count": 81,
+          "correct": 80,
+          "probability": 0.7171168761488832,
+          "accuracy": 0.9876543209876543
+        },
+        "Action/Move": {
+          "count": 191,
+          "correct": 187,
+          "probability": 0.7516612969533936,
+          "accuracy": 0.9790575916230366
+        },
+        "forced_discard": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.9999998807907104,
+          "accuracy": 1.0
+        },
+        "Deployment": {
+          "count": 16,
+          "correct": 16,
+          "probability": 0.9717391133308411,
+          "accuracy": 1.0
+        },
+        "placement": {
+          "count": 21,
+          "correct": 21,
+          "probability": 0.8428691852660406,
+          "accuracy": 1.0
+        },
+        "effect_target": {
+          "count": 16,
+          "correct": 16,
+          "probability": 0.9999992996454239,
+          "accuracy": 1.0
+        },
+        "optional_discard": {
+          "count": 10,
+          "correct": 10,
+          "probability": 0.9999999821186065,
+          "accuracy": 1.0
+        },
+        "recover_discard": {
+          "count": 1,
+          "correct": 1,
+          "probability": 1.0,
+          "accuracy": 1.0
+        }
+      },
+      "defense": {
+        "windows": 51,
+        "correct": 51,
+        "mean_probability": 0.9999683955136467,
+        "details": [
+          {
+            "group": "combat-defense",
+            "success": true,
+            "probability": 0.9999933242797852
+          },
+          {
+            "group": "counterattack-defense",
+            "success": true,
+            "probability": 0.9999999403953552
+          },
+          {
+            "group": "riposte-victory",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9999936819076538
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9999971985816956
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9999992251396179
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9999999403953552
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.999998927116394
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9999945759773254
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9999974966049194
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9999972581863403
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 0.9999455213546753
+          },
+          {
+            "group": "formal-seed101",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "binding-gold",
+            "success": true,
+            "probability": 0.9999998807907104
+          },
+          {
+            "group": "blink",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "blink",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "blink",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "blink",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "boomerang-block",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "bravecharge-counter",
+            "success": true,
+            "probability": 0.9999961853027344
+          },
+          {
+            "group": "charge-counter",
+            "success": true,
+            "probability": 0.9999963045120239
+          },
+          {
+            "group": "conspiracy",
+            "success": true,
+            "probability": 0.9999995231628418
+          },
+          {
+            "group": "conspiracy",
+            "success": true,
+            "probability": 0.9999988079071045
+          },
+          {
+            "group": "conspiracy",
+            "success": true,
+            "probability": 0.9999995231628418
+          },
+          {
+            "group": "conspiracy",
+            "success": true,
+            "probability": 0.9999995231628418
+          },
+          {
+            "group": "conspiracy",
+            "success": true,
+            "probability": 0.9999995231628418
+          },
+          {
+            "group": "conspiracy",
+            "success": true,
+            "probability": 0.9999991655349731
+          },
+          {
+            "group": "death-grasp",
+            "success": true,
+            "probability": 0.9999998807907104
+          },
+          {
+            "group": "death-grasp",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "duelist",
+            "success": true,
+            "probability": 0.9996273517608643
+          },
+          {
+            "group": "flashing",
+            "success": true,
+            "probability": 0.9999996423721313
+          },
+          {
+            "group": "flashing",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "flashing",
+            "success": true,
+            "probability": 1.0000001192092896
+          },
+          {
+            "group": "flashing",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "flashing",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "flashing",
+            "success": true,
+            "probability": 1.0000001192092896
+          },
+          {
+            "group": "heavy-weaponry",
+            "success": true,
+            "probability": 0.9999747276306152
+          },
+          {
+            "group": "heavy-weaponry",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "heavy-weaponry",
+            "success": true,
+            "probability": 0.999991774559021
+          },
+          {
+            "group": "heavy-weaponry",
+            "success": true,
+            "probability": 0.9999747276306152
+          },
+          {
+            "group": "heavy-weaponry",
+            "success": true,
+            "probability": 0.9999747276306152
+          },
+          {
+            "group": "heavy-weaponry",
+            "success": true,
+            "probability": 0.9999747276306152
+          },
+          {
+            "group": "model-training-1701",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "model-training-1701",
+            "success": true,
+            "probability": 0.9999963045120239
+          },
+          {
+            "group": "model-training-1701",
+            "success": true,
+            "probability": 0.9999990463256836
+          },
+          {
+            "group": "model-training-1701",
+            "success": true,
+            "probability": 0.9989694952964783
+          }
+        ]
+      }
+    },
+    "holdout": {
+      "count": 514,
+      "accuracy": 0.8949416342412452,
+      "macro_accuracy": 0.8977110157367668,
+      "families": {
+        "Planning": {
+          "count": 233,
+          "correct": 180,
+          "probability": 0.7482566894891436,
+          "accuracy": 0.7725321888412017
+        },
+        "Action/BeginPrimary": {
+          "count": 123,
+          "correct": 123,
+          "probability": 0.7995826754628158,
+          "accuracy": 1.0
+        },
+        "attack_target": {
+          "count": 9,
+          "correct": 9,
+          "probability": 0.9999978674782647,
+          "accuracy": 1.0
+        },
+        "defense": {
+          "count": 18,
+          "correct": 18,
+          "probability": 0.9998013973236084,
+          "accuracy": 1.0
+        },
+        "Deployment": {
+          "count": 7,
+          "correct": 7,
+          "probability": 0.9757726107324872,
+          "accuracy": 1.0
+        },
+        "Action/Move": {
+          "count": 91,
+          "correct": 91,
+          "probability": 0.7688817519408006,
+          "accuracy": 1.0
+        },
+        "effect_move": {
+          "count": 15,
+          "correct": 15,
+          "probability": 0.9404769976933797,
+          "accuracy": 1.0
+        },
+        "placement": {
+          "count": 6,
+          "correct": 6,
+          "probability": 0.8867510954538981,
+          "accuracy": 1.0
+        },
+        "effect_target": {
+          "count": 9,
+          "correct": 9,
+          "probability": 0.9999993377261691,
+          "accuracy": 1.0
+        },
+        "minion_spawn": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.7052081227302551,
+          "accuracy": 1.0
+        },
+        "hero_respawn": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.9314067363739014,
+          "accuracy": 1.0
+        },
+        "minion_return": {
+          "count": 1,
+          "correct": 0,
+          "probability": 0.477337121963501,
+          "accuracy": 0.0
+        }
+      },
+      "defense": {
+        "windows": 16,
+        "correct": 16,
+        "mean_probability": 0.9997765757143497,
+        "details": [
+          {
+            "group": "thunder-defense",
+            "success": true,
+            "probability": 0.999968409538269
+          },
+          {
+            "group": "thunder-defense",
+            "success": true,
+            "probability": 1.0000001192092896
+          },
+          {
+            "group": "pike-defense",
+            "success": true,
+            "probability": 0.9999686479568481
+          },
+          {
+            "group": "legendary-duelist",
+            "success": true,
+            "probability": 0.9993096590042114
+          },
+          {
+            "group": "legendary-duelist",
+            "success": true,
+            "probability": 0.9999959468841553
+          },
+          {
+            "group": "legendary-duelist",
+            "success": true,
+            "probability": 0.9996258020401001
+          },
+          {
+            "group": "melee-block",
+            "success": true,
+            "probability": 1.0000001192092896
+          },
+          {
+            "group": "mighty-counter",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "moment",
+            "success": true,
+            "probability": 0.9999999403953552
+          },
+          {
+            "group": "moment",
+            "success": true,
+            "probability": 0.9975614547729492
+          },
+          {
+            "group": "moment",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "onward-counter",
+            "success": true,
+            "probability": 0.9999960660934448
+          },
+          {
+            "group": "pointblank",
+            "success": true,
+            "probability": 1.0
+          },
+          {
+            "group": "pointblank",
+            "success": true,
+            "probability": 1.0000001192092896
+          },
+          {
+            "group": "pincer",
+            "success": true,
+            "probability": 0.9999994039535522
+          },
+          {
+            "group": "pincer",
+            "success": true,
+            "probability": 0.9999995231628418
+          }
+        ]
+      }
+    }
+  }
+}
