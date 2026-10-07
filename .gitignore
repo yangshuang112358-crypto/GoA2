@@ -10,6 +10,7 @@ unity/Assets/StreamingAssets/Goa2Debug.meta
 *.suo
 *.py[cod]
 .venv/
+.venv-ai/
 .env
 .env.*
 !.env.example

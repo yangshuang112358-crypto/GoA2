@@ -14,6 +14,7 @@ namespace Goa2.Ai
         private readonly StableIds ids;
         private readonly StableRandom coin;
         private readonly string episode;
+        private readonly PublicRuleProfile rules;
         private Dictionary<string,Command> intents = new Dictionary<string,Command>();
         private Decision? outstanding;
         public Action<Command,GameView>? Accepted;
@@ -23,12 +24,12 @@ namespace Goa2.Ai
         public Command? LastAttempt { get; private set; }
         public HeadlessEnvironment(ContentCatalog catalog, int seed, string episode)
         {
-            this.episode=episode; ids=new StableIds(catalog); coin=new StableRandom(seed ^ 0x43e19a);
+            this.episode=episode; ids=new StableIds(catalog); rules=PublicRuleProfile.From(catalog); coin=new StableRandom(seed ^ 0x43e19a);
             session=LocalGameFactory.Create(catalog,"scenario:"+episode,new[]{"AI 0","AI 1","AI 2","AI 3"},seed);
         }
         // Test/teaching adapter; authority is still validated by GameSession. Never use a mutated origin as a formal match.
         public HeadlessEnvironment(ContentCatalog catalog, GameSession session, int seed, string episode)
-        { this.session=session; this.episode=episode; ids=new StableIds(catalog); coin=new StableRandom(seed ^ 0x43e19a); }
+        { this.session=session; this.episode=episode; ids=new StableIds(catalog); rules=PublicRuleProfile.From(catalog); coin=new StableRandom(seed ^ 0x43e19a); }
         private Command Intent(GameView v, int seat, CommandKind kind, string value="", int target=-1, Hex at=default, MoveMode mode=MoveMode.Secondary) =>
             new Command { Id=episode+":"+(v.Revision+1), MatchId=v.MatchId, ExpectedRevision=v.Revision, ActorSeat=seat, Kind=kind, Value=value, TargetSeat=target, Destination=at, MoveMode=mode };
         private void Execute(Command command)
@@ -65,7 +66,7 @@ namespace Goa2.Ai
             else if(v.Phase==Phase.Action && v.ActiveSeat.HasValue) seat=v.ActiveSeat.Value;
             else throw new InvalidOperationException("unsupported_decision:"+v.Phase);
             var own=session.View(seat);
-            outstanding=new Decision { Revision=own.Revision, Observation=ObservationProjector.Project(own,seat,ids) };
+            outstanding=new Decision { Revision=own.Revision, Observation=ObservationProjector.Project(own,seat,ids,rules) };
             intents=new Dictionary<string,Command>(StringComparer.Ordinal);
             void Add(CommandKind kind,string value="",int target=-1,Hex at=default,MoveMode mode=MoveMode.Secondary,bool cell=false,bool defense=false)
             {

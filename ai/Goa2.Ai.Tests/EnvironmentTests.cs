@@ -85,6 +85,25 @@ namespace Goa2.Ai.Tests
             Assert.That(Assert.Throws<InvalidOperationException>(()=>env.Next())!.Message,Does.Contain("unsupported_decision:future_mechanic"));
         }
         [Test]
+        public void PublicProfilesAreExplicitImmutableAndRestoreUnderMatchingContentOnly()
+        {
+            var original=Catalog(); var alternate=ProfileCatalog.Load(Root,10,4);
+            Assert.That(alternate.Hash,Is.Not.EqualTo(original.Hash));
+            Assert.That(ProfileCatalog.Load(Root,10,4).Hash,Is.EqualTo(alternate.Hash));
+            var env=new HeadlessEnvironment(alternate,7,"profile"); var d=env.Next()!;
+            Assert.That(d.Observation.Schema,Is.EqualTo(2));
+            Assert.That(d.Observation.Rules.StartingCrystalLife,Is.EqualTo(10));
+            Assert.That(d.Observation.Rules.VictoryMarksRequired,Is.EqualTo(4));
+            Assert.That(d.Observation.BlueCrystal,Is.EqualTo(10));
+            d.Observation.Rules.StartingCrystalLife=100;
+            Assert.That(env.Next()!.Observation.Rules.StartingCrystalLife,Is.EqualTo(10));
+            var save=env.ExportSave(); Assert.That(LocalGameFactory.Restore(alternate,save).ExportSave(),Is.EqualTo(save));
+            Assert.Throws<RuleViolation>(()=>LocalGameFactory.Restore(original,save));
+            Assert.Throws<InvalidDataException>(()=>ArtifactContract.Current(original).RequireCompatible(ArtifactContract.Current(alternate)));
+            Assert.Throws<ArgumentOutOfRangeException>(()=>ProfileCatalog.Load(Root,0,4));
+            Assert.That(Catalog().Hash,Is.EqualTo(original.Hash));
+        }
+        [Test]
         public void IncompatibleDataRulesAndFormatsAreRejected()
         {
             var expected=ArtifactContract.Current(Catalog());

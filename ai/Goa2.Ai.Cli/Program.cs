@@ -36,6 +36,7 @@ namespace Goa2.Ai.Cli
         }
         public static int Main(string[] args)
         {
+            if(args.Length==3 && args[0]=="serve") return TrainingServer.Run(Path.GetFullPath(args[1]),Path.GetFullPath(args[2]));
             if(args.Length==4 && args[0]=="verify")
             {
                 var c=ContentLoader.LoadDirectory(Path.GetFullPath(args[1]));
@@ -45,13 +46,13 @@ namespace Goa2.Ai.Cli
                 if(LocalGameFactory.Restore(c,save).ExportSave()!=save) throw new InvalidDataException("Replay mismatch");
                 Console.WriteLine("Compatible artifact; authoritative replay verified: "+Hash(save)); return 0;
             }
-            if(args.Length!=6) { Console.Error.WriteLine("Usage: <root> <new-output> <seed> <pairs 1..16> <limit 1..9000> <simple-random|random-random|simple-simple>"); return 2; }
+            if(args.Length!=6 && args.Length!=8) { Console.Error.WriteLine("Usage: <root> <new-output> <seed> <pairs 1..16> <limit 1..9000> <simple-random|random-random|simple-simple> [crystal-life victory-marks]"); return 2; }
             var root=Path.GetFullPath(args[0]); var output=Path.GetFullPath(args[1]);
             int seed=int.Parse(args[2]),pairs=int.Parse(args[3]),limit=int.Parse(args[4]); string matchup=args[5];
             if(pairs<1 || pairs>16 || limit<1 || limit>9000 || !new[]{"simple-random","random-random","simple-simple"}.Contains(matchup)) throw new ArgumentException("Invalid run configuration");
             if(Directory.Exists(output) || File.Exists(output)) throw new IOException("Output must be new; previous failures are immutable.");
             Directory.CreateDirectory(output);
-            var catalog=ContentLoader.LoadDirectory(root);
+            var catalog=ProfileCatalog.Load(root,args.Length==8?(int?)int.Parse(args[6]):null,args.Length==8?(int?)int.Parse(args[7]):null,output);
             Write(output,"contract.json",ArtifactContract.Current(catalog));
             Write(output,"manifest.json",new { SourceCommit=Git(root,"rev-parse","HEAD"), SourceStatus=Git(root,"status","--porcelain"),
                 EngineVersion=GameState.CurrentEngineVersion, RulesVersion=catalog.Rules.Version, ContentVersion=catalog.Version, ContentHash=catalog.Hash,

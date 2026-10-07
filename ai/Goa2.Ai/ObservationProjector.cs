@@ -6,11 +6,12 @@ namespace Goa2.Ai
     public static class ObservationProjector
     {
         // Explicit allowlist. Never serialize the application view wholesale.
-        public static Observation Project(GameView own, int seat, StableIds ids)
+        public static Observation Project(GameView own, int seat, StableIds ids, PublicRuleProfile rules)
         {
             ObservedCard Card(CardInstance c) => new ObservedCard { Id=ids.Card(c.CardId), Zone=c.Zone.ToString(), PlayedRound=c.PlayedRound, PlayedTurn=c.PlayedTurn };
             return new Observation
             {
+                Rules=rules.CopyFor(own.VictoryMarksRequired),
                 Seat=seat, Round=own.Round, Turn=own.Turn, Phase=own.Phase.ToString(), Decision=own.Pending?.Kind ?? own.Phase.ToString(),
                 ActiveSeat=own.ActiveSeat, CombatRegion=own.CombatRegion, Coin=own.DecisionCoin.ToString(),
                 BlueCrystal=own.BlueCrystal, RedCrystal=own.RedCrystal, BlueMarks=own.BlueMarks, RedMarks=own.RedMarks,

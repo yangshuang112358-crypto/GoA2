@@ -9,7 +9,8 @@ namespace Goa2.Ai
     // No GameSession, GameState, Command, debug fields, RNG or private event payloads cross this boundary.
     public sealed class Observation
     {
-        public const int Format = 1;
+        public const int Format = 2;
+        public PublicRuleProfile Rules = new PublicRuleProfile();
         public int Schema = Format, Seat, Round, Turn, BlueCrystal, RedCrystal, BlueMarks, RedMarks;
         public string Phase = "", Decision = "", CombatRegion = "", Coin = "";
         public int? ActiveSeat;

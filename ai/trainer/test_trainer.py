@@ -1,0 +1,110 @@
+import copy
+import json
+import os
+from pathlib import Path
+import tempfile
+import unittest
+import torch
+from bridge import Bridge
+from policy import CandidateNetwork, Encoder, advantages, update
+from train import checkpoint, load_checkpoint
+
+ROOT = Path(__file__).resolve().parents[2]
+DOTNET = Path(os.environ["LOCALAPPDATA"]) / "Goa2V1Toolchain/dotnet/dotnet.exe"
+
+
+class TrainerTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        torch.set_num_threads(2)
+        cls.temp = tempfile.TemporaryDirectory()
+        with Bridge(ROOT, DOTNET, Path(cls.temp.name) / "probe") as b:
+            cls.description = b.call(op="describe")
+            cls.reply = b.call(op="reset", seed=19, learner=0, swap=0, limit=1)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.temp.cleanup()
+
+    def test_truncation_bootstraps_and_does_not_cross_reset(self):
+        self.assertTrue(self.reply["Truncated"])
+        self.assertFalse(self.reply["Terminated"])
+        self.assertEqual(self.reply["Reward"], 0)
+        self.assertEqual(self.reply["Decision"]["Observation"]["Seat"], 0)
+        got = advantages([0., 1.], [.5, .2], [.8, 0.], [True, True], gamma=1)
+        self.assertAlmostEqual(got[0], .3); self.assertAlmostEqual(got[1], .8)
+
+    def test_candidate_permutation_preserves_logits_by_stable_id(self):
+        enc = Encoder(self.description)
+        d = copy.deepcopy(self.reply["Decision"])
+        s, a = enc.encode(d)
+        model = CandidateNetwork(len(s), a.shape[1])
+        original, _ = model(s, a)
+        d["Actions"].reverse()
+        s2, a2 = enc.encode(d)
+        reversed_dist, _ = model(s2, a2)
+        self.assertTrue(torch.allclose(original.logits, reversed_dist.logits.flip(0)))
+        self.assertEqual(len(original.probs), len(d["Actions"]))
+
+    def test_explicit_capacity_and_profile_rejection(self):
+        enc = Encoder(self.description)
+        d = copy.deepcopy(self.reply["Decision"])
+        d["Observation"]["Rules"]["VictoryMarksRequired"] += 1
+        with self.assertRaisesRegex(ValueError, "profile"):
+            enc.encode(d)
+        d = copy.deepcopy(self.reply["Decision"])
+        d["Actions"][0]["Value"] = "x" * 65
+        with self.assertRaisesRegex(ValueError, "capacity"):
+            enc.encode(d)
+
+    def test_checkpoint_restores_rng_optimizer_and_rejects_contract(self):
+        enc = Encoder(self.description)
+        s, a = enc.encode(self.reply["Decision"])
+        model = CandidateNetwork(len(s), a.shape[1]); opt = torch.optim.Adam(model.parameters())
+        d, v = model(s, a); (v.square() - d.log_prob(torch.tensor(0))).backward(); opt.step()
+        path = Path(self.temp.name) / "checkpoint.pt"
+        checkpoint(path, model, opt, enc, {}, 1, 1, [])
+        expected = torch.rand(4)
+        restored, data = load_checkpoint(path, enc, "cpu")
+        opt2 = torch.optim.Adam(restored.parameters()); opt2.load_state_dict(data["optimizer"])
+        torch.set_rng_state(data["torch_rng"])
+        self.assertTrue(torch.equal(expected, torch.rand(4)))
+        for net, optimizer in ((model, opt), (restored, opt2)):
+            optimizer.zero_grad(); d, v = net(s, a)
+            (v.square() - d.log_prob(torch.tensor(0))).backward(); optimizer.step()
+        for k, value in model.state_dict().items():
+            self.assertTrue(torch.equal(value, restored.state_dict()[k]))
+        enc.contract = copy.deepcopy(enc.contract); enc.contract["ContentHash"] = "wrong"
+        with self.assertRaisesRegex(ValueError, "incompatible"):
+            load_checkpoint(path, enc, "cpu")
+
+    def test_ppo_improves_synthetic_bandit_separate_from_game_strength(self):
+        torch.manual_seed(321)
+        s, a = torch.zeros(3), torch.eye(2)
+        model = CandidateNetwork(3, 2, hidden=16)
+        opt = torch.optim.Adam(model.parameters(), lr=.01)
+        initial = model(s, a)[0].probs[1].item()
+        for _ in range(12):
+            records = []
+            with torch.no_grad():
+                dist, value = model(s, a)
+                for _ in range(64):
+                    choice = dist.sample()
+                    records.append((s, a, choice.item(), dist.log_prob(choice).item(), 1. if choice == 1 else -1., value.item(), 0., True))
+            update(model, opt, records, "cpu", epochs=3)
+        final = model(s, a)[0].probs[1].item()
+        self.assertGreater(final, .85)
+        self.assertGreater(final, initial + .25)
+
+    def test_bad_action_fails_and_preserves_authority(self):
+        audit = Path(self.temp.name) / "bad"
+        with Bridge(ROOT, DOTNET, audit) as b:
+            reply = b.call(op="reset", seed=19, learner=0, swap=0, limit=50)
+            with self.assertRaisesRegex(RuntimeError, "unknown_action"):
+                b.call(op="step", revision=reply["Decision"]["Revision"], action="invalid")
+        self.assertEqual(len(list(audit.glob("*/failure-save.json"))), 1)
+        self.assertFalse(list(audit.glob("*/result.json")))
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
