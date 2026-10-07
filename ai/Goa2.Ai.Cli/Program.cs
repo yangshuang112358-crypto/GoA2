@@ -37,6 +37,24 @@ namespace Goa2.Ai.Cli
         public static int Main(string[] args)
         {
             if(args.Length==3 && args[0]=="serve") return TrainingServer.Run(Path.GetFullPath(args[1]),Path.GetFullPath(args[2]));
+            if(args.Length==3 && args[0]=="export-replay")
+            {
+                var episode=Path.GetFullPath(args[1]); var destination=Path.GetFullPath(args[2]);
+                if(Directory.Exists(destination)) throw new IOException("Replay output must be new");
+                var c=ContentLoader.LoadDirectory(episode);
+                string saved=File.ReadAllText(Path.Combine(episode,"final-save.json"));
+                if(LocalGameFactory.Restore(c,saved).ExportSave()!=saved) throw new InvalidDataException("Restore mismatch");
+                var definition=ScenarioRunner.Load(File.ReadAllText(Path.Combine(episode,"commands.json")));
+                if(definition.Steps.Count>1000) throw new InvalidDataException("Existing Unity scenario capacity exceeded; full authority log preserved");
+                var runner=new ScenarioRunner(c,definition); while(!runner.Complete) runner.Next();
+                if(!runner.Report.Passed || runner.Session.ExportSave()!=saved) throw new InvalidDataException("Scenario mismatch");
+                Directory.CreateDirectory(destination);
+                Write(destination,"scenario.json",definition); File.WriteAllText(Path.Combine(destination,"final-save.json"),saved);
+                Write(destination,"result.json",new {StateHash=Hash(saved),ScenarioVerified=true,Stop=runner.Session.View(null).Phase==Phase.Finished?"terminated":"truncated"});
+                Write(destination,"scenario-report.json",runner.Report);
+                File.Copy(Path.Combine(episode,"contract.json"),Path.Combine(destination,"contract.json"));
+                Console.WriteLine("Verified replay export: "+Hash(saved)); return 0;
+            }
             if(args.Length==4 && args[0]=="verify")
             {
                 var c=ContentLoader.LoadDirectory(Path.GetFullPath(args[1]));
