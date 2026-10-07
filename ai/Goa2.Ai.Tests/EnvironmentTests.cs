@@ -91,7 +91,7 @@ namespace Goa2.Ai.Tests
             Assert.That(alternate.Hash,Is.Not.EqualTo(original.Hash));
             Assert.That(ProfileCatalog.Load(Root,10,4).Hash,Is.EqualTo(alternate.Hash));
             var env=new HeadlessEnvironment(alternate,7,"profile"); var d=env.Next()!;
-            Assert.That(d.Observation.Schema,Is.EqualTo(2));
+            Assert.That(d.Observation.Schema,Is.EqualTo(3));
             Assert.That(d.Observation.Rules.StartingCrystalLife,Is.EqualTo(10));
             Assert.That(d.Observation.Rules.VictoryMarksRequired,Is.EqualTo(4));
             Assert.That(d.Observation.BlueCrystal,Is.EqualTo(10));

@@ -9,16 +9,24 @@ namespace Goa2.Ai
     // No GameSession, GameState, Command, debug fields, RNG or private event payloads cross this boundary.
     public sealed class Observation
     {
-        public const int Format = 2;
+        public const int Format = 3;
         public PublicRuleProfile Rules = new PublicRuleProfile();
         public int Schema = Format, Seat, Round, Turn, BlueCrystal, RedCrystal, BlueMarks, RedMarks;
         public string Phase = "", Decision = "", CombatRegion = "", Coin = "";
         public int? ActiveSeat;
+        public string CurrentCard = "";
+        public ObservedAttack? Attack;
         public List<ObservedPlayer> Players = new List<ObservedPlayer>();
         public List<ObservedUnit> Units = new List<ObservedUnit>();
         public List<ObservedCard> OwnCards = new List<ObservedCard>();
         public List<ObservedEvent> PublicHistory = new List<ObservedEvent>();
         public List<ObservedEffect> Effects = new List<ObservedEffect>();
+    }
+    public sealed class ObservedAttack
+    {
+        public string Card = "", Target = "";
+        public int Attacker, Defender, Base, Bonus, Support, Guard, Final, TextBonus, UltimateBonus;
+        public bool Ranged, Unblockable;
     }
     public sealed class ObservedPlayer
     {

@@ -8,6 +8,7 @@ import torch
 from bridge import Bridge
 from policy import CandidateNetwork, Encoder, advantages, update
 from train import checkpoint, load_checkpoint
+from curriculum import examples, imitation_loss
 
 ROOT = Path(__file__).resolve().parents[2]
 DOTNET = Path(os.environ["LOCALAPPDATA"]) / "Goa2V1Toolchain/dotnet/dotnet.exe"
@@ -56,6 +57,36 @@ class TrainerTests(unittest.TestCase):
         d["Actions"][0]["Value"] = "x" * 65
         with self.assertRaisesRegex(ValueError, "capacity"):
             enc.encode(d)
+        old = copy.deepcopy(self.description); old["Contract"]["ObservationVersion"] = 2
+        with self.assertRaisesRegex(ValueError, "unsupported"):
+            Encoder(old)
+
+    def test_teaching_groups_cannot_cross_splits_and_tied_labels_are_valid(self):
+        enc = Encoder(self.description); d = self.reply["Decision"]
+        row = dict(Group="one-game", SourceHash="same-source", Split="train", Decision=d, Preferred=[d["Actions"][0]["Id"]])
+        other = dict(row, Split="holdout")
+        path = Path(self.temp.name) / "rows.jsonl"
+        path.write_text(json.dumps(row) + "\n" + json.dumps(other))
+        with self.assertRaisesRegex(ValueError, "leakage"):
+            examples(path, enc)
+        other.update(Group="separate-game", SourceHash="different-source")
+        path.write_text(json.dumps(row) + "\n" + json.dumps(other))
+        rows = examples(path, enc); s, a, _, family = rows["train"][0]
+        model = CandidateNetwork(len(s), a.shape[1])
+        # All tied candidates carry probability one; adding labels never increases the loss.
+        all_tied = (s, a, torch.arange(len(a)), family)
+        self.assertAlmostEqual(imitation_loss(model, all_tied).item(), 0., places=5)
+        self.assertGreater(imitation_loss(model, rows["train"][0]).item(), 0.)
+
+    def test_public_features_respond_to_current_card_attack_and_enemy_equipment(self):
+        enc = Encoder(self.description); d = copy.deepcopy(self.reply["Decision"])
+        original, _ = enc.encode(d)
+        d["Observation"]["CurrentCard"] = enc.card_ids[0]
+        d["Observation"]["Attack"] = dict(Final=8, Attacker=2, Defender=0, Ranged=True)
+        opponent = next(p for p in d["Observation"]["Players"] if p["Seat"] == 1)
+        opponent["Cards"][0]["Zone"] = "Discarded"
+        changed, _ = enc.encode(d)
+        self.assertFalse(torch.equal(original, changed))
 
     def test_checkpoint_restores_rng_optimizer_and_rejects_contract(self):
         enc = Encoder(self.description)

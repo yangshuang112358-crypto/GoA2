@@ -1,0 +1,67 @@
+[
+  {
+    "Split": "train",
+    "Path": "tests/scenarios/combat-defense.json",
+    "Group": "combat-defense"
+  },
+  {
+    "Split": "train",
+    "Path": "tests/scenarios/counterattack-defense.json",
+    "Group": "counterattack-defense"
+  },
+  {
+    "Split": "train",
+    "Path": "tests/scenarios/cloak-move.json",
+    "Group": "cloak-move"
+  },
+  {
+    "Split": "train",
+    "Path": "tests/scenarios/command-move.json",
+    "Group": "command-move"
+  },
+  {
+    "Split": "train",
+    "Path": "tests/scenarios/defensive-counter-pay.json",
+    "Group": "defensive-counter-pay"
+  },
+  {
+    "Split": "train",
+    "Path": "tests/scenarios/riposte-victory.json",
+    "Group": "riposte-victory"
+  },
+  {
+    "Split": "holdout",
+    "Path": "tests/scenarios/thunder-defense.json",
+    "Group": "thunder-defense"
+  },
+  {
+    "Split": "holdout",
+    "Path": "tests/scenarios/phantasm-move.json",
+    "Group": "phantasm-move"
+  },
+  {
+    "Split": "holdout",
+    "Path": "tests/scenarios/pike-defense.json",
+    "Group": "pike-defense"
+  },
+  {
+    "Split": "train",
+    "Path": "ai/teaching/formal-seed101-ai-101-0.json",
+    "Group": "formal-seed101"
+  },
+  {
+    "Split": "holdout",
+    "Path": "ai/teaching/formal-seed102-ai-102-0.json",
+    "Group": "formal-seed102"
+  },
+  {
+    "Split": "train",
+    "Path": "ai/teaching/formal-seed101-ai-101-1.json",
+    "Group": "formal-seed101"
+  },
+  {
+    "Split": "holdout",
+    "Path": "ai/teaching/formal-seed102-ai-102-1.json",
+    "Group": "formal-seed102"
+  }
+]

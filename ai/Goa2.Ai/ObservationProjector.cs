@@ -14,6 +14,13 @@ namespace Goa2.Ai
                 Rules=rules.CopyFor(own.VictoryMarksRequired),
                 Seat=seat, Round=own.Round, Turn=own.Turn, Phase=own.Phase.ToString(), Decision=own.Pending?.Kind ?? own.Phase.ToString(),
                 ActiveSeat=own.ActiveSeat, CombatRegion=own.CombatRegion, Coin=own.DecisionCoin.ToString(),
+                // Only committed/revealed public action facts; never the selected card in authority.
+                CurrentCard=ids.Card(own.ActionSequence.Cards.FirstOrDefault(c=>c.Id==own.ActionSequence.FocusId && !c.Resolved)?.CardId),
+                Attack=own.Attack==null?null:new ObservedAttack { Card=ids.Card(own.Attack.SourceCardId), Target=own.Attack.TargetUnitId,
+                    Attacker=own.Attack.AttackerSeat, Defender=own.Attack.DefenderSeat, Base=own.Attack.BaseAttack,
+                    Bonus=own.Attack.AttackBonus, Support=own.Attack.EnemySupport, Guard=own.Attack.FriendlyGuard,
+                    Final=own.Attack.FinalAttack, TextBonus=own.Attack.CardTextBonus, UltimateBonus=own.Attack.UltimateBonus,
+                    Ranged=own.Attack.Ranged, Unblockable=own.Attack.Unblockable },
                 BlueCrystal=own.BlueCrystal, RedCrystal=own.RedCrystal, BlueMarks=own.BlueMarks, RedMarks=own.RedMarks,
                 OwnCards=own.OwnCards.Select(Card).ToList(),
                 Players=own.Players.Select(p => new ObservedPlayer

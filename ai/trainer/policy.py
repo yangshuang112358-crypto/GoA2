@@ -4,7 +4,7 @@ import json
 import torch
 from torch import nn
 
-ENCODER_VERSION = 1
+ENCODER_VERSION = 2
 PHASES = ["HeroSelection", "Deployment", "Planning", "InitiativeChoice", "Action", "RoundEnd", "EffectChoice", "Finished"]
 ZONES = ["InHand", "Selected", "PlayedUnresolved", "PlayedResolved", "Discarded"]
 KINDS = ["hero", "melee", "ranged", "heavy"]
@@ -13,17 +13,18 @@ KINDS = ["hero", "melee", "ranged", "heavy"]
 class Encoder:
     def __init__(self, description):
         self.contract = description["Contract"]
-        if self.contract["ObservationVersion"] != 2 or self.contract["ActionVersion"] != 1:
+        if self.contract["ObservationVersion"] != 3 or self.contract["ActionVersion"] != 1:
             raise ValueError("unsupported observation/action format")
         self.cards = {c["Id"]: c for c in description["Cards"]}
         self.card_ids = sorted(self.cards)
+        self.families = sorted({c["PrimaryFamily"] for c in self.cards.values()})
         self.kinds = description["ActionKinds"]
         self.cells = {(c["Position"]["X"], c["Position"]["Y"]): c for c in description["Cells"]}
         self.signature = hashlib.sha256(json.dumps(description, sort_keys=True).encode()).hexdigest()
 
     def encode(self, decision):
         o, actions = decision["Observation"], decision["Actions"]
-        if o["Schema"] != 2 or o["Rules"] != self.contract["RuleProfile"]:
+        if o["Schema"] != 3 or o["Rules"] != self.contract["RuleProfile"]:
             raise ValueError("unvalidated rule profile or observation version")
         if o["Phase"] not in PHASES:
             raise ValueError("unknown phase")
@@ -60,6 +61,26 @@ class Encoder:
         if set(own_cards) - set(self.cards) or set(own_cards.values()) - set(ZONES):
             raise ValueError("unknown card or zone")
         f += [float(own_cards.get(c) == z) for c in self.card_ids for z in ZONES]
+        if o["CurrentCard"] and o["CurrentCard"] not in self.cards:
+            raise ValueError("unknown current card")
+        f += [float(o["CurrentCard"] == c) for c in self.card_ids]
+        for same in (True, False):
+            public = [c for p in o["Players"] if p["Seat"] != o["Seat"] and (p["Team"] == team) == same for c in p["Cards"]]
+            if any(c["Id"] not in self.cards or c["Zone"] not in ZONES for c in public):
+                raise ValueError("unknown public card or zone")
+            f += [sum(c["Id"] == cid and c["Zone"] == z for c in public) / max(1, len(o["Players"])) for cid in self.card_ids for z in ZONES]
+        attack = o["Attack"] or {}
+        f += [float(bool(attack)), float(attack.get("Attacker") == o["Seat"]), float(attack.get("Defender") == o["Seat"])]
+        f += [(attack.get(k) or 0) / 10 for k in ("Base", "Bonus", "Support", "Guard", "Final", "TextBonus", "UltimateBonus")]
+        f += [float(attack.get(k, False)) for k in ("Ranged", "Unblockable")]
+        # Geometry of public positions only; legality and attack/defense calculations stay in C#.
+        def distance(p, q):
+            dx, dy = p["X"] - q["X"], p["Y"] - q["Y"]
+            return max(abs(dx), abs(dy), abs(dx + dy))
+        enemies = [u for u in o["Units"] if u["Team"] != team]
+        nonheroes = [u for u in enemies if u["Kind"] != "hero"] or enemies
+        nearest = lambda at, us: min((distance(at, u["Position"]) for u in us), default=40) / 20
+        f += [nearest(pos, enemies), nearest(pos, nonheroes)]
         rows = []
         units = {u["Id"]: u for u in o["Units"]}
         for a in actions:
@@ -76,6 +97,11 @@ class Encoder:
             dst = a["Destination"]
             cell = self.cells.get((dst["X"], dst["Y"])) if a["HasDestination"] else None
             card = self.cards.get(a["Value"], {})
+            row += [float(card.get("PrimaryFamily") == family) for family in self.families]
+            row += [nearest(dst, enemies) if a["HasDestination"] else 0.,
+                    nearest(dst, nonheroes) if a["HasDestination"] else 0.,
+                    distance(dst, pos) / 20 if a["HasDestination"] and self_unit else 0.,
+                    distance(target["Position"], pos) / 20 if target and self_unit else 0.]
             row += [float(a["SuccessfulDefense"]), float(a["ImmediateSkip"]), float(a["HasDestination"]),
                     dst["X"] / 20 if a["HasDestination"] else 0., dst["Y"] / 20 if a["HasDestination"] else 0.,
                     float(a["Mode"] == "Fast"), float(a["Value"] == "skip"),

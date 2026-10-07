@@ -24,6 +24,12 @@ namespace Goa2.Ai
         }
         public string Choose(Observation o,IReadOnlyList<Candidate> actions)
         {
+            var tied=Preferred(o,actions);
+            return tied[random.Next(tied.Count)];
+        }
+        // Public-input teaching labels include ALL equally preferred legal actions.
+        public IReadOnlyList<string> Preferred(Observation o,IReadOnlyList<Candidate> actions)
+        {
             string team=o.Players.Single(p=>p.Seat==o.Seat).Team;
             var enemies=o.Units.Where(u=>u.Team!=team).ToList();
             double Position(Hex at)
@@ -53,8 +59,7 @@ namespace Goa2.Ai
                 return 0;
             }
             double best=actions.Max(Score);
-            var tied=actions.Where(a=>Math.Abs(Score(a)-best)<0.001).ToList();
-            return tied[random.Next(tied.Count)].Id;
+            return actions.Where(a=>Math.Abs(Score(a)-best)<0.001).Select(a=>a.Id).ToList();
         }
     }
 }
