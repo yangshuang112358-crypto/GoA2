@@ -1,0 +1,9 @@
+{
+  "Stop": "truncated",
+  "Reward": 0,
+  "EnvironmentSteps": 903,
+  "Commands": 906,
+  "Seconds": 107.7110168,
+  "RestoreVerified": true,
+  "Winner": null
+}

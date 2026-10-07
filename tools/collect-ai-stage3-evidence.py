@@ -25,7 +25,7 @@ for name in ("teaching-v3-01", "curriculum-v3-01", "curriculum-replay", "unity-c
         raise FileNotFoundError(source)
     for f in sorted(source.rglob("*")):
         if f.is_file():
-            copy(f, target / name / f.relative_to(source), f.suffix in ("jsonl",) or f.name in ("commands.json", "final-save.json") or f.name.endswith("-source.json"))
+            copy(f, target / name / f.relative_to(source), f.suffix == ".jsonl" or f.name in ("commands.json", "final-save.json") or f.name.endswith("-source.json"))
 copy(root / "ai/Goa2.Ai.Tests/TestResults/ai-stage3.trx", target / "ai-stage3.trx")
 files = {str(f.relative_to(target)).replace("\\", "/"): hashlib.sha256(f.read_bytes()).hexdigest()
          for f in sorted(target.rglob("*")) if f.is_file()}

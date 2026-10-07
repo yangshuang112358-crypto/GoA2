@@ -1,0 +1,56 @@
+{
+  "games": 14,
+  "evaluations": 12,
+  "training": 2,
+  "terminated": 11,
+  "truncated": 3,
+  "illegal_commands": 0,
+  "exceptions": 0,
+  "restore_verified": 14,
+  "seconds": 788.2890971000015,
+  "environment_steps": 8989,
+  "commands": 9031,
+  "pipeline_steps_per_second": 11.403176871365082,
+  "completed_game_seconds": {
+    "min": 8.568686700004037,
+    "median": 44.39766260000761,
+    "max": 87.30875440000091
+  },
+  "formal_completed_game_seconds": {
+    "min": 9.909233300000778,
+    "median": 46.38799790000485,
+    "max": 87.30875440000091
+  },
+  "formal_gameplay_seconds_before_restore": {
+    "min": 9.8408608,
+    "median": 46.2840132,
+    "max": 87.0848223
+  },
+  "all_learner_decisions": 2137,
+  "new_ppo_samples": 206,
+  "ppo_samples_per_pipeline_hour": 940.7716061635715,
+  "stages": {
+    "initial": {
+      "wins": 1,
+      "losses": 2,
+      "truncated": 1
+    },
+    "warmup": {
+      "wins": 0,
+      "losses": 3,
+      "truncated": 1
+    },
+    "ppo": {
+      "wins": 0,
+      "losses": 3,
+      "truncated": 1
+    }
+  },
+  "resources": {
+    "process_tree_peak_rss_mib": 797.91015625,
+    "system_min_available_mib": 5605.69140625,
+    "process_tree_cpu_seconds": 961.15625,
+    "cpu_percent_of_machine": 7.620445316733565,
+    "sampled_seconds": 788.3038736999879
+  }
+}

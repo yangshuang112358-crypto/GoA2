@@ -1,0 +1,35 @@
+{
+  "seed": 1701,
+  "device": "cpu",
+  "limit": 900,
+  "rollout": 128,
+  "lr": 0.0003,
+  "threads": 2,
+  "source_commit": "a1b45d1ff4838c2ce4258a1be9b4f5d804afde15",
+  "source_status": "",
+  "python_files": {
+    "bridge.py": "191ac0bdcf67b904d27fe62274761200400e18a3adeb96edb25075d55787b46c",
+    "curriculum.py": "dde62c4117bd84bfb7ded742c34fcfa08358b6ad82fb67e450be136d6c705702",
+    "policy.py": "4eefc4e05a2bf38b43b9d6d9bfac48abd1728b6d46a5b00ccf0e08f945130c85",
+    "resources.py": "1a829e95beb8bee8e4eeef13e7dc16be28326f0bebf90cd2e2fff796c629bf23",
+    "test_trainer.py": "85e69210ee90a16e6e82ed66403ca7deeaccf26193ed7f64a8e6a294682dd373",
+    "train.py": "0a4252908ed9f4574ecbaa9946f641f79020f6cb821217f6111765fa1d39bc6d"
+  },
+  "data_sha256": "7989185d5ae361a958d4f13a09ec74346ac1c92eb922e5a8b685be3401276609",
+  "sources_sha256": "415ef2b9fdc66dcccec2fcf643aa646cd9d95d4f4a7c0dfb38405a1f614136d0",
+  "teacher": "simple-v1 public only; equally preferred labels",
+  "sampling": "uniform decision family then uniform row",
+  "opponent_pool": [
+    "simple-v1"
+  ],
+  "reward": "team-terminal-only-v1",
+  "gamma": 0.99,
+  "gae_lambda": 0.95,
+  "warmup_updates": 200,
+  "eval_seeds": [
+    11001,
+    11002
+  ],
+  "max_minutes": 15,
+  "torch_version": "2.5.1+cu118"
+}

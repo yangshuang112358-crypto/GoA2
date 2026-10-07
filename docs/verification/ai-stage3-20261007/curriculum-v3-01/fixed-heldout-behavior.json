@@ -1,0 +1,20 @@
+{
+  "initial": {
+    "primary_available": 123,
+    "pass_with_primary": 0,
+    "successful_defense_available": 3,
+    "successful_defense_chosen": 0
+  },
+  "warmup": {
+    "primary_available": 123,
+    "pass_with_primary": 0,
+    "successful_defense_available": 3,
+    "successful_defense_chosen": 1
+  },
+  "ppo": {
+    "primary_available": 123,
+    "pass_with_primary": 0,
+    "successful_defense_available": 3,
+    "successful_defense_chosen": 1
+  }
+}

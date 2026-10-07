@@ -1,0 +1,464 @@
+{
+  "initial": {
+    "train": {
+      "count": 713,
+      "accuracy": 0.40953716690042075,
+      "macro_accuracy": 0.5592742352253222,
+      "families": {
+        "Planning": {
+          "count": 299,
+          "correct": 130,
+          "probability": 0.3205565644247476,
+          "accuracy": 0.43478260869565216
+        },
+        "Action": {
+          "count": 297,
+          "correct": 114,
+          "probability": 0.14539046134479872,
+          "accuracy": 0.3838383838383838
+        },
+        "defense": {
+          "count": 22,
+          "correct": 4,
+          "probability": 0.5165203003720804,
+          "accuracy": 0.18181818181818182
+        },
+        "hero_respawn": {
+          "count": 3,
+          "correct": 3,
+          "probability": 0.6112784941991171,
+          "accuracy": 1.0
+        },
+        "attack_target": {
+          "count": 7,
+          "correct": 4,
+          "probability": 0.5009127472128186,
+          "accuracy": 0.5714285714285714
+        },
+        "effect_move": {
+          "count": 48,
+          "correct": 15,
+          "probability": 0.2518167740975817,
+          "accuracy": 0.3125
+        },
+        "forced_discard": {
+          "count": 1,
+          "correct": 0,
+          "probability": 0.7972672581672668,
+          "accuracy": 0.0
+        },
+        "Deployment": {
+          "count": 8,
+          "correct": 6,
+          "probability": 0.583344217389822,
+          "accuracy": 0.75
+        },
+        "placement": {
+          "count": 13,
+          "correct": 1,
+          "probability": 0.3080711571069864,
+          "accuracy": 0.07692307692307693
+        },
+        "effect_target": {
+          "count": 12,
+          "correct": 12,
+          "probability": 0.5861786554257075,
+          "accuracy": 1.0
+        },
+        "optional_discard": {
+          "count": 2,
+          "correct": 2,
+          "probability": 0.7999517023563385,
+          "accuracy": 1.0
+        },
+        "recover_discard": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.6663088798522949,
+          "accuracy": 1.0
+        }
+      }
+    },
+    "holdout": {
+      "count": 495,
+      "accuracy": 0.39191919191919194,
+      "macro_accuracy": 0.5717457585533474,
+      "families": {
+        "Planning": {
+          "count": 233,
+          "correct": 90,
+          "probability": 0.3051766613778127,
+          "accuracy": 0.38626609442060084
+        },
+        "Action": {
+          "count": 214,
+          "correct": 74,
+          "probability": 0.18387393583326,
+          "accuracy": 0.34579439252336447
+        },
+        "attack_target": {
+          "count": 4,
+          "correct": 4,
+          "probability": 0.4203677326440811,
+          "accuracy": 1.0
+        },
+        "defense": {
+          "count": 4,
+          "correct": 0,
+          "probability": 0.44789598509669304,
+          "accuracy": 0.0
+        },
+        "Deployment": {
+          "count": 7,
+          "correct": 6,
+          "probability": 0.5953361093997955,
+          "accuracy": 0.8571428571428571
+        },
+        "effect_move": {
+          "count": 15,
+          "correct": 8,
+          "probability": 0.47593315243721007,
+          "accuracy": 0.5333333333333333
+        },
+        "placement": {
+          "count": 6,
+          "correct": 1,
+          "probability": 0.43606193860371906,
+          "accuracy": 0.16666666666666666
+        },
+        "effect_target": {
+          "count": 9,
+          "correct": 9,
+          "probability": 0.5594579643673367,
+          "accuracy": 1.0
+        },
+        "minion_spawn": {
+          "count": 1,
+          "correct": 0,
+          "probability": 0.49990031123161316,
+          "accuracy": 0.0
+        },
+        "hero_respawn": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.6667324304580688,
+          "accuracy": 1.0
+        },
+        "minion_return": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.5001078248023987,
+          "accuracy": 1.0
+        }
+      }
+    }
+  },
+  "warmup": {
+    "train": {
+      "count": 713,
+      "accuracy": 0.7713884992987378,
+      "macro_accuracy": 0.9032955436940945,
+      "families": {
+        "Planning": {
+          "count": 299,
+          "correct": 233,
+          "probability": 0.4062861250993799,
+          "accuracy": 0.7792642140468228
+        },
+        "Action": {
+          "count": 297,
+          "correct": 214,
+          "probability": 0.21490754527024147,
+          "accuracy": 0.7205387205387206
+        },
+        "defense": {
+          "count": 22,
+          "correct": 22,
+          "probability": 0.7875232750719244,
+          "accuracy": 1.0
+        },
+        "hero_respawn": {
+          "count": 3,
+          "correct": 2,
+          "probability": 0.6250339448451996,
+          "accuracy": 0.6666666666666666
+        },
+        "attack_target": {
+          "count": 7,
+          "correct": 7,
+          "probability": 0.7939813818250384,
+          "accuracy": 1.0
+        },
+        "effect_move": {
+          "count": 48,
+          "correct": 36,
+          "probability": 0.27830198073449236,
+          "accuracy": 0.75
+        },
+        "forced_discard": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.9761433601379395,
+          "accuracy": 1.0
+        },
+        "Deployment": {
+          "count": 8,
+          "correct": 8,
+          "probability": 0.6109142750501633,
+          "accuracy": 1.0
+        },
+        "placement": {
+          "count": 13,
+          "correct": 12,
+          "probability": 0.3558497153795682,
+          "accuracy": 0.9230769230769231
+        },
+        "effect_target": {
+          "count": 12,
+          "correct": 12,
+          "probability": 0.862209697564443,
+          "accuracy": 1.0
+        },
+        "optional_discard": {
+          "count": 2,
+          "correct": 2,
+          "probability": 0.969673752784729,
+          "accuracy": 1.0
+        },
+        "recover_discard": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.9425636529922485,
+          "accuracy": 1.0
+        }
+      }
+    },
+    "holdout": {
+      "count": 495,
+      "accuracy": 0.7494949494949495,
+      "macro_accuracy": 0.8933177995510032,
+      "families": {
+        "Planning": {
+          "count": 233,
+          "correct": 179,
+          "probability": 0.39715416243403767,
+          "accuracy": 0.7682403433476395
+        },
+        "Action": {
+          "count": 214,
+          "correct": 148,
+          "probability": 0.2550115342486963,
+          "accuracy": 0.6915887850467289
+        },
+        "attack_target": {
+          "count": 4,
+          "correct": 4,
+          "probability": 0.7805622220039368,
+          "accuracy": 1.0
+        },
+        "defense": {
+          "count": 4,
+          "correct": 2,
+          "probability": 0.5694112926721573,
+          "accuracy": 0.5
+        },
+        "Deployment": {
+          "count": 7,
+          "correct": 7,
+          "probability": 0.6177046554429191,
+          "accuracy": 1.0
+        },
+        "effect_move": {
+          "count": 15,
+          "correct": 13,
+          "probability": 0.5080268661181132,
+          "accuracy": 0.8666666666666667
+        },
+        "placement": {
+          "count": 6,
+          "correct": 6,
+          "probability": 0.48554518818855286,
+          "accuracy": 1.0
+        },
+        "effect_target": {
+          "count": 9,
+          "correct": 9,
+          "probability": 0.9012573692533705,
+          "accuracy": 1.0
+        },
+        "minion_spawn": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.5028687715530396,
+          "accuracy": 1.0
+        },
+        "hero_respawn": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.6756316423416138,
+          "accuracy": 1.0
+        },
+        "minion_return": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.5047970414161682,
+          "accuracy": 1.0
+        }
+      }
+    }
+  },
+  "ppo": {
+    "train": {
+      "count": 713,
+      "accuracy": 0.7545582047685835,
+      "macro_accuracy": 0.8999510620887432,
+      "families": {
+        "Planning": {
+          "count": 299,
+          "correct": 221,
+          "probability": 0.4007441848516464,
+          "accuracy": 0.7391304347826086
+        },
+        "Action": {
+          "count": 297,
+          "correct": 214,
+          "probability": 0.21102050051833143,
+          "accuracy": 0.7205387205387206
+        },
+        "defense": {
+          "count": 22,
+          "correct": 22,
+          "probability": 0.7948793023824692,
+          "accuracy": 1.0
+        },
+        "hero_respawn": {
+          "count": 3,
+          "correct": 2,
+          "probability": 0.6253227194150289,
+          "accuracy": 0.6666666666666666
+        },
+        "attack_target": {
+          "count": 7,
+          "correct": 7,
+          "probability": 0.793580276625497,
+          "accuracy": 1.0
+        },
+        "effect_move": {
+          "count": 48,
+          "correct": 36,
+          "probability": 0.2783098717530568,
+          "accuracy": 0.75
+        },
+        "forced_discard": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.9766321182250977,
+          "accuracy": 1.0
+        },
+        "Deployment": {
+          "count": 8,
+          "correct": 8,
+          "probability": 0.6089178919792175,
+          "accuracy": 1.0
+        },
+        "placement": {
+          "count": 13,
+          "correct": 12,
+          "probability": 0.35448405605096084,
+          "accuracy": 0.9230769230769231
+        },
+        "effect_target": {
+          "count": 12,
+          "correct": 12,
+          "probability": 0.8631891657908758,
+          "accuracy": 1.0
+        },
+        "optional_discard": {
+          "count": 2,
+          "correct": 2,
+          "probability": 0.9704364538192749,
+          "accuracy": 1.0
+        },
+        "recover_discard": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.9448592066764832,
+          "accuracy": 1.0
+        }
+      }
+    },
+    "holdout": {
+      "count": 495,
+      "accuracy": 0.7333333333333333,
+      "macro_accuracy": 0.890196457373867,
+      "families": {
+        "Planning": {
+          "count": 233,
+          "correct": 171,
+          "probability": 0.39264639917873007,
+          "accuracy": 0.7339055793991416
+        },
+        "Action": {
+          "count": 214,
+          "correct": 148,
+          "probability": 0.25286181718024,
+          "accuracy": 0.6915887850467289
+        },
+        "attack_target": {
+          "count": 4,
+          "correct": 4,
+          "probability": 0.77656589448452,
+          "accuracy": 1.0
+        },
+        "defense": {
+          "count": 4,
+          "correct": 2,
+          "probability": 0.5736577734351158,
+          "accuracy": 0.5
+        },
+        "Deployment": {
+          "count": 7,
+          "correct": 7,
+          "probability": 0.615995066506522,
+          "accuracy": 1.0
+        },
+        "effect_move": {
+          "count": 15,
+          "correct": 13,
+          "probability": 0.5097053706645965,
+          "accuracy": 0.8666666666666667
+        },
+        "placement": {
+          "count": 6,
+          "correct": 6,
+          "probability": 0.48428746064503986,
+          "accuracy": 1.0
+        },
+        "effect_target": {
+          "count": 9,
+          "correct": 9,
+          "probability": 0.9018326467937894,
+          "accuracy": 1.0
+        },
+        "minion_spawn": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.5020529627799988,
+          "accuracy": 1.0
+        },
+        "hero_respawn": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.674290657043457,
+          "accuracy": 1.0
+        },
+        "minion_return": {
+          "count": 1,
+          "correct": 1,
+          "probability": 0.5046981573104858,
+          "accuracy": 1.0
+        }
+      }
+    }
+  }
+}

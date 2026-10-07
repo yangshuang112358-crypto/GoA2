@@ -1,0 +1,134 @@
+[
+  {
+    "seed": 11001,
+    "swap": 0,
+    "learner_decisions": 195,
+    "environment_steps": 786,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 82.50028659999953,
+    "checkpoint": "initial"
+  },
+  {
+    "seed": 11001,
+    "swap": 1,
+    "learner_decisions": 202,
+    "environment_steps": 900,
+    "terminated": false,
+    "truncated": true,
+    "reward": 0,
+    "seconds": 103.07268420000037,
+    "checkpoint": "initial"
+  },
+  {
+    "seed": 11002,
+    "swap": 0,
+    "learner_decisions": 89,
+    "environment_steps": 379,
+    "terminated": true,
+    "truncated": false,
+    "reward": 1,
+    "seconds": 13.820172699997784,
+    "checkpoint": "initial"
+  },
+  {
+    "seed": 11002,
+    "swap": 1,
+    "learner_decisions": 146,
+    "environment_steps": 622,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 46.38799790000485,
+    "checkpoint": "initial"
+  },
+  {
+    "seed": 11001,
+    "swap": 0,
+    "learner_decisions": 172,
+    "environment_steps": 687,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 56.872636599990074,
+    "checkpoint": "warmup"
+  },
+  {
+    "seed": 11001,
+    "swap": 1,
+    "learner_decisions": 210,
+    "environment_steps": 900,
+    "terminated": false,
+    "truncated": true,
+    "reward": 0,
+    "seconds": 103.04912820000027,
+    "checkpoint": "warmup"
+  },
+  {
+    "seed": 11002,
+    "swap": 0,
+    "learner_decisions": 140,
+    "environment_steps": 528,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 30.16215590000502,
+    "checkpoint": "warmup"
+  },
+  {
+    "seed": 11002,
+    "swap": 1,
+    "learner_decisions": 142,
+    "environment_steps": 639,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 48.04788030000054,
+    "checkpoint": "warmup"
+  },
+  {
+    "seed": 11001,
+    "swap": 0,
+    "learner_decisions": 222,
+    "environment_steps": 903,
+    "terminated": false,
+    "truncated": true,
+    "reward": 0,
+    "seconds": 107.88522209999792,
+    "checkpoint": "ppo"
+  },
+  {
+    "seed": 11001,
+    "swap": 1,
+    "learner_decisions": 186,
+    "environment_steps": 831,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 87.30875440000091,
+    "checkpoint": "ppo"
+  },
+  {
+    "seed": 11002,
+    "swap": 0,
+    "learner_decisions": 86,
+    "environment_steps": 332,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 9.909233300000778,
+    "checkpoint": "ppo"
+  },
+  {
+    "seed": 11002,
+    "swap": 1,
+    "learner_decisions": 141,
+    "environment_steps": 619,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 44.39766260000761,
+    "checkpoint": "ppo"
+  }
+]

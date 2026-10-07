@@ -1,0 +1,32 @@
+{
+  "Counts": {
+    "train/Planning": 299,
+    "train/Action": 297,
+    "train/defense": 22,
+    "train/hero_respawn": 3,
+    "train/attack_target": 7,
+    "train/effect_move": 48,
+    "train/forced_discard": 1,
+    "holdout/Planning": 233,
+    "holdout/Action": 214,
+    "holdout/attack_target": 4,
+    "holdout/defense": 4,
+    "train/Deployment": 8,
+    "train/placement": 13,
+    "train/effect_target": 12,
+    "train/optional_discard": 2,
+    "train/recover_discard": 1,
+    "holdout/Deployment": 7,
+    "holdout/effect_move": 15,
+    "holdout/placement": 6,
+    "holdout/effect_target": 9,
+    "holdout/minion_spawn": 1,
+    "holdout/hero_respawn": 1,
+    "holdout/minion_return": 1
+  },
+  "CheckedLabels": 2067,
+  "UninformativeWindows": 869,
+  "FormalEvaluation": false,
+  "Teacher": "simple-v1",
+  "Conclusion": "Imitation targets, not optimal actions or victory labels"
+}

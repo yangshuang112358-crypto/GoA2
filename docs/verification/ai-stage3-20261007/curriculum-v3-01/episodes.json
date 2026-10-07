@@ -1,0 +1,22 @@
+[
+  {
+    "seed": 1701,
+    "swap": 0,
+    "learner_decisions": 75,
+    "environment_steps": 307,
+    "terminated": true,
+    "truncated": false,
+    "reward": 1,
+    "seconds": 8.568686700004037
+  },
+  {
+    "seed": 1701,
+    "swap": 1,
+    "learner_decisions": 131,
+    "environment_steps": 556,
+    "terminated": true,
+    "truncated": false,
+    "reward": -1,
+    "seconds": 34.14930590000586
+  }
+]

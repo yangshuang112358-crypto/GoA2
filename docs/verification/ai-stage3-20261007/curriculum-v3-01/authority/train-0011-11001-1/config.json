@@ -1,0 +1,10 @@
+{
+  "op": "reset",
+  "seed": 11001,
+  "learner": 1,
+  "swap": 1,
+  "limit": 900,
+  "opponent": "simple",
+  "life": 7,
+  "marks": 3
+}
