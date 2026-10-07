@@ -1,5 +1,7 @@
 # Goa2V1 开发约定
 
+2026-10-07 AI选型与输入解释：用户追问为何MLP、GAN等候选及每个输入值。新增docs/development/AI模型选型与逐项输入字典-2026-10-07.md和tools/export-ai-feature-dictionary.py；按实际编码器导出1805状态+242候选=2047坐标字典，含索引/公式/缺省/真实公开例值。明确单隐藏层MLP=Linear→tanh→Linear，GAN/GAIL属于另一训练框架，实体注意力/GNN/记忆为候选未实施；选择64/tanh仅原型起点非架构胜率对照结论。1728卡牌展开维占状态95.7%，不代表信息完整；继续以补齐公开状态和关联为先。本批仅解释/字典/资料核对，无模型修改或训练，main/engine34与Workbench.blend不动。
+
 2026-10-07 AI输入审计：用户追问所有可见决策信息（他人剩余/弃牌、持续效果、紫卡）并要求流程图。确认当前观察3/编码器2不完整：牌区进入网络但队伍汇总；Purple/Effects/PublicHistory/出牌时间/PoisonDefense/ActiveSeat/响应种类未编码；有效与永久属性加成、效果区域/范围/豁免、完整行动队列等尚未完整投影。12项字段变化探针复现3项有编码、9项不可区分，report.complete=false；是已知缺口诊断，非完整性通过。tools/audit-ai-observation.py和技术流程PNG/SVG可重现；入口docs/development/AI可见信息完整性与模型架构-2026-10-07.md，原件docs/verification/ai-observation-audit-20261007。下一步优先版本化白名单与逐角色/单位/效果关联编码、公开/私有不变性及变化测试，不先扩大旧输入训练。旧检查点不能自动加载新格式；本轮只审计/文档/图，无规则/Command/View、网络、存档、GameScreen或模型行为修改，无训练/子代理，main/engine34与Workbench.blend不动。
 
 2026-10-07 AI选牌走位：用户要求手机截图/继续/进度/原理，新增离线Action细分与300批选牌移动监督短试（源码1e15e64，1255训练/514回归，网络/格式/规则不变），未新增PPO。移动63/91→91/91、选牌168/233→180/233、防御16/16保持，但小兵返回1/1→0/1，类别平均95.11%→89.77%；新31001/31002换边父与子均1胜3负，保留实验模型不宣称整体变强。8局全结束0非法/对局异常，331.89秒13.44环境步/秒，峰值579MiB；12Python通过，649命令败局C#与Unity原生重放通过，含原来父胜子负的反例。Windows PowerShell中文JSON解析失败修复为UTF8，另一次重放启动早于导出完成，均在Player启动前失败并记录。入口docs/verification/AI选牌走位短试验收-2026-10-07.md，原件ai-stage5-20261007；手机图文页AI手机查看.md及训练方法详解已同步现有GitHub的feature/ai-training。下一步分析简单教师/兵线保牌与罕见返回，不自动长训；跨规则仍严格拒绝、泉水规则未改。无共享规则/Command/View、网络、存档、GameScreen改动，无子代理，main/engine34、Workbench.blend不动。

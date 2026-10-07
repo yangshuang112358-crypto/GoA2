@@ -6,6 +6,8 @@
 
 [模型流程图 PNG](ai-observation-audit-20261007/current-model.png) · [可放大矢量图 SVG](ai-observation-audit-20261007/current-model.svg) · [输入完整性核对](../development/AI可见信息完整性与模型架构-2026-10-07.md)
 
+[为何选择MLP、GAN等候选与逐项输入详解](../development/AI模型选型与逐项输入字典-2026-10-07.md) · [全部2047项输入字典](ai-feature-dictionary-20261007/features.csv)
+
 注意：当前编码器没有读取持续效果、紫卡身份和公开历史等重要信息，输入完整性未通过；详细核对已调整为后续优先工作。原有合法对局与防御教学改善不证明这些信息已被模型理解。
 
 ## 防御微调前
