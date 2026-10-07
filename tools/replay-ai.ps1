@@ -10,7 +10,7 @@ $ErrorActionPreference='Stop'
 $aiRoot=Split-Path -Parent $PSScriptRoot
 $aiEpisode=(Resolve-Path -LiteralPath $Episode).Path
 $aiPlayer=(Resolve-Path -LiteralPath $Player).Path
-$aiBuild=Get-Content -LiteralPath (Join-Path (Split-Path -Parent $aiPlayer) 'build-info.json') -Raw | ConvertFrom-Json
+$aiBuild=Get-Content -LiteralPath (Join-Path (Split-Path -Parent $aiPlayer) 'build-info.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 if (-not $BuildSourceRoot) { $BuildSourceRoot=$aiRoot }
 $aiNormalized=@()
 $aiTextExtensions=@('.cs','.json','.meta','.asmdef','.shader','.uss','.uxml')
@@ -34,7 +34,7 @@ foreach ($aiFile in $aiBuild.Files) {
 }
 $aiInput=Join-Path $aiEpisode 'scenario.json'
 if (-not (Test-Path -LiteralPath $aiInput)) { throw 'No compatible scenario export (existing Unity scenario limit: 1000 commands). Use authoritative save verification instead.' }
-$aiExpected=Get-Content -LiteralPath (Join-Path $aiEpisode 'result.json') -Raw | ConvertFrom-Json
+$aiExpected=Get-Content -LiteralPath (Join-Path $aiEpisode 'result.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 if (-not $aiExpected.ScenarioVerified) { throw 'C# scenario replay has not passed.' }
 if (-not $Output) { $Output=Join-Path $aiRoot ('artifacts/ai/unity-replay/'+[Guid]::NewGuid().ToString('N')) }
 $Output=[IO.Path]::GetFullPath($Output)
@@ -52,7 +52,7 @@ try {
         if (([DateTime]::UtcNow-$aiStart).TotalSeconds -gt $TimeoutSeconds) { $aiProcess.Kill(); throw 'Unity replay timeout.' }
         Start-Sleep -Milliseconds 250
     }
-    $aiActual=Get-Content -LiteralPath $aiReport -Raw | ConvertFrom-Json
+    $aiActual=Get-Content -LiteralPath $aiReport -Raw -Encoding UTF8 | ConvertFrom-Json
     if ($aiProcess.ExitCode -ne 0 -or -not $aiActual.Passed -or -not $aiActual.Complete -or $aiActual.FinalStateHash -ne $aiExpected.StateHash) { throw 'Unity replay failed or state differs.' }
     $aiEvidence.passed=$true
     Write-Output "Unity replay PASS: $($aiActual.TotalSteps) commands, $($aiActual.FinalStateHash)"
