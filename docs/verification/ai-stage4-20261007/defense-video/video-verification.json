@@ -1,0 +1,18 @@
+{
+  "parent": {
+    "frames": 44,
+    "capture_seconds": 16.449,
+    "checkpoint_sha256": "943ea5489e454451f5a0d8b32e946540f6bdcdef6fcb9c610bb311b546af4d58",
+    "input_equal": true,
+    "unity_visual_passed": true,
+    "state_hash": "eb5f0c2feba8734bfcab24f454dcf7380d2bb360b603ac03cc52d3e84ee82074"
+  },
+  "defense": {
+    "frames": 43,
+    "capture_seconds": 16.282,
+    "checkpoint_sha256": "1d84e78a780a93d27e0e6c8fc4c186ae69941bcb864a4dc706dde717b1e0a1b1",
+    "input_equal": true,
+    "unity_visual_passed": true,
+    "state_hash": "2015db3d50edd61d8b7ae2b2b3b42b162d00866a79df8f52001ae9702f83596f"
+  }
+}

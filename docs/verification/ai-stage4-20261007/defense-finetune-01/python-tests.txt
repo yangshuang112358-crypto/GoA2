@@ -1,0 +1,15 @@
+test_bad_action_fails_and_preserves_authority (__main__.TrainerTests.test_bad_action_fails_and_preserves_authority) ... ok
+test_candidate_permutation_preserves_logits_by_stable_id (__main__.TrainerTests.test_candidate_permutation_preserves_logits_by_stable_id) ... ok
+test_checkpoint_restores_rng_optimizer_and_rejects_contract (__main__.TrainerTests.test_checkpoint_restores_rng_optimizer_and_rejects_contract) ... ok
+test_combined_teaching_rejects_cross_directory_leakage (__main__.TrainerTests.test_combined_teaching_rejects_cross_directory_leakage) ... ok
+test_defense_contrast_gradient_and_permutation (__main__.TrainerTests.test_defense_contrast_gradient_and_permutation) ... ok
+test_explicit_capacity_and_profile_rejection (__main__.TrainerTests.test_explicit_capacity_and_profile_rejection) ... ok
+test_ppo_improves_synthetic_bandit_separate_from_game_strength (__main__.TrainerTests.test_ppo_improves_synthetic_bandit_separate_from_game_strength) ... ok
+test_public_features_respond_to_current_card_attack_and_enemy_equipment (__main__.TrainerTests.test_public_features_respond_to_current_card_attack_and_enemy_equipment) ... ok
+test_teaching_groups_cannot_cross_splits_and_tied_labels_are_valid (__main__.TrainerTests.test_teaching_groups_cannot_cross_splits_and_tied_labels_are_valid) ... ok
+test_truncation_bootstraps_and_does_not_cross_reset (__main__.TrainerTests.test_truncation_bootstraps_and_does_not_cross_reset) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 5.360s
+
+OK

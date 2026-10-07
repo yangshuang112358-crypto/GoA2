@@ -1,0 +1,449 @@
+{
+  "Id": "ai-defense-parent",
+  "Name": "Before: parent policy",
+  "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+  "RulesVersion": "1.0.0-draft.1",
+  "ProtocolVersion": "1.0.0",
+  "FinalStateHash": "eb5f0c2feba8734bfcab24f454dcf7380d2bb360b603ac03cc52d3e84ee82074",
+  "Seed": 42,
+  "TotalSteps": 15,
+  "Complete": true,
+  "Passed": true,
+  "Steps": [
+    {
+      "Number": 1,
+      "Name": "DebugPrepare",
+      "Code": "ok",
+      "StateHash": "70e0bd3783fc57db6623d167bcd7999af362b0926674d2ace14eadb4b85bc6ef",
+      "Phase": "Planning",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 1,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:1",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 0,
+        "ActorSeat": 0,
+        "Kind": 12,
+        "Value": "shargatha,tigerclaw,brogan,wasp",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 2,
+      "Name": "DebugEquipCard",
+      "Code": "ok",
+      "StateHash": "6173362255cef43ca86c4165f876e53dd1d1b1ce5f24b5f26ecf0e518f8d1c65",
+      "Phase": "Planning",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 2,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:2",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 1,
+        "ActorSeat": 0,
+        "Kind": 14,
+        "Value": "shargatha-04-横枪跃马",
+        "TargetSeat": 0,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 3,
+      "Name": "DebugEquipCard",
+      "Code": "ok",
+      "StateHash": "2a496d22117116a1c403ae9f5429659cac0706e87cc1e73c9112c4fa9585678c",
+      "Phase": "Planning",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 3,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:3",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 2,
+        "ActorSeat": 0,
+        "Kind": 14,
+        "Value": "tigerclaw-18-躲闪",
+        "TargetSeat": 1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 4,
+      "Name": "DebugTeleport",
+      "Code": "ok",
+      "StateHash": "80896a60d578ad56a30d8b73493bdbfa088b0b8d946104f5f2a9d4fd23bf6a9b",
+      "Phase": "Planning",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 4,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:4",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 3,
+        "ActorSeat": 0,
+        "Kind": 9,
+        "Value": "hero:0",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 6,
+          "Y": -8
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 5,
+      "Name": "DebugTeleport",
+      "Code": "ok",
+      "StateHash": "88b478b766cd42d83fb096cb46d612a19dacfe67bd18fadd2b0ecd82da272770",
+      "Phase": "Planning",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 5,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:5",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 4,
+        "ActorSeat": 0,
+        "Kind": 9,
+        "Value": "hero:1",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 8,
+          "Y": -9
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 6,
+      "Name": "DebugTeleport",
+      "Code": "ok",
+      "StateHash": "4c96094c7cffcb128adc9539b5e70549cb97cecff9711ba1ef59219dca5c3607",
+      "Phase": "Planning",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 6,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:6",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 5,
+        "ActorSeat": 0,
+        "Kind": 9,
+        "Value": "hero:2",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 5,
+          "Y": -8
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 7,
+      "Name": "DebugTeleport",
+      "Code": "ok",
+      "StateHash": "ea47526459463bd33ba7864233b71da61f3f473bbce63ad8789e2bca34044600",
+      "Phase": "Planning",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 7,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:7",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 6,
+        "ActorSeat": 0,
+        "Kind": 9,
+        "Value": "hero:3",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 6,
+          "Y": -9
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 8,
+      "Name": "DebugTeleport",
+      "Code": "ok",
+      "StateHash": "6679235bf906e0bab43cc8e35a8bbd3ca89ea0ce2bdb424d1a1f620e0cff591b",
+      "Phase": "Planning",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 8,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:8",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 7,
+        "ActorSeat": 0,
+        "Kind": 9,
+        "Value": "minion:-1,-3",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 6,
+          "Y": -6
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 9,
+      "Name": "SelectCard",
+      "Code": "ok",
+      "StateHash": "80d6a7c73058db699231676b44b6917c4ee98ca046b52ac4c9e711fceaeea5a8",
+      "Phase": "Planning",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 9,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:9",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 8,
+        "ActorSeat": 0,
+        "Kind": 2,
+        "Value": "shargatha-04-横枪跃马",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 10,
+      "Name": "SelectCard",
+      "Code": "ok",
+      "StateHash": "2a9a24fa56b14f16d3581c3741df2bece8635a204e57eb1251e153af40a91663",
+      "Phase": "Planning",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 10,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:10",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 9,
+        "ActorSeat": 1,
+        "Kind": 2,
+        "Value": "tigerclaw-07-伺机待发",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 11,
+      "Name": "SelectCard",
+      "Code": "ok",
+      "StateHash": "2049b293b71352f4db4ca82a9bc6899c877a3dfd4072f6b15f0609d5e7b51b60",
+      "Phase": "Planning",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 11,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:11",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 10,
+        "ActorSeat": 2,
+        "Kind": 2,
+        "Value": "brogan-06-铜墙铁壁",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 12,
+      "Name": "SelectCard",
+      "Code": "ok",
+      "StateHash": "126ef55e9e0edb194f3e6058ecc37f3fc14c9b048c8fea4cc7f54277e679bc74",
+      "Phase": "Action",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 12,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:12",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 11,
+        "ActorSeat": 3,
+        "Kind": 2,
+        "Value": "wasp-07-抵挡屏障",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 13,
+      "Name": "BeginPrimary",
+      "Code": "ok",
+      "StateHash": "2278cfced8c1cd86dddbdde5302aec91db45d7a919dbaac17212ceb7ed97243b",
+      "Phase": "EffectChoice",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 13,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:13",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 12,
+        "ActorSeat": 0,
+        "Kind": 23,
+        "Value": "",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 14,
+      "Name": "ChooseAttackTarget",
+      "Code": "ok",
+      "StateHash": "d866d7d72b22d12fe6d58ba1eac132249084cd2301321a7217c23326597f1896",
+      "Phase": "EffectChoice",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 14,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:14",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 13,
+        "ActorSeat": 0,
+        "Kind": 24,
+        "Value": "hero:1",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    },
+    {
+      "Number": 15,
+      "Name": "Before: parent policy",
+      "Code": "ok",
+      "StateHash": "eb5f0c2feba8734bfcab24f454dcf7380d2bb360b603ac03cc52d3e84ee82074",
+      "Phase": "EffectChoice",
+      "Accepted": true,
+      "Duplicate": false,
+      "Passed": true,
+      "Restored": false,
+      "Revision": 15,
+      "Round": 1,
+      "Turn": 1,
+      "Command": {
+        "Id": "ai-defense-parent:15",
+        "MatchId": "scenario:ai-defense-parent",
+        "ExpectedRevision": 14,
+        "ActorSeat": 1,
+        "Kind": 25,
+        "Value": "tigerclaw-02-偷袭",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "MoveMode": 0
+      },
+      "Errors": []
+    }
+  ]
+}

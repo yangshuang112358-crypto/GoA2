@@ -1,0 +1,133 @@
+{
+  "format": 1,
+  "encoder_version": 2,
+  "encoder_signature": "76e25f15d1a58c13656aebe24320f25dc525da1d8c82951bbded33677d323182",
+  "contract": {
+    "ObservationVersion": 3,
+    "ActionVersion": 1,
+    "EngineVersion": 98,
+    "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+    "RulesVersion": "1.0.0-draft.1",
+    "ContentVersion": "1.0.0",
+    "AuthorityHashes": {
+      "Goa2.Domain": "59d6943fc817ceb43e95a3e6b30d7f7820b90b17770413ace4226ef0cb6db692",
+      "Goa2.Rules": "4f930ee6beaceb9dd14251033006be5988ff04a273a9af55e7514714218268cd",
+      "Goa2.Application": "483fe35d2eeb3db50fa5fd7eb5376b2b28f20f5230641c96b60d7e92ed572498",
+      "Goa2.Infrastructure": "c9169885733e19fbd6ee03a3360e0000f484deda7e5707f0af917559d066cf6d",
+      "Goa2.Ai": "2f966bea0b2362e5e1cfae8f809965df50e4143de191feae441de2f95795ff4b"
+    },
+    "RuleProfile": {
+      "Id": "victory-v1-life-7-marks-3",
+      "StartingCrystalLife": 7,
+      "VictoryMarksRequired": 3,
+      "TurnsPerRound": 4,
+      "HandSize": 5
+    }
+  },
+  "shape": {
+    "state_dim": 1805,
+    "action_dim": 242,
+    "hidden": 64
+  },
+  "config": {
+    "source_commit": "accf62313eed2459ff9b3db3e0ba8aa4a7818574",
+    "source_status": "",
+    "python_files": {
+      "bridge.py": "191ac0bdcf67b904d27fe62274761200400e18a3adeb96edb25075d55787b46c",
+      "curriculum.py": "dde62c4117bd84bfb7ded742c34fcfa08358b6ad82fb67e450be136d6c705702",
+      "defense.py": "947f54557b521daf146516b059db85ada477dece1eef6913e1b6e2f298d59ee4",
+      "policy.py": "4eefc4e05a2bf38b43b9d6d9bfac48abd1728b6d46a5b00ccf0e08f945130c85",
+      "resources.py": "1a829e95beb8bee8e4eeef13e7dc16be28326f0bebf90cd2e2fff796c629bf23",
+      "test_trainer.py": "a8f41e31f10cb700f73bc38f0e417ae3a9a0ac21e864f58bbf2e9db15cc89201",
+      "train.py": "0a4252908ed9f4574ecbaa9946f641f79020f6cb821217f6111765fa1d39bc6d"
+    },
+    "data": [
+      {
+        "path": "docs\\verification\\ai-stage3-20261007\\teaching-v3-01",
+        "files": {
+          "contract.json": "e87656fc7171490a587171c32b24132643e6d7ee6c5c1938a04330924b847ed3",
+          "policy.jsonl.gz": "acb7a0ece80b6b00e912c9e41a81cc6286cf45bf6040394d1bd0bea0e0780c7a",
+          "sources.json": "415ef2b9fdc66dcccec2fcf643aa646cd9d95d4f4a7c0dfb38405a1f614136d0"
+        }
+      },
+      {
+        "path": "artifacts\\ai-training\\defense-data-01",
+        "files": {
+          "contract.json": "e87656fc7171490a587171c32b24132643e6d7ee6c5c1938a04330924b847ed3",
+          "policy.jsonl": "773344c786316097c7fc6128fd0c09920d9312c4571b22e126547298a0388abf",
+          "sources.json": "5e6d6bd1b88a5abc6a0f8e291784b35337e3d058d6540bd1239671b4064c9ecb"
+        }
+      },
+      {
+        "path": "artifacts\\ai-training\\model-visited-data-01",
+        "files": {
+          "contract.json": "e87656fc7171490a587171c32b24132643e6d7ee6c5c1938a04330924b847ed3",
+          "policy.jsonl": "22edb5f7396419046e0c67950b134f5171926b2798b696c7a239000da539fc82",
+          "sources.json": "74052fb875ed73d6e14aa34076045c321b45182223a1ad7a0fb10976c6172472"
+        }
+      }
+    ],
+    "parent": "docs\\verification\\ai-stage3-20261007\\curriculum-v3-01\\warmup.pt",
+    "parent_sha256": "06dcabc59f3dabe7dbfe4720f5ae914c1c07dbc2b922cd363ddf9e8f6b5aece8",
+    "initialization": "explicit compatible weight fine-tune; reset optimizer and RNG",
+    "seed": 2701,
+    "updates": 300,
+    "lr": 0.001,
+    "batch": 32,
+    "defense_samples_per_batch": 16,
+    "ranking_margin": 2.0,
+    "objective": "half balanced public-teacher imitation + half successful-defense pairwise ranking",
+    "device": "cpu",
+    "threads": 2,
+    "max_minutes": 15,
+    "eval_seeds": [
+      21001,
+      21002
+    ],
+    "limit": 1200,
+    "opponent_pool": [
+      "simple-v1"
+    ],
+    "torch_version": "2.5.1+cu118",
+    "runtime_override": false,
+    "ppo_updates": 0,
+    "parent_training_config": {
+      "seed": 1701,
+      "device": "cpu",
+      "limit": 900,
+      "rollout": 128,
+      "lr": 0.0003,
+      "threads": 2,
+      "source_commit": "a1b45d1ff4838c2ce4258a1be9b4f5d804afde15",
+      "source_status": "",
+      "python_files": {
+        "bridge.py": "191ac0bdcf67b904d27fe62274761200400e18a3adeb96edb25075d55787b46c",
+        "curriculum.py": "dde62c4117bd84bfb7ded742c34fcfa08358b6ad82fb67e450be136d6c705702",
+        "policy.py": "4eefc4e05a2bf38b43b9d6d9bfac48abd1728b6d46a5b00ccf0e08f945130c85",
+        "resources.py": "1a829e95beb8bee8e4eeef13e7dc16be28326f0bebf90cd2e2fff796c629bf23",
+        "test_trainer.py": "85e69210ee90a16e6e82ed66403ca7deeaccf26193ed7f64a8e6a294682dd373",
+        "train.py": "0a4252908ed9f4574ecbaa9946f641f79020f6cb821217f6111765fa1d39bc6d"
+      },
+      "data_sha256": "7989185d5ae361a958d4f13a09ec74346ac1c92eb922e5a8b685be3401276609",
+      "sources_sha256": "415ef2b9fdc66dcccec2fcf643aa646cd9d95d4f4a7c0dfb38405a1f614136d0",
+      "teacher": "simple-v1 public only; equally preferred labels",
+      "sampling": "uniform decision family then uniform row",
+      "opponent_pool": [
+        "simple-v1"
+      ],
+      "reward": "team-terminal-only-v1",
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "warmup_updates": 200,
+      "eval_seeds": [
+        11001,
+        11002
+      ],
+      "max_minutes": 15,
+      "torch_version": "2.5.1+cu118"
+    }
+  },
+  "cursor": 0,
+  "iteration": 0,
+  "metrics": []
+}

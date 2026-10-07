@@ -1,0 +1,700 @@
+{
+  "checkpoint_sha256": "943ea5489e454451f5a0d8b32e946540f6bdcdef6fcb9c610bb311b546af4d58",
+  "Input": {
+    "Revision": 14,
+    "Observation": {
+      "Rules": {
+        "Id": "victory-v1-life-7-marks-3",
+        "StartingCrystalLife": 7,
+        "VictoryMarksRequired": 3,
+        "TurnsPerRound": 4,
+        "HandSize": 5
+      },
+      "Schema": 3,
+      "Seat": 1,
+      "Round": 1,
+      "Turn": 1,
+      "BlueCrystal": 7,
+      "RedCrystal": 7,
+      "BlueMarks": 0,
+      "RedMarks": 0,
+      "Phase": "EffectChoice",
+      "Decision": "defense",
+      "CombatRegion": "mid",
+      "Coin": "Blue",
+      "ActiveSeat": 0,
+      "CurrentCard": "shargatha-04",
+      "Attack": {
+        "Card": "shargatha-04",
+        "Target": "hero:1",
+        "Attacker": 0,
+        "Defender": 1,
+        "Base": 5,
+        "Bonus": 0,
+        "Support": 0,
+        "Guard": 0,
+        "Final": 5,
+        "TextBonus": 0,
+        "UltimateBonus": 0,
+        "Ranged": true,
+        "Unblockable": false
+      },
+      "Players": [
+        {
+          "Seat": 0,
+          "Level": 1,
+          "Gold": 0,
+          "HandCount": 4,
+          "Team": "Blue",
+          "Hero": "shargatha",
+          "Purple": "",
+          "Confirmed": true,
+          "AwaitingRespawn": false,
+          "Poisoned": false,
+          "PoisonDefense": false,
+          "Petrified": false,
+          "Cards": [
+            {
+              "Id": "shargatha-00",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            },
+            {
+              "Id": "shargatha-04",
+              "Zone": "PlayedUnresolved",
+              "PlayedRound": 1,
+              "PlayedTurn": 1
+            },
+            {
+              "Id": "shargatha-06",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            },
+            {
+              "Id": "shargatha-07",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            },
+            {
+              "Id": "shargatha-13",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            }
+          ]
+        },
+        {
+          "Seat": 1,
+          "Level": 1,
+          "Gold": 0,
+          "HandCount": 4,
+          "Team": "Red",
+          "Hero": "tigerclaw",
+          "Purple": "",
+          "Confirmed": true,
+          "AwaitingRespawn": false,
+          "Poisoned": false,
+          "PoisonDefense": false,
+          "Petrified": false,
+          "Cards": [
+            {
+              "Id": "tigerclaw-00",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            },
+            {
+              "Id": "tigerclaw-02",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            },
+            {
+              "Id": "tigerclaw-07",
+              "Zone": "PlayedUnresolved",
+              "PlayedRound": 1,
+              "PlayedTurn": 1
+            },
+            {
+              "Id": "tigerclaw-08",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            },
+            {
+              "Id": "tigerclaw-18",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            }
+          ]
+        },
+        {
+          "Seat": 2,
+          "Level": 1,
+          "Gold": 0,
+          "HandCount": 4,
+          "Team": "Blue",
+          "Hero": "brogan",
+          "Purple": "",
+          "Confirmed": true,
+          "AwaitingRespawn": false,
+          "Poisoned": false,
+          "PoisonDefense": false,
+          "Petrified": false,
+          "Cards": [
+            {
+              "Id": "brogan-00",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            },
+            {
+              "Id": "brogan-01",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            },
+            {
+              "Id": "brogan-06",
+              "Zone": "PlayedUnresolved",
+              "PlayedRound": 1,
+              "PlayedTurn": 1
+            },
+            {
+              "Id": "brogan-07",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            },
+            {
+              "Id": "brogan-13",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            }
+          ]
+        },
+        {
+          "Seat": 3,
+          "Level": 1,
+          "Gold": 0,
+          "HandCount": 4,
+          "Team": "Red",
+          "Hero": "wasp",
+          "Purple": "",
+          "Confirmed": true,
+          "AwaitingRespawn": false,
+          "Poisoned": false,
+          "PoisonDefense": false,
+          "Petrified": false,
+          "Cards": [
+            {
+              "Id": "wasp-00",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            },
+            {
+              "Id": "wasp-01",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            },
+            {
+              "Id": "wasp-06",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            },
+            {
+              "Id": "wasp-07",
+              "Zone": "PlayedUnresolved",
+              "PlayedRound": 1,
+              "PlayedTurn": 1
+            },
+            {
+              "Id": "wasp-13",
+              "Zone": "InHand",
+              "PlayedRound": null,
+              "PlayedTurn": null
+            }
+          ]
+        }
+      ],
+      "Units": [
+        {
+          "Id": "minion:-1,-3",
+          "Kind": "melee",
+          "Team": "Red",
+          "Seat": null,
+          "Position": {
+            "X": 6,
+            "Y": -6
+          }
+        },
+        {
+          "Id": "minion:1,-1",
+          "Kind": "ranged",
+          "Team": "Red",
+          "Seat": null,
+          "Position": {
+            "X": 1,
+            "Y": -1
+          }
+        },
+        {
+          "Id": "minion:4,-1",
+          "Kind": "melee",
+          "Team": "Red",
+          "Seat": null,
+          "Position": {
+            "X": 4,
+            "Y": -1
+          }
+        },
+        {
+          "Id": "minion:-3,0",
+          "Kind": "heavy",
+          "Team": "Red",
+          "Seat": null,
+          "Position": {
+            "X": -3,
+            "Y": 0
+          }
+        },
+        {
+          "Id": "minion:1,0",
+          "Kind": "melee",
+          "Team": "Blue",
+          "Seat": null,
+          "Position": {
+            "X": 1,
+            "Y": 0
+          }
+        },
+        {
+          "Id": "minion:3,0",
+          "Kind": "melee",
+          "Team": "Red",
+          "Seat": null,
+          "Position": {
+            "X": 3,
+            "Y": 0
+          }
+        },
+        {
+          "Id": "minion:-3,1",
+          "Kind": "melee",
+          "Team": "Blue",
+          "Seat": null,
+          "Position": {
+            "X": -3,
+            "Y": 1
+          }
+        },
+        {
+          "Id": "minion:-1,1",
+          "Kind": "melee",
+          "Team": "Red",
+          "Seat": null,
+          "Position": {
+            "X": -1,
+            "Y": 1
+          }
+        },
+        {
+          "Id": "minion:3,1",
+          "Kind": "heavy",
+          "Team": "Blue",
+          "Seat": null,
+          "Position": {
+            "X": 3,
+            "Y": 1
+          }
+        },
+        {
+          "Id": "minion:-4,2",
+          "Kind": "melee",
+          "Team": "Blue",
+          "Seat": null,
+          "Position": {
+            "X": -4,
+            "Y": 2
+          }
+        },
+        {
+          "Id": "minion:-1,2",
+          "Kind": "ranged",
+          "Team": "Blue",
+          "Seat": null,
+          "Position": {
+            "X": -1,
+            "Y": 2
+          }
+        },
+        {
+          "Id": "minion:1,4",
+          "Kind": "melee",
+          "Team": "Blue",
+          "Seat": null,
+          "Position": {
+            "X": 1,
+            "Y": 4
+          }
+        },
+        {
+          "Id": "hero:0",
+          "Kind": "hero",
+          "Team": "Blue",
+          "Seat": 0,
+          "Position": {
+            "X": 6,
+            "Y": -8
+          }
+        },
+        {
+          "Id": "hero:1",
+          "Kind": "hero",
+          "Team": "Red",
+          "Seat": 1,
+          "Position": {
+            "X": 8,
+            "Y": -9
+          }
+        },
+        {
+          "Id": "hero:2",
+          "Kind": "hero",
+          "Team": "Blue",
+          "Seat": 2,
+          "Position": {
+            "X": 5,
+            "Y": -8
+          }
+        },
+        {
+          "Id": "hero:3",
+          "Kind": "hero",
+          "Team": "Red",
+          "Seat": 3,
+          "Position": {
+            "X": 6,
+            "Y": -9
+          }
+        }
+      ],
+      "OwnCards": [
+        {
+          "Id": "tigerclaw-00",
+          "Zone": "InHand",
+          "PlayedRound": null,
+          "PlayedTurn": null
+        },
+        {
+          "Id": "tigerclaw-02",
+          "Zone": "InHand",
+          "PlayedRound": null,
+          "PlayedTurn": null
+        },
+        {
+          "Id": "tigerclaw-07",
+          "Zone": "PlayedUnresolved",
+          "PlayedRound": 1,
+          "PlayedTurn": 1
+        },
+        {
+          "Id": "tigerclaw-08",
+          "Zone": "InHand",
+          "PlayedRound": null,
+          "PlayedTurn": null
+        },
+        {
+          "Id": "tigerclaw-18",
+          "Zone": "InHand",
+          "PlayedRound": null,
+          "PlayedTurn": null
+        }
+      ],
+      "PublicHistory": [
+        {
+          "Kind": "HeroChosen",
+          "Card": "",
+          "Seat": 0,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "HeroChosen",
+          "Card": "",
+          "Seat": 1,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "HeroChosen",
+          "Card": "",
+          "Seat": 2,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "HeroChosen",
+          "Card": "",
+          "Seat": 3,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "DeploymentStarted",
+          "Card": "",
+          "Seat": null,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "HeroDeployed",
+          "Card": "",
+          "Seat": 0,
+          "From": null,
+          "To": {
+            "X": -8,
+            "Y": 7
+          }
+        },
+        {
+          "Kind": "HeroDeployed",
+          "Card": "",
+          "Seat": 1,
+          "From": null,
+          "To": {
+            "X": 7,
+            "Y": -9
+          }
+        },
+        {
+          "Kind": "HeroDeployed",
+          "Card": "",
+          "Seat": 2,
+          "From": null,
+          "To": {
+            "X": -7,
+            "Y": 8
+          }
+        },
+        {
+          "Kind": "HeroDeployed",
+          "Card": "",
+          "Seat": 3,
+          "From": null,
+          "To": {
+            "X": 7,
+            "Y": -7
+          }
+        },
+        {
+          "Kind": "PlanningStarted",
+          "Card": "",
+          "Seat": null,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "SelectionConfirmed",
+          "Card": "",
+          "Seat": 0,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "SelectionConfirmed",
+          "Card": "",
+          "Seat": 1,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "SelectionConfirmed",
+          "Card": "",
+          "Seat": 2,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "SelectionConfirmed",
+          "Card": "",
+          "Seat": 3,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "CardRevealed",
+          "Card": "shargatha-04",
+          "Seat": 0,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "CardRevealed",
+          "Card": "tigerclaw-07",
+          "Seat": 1,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "CardRevealed",
+          "Card": "brogan-06",
+          "Seat": 2,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "CardRevealed",
+          "Card": "wasp-07",
+          "Seat": 3,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "ActionStarted",
+          "Card": "shargatha-04",
+          "Seat": 0,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "PrimaryActionStarted",
+          "Card": "shargatha-04",
+          "Seat": 0,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "AttackTargetChoiceRequired",
+          "Card": "shargatha-04",
+          "Seat": 0,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "AttackTargetChosen",
+          "Card": "shargatha-04",
+          "Seat": 0,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "AttackDeclared",
+          "Card": "shargatha-04",
+          "Seat": 0,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "AttackCalculated",
+          "Card": "shargatha-04",
+          "Seat": 0,
+          "From": null,
+          "To": null
+        },
+        {
+          "Kind": "DefenseChoiceRequired",
+          "Card": "shargatha-04",
+          "Seat": 1,
+          "From": null,
+          "To": null
+        }
+      ],
+      "Effects": []
+    },
+    "Actions": [
+      {
+        "Id": "DeclineDefense||-1|0|0|Secondary",
+        "Kind": "DeclineDefense",
+        "Value": "",
+        "Mode": "Secondary",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "HasDestination": false,
+        "SuccessfulDefense": false,
+        "ImmediateSkip": false
+      },
+      {
+        "Id": "Defend|tigerclaw-00|-1|0|0|Secondary",
+        "Kind": "Defend",
+        "Value": "tigerclaw-00",
+        "Mode": "Secondary",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "HasDestination": false,
+        "SuccessfulDefense": false,
+        "ImmediateSkip": false
+      },
+      {
+        "Id": "Defend|tigerclaw-02|-1|0|0|Secondary",
+        "Kind": "Defend",
+        "Value": "tigerclaw-02",
+        "Mode": "Secondary",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "HasDestination": false,
+        "SuccessfulDefense": false,
+        "ImmediateSkip": false
+      },
+      {
+        "Id": "Defend|tigerclaw-08|-1|0|0|Secondary",
+        "Kind": "Defend",
+        "Value": "tigerclaw-08",
+        "Mode": "Secondary",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "HasDestination": false,
+        "SuccessfulDefense": false,
+        "ImmediateSkip": false
+      },
+      {
+        "Id": "Defend|tigerclaw-18|-1|0|0|Secondary",
+        "Kind": "Defend",
+        "Value": "tigerclaw-18",
+        "Mode": "Secondary",
+        "TargetSeat": -1,
+        "Destination": {
+          "X": 0,
+          "Y": 0
+        },
+        "HasDestination": false,
+        "SuccessfulDefense": true,
+        "ImmediateSkip": false
+      }
+    ]
+  },
+  "Selected": {
+    "Id": "Defend|tigerclaw-02|-1|0|0|Secondary",
+    "Kind": "Defend",
+    "Value": "tigerclaw-02",
+    "Mode": "Secondary",
+    "TargetSeat": -1,
+    "Destination": {
+      "X": 0,
+      "Y": 0
+    },
+    "HasDestination": false,
+    "SuccessfulDefense": false,
+    "ImmediateSkip": false
+  }
+}

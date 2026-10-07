@@ -1,0 +1,7 @@
+{
+  "Source": "tests/scenarios/pike-defense.json",
+  "Id": "ai-defense-defense",
+  "Name": "After: defense fine-tuning",
+  "Action": "Defend|tigerclaw-18|-1|0|0|Secondary",
+  "Prefix": 14
+}

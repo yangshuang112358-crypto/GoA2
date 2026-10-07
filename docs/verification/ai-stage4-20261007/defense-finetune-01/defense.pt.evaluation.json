@@ -1,0 +1,71 @@
+{
+  "checkpoint_sha256": "1d84e78a780a93d27e0e6c8fc4c186ae69941bcb864a4dc706dde717b1e0a1b1",
+  "contract": {
+    "ObservationVersion": 3,
+    "ActionVersion": 1,
+    "EngineVersion": 98,
+    "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+    "RulesVersion": "1.0.0-draft.1",
+    "ContentVersion": "1.0.0",
+    "AuthorityHashes": {
+      "Goa2.Domain": "59d6943fc817ceb43e95a3e6b30d7f7820b90b17770413ace4226ef0cb6db692",
+      "Goa2.Rules": "4f930ee6beaceb9dd14251033006be5988ff04a273a9af55e7514714218268cd",
+      "Goa2.Application": "483fe35d2eeb3db50fa5fd7eb5376b2b28f20f5230641c96b60d7e92ed572498",
+      "Goa2.Infrastructure": "c9169885733e19fbd6ee03a3360e0000f484deda7e5707f0af917559d066cf6d",
+      "Goa2.Ai": "2f966bea0b2362e5e1cfae8f809965df50e4143de191feae441de2f95795ff4b"
+    },
+    "RuleProfile": {
+      "Id": "victory-v1-life-7-marks-3",
+      "StartingCrystalLife": 7,
+      "VictoryMarksRequired": 3,
+      "TurnsPerRound": 4,
+      "HandSize": 5
+    }
+  },
+  "results": [
+    {
+      "seed": 21001,
+      "swap": 0,
+      "learner_decisions": 166,
+      "environment_steps": 666,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 52.76302489999216,
+      "checkpoint": "defense"
+    },
+    {
+      "seed": 21001,
+      "swap": 1,
+      "learner_decisions": 149,
+      "environment_steps": 601,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 40.966430400003446,
+      "checkpoint": "defense"
+    },
+    {
+      "seed": 21002,
+      "swap": 0,
+      "learner_decisions": 189,
+      "environment_steps": 787,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 79.74050849999185,
+      "checkpoint": "defense"
+    },
+    {
+      "seed": 21002,
+      "swap": 1,
+      "learner_decisions": 119,
+      "environment_steps": 510,
+      "terminated": true,
+      "truncated": false,
+      "reward": 1,
+      "seconds": 27.83511250000447,
+      "checkpoint": "defense"
+    }
+  ]
+}

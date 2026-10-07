@@ -1,0 +1,19 @@
+{
+  "Counts": {
+    "train/Deployment": 8,
+    "train/Planning": 210,
+    "train/Action": 221,
+    "train/effect_move": 33,
+    "train/placement": 8,
+    "train/effect_target": 4,
+    "train/defense": 6,
+    "train/hero_respawn": 3,
+    "train/attack_target": 2,
+    "train/optional_discard": 8
+  },
+  "CheckedLabels": 909,
+  "UninformativeWindows": 352,
+  "FormalEvaluation": false,
+  "Teacher": "simple-v1",
+  "Conclusion": "Imitation targets, not optimal actions or victory labels"
+}

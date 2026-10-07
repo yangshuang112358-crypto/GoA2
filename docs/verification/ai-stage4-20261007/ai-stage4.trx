@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="ced734be-cf07-4863-9575-10f8d85626ad" name="29383@YS_NAILING 2026-10-07 15:50:14" runUser="YS_NAILING\29383" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-07T15:50:14.2670413+08:00" queuing="2026-10-07T15:50:14.2670420+08:00" start="2026-10-07T15:50:09.2027818+08:00" finish="2026-10-07T15:50:20.7672541+08:00" />
+  <TestSettings name="default" id="01652153-2d54-4e45-acfb-f53ea7531b70">
+    <Deployment runDeploymentRoot="29383_YS_NAILING_2026-10-07_15_50_14" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="769f32b4-db7b-495b-af46-6bfe1917a54f" testId="8aed741f-43b3-9613-62a8-08e711922e52" testName="UnknownPendingWindowIsAnExplicitFailure" computerName="YS_NAILING" duration="00:00:00.0059970" startTime="2026-10-07T15:50:20.7085601+08:00" endTime="2026-10-07T15:50:20.7145557+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="769f32b4-db7b-495b-af46-6bfe1917a54f" />
+    <UnitTestResult executionId="a5afadd6-3ea4-4bfc-a196-84daecbe6303" testId="4b8f2532-3e45-40c7-dcc2-4fcfee6ebba3" testName="IncompatibleDataRulesAndFormatsAreRejected" computerName="YS_NAILING" duration="00:00:00.0224870" startTime="2026-10-07T15:50:14.2361308+08:00" endTime="2026-10-07T15:50:14.2586175+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a5afadd6-3ea4-4bfc-a196-84daecbe6303" />
+    <UnitTestResult executionId="cb6f64c1-4f8a-47e0-8092-6c0f5ddf81d8" testId="55ab440b-4c9a-a00c-3e3c-28a367e4cce8" testName="TrueVictoryIsDistinctFromAnExternalStepLimit" computerName="YS_NAILING" duration="00:00:00.0078730" startTime="2026-10-07T15:50:20.7006414+08:00" endTime="2026-10-07T15:50:20.7085132+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cb6f64c1-4f8a-47e0-8092-6c0f5ddf81d8" />
+    <UnitTestResult executionId="e1b92294-7da1-4264-9ca5-349309cadcab" testId="09fecc38-32cb-7aaf-d9cf-1f0e2b62142e" testName="OtherAndTeammateHiddenSelectionsHaveIdenticalObservationsAndCandidates(2)" computerName="YS_NAILING" duration="00:00:00.0199400" startTime="2026-10-07T15:50:14.3063304+08:00" endTime="2026-10-07T15:50:14.3262693+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e1b92294-7da1-4264-9ca5-349309cadcab" />
+    <UnitTestResult executionId="bf071939-4473-4e0a-96d6-bd6e930c46e0" testId="bcd50b78-f541-c329-85cf-dd370005b243" testName="FormalCoinAndPolicyStreamsAreDeterministicAndCoinIsNotAnAction" computerName="YS_NAILING" duration="00:00:04.3997690" startTime="2026-10-07T15:50:09.8344391+08:00" endTime="2026-10-07T15:50:14.2341136+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bf071939-4473-4e0a-96d6-bd6e930c46e0" />
+    <UnitTestResult executionId="c45cdc54-9e81-47ad-8f62-b6d5dc1cfd6f" testId="b5a5a51b-5985-4878-3e8f-95a25fc77c3b" testName="PublicProfilesAreExplicitImmutableAndRestoreUnderMatchingContentOnly" computerName="YS_NAILING" duration="00:00:00.0285200" startTime="2026-10-07T15:50:14.3278260+08:00" endTime="2026-10-07T15:50:14.3563452+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c45cdc54-9e81-47ad-8f62-b6d5dc1cfd6f" />
+    <UnitTestResult executionId="a79e7b8c-ceec-4b70-84a2-6ea180608fba" testId="d4440831-d086-8295-758b-bcea3d4004e0" testName="ResponseWindowsFromRealScenarioPrefixesExposeOnlyAcceptedCandidates" computerName="YS_NAILING" duration="00:00:06.3442330" startTime="2026-10-07T15:50:14.3563748+08:00" endTime="2026-10-07T15:50:20.7006069+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a79e7b8c-ceec-4b70-84a2-6ea180608fba">
+      <Output>
+        <StdOut>{"effect_target/friendly_minion_move":2,"effect_move/target_unit_move":28,"minion_return/finish_card_after_minion_return":2,"effect_target/friendly_minion_repeat":3,"effect_move/strike_through_enemy":2,"defense/resolve_attack":4,"attack_target/attack":1,"effect_move/defense_response_move":3,"card_swap/defense_response_swap":4,"initiative/begin_action":2,"placement/self_placement":3,"effect_move/before_action_move":16,"effect_move/before_action_movement_destination":17,"primary_option/ultimate_attack_repeat":2,"effect_move/card_text_move":6,"discard_attack/discard_attack_card":1,"hero_respawn/begin_action":3,"forced_discard/defense_response":3,"effect_target/card_effect_target":2,"forced_discard/card_forced_payment":5,"effect_target/attack_before_optional_discard":2,"minion_protection/minion_defeat":4,"primary_option/action_minion_battle_offer":2,"action_minion_removal/action_minion_battle":2,"recover_discard/card_recovery":2,"gold_transfer/card_gold_transfer":6,"effect_move/required_straight_if_able":3,"round_minion_removal/round_minion_battle":2,"minion_spawn/frontline_spawns":3,"optional_discard/attack_range":5,"effect_target/attack_before_required_discard":1,"attack_target/repeat_once_different_full":2,"primary_option/protection_or_self_recovery":2}</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="1d995f88-7082-41e3-80e2-a90762a11ee6" testId="251cedb0-6423-f8aa-31cb-df27dcd8074a" testName="OtherAndTeammateHiddenSelectionsHaveIdenticalObservationsAndCandidates(1)" computerName="YS_NAILING" duration="00:00:00.0393330" startTime="2026-10-07T15:50:14.2669590+08:00" endTime="2026-10-07T15:50:14.3062904+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1d995f88-7082-41e3-80e2-a90762a11ee6" />
+    <UnitTestResult executionId="f786256e-a67b-4396-9c7e-b77c7264e2c6" testId="523877a1-d5cc-f253-f74f-91dc83af1504" testName="InputsAreDetachedAndStaleOrUnknownActionsDoNotModifyAuthority" computerName="YS_NAILING" duration="00:00:00.0082230" startTime="2026-10-07T15:50:14.2586699+08:00" endTime="2026-10-07T15:50:14.2668920+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f786256e-a67b-4396-9c7e-b77c7264e2c6" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="FormalCoinAndPolicyStreamsAreDeterministicAndCoinIsNotAnAction" storage="c:\users\29383\documents\studyfile\personal_project\goa2v1-ai-training\ai\goa2.ai.tests\bin\release\net10.0\goa2.ai.tests.dll" id="bcd50b78-f541-c329-85cf-dd370005b243">
+      <Execution id="bf071939-4473-4e0a-96d6-bd6e930c46e0" />
+      <TestMethod codeBase="C:\Users\29383\Documents\StudyFile\personal_project\Goa2V1-ai-training\ai\Goa2.Ai.Tests\bin\Release\net10.0\Goa2.Ai.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Goa2.Ai.Tests.EnvironmentTests" name="FormalCoinAndPolicyStreamsAreDeterministicAndCoinIsNotAnAction" />
+    </UnitTest>
+    <UnitTest name="UnknownPendingWindowIsAnExplicitFailure" storage="c:\users\29383\documents\studyfile\personal_project\goa2v1-ai-training\ai\goa2.ai.tests\bin\release\net10.0\goa2.ai.tests.dll" id="8aed741f-43b3-9613-62a8-08e711922e52">
+      <Execution id="769f32b4-db7b-495b-af46-6bfe1917a54f" />
+      <TestMethod codeBase="C:\Users\29383\Documents\StudyFile\personal_project\Goa2V1-ai-training\ai\Goa2.Ai.Tests\bin\Release\net10.0\Goa2.Ai.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Goa2.Ai.Tests.EnvironmentTests" name="UnknownPendingWindowIsAnExplicitFailure" />
+    </UnitTest>
+    <UnitTest name="TrueVictoryIsDistinctFromAnExternalStepLimit" storage="c:\users\29383\documents\studyfile\personal_project\goa2v1-ai-training\ai\goa2.ai.tests\bin\release\net10.0\goa2.ai.tests.dll" id="55ab440b-4c9a-a00c-3e3c-28a367e4cce8">
+      <Execution id="cb6f64c1-4f8a-47e0-8092-6c0f5ddf81d8" />
+      <TestMethod codeBase="C:\Users\29383\Documents\StudyFile\personal_project\Goa2V1-ai-training\ai\Goa2.Ai.Tests\bin\Release\net10.0\Goa2.Ai.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Goa2.Ai.Tests.EnvironmentTests" name="TrueVictoryIsDistinctFromAnExternalStepLimit" />
+    </UnitTest>
+    <UnitTest name="IncompatibleDataRulesAndFormatsAreRejected" storage="c:\users\29383\documents\studyfile\personal_project\goa2v1-ai-training\ai\goa2.ai.tests\bin\release\net10.0\goa2.ai.tests.dll" id="4b8f2532-3e45-40c7-dcc2-4fcfee6ebba3">
+      <Execution id="a5afadd6-3ea4-4bfc-a196-84daecbe6303" />
+      <TestMethod codeBase="C:\Users\29383\Documents\StudyFile\personal_project\Goa2V1-ai-training\ai\Goa2.Ai.Tests\bin\Release\net10.0\Goa2.Ai.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Goa2.Ai.Tests.EnvironmentTests" name="IncompatibleDataRulesAndFormatsAreRejected" />
+    </UnitTest>
+    <UnitTest name="ResponseWindowsFromRealScenarioPrefixesExposeOnlyAcceptedCandidates" storage="c:\users\29383\documents\studyfile\personal_project\goa2v1-ai-training\ai\goa2.ai.tests\bin\release\net10.0\goa2.ai.tests.dll" id="d4440831-d086-8295-758b-bcea3d4004e0">
+      <Execution id="a79e7b8c-ceec-4b70-84a2-6ea180608fba" />
+      <TestMethod codeBase="C:\Users\29383\Documents\StudyFile\personal_project\Goa2V1-ai-training\ai\Goa2.Ai.Tests\bin\Release\net10.0\Goa2.Ai.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Goa2.Ai.Tests.EnvironmentTests" name="ResponseWindowsFromRealScenarioPrefixesExposeOnlyAcceptedCandidates" />
+    </UnitTest>
+    <UnitTest name="InputsAreDetachedAndStaleOrUnknownActionsDoNotModifyAuthority" storage="c:\users\29383\documents\studyfile\personal_project\goa2v1-ai-training\ai\goa2.ai.tests\bin\release\net10.0\goa2.ai.tests.dll" id="523877a1-d5cc-f253-f74f-91dc83af1504">
+      <Execution id="f786256e-a67b-4396-9c7e-b77c7264e2c6" />
+      <TestMethod codeBase="C:\Users\29383\Documents\StudyFile\personal_project\Goa2V1-ai-training\ai\Goa2.Ai.Tests\bin\Release\net10.0\Goa2.Ai.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Goa2.Ai.Tests.EnvironmentTests" name="InputsAreDetachedAndStaleOrUnknownActionsDoNotModifyAuthority" />
+    </UnitTest>
+    <UnitTest name="PublicProfilesAreExplicitImmutableAndRestoreUnderMatchingContentOnly" storage="c:\users\29383\documents\studyfile\personal_project\goa2v1-ai-training\ai\goa2.ai.tests\bin\release\net10.0\goa2.ai.tests.dll" id="b5a5a51b-5985-4878-3e8f-95a25fc77c3b">
+      <Execution id="c45cdc54-9e81-47ad-8f62-b6d5dc1cfd6f" />
+      <TestMethod codeBase="C:\Users\29383\Documents\StudyFile\personal_project\Goa2V1-ai-training\ai\Goa2.Ai.Tests\bin\Release\net10.0\Goa2.Ai.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Goa2.Ai.Tests.EnvironmentTests" name="PublicProfilesAreExplicitImmutableAndRestoreUnderMatchingContentOnly" />
+    </UnitTest>
+    <UnitTest name="OtherAndTeammateHiddenSelectionsHaveIdenticalObservationsAndCandidates(2)" storage="c:\users\29383\documents\studyfile\personal_project\goa2v1-ai-training\ai\goa2.ai.tests\bin\release\net10.0\goa2.ai.tests.dll" id="09fecc38-32cb-7aaf-d9cf-1f0e2b62142e">
+      <Execution id="e1b92294-7da1-4264-9ca5-349309cadcab" />
+      <TestMethod codeBase="C:\Users\29383\Documents\StudyFile\personal_project\Goa2V1-ai-training\ai\Goa2.Ai.Tests\bin\Release\net10.0\Goa2.Ai.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Goa2.Ai.Tests.EnvironmentTests" name="OtherAndTeammateHiddenSelectionsHaveIdenticalObservationsAndCandidates(2)" />
+    </UnitTest>
+    <UnitTest name="OtherAndTeammateHiddenSelectionsHaveIdenticalObservationsAndCandidates(1)" storage="c:\users\29383\documents\studyfile\personal_project\goa2v1-ai-training\ai\goa2.ai.tests\bin\release\net10.0\goa2.ai.tests.dll" id="251cedb0-6423-f8aa-31cb-df27dcd8074a">
+      <Execution id="1d995f88-7082-41e3-80e2-a90762a11ee6" />
+      <TestMethod codeBase="C:\Users\29383\Documents\StudyFile\personal_project\Goa2V1-ai-training\ai\Goa2.Ai.Tests\bin\Release\net10.0\Goa2.Ai.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Goa2.Ai.Tests.EnvironmentTests" name="OtherAndTeammateHiddenSelectionsHaveIdenticalObservationsAndCandidates(1)" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="8aed741f-43b3-9613-62a8-08e711922e52" executionId="769f32b4-db7b-495b-af46-6bfe1917a54f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4b8f2532-3e45-40c7-dcc2-4fcfee6ebba3" executionId="a5afadd6-3ea4-4bfc-a196-84daecbe6303" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="55ab440b-4c9a-a00c-3e3c-28a367e4cce8" executionId="cb6f64c1-4f8a-47e0-8092-6c0f5ddf81d8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="09fecc38-32cb-7aaf-d9cf-1f0e2b62142e" executionId="e1b92294-7da1-4264-9ca5-349309cadcab" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bcd50b78-f541-c329-85cf-dd370005b243" executionId="bf071939-4473-4e0a-96d6-bd6e930c46e0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b5a5a51b-5985-4878-3e8f-95a25fc77c3b" executionId="c45cdc54-9e81-47ad-8f62-b6d5dc1cfd6f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d4440831-d086-8295-758b-bcea3d4004e0" executionId="a79e7b8c-ceec-4b70-84a2-6ea180608fba" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="251cedb0-6423-f8aa-31cb-df27dcd8074a" executionId="1d995f88-7082-41e3-80e2-a90762a11ee6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="523877a1-d5cc-f253-f74f-91dc83af1504" executionId="f786256e-a67b-4396-9c7e-b77c7264e2c6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="9" executed="9" passed="9" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 4.6.0.0: Test execution started&#xD;
+Running all tests in C:\Users\29383\Documents\StudyFile\personal_project\Goa2V1-ai-training\ai\Goa2.Ai.Tests\bin\Release\net10.0\Goa2.Ai.Tests.dll&#xD;
+   NUnit3TestExecutor discovered 9 of 9 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+{"effect_target/friendly_minion_move":2,"effect_move/target_unit_move":28,"minion_return/finish_card_after_minion_return":2,"effect_target/friendly_minion_repeat":3,"effect_move/strike_through_enemy":2,"defense/resolve_attack":4,"attack_target/attack":1,"effect_move/defense_response_move":3,"card_swap/defense_response_swap":4,"initiative/begin_action":2,"placement/self_placement":3,"effect_move/before_action_move":16,"effect_move/before_action_movement_destination":17,"primary_option/ultimate_attack_repeat":2,"effect_move/card_text_move":6,"discard_attack/discard_attack_card":1,"hero_respawn/begin_action":3,"forced_discard/defense_response":3,"effect_target/card_effect_target":2,"forced_discard/card_forced_payment":5,"effect_target/attack_before_optional_discard":2,"minion_protection/minion_defeat":4,"primary_option/action_minion_battle_offer":2,"action_minion_removal/action_minion_battle":2,"recover_discard/card_recovery":2,"gold_transfer/card_gold_transfer":6,"effect_move/required_straight_if_able":3,"round_minion_removal/round_minion_battle":2,"minion_spawn/frontline_spawns":3,"optional_discard/attack_range":5,"effect_target/attack_before_required_discard":1,"attack_target/repeat_once_different_full":2,"primary_option/protection_or_self_recovery":2}&#xD;
+&#xD;
+NUnit Adapter 4.6.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

@@ -1,0 +1,7 @@
+{
+  "Source": "tests/scenarios/pike-defense.json",
+  "Id": "ai-defense-parent",
+  "Name": "Before: parent policy",
+  "Prefix": 14,
+  "Action": "Defend|tigerclaw-02|-1|0|0|Secondary"
+}

@@ -1,0 +1,32 @@
+Mono path[0] = 'C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/artifacts/player/Goa2V1_Data/Managed'
+Mono config path = 'C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/artifacts/player/MonoBleedingEdge/etc'
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Initialize engine version: 6000.3.23f1 (09d2ecc7fb28)
+[Subsystems] Discovering subsystems at path C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/artifacts/player/Goa2V1_Data/UnitySubsystems
+GfxDevice: creating device client; kGfxThreadingModeClientWorkerJobs
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3070 Laptop GPU (ID=0x249d)
+    Vendor:   NVIDIA
+    VRAM:     8044 MB
+    Driver:   30.0.14.7151
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.115 seconds
+- Finished resetting the current domain, in  0.002 seconds
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+<RI> Initializing input.
+<RI> Input initialized.
+UnloadTime: 0.836400 ms
+GOA2_SCENARIO_PASS ai-defense-parent eb5f0c2feba8734bfcab24f454dcf7380d2bb360b603ac03cc52d3e84ee82074
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.

@@ -1,0 +1,13 @@
+{
+  "Counts": {
+    "train/defense": 33,
+    "train/attack_target": 6,
+    "holdout/defense": 14,
+    "holdout/attack_target": 5
+  },
+  "CheckedLabels": 117,
+  "UninformativeWindows": 33,
+  "FormalEvaluation": false,
+  "Teacher": "simple-v1",
+  "Conclusion": "Imitation targets, not optimal actions or victory labels"
+}

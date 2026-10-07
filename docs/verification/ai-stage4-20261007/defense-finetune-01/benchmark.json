@@ -1,0 +1,41 @@
+{
+  "seconds": 508.21209899999667,
+  "environment_steps": 5501,
+  "steps_per_second": 10.824220853506354,
+  "games": 8,
+  "illegal_commands": 0,
+  "exceptions": 0,
+  "restore_verified": 8,
+  "completed_seconds": {
+    "min": 27.7534454,
+    "median": 47.04625825,
+    "max": 129.2504727
+  },
+  "stages": {
+    "parent": {
+      "wins": 0,
+      "losses": 4,
+      "truncated": 0,
+      "terminated": 4,
+      "primary_available": 65,
+      "pass_with_primary": 0
+    },
+    "defense": {
+      "wins": 1,
+      "losses": 3,
+      "truncated": 0,
+      "terminated": 4,
+      "primary_available": 46,
+      "pass_with_primary": 0,
+      "defense_opportunities": 2,
+      "successful_defense_selected": 2
+    }
+  },
+  "resources": {
+    "process_tree_peak_rss_mib": 600.7890625,
+    "system_min_available_mib": 5806.76953125,
+    "process_tree_cpu_seconds": 627.203125,
+    "cpu_percent_of_machine": 7.713104129892339,
+    "sampled_seconds": 508.2285244999948
+  }
+}

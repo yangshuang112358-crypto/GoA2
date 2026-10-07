@@ -1,0 +1,12 @@
+[
+  {
+    "Path": "docs/verification/ai-stage3-20261007/curriculum-v3-01/authority/train-0008-1701-0/commands.json.gz",
+    "Group": "model-training-1701",
+    "Split": "train"
+  },
+  {
+    "Path": "docs/verification/ai-stage3-20261007/curriculum-v3-01/authority/train-0009-1701-1/commands.json.gz",
+    "Group": "model-training-1701",
+    "Split": "train"
+  }
+]
