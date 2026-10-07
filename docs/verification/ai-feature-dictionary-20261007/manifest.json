@@ -1,0 +1,157 @@
+{
+  "source_commit": "bbc2651b1beba3e237db3b15c73b58a598e872e7",
+  "encoder_version": 2,
+  "observation_version": 3,
+  "state_dimensions": 1805,
+  "candidate_dimensions": 242,
+  "candidate_example_id": "SelectCard|sabina-00|-1|0|0|Secondary",
+  "blocks": [
+    {
+      "part": "state",
+      "group": "阶段",
+      "first": 0,
+      "last": 7,
+      "count": 8
+    },
+    {
+      "part": "state",
+      "group": "回合与目标",
+      "first": 8,
+      "last": 21,
+      "count": 14
+    },
+    {
+      "part": "state",
+      "group": "队伍统计",
+      "first": 22,
+      "last": 27,
+      "count": 6
+    },
+    {
+      "part": "state",
+      "group": "单位聚合",
+      "first": 28,
+      "last": 39,
+      "count": 12
+    },
+    {
+      "part": "state",
+      "group": "队伍统计",
+      "first": 40,
+      "last": 45,
+      "count": 6
+    },
+    {
+      "part": "state",
+      "group": "单位聚合",
+      "first": 46,
+      "last": 57,
+      "count": 12
+    },
+    {
+      "part": "state",
+      "group": "本人",
+      "first": 58,
+      "last": 62,
+      "count": 5
+    },
+    {
+      "part": "state",
+      "group": "本人牌区",
+      "first": 63,
+      "last": 602,
+      "count": 540
+    },
+    {
+      "part": "state",
+      "group": "当前公开牌",
+      "first": 603,
+      "last": 710,
+      "count": 108
+    },
+    {
+      "part": "state",
+      "group": "他人牌区",
+      "first": 711,
+      "last": 1790,
+      "count": 1080
+    },
+    {
+      "part": "state",
+      "group": "攻击",
+      "first": 1791,
+      "last": 1802,
+      "count": 12
+    },
+    {
+      "part": "state",
+      "group": "距离",
+      "first": 1803,
+      "last": 1804,
+      "count": 2
+    },
+    {
+      "part": "candidate",
+      "group": "命令类型",
+      "first": 0,
+      "last": 38,
+      "count": 39
+    },
+    {
+      "part": "candidate",
+      "group": "候选卡牌",
+      "first": 39,
+      "last": 146,
+      "count": 108
+    },
+    {
+      "part": "candidate",
+      "group": "稳定值字节",
+      "first": 147,
+      "last": 210,
+      "count": 64
+    },
+    {
+      "part": "candidate",
+      "group": "牌面主类型",
+      "first": 211,
+      "last": 215,
+      "count": 5
+    },
+    {
+      "part": "candidate",
+      "group": "候选距离",
+      "first": 216,
+      "last": 219,
+      "count": 4
+    },
+    {
+      "part": "candidate",
+      "group": "候选标志与数值",
+      "first": 220,
+      "last": 233,
+      "count": 14
+    },
+    {
+      "part": "candidate",
+      "group": "目标兵种",
+      "first": 234,
+      "last": 237,
+      "count": 4
+    },
+    {
+      "part": "candidate",
+      "group": "目标关系",
+      "first": 238,
+      "last": 241,
+      "count": 4
+    }
+  ],
+  "meaning": "Per-coordinate explanation and real encoded example; not an observation-completeness claim.",
+  "sources": {
+    "docs/verification/ai-stage4-20261007/defense-finetune-01/public-catalog.json": "4d0633970b749e26f33069df95b615d5bcaee55067170e79397cebc2729bfc38",
+    "docs/verification/ai-observation-audit-20261007/input.json": "11b7e75e615a92bdab3bd8cb7b9f7dce8f48d830ca158b8bce3ca613dc468f4d",
+    "ai/trainer/policy.py": "4eefc4e05a2bf38b43b9d6d9bfac48abd1728b6d46a5b00ccf0e08f945130c85",
+    "tools/export-ai-feature-dictionary.py": "52dd5186c4e6a800400a2b451df5209611b65f5fffd98b6adcc4fccc220d77d1"
+  }
+}
