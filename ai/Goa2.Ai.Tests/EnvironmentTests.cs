@@ -134,6 +134,15 @@ namespace Goa2.Ai.Tests
                     if(!checkedWindows.Add(window)) continue;
                     var env=new HeadlessEnvironment(c,new GameSession(c,codec,state),1,"probe"); var d=env.Next()!;
                     Assert.That(d.Observation.Seat,Is.EqualTo(state.Pending.ChooserSeat));
+                    var own=new GameSession(c,codec,state).View(d.Observation.Seat);
+                    if(own.Attack!=null)
+                    {
+                        Assert.That(d.Observation.Attack!.Final,Is.EqualTo(own.Attack.FinalAttack));
+                        Assert.That(d.Observation.Attack.Defender,Is.EqualTo(own.Attack.DefenderSeat));
+                        Assert.That(d.Observation.Attack.Card,Is.EqualTo(new StableIds(c).Card(own.Attack.SourceCardId)));
+                    }
+                    var teacher=new SimplePolicy(c,19);
+                    Assert.That(teacher.Preferred(d.Observation,d.Actions),Does.Contain(teacher.Choose(d.Observation,d.Actions)));
                     coverage[window]=d.Actions.Count;
                     foreach(var candidate in d.Actions)
                     {
