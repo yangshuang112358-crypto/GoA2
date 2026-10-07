@@ -40,7 +40,7 @@ def configure(device):
 def checkpoint(path, model, optimizer, encoder, config, cursor, iteration, metrics):
     payload = dict(format=1, encoder_version=ENCODER_VERSION, encoder_signature=encoder.signature,
                    contract=encoder.contract, shape=model.shape, model=model.state_dict(), optimizer=optimizer.state_dict(),
-                   torch_rng=torch.get_rng_state(), cuda_rng=torch.cuda.get_rng_state_all() if torch.cuda.is_available() else [],
+                   torch_rng=torch.get_rng_state(), cuda_rng=torch.cuda.get_rng_state_all() if next(model.parameters()).is_cuda else [],
                    config=config, cursor=cursor, iteration=iteration, metrics=metrics)
     torch.save(payload, path)
     write(str(path) + ".json", {k: v for k, v in payload.items() if k not in ("model", "optimizer", "torch_rng", "cuda_rng")})
@@ -175,6 +175,8 @@ def main():
                     cursor += 1; episodes.append(r)
                     write(args.output / "episodes.json", episodes)
                     print(json.dumps(r), flush=True)
+                    if r["learner_decisions"] == 0:
+                        raise ValueError("step limit exhausted before first learning action; increase limit")
                     if time.perf_counter() - started > args.max_minutes * 60:
                         break
                 metrics = update(model, optimizer, records, device)

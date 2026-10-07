@@ -63,7 +63,9 @@ class TrainerTests(unittest.TestCase):
         model = CandidateNetwork(len(s), a.shape[1]); opt = torch.optim.Adam(model.parameters())
         d, v = model(s, a); (v.square() - d.log_prob(torch.tensor(0))).backward(); opt.step()
         path = Path(self.temp.name) / "checkpoint.pt"
+        cuda_initialized = torch.cuda.is_initialized()
         checkpoint(path, model, opt, enc, {}, 1, 1, [])
+        self.assertEqual(torch.cuda.is_initialized(), cuda_initialized, "CPU checkpoint must not initialize CUDA")
         expected = torch.rand(4)
         restored, data = load_checkpoint(path, enc, "cpu")
         opt2 = torch.optim.Adam(restored.parameters()); opt2.load_state_dict(data["optimizer"])
