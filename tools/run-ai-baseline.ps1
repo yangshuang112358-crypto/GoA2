@@ -18,7 +18,7 @@ try {
         & $aiDotnet test ai/Goa2.Ai.Tests -c Release -p:EnableSourceLink=false -p:EmbedUntrackedSources=false -p:IncludeSourceRevisionInInformationalVersion=false -p:WarningsNotAsErrors=CS8602 -p:RestoreLockedMode=true --logger 'trx' --results-directory artifacts/ai/tests
         if ($LASTEXITCODE -ne 0) { throw 'AI tests failed.' }
     }
-    & $aiDotnet build ai/Goa2.Ai.Cli -c Release -p:EnableSourceLink=false -p:EmbedUntrackedSources=false -p:IncludeSourceRevisionInInformationalVersion=false -p:WarningsNotAsErrors=CS8602 -p:RestoreLockedMode=true
+    & $aiDotnet build ai/Goa2.Ai.Cli -c Release -t:Rebuild -p:EnableSourceLink=false -p:EmbedUntrackedSources=false -p:IncludeSourceRevisionInInformationalVersion=false -p:WarningsNotAsErrors=CS8602 -p:RestoreLockedMode=true
     if ($LASTEXITCODE -ne 0) { throw 'AI build failed.' }
     & $aiDotnet ai/Goa2.Ai.Cli/bin/Release/net10.0/Goa2.Ai.Cli.dll $aiRoot $Output $Seed $Pairs $Steps $Matchup
     if ($LASTEXITCODE -ne 0) { throw "AI run failed; preserve and inspect $Output" }

@@ -16,7 +16,7 @@ if(-not(Test-Path -LiteralPath $aiPython)){throw 'Create the isolated .venv-ai e
 if(-not $Output){$Output=Join-Path $aiRoot ('artifacts/ai-training/'+[Guid]::NewGuid().ToString('N'))}
 Push-Location $aiRoot
 try {
-    & $aiDotnet build ai/Goa2.Ai.Cli -c Release -p:EnableSourceLink=false -p:EmbedUntrackedSources=false -p:IncludeSourceRevisionInInformationalVersion=false -p:WarningsNotAsErrors=CS8602 -p:RestoreLockedMode=true
+    & $aiDotnet build ai/Goa2.Ai.Cli -c Release -t:Rebuild -p:EnableSourceLink=false -p:EmbedUntrackedSources=false -p:IncludeSourceRevisionInInformationalVersion=false -p:WarningsNotAsErrors=CS8602 -p:RestoreLockedMode=true
     if($LASTEXITCODE -ne 0){throw 'AI build failed'}
     if($Test){
         & $aiPython ai/trainer/test_trainer.py
