@@ -59,8 +59,6 @@ def run_episode(host, model, encoder, device, seed, swap, limit, records=None, l
     reply = host.call(op="reset", seed=seed, learner=swap, swap=swap, limit=limit, opponent="simple", life=life, marks=marks)
     count = 0
     started = time.perf_counter()
-    require_interactive_memory()
-    monitor = ResourceMonitor()
     while not (reply["Terminated"] or reply["Truncated"]):
         d = reply["Decision"]
         if d["Observation"]["Seat"] != swap:
@@ -105,8 +103,15 @@ def main():
         raise ValueError("short-run bounds exceeded; long training requires a separate explicit workflow")
     args.output.mkdir(parents=True, exist_ok=False)
     started = time.perf_counter()
+    monitor = ResourceMonitor()
     os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
-    device = configure(args.device)
+    try:
+        require_interactive_memory()
+        device = configure(args.device)
+    except Exception:
+        write(args.output / "failure.json", dict(error=traceback.format_exc(), seconds=time.perf_counter()-started))
+        write(args.output / "resources.json", monitor.report())
+        raise
     torch.manual_seed(args.seed)
     config = {k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()}
     config.update(source_commit=subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=args.root, text=True).strip(),
@@ -157,7 +162,9 @@ def main():
                         r["checkpoint"] = label; evaluations.append(r)
                         write(args.output / "evaluation.json", evaluations)
                         print(json.dumps(r), flush=True)
-            evaluate("initial")
+                write(args.output / (label + ".evaluation.json"), dict(checkpoint_sha256=sha(args.output / label),
+                      contract=encoder.contract, results=[r for r in evaluations if r["checkpoint"] == label]))
+            evaluate("initial.pt")
             for _ in range(args.iterations):
                 if time.perf_counter() - started > args.max_minutes * 60:
                     break
@@ -186,7 +193,7 @@ def main():
                 before, bv = model(s.to(device), a.to(device))
                 after, av = restored(s.to(device), a.to(device))
                 assert torch.equal(before.logits, after.logits) and torch.equal(bv, av), "restored inference differs"
-            evaluate("trained")
+            evaluate(final_path.name)
             delta = sum((model.state_dict()[k].cpu() - initial[k].cpu()).abs().sum().item() for k in initial)
             write(args.output / "summary.json", dict(seconds=time.perf_counter()-started, parameter_l1_change=delta,
                   checkpoint_inference_equal=True, iterations=len(learning), learner_samples=sum(x["samples"] for x in learning),
