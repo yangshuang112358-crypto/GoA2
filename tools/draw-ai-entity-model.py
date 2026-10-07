@@ -16,7 +16,7 @@ def text(x,y,s,size=16,color='#172b4d'):
  ax.text(x,y,s,ha='center',va='center',fontproperties=font,fontsize=size,color=color,linespacing=1.6)
 def box(x,y,w,h,title,body,fill='#ffffff',edge='#a5b8d0'):
  ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle='round,pad=0,rounding_size=14',facecolor=fill,edgecolor=edge,linewidth=1.4))
- text(x+w/2,y+30,title,20);text(x+w/2,y+h/2+17,body,15)
+ text(x+w/2,y+30,title,20);text(x+w/2,y+h/2+23,body,15)
 def arrow(x,y,x2,y2):ax.add_patch(FancyArrowPatch((x,y),(x2,y2),arrowstyle='-|>',mutation_scale=18,linewidth=1.6,color='#5478a1'))
 text(500,48,'Goa2V1 · 原子信息与关系模型',27)
 text(500,90,'观察 v4 / 行动 v2 / 编码器 v3 · 2026-10-08',16,'#536b8b')

@@ -1,0 +1,587 @@
+{
+  "format": 1,
+  "complete": false,
+  "types": {
+    "GameView": {
+      "Phase": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "Round": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "Turn": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "DecisionCoin": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "ActiveSeat": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "BlueCaptain": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "RedCaptain": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "BlueCrystal": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "RedCrystal": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "CombatRegion": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "BlueMarks": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "RedMarks": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "VictoryMarksRequired": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "RemovableMinions": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "PendingSpawns": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "Effects": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "EffectAreas": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "AttackRange": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "Attack": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "RoundEndStage": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "RemainingMinionRemovals": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "UpgradingSeats": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "OwnUpgradeHistory": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "Players": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "Units": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "Pending": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "OwnCards": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "Opening": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "DraftTeam": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "Events": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "ActionSequence": {
+        "disposition": "projected",
+        "reason": "Explicit seat-view whitelist; normalized entity fields or relations. Events and Pending have narrower field coverage below."
+      },
+      "SpawnChoices": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "CanBeginPrimary": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "PrimaryImmediatelySkips": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "PrimaryPreview": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "CanStartSecondaryMoveWithPrelude": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "CanStartFastMoveWithPrelude": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "AttackTargets": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "DefenseOptions": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "ForcedDiscardCards": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "CanDeclineRetaliationDiscard": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "OptionalDiscardCards": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "RecoverableCards": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "DiscardAttackCards": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "CardSwapOptions": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "MinionProtectionCards": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "PrimaryOptions": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "EffectTargets": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "GoldTransfers": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "RespawnCells": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "CanResolveRoundEnd": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "RoundMinionRemovals": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "UpgradeOptions": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "AvailableHeroes": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "Deployments": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "SecondaryMoves": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "FastMoves": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "EffectMoves": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "Placements": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "MinionReturns": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "CanPass": {
+        "disposition": "candidate",
+        "reason": "Legal candidates and per-candidate C# query facts; no second list of the same choices."
+      },
+      "PendingSpawn": {
+        "disposition": "derived",
+        "reason": "Response.Unit identifies the current item in PendingSpawns."
+      },
+      "EngineVersion": {
+        "disposition": "metadata",
+        "reason": "Compatibility or submission envelope, never a learned match/command identity."
+      },
+      "MatchId": {
+        "disposition": "metadata",
+        "reason": "Compatibility or submission envelope, never a learned match/command identity."
+      },
+      "Revision": {
+        "disposition": "metadata",
+        "reason": "Compatibility or submission envelope, never a learned match/command identity."
+      },
+      "Winner": {
+        "disposition": "terminal",
+        "reason": "Host terminal/replay result; no policy decision exists after true termination."
+      },
+      "VictoryReason": {
+        "disposition": "terminal",
+        "reason": "Host terminal/replay result; no policy decision exists after true termination."
+      },
+      "Sandbox": {
+        "disposition": "excluded",
+        "reason": "Debug, implementation-support, UI or transport information; not game facts for the policy."
+      },
+      "QuickSelection": {
+        "disposition": "excluded",
+        "reason": "Debug, implementation-support, UI or transport information; not game facts for the policy."
+      },
+      "CanUpgradeEngine": {
+        "disposition": "excluded",
+        "reason": "Debug, implementation-support, UI or transport information; not game facts for the policy."
+      },
+      "PrimarySupported": {
+        "disposition": "excluded",
+        "reason": "Debug, implementation-support, UI or transport information; not game facts for the policy."
+      },
+      "SupportedPrimaryCards": {
+        "disposition": "excluded",
+        "reason": "Debug, implementation-support, UI or transport information; not game facts for the policy."
+      },
+      "SupportedDefenseCards": {
+        "disposition": "excluded",
+        "reason": "Debug, implementation-support, UI or transport information; not game facts for the policy."
+      },
+      "SupportedUltimateCards": {
+        "disposition": "excluded",
+        "reason": "Debug, implementation-support, UI or transport information; not game facts for the policy."
+      },
+      "DebugAttackTargets": {
+        "disposition": "excluded",
+        "reason": "Debug, implementation-support, UI or transport information; not game facts for the policy."
+      },
+      "UnimplementedDefenseCards": {
+        "disposition": "excluded",
+        "reason": "Debug, implementation-support, UI or transport information; not game facts for the policy."
+      },
+      "ConnectedSeats": {
+        "disposition": "excluded",
+        "reason": "Debug, implementation-support, UI or transport information; not game facts for the policy."
+      },
+      "DebugTeleports": {
+        "disposition": "excluded",
+        "reason": "Debug, implementation-support, UI or transport information; not game facts for the policy."
+      },
+      "PrimaryRestriction": {
+        "disposition": "gap",
+        "reason": "Legality is available, but the human-readable reason is not yet a structured cause code."
+      },
+      "DefenseRestrictions": {
+        "disposition": "gap",
+        "reason": "Legality is available, but the human-readable reason is not yet a structured cause code."
+      }
+    },
+    "PlayerView": {
+      "Seat": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "Team": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "HeroId": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "Level": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "Gold": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "Confirmed": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "AwaitingRespawn": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "PurpleCardId": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "BasicAttackBonus": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "BasicAttackRangeBonus": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "IsPoisoned": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "PoisonIncludesDefense": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "IsPetrified": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "EffectiveBonuses": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "PermanentBonuses": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "PublicCards": {
+        "disposition": "projected",
+        "reason": "Per owner, never a team sum; own cards use the private-to-self zone projection."
+      },
+      "HandCount": {
+        "disposition": "derived",
+        "reason": "Derived from per-owner zones, card catalog, and timestamped public reveal history. Not independently duplicated."
+      },
+      "Revealed": {
+        "disposition": "derived",
+        "reason": "Derived from per-owner zones, card catalog, and timestamped public reveal history. Not independently duplicated."
+      },
+      "Plays": {
+        "disposition": "derived",
+        "reason": "Derived from per-owner zones, card catalog, and timestamped public reveal history. Not independently duplicated."
+      },
+      "PublicDiscards": {
+        "disposition": "derived",
+        "reason": "Derived from per-owner zones, card catalog, and timestamped public reveal history. Not independently duplicated."
+      },
+      "DiscardColors": {
+        "disposition": "derived",
+        "reason": "Derived from per-owner zones, card catalog, and timestamped public reveal history. Not independently duplicated."
+      },
+      "Name": {
+        "disposition": "excluded",
+        "reason": "Display name is not a semantic identity."
+      }
+    },
+    "GameEvent": {
+      "Kind": {
+        "disposition": "projected",
+        "reason": "Public events only; IDs become stable references."
+      },
+      "Seat": {
+        "disposition": "projected",
+        "reason": "Public events only; IDs become stable references."
+      },
+      "CardId": {
+        "disposition": "projected",
+        "reason": "Public events only; IDs become stable references."
+      },
+      "From": {
+        "disposition": "projected",
+        "reason": "Public events only; IDs become stable references."
+      },
+      "To": {
+        "disposition": "projected",
+        "reason": "Public events only; IDs become stable references."
+      },
+      "Path": {
+        "disposition": "projected",
+        "reason": "Public events only; IDs become stable references."
+      },
+      "Sequence": {
+        "disposition": "derived",
+        "reason": "Replaced by contiguous public ordinal. Private-event gaps are excluded."
+      },
+      "Revision": {
+        "disposition": "excluded",
+        "reason": "Authority/transport identifiers and private routing never enter the model."
+      },
+      "CommandId": {
+        "disposition": "excluded",
+        "reason": "Authority/transport identifiers and private routing never enter the model."
+      },
+      "PrivateTo": {
+        "disposition": "excluded",
+        "reason": "Authority/transport identifiers and private routing never enter the model."
+      },
+      "Detail": {
+        "disposition": "partial",
+        "reason": "Reviewed detail types are parsed into values, amounts and references; some outcome/reason/lifecycle details and historic attack breakdowns remain unencoded. Current attack math is projected separately."
+      },
+      "AttackValues": {
+        "disposition": "partial",
+        "reason": "Reviewed detail types are parsed into values, amounts and references; some outcome/reason/lifecycle details and historic attack breakdowns remain unencoded. Current attack math is projected separately."
+      }
+    },
+    "PendingChoice": {
+      "Kind": {
+        "disposition": "projected",
+        "reason": "Chooser is Observation.Seat; Source comes from the already masked GameView."
+      },
+      "UnitId": {
+        "disposition": "projected",
+        "reason": "Chooser is Observation.Seat; Source comes from the already masked GameView."
+      },
+      "Source": {
+        "disposition": "projected",
+        "reason": "Chooser is Observation.Seat; Source comes from the already masked GameView."
+      },
+      "Optional": {
+        "disposition": "projected",
+        "reason": "Chooser is Observation.Seat; Source comes from the already masked GameView."
+      },
+      "ChooserSeat": {
+        "disposition": "derived",
+        "reason": "Same actual decision actor as Observation.Seat."
+      },
+      "CandidateSeats": {
+        "disposition": "candidate",
+        "reason": "Replaced by the formally validated legal candidates."
+      },
+      "CandidateCells": {
+        "disposition": "candidate",
+        "reason": "Replaced by the formally validated legal candidates."
+      },
+      "CandidateUnits": {
+        "disposition": "candidate",
+        "reason": "Replaced by the formally validated legal candidates."
+      },
+      "Id": {
+        "disposition": "excluded",
+        "reason": "Internal resumption/identity/routing data are not public strategic features."
+      },
+      "SourcePrivateTo": {
+        "disposition": "excluded",
+        "reason": "Internal resumption/identity/routing data are not public strategic features."
+      },
+      "ResumeAt": {
+        "disposition": "excluded",
+        "reason": "Internal resumption/identity/routing data are not public strategic features."
+      }
+    },
+    "CardDefinition": {
+      "Id": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "HeroId": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "Color": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "Level": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "Initiative": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "PrimaryCategory": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "PrimaryFamily": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "PrimaryValue": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "Exclamation": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "Subtype": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "SubtypeValue": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "SecondaryMovement": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "SecondaryDefense": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "Passive": {
+        "disposition": "catalog",
+        "reason": "Stable card ID embedding and typed static attributes; localized categories are mapped to stable English keys."
+      },
+      "Name": {
+        "disposition": "excluded",
+        "reason": "Display name removed from semantic card ID."
+      },
+      "Text": {
+        "disposition": "gap",
+        "reason": "Full card-program semantics are not yet exported as typed mechanic descriptors. The model can learn known card IDs, but cannot be assumed to understand new card text."
+      }
+    }
+  },
+  "known_gaps": [
+    "Full typed card-mechanic descriptors, including repeat budgets and conditional programs.",
+    "Unmapped public event reasons/results and historical attack breakdowns.",
+    "Effect program version is checked by the artifact/engine contract, not an independent learned feature.",
+    "The engine adapter still explicitly requires four seats; the graph representation itself is variable length.",
+    "No long-history recurrent memory or compressed state is validated; history is retained until an explicit capacity error."
+  ]
+}

@@ -1,0 +1,1736 @@
+{
+  "records": {
+    "match": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Round",
+          "scale": 20.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "Turn",
+          "scale": 4.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "BlueCrystal",
+          "scale": 10.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "RedCrystal",
+          "scale": 10.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 4,
+          "field": "BlueMarks",
+          "scale": 10.0,
+          "presence_slot": 13,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 5,
+          "field": "RedMarks",
+          "scale": 10.0,
+          "presence_slot": 14,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 6,
+          "field": "RemainingMinionRemovals",
+          "scale": 10.0,
+          "presence_slot": 15,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 7,
+          "field": "AttackRange",
+          "scale": 10.0,
+          "presence_slot": 16,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "Phase",
+          "domain": "phase"
+        },
+        {
+          "slot": 2,
+          "field": "Decision",
+          "domain": "window"
+        },
+        {
+          "slot": 3,
+          "field": "CombatRegion",
+          "domain": "region"
+        },
+        {
+          "slot": 4,
+          "field": "Coin",
+          "domain": "team"
+        },
+        {
+          "slot": 5,
+          "field": "RoundEndStage",
+          "domain": "round_stage"
+        }
+      ]
+    },
+    "rules": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "StartingCrystalLife",
+          "scale": 10.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "VictoryMarksRequired",
+          "scale": 10.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "TurnsPerRound",
+          "scale": 20.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "HandSize",
+          "scale": 10.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": []
+    },
+    "cell": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "X",
+          "scale": 20.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "Y",
+          "scale": 20.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "Obstacle",
+          "scale": 10.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "Lane",
+          "scale": 10.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "Region",
+          "domain": "region"
+        },
+        {
+          "slot": 2,
+          "field": "Base",
+          "domain": "base"
+        },
+        {
+          "slot": 3,
+          "field": "Spawn",
+          "domain": "spawn"
+        }
+      ]
+    },
+    "definition": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Initiative",
+          "scale": 10.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "PrimaryValue",
+          "scale": 10.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "SecondaryMovement",
+          "scale": 10.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "SecondaryDefense",
+          "scale": 10.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 4,
+          "field": "Level",
+          "scale": 10.0,
+          "presence_slot": 13,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 5,
+          "field": "Exclamation",
+          "scale": 10.0,
+          "presence_slot": 14,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 6,
+          "field": "SubtypeValue",
+          "scale": 10.0,
+          "presence_slot": 15,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "Id",
+          "domain": "card"
+        },
+        {
+          "slot": 2,
+          "field": "HeroId",
+          "domain": "hero"
+        },
+        {
+          "slot": 3,
+          "field": "PrimaryFamily",
+          "domain": "family"
+        },
+        {
+          "slot": 4,
+          "field": "PrimaryCategory",
+          "domain": "category"
+        },
+        {
+          "slot": 5,
+          "field": "Color",
+          "domain": "color"
+        },
+        {
+          "slot": 6,
+          "field": "Subtype",
+          "domain": "subtype"
+        },
+        {
+          "slot": 7,
+          "field": "Passive",
+          "domain": "bonus"
+        }
+      ]
+    },
+    "player": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Level",
+          "scale": 10.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "Gold",
+          "scale": 10.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "Confirmed",
+          "scale": 10.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "AwaitingRespawn",
+          "scale": 10.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 4,
+          "field": "Poisoned",
+          "scale": 10.0,
+          "presence_slot": 13,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 5,
+          "field": "PoisonDefense",
+          "scale": 10.0,
+          "presence_slot": 14,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 6,
+          "field": "Petrified",
+          "scale": 10.0,
+          "presence_slot": 15,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 7,
+          "field": "BasicAttackBonus",
+          "scale": 10.0,
+          "presence_slot": 16,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 8,
+          "field": "BasicAttackRangeBonus",
+          "scale": 10.0,
+          "presence_slot": 17,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "Team",
+          "domain": "team"
+        },
+        {
+          "slot": 2,
+          "field": "Hero",
+          "domain": "hero"
+        }
+      ]
+    },
+    "bonuses": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Attack",
+          "scale": 10.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "Defense",
+          "scale": 10.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "Movement",
+          "scale": 10.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "Initiative",
+          "scale": 10.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 4,
+          "field": "SkillRange",
+          "scale": 10.0,
+          "presence_slot": 13,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 5,
+          "field": "AttackRange",
+          "scale": 10.0,
+          "presence_slot": 14,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": []
+    },
+    "card": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "PlayedRound",
+          "scale": 20.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "PlayedTurn",
+          "scale": 4.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "Zone",
+          "domain": "zone"
+        }
+      ]
+    },
+    "unit": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Removable",
+          "scale": 10.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "Kind",
+          "domain": "unit"
+        },
+        {
+          "slot": 2,
+          "field": "Team",
+          "domain": "team"
+        }
+      ]
+    },
+    "absent_unit": {
+      "numeric": [],
+      "categorical": []
+    },
+    "effect": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "CreatedRound",
+          "scale": 20.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "CreatedTurn",
+          "scale": 4.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "Order",
+          "scale": 1000.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "StartRound",
+          "scale": 20.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 4,
+          "field": "StartTurn",
+          "scale": 4.0,
+          "presence_slot": 13,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 5,
+          "field": "EndRound",
+          "scale": 20.0,
+          "presence_slot": 14,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 6,
+          "field": "EndTurn",
+          "scale": 4.0,
+          "presence_slot": 15,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 7,
+          "field": "BaseRadius",
+          "scale": 10.0,
+          "presence_slot": 16,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 8,
+          "field": "PersistsThroughDefeat",
+          "scale": 10.0,
+          "presence_slot": 17,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "Kind",
+          "domain": "effect"
+        },
+        {
+          "slot": 2,
+          "field": "Duration",
+          "domain": "duration"
+        },
+        {
+          "slot": 3,
+          "field": "AreaKind",
+          "domain": "area"
+        }
+      ]
+    },
+    "event": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Ordinal",
+          "scale": 1000.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "Round",
+          "scale": 20.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "Turn",
+          "scale": 4.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "Amount",
+          "scale": 10.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 4,
+          "field": "Amount2",
+          "scale": 10.0,
+          "presence_slot": 13,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 5,
+          "field": "Amount3",
+          "scale": 10.0,
+          "presence_slot": 14,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "Kind",
+          "domain": "event"
+        },
+        {
+          "slot": 2,
+          "field": "Value",
+          "domain": "event_value"
+        },
+        {
+          "slot": 3,
+          "field": "SecondaryValue",
+          "domain": "event_value"
+        }
+      ]
+    },
+    "sequence": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Round",
+          "scale": 20.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "Turn",
+          "scale": 4.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": []
+    },
+    "action_card": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Order",
+          "scale": 1000.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "Initiative",
+          "scale": 10.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "Started",
+          "scale": 10.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "Resolved",
+          "scale": 10.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 4,
+          "field": "Focused",
+          "scale": 10.0,
+          "presence_slot": 13,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "Role",
+          "domain": "role"
+        }
+      ]
+    },
+    "attack": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Base",
+          "scale": 10.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "Bonus",
+          "scale": 10.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "Support",
+          "scale": 10.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "Guard",
+          "scale": 10.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 4,
+          "field": "Final",
+          "scale": 10.0,
+          "presence_slot": 13,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 5,
+          "field": "TextBonus",
+          "scale": 10.0,
+          "presence_slot": 14,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 6,
+          "field": "UltimateBonus",
+          "scale": 10.0,
+          "presence_slot": 15,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 7,
+          "field": "Ranged",
+          "scale": 10.0,
+          "presence_slot": 16,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 8,
+          "field": "Unblockable",
+          "scale": 10.0,
+          "presence_slot": 17,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": []
+    },
+    "response": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Optional",
+          "scale": 10.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "SourceSymbol",
+          "domain": "source"
+        }
+      ]
+    },
+    "opening": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "DraftComplete",
+          "scale": 10.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "OpeningComplete",
+          "scale": 10.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "Purpose",
+          "domain": "purpose"
+        },
+        {
+          "slot": 2,
+          "field": "Status",
+          "domain": "opening_status"
+        },
+        {
+          "slot": 3,
+          "field": "FirstTeam",
+          "domain": "team"
+        },
+        {
+          "slot": 4,
+          "field": "Result",
+          "domain": "team"
+        },
+        {
+          "slot": 5,
+          "field": "DraftTeam",
+          "domain": "team"
+        }
+      ]
+    },
+    "upgrade": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Round",
+          "scale": 20.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "HeroLevel",
+          "scale": 10.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "CardLevel",
+          "scale": 10.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "Amount",
+          "scale": 10.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "Bonus",
+          "domain": "bonus"
+        }
+      ]
+    },
+    "action": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "SuccessfulDefense",
+          "scale": 10.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "ImmediateSkip",
+          "scale": 10.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "Kind",
+          "domain": "action"
+        },
+        {
+          "slot": 2,
+          "field": "Mode",
+          "domain": "mode"
+        },
+        {
+          "slot": 3,
+          "field": "Option",
+          "domain": "option"
+        }
+      ]
+    },
+    "defense": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Primary",
+          "scale": 10.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "Blocked",
+          "scale": 10.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "IgnoresMinions",
+          "scale": 10.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "Base",
+          "scale": 10.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 4,
+          "field": "Bonus",
+          "scale": 10.0,
+          "presence_slot": 13,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 5,
+          "field": "Final",
+          "scale": 10.0,
+          "presence_slot": 14,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 6,
+          "field": "AttackCompared",
+          "scale": 10.0,
+          "presence_slot": 15,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": []
+    },
+    "facts": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Place",
+          "scale": 10.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 1,
+          "field": "RemainingDistance",
+          "scale": 10.0,
+          "presence_slot": 10,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 2,
+          "field": "TransferAmount",
+          "scale": 10.0,
+          "presence_slot": 11,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        },
+        {
+          "slot": 3,
+          "field": "PreviewOptional",
+          "scale": 10.0,
+          "presence_slot": 12,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": [
+        {
+          "slot": 1,
+          "field": "PreviewKind",
+          "domain": "window"
+        }
+      ]
+    },
+    "path_point": {
+      "numeric": [
+        {
+          "slot": 0,
+          "field": "Order",
+          "scale": 1000.0,
+          "presence_slot": 9,
+          "boolean_encoding": "0/1",
+          "missing": "value 0, presence 0; a real zero has presence 1"
+        }
+      ],
+      "categorical": []
+    }
+  },
+  "vocabulary": {
+    "action=": 1,
+    "action=BeginPrimary": 2,
+    "action=CancelCardSelection": 3,
+    "action=ChooseAttackTarget": 4,
+    "action=ChooseCardSwap": 5,
+    "action=ChooseDiscardAttack": 6,
+    "action=ChooseEffectMove": 7,
+    "action=ChooseEffectTarget": 8,
+    "action=ChooseGoldTransfer": 9,
+    "action=ChooseHero": 10,
+    "action=ChooseInitiative": 11,
+    "action=ChooseMinionProtection": 12,
+    "action=ChooseMinionReturn": 13,
+    "action=ChooseMinionSpawn": 14,
+    "action=ChooseOptionalDiscard": 15,
+    "action=ChoosePlacement": 16,
+    "action=ChoosePrimaryOption": 17,
+    "action=ChooseRecoveredCard": 18,
+    "action=ChooseRoundMinionRemoval": 19,
+    "action=ChooseUpgrade": 20,
+    "action=CommitPrimaryAttack": 21,
+    "action=CommitPrimaryMove": 22,
+    "action=CommitPrimaryPlacement": 23,
+    "action=ConfirmCard": 24,
+    "action=DeclineDefense": 25,
+    "action=DeclineRetaliationDiscard": 26,
+    "action=Defend": 27,
+    "action=DeployHero": 28,
+    "action=ForcedDiscard": 29,
+    "action=MarkCoinStuck": 30,
+    "action=Move": 31,
+    "action=Pass": 32,
+    "action=ReportCoinToss": 33,
+    "action=ResolveRoundEnd": 34,
+    "action=RespawnHero": 35,
+    "action=SelectCard": 36,
+    "action=SetQuickSelection": 37,
+    "action=StartDraft": 38,
+    "action=UpgradeEngine": 39,
+    "action=VoteCoinReroll": 40,
+    "area=": 41,
+    "area=Adjacent": 42,
+    "area=None": 43,
+    "area=SkillRange": 44,
+    "base=": 45,
+    "base=blue": 46,
+    "base=red": 47,
+    "bonus=": 48,
+    "bonus=attack": 49,
+    "bonus=attack_range": 50,
+    "bonus=defense": 51,
+    "bonus=initiative": 52,
+    "bonus=movement": 53,
+    "bonus=skill_range": 54,
+    "card=": 55,
+    "card=arien-00": 56,
+    "card=arien-01": 57,
+    "card=arien-02": 58,
+    "card=arien-03": 59,
+    "card=arien-04": 60,
+    "card=arien-05": 61,
+    "card=arien-06": 62,
+    "card=arien-07": 63,
+    "card=arien-08": 64,
+    "card=arien-09": 65,
+    "card=arien-10": 66,
+    "card=arien-11": 67,
+    "card=arien-12": 68,
+    "card=arien-13": 69,
+    "card=arien-14": 70,
+    "card=arien-15": 71,
+    "card=arien-16": 72,
+    "card=arien-17": 73,
+    "card=brogan-00": 74,
+    "card=brogan-01": 75,
+    "card=brogan-02": 76,
+    "card=brogan-03": 77,
+    "card=brogan-04": 78,
+    "card=brogan-05": 79,
+    "card=brogan-06": 80,
+    "card=brogan-07": 81,
+    "card=brogan-08": 82,
+    "card=brogan-09": 83,
+    "card=brogan-10": 84,
+    "card=brogan-11": 85,
+    "card=brogan-12": 86,
+    "card=brogan-13": 87,
+    "card=brogan-14": 88,
+    "card=brogan-15": 89,
+    "card=brogan-16": 90,
+    "card=brogan-17": 91,
+    "card=sabina-00": 92,
+    "card=sabina-01": 93,
+    "card=sabina-02": 94,
+    "card=sabina-03": 95,
+    "card=sabina-04": 96,
+    "card=sabina-05": 97,
+    "card=sabina-06": 98,
+    "card=sabina-07": 99,
+    "card=sabina-08": 100,
+    "card=sabina-09": 101,
+    "card=sabina-10": 102,
+    "card=sabina-11": 103,
+    "card=sabina-12": 104,
+    "card=sabina-13": 105,
+    "card=sabina-14": 106,
+    "card=sabina-15": 107,
+    "card=sabina-16": 108,
+    "card=sabina-17": 109,
+    "card=shargatha-00": 110,
+    "card=shargatha-01": 111,
+    "card=shargatha-02": 112,
+    "card=shargatha-03": 113,
+    "card=shargatha-04": 114,
+    "card=shargatha-05": 115,
+    "card=shargatha-06": 116,
+    "card=shargatha-07": 117,
+    "card=shargatha-08": 118,
+    "card=shargatha-09": 119,
+    "card=shargatha-10": 120,
+    "card=shargatha-11": 121,
+    "card=shargatha-12": 122,
+    "card=shargatha-13": 123,
+    "card=shargatha-14": 124,
+    "card=shargatha-15": 125,
+    "card=shargatha-16": 126,
+    "card=shargatha-17": 127,
+    "card=tigerclaw-00": 128,
+    "card=tigerclaw-02": 129,
+    "card=tigerclaw-03": 130,
+    "card=tigerclaw-04": 131,
+    "card=tigerclaw-05": 132,
+    "card=tigerclaw-06": 133,
+    "card=tigerclaw-07": 134,
+    "card=tigerclaw-08": 135,
+    "card=tigerclaw-09": 136,
+    "card=tigerclaw-10": 137,
+    "card=tigerclaw-11": 138,
+    "card=tigerclaw-12": 139,
+    "card=tigerclaw-13": 140,
+    "card=tigerclaw-14": 141,
+    "card=tigerclaw-15": 142,
+    "card=tigerclaw-16": 143,
+    "card=tigerclaw-17": 144,
+    "card=tigerclaw-18": 145,
+    "card=wasp-00": 146,
+    "card=wasp-01": 147,
+    "card=wasp-02": 148,
+    "card=wasp-03": 149,
+    "card=wasp-04": 150,
+    "card=wasp-05": 151,
+    "card=wasp-06": 152,
+    "card=wasp-07": 153,
+    "card=wasp-08": 154,
+    "card=wasp-09": 155,
+    "card=wasp-10": 156,
+    "card=wasp-11": 157,
+    "card=wasp-12": 158,
+    "card=wasp-13": 159,
+    "card=wasp-14": 160,
+    "card=wasp-15": 161,
+    "card=wasp-16": 162,
+    "card=wasp-17": 163,
+    "category=": 164,
+    "category=attack": 165,
+    "category=basic_attack": 166,
+    "category=basic_skill": 167,
+    "category=defense": 168,
+    "category=movement": 169,
+    "category=skill": 170,
+    "category=ultimate": 171,
+    "color=": 172,
+    "color=blue": 173,
+    "color=gold": 174,
+    "color=green": 175,
+    "color=purple": 176,
+    "color=red": 177,
+    "color=silver": 178,
+    "duration=": 179,
+    "duration=NextTurn": 180,
+    "duration=ThisAndNextTurn": 181,
+    "duration=ThisRound": 182,
+    "duration=ThisTurn": 183,
+    "effect=": 184,
+    "effect=AttackActionImmunity": 185,
+    "effect=AttackFromDiscard": 186,
+    "effect=EnemyActionMovementLimitOne": 187,
+    "effect=EnemyAllMinionsFriendlyForOwnDefense": 188,
+    "effect=EnemyLightMinionsFriendlyForOwnDefense": 189,
+    "effect=EnemyMeleeFriendlyForOwnDefense": 190,
+    "effect=EnemyMovementGoldOnly": 191,
+    "effect=EnemyMovementGoldOrRedOnly": 192,
+    "effect=FriendlyAttackMinionsDual": 193,
+    "effect=FriendlyAttackMinionsRanged": 194,
+    "effect=FriendlyBasicMinionsRanged": 195,
+    "effect=FriendlyDisplacementProtection": 196,
+    "effect=FriendlyMeleeDefeatPrevention": 197,
+    "effect=FriendlyMinionDefeatPrevention": 198,
+    "effect=FriendlyNearMinionDefense": 199,
+    "effect=FriendlyNonHeavyDefeatPrevention": 200,
+    "effect=ImmunityAndUnitTraversal": 201,
+    "effect=MovementBoundary": 202,
+    "effect=NonAdjacentRangedImmunity": 203,
+    "effect=OtherEnemyActionImmunity": 204,
+    "effect=OtherEnemyAttackImmunity": 205,
+    "effect=PetrifyAllEnemyHeroes": 206,
+    "effect=PetrifyNearestEnemyHeroes": 207,
+    "effect=SkillSuppression": 208,
+    "event=": 209,
+    "event=ActionMinionBattleCompleted": 210,
+    "event=ActionMinionBattleCounted": 211,
+    "event=ActionMinionBattleOffered": 212,
+    "event=ActionMinionBattleSkipped": 213,
+    "event=ActionPassed": 214,
+    "event=ActionRepeatChoiceRequired": 215,
+    "event=ActionRepeatSkipped": 216,
+    "event=ActionRepeated": 217,
+    "event=ActionStarted": 218,
+    "event=AssistGoldAwarded": 219,
+    "event=AttackCalculated": 220,
+    "event=AttackDeclared": 221,
+    "event=AttackRangeDetermined": 222,
+    "event=AttackRepeatChoiceRequired": 223,
+    "event=AttackRepeatSkipped": 224,
+    "event=AttackRepeatUnavailable": 225,
+    "event=AttackRepeated": 226,
+    "event=AttackResolved": 227,
+    "event=AttackTargetChoiceRequired": 228,
+    "event=AttackTargetChosen": 229,
+    "event=BeforeAction": 230,
+    "event=CardDiscarded": 231,
+    "event=CardEffectStopped": 232,
+    "event=CardRecovered": 233,
+    "event=CardResolved": 234,
+    "event=CardRevealed": 235,
+    "event=CardSelected": 236,
+    "event=CardSelectionCancelled": 237,
+    "event=CardSwapChoiceRequired": 238,
+    "event=CardSwapColorsShown": 239,
+    "event=CardSwapSkipped": 240,
+    "event=CardText": 241,
+    "event=CardUpgraded": 242,
+    "event=CardsRecalled": 243,
+    "event=CardsSwapped": 244,
+    "event=CoinRerollVote": 245,
+    "event=CoinTossSettled": 246,
+    "event=CoinTossStarted": 247,
+    "event=CoinTossStuck": 248,
+    "event=CrystalDamaged": 249,
+    "event=DecisionCoinFlipped": 250,
+    "event=DefenseCalculated": 251,
+    "event=DefenseChoiceRequired": 252,
+    "event=DefenseDeclined": 253,
+    "event=DefenseMoveResolved": 254,
+    "event=DefenseResolved": 255,
+    "event=DefenseResponse": 256,
+    "event=DefenseResponseCompleted": 257,
+    "event=DeploymentStarted": 258,
+    "event=DiscardAttackChoiceRequired": 259,
+    "event=DiscardAttackCompleted": 260,
+    "event=DiscardAttackStarted": 261,
+    "event=DiscardColorShown": 262,
+    "event=DiscardReactionQueued": 263,
+    "event=DiscardReactionSkipped": 264,
+    "event=EffectActivated": 265,
+    "event=EffectCancelled": 266,
+    "event=EffectCreated": 267,
+    "event=EffectExpired": 268,
+    "event=EffectMinionChoiceRequired": 269,
+    "event=EffectMinionRemovalSkipped": 270,
+    "event=EffectMinionRemoved": 271,
+    "event=EffectMoveChoiceRequired": 272,
+    "event=EffectMoveSkipped": 273,
+    "event=EffectNotScheduled": 274,
+    "event=EffectScheduled": 275,
+    "event=EffectTargetChoiceRequired": 276,
+    "event=EffectTargetChosen": 277,
+    "event=EffectTargetSkipped": 278,
+    "event=EmptyHandSkipped": 279,
+    "event=EngineUpgraded": 280,
+    "event=ForcedDiscardCompleted": 281,
+    "event=ForcedDiscardRequired": 282,
+    "event=ForcedDiscardSkipped": 283,
+    "event=ForcedPaymentDefeat": 284,
+    "event=ForcedPaymentPaid": 285,
+    "event=FrontlineAdvanced": 286,
+    "event=FrontlineCompleted": 287,
+    "event=FrontlineMarkGained": 288,
+    "event=GoldAwarded": 289,
+    "event=GoldTransferChoiceRequired": 290,
+    "event=GoldTransferSkipped": 291,
+    "event=GoldTransferred": 292,
+    "event=HeroChosen": 293,
+    "event=HeroDefeatSource": 294,
+    "event=HeroDefeated": 295,
+    "event=HeroDeployed": 296,
+    "event=HeroLeveled": 297,
+    "event=HeroRespawnChoiceRequired": 298,
+    "event=HeroRespawned": 299,
+    "event=InitiativeChoiceRequired": 300,
+    "event=InitiativeChosen": 301,
+    "event=MatchWon": 302,
+    "event=MinionBattleCompleted": 303,
+    "event=MinionBattleCounted": 304,
+    "event=MinionBattleStoppedByHero": 305,
+    "event=MinionDefeatPrevented": 306,
+    "event=MinionDefeated": 307,
+    "event=MinionProtectionChoiceRequired": 308,
+    "event=MinionProtectionDeclined": 309,
+    "event=MinionRemoved": 310,
+    "event=MinionReturnChoiceRequired": 311,
+    "event=MinionReturnCompleted": 312,
+    "event=MinionReturnMoved": 313,
+    "event=MinionReturnPlaced": 314,
+    "event=MinionSpawnChoiceRequired": 315,
+    "event=MinionSpawned": 316,
+    "event=MinionsCleared": 317,
+    "event=NoDefenseAvailable": 318,
+    "event=OptionalDiscardCompleted": 319,
+    "event=OptionalDiscardRequired": 320,
+    "event=OptionalDiscardSkipped": 321,
+    "event=OtherMoveTargetChoiceRequired": 322,
+    "event=OtherMoveTargetChosen": 323,
+    "event=PlacementChoiceRequired": 324,
+    "event=PlanningStarted": 325,
+    "event=PoisonApplied": 326,
+    "event=PoisonExpired": 327,
+    "event=PoisonUnchanged": 328,
+    "event=Primary": 329,
+    "event=PrimaryActionStarted": 330,
+    "event=PrimaryOptionChosen": 331,
+    "event=PrimaryOptionRequired": 332,
+    "event=ProtectionActivated": 333,
+    "event=ProtectionExpired": 334,
+    "event=PurpleCardGranted": 335,
+    "event=PushGroupCompleted": 336,
+    "event=PushSkipped": 337,
+    "event=PushStopped": 338,
+    "event=QuickSelectionChanged": 339,
+    "event=RecoverDiscardCompleted": 340,
+    "event=RecoverDiscardRequired": 341,
+    "event=RecoverDiscardSkipped": 342,
+    "event=RecoveredColorShown": 343,
+    "event=RetaliationDiscardDeclined": 344,
+    "event=RoundCompensationGranted": 345,
+    "event=RoundEndReached": 346,
+    "event=RoundEndStarted": 347,
+    "event=RoundEnded": 348,
+    "event=RoundMinionChoiceRequired": 349,
+    "event=SelectionConfirmed": 350,
+    "event=SpawnOrderRulingRequired": 351,
+    "event=TurnEnded": 352,
+    "event=UltimateCompleted": 353,
+    "event=UltimateRepeatOffered": 354,
+    "event=UltimateTriggered": 355,
+    "event=UnitDisplacementPrevented": 356,
+    "event=UnitMoved": 357,
+    "event=UnitPlaced": 358,
+    "event=UnitPushed": 359,
+    "event=UnitSwapChoiceRequired": 360,
+    "event=UnitSwapSkipped": 361,
+    "event=UnitsSwapped": 362,
+    "event=UpgradeBonusGranted": 363,
+    "event=UpgradeChoiceRequired": 364,
+    "event=UpgradesStarted": 365,
+    "event=skip": 366,
+    "event_value=": 367,
+    "event_value=BeforeAction": 368,
+    "event_value=Blue": 369,
+    "event_value=CardText": 370,
+    "event_value=DefenseResponse": 371,
+    "event_value=Fast": 372,
+    "event_value=Primary": 373,
+    "event_value=Red": 374,
+    "event_value=Secondary": 375,
+    "event_value=arien": 376,
+    "event_value=battle": 377,
+    "event_value=blue": 378,
+    "event_value=blueFountain": 379,
+    "event_value=blueNear": 380,
+    "event_value=bottomGrass": 381,
+    "event_value=brogan": 382,
+    "event_value=defeated": 383,
+    "event_value=defended": 384,
+    "event_value=failure": 385,
+    "event_value=finish": 386,
+    "event_value=gold": 387,
+    "event_value=green": 388,
+    "event_value=hero_defeated": 389,
+    "event_value=hit": 390,
+    "event_value=immune": 391,
+    "event_value=initiative_attack": 392,
+    "event_value=initiative_attack_defense": 393,
+    "event_value=mid": 394,
+    "event_value=minion_defeated": 395,
+    "event_value=minion_saved": 396,
+    "event_value=protect": 397,
+    "event_value=purple": 398,
+    "event_value=recover": 399,
+    "event_value=red": 400,
+    "event_value=redFountain": 401,
+    "event_value=redNear": 402,
+    "event_value=removed": 403,
+    "event_value=repeat": 404,
+    "event_value=sabina": 405,
+    "event_value=shargatha": 406,
+    "event_value=silver": 407,
+    "event_value=skip": 408,
+    "event_value=success": 409,
+    "event_value=terrain": 410,
+    "event_value=tigerclaw": 411,
+    "event_value=topGrass": 412,
+    "event_value=ultimate": 413,
+    "event_value=wasp": 414,
+    "family=": 415,
+    "family=attack": 416,
+    "family=defense": 417,
+    "family=movement": 418,
+    "family=skill": 419,
+    "family=ultimate": 420,
+    "hero=": 421,
+    "hero=arien": 422,
+    "hero=brogan": 423,
+    "hero=sabina": 424,
+    "hero=shargatha": 425,
+    "hero=tigerclaw": 426,
+    "hero=wasp": 427,
+    "mode=": 428,
+    "mode=Fast": 429,
+    "mode=Secondary": 430,
+    "opening_status=": 431,
+    "opening_status=complete": 432,
+    "opening_status=resolved": 433,
+    "opening_status=settled": 434,
+    "opening_status=stuck": 435,
+    "opening_status=throwing": 436,
+    "option=": 437,
+    "option=battle": 438,
+    "option=begin": 439,
+    "option=finish": 440,
+    "option=protect": 441,
+    "option=recover": 442,
+    "option=repeat": 443,
+    "option=skip": 444,
+    "phase=": 445,
+    "phase=Action": 446,
+    "phase=Deployment": 447,
+    "phase=EffectChoice": 448,
+    "phase=Finished": 449,
+    "phase=HeroSelection": 450,
+    "phase=InitiativeChoice": 451,
+    "phase=Planning": 452,
+    "phase=RoundEnd": 453,
+    "purpose=": 454,
+    "purpose=draft": 455,
+    "purpose=opening": 456,
+    "region=": 457,
+    "region=blueFountain": 458,
+    "region=blueNear": 459,
+    "region=bottomGrass": 460,
+    "region=mid": 461,
+    "region=redFountain": 462,
+    "region=redNear": 463,
+    "region=terrain": 464,
+    "region=topGrass": 465,
+    "role=": 466,
+    "role=defense": 467,
+    "role=discard": 468,
+    "role=main": 469,
+    "role=reaction": 470,
+    "role=recover": 471,
+    "role=ultimate": 472,
+    "round_stage=": 473,
+    "round_stage=complete": 474,
+    "round_stage=frontline": 475,
+    "round_stage=minion_battle": 476,
+    "round_stage=upgrades": 477,
+    "source=": 478,
+    "source=R-DEFEAT": 479,
+    "source=R-INITIATIVE": 480,
+    "source=R-ROUND-END": 481,
+    "source=action": 482,
+    "source=hero_defeat": 483,
+    "source=minion_battle": 484,
+    "source=minion_defeat": 485,
+    "source=round_end": 486,
+    "spawn=": 487,
+    "spawn=blueHeavySpawn": 488,
+    "spawn=blueHeroSpawn": 489,
+    "spawn=blueMeleeSpawn": 490,
+    "spawn=blueRangedSpawn": 491,
+    "spawn=empty": 492,
+    "spawn=redHeavySpawn": 493,
+    "spawn=redHeroSpawn": 494,
+    "spawn=redMeleeSpawn": 495,
+    "spawn=redRangedSpawn": 496,
+    "spawn=terrain": 497,
+    "subtype=": 498,
+    "subtype=attack_range": 499,
+    "subtype=skill_range": 500,
+    "team=": 501,
+    "team=Blue": 502,
+    "team=Red": 503,
+    "type=absent_unit": 504,
+    "type=action": 505,
+    "type=action_card": 506,
+    "type=attack": 507,
+    "type=bonuses": 508,
+    "type=card": 509,
+    "type=cell": 510,
+    "type=defense": 511,
+    "type=definition": 512,
+    "type=effect": 513,
+    "type=event": 514,
+    "type=facts": 515,
+    "type=match": 516,
+    "type=opening": 517,
+    "type=path_point": 518,
+    "type=player": 519,
+    "type=response": 520,
+    "type=rules": 521,
+    "type=sequence": 522,
+    "type=unit": 523,
+    "type=upgrade": 524,
+    "unit=": 525,
+    "unit=heavy": 526,
+    "unit=hero": 527,
+    "unit=melee": 528,
+    "unit=ranged": 529,
+    "window=": 530,
+    "window=Action": 531,
+    "window=Deployment": 532,
+    "window=EffectChoice": 533,
+    "window=Finished": 534,
+    "window=HeroSelection": 535,
+    "window=InitiativeChoice": 536,
+    "window=Planning": 537,
+    "window=RoundEnd": 538,
+    "window=action_minion_removal": 539,
+    "window=attack_target": 540,
+    "window=card_swap": 541,
+    "window=defense": 542,
+    "window=discard_attack": 543,
+    "window=effect_minion": 544,
+    "window=effect_move": 545,
+    "window=effect_target": 546,
+    "window=forced_discard": 547,
+    "window=gold_transfer": 548,
+    "window=hero_respawn": 549,
+    "window=initiative": 550,
+    "window=minion_protection": 551,
+    "window=minion_return": 552,
+    "window=minion_spawn": 553,
+    "window=optional_discard": 554,
+    "window=placement": 555,
+    "window=primary_option": 556,
+    "window=recover_discard": 557,
+    "window=round_minion_removal": 558,
+    "zone=": 559,
+    "zone=Discarded": 560,
+    "zone=InHand": 561,
+    "zone=PlayedResolved": 562,
+    "zone=PlayedUnresolved": 563,
+    "zone=Selected": 564
+  },
+  "relations": [
+    "self",
+    "active",
+    "blue_captain",
+    "red_captain",
+    "upgrading",
+    "rules",
+    "permanent",
+    "effective",
+    "owner",
+    "definition",
+    "purple",
+    "position",
+    "pending_spawn",
+    "source",
+    "protected",
+    "controller",
+    "exempt",
+    "area",
+    "actor",
+    "card",
+    "from",
+    "to",
+    "path",
+    "point",
+    "sequence",
+    "parent",
+    "attacker",
+    "defender",
+    "target",
+    "text_source",
+    "support_source",
+    "guard_source",
+    "own_upgrade",
+    "previous",
+    "selected",
+    "rejected",
+    "response",
+    "opening",
+    "attack",
+    "effect",
+    "history",
+    "destination",
+    "value",
+    "facts",
+    "defense",
+    "upgrade",
+    "preview_target",
+    "preview_cell",
+    "next_cell",
+    "reverse:self",
+    "reverse:active",
+    "reverse:blue_captain",
+    "reverse:red_captain",
+    "reverse:upgrading",
+    "reverse:rules",
+    "reverse:permanent",
+    "reverse:effective",
+    "reverse:owner",
+    "reverse:definition",
+    "reverse:purple",
+    "reverse:position",
+    "reverse:pending_spawn",
+    "reverse:source",
+    "reverse:protected",
+    "reverse:controller",
+    "reverse:exempt",
+    "reverse:area",
+    "reverse:actor",
+    "reverse:card",
+    "reverse:from",
+    "reverse:to",
+    "reverse:path",
+    "reverse:point",
+    "reverse:sequence",
+    "reverse:parent",
+    "reverse:attacker",
+    "reverse:defender",
+    "reverse:target",
+    "reverse:text_source",
+    "reverse:support_source",
+    "reverse:guard_source",
+    "reverse:own_upgrade",
+    "reverse:previous",
+    "reverse:selected",
+    "reverse:rejected",
+    "reverse:response",
+    "reverse:opening",
+    "reverse:attack",
+    "reverse:effect",
+    "reverse:history",
+    "reverse:destination",
+    "reverse:value",
+    "reverse:facts",
+    "reverse:defense",
+    "reverse:upgrade",
+    "reverse:preview_target",
+    "reverse:preview_cell",
+    "reverse:next_cell"
+  ],
+  "model_shape": {
+    "numeric_dim": 18,
+    "category_dim": 8,
+    "vocabulary_size": 565,
+    "relation_count": 98,
+    "hidden": 64
+  },
+  "excluded_from_features": [
+    "Revision",
+    "command/candidate IDs",
+    "entity primary/foreign keys as ordinal scalars",
+    "rule-profile Id"
+  ],
+  "representation": "entity keys resolve typed graph edges; semantic card IDs use categorical embeddings"
+}

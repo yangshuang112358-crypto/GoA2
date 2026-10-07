@@ -1,0 +1,7 @@
+{
+  "op": "reset",
+  "seed": 19,
+  "learner": 0,
+  "swap": 0,
+  "limit": 1
+}

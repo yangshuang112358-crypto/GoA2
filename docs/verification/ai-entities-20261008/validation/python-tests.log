@@ -1,0 +1,22 @@
+test_bad_action_fails_and_preserves_authority (test_trainer.TrainerTests.test_bad_action_fails_and_preserves_authority) ... ok
+test_candidate_permutation_preserves_logits_by_stable_id (test_trainer.TrainerTests.test_candidate_permutation_preserves_logits_by_stable_id) ... ok
+test_checkpoint_restores_rng_optimizer_and_rejects_contract (test_trainer.TrainerTests.test_checkpoint_restores_rng_optimizer_and_rejects_contract) ... ok
+test_combined_teaching_rejects_cross_directory_leakage (test_trainer.TrainerTests.test_combined_teaching_rejects_cross_directory_leakage) ... ok
+test_defense_contrast_gradient_and_permutation (test_trainer.TrainerTests.test_defense_contrast_gradient_and_permutation) ... ok
+test_entity_order_and_references_are_not_learned_array_indexes (test_trainer.TrainerTests.test_entity_order_and_references_are_not_learned_array_indexes) ... ok
+test_explicit_capacity_and_profile_rejection (test_trainer.TrainerTests.test_explicit_capacity_and_profile_rejection) ... ok
+test_granular_action_sampling_preserves_ties_and_all_candidates (test_trainer.TrainerTests.test_granular_action_sampling_preserves_ties_and_all_candidates) ... ok
+test_individual_redistribution_and_exact_hero_positions_are_distinguishable (test_trainer.TrainerTests.test_individual_redistribution_and_exact_hero_positions_are_distinguishable) ... ok
+test_navigation_batch_updates_actor_without_fake_value_targets (test_trainer.TrainerTests.test_navigation_batch_updates_actor_without_fake_value_targets) ... ok
+test_null_is_not_zero_and_unknown_fields_fail_instead_of_disappearing (test_trainer.TrainerTests.test_null_is_not_zero_and_unknown_fields_fail_instead_of_disappearing) ... ok
+test_ppo_improves_synthetic_bandit_separate_from_game_strength (test_trainer.TrainerTests.test_ppo_improves_synthetic_bandit_separate_from_game_strength) ... ok
+test_previously_ignored_fields_each_reach_encoder (test_trainer.TrainerTests.test_previously_ignored_fields_each_reach_encoder) ... ok
+test_public_features_respond_to_individual_status_equipment_and_times (test_trainer.TrainerTests.test_public_features_respond_to_individual_status_equipment_and_times) ... ok
+test_static_map_spawn_and_lane_reach_the_network (test_trainer.TrainerTests.test_static_map_spawn_and_lane_reach_the_network) ... ok
+test_teaching_groups_cannot_cross_splits_and_tied_labels_are_valid (test_trainer.TrainerTests.test_teaching_groups_cannot_cross_splits_and_tied_labels_are_valid) ... ok
+test_truncation_bootstraps_and_does_not_cross_reset (test_trainer.TrainerTests.test_truncation_bootstraps_and_does_not_cross_reset) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 8.048s
+
+OK

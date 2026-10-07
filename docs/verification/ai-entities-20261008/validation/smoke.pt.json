@@ -1,0 +1,66 @@
+{
+  "format": 1,
+  "encoder_version": 3,
+  "encoder_signature": "9ad3892a121bc75c11caefddfa46388cd436035cf052852b19b34fea3283e077",
+  "contract": {
+    "ObservationVersion": 4,
+    "ActionVersion": 2,
+    "EngineVersion": 98,
+    "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+    "RulesVersion": "1.0.0-draft.1",
+    "ContentVersion": "1.0.0",
+    "AuthorityHashes": {
+      "Goa2.Domain": "59d6943fc817ceb43e95a3e6b30d7f7820b90b17770413ace4226ef0cb6db692",
+      "Goa2.Rules": "4f930ee6beaceb9dd14251033006be5988ff04a273a9af55e7514714218268cd",
+      "Goa2.Application": "483fe35d2eeb3db50fa5fd7eb5376b2b28f20f5230641c96b60d7e92ed572498",
+      "Goa2.Infrastructure": "c9169885733e19fbd6ee03a3360e0000f484deda7e5707f0af917559d066cf6d",
+      "Goa2.Ai": "fa9af6a2496b478178691afd2fae5ed37d306217d04221037aaaeb9dd4939213"
+    },
+    "RuleProfile": {
+      "Id": "victory-v1-life-7-marks-3",
+      "StartingCrystalLife": 7,
+      "VictoryMarksRequired": 3,
+      "TurnsPerRound": 4,
+      "HandSize": 5
+    }
+  },
+  "shape": {
+    "numeric_dim": 18,
+    "category_dim": 8,
+    "vocabulary_size": 565,
+    "relation_count": 98,
+    "hidden": 64
+  },
+  "config": {
+    "source_commit": "da58fae571a543e196f579dfe6290cb9f8495df7",
+    "source_status": "",
+    "seed": 61008,
+    "threads": 2,
+    "python_files": {
+      "bridge.py": "da22735363540ef4cd1841b53b42e71132112f8537a39b39bf33e5b8542e362b",
+      "curriculum.py": "771f097770e599ed7b874db1e57922c6a45daa3c9e4e8dbfe2d7f10f3cb8ee61",
+      "defense.py": "144471e583d5706f7033f84ebf1a46ba283a19c7079dae79e78644205bba6169",
+      "entities.py": "bd183f11bb2b69f4fbb434e32e844bd1c5ad927b1461165d11fe68ce22f257af",
+      "policy.py": "e111063da57aa6874b04199e17c1a59f232e68d61ceca6cf9ed1f76fea90567a",
+      "resources.py": "1a829e95beb8bee8e4eeef13e7dc16be28326f0bebf90cd2e2fff796c629bf23",
+      "test_trainer.py": "1a0e9d61ab8524f3bf53a112a8da208b959e1c6a1658af20ada827922ccb2117",
+      "train.py": "e2a2ace3dd938a6bccb3a36a2359c1cff78ce5b01f89612636e88599a977b73a"
+    },
+    "symbols_sha256": "e95e4449c02cb8fd29d961434cb3d46c41bb81b9ed1f05f72035c1171041a6f4",
+    "purpose": "input/forward/backward/checkpoint validation; baseline games are shadow inference only",
+    "optimizer_updates": 2,
+    "opponent_pool": [
+      "simple-v1",
+      "random-v1"
+    ],
+    "model_games": 0
+  },
+  "cursor": 0,
+  "iteration": 1,
+  "metrics": [
+    {
+      "loss_before": 0.27764129638671875,
+      "loss_after": 0.17070841789245605
+    }
+  ]
+}
