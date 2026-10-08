@@ -1,0 +1,3 @@
+PASS: preview save bytes unchanged; real DebugAttack/Defend reached a single strike with all three support kinds; kill/assist reward events verified; post-combat browsing save bytes unchanged.
+Camera snapshots: yaw020/yaw060/yaw090/yaw180.
+Videos are continuous Unity rendering within each clip; separate fixture setup occurs between clips.

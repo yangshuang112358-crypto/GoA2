@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="35" result="Passed" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-08 20:45:04Z" end-time="2026-10-08 20:45:05Z" duration="1.3242918">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2413" result="Passed" start-time="2026-10-08 20:45:04Z" end-time="2026-10-08 20:45:05Z" duration="1.324292" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3848" name="Goa2.UI3D.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.UI3D.Tests.dll" runstate="Runnable" testcasecount="178" result="Passed" start-time="2026-10-08 20:45:04Z" end-time="2026-10-08 20:45:05Z" duration="1.126191" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="11508" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+      <test-suite type="TestSuite" id="3849" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="178" result="Passed" start-time="2026-10-08 20:45:04Z" end-time="2026-10-08 20:45:05Z" duration="1.119987" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+        <test-suite type="TestSuite" id="3850" name="UI3D" fullname="Goa2.UI3D" runstate="Runnable" testcasecount="178" result="Passed" start-time="2026-10-08 20:45:04Z" end-time="2026-10-08 20:45:05Z" duration="1.117678" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+          <test-suite type="TestSuite" id="3851" name="Tests" fullname="Goa2.UI3D.Tests" runstate="Runnable" testcasecount="178" result="Passed" start-time="2026-10-08 20:45:04Z" end-time="2026-10-08 20:45:05Z" duration="1.114544" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            <test-suite type="TestFixture" id="3652" name="ArcherMotionTests" fullname="Goa2.UI3D.Tests.ArcherMotionTests" classname="Goa2.UI3D.Tests.ArcherMotionTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.028580" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3654" name="CancelAndResumeRetraceTheCurrentPreparationWithoutRestarting" fullname="Goa2.UI3D.Tests.ArcherMotionTests.CancelAndResumeRetraceTheCurrentPreparationWithoutRestarting" methodname="CancelAndResumeRetraceTheCurrentPreparationWithoutRestarting" classname="Goa2.UI3D.Tests.ArcherMotionTests" runstate="Runnable" seed="963704866" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.011881" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3660" name="CancelledRequestDuringRecoveryDoesNotStartAnotherPreparation" fullname="Goa2.UI3D.Tests.ArcherMotionTests.CancelledRequestDuringRecoveryDoesNotStartAnotherPreparation" methodname="CancelledRequestDuringRecoveryDoesNotStartAnotherPreparation" classname="Goa2.UI3D.Tests.ArcherMotionTests" runstate="Runnable" seed="1602444492" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000385" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3656" name="FirstScheduledShotKeepsTheBowAlreadyDrawnDuringDefense" fullname="Goa2.UI3D.Tests.ArcherMotionTests.FirstScheduledShotKeepsTheBowAlreadyDrawnDuringDefense" methodname="FirstScheduledShotKeepsTheBowAlreadyDrawnDuringDefense" classname="Goa2.UI3D.Tests.ArcherMotionTests" runstate="Runnable" seed="819783021" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000558" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3655" name="LongFrameAndSmallFramesReachTheSamePreparation" fullname="Goa2.UI3D.Tests.ArcherMotionTests.LongFrameAndSmallFramesReachTheSamePreparation" methodname="LongFrameAndSmallFramesReachTheSamePreparation" classname="Goa2.UI3D.Tests.ArcherMotionTests" runstate="Runnable" seed="607930992" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000220" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3658" name="LongFramePastReleaseUsesAbsoluteReleaseAgeAndFinishesRecovery" fullname="Goa2.UI3D.Tests.ArcherMotionTests.LongFramePastReleaseUsesAbsoluteReleaseAgeAndFinishesRecovery" methodname="LongFramePastReleaseUsesAbsoluteReleaseAgeAndFinishesRecovery" classname="Goa2.UI3D.Tests.ArcherMotionTests" runstate="Runnable" seed="921403935" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000191" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3659" name="NewPendingDefenseRequestedDuringRecoveryEventuallyPreparesAgain" fullname="Goa2.UI3D.Tests.ArcherMotionTests.NewPendingDefenseRequestedDuringRecoveryEventuallyPreparesAgain" methodname="NewPendingDefenseRequestedDuringRecoveryEventuallyPreparesAgain" classname="Goa2.UI3D.Tests.ArcherMotionTests" runstate="Runnable" seed="829568011" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.001640" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3661" name="NewShotAfterALongFrameCannotSpendPreviousShotRecoveryOnItsPreparation" fullname="Goa2.UI3D.Tests.ArcherMotionTests.NewShotAfterALongFrameCannotSpendPreviousShotRecoveryOnItsPreparation" methodname="NewShotAfterALongFrameCannotSpendPreviousShotRecoveryOnItsPreparation" classname="Goa2.UI3D.Tests.ArcherMotionTests" runstate="Runnable" seed="2119166059" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000319" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3662" name="PendingDefenseAfterSettledReleaseCannotBorrowIdleTimeForItsNextArrow" fullname="Goa2.UI3D.Tests.ArcherMotionTests.PendingDefenseAfterSettledReleaseCannotBorrowIdleTimeForItsNextArrow" methodname="PendingDefenseAfterSettledReleaseCannotBorrowIdleTimeForItsNextArrow" classname="Goa2.UI3D.Tests.ArcherMotionTests" runstate="Runnable" seed="1036335054" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000213" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3653" name="PreparationTakesElapsedTimeAndHoldsWhileDefenseIsPending" fullname="Goa2.UI3D.Tests.ArcherMotionTests.PreparationTakesElapsedTimeAndHoldsWhileDefenseIsPending" methodname="PreparationTakesElapsedTimeAndHoldsWhileDefenseIsPending" classname="Goa2.UI3D.Tests.ArcherMotionTests" runstate="Runnable" seed="418971890" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000243" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3657" name="ReobservingTheSameClockAfterReleaseDoesNotReplayOrResetIt" fullname="Goa2.UI3D.Tests.ArcherMotionTests.ReobservingTheSameClockAfterReleaseDoesNotReplayOrResetIt" methodname="ReobservingTheSameClockAfterReleaseDoesNotReplayOrResetIt" classname="Goa2.UI3D.Tests.ArcherMotionTests" runstate="Runnable" seed="1062886929" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000248" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3696" name="CombatPresentationTests" fullname="Goa2.UI3D.Tests.CombatPresentationTests" classname="Goa2.UI3D.Tests.CombatPresentationTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.392265" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="3704" name="DefenseBeforeMovementWaitsForNewBowsWithoutRewindingAlreadyDrawnBows" fullname="Goa2.UI3D.Tests.CombatPresentationTests.DefenseBeforeMovementWaitsForNewBowsWithoutRewindingAlreadyDrawnBows" classname="Goa2.UI3D.Tests.CombatPresentationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.015560" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3702" name="DefenseBeforeMovementWaitsForNewBowsWithoutRewindingAlreadyDrawnBows(False)" fullname="Goa2.UI3D.Tests.CombatPresentationTests.DefenseBeforeMovementWaitsForNewBowsWithoutRewindingAlreadyDrawnBows(False)" methodname="DefenseBeforeMovementWaitsForNewBowsWithoutRewindingAlreadyDrawnBows" classname="Goa2.UI3D.Tests.CombatPresentationTests" runstate="Runnable" seed="1669939574" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.014692" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3703" name="DefenseBeforeMovementWaitsForNewBowsWithoutRewindingAlreadyDrawnBows(True)" fullname="Goa2.UI3D.Tests.CombatPresentationTests.DefenseBeforeMovementWaitsForNewBowsWithoutRewindingAlreadyDrawnBows(True)" methodname="DefenseBeforeMovementWaitsForNewBowsWithoutRewindingAlreadyDrawnBows" classname="Goa2.UI3D.Tests.CombatPresentationTests" runstate="Runnable" seed="1493455554" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000185" asserts="0">
+                  <properties />
+                </test-case>
+              </test-suite>
+              <test-case id="3697" name="DefenseDiscardPrecedesShotThenHeroAndAssistRewards" fullname="Goa2.UI3D.Tests.CombatPresentationTests.DefenseDiscardPrecedesShotThenHeroAndAssistRewards" methodname="DefenseDiscardPrecedesShotThenHeroAndAssistRewards" classname="Goa2.UI3D.Tests.CombatPresentationTests" runstate="Runnable" seed="1553930420" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.006503" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3700" name="DefenseMovementAndRepeatedAttackKeepIndependentSnapshots" fullname="Goa2.UI3D.Tests.CombatPresentationTests.DefenseMovementAndRepeatedAttackKeepIndependentSnapshots" methodname="DefenseMovementAndRepeatedAttackKeepIndependentSnapshots" classname="Goa2.UI3D.Tests.CombatPresentationTests" runstate="Runnable" seed="1612332055" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.001458" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3699" name="NewRoundFlushesPendingVisibleGoldWithoutChangingAuthority" fullname="Goa2.UI3D.Tests.CombatPresentationTests.NewRoundFlushesPendingVisibleGoldWithoutChangingAuthority" methodname="NewRoundFlushesPendingVisibleGoldWithoutChangingAuthority" classname="Goa2.UI3D.Tests.CombatPresentationTests" runstate="Runnable" seed="2017834506" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000355" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3706" name="PendingAttackSurvivesDefensePreludeButEndsBeforeDefenseAfterEffect" fullname="Goa2.UI3D.Tests.CombatPresentationTests.PendingAttackSurvivesDefensePreludeButEndsBeforeDefenseAfterEffect" methodname="PendingAttackSurvivesDefensePreludeButEndsBeforeDefenseAfterEffect" classname="Goa2.UI3D.Tests.CombatPresentationTests" runstate="Runnable" seed="1945918642" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000989" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3701" name="QueuedRangedAttacksEachGetAVisiblePreparationAndStableArrowSnapshot" fullname="Goa2.UI3D.Tests.CombatPresentationTests.QueuedRangedAttacksEachGetAVisiblePreparationAndStableArrowSnapshot" methodname="QueuedRangedAttacksEachGetAVisiblePreparationAndStableArrowSnapshot" classname="Goa2.UI3D.Tests.CombatPresentationTests" runstate="Runnable" seed="1341768545" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.001185" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3707" name="RealSneakAttackProjectionRetainsBreakdownWithoutRearmingAfterDefense" fullname="Goa2.UI3D.Tests.CombatPresentationTests.RealSneakAttackProjectionRetainsBreakdownWithoutRearmingAfterDefense" methodname="RealSneakAttackProjectionRetainsBreakdownWithoutRearmingAfterDefense" classname="Goa2.UI3D.Tests.CombatPresentationTests" runstate="Runnable" seed="375729560" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.362091" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3705" name="ResolvedAttackRetainedDuringAfterMoveCannotPrepareOrStrikeAgain" fullname="Goa2.UI3D.Tests.CombatPresentationTests.ResolvedAttackRetainedDuringAfterMoveCannotPrepareOrStrikeAgain" methodname="ResolvedAttackRetainedDuringAfterMoveCannotPrepareOrStrikeAgain" classname="Goa2.UI3D.Tests.CombatPresentationTests" runstate="Runnable" seed="1478841537" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000677" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3698" name="RewardsBindToTheirOwnDefeatAndDoNotReplayAfterReconnect" fullname="Goa2.UI3D.Tests.CombatPresentationTests.RewardsBindToTheirOwnDefeatAndDoNotReplayAfterReconnect" methodname="RewardsBindToTheirOwnDefeatAndDoNotReplayAfterReconnect" classname="Goa2.UI3D.Tests.CombatPresentationTests" runstate="Runnable" seed="366634291" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:44:56Z" duration="0.000833" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3757" name="MinionAnimationTests" fullname="Goa2.UI3D.Tests.MinionAnimationTests" classname="Goa2.UI3D.Tests.MinionAnimationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-08 20:44:59Z" end-time="2026-10-08 20:45:01Z" duration="2.294046" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              <test-case id="3758" name="ArcherContactAndReleaseStayContinuousOnImportedRig" fullname="Goa2.UI3D.Tests.MinionAnimationTests.ArcherContactAndReleaseStayContinuousOnImportedRig" methodname="ArcherContactAndReleaseStayContinuousOnImportedRig" classname="Goa2.UI3D.Tests.MinionAnimationTests" runstate="Runnable" seed="961793625" result="Passed" start-time="2026-10-08 20:44:56Z" end-time="2026-10-08 20:45:01Z" duration="5.276548" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="Category" value="RequiresGraphics" />
+                </properties>
+                <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3759" name="MinionModelTests" fullname="Goa2.UI3D.Tests.MinionModelTests" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-08 20:45:04Z" end-time="2026-10-08 20:45:05Z" duration="1.064346" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              <test-case id="3764" name="BoardUsesModelsWithoutMutatingTheProjectedGameOrTokenPicking" fullname="Goa2.UI3D.Tests.MinionModelTests.BoardUsesModelsWithoutMutatingTheProjectedGameOrTokenPicking" methodname="BoardUsesModelsWithoutMutatingTheProjectedGameOrTokenPicking" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="1670441629" result="Passed" start-time="2026-10-08 20:45:01Z" end-time="2026-10-08 20:45:05Z" duration="3.920845" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="Category" value="RequiresGraphics" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3763" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.012276" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3760" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Melee&quot;)" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Melee&quot;)" methodname="ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="359256177" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.006692" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3761" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Ranged&quot;)" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Ranged&quot;)" methodname="ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="2016123319" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.001718" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3762" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Heavy&quot;)" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Heavy&quot;)" methodname="ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="1530035890" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.001552" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+            </test-suite>
+            <test-suite type="TestFixture" id="3769" name="PresentationRefreshTests" fullname="Goa2.UI3D.Tests.PresentationRefreshTests" classname="Goa2.UI3D.Tests.PresentationRefreshTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.016977" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3772" name="BaselineInfluenceIncludesFriendlyMeleeAndEnemyRangedButNotHeroes" fullname="Goa2.UI3D.Tests.PresentationRefreshTests.BaselineInfluenceIncludesFriendlyMeleeAndEnemyRangedButNotHeroes" methodname="BaselineInfluenceIncludesFriendlyMeleeAndEnemyRangedButNotHeroes" classname="Goa2.UI3D.Tests.PresentationRefreshTests" runstate="Runnable" seed="603485265" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.001491" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3773" name="HeavyRaisesBeforeFullSupportAndMotionsSurviveRerender" fullname="Goa2.UI3D.Tests.PresentationRefreshTests.HeavyRaisesBeforeFullSupportAndMotionsSurviveRerender" methodname="HeavyRaisesBeforeFullSupportAndMotionsSurviveRerender" classname="Goa2.UI3D.Tests.PresentationRefreshTests" runstate="Runnable" seed="385074843" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.000967" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3780" name="HeroBlockoutImportsWithSkinnedGeometry" fullname="Goa2.UI3D.Tests.PresentationRefreshTests.HeroBlockoutImportsWithSkinnedGeometry" classname="Goa2.UI3D.Tests.PresentationRefreshTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.009550" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3774" name="HeroBlockoutImportsWithSkinnedGeometry(&quot;wasp&quot;)" fullname="Goa2.UI3D.Tests.PresentationRefreshTests.HeroBlockoutImportsWithSkinnedGeometry(&quot;wasp&quot;)" methodname="HeroBlockoutImportsWithSkinnedGeometry" classname="Goa2.UI3D.Tests.PresentationRefreshTests" runstate="Runnable" seed="1202579789" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.001120" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3775" name="HeroBlockoutImportsWithSkinnedGeometry(&quot;shargatha&quot;)" fullname="Goa2.UI3D.Tests.PresentationRefreshTests.HeroBlockoutImportsWithSkinnedGeometry(&quot;shargatha&quot;)" methodname="HeroBlockoutImportsWithSkinnedGeometry" classname="Goa2.UI3D.Tests.PresentationRefreshTests" runstate="Runnable" seed="266664295" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.001380" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3776" name="HeroBlockoutImportsWithSkinnedGeometry(&quot;brogan&quot;)" fullname="Goa2.UI3D.Tests.PresentationRefreshTests.HeroBlockoutImportsWithSkinnedGeometry(&quot;brogan&quot;)" methodname="HeroBlockoutImportsWithSkinnedGeometry" classname="Goa2.UI3D.Tests.PresentationRefreshTests" runstate="Runnable" seed="1740247888" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.001153" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3777" name="HeroBlockoutImportsWithSkinnedGeometry(&quot;arien&quot;)" fullname="Goa2.UI3D.Tests.PresentationRefreshTests.HeroBlockoutImportsWithSkinnedGeometry(&quot;arien&quot;)" methodname="HeroBlockoutImportsWithSkinnedGeometry" classname="Goa2.UI3D.Tests.PresentationRefreshTests" runstate="Runnable" seed="1297350027" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.001022" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3778" name="HeroBlockoutImportsWithSkinnedGeometry(&quot;tigerclaw&quot;)" fullname="Goa2.UI3D.Tests.PresentationRefreshTests.HeroBlockoutImportsWithSkinnedGeometry(&quot;tigerclaw&quot;)" methodname="HeroBlockoutImportsWithSkinnedGeometry" classname="Goa2.UI3D.Tests.PresentationRefreshTests" runstate="Runnable" seed="1998110115" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.001230" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3779" name="HeroBlockoutImportsWithSkinnedGeometry(&quot;sabina&quot;)" fullname="Goa2.UI3D.Tests.PresentationRefreshTests.HeroBlockoutImportsWithSkinnedGeometry(&quot;sabina&quot;)" methodname="HeroBlockoutImportsWithSkinnedGeometry" classname="Goa2.UI3D.Tests.PresentationRefreshTests" runstate="Runnable" seed="788056417" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.001287" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3771" name="StageDoesNotRestartWhenOnlyLocalSelectionChanges" fullname="Goa2.UI3D.Tests.PresentationRefreshTests.StageDoesNotRestartWhenOnlyLocalSelectionChanges" methodname="StageDoesNotRestartWhenOnlyLocalSelectionChanges" classname="Goa2.UI3D.Tests.PresentationRefreshTests" runstate="Runnable" seed="1751656919" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.002103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3770" name="StageInstructionsSeparateDeploymentDefenseRespawnAndDiscard" fullname="Goa2.UI3D.Tests.PresentationRefreshTests.StageInstructionsSeparateDeploymentDefenseRespawnAndDiscard" methodname="StageInstructionsSeparateDeploymentDefenseRespawnAndDiscard" classname="Goa2.UI3D.Tests.PresentationRefreshTests" runstate="Runnable" seed="993321599" result="Passed" start-time="2026-10-08 20:45:05Z" end-time="2026-10-08 20:45:05Z" duration="0.000328" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\minion-motion-final-106dfd41d03644b287da59a9d38b6aa2.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,19 @@
+{
+    "Method": "Unity Editor/Player rendered UI, synthetic calls/events; NOT real OS mouse/keyboard",
+    "UnityVersion": "6000.3.23f1",
+    "Error": "",
+    "Width": 1280,
+    "Height": 720,
+    "Passed": true,
+    "Checks": [
+        "Actual core attack awaits defender",
+        "One strike from public defense result",
+        "Three supporting minion kinds captured",
+        "Killer and assist amounts read from actual core events",
+        "Rules award immediately; visible meter waits",
+        "Removed target has noninteractive impact ghost",
+        "Both actual reward coins spawned in isolated physics",
+        "Coins finish and visible experience catches up",
+        "Reward animation never advances true level"
+    ]
+}

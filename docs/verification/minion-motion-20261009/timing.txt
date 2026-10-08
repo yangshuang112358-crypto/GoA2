@@ -1,0 +1,2 @@
+01-archer-motion-raw.mp4: frames=739, duration=24.63333, wall=24.67922, exit=0
+02-combat-and-guards-raw.mp4: frames=904, duration=30.13333, wall=30.16741, exit=0
