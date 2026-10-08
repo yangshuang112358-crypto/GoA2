@@ -1,0 +1,26 @@
+{
+  "GameSeed": 41001,
+  "EnvironmentCoinSeed": 4407731,
+  "Policies": [
+    {
+      "Seat": 0,
+      "Policy": "random-v1",
+      "Seed": 41377928
+    },
+    {
+      "Seat": 1,
+      "Policy": "simple-v1",
+      "Seed": 41370009
+    },
+    {
+      "Seat": 2,
+      "Policy": "random-v1",
+      "Seed": 41393766
+    },
+    {
+      "Seat": 3,
+      "Policy": "simple-v1",
+      "Seed": 41385847
+    }
+  ]
+}

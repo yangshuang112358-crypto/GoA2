@@ -1,0 +1,12 @@
+{
+  "0": {
+    "trace_sha256": "c45cc198348754d77907414f4bcb702dd790f2373e054ad05d55e09cbd95abf2",
+    "identical": true,
+    "terminal_hash": "98260df70311783b414c98fa60236ea7fc98ce88ea993c0df3cca9b7fdf7a893"
+  },
+  "1": {
+    "trace_sha256": "6df2866ff94b811d9228e4b53f9ad8a62f659641d64f6295cf3bae2b27c6e281",
+    "identical": true,
+    "terminal_hash": "51bb75a6955e2fb54f43074ca6c610be8f7478f8a26e8a2e4de15aec7427f1fb"
+  }
+}

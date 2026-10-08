@@ -1,0 +1,23 @@
+{
+  "ObservationVersion": 5,
+  "ActionVersion": 2,
+  "EngineVersion": 98,
+  "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+  "RulesVersion": "1.0.0-draft.1",
+  "ContentVersion": "1.0.0",
+  "AuthorityHashes": {
+    "Goa2.Domain": "59d6943fc817ceb43e95a3e6b30d7f7820b90b17770413ace4226ef0cb6db692",
+    "Goa2.Rules": "42562af2190b878682a9b26f02b21f7d0743d0cd95e74ef88b297be60c91c56b",
+    "Goa2.Application": "1ae08de414f86fc8d87f9de9d6c5df5a378e1140793ebf651d3eb55aff331edd",
+    "Goa2.Infrastructure": "4aae3cb9b19d0cdd9c0b203f845e62cb5dbf801656f500f6e8759618bd718d6e",
+    "Goa2.Ai": "95e3c6ff6663c89fe66dd99446297c90795afcbfc10c02a05be423ea112647c8"
+  },
+  "RuleProfile": {
+    "Id": "victory-v1-life-7-marks-3",
+    "InitialCombatRegion": "mid",
+    "StartingCrystalLife": 7,
+    "VictoryMarksRequired": 3,
+    "TurnsPerRound": 4,
+    "HandSize": 5
+  }
+}

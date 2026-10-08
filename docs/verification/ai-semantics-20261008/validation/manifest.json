@@ -1,0 +1,24 @@
+{
+  "source_commit": "89deb4749871df515f3fcf6406f3b5f2c4c34191",
+  "source_status": "",
+  "seed": 61008,
+  "threads": 2,
+  "python_files": {
+    "bridge.py": "da22735363540ef4cd1841b53b42e71132112f8537a39b39bf33e5b8542e362b",
+    "curriculum.py": "771f097770e599ed7b874db1e57922c6a45daa3c9e4e8dbfe2d7f10f3cb8ee61",
+    "defense.py": "144471e583d5706f7033f84ebf1a46ba283a19c7079dae79e78644205bba6169",
+    "entities.py": "7d184e229be906b779e0a025c2016e176e39714463216ff2151acbe26fa52ece",
+    "policy.py": "16c87066616cf34c9ca0bc657e5971cb64ce50549f888cd242078ca96eb4eb5a",
+    "resources.py": "dfcc6fdc1d2390e828a0ab6c17f7906d8daf6e4828c39da1d215b1c609624b6c",
+    "test_trainer.py": "c5fe8d9a4258252d946752eda18d27d44c2f023be72e3b347b9b55bb036896f6",
+    "train.py": "e2a2ace3dd938a6bccb3a36a2359c1cff78ce5b01f89612636e88599a977b73a"
+  },
+  "symbols_sha256": "e95e4449c02cb8fd29d961434cb3d46c41bb81b9ed1f05f72035c1171041a6f4",
+  "purpose": "input/forward/backward/checkpoint validation; baseline games are shadow inference only",
+  "optimizer_updates": 2,
+  "opponent_pool": [
+    "simple-v1",
+    "random-v1"
+  ],
+  "model_games": 0
+}
