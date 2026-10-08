@@ -140,7 +140,8 @@ namespace Goa2.Presentation.UI3D
             float extentY=points.Count==0 ? 1 : (points.Max(p=>p.y)-points.Min(p=>p.y))*.5f+3;
             float fittedSize=Mathf.Max(extentY,extentX/Camera.aspect);
             Camera.orthographicSize=fittedSize/state.Zoom;
-            AnimateWorldHud();AnimateHeroAuras();AnimateMinionPoses();AnimateCombat();Camera.Render();
+            float presentationNow=Time.realtimeSinceStartup;
+            AnimateWorldHud();AnimateHeroAuras();AnimateMinionPoses(presentationNow);AnimateCombat(presentationNow);Camera.Render();
         }
         public float ZoomForRegion(IEnumerable<Hex> region)
         {

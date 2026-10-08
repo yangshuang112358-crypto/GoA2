@@ -1,0 +1,106 @@
+  private IEnumerator FlattenMotionDemo(IEnumerator start){
+   var stack=new System.Collections.Generic.Stack<IEnumerator>();stack.Push(start);
+   while(stack.Count>0){var current=stack.Peek();if(!current.MoveNext()){stack.Pop();continue;}if(current.Current is IEnumerator nested){stack.Push(nested);continue;}yield return current.Current;}
+  }
+  private IEnumerator VideoSequence()=>FlattenMotionDemo(MinionVideoSequence());
+  private void HideMotionChrome(){
+   foreach(var child in root.Children().ToArray())
+    if(child.name!="battlefield-workspace" && child!=demoLabel && child!=demoCursor)child.style.display=DisplayStyle.None;
+  }
+  private void CleanMotionView(){
+   mainFlow=false;cameraFollow=false;board3DViewport.StopFollowing();browsingWheels.Clear();wheelSeat=null;
+   rightExpanded=false;topExpanded=false;stageStarted=-100;stageWaiting=false;
+   HideCardPreview();HideHeroHover();HideSkillInfo();Render();HideMotionChrome();
+  }
+  private void MotionPreview(string pose){board3DViewport.MinionPreviewPose=pose;Render();HideMotionChrome();}
+  // This temporary Editor-only camera track allows angles between the normal 30-degree steps.
+  // No GameState, unit transform, pose clock, or accepted command is altered by the camera track.
+  private void MotionYaw(float yaw){
+   var type=typeof(Board3DViewport);var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+   type.GetProperty("Yaw")!.SetValue(board3DViewport,yaw);
+   type.GetField("startYaw",flags)!.SetValue(board3DViewport,yaw);type.GetField("targetYaw",flags)!.SetValue(board3DViewport,yaw);
+   type.GetField("elapsed",flags)!.SetValue(board3DViewport,.24f);board3DViewport.Step=Board3DGeometry.WrapStep(Mathf.RoundToInt(yaw/30));
+  }
+  private IEnumerator MotionOrbit(float yaw,float duration=1.6f){
+   float from=board3DViewport.Yaw,start=Time.realtimeSinceStartup;
+   while(Time.realtimeSinceStartup-start<duration){MotionYaw(Mathf.Lerp(from,yaw,ArcherMotion.Ease((Time.realtimeSinceStartup-start)/duration)));yield return null;}
+   MotionYaw(yaw);yield return new WaitForSecondsRealtime(.3f);
+  }
+  private IEnumerator MotionWaitUntil(float until){while(Time.realtimeSinceStartup<until)yield return null;}
+  private void MotionSave(string name){File.WriteAllText(Path.Combine(demoFolder,name+".json"),session.ExportSave());}
+  private IEnumerator MinionVideoSequence(){
+   yield return null;yield return null;QualitySettings.vSyncCount=0;UnityEngine.Application.targetFrameRate=30;
+   DemoCheck(!startupFailed,"Startup failed");
+   PrepareCombatDemo();yield return new WaitForSecondsRealtime(5.7f);CleanMotionView();
+   var archer=renderedView.Units.First(u=>u.Team==Team.Blue && u.Kind=="ranged");
+   var archerFocus=Board3DGeometry.World(archer.Position)+Vector3.up*.72f;
+   MotionYaw(20);board3DViewport.Focus=archerFocus;board3DViewport.Zoom=7;MotionPreview("");
+   yield return new WaitForSecondsRealtime(1.5f);
+   string previewSave=session.ExportSave();MotionSave("01-before-browsing");
+   demoCaption="远程兵近看 · 待机持弓";BeginVideo("01-archer-motion");yield return new WaitForSecondsRealtime(1.5f);DemoShot("01-archer-idle");
+   demoCaption="支援准备 · 从箭筒取箭、移至弓弦、连续拉满";MotionPreview("support");
+   yield return new WaitForSecondsRealtime(.44f);DemoShot("01-archer-fetch");
+   yield return new WaitForSecondsRealtime(.58f);DemoShot("01-archer-nock");
+   yield return new WaitForSecondsRealtime(1.05f);
+   DemoCheck(board3DViewport.Presentation.MinionMotions[archer.Id].Bow.Progress>.99f,"Archer has not finished drawing");
+   demoCaption="满弓 · 镜头方位20°，观察手、弦与箭杆";DemoShot("01-archer-drawn-yaw020");yield return new WaitForSecondsRealtime(1.4f);
+   demoCaption="保持满弓 · 连续转至60°";yield return MotionOrbit(60);DemoShot("01-archer-drawn-yaw060");yield return new WaitForSecondsRealtime(1.4f);
+   demoCaption="保持满弓 · 连续转至90°侧看";yield return MotionOrbit(90);DemoShot("01-archer-drawn-yaw090");yield return new WaitForSecondsRealtime(1.4f);
+   demoCaption="取消支援 · 沿取箭路径收回，恢复待机";MotionPreview("");yield return new WaitForSecondsRealtime(1.8f);DemoShot("01-archer-returned-idle");
+   demoCaption="中途取消再进入 · 接续当前动作，不重置到起点";
+   MotionPreview("support");yield return new WaitForSecondsRealtime(.48f);MotionPreview("");yield return new WaitForSecondsRealtime(.25f);MotionPreview("support");
+   yield return new WaitForSecondsRealtime(2.1f);DemoShot("01-archer-resumed");yield return new WaitForSecondsRealtime(.7f);
+   demoCaption="另一侧观察满弓 · 身体侧转与弓手衔接";yield return MotionOrbit(180,2.2f);DemoShot("01-archer-drawn-yaw180");yield return new WaitForSecondsRealtime(1.5f);
+   demoCaption="收弓回到待机 · 本段只改变预览姿态与镜头";MotionPreview("");yield return new WaitForSecondsRealtime(2);
+   DemoCheck(session.ExportSave()==previewSave,"Preview poses and camera browsing changed rule state");MotionSave("01-after-browsing");
+   yield return new WaitForSecondsRealtime(1.2f);StopVideo();
+
+   // New deterministic fixture is prepared between clips, never hidden inside a running clip.
+   PrepareCombatDemo();yield return new WaitForSecondsRealtime(5.7f);CleanMotionView();seat=0;Render();HideMotionChrome();
+   var defender=renderedView.Units.Single(u=>u.Seat==1);
+   var baseline=MinionCombatBaseline.Sources(renderedView.Units,defender);
+   var participants=renderedView.Units.Where(u=>u.Id==defender.Id || u.Seat==0 || baseline.EnemySupportSources.Contains(u.Id) || baseline.FriendlyGuardSources.Contains(u.Id)).ToList();
+   MotionYaw(30);board3DViewport.Focus=participants.Select(u=>Board3DGeometry.World(u.Position)).Aggregate(Vector3.zero,(sum,p)=>sum+p)/participants.Count+Vector3.up*.45f;
+   board3DViewport.Zoom=3.3f;yield return new WaitForSecondsRealtime(.6f);
+   Submit(CommandKind.DebugAttack,"hero:1|9");yield return new WaitForSecondsRealtime(5.7f);
+   DemoCheck(renderedView.Pending?.Kind=="defense" && renderedView.Pending.ChooserSeat==1,"Real attack did not reach defense");CleanMotionView();
+   yield return new WaitForSecondsRealtime(.5f);
+   // Keep the complete combat group in view before recording the uninterrupted resolution.
+   for(int attempt=0;attempt<5;attempt++){
+    var camera=board!.Scene!.Camera;
+    bool fits=participants.All(u=>{var p=camera.WorldToViewportPoint(Board3DGeometry.World(u.Position,.7f));return p.x>.08f&&p.x<.92f&&p.y>.15f&&p.y<.91f;});
+    if(fits)break;board3DViewport.Zoom*=.9f;yield return new WaitForSecondsRealtime(.15f);
+   }
+   DemoCheck(participants.All(u=>{var p=board!.Scene!.Camera.WorldToViewportPoint(Board3DGeometry.World(u.Position,.7f));return p.x>.05f&&p.x<.95f&&p.y>.12f&&p.y<.94f;}),"Combat group does not fit the recorded camera");
+   MotionSave("02-awaiting-defense");demoCaption="真实攻击9 · 三种蓝方支援兵与红方举盾兵";BeginVideo("02-combat-and-guards");yield return new WaitForSecondsRealtime(2);DemoShot("02-combat-ready");
+   seat=1;Render();HideMotionChrome();DemoCheck(renderedView.DefenseOptions.Count>0,"Fixture has no legal defense card");
+   var defense=renderedView.DefenseOptions.OrderBy(d=>d.Assessment.FinalDefense).First();
+   DemoCheck(!defense.Assessment.Successful,"Lowest defense should fail in the combat fixture");
+   demoCaption="选择最低数值防御 · 防御弃牌后出招";Submit(CommandKind.Defend,defense.CardId);HideMotionChrome();
+   var timeline=board3DViewport.Presentation.Combat;DemoCheck(timeline.Shots.Count==1,"Expected exactly one accepted attack presentation");var shot=timeline.Shots.Single();
+   DemoCheck(new[]{"ranged","melee","heavy"}.All(kind=>shot.Support.Any(u=>u.Kind==kind)),"Combat must show all three supporting kinds");
+   DemoCheck(timeline.Rewards.Count==2 && timeline.Rewards.Sum(r=>r.Amount)==2,"Expected actual kill and assist rewards");
+   yield return MotionWaitUntil(shot.Release+.10f);demoCaption="松弦飞箭 · 近战下劈、重型横劈";DemoShot("02-arrow-release");
+   yield return MotionWaitUntil(shot.Impact+.13f);DemoShot("02-attack-impact");
+   yield return MotionWaitUntil(shot.Impact+1);demoCaption="命中与击败 · 奖励金币落地滚动";DemoShot("02-reward-ground");
+   yield return MotionWaitUntil(shot.Impact+3.35f);demoCaption="金币聚合到击杀者与助攻者";DemoShot("02-reward-homing");
+   yield return MotionWaitUntil(shot.Impact+4.4f);
+   DemoCheck(timeline.VisibleGold(0,renderedView.Players[0].Gold,Time.realtimeSinceStartup)==renderedView.Players[0].Gold,"Visible experience has not caught up");
+   DemoShot("02-combat-recovered");yield return new WaitForSecondsRealtime(1);
+   string afterCombat=session.ExportSave();MotionSave("02-after-combat-before-browsing");
+   foreach(string kind in new[]{"melee","heavy"}){
+    var unit=renderedView.Units.First(u=>u.Kind==kind && u.Team==Team.Blue);MotionPreview("");
+    demoCaption=kind=="melee"?"近战兵近看 · 从待机进入持剑侧准备":"重型兵近看 · 八足展开后进入横剑准备";
+    yield return DemoTravel(Board3DGeometry.World(unit.Position)+Vector3.up*.65f,6.5f,1.8f);
+    yield return new WaitForSecondsRealtime(.8f);MotionPreview("support");yield return new WaitForSecondsRealtime(2);DemoShot("02-"+kind+"-support");
+    demoCaption=kind=="melee"?"近战兵举盾 · 前移重心、降低身体":"重型兵举盾 · 八足支撑、盾置身前";
+    MotionPreview("guard");yield return new WaitForSecondsRealtime(2);DemoShot("02-"+kind+"-guard");
+    demoCaption="放下武器 · 平滑恢复待机";MotionPreview("");yield return new WaitForSecondsRealtime(1.7f);DemoShot("02-"+kind+"-idle");
+   }
+   DemoCheck(session.ExportSave()==afterCombat,"Post-combat pose browsing changed rule state");MotionSave("02-after-browsing");
+   demoCaption="本段战斗由真实规则结算 · 近看部分仅切换展示姿态";yield return new WaitForSecondsRealtime(1.5f);StopVideo();
+   File.WriteAllText(Path.Combine(demoFolder,"motion-evidence.txt"),"PASS: preview save bytes unchanged; real DebugAttack/Defend reached a single strike with all three support kinds; kill/assist reward events verified; post-combat browsing save bytes unchanged.\nCamera snapshots: yaw020/yaw060/yaw090/yaw180.\nVideos are continuous Unity rendering within each clip; separate fixture setup occurs between clips.\n");
+  }
+ }
+}
+#endif

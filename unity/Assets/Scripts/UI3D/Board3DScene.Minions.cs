@@ -48,7 +48,7 @@ namespace Goa2.Presentation.UI3D
                 renderer.shadowCastingMode = ShadowCastingMode.Off;
                 renderer.receiveShadows = false;
             }
-            RegisterMinionRig(instance,id,kind);
+            RegisterMinionRig(instance,id,kind,team);
             ContactShadow(cell,kind=="heavy"?.75f:.62f);
             ModeledMinionCount++;
             return true;

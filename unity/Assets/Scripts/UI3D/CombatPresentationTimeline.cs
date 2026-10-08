@@ -9,11 +9,19 @@ namespace Goa2.Presentation.UI3D
     // Consumes public events only. Cached positions are visual snapshots, never legal targets.
     public sealed class CombatPresentationTimeline
     {
+        // Release-frame world geometry survives scene rebuilds with its owning shot.
+        public sealed class ArrowLaunch
+        {
+            public Vector3 Tail,Direction;
+            public float Length;
+        }
         public sealed class Shot
         {
             public long Id;public float Start,PrepareStarted;public UnitState Source=null!,Target=null!;
             public List<UnitState> Support=new List<UnitState>(),Guard=new List<UnitState>();
+            public readonly Dictionary<string,ArrowLaunch> Arrows=new Dictionary<string,ArrowLaunch>();
             public bool Defeated;public string CardId="";
+            public float Release=>Start+.12f;
             public float Impact=>Start+.62f;
             public float End=>Start+1.2f;
         }
@@ -31,6 +39,23 @@ namespace Goa2.Presentation.UI3D
         public int Generation {get;private set;}
         public float BusyUntil=>Shots.Select(s=>s.End).DefaultIfEmpty(-100).Max();
         public void Reset(){ready=false;}
+        public static bool IsPendingAttack(GameView view)
+        {
+            var attack=view.Attack;
+            if(attack==null)return false;
+            // Attack is retained by the core during attack-after movement and defense
+            // responses. A defense-before purple choice, conversely, is still pending
+            // even though Pending.Kind is no longer "defense".
+            long declared=view.Events.Where(e=>e.Kind=="AttackCalculated" && e.AttackValues!=null &&
+                e.AttackValues.AttackerSeat==attack.AttackerSeat && e.AttackValues.TargetUnitId==attack.TargetUnitId &&
+                e.AttackValues.SourceCardId==attack.SourceCardId).Select(e=>e.Sequence).DefaultIfEmpty(-1).Max();
+            if(declared<0)
+                return view.Pending?.Kind=="defense" && view.Pending.ChooserSeat==attack.DefenderSeat &&
+                    view.Pending.UnitId==attack.TargetUnitId;
+            return !view.Events.Any(e=>e.Sequence>declared &&
+                (e.Kind=="DefenseResolved" && e.Seat==attack.DefenderSeat ||
+                 e.Kind=="AttackResolved" && e.Seat==attack.AttackerSeat));
+        }
         public int VisibleGold(int seat,int actual,float now)=>Math.Max(0,actual-Rewards.Where(r=>r.Seat==seat && now<r.Arrival).Sum(r=>r.Amount));
         public Shot? Current(float now)=>Shots.FirstOrDefault(s=>s.End>now);
         public IEnumerable<UnitState> Ghosts(GameView view,float now)=>Shots.Where(s=>s.End>now && s.Defeated && !view.Units.Any(u=>u.Id==s.Target.Id && u.Position==s.Target.Position)).Select(s=>s.Target).GroupBy(u=>u.Id).Select(g=>g.First());
@@ -70,7 +95,19 @@ namespace Goa2.Presentation.UI3D
                 if(e.Kind=="DefenseResolved" && e.Seat.HasValue)
                 {
                     var shot=waiting.Values.LastOrDefault(s=>s.Target.Seat==e.Seat);
-                    if(shot!=null){var latest=Capture(working,shot.Source.Seat!.Value,shot.Target.Id,shot.CardId);if(latest!=null){latest.PrepareStarted=shot.PrepareStarted;shot=latest;}Schedule(shot,e.Sequence,Mathf.Max(now,discardEnd),e.Detail=="failure");waiting.Remove(shot.Source.Seat!.Value);}
+                    if(shot!=null)
+                    {
+                        var latest=Capture(working,shot.Source.Seat!.Value,shot.Target.Id,shot.CardId);
+                        if(latest!=null)
+                        {
+                            // A defense-before move may bring a new bow into support. It
+                            // has not shared the original bows' defense waiting time.
+                            bool newBow=latest.Support.Any(u=>u.Kind=="ranged" && !shot.Support.Any(old=>old.Id==u.Id && old.Kind=="ranged"));
+                            latest.PrepareStarted=newBow?Mathf.Max(now,shot.PrepareStarted):shot.PrepareStarted;
+                            shot=latest;
+                        }
+                        Schedule(shot,e.Sequence,Mathf.Max(now,discardEnd),e.Detail=="failure");waiting.Remove(shot.Source.Seat!.Value);
+                    }
                 }
                 if(e.Kind=="HeroDefeated" || e.Kind=="MinionDefeated")
                 {
@@ -94,10 +131,18 @@ namespace Goa2.Presentation.UI3D
         }
         private void RememberPending(GameView view,float now)
         {
-            if(view.Attack!=null){var a=view.Attack;var s=Capture(units,a.AttackerSeat,a.TargetUnitId,a.SourceCardId);if(s!=null){s.PrepareStarted=now;waiting[a.AttackerSeat]=s;}}
+            if(IsPendingAttack(view)){var a=view.Attack!;var s=Capture(units,a.AttackerSeat,a.TargetUnitId,a.SourceCardId);if(s!=null){s.PrepareStarted=now;waiting[a.AttackerSeat]=s;}}
         }
         private void Schedule(Shot shot,long id,float start,bool defeated)
-        {shot.Id=id;float ready=shot.PrepareStarted+(shot.Support.Any(u=>u.Kind=="ranged")?1.8f:shot.Support.Any(u=>u.Kind=="heavy")?.6f:.15f);shot.Start=Mathf.Max(ready,Mathf.Max(start,Shots.Select(s=>s.End).DefaultIfEmpty(start).Max()));shot.Defeated=defeated;Shots.Add(shot);}
+        {
+            shot.Id=id;
+            // Current() presents one shot at a time. Queued preparation cannot elapse
+            // invisibly behind the preceding shot; the first may retain its defense wait.
+            float previousEnd=Shots.Select(s=>s.End).DefaultIfEmpty(shot.PrepareStarted).Max();
+            shot.PrepareStarted=Mathf.Max(shot.PrepareStarted,previousEnd);
+            float ready=shot.PrepareStarted+(shot.Support.Any(u=>u.Kind=="ranged")?1.8f:shot.Support.Any(u=>u.Kind=="heavy")?.6f:.15f);
+            shot.Start=Mathf.Max(ready,start);shot.Defeated=defeated;Shots.Add(shot);
+        }
         public float HeroImpact(int seat,float now)=>Shots.LastOrDefault(s=>s.Defeated && s.Target.Seat==seat && s.End>now)?.Impact ?? now;
         private static Shot? Capture(Dictionary<string,UnitState> at,int attacker,string target,string card)
         {

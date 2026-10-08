@@ -8,6 +8,7 @@
 |---|---|---|
 | `assets/CarvedUI.blend` | `tools/art/build_carved_ui.py` | 技能正背面、石标、环、行动石板、设置浮雕、英雄等级框与九宫格面板 RGBA |
 | `assets/MinionRefinement.blend` | `tools/art/refine_minion_models.py` | 三兵种 FBX，保留持握骨、弓梢标记和既有姿态 |
+| `assets/ArcherMotionRig.blend` | `tools/art/refine_archer_rig.py` | 在小兵生成器之后运行的远程兵补丁：手臂比例、箭台/箭筒标记、两根渐变权重弓臂；独立 Arrow.fbx |
 | `assets/HeroRefinement.blend` | `tools/art/refine_hero_models.py` | 六英雄 FBX 与实际模型渲染头像 |
 | `assets/RefinedRocks.blend` | `tools/art/build_refined_rocks.py` | 连续岩体、静态中央半盘及贴格布局 |
 | `assets/HeroFX.blend` | `tools/art/build_hero_fx.py` | 水带、暗影带 UV 网格，Unity 驱动流动/消散 |

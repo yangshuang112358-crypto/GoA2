@@ -1,0 +1,277 @@
+{
+  "generator": "tools/art/refine_archer_rig.py",
+  "version": 3,
+  "run_after": "tools/art/refine_minion_models.py",
+  "base_source_sha256": "445848657a0ffc4a6a656f68cb960e5dcf202e2b5225f614d07c8ffbcd8e8c83",
+  "published": true,
+  "non_deform_markers": {
+    "BowRest": {
+      "head_blender": [
+        -0.5237500071525574,
+        -0.2029999941587448,
+        0.7734999656677246
+      ],
+      "parent": "Weapon.L"
+    },
+    "QuiverGrab": {
+      "head_blender": [
+        0.23999999463558197,
+        0.2800000011920929,
+        1.309999942779541
+      ],
+      "parent": "Spine"
+    },
+    "QuiverExit": {
+      "head_blender": [
+        0.23999999463558197,
+        0.2800000011920929,
+        1.649999976158142
+      ],
+      "parent": "Spine"
+    }
+  },
+  "original_bone_count": 21,
+  "bone_count": 26,
+  "arm_length_factors": {
+    "UpperArm": 1.15,
+    "LowerArm": 1.6
+  },
+  "intentional_rest_changes": [
+    "BowGrip",
+    "BowTip.Bottom",
+    "BowTip.Top",
+    "Hand.L",
+    "Hand.R",
+    "LowerArm.L",
+    "LowerArm.R",
+    "UpperArm.L",
+    "UpperArm.R",
+    "Weapon.L",
+    "Weapon.R"
+  ],
+  "arm_contract": {
+    "L": {
+      "old_shoulder": [
+        -0.2750000059604645,
+        0.0,
+        1.0700000524520874
+      ],
+      "old_elbow": [
+        -0.4000000059604645,
+        -0.11999999731779099,
+        0.8799999952316284
+      ],
+      "old_wrist": [
+        -0.42500001192092896,
+        -0.17000000178813934,
+        0.75
+      ],
+      "new_elbow": [
+        -0.41874998807907104,
+        -0.1379999965429306,
+        0.8514999747276306
+      ],
+      "new_wrist": [
+        -0.45875000953674316,
+        -0.21799999475479126,
+        0.6434999704360962
+      ],
+      "wrist_translation": [
+        -0.03374999761581421,
+        -0.047999992966651917,
+        -0.10650002956390381
+      ],
+      "upper_length": 0.2957200371807859,
+      "lower_length": 0.22641555413007236,
+      "runtime_reach_at_height_2_016": 0.5705286372681491
+    },
+    "R": {
+      "old_shoulder": [
+        0.2750000059604645,
+        0.0,
+        1.0700000524520874
+      ],
+      "old_elbow": [
+        0.4000000059604645,
+        -0.11999999731779099,
+        0.8799999952316284
+      ],
+      "old_wrist": [
+        0.42500001192092896,
+        -0.17000000178813934,
+        0.75
+      ],
+      "new_elbow": [
+        0.41874998807907104,
+        -0.1379999965429306,
+        0.8514999747276306
+      ],
+      "new_wrist": [
+        0.45875000953674316,
+        -0.21799999475479126,
+        0.6434999704360962
+      ],
+      "wrist_translation": [
+        0.03374999761581421,
+        -0.047999992966651917,
+        -0.10650002956390381
+      ],
+      "upper_length": 0.2957200371807859,
+      "lower_length": 0.22641555413007236,
+      "runtime_reach_at_height_2_016": 0.5705286372681491
+    }
+  },
+  "original_vertex_order_unchanged": true,
+  "non_bow_original_weights_unchanged": true,
+  "bow_flex": {
+    "bone_names": [
+      "BowLimb.Top",
+      "BowLimb.Bottom"
+    ],
+    "parents": {
+      "BowLimb.Top": "Weapon.L",
+      "BowLimb.Bottom": "Weapon.L",
+      "BowTip.Top": "BowLimb.Top",
+      "BowTip.Bottom": "BowLimb.Bottom"
+    },
+    "pivots_from_grip_RUF_source_m": {
+      "Top": [
+        0,
+        0.11,
+        -0.02
+      ],
+      "Bottom": [
+        0,
+        -0.11,
+        -0.02
+      ]
+    },
+    "world_rotation_axis": "Cross(bowUp, bowForward), independent of FBX local bone axes",
+    "top_angle_sign": -1,
+    "bottom_angle_sign": 1,
+    "recommended_full_draw_degrees": 22.8,
+    "weight_transition_from_grip_abs_z_source_m": [
+      0.125,
+      0.4
+    ],
+    "weight_curve": "quintic smoothstep; Weapon.L remainder; tip-side region is fully limb weighted",
+    "limit": "Stylized graded skin; not a physical bow solver. Keep full draw within 0..25 degrees and verify the rendered string clearance.",
+    "validation": {
+      "rest_string_source_m": 1.0599999466482184,
+      "full_draw_string_source_m": 1.06028382716769,
+      "string_length_ratio": 1.0002678118243018,
+      "full_draw_tip_positions_blender": {
+        "Top": [
+          -0.4587500989437103,
+          0.11686378717422485,
+          1.0767422914505005
+        ],
+        "Bottom": [
+          -0.4587501287460327,
+          0.11686384677886963,
+          0.21025729179382324
+        ]
+      },
+      "non_bow_vertex_max_error_source_m": 7.300048299977713E-08,
+      "limb_max_vertex_displacement_source_m": 0.18276853460660716
+    },
+    "changed_runtime_vertex_count": 480
+  },
+  "unrelated_bones_body_and_quiver_unchanged": true,
+  "hands_grip_and_shelf_rigid_translation_only": true,
+  "bow_grip_tip_offsets_unchanged": true,
+  "height_and_ground_anchor_unchanged": true,
+  "bounds_before_blender": {
+    "min": [
+      -0.5300000309944153,
+      -0.32600000500679016,
+      0.004999995231628418
+    ],
+    "max": [
+      0.5300000309944153,
+      0.42000001668930054,
+      1.850000023841858
+    ]
+  },
+  "bounds_blender": {
+    "min": [
+      -0.5599485635757446,
+      -0.32600000500679016,
+      0.004999995231628418
+    ],
+    "max": [
+      0.5599485635757446,
+      0.42000001668930054,
+      1.850000023841858
+    ]
+  },
+  "ranged_triangles": 17434,
+  "arrow": {
+    "fbx_version": 7400,
+    "serialized_unit_centimeters": 1.0,
+    "serialized_mesh_bounds_meters": {
+      "min": [
+        -0.027499999850988388,
+        -0.023982686921954155,
+        0.0
+      ],
+      "max": [
+        0.027499999850988388,
+        0.023982686921954155,
+        1.0
+      ]
+    },
+    "forward_local": [
+      0,
+      0,
+      1
+    ],
+    "tail_local": [
+      0,
+      0,
+      0
+    ],
+    "tip_local": [
+      0,
+      0,
+      1
+    ],
+    "triangles": 390,
+    "material_slots": [
+      "Parchment",
+      "Leather",
+      "Bronze",
+      "SteelLight",
+      "TeamCloth"
+    ]
+  },
+  "protected_files_sha256": {
+    "art\\production\\assets\\MinionRefinement.blend": "445848657a0ffc4a6a656f68cb960e5dcf202e2b5225f614d07c8ffbcd8e8c83",
+    "art\\production\\assets\\Workbench.blend": "548986b0c916fd0258cb51e7dcf9c2d8eb4211cb2e38e62326d627983bae423f",
+    "unity\\Assets\\Scripts\\UI3D\\Resources\\UI3D\\Minions\\Melee.fbx": "894c43e38b8c33dc56c155cc6408474a8feaf2c0e372137b6ca3ea616a9367d8",
+    "unity\\Assets\\Scripts\\UI3D\\Resources\\UI3D\\Minions\\Heavy.fbx": "940472ae9767f2203820840386f9bfdb66dfabb006ab1f190c6841dcd448e2f6",
+    "unity\\Assets\\Scripts\\UI3D\\Resources\\UI3D\\Minions\\Arrow.fbx": "fcd7c64108c1f24d1c24dcc00e6dc22ef4bd3bbfcb864a16675cc5a186fab52c",
+    "unity\\Assets\\Scripts\\UI3D\\Resources\\UI3D\\Minions\\Melee.fbx.meta": "083a21ba934076ff1cb9eae3c9789ac84cee71e8355cbfe44b4a40ae7763c371",
+    "unity\\Assets\\Scripts\\UI3D\\Resources\\UI3D\\Minions\\Ranged.fbx.meta": "5ead64ca423e63342c27e8b52441b9577a324c28b22ca5f4ad0800fe10077fda",
+    "unity\\Assets\\Scripts\\UI3D\\Resources\\UI3D\\Minions\\Heavy.fbx.meta": "25139fda18bf51d8e9417e13183b3f5bff1071bb760c66bb2b74b924e6357320",
+    "unity\\Assets\\Scripts\\UI3D\\Resources\\UI3D\\Minions\\Arrow.fbx.meta": "b74e7daa4ba35942a03c7efd9804617accde14cd3cabeaebccbe7518b8ef64c5"
+  },
+  "files": {
+    "Ranged.fbx": "7d859b6b2325035d6fe2ef09aa76057d41a775a3b5b651d53c728d00dd2c17f4",
+    "Arrow.fbx": "fcd7c64108c1f24d1c24dcc00e6dc22ef4bd3bbfcb864a16675cc5a186fab52c",
+    "ArcherMotionRig.blend": "f3d05e7e07bd428bf2637d360b4e7473accd2b9bedd84405458fe185ba88a165"
+  },
+  "validation_boundary": "Blender geometry/export contracts. Unity import, socket preservation and real animation clearances require subsequent runtime validation.",
+  "export_roundtrip": {
+    "bones": 26,
+    "tip_errors_source_m": {
+      "Top": 9.978216315974716E-07,
+      "Bottom": 1.218733717222415E-06
+    },
+    "weighted_vertices_after_fbx": {
+      "BowLimb.Top": 240,
+      "BowLimb.Bottom": 240
+    },
+    "no_lights_cameras": true
+  }
+}
