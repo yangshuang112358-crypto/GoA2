@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="68" result="Passed" total="68" passed="68" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.4782686">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2396" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.478269" total="68" passed="68" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3828" name="Goa2.UI3D.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.UI3D.Tests.dll" runstate="Runnable" testcasecount="161" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.277246" total="68" passed="68" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="21684" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+      <test-suite type="TestSuite" id="3829" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="161" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.274869" total="68" passed="68" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+        <test-suite type="TestSuite" id="3830" name="UI3D" fullname="Goa2.UI3D" runstate="Runnable" testcasecount="161" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.273181" total="68" passed="68" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+          <test-suite type="TestSuite" id="3831" name="Tests" fullname="Goa2.UI3D.Tests" runstate="Runnable" testcasecount="161" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.266600" total="68" passed="68" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            <test-suite type="TestFixture" id="3635" name="ActionSequenceTests" fullname="Goa2.UI3D.Tests.ActionSequenceTests" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-08 19:29:39Z" end-time="2026-10-08 19:29:52Z" duration="12.984258" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3641" name="AttackAfterMoveDoesNotBecomeAChildOfOrdinaryDefense" fullname="Goa2.UI3D.Tests.ActionSequenceTests.AttackAfterMoveDoesNotBecomeAChildOfOrdinaryDefense" methodname="AttackAfterMoveDoesNotBecomeAChildOfOrdinaryDefense" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1208188193" result="Passed" start-time="2026-10-08 19:29:39Z" end-time="2026-10-08 19:29:39Z" duration="0.761510" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3640" name="DefensePreludeCreatesCommittedDefenseThenPurpleThenDiscard" fullname="Goa2.UI3D.Tests.ActionSequenceTests.DefensePreludeCreatesCommittedDefenseThenPurpleThenDiscard" methodname="DefensePreludeCreatesCommittedDefenseThenPurpleThenDiscard" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="268300418" result="Passed" start-time="2026-10-08 19:29:39Z" end-time="2026-10-08 19:29:41Z" duration="1.455638" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3651" name="FourWayPreviewUsesAlreadyFlippedCoinAndHonorsActualCaptainChoice" fullname="Goa2.UI3D.Tests.ActionSequenceTests.FourWayPreviewUsesAlreadyFlippedCoinAndHonorsActualCaptainChoice" methodname="FourWayPreviewUsesAlreadyFlippedCoinAndHonorsActualCaptainChoice" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="189376816" result="Passed" start-time="2026-10-08 19:29:41Z" end-time="2026-10-08 19:29:41Z" duration="0.153813" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3649" name="GroupingExcludesStartedResponsesAndExtraRoots" fullname="Goa2.UI3D.Tests.ActionSequenceTests.GroupingExcludesStartedResponsesAndExtraRoots" methodname="GroupingExcludesStartedResponsesAndExtraRoots" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="135642339" result="Passed" start-time="2026-10-08 19:29:41Z" end-time="2026-10-08 19:29:41Z" duration="0.009062" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3637" name="HiddenSelectionsNeverGenerateMainCards" fullname="Goa2.UI3D.Tests.ActionSequenceTests.HiddenSelectionsNeverGenerateMainCards" methodname="HiddenSelectionsNeverGenerateMainCards" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1042005186" result="Passed" start-time="2026-10-08 19:29:41Z" end-time="2026-10-08 19:29:41Z" duration="0.142247" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3639" name="NestedCounterattacksAreDistinctRootsAndDefensesRemainChildren" fullname="Goa2.UI3D.Tests.ActionSequenceTests.NestedCounterattacksAreDistinctRootsAndDefensesRemainChildren" methodname="NestedCounterattacksAreDistinctRootsAndDefensesRemainChildren" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1892048029" result="Passed" start-time="2026-10-08 19:29:41Z" end-time="2026-10-08 19:29:42Z" duration="0.648612" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3636" name="RealDefenseDiscardIsNestedAndIdenticalForAllSeats" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealDefenseDiscardIsNestedAndIdenticalForAllSeats" methodname="RealDefenseDiscardIsNestedAndIdenticalForAllSeats" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1247443980" result="Passed" start-time="2026-10-08 19:29:42Z" end-time="2026-10-08 19:29:42Z" duration="0.420765" asserts="0">
+                <properties />
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3648" name="RealFixturesHaveStableAcyclicPublicTrace" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-08 19:29:42Z" end-time="2026-10-08 19:29:51Z" duration="8.931738" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3642" name="RealFixturesHaveStableAcyclicPublicTrace(&quot;cloak-repeat&quot;)" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace(&quot;cloak-repeat&quot;)" methodname="RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1104730018" result="Passed" start-time="2026-10-08 19:29:42Z" end-time="2026-10-08 19:29:45Z" duration="3.126758" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3643" name="RealFixturesHaveStableAcyclicPublicTrace(&quot;phantasm-primary&quot;)" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace(&quot;phantasm-primary&quot;)" methodname="RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="640817341" result="Passed" start-time="2026-10-08 19:29:45Z" end-time="2026-10-08 19:29:47Z" duration="1.754955" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3644" name="RealFixturesHaveStableAcyclicPublicTrace(&quot;counterattack-defense&quot;)" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace(&quot;counterattack-defense&quot;)" methodname="RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1716842417" result="Passed" start-time="2026-10-08 19:29:47Z" end-time="2026-10-08 19:29:48Z" duration="0.530229" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3645" name="RealFixturesHaveStableAcyclicPublicTrace(&quot;thunderstorm-pay&quot;)" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace(&quot;thunderstorm-pay&quot;)" methodname="RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="714207389" result="Passed" start-time="2026-10-08 19:29:48Z" end-time="2026-10-08 19:29:49Z" duration="1.582523" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3646" name="RealFixturesHaveStableAcyclicPublicTrace(&quot;poison-dagger-ally&quot;)" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace(&quot;poison-dagger-ally&quot;)" methodname="RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="88522760" result="Passed" start-time="2026-10-08 19:29:49Z" end-time="2026-10-08 19:29:51Z" duration="1.238822" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3647" name="RealFixturesHaveStableAcyclicPublicTrace(&quot;tidal-wave-counterattack&quot;)" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace(&quot;tidal-wave-counterattack&quot;)" methodname="RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="727678388" result="Passed" start-time="2026-10-08 19:29:51Z" end-time="2026-10-08 19:29:51Z" duration="0.691476" asserts="0">
+                  <properties />
+                </test-case>
+              </test-suite>
+              <test-case id="3638" name="RestoreReconstructsSameTraceAndFollowingPlanningKeepsIt" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RestoreReconstructsSameTraceAndFollowingPlanningKeepsIt" methodname="RestoreReconstructsSameTraceAndFollowingPlanningKeepsIt" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="153398565" result="Passed" start-time="2026-10-08 19:29:51Z" end-time="2026-10-08 19:29:52Z" duration="0.434206" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3650" name="RouletteCuesAreShort" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RouletteCuesAreShort" methodname="RouletteCuesAreShort" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="946093565" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.009804" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3711" name="MainFlowPolicyTests" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" testcasecount="26" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.017882" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3737" name="InstructionsDescribeActionsRatherThanButtons" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.InstructionsDescribeActionsRatherThanButtons" methodname="InstructionsDescribeActionsRatherThanButtons" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1797842699" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.002229" asserts="0">
+                <properties />
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3733" name="PendingPromptsChooserNotSuspendedActor" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.011670" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3712" name="PendingPromptsChooserNotSuspendedActor(&quot;initiative&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;initiative&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1759823434" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.001373" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3713" name="PendingPromptsChooserNotSuspendedActor(&quot;defense&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;defense&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1081906332" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000084" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3714" name="PendingPromptsChooserNotSuspendedActor(&quot;forced_discard&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;forced_discard&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1743104199" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000060" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3715" name="PendingPromptsChooserNotSuspendedActor(&quot;optional_discard&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;optional_discard&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1870438393" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000056" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3716" name="PendingPromptsChooserNotSuspendedActor(&quot;minion_protection&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;minion_protection&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1438530168" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000054" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3717" name="PendingPromptsChooserNotSuspendedActor(&quot;recover_discard&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;recover_discard&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="382147553" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000055" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3718" name="PendingPromptsChooserNotSuspendedActor(&quot;discard_attack&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;discard_attack&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1669363025" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000054" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3719" name="PendingPromptsChooserNotSuspendedActor(&quot;card_swap&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;card_swap&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="609549575" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000058" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3720" name="PendingPromptsChooserNotSuspendedActor(&quot;attack_target&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;attack_target&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="836455122" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000056" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3721" name="PendingPromptsChooserNotSuspendedActor(&quot;effect_target&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;effect_target&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="327007063" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000053" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3722" name="PendingPromptsChooserNotSuspendedActor(&quot;effect_minion&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;effect_minion&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="405784692" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000053" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3723" name="PendingPromptsChooserNotSuspendedActor(&quot;effect_move&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;effect_move&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1053742798" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000052" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3724" name="PendingPromptsChooserNotSuspendedActor(&quot;placement&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;placement&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1396957293" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000052" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3725" name="PendingPromptsChooserNotSuspendedActor(&quot;primary_option&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;primary_option&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="360739119" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000054" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3726" name="PendingPromptsChooserNotSuspendedActor(&quot;gold_transfer&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;gold_transfer&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1541807633" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000052" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3727" name="PendingPromptsChooserNotSuspendedActor(&quot;hero_respawn&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;hero_respawn&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1407433182" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000055" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3728" name="PendingPromptsChooserNotSuspendedActor(&quot;round_minion_removal&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;round_minion_removal&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="991305683" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000054" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3729" name="PendingPromptsChooserNotSuspendedActor(&quot;action_minion_removal&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;action_minion_removal&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="840029243" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000055" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3730" name="PendingPromptsChooserNotSuspendedActor(&quot;minion_spawn&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;minion_spawn&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="467637115" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000053" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3731" name="PendingPromptsChooserNotSuspendedActor(&quot;minion_return&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;minion_return&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1229518109" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000055" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3732" name="PendingPromptsChooserNotSuspendedActor(&quot;spawn_order_unresolved&quot;)" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.PendingPromptsChooserNotSuspendedActor(&quot;spawn_order_unresolved&quot;)" methodname="PendingPromptsChooserNotSuspendedActor" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1905873468" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000057" asserts="0">
+                  <properties />
+                </test-case>
+              </test-suite>
+              <test-case id="3736" name="RoundEndResolutionIsAnAction" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.RoundEndResolutionIsAnAction" methodname="RoundEndResolutionIsAnAction" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="701735708" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000144" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3734" name="SecretSelectionDoesNotChangePublicSummary" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.SecretSelectionDoesNotChangePublicSummary" methodname="SecretSelectionDoesNotChangePublicSummary" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="1196490198" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000455" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3735" name="UpgradesOnlyPromptViewerWithCandidates" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.UpgradesOnlyPromptViewerWithCandidates" methodname="UpgradesOnlyPromptViewerWithCandidates" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="301113906" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000189" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="3738" name="VictorySuppressesStalePendingPrompt" fullname="Goa2.UI3D.Tests.MainFlowPolicyTests.VictorySuppressesStalePendingPrompt" methodname="VictorySuppressesStalePendingPrompt" classname="Goa2.UI3D.Tests.MainFlowPolicyTests" runstate="Runnable" seed="567459688" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:52Z" duration="0.000172" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3739" name="MinionModelTests" fullname="Goa2.UI3D.Tests.MinionModelTests" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-08 19:29:55Z" end-time="2026-10-08 19:29:56Z" duration="1.092094" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              <test-case id="3744" name="BoardUsesModelsWithoutMutatingTheProjectedGameOrTokenPicking" fullname="Goa2.UI3D.Tests.MinionModelTests.BoardUsesModelsWithoutMutatingTheProjectedGameOrTokenPicking" methodname="BoardUsesModelsWithoutMutatingTheProjectedGameOrTokenPicking" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="1860329214" result="Passed" start-time="2026-10-08 19:29:52Z" end-time="2026-10-08 19:29:56Z" duration="4.231026" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="Category" value="RequiresGraphics" />
+                </properties>
+                <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3743" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.013074" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3740" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Melee&quot;)" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Melee&quot;)" methodname="ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="505185742" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.007307" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3741" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Ranged&quot;)" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Ranged&quot;)" methodname="ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="1754832885" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.001680" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3742" name="ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Heavy&quot;)" fullname="Goa2.UI3D.Tests.MinionModelTests.ExportedModelHasReadableGeometryAndAnEditableSkeleton(&quot;Heavy&quot;)" methodname="ExportedModelHasReadableGeometryAndAnEditableSkeleton" classname="Goa2.UI3D.Tests.MinionModelTests" runstate="Runnable" seed="823748147" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.002162" asserts="0">
+                  <properties />
+                </test-case>
+              </test-suite>
+            </test-suite>
+            <test-suite type="TestFixture" id="3761" name="RefinedHeroModelTests" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.197383" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              <test-suite type="ParameterizedMethod" id="3769" name="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.048910" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3763" name="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents(&quot;wasp&quot;)" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents(&quot;wasp&quot;)" methodname="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="389629526" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.013181" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3764" name="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents(&quot;shargatha&quot;)" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents(&quot;shargatha&quot;)" methodname="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="2129561530" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.008532" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3765" name="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents(&quot;brogan&quot;)" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents(&quot;brogan&quot;)" methodname="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="216330861" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.009919" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3766" name="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents(&quot;arien&quot;)" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents(&quot;arien&quot;)" methodname="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="1746146669" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.005710" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3767" name="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents(&quot;tigerclaw&quot;)" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents(&quot;tigerclaw&quot;)" methodname="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="1307694526" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.004592" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3768" name="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents(&quot;sabina&quot;)" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents(&quot;sabina&quot;)" methodname="ImportedHeroHasFinitePaintableGeometryAndNoStudioComponents" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="1149949147" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.005810" asserts="0">
+                  <properties />
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="3776" name="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.025253" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3770" name="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots(&quot;wasp&quot;)" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots(&quot;wasp&quot;)" methodname="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="1006016394" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.007357" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3771" name="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots(&quot;shargatha&quot;)" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots(&quot;shargatha&quot;)" methodname="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="1236346801" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.003870" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3772" name="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots(&quot;brogan&quot;)" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots(&quot;brogan&quot;)" methodname="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="1586529828" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.005923" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3773" name="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots(&quot;arien&quot;)" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots(&quot;arien&quot;)" methodname="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="328547455" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.002406" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3774" name="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots(&quot;tigerclaw&quot;)" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots(&quot;tigerclaw&quot;)" methodname="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="1292485974" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.001653" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="3775" name="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots(&quot;sabina&quot;)" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots(&quot;sabina&quot;)" methodname="ImportedHeroHasValidSkinBindingsAndRecognizedMaterialSlots" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="456411641" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:56Z" duration="0.002318" asserts="0">
+                  <properties />
+                </test-case>
+              </test-suite>
+              <test-case id="3762" name="RuntimeAuraWrappersPreserveFbxUnitsAndUpAxis" fullname="Goa2.UI3D.Tests.RefinedHeroModelTests.RuntimeAuraWrappersPreserveFbxUnitsAndUpAxis" methodname="RuntimeAuraWrappersPreserveFbxUnitsAndUpAxis" classname="Goa2.UI3D.Tests.RefinedHeroModelTests" runstate="Runnable" seed="1778153024" result="Passed" start-time="2026-10-08 19:29:56Z" end-time="2026-10-08 19:29:59Z" duration="3.284677" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="Category" value="RequiresGraphics" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3793" name="SkillWheelTests" fullname="Goa2.UI3D.Tests.SkillWheelTests" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.007961" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3794" name="DiscardAnimationIsPublicResultOnlyAndConsumedOnce" fullname="Goa2.UI3D.Tests.SkillWheelTests.DiscardAnimationIsPublicResultOnlyAndConsumedOnce" methodname="DiscardAnimationIsPublicResultOnlyAndConsumedOnce" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1065707782" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.002110" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3796" name="DiscardBeatsRemainSequential" fullname="Goa2.UI3D.Tests.SkillWheelTests.DiscardBeatsRemainSequential" methodname="DiscardBeatsRemainSequential" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1846566001" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.001011" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3799" name="MidGameCoinUsesFastHalfTurnTiming" fullname="Goa2.UI3D.Tests.SkillWheelTests.MidGameCoinUsesFastHalfTurnTiming" methodname="MidGameCoinUsesFastHalfTurnTiming" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="621994547" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.001310" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3797" name="OtherHeroSlotNeverUsesPrivateHand" fullname="Goa2.UI3D.Tests.SkillWheelTests.OtherHeroSlotNeverUsesPrivateHand" methodname="OtherHeroSlotNeverUsesPrivateHand" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1346926500" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.000917" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3798" name="OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection" fullname="Goa2.UI3D.Tests.SkillWheelTests.OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection" methodname="OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1802537207" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.000468" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3795" name="RestoreDoesNotReplayHistoryAndRewindClearsFuture" fullname="Goa2.UI3D.Tests.SkillWheelTests.RestoreDoesNotReplayHistoryAndRewindClearsFuture" methodname="RestoreDoesNotReplayHistoryAndRewindClearsFuture" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1334394203" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.000400" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3800" name="UpgradeWheelTests" fullname="Goa2.UI3D.Tests.UpgradeWheelTests" classname="Goa2.UI3D.Tests.UpgradeWheelTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.006842" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="3804" name="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop" fullname="Goa2.UI3D.Tests.UpgradeWheelTests.EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop" classname="Goa2.UI3D.Tests.UpgradeWheelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.005119" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3801" name="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop(1)" fullname="Goa2.UI3D.Tests.UpgradeWheelTests.EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop(1)" methodname="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop" classname="Goa2.UI3D.Tests.UpgradeWheelTests" runstate="Runnable" seed="948642161" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.004025" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3802" name="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop(2)" fullname="Goa2.UI3D.Tests.UpgradeWheelTests.EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop(2)" methodname="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop" classname="Goa2.UI3D.Tests.UpgradeWheelTests" runstate="Runnable" seed="984179391" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.000097" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3803" name="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop(3)" fullname="Goa2.UI3D.Tests.UpgradeWheelTests.EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop(3)" methodname="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop" classname="Goa2.UI3D.Tests.UpgradeWheelTests" runstate="Runnable" seed="320461540" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.000059" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3805" name="RemainingIsNotNumberOfCandidateColors" fullname="Goa2.UI3D.Tests.UpgradeWheelTests.RemainingIsNotNumberOfCandidateColors" methodname="RemainingIsNotNumberOfCandidateColors" classname="Goa2.UI3D.Tests.UpgradeWheelTests" runstate="Runnable" seed="1447672879" result="Passed" start-time="2026-10-08 19:29:59Z" end-time="2026-10-08 19:29:59Z" duration="0.000713" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\art-refinement-release-20261009-b09ea0a778b842e4a4d0944b949758b9.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
