@@ -1,4 +1,4 @@
-"""Observation 4 -> relational records. No game-rule simulation, hashing or ID bytes.
+"""Observation 5 -> relational records. No game-rule simulation, hashing or ID bytes.
 
 Numeric slots are typed by record kind and have explicit presence masks. Foreign
 keys become edges, never learned ordinal numbers. All collections are variable
@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 import torch
 
-ENCODER_VERSION = 3
+ENCODER_VERSION = 4
 SYMBOLS = json.loads(Path(__file__).with_name('public-symbols-v1.json').read_text(encoding='utf-8'))
 PHASES = 'HeroSelection Deployment Planning InitiativeChoice Action RoundEnd EffectChoice Finished'.split()
 WINDOWS = ('initiative hero_respawn attack_target minion_protection primary_option effect_target effect_minion '
@@ -24,7 +24,7 @@ BONUSES = 'attack defense movement initiative skill_range attack_range'.split()
 SPEC = {
     'match': ('Round Turn BlueCrystal RedCrystal BlueMarks RedMarks RemainingMinionRemovals AttackRange',
               {'Phase':'phase','Decision':'window','CombatRegion':'region','Coin':'team','RoundEndStage':'round_stage'}),
-    'rules': ('StartingCrystalLife VictoryMarksRequired TurnsPerRound HandSize', {}),
+    'rules': ('StartingCrystalLife VictoryMarksRequired TurnsPerRound HandSize', {'InitialCombatRegion':'region'}),
     'cell': ('X Y Obstacle Lane', {'Region':'region','Base':'base','Spawn':'spawn'}),
     'definition': ('Initiative PrimaryValue SecondaryMovement SecondaryDefense Level Exclamation SubtypeValue',
                    {'Id':'card','HeroId':'hero','PrimaryFamily':'family','PrimaryCategory':'category','Color':'color','Subtype':'subtype','Passive':'bonus'}),
@@ -35,10 +35,17 @@ SPEC = {
     'absent_unit': ('', {}),
     'effect': ('CreatedRound CreatedTurn Order StartRound StartTurn EndRound EndTurn BaseRadius PersistsThroughDefeat',
                {'Kind':'effect','Duration':'duration','AreaKind':'area'}),
-    'event': ('Ordinal Round Turn Amount Amount2 Amount3', {'Kind':'event','Value':'event_value','SecondaryValue':'event_value'}),
+    'event': ('Ordinal AtPublicOrdinal Round Turn Amount Amount2 Amount3', {'Kind':'event','Value':'event_value','SecondaryValue':'event_value'}),
     'sequence': ('Round Turn', {}),
     'action_card': ('Order Initiative Started Resolved Focused', {'Role':'role'}),
-    'attack': ('Base Bonus Support Guard Final TextBonus UltimateBonus Ranged Unblockable', {}),
+    'attack': ('Base Bonus Support Guard Final TextBonus UltimateBonus Ranged Unblockable', {'Reason':'attack_reason'}),
+    'restriction': ('', {'Action':'action','Reason':'event_value'}),
+    'mechanic_parameter': ('Number Flag', {'Key':'mechanic_key','Symbol':'mechanic_symbol'}),
+    'mechanic_step': ('Order', {}),
+    'step_definition': ('Optional', {k:'step_'+k for k in ('Code','Operation','Chooser','Target','Condition','NoTarget')}),
+    'constraint': ('', {'Code':'constraint','Kind':'constraint_kind'}),
+    'effect_reference': ('', {}),
+    'effect_definition': ('Amount', {'Kind':'effect',**{k:'effect_'+k for k in ('Operation','Target','Condition','Sampling')}}),
     'response': ('Optional', {'SourceSymbol':'source'}),
     'opening': ('DraftComplete OpeningComplete', {'Purpose':'purpose','Status':'opening_status','FirstTeam':'team','Result':'team','DraftTeam':'team'}),
     'upgrade': ('Round HeroLevel CardLevel Amount', {'Bonus':'bonus'}),
@@ -54,7 +61,7 @@ RELATIONS = ('self active blue_captain red_captain upgrading rules permanent eff
              'position pending_spawn source protected controller exempt area actor card from to path point '
              'sequence parent attacker defender target text_source support_source guard_source own_upgrade '
              'previous selected rejected response opening attack effect history destination value facts defense '
-             'upgrade preview_target preview_cell next_cell').split()
+             'upgrade preview_target preview_cell next_cell mechanism parameter step constraint step_definition own_history effect_instance effect_definition other_card restriction').split()
 RELATIONS = RELATIONS + ['reverse:'+r for r in RELATIONS]
 
 
@@ -66,7 +73,7 @@ def strict(obj, kind, extra=()):
 
 def scale(field):
     if field in ('X','Y'): return 20.
-    if field in ('Order','Ordinal'): return 1000.
+    if field in ('Order','Ordinal','AtPublicOrdinal'): return 1000.
     if 'Round' in field: return 20.
     if 'Turn' in field: return 4.
     return 10.  # Exact linear rescaling, no clipping and no data-dependent normalization.
@@ -121,9 +128,12 @@ class Builder:
 
 class Encoder:
     def __init__(self, description):
+        if set(description)!={'Protocol','Contract','SemanticVersion','EventReasons','StepDefinitions','EffectDefinitions','Cards','Cells','Heroes','ActionKinds'}:
+            raise ValueError('unreviewed public catalog fields')
         self.contract = description['Contract']
-        if self.contract['ObservationVersion'] != 4 or self.contract['ActionVersion'] != 2:
+        if self.contract['ObservationVersion'] != 5 or self.contract['ActionVersion'] != 2:
             raise ValueError('unsupported observation/action format; regenerate public decisions, do not relabel old vectors')
+        if description['SemanticVersion'] != 1: raise ValueError('unsupported public semantics')
         self.description = description
         self.cards = {c['Id']:c for c in description['Cards']}
         if len(self.cards) != len(description['Cards']): raise ValueError('duplicate card identity')
@@ -146,6 +156,17 @@ class Encoder:
         domains['event_value'] = (['Blue','Red','skip','ultimate','Secondary','Fast','Primary','CardText','BeforeAction','DefenseResponse',
             'success','failure','defended','hit','defeated','removed','immune','minion_defeated','hero_defeated','minion_saved','protect','recover','battle','repeat','finish',
             'initiative_attack','initiative_attack_defense'] + description['Heroes'] + domains['region'] + domains['color'])
+        domains['event_value'] += (description['EventReasons'] + list(SYMBOLS['EffectKind']) + self.kinds + BONUSES + ['block','skill_cancelled','before_action','choose_push_order','choose_forced_discard_order','choose_push_target','choose_unit_to_place','choose_repeat_placement','push_distance'])
+        domains['attack_reason']=['source_adjacent_enemies','target_adjacent_other_allies']
+        mechanics=[c['Mechanics'] for c in self.cards.values()]
+        domains['mechanic_key']=[p['Key'] for m in mechanics for p in m['Parameters']]
+        domains['mechanic_symbol']=[p['Symbol'] for m in mechanics for p in m['Parameters']]
+        domains['constraint']=[s for m in mechanics for k in ('Constraints','Limitations') for s in m[k]]
+        domains['constraint_kind']=['rule','limitation']
+        for k in ('Code','Operation','Chooser','Target','Condition','NoTarget'):
+            domains['step_'+k]=[d[k] for d in description['StepDefinitions']]
+        for k in ('Operation','Target','Condition','Sampling'):
+            domains['effect_'+k]=[d[k] for d in description['EffectDefinitions']]
         tokens = {'type='+k for k in SPEC}
         for name, values in domains.items():
             tokens.update(name+'='+str(v or '') for v in list(values)+[''])
@@ -158,11 +179,11 @@ class Encoder:
     def encode(self, decision):
         if set(decision) != {'Revision','Observation','Actions'}: raise ValueError('unknown decision fields')
         o, actions = decision['Observation'], decision['Actions']
-        if o['Schema'] != 4 or o['Rules'] != self.contract['RuleProfile']:
+        if o['Schema'] != 5 or o['Rules'] != self.contract['RuleProfile']:
             raise ValueError('unvalidated rule profile or observation version')
         if not actions or len({a['Id'] for a in actions}) != len(actions): raise ValueError('empty/duplicate candidates')
         b = Builder(self)
-        match_extras = 'Schema Rules Seat ActiveSeat BlueCaptain RedCaptain UpgradingSeats Response Sequence Opening Attack Players Units PendingSpawns OwnUpgrades PublicHistory Effects'.split()
+        match_extras = 'Schema Rules Seat ActiveSeat BlueCaptain RedCaptain UpgradingSeats Response Sequence Opening Attack Players Units PendingSpawns OwnUpgrades PublicHistory OwnHistory Restrictions Effects'.split()
         match = b.node('match', o, match_extras)
         rules = b.node('rules', o['Rules'], ['Id']); b.edge(match,rules,'rules')
         cells = {}
@@ -181,7 +202,26 @@ class Encoder:
         for (x,y), n in cells.items():
             for dx,dy in ((1,0),(0,1),(-1,1)):
                 if (x+dx,y+dy) in cells: b.edge(n,cells[x+dx,y+dy],'next_cell')
-        defs = {cid:b.node('definition',self.cards[cid]) for cid in self.card_ids}
+        defs = {cid:b.node('definition',self.cards[cid],['Mechanics']) for cid in self.card_ids}
+        step_defs={d['Code']:b.node('step_definition',d) for d in sorted(self.description['StepDefinitions'],key=lambda d:d['Code'])}
+        if len(step_defs)!=len(self.description['StepDefinitions']):raise ValueError('duplicate step definition')
+        effect_defs={d['Kind']:b.node('effect_definition',d) for d in sorted(self.description['EffectDefinitions'],key=lambda d:d['Kind'])}
+        constraints={}
+        for cid in self.card_ids:
+            m=self.cards[cid]['Mechanics']
+            if set(m)!={'Family','Parameters','Steps','Constraints','Limitations'}:raise ValueError('unknown mechanic field')
+            if m['Family']!=self.cards[cid]['PrimaryFamily']:raise ValueError('mechanic family mismatch')
+            if len({p['Key'] for p in m['Parameters']})!=len(m['Parameters']):raise ValueError('duplicate mechanic parameter')
+            for p in sorted(m['Parameters'],key=lambda p:p['Key']):
+                if sum([p['Number'] is not None,p['Flag'] is not None,bool(p['Symbol'])])>1:raise ValueError('ambiguous mechanic parameter')
+                pn=b.node('mechanic_parameter',p);b.edge(defs[cid],pn,'parameter')
+                if p['Key']=='Effect' and p['Symbol']:b.edge(pn,effect_defs[p['Symbol']],'effect_definition')
+            for i,code in enumerate(m['Steps']):
+                n=b.node('mechanic_step',dict(Order=i));b.edge(defs[cid],n,'step');b.edge(n,step_defs[code],'step_definition')
+            for field,kind in [('Constraints','rule'),('Limitations','limitation')]:
+                for code in sorted(m[field]):
+                    if (kind,code) not in constraints:constraints[kind,code]=b.node('constraint',dict(Code=code,Kind=kind))
+                    b.edge(defs[cid],constraints[kind,code],'constraint')
         def card(cid):
             if not cid: return None
             if cid not in defs: raise ValueError('unknown card:'+cid)
@@ -234,19 +274,29 @@ class Encoder:
             if q['Parent'] is not None:
                 if q['Parent'] not in queue: raise ValueError('dangling action parent')
                 b.edge(queue[q['Key']],queue[q['Parent']],'parent')
+        effect_refs={}
+        def effect_ref(key):
+            if key is None:return None
+            if key not in effect_refs:effect_refs[key]=b.node('effect_reference',{})
+            return effect_refs[key]
+        for r in o['Restrictions']:
+            n=b.node('restriction',r,['Card','SourceCard']);b.edge(match,n,'restriction');b.edge(n,card(r['Card']),'card');b.edge(n,card(r['SourceCard']),'source')
         for e in sorted(o['Effects'],key=lambda e:e['Order']):
-            n=b.node('effect',e,['Card','SourceUnit','ProtectedUnit','Controller','ExemptSeat','Area']);b.edge(match,n,'effect')
+            n=b.node('effect',e,['Key','Card','SourceUnit','ProtectedUnit','Controller','ExemptSeat','Area']);b.edge(match,n,'effect');b.edge(n,effect_ref(e['Key']),'effect_instance');b.edge(n,effect_defs[e['Kind']],'effect_definition')
             for key,relation,lookup in [('Card','card',card),('SourceUnit','source',unit),('ProtectedUnit','protected',unit),('Controller','controller',player),('ExemptSeat','exempt',player)]: b.edge(n,lookup(e[key]),relation)
             for at in sorted(e['Area'],key=lambda a:(a['X'],a['Y'])): b.edge(n,cell(at),'area')
-        for e in sorted(o['PublicHistory'],key=lambda e:e['Ordinal']):
-            n=b.node('event',e,['Card','Seat','From','To','Path','OtherSeat','Unit']);b.edge(match,n,'history')
-            b.edge(n,card(e['Card']),'card');b.edge(n,player(e['Seat']),'actor');b.edge(n,player(e['OtherSeat']),'target');b.edge(n,unit(e['Unit']),'value');b.edge(n,cell(e['From']),'from');b.edge(n,cell(e['To']),'to');path(n,e['Path'])
-        if o['Attack'] is not None:
-            a=o['Attack'];n=b.node('attack',a,['Card','Target','Attacker','Defender','TextSources','SupportSources','GuardSources']);b.edge(match,n,'attack')
+        def attack(a,parent):
+            if a is None:return
+            n=b.node('attack',a,['Card','Target','Attacker','Defender','TextSources','SupportSources','GuardSources']);b.edge(parent,n,'attack')
             b.edge(n,card(a['Card']),'card');b.edge(n,unit(a['Target']),'target');b.edge(n,player(a['Attacker']),'attacker');b.edge(n,player(a['Defender']),'defender')
-            # Repeated support IDs are repeated edges: one entry per contribution, never deduplicated.
             for key,rel in [('TextSources','text_source'),('SupportSources','support_source'),('GuardSources','guard_source')]:
                 for uid in a[key]: b.edge(n,unit(uid),rel)
+        for stream,relation in [('PublicHistory','history'),('OwnHistory','own_history')]:
+            for e in sorted(o[stream],key=lambda e:e['Ordinal']):
+                n=b.node('event',e,['Card','Seat','From','To','Path','OtherSeat','Unit','OtherCard','EffectKey','Attack']);b.edge(match,n,relation)
+                b.edge(n,card(e['Card']),'card');b.edge(n,card(e['OtherCard']),'other_card');b.edge(n,player(e['Seat']),'actor');b.edge(n,player(e['OtherSeat']),'target');b.edge(n,unit(e['Unit']),'value');b.edge(n,cell(e['From']),'from');b.edge(n,cell(e['To']),'to');path(n,e['Path'])
+                b.edge(n,effect_ref(e['EffectKey']),'effect_instance');attack(e['Attack'],n)
+        attack(o['Attack'],match)
         def upgrade(u):
             n=b.node('upgrade',u,['Previous','Selected','Rejected'])
             for k in ('Previous','Selected','Rejected'): b.edge(n,card(u[k]),k.lower())

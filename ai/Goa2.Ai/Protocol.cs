@@ -6,10 +6,10 @@ using Goa2.Domain;
 
 namespace Goa2.Ai
 {
-    // No GameSession, GameState, Command, debug fields, RNG or private event payloads cross this boundary.
+    // No authority objects, debug fields, RNG or foreign-private event payloads cross this boundary.
     public sealed class Observation
     {
-        public const int Format = 4;
+        public const int Format = 5;
         public PublicRuleProfile Rules = new PublicRuleProfile();
         public int Schema = Format, Seat, Round, Turn, BlueCrystal, RedCrystal, BlueMarks, RedMarks;
         public string Phase = "", Decision = "", CombatRegion = "", Coin = "";
@@ -27,11 +27,14 @@ namespace Goa2.Ai
         public List<ObservedUnit> PendingSpawns = new List<ObservedUnit>();
         public List<ObservedUpgrade> OwnUpgrades = new List<ObservedUpgrade>();
         public List<ObservedEvent> PublicHistory = new List<ObservedEvent>();
+        public List<ObservedEvent> OwnHistory = new List<ObservedEvent>();
+        public List<ObservedRestriction> Restrictions = new List<ObservedRestriction>();
         public List<ObservedEffect> Effects = new List<ObservedEffect>();
     }
+    public sealed class ObservedRestriction { public string Action = "", Card = "", SourceCard = "", Reason = ""; }
     public sealed class ObservedAttack
     {
-        public string Card = "", Target = "";
+        public string Card = "", Target = "", Reason = "";
         public int Attacker, Defender, Base, Bonus, Support, Guard, Final, TextBonus, UltimateBonus;
         public bool Ranged, Unblockable;
         public List<string> TextSources = new List<string>(), SupportSources = new List<string>(), GuardSources = new List<string>();
@@ -49,19 +52,22 @@ namespace Goa2.Ai
     public sealed class ObservedUnit { public string Id = "", Kind = "", Team = ""; public int? Seat; public Hex Position; public bool Removable; }
     public sealed class ObservedEvent
     {
-        // Ordinal is the PUBLIC event order, never the authority sequence (which includes private events).
-        public int Ordinal, Round, Turn;
+        // Ordinal is local to public/own history, never the authority sequence including foreign events.
+        public int Ordinal, Round, Turn, AtPublicOrdinal;
         public string Kind = "", Card = "";
         public string Unit = "", Value = "", SecondaryValue = "";
         public int? OtherSeat, Amount, Amount2, Amount3;
         public int? Seat;
+        public int? EffectKey;
+        public string OtherCard = "";
+        public ObservedAttack? Attack;
         public Hex? From, To;
         public List<Hex> Path = new List<Hex>();
     }
     public sealed class ObservedEffect
     {
         public string Kind = "", Card = "", SourceUnit = "", ProtectedUnit = "";
-        public int Controller, StartRound, StartTurn, EndRound, EndTurn;
+        public int Key, Controller, StartRound, StartTurn, EndRound, EndTurn;
         public int CreatedRound, CreatedTurn, Order, BaseRadius;
         public int? ExemptSeat;
         public bool PersistsThroughDefeat;

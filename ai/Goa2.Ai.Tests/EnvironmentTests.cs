@@ -91,7 +91,7 @@ namespace Goa2.Ai.Tests
             Assert.That(alternate.Hash,Is.Not.EqualTo(original.Hash));
             Assert.That(ProfileCatalog.Load(Root,10,4).Hash,Is.EqualTo(alternate.Hash));
             var env=new HeadlessEnvironment(alternate,7,"profile"); var d=env.Next()!;
-            Assert.That(d.Observation.Schema,Is.EqualTo(4));
+            Assert.That(d.Observation.Schema,Is.EqualTo(5));
             Assert.That(d.Observation.Rules.StartingCrystalLife,Is.EqualTo(10));
             Assert.That(d.Observation.Rules.VictoryMarksRequired,Is.EqualTo(4));
             Assert.That(d.Observation.BlueCrystal,Is.EqualTo(10));
@@ -121,7 +121,7 @@ namespace Goa2.Ai.Tests
         {
             var inventory=Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(Path.Combine(Root,"ai","observation-coverage.json")));
             Assert.That((bool)inventory["complete"]!,Is.False,"Known semantic gaps must not be called complete.");
-            foreach(var type in new[]{typeof(GameView),typeof(PlayerView),typeof(GameEvent),typeof(PendingChoice),typeof(CardDefinition)})
+            foreach(var type in new[]{typeof(GameView),typeof(PlayerView),typeof(GameEvent),typeof(PendingChoice),typeof(CardDefinition),typeof(AttackBreakdown),typeof(ActiveEffect),typeof(EffectWindow),typeof(RuleSettings),typeof(UnitState),typeof(CardInstance),typeof(CellDefinition),typeof(DefenseAssessment),typeof(ActionSequenceView),typeof(ActionCardView)})
             {
                 var fields=((Newtonsoft.Json.Linq.JObject)inventory["types"]![type.Name]!).Properties().Select(p=>p.Name).ToArray();
                 Assert.That(fields,Is.EquivalentTo(type.GetFields().Select(f=>f.Name)),type.Name+": classify new fields before training");
@@ -202,7 +202,7 @@ namespace Goa2.Ai.Tests
                 }
             }
             TestContext.WriteLine(Json(coverage)); Assert.That(checkedWindows.Count,Is.GreaterThanOrEqualTo(25));
-            File.WriteAllLines(Path.Combine(TestContext.CurrentContext.TestDirectory,"response-v4.jsonl"),examples);
+            File.WriteAllLines(Path.Combine(TestContext.CurrentContext.TestDirectory,"response-v5.jsonl"),examples);
             foreach(var kind in new[]{"discard_attack/","action_minion_removal/","forced_discard/","recover_discard/","gold_transfer/","minion_protection/","minion_spawn/","round_minion_removal/"})
                 Assert.That(checkedWindows.Any(w=>w.StartsWith(kind,StringComparison.Ordinal)),Is.True,"missing coverage: "+kind);
         }

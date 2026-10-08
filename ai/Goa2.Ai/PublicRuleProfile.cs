@@ -12,16 +12,16 @@ namespace Goa2.Ai
 {
     public sealed class PublicRuleProfile
     {
-        public string Id="";
+        public string Id="", InitialCombatRegion="";
         public int StartingCrystalLife, VictoryMarksRequired, TurnsPerRound, HandSize;
         public static PublicRuleProfile From(ContentCatalog c) => new PublicRuleProfile {
             Id="victory-v1-life-"+c.Rules.StartingCrystalLife+"-marks-"+c.Rules.FrontlineVictoryMarks,
             StartingCrystalLife=c.Rules.StartingCrystalLife, VictoryMarksRequired=c.Rules.FrontlineVictoryMarks,
-            TurnsPerRound=c.Rules.TurnsPerRound, HandSize=c.Rules.HandSize };
+            InitialCombatRegion=c.Rules.InitialCombatRegion, TurnsPerRound=c.Rules.TurnsPerRound, HandSize=c.Rules.HandSize };
         public PublicRuleProfile CopyFor(int marks)
         {
             if(marks!=VictoryMarksRequired) throw new InvalidOperationException("rule_profile_state_mismatch");
-            return new PublicRuleProfile { Id=Id, StartingCrystalLife=StartingCrystalLife, VictoryMarksRequired=marks, TurnsPerRound=TurnsPerRound, HandSize=HandSize };
+            return new PublicRuleProfile { Id=Id, InitialCombatRegion=InitialCombatRegion, StartingCrystalLife=StartingCrystalLife, VictoryMarksRequired=marks, TurnsPerRound=TurnsPerRound, HandSize=HandSize };
         }
     }
     public static class ProfileCatalog

@@ -11,6 +11,14 @@ class ResourceMonitor:
         self.peak_mib = 0.
         self.min_available_mib = float("inf")
         self.cpu = {}
+        self.cpu_start = {}
+        root = psutil.Process(os.getpid())
+        for p in [root] + root.children(recursive=True):
+            try:
+                c = p.cpu_times()
+                self.cpu_start[p.pid] = c.user + c.system
+            except psutil.Error:
+                pass
         self.stop_event = threading.Event()
         self.thread = threading.Thread(target=self._run, daemon=True)
         self.thread.start()
@@ -23,7 +31,7 @@ class ResourceMonitor:
                 try:
                     total += p.memory_info().rss
                     c = p.cpu_times()
-                    self.cpu[p.pid] = c.user + c.system
+                    self.cpu[p.pid] = max(0., c.user + c.system - self.cpu_start.get(p.pid, 0.))
                 except psutil.Error:
                     pass
             self.peak_mib = max(self.peak_mib, total / 2**20)

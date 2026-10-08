@@ -14,7 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'ai/trainer'))
 import torch
 from bridge import Bridge
-from entities import Encoder, SPEC, RELATIONS, scale
+from entities import Encoder, Builder, SPEC, RELATIONS, scale
 from policy import CandidateNetwork
 from resources import ResourceMonitor, require_interactive_memory
 from train import checkpoint, load_checkpoint, write, sha
@@ -23,8 +23,9 @@ from train import checkpoint, load_checkpoint, write, sha
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--output',type=Path,required=True)
-    parser.add_argument('--responses',type=Path,default=ROOT/'ai/Goa2.Ai.Tests/bin/Release/net10.0/response-v4.jsonl')
+    parser.add_argument('--responses',type=Path,default=ROOT/'ai/Goa2.Ai.Tests/bin/Release/net10.0/response-v5.jsonl')
     parser.add_argument('--baseline',type=Path)
+    parser.add_argument('--event-examples',type=Path)
     args=parser.parse_args();args.output.mkdir(parents=True,exist_ok=False)
     torch.set_num_threads(2);torch.set_num_interop_threads(1);torch.use_deterministic_algorithms(True);torch.manual_seed(61008)
     monitor=ResourceMonitor();started=time.perf_counter();current=None
@@ -42,6 +43,18 @@ def main():
             assert probe['Truncated'] and not probe['Terminated']
             write(args.output/'sample-input.json',probe['Decision'])
         enc=Encoder(description);model=CandidateNetwork(**enc.model_kwargs)
+        event_count=0
+        if args.event_examples:
+            event_rows=json.loads(args.event_examples.read_text(encoding='utf-8-sig'))
+            write(args.output/'event-examples.json',event_rows)
+            for e in event_rows:
+                b=Builder(enc)
+                b.node('event',e,['Card','Seat','From','To','Path','OtherSeat','Unit','OtherCard','EffectKey','Attack'])
+                for key in ('Card','OtherCard'):
+                    if e[key] and e[key] not in enc.cards:raise ValueError('unknown historical card')
+                if e['Attack'] is not None:
+                    b.node('attack',e['Attack'],['Card','Target','Attacker','Defender','TextSources','SupportSources','GuardSources'])
+                event_count+=1
         opt=torch.optim.Adam(model.parameters(),lr=.001)
         checkpoint(args.output/'initial.pt',model,opt,enc,config,0,0,[])
         rows=[json.loads(l) for l in args.responses.read_text(encoding='utf-8-sig').splitlines()]
@@ -90,7 +103,8 @@ def main():
              representation='entity keys resolve typed graph edges; semantic card IDs use categorical embeddings'))
         def percentiles(xs):
             v=torch.tensor(xs);return dict(p50=float(v.quantile(.5)),p95=float(v.quantile(.95)),maximum=max(xs))
-        report=dict(complete_information=False,known_gaps=json.loads((ROOT/'ai/observation-coverage.json').read_text())['known_gaps'],
+        report=dict(complete_information=False,known_gaps=json.loads((ROOT/'ai/observation-coverage.json').read_text(encoding='utf-8'))['known_gaps'],
+            cards_with_mechanics=len(description['Cards']),step_definitions=len(description['StepDefinitions']),effect_definitions=len(description['EffectDefinitions']),historical_event_examples=event_count,
             response_windows=len(rows),response_candidates=sum(len(r['Decision']['Actions']) for r in rows),baseline_shadow_decisions=baseline_decisions,
             decision_kinds=window_counts,encoder_signature=enc.signature,model_shape=model.shape,parameter_count=sum(p.numel() for p in model.parameters()),
             max_nodes=max(n[0] for n in sizes),max_directed_edges=max(n[1] for n in sizes),max_candidates=max(n[2] for n in sizes),

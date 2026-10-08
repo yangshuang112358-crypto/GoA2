@@ -38,7 +38,8 @@ namespace Goa2.Ai.Cli
         {
             var ids=new StableIds(catalog);
             return new { Protocol=1, Contract=ArtifactContract.Current(catalog),
-                Cards=catalog.Cards.Select(c=>new {Id=ids.Card(c.Id),c.HeroId,c.Initiative,c.PrimaryFamily,PrimaryCategory=ObservationProjector.CategoryId(c.PrimaryCategory),c.PrimaryValue,c.SecondaryMovement,c.SecondaryDefense,c.Level,c.Color,c.Exclamation,Subtype=ObservationProjector.BonusId(c.Subtype??""),c.SubtypeValue,Passive=ObservationProjector.BonusId(c.Passive??"")}),
+                SemanticVersion=Goa2.Rules.Cards.PublicCardMechanics.Format, EventReasons=PublicEventSemantics.Reasons, StepDefinitions=Goa2.Rules.Cards.PublicStepSemantics.Describe(), EffectDefinitions=Goa2.Rules.Cards.PublicEffectSemantics.Describe(),
+                Cards=catalog.Cards.Select(c=>new {Id=ids.Card(c.Id),c.HeroId,c.Initiative,c.PrimaryFamily,PrimaryCategory=ObservationProjector.CategoryId(c.PrimaryCategory),c.PrimaryValue,c.SecondaryMovement,c.SecondaryDefense,c.Level,c.Color,c.Exclamation,Mechanics=Goa2.Rules.Cards.PublicCardSemantics.Describe(c,GameState.CurrentEngineVersion),Subtype=ObservationProjector.BonusId(c.Subtype??""),c.SubtypeValue,Passive=ObservationProjector.BonusId(c.Passive??"")}),
                 Cells=catalog.Cells.Select(c=>new {c.Position,c.Region,c.Obstacle,c.Lane,c.Base,c.Spawn}),
                 Heroes=catalog.Heroes.Select(h=>h.Id),
                 ActionKinds=Enum.GetNames(typeof(CommandKind)).Where(k=>!k.StartsWith("Debug",StringComparison.Ordinal)).OrderBy(k=>k,StringComparer.Ordinal) };

@@ -5,6 +5,15 @@ from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--dictionary',type=Path,required=True);p.add_argument('--output',type=Path,required=True);args=p.parse_args()
 d=json.loads(args.dictionary.read_text(encoding='utf-8'))
 meaning={
+ 'InitialCombatRegion':'本规则开局战斗区域',
+ 'AtPublicOrdinal':'本人私有事件发生前最后一个公开事件序号；公开事件为自身序号，-1为没有更早公开事件',
+ 'Action':'受限制的正式行动种类','Reason':'规则给出的限制原因或攻击牌文修正原因',
+ 'Number':'卡牌机制的数值参数，含义由Key指定','Flag':'卡牌机制的布尔参数，含义由Key指定',
+ 'Key':'稳定机制参数名，如TextMoveDistance；不是候选下标','Symbol':'该机制参数的有限枚举值',
+ 'Code':'稳定步骤或约束代码；词义由相应语义目录给出',
+ 'Operation':'步骤/持续效果的操作类别','Chooser':'作出这一步选择的角色关系；none表示规则自动处理',
+ 'Target':'操作对象的类型及与来源的关系','Condition':'该步骤/效果适用的公开规则条件',
+ 'NoTarget':'没有合法目标时继续、结束或不可用的行为','Sampling':'效果条件何时重新计算',
  'Round':'所属轮次','Turn':'该轮中的回合','BlueCrystal':'蓝队当前水晶生命','RedCrystal':'红队当前水晶生命',
  'BlueMarks':'蓝队已得推进标记','RedMarks':'红队已得推进标记','RemainingMinionRemovals':'此次兵战尚需移除数',
  'AttackRange':'当前攻击距离；在bonuses记录中为远程加成','Phase':'规则阶段','Decision':'实际待决策种类',
@@ -28,7 +37,7 @@ meaning={
  'CreatedRound':'效果创建轮次','CreatedTurn':'效果创建回合','Order':'效果创建顺序、行动链顺序或路径点顺序，依记录类型解释',
  'StartRound':'效果开始轮次','StartTurn':'效果开始回合','EndRound':'效果结束轮次','EndTurn':'效果结束回合',
  'BaseRadius':'效果基础半径，实际覆盖格由C#给出','PersistsThroughDefeat':'来源被击败后效果是否保留',
- 'Duration':'效果持续类型','AreaKind':'效果区域计算类型','Ordinal':'过滤私有事件后的公开事件序号',
+ 'Duration':'效果持续类型','AreaKind':'效果区域计算类型','Ordinal':'所属公开/本人历史流中的连续序号，不含他人私有事件造成的空隙',
  'Amount':'依事件类型：金币/伤害/数量；HeroLeveled为原等级；兵战为蓝方计数',
  'Amount2':'HeroLeveled为新等级；兵战为红方计数','Amount3':'HeroLeveled为升级费用；兵战为待移除数',
  'Value':'依事件类型的公开结果/颜色/英雄/区域/移动类别，不是内部ID','SecondaryValue':'第二个公开符号，如币翻转后的队伍或换牌第二种颜色',

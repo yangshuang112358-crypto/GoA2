@@ -316,12 +316,12 @@
         "reason": "Debug, implementation-support, UI or transport information; not game facts for the policy."
       },
       "PrimaryRestriction": {
-        "disposition": "gap",
-        "reason": "Legality is available, but the human-readable reason is not yet a structured cause code."
+        "disposition": "projected",
+        "reason": "Typed action restriction, subject card and allowed source card; unknown reasons fail."
       },
       "DefenseRestrictions": {
-        "disposition": "gap",
-        "reason": "Legality is available, but the human-readable reason is not yet a structured cause code."
+        "disposition": "projected",
+        "reason": "Typed action restriction, subject card and allowed source card; unknown reasons fail."
       }
     },
     "PlayerView": {
@@ -417,27 +417,27 @@
     "GameEvent": {
       "Kind": {
         "disposition": "projected",
-        "reason": "Public events only; IDs become stable references."
+        "reason": "Public or private-to-this-seat events only; stable references and exact visible values."
       },
       "Seat": {
         "disposition": "projected",
-        "reason": "Public events only; IDs become stable references."
+        "reason": "Public or private-to-this-seat events only; stable references and exact visible values."
       },
       "CardId": {
         "disposition": "projected",
-        "reason": "Public events only; IDs become stable references."
+        "reason": "Public or private-to-this-seat events only; stable references and exact visible values."
       },
       "From": {
         "disposition": "projected",
-        "reason": "Public events only; IDs become stable references."
+        "reason": "Public or private-to-this-seat events only; stable references and exact visible values."
       },
       "To": {
         "disposition": "projected",
-        "reason": "Public events only; IDs become stable references."
+        "reason": "Public or private-to-this-seat events only; stable references and exact visible values."
       },
       "Path": {
         "disposition": "projected",
-        "reason": "Public events only; IDs become stable references."
+        "reason": "Public or private-to-this-seat events only; stable references and exact visible values."
       },
       "Sequence": {
         "disposition": "derived",
@@ -452,16 +452,16 @@
         "reason": "Authority/transport identifiers and private routing never enter the model."
       },
       "PrivateTo": {
-        "disposition": "excluded",
-        "reason": "Authority/transport identifiers and private routing never enter the model."
+        "disposition": "routing",
+        "reason": "Selects public history or this seat own history; foreign private events discarded before parsing; routing itself is not encoded."
       },
       "Detail": {
-        "disposition": "partial",
-        "reason": "Reviewed detail types are parsed into values, amounts and references; some outcome/reason/lifecycle details and historic attack breakdowns remain unencoded. Current attack math is projected separately."
+        "disposition": "projected",
+        "reason": "Closed semantic parser: typed reason/result/amount/card/unit/effect reference. Opaque frame/toss IDs removed, effect IDs normalized to local references. Unknown events/details fail. Debug equipment cancellation excluded as debug data."
       },
       "AttackValues": {
-        "disposition": "partial",
-        "reason": "Reviewed detail types are parsed into values, amounts and references; some outcome/reason/lifecycle details and historic attack breakdowns remain unencoded. Current attack math is projected separately."
+        "disposition": "projected",
+        "reason": "Full historical public/own attack breakdown including CardTextReason and contributing units; never foreign-private events."
       }
     },
     "PendingChoice": {
@@ -572,16 +572,364 @@
         "reason": "Display name removed from semantic card ID."
       },
       "Text": {
-        "disposition": "gap",
-        "reason": "Full card-program semantics are not yet exported as typed mechanic descriptors. The model can learn known card IDs, but cannot be assumed to understand new card text."
+        "disposition": "catalog",
+        "reason": "Exact C# program binding validates card text; exports ordered instructions, all reviewed parameters, step/effect definitions, constraints and explicit unresolved-rule limitations. No Python card interpreter."
+      }
+    },
+    "AttackBreakdown": {
+      "SourceCardId": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "TargetUnitId": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "AttackerSeat": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "DefenderSeat": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Ranged": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Unblockable": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "BaseAttack": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "AttackBonus": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "EnemySupport": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "FriendlyGuard": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "FinalAttack": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "CardTextBonus": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "UltimateBonus": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "CardTextReason": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "CardTextSourceUnits": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "EnemySupportSources": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "FriendlyGuardSources": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      }
+    },
+    "ActiveEffect": {
+      "Id": {
+        "disposition": "reference",
+        "reason": "Locally renumbered effect key links visible lifecycle events and active effects; raw ID excluded."
+      },
+      "SourceCardId": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "SourceUnitId": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "ProtectedUnitId": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "SourcePrivateTo": {
+        "disposition": "routing",
+        "reason": "Already masked by the core seat view; not a learned feature."
+      },
+      "ExemptControllerSeat": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "ControllerSeat": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "CreatedRound": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "CreatedTurn": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "CreationOrder": {
+        "disposition": "derived",
+        "reason": "Normalized relative order of visible active effects; original counter excluded."
+      },
+      "ProgramVersion": {
+        "disposition": "excluded",
+        "reason": "Implementation version checked by artifact contract; not a public game fact."
+      },
+      "BaseRadius": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "PersistsThroughDefeat": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Kind": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Duration": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "AreaKind": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Window": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      }
+    },
+    "EffectWindow": {
+      "StartRound": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "StartTurn": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "EndRound": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "EndTurn": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      }
+    },
+    "RuleSettings": {
+      "Version": {
+        "disposition": "contract",
+        "reason": "Strict rule compatibility metadata, not a numeric feature."
+      },
+      "StartingCrystalLife": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "FrontlineVictoryMarks": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "TurnsPerRound": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "HandSize": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "InitialCombatRegion": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      }
+    },
+    "UnitState": {
+      "Id": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Kind": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Team": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Seat": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Position": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      }
+    },
+    "CardInstance": {
+      "CardId": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Zone": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "PlayedRound": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "PlayedTurn": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      }
+    },
+    "CellDefinition": {
+      "Position": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Region": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Obstacle": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Lane": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Base": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Spawn": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      }
+    },
+    "DefenseAssessment": {
+      "BaseDefense": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "DefenseBonus": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "FinalDefense": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "AttackCompared": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "IgnoresMinions": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Blocked": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Successful": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      }
+    },
+    "ActionSequenceView": {
+      "Id": {
+        "disposition": "excluded",
+        "reason": "Transport sequence identity, not a game fact."
+      },
+      "FocusId": {
+        "disposition": "reference",
+        "reason": "Resolves to Focused boolean on the corresponding visible action card."
+      },
+      "Round": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Turn": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Cards": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      }
+    },
+    "ActionCardView": {
+      "Id": {
+        "disposition": "reference",
+        "reason": "Normalized graph linkage within visible sequence; raw execution identity excluded."
+      },
+      "ParentId": {
+        "disposition": "reference",
+        "reason": "Normalized graph linkage within visible sequence; raw execution identity excluded."
+      },
+      "CardId": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Role": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Seat": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Initiative": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Started": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Resolved": {
+        "disposition": "projected",
+        "reason": "Typed scalar or entity relation in the seat observation/static public catalog; no authority objects are serialized."
+      },
+      "Sequence": {
+        "disposition": "derived",
+        "reason": "Replaced by contiguous visible action-card Order."
+      },
+      "Results": {
+        "disposition": "derived",
+        "reason": "Public result events and their typed values are in PublicHistory; no duplicated presentation result strings."
       }
     }
   },
   "known_gaps": [
-    "Full typed card-mechanic descriptors, including repeat budgets and conditional programs.",
-    "Unmapped public event reasons/results and historical attack breakdowns.",
-    "Effect program version is checked by the artifact/engine contract, not an independent learned feature.",
-    "The engine adapter still explicitly requires four seats; the graph representation itself is variable length.",
-    "No long-history recurrent memory or compressed state is validated; history is retained until an explicit capacity error."
-  ]
+    "Q09: three steal-card final if-able moves retain current engine behavior, not a new user ruling.",
+    "U017: obstacle interpretation for safe placement remains an explicit existing rule question.",
+    "D050: actual map-marker entities are outside the current six-hero content; not silently represented as minions.",
+    "Adapter supports four seats explicitly; variable graph length is not a claim of arbitrary-player engine support.",
+    "No proof for every possible reachable information set; finite scenario/field coverage and fail-closed schemas are evidence, not a proof that an unreviewed new mechanism is understood.",
+    "Public history is not compressed; no learned long-history memory has been validated."
+  ],
+  "observation_version": 5,
+  "encoder_version": 4,
+  "current_catalog_semantics_exported": true
 }

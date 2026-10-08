@@ -197,7 +197,7 @@ class TrainerTests(unittest.TestCase):
         for name,fn in changes:
             d=copy.deepcopy(self.planning);fn(d['Observation'])
             with self.subTest(name=name):self.assertFalse(equal_graph(original,enc.encode(d)[0]))
-        effect=dict(Kind='MovementBoundary',Card=enc.card_ids[0],SourceUnit='hero:1',ProtectedUnit='hero:2',
+        effect=dict(Key=0,Kind='MovementBoundary',Card=enc.card_ids[0],SourceUnit='hero:1',ProtectedUnit='hero:2',
             Controller=1,CreatedRound=1,CreatedTurn=1,Order=0,StartRound=1,StartTurn=1,EndRound=1,EndTurn=2,
             BaseRadius=2,PersistsThroughDefeat=False,ExemptSeat=None,Duration='ThisTurn',AreaKind='SkillRange',Area=[dict(X=0,Y=0)])
         d=copy.deepcopy(self.planning);d['Observation']['Effects']=[effect];base=enc.encode(d)[0]
@@ -249,6 +249,44 @@ class TrainerTests(unittest.TestCase):
         final = model(s, a)[0].probs[1].item()
         self.assertGreater(final, .85)
         self.assertGreater(final, initial + .25)
+
+    def test_card_program_steps_parameters_and_effect_meaning_reach_model(self):
+        enc=Encoder(self.description); original=enc.encode(self.planning)[0]
+        for part in ('parameter','steps','effect','step_definition'):
+            d=copy.deepcopy(self.description)
+            if part=='parameter':
+                c=next(c for c in d['Cards'] if c['Id']=='wasp-17')
+                next(p for p in c['Mechanics']['Parameters'] if p['Key']=='TextMoveDistance')['Number']=2
+            elif part=='steps':
+                c=next(c for c in d['Cards'] if c['Id']=='wasp-17');c['Mechanics']['Steps'].pop(3)
+            elif part=='effect':d['EffectDefinitions'][0]['Amount']=7
+            else:d['StepDefinitions'][0]['Optional']=not d['StepDefinitions'][0]['Optional']
+            changed=Encoder(d)
+            with self.subTest(part=part):
+                self.assertNotEqual(enc.signature,changed.signature)
+                self.assertFalse(equal_graph(original,changed.encode(self.planning)[0]))
+        self.assertEqual(len(self.description['Cards']),108)
+        self.assertEqual(len(self.description['EffectDefinitions']),24)
+        d=copy.deepcopy(self.description);d['SecretState']={}
+        with self.assertRaisesRegex(ValueError,'catalog fields'):Encoder(d)
+
+    def test_personal_history_public_position_and_restriction_are_not_dropped(self):
+        enc=Encoder(self.description);base=enc.encode(self.planning)[0]
+        d=copy.deepcopy(self.planning)
+        event=copy.deepcopy(d['Observation']['PublicHistory'][0]);event.update(Kind='DefenseCalculated',Card=enc.card_ids[0],Seat=d['Observation']['Seat'],Value='block',Amount=None,Amount2=None,Amount3=None,Ordinal=0)
+        d['Observation']['OwnHistory'].append(event)
+        self.assertFalse(equal_graph(base,enc.encode(d)[0]))
+        one=enc.encode(d)[0];d['Observation']['OwnHistory'][-1]['AtPublicOrdinal']+=1
+        self.assertFalse(equal_graph(one,enc.encode(d)[0]))
+        d=copy.deepcopy(self.planning);d['Observation']['Restrictions']=[dict(Action='Defend',Card=enc.card_ids[0],SourceCard='',Reason='unblockable')]
+        self.assertFalse(equal_graph(base,enc.encode(d)[0]))
+
+    def test_static_catalog_order_is_irrelevant(self):
+        d=copy.deepcopy(self.description)
+        d['Cards'].reverse();d['StepDefinitions'].reverse();d['EffectDefinitions'].reverse()
+        for c in d['Cards']:c['Mechanics']['Parameters'].reverse()
+        one=Encoder(self.description).encode(self.planning)[0];two=Encoder(d).encode(self.planning)[0]
+        self.assertTrue(equal_graph(one,two))
 
     def test_bad_action_fails_and_preserves_authority(self):
         audit = Path(self.temp.name) / "bad"

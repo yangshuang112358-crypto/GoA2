@@ -1,4 +1,4 @@
-"""Relational entity actor/critic, observation 4/action 2/encoder 3.
+"""Relational entity actor/critic, observation 5/action 2/encoder 4.
 PPO and imitation losses are independent of the observation representation.
 """
 import torch
