@@ -1,0 +1,2 @@
+# Preserve measured artifact bytes, including JSON/CSV/TRX line endings and hashes.
+* -text
