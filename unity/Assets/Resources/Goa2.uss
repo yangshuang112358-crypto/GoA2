@@ -339,7 +339,7 @@ Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
 .world-action-wheel { position: absolute; width: 430px; height: 430px; }
 .world-action-disc { position: absolute; width: 130px; height: 130px; margin: 0; padding: 12px; border-radius: 65px; border-width: 4px; border-color: rgb(163, 150, 114); background-color: rgba(26, 38, 46, .96); color: rgb(247, 235, 205); font-size: 24px; white-space: normal; -unity-text-align: middle-center; transition-property: scale, background-color; transition-duration: .12s; }
 .world-action-disc:hover { scale: 1.07 1.07; background-color: rgb(48, 68, 79); }
-.world-action-disc:active { scale: .96 .96; }
+.world-action-disc:active { scale: 0.96 0.96; }
 .world-action-disc:disabled { opacity: .36; }
 .world-map-confirm { position: absolute; margin: 0; padding: 0; border-radius: 36px; border-width: 3px; border-color: rgb(122, 221, 181); background-color: rgba(21, 68, 67, .95); color: white; font-size: 42px; -unity-text-align: middle-center; }
 .world-return { position: absolute; right: 22px; top: 44%; width: 76px; height: 76px; border-radius: 38px; font-size: 48px; color: rgb(222, 215, 184); background-color: rgba(22, 33, 43, .92); }
@@ -359,3 +359,28 @@ Label, Button, TextField, IntegerField, FloatField, DropdownField, Toggle,
 .decision-stone:hover, .decision-stone:active, .decision-stone:focus { border-width: 0; background-color: rgba(0,0,0,0); }
 .settings-drawer { top: 88px; bottom: 190px; }
 .upgrade-panel { margin-right: 290px; }
+
+/* Blender relief surfaces. Nine-slice keeps bevels narrow at every panel size;
+   typography, hit regions and all world anchors keep their existing layout. */
+.card-preview, .hero-hover, .main-flow-status, .settings-drawer, #draft-panel {
+    background-image: resource("UI3D/CarvedUI/panel");
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-slice-left: 80;
+    -unity-slice-right: 80;
+    -unity-slice-top: 80;
+    -unity-slice-bottom: 80;
+    -unity-slice-scale: 0.25px;
+    -unity-background-image-tint-color: rgb(153, 171, 178);
+}
+.main-flow-status { border-color: rgba(0,0,0,0); background-color: rgba(0,0,0,0); }
+.main-flow-status:hover { border-color: #aa9062; background-color: rgba(0,0,0,0); }
+.world-action-disc {
+    background-image: resource("UI3D/SkillDiscs/front");
+    -unity-background-scale-mode: stretch-to-fill;
+    background-color: rgba(0,0,0,0);
+    border-width: 0;
+    padding: 19px;
+    -unity-text-outline-color: #10191e;
+    -unity-text-outline-width: 1px;
+}
+.world-action-disc:hover, .world-action-disc:active { background-color: rgba(0,0,0,0); }

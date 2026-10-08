@@ -1,0 +1,14 @@
+[
+  {
+    "name": "WaterRibbon",
+    "triangles": 192,
+    "uv": "u=length, v=cross section; tapered endpoints",
+    "external_assets": []
+  },
+  {
+    "name": "ShadowWisp",
+    "triangles": 192,
+    "uv": "u=length, v=cross section; tapered endpoints",
+    "external_assets": []
+  }
+]

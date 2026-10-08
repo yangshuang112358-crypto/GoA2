@@ -139,6 +139,7 @@ namespace Goa2.Presentation.UI3D
 
     public sealed class ActionSlab : VisualElement
     {
+        private static Texture2D? mainArt,responseArt;
         public bool Notched,Active,CanChoose,Resolved,Hovered;
         public Action? HoverEnter,HoverExit;
         public Color Accent=new Color(.6f,.7f,.8f);
@@ -163,15 +164,26 @@ namespace Goa2.Presentation.UI3D
         private void Draw(MeshGenerationContext c)
         {
             var p=c.painter2D;float h=resolvedStyle.height,w=resolvedStyle.width;if(w<50||h<50)return;
-            Shape(p,0);p.fillColor=new Color(.17f,.19f,.205f,1);p.Fill();p.strokeColor=Active?new Color(.8f,.62f,1):CanChoose?new Color(1,.81f,.43f):Hovered?Color.white:Accent;p.lineWidth=Active||CanChoose?3:2;p.Stroke();
-            // Fixed grain, chipped bevel and mineral seams; no transparent window surface.
-            for(int i=0;i<90;i++){float x=10+(i*73%(int)(w-20)),y=15+(i*47%(int)(h-30));p.fillColor=i%3==0?new Color(.45f,.46f,.44f,.13f):new Color(.03f,.04f,.05f,.15f);p.BeginPath();p.Arc(new Vector2(x,y),i%3+0.6f,0,360);p.Fill();}
-            p.strokeColor=new Color(.66f,.67f,.62f,.34f);p.lineWidth=2;p.BeginPath();p.MoveTo(new Vector2(8,h-15));p.LineTo(new Vector2(8,15));p.LineTo(new Vector2(16,8));p.LineTo(new Vector2(w*.29f,8));p.Stroke();
-            p.strokeColor=new Color(.035f,.04f,.045f,.7f);p.BeginPath();p.MoveTo(new Vector2(w-8,17));p.LineTo(new Vector2(w-8,h-16));p.LineTo(new Vector2(w-16,h-8));p.LineTo(new Vector2(w*.71f,h-8));p.Stroke();
-            Shape(p,5);p.strokeColor=new Color(.54f,.59f,.62f,.45f);p.lineWidth=1;p.Stroke();
-            p.strokeColor=new Color(.44f,.5f,.55f,.12f);p.lineWidth=1;
-            for(int i=0;i<26;i++){float x=13+(i*71%(int)(w-30)),y=26+(i*53%(int)(h-50));p.BeginPath();p.MoveTo(new Vector2(x,y));p.LineTo(new Vector2(Mathf.Min(w-12,x+20),y-4));p.Stroke();}
-            if(Active||CanChoose){p.strokeColor=Active?new Color(.76f,.5f,1,.7f):new Color(1,.8f,.4f,.7f);p.lineWidth=2;float pulse=.5f+.5f*Mathf.Sin(Time.realtimeSinceStartup*3);p.BeginPath();p.MoveTo(new Vector2(10,20));p.LineTo(new Vector2(10,45+pulse*30));p.Stroke();}
+            if(mainArt==null)mainArt=Resources.Load<Texture2D>("UI3D/CarvedUI/slab-main");
+            if(responseArt==null)responseArt=Resources.Load<Texture2D>("UI3D/CarvedUI/slab-response");
+            var art=Notched?mainArt:responseArt;
+            if(art!=null){
+                var mesh=c.Allocate(4,6,art);var uv=mesh.uvRegion;
+                float light=Hovered?1.08f:Resolved?.83f:1;
+                var tint=new Color(light,light,light,1);
+                mesh.SetNextVertex(new Vertex{position=new Vector3(0,0,Vertex.nearZ),tint=tint,uv=new Vector2(uv.xMin,uv.yMax)});
+                mesh.SetNextVertex(new Vertex{position=new Vector3(w,0,Vertex.nearZ),tint=tint,uv=new Vector2(uv.xMax,uv.yMax)});
+                mesh.SetNextVertex(new Vertex{position=new Vector3(w,h,Vertex.nearZ),tint=tint,uv=new Vector2(uv.xMax,uv.yMin)});
+                mesh.SetNextVertex(new Vertex{position=new Vector3(0,h,Vertex.nearZ),tint=tint,uv=new Vector2(uv.xMin,uv.yMin)});
+                foreach(ushort index in new ushort[]{0,1,2,2,3,0})mesh.SetNextIndex(index);
+            }else{Shape(p,0);p.fillColor=new Color(.09f,.14f,.16f);p.Fill();}
+            // The material supplies thickness, chipped edges and sockets. Only public
+            // card colour and interaction feedback are painted over the baked relief.
+            Color accent=Active?new Color(.78f,.57f,1):CanChoose?new Color(1,.83f,.44f):Accent;
+            float pulse=Active||CanChoose?.78f+.22f*Mathf.Sin(Time.realtimeSinceStartup*2.6f):.7f;
+            p.strokeColor=new Color(accent.r,accent.g,accent.b,pulse);p.lineWidth=Active||CanChoose?2.5f:1.6f;
+            foreach(float x in new[]{11f,w-11}){p.BeginPath();p.MoveTo(new Vector2(x,27));p.LineTo(new Vector2(x,h-27));p.Stroke();}
+            if(Hovered){p.strokeColor=new Color(1,.90f,.68f,.55f);p.lineWidth=1;p.BeginPath();p.MoveTo(new Vector2(25,9));p.LineTo(new Vector2(w*.31f,9));p.Stroke();}
         }
     }
     public sealed class ActionGroupCoin : VisualElement

@@ -6,16 +6,16 @@ using UnityEngine.UIElements;
 namespace Goa2.Presentation.UI3D
 {
     // One footprint for planning, defense, discard, browsing and upgrade choices.
-    // Texture geometry comes from art/ui/SkillDiscs.blend; values remain live UI.
+    // Texture geometry comes from art/production/assets/CarvedUI.blend; values remain live UI.
     public static class SkillDiscArtwork
     {
         private static readonly Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
         public static Rect BadgeRect(string slot) => slot switch {
-            "movement" => new Rect(17,24,34,38),
-            "defense" => new Rect(105,24,34,38),
-            "primary" => new Rect(17,84,34,38),
-            "range" => new Rect(105,84,34,38),
-            "initiative" => new Rect(50,115,56,36),
+            "movement" => new Rect(13,20,38,43),
+            "defense" => new Rect(105,20,38,43),
+            "primary" => new Rect(13,84,38,43),
+            "range" => new Rect(105,84,38,43),
+            "initiative" => new Rect(46,113,64,40),
             _ => throw new ArgumentOutOfRangeException(nameof(slot))
         };
         public static Texture2D Texture(string kind)
@@ -51,15 +51,15 @@ namespace Goa2.Presentation.UI3D
         public SkillBadge(string kind,string value,int bonus)
         {
             bool speed=kind=="hourglass";
-            float width=speed?56:34,height=speed?36:38;
+            float width=speed?64:38,height=speed?40:43;
             pickingMode=PickingMode.Ignore;style.position=Position.Absolute;
             style.width=width;style.height=height;style.overflow=Overflow.Hidden;
             style.backgroundImage=new StyleBackground(SkillDiscArtwork.Texture(speed?"speed":kind));
             tooltip=kind switch {"boot"=>"移动","shield"=>"防御","sword"=>"攻击","range"=>"范围","arrow"=>"远程","hourglass"=>"先攻",_=>"技能"};
             var text=new Label(value){name="badge-number",pickingMode=PickingMode.Ignore};
-            text.style.position=Position.Absolute;text.style.left=0;text.style.top=speed?1:12;
-            text.style.width=width;text.style.height=speed?34:25;
-            text.style.fontSize=speed?27:22;text.style.unityTextAlign=TextAnchor.MiddleCenter;
+            text.style.position=Position.Absolute;text.style.left=0;text.style.top=speed?3:15;
+            text.style.width=width;text.style.height=speed?33:25;
+            text.style.fontSize=speed?26:22;text.style.unityTextAlign=TextAnchor.MiddleCenter;
             text.style.unityFontStyleAndWeight=FontStyle.Bold;text.style.whiteSpace=WhiteSpace.NoWrap;
             text.style.color=SkillDiscArtwork.ValueColor(bonus);
             text.style.unityTextOutlineColor=new Color(.055f,.045f,.035f);text.style.unityTextOutlineWidth=1.1f;

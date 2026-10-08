@@ -1,12 +1,16 @@
 #nullable enable
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
 namespace Goa2.Presentation.UI3D
 {
-    // Replaceable code-native art. Portraits are stylized identifiers, not official illustrations.
+    // Portraits are rendered from our Blender actors; compact line glyphs remain
+    // legible at 16px. The old identifiers are a fallback for missing mod assets.
     public sealed class ActionCardGlyph : VisualElement
     {
         private readonly string kind;private readonly Color tint;private readonly bool portrait,framed;
+        private static readonly Dictionary<string,Texture2D> artwork=new Dictionary<string,Texture2D>();
+        private static Texture2D Load(string path){if(!artwork.TryGetValue(path,out var value))artwork[path]=value=Resources.Load<Texture2D>(path);return value;}
         public ActionCardGlyph(string kind,Color tint,float size,bool portrait=false,bool framed=false)
         {
             this.kind=kind;this.tint=tint;this.portrait=portrait;this.framed=framed;
@@ -24,6 +28,15 @@ namespace Goa2.Presentation.UI3D
             if(portrait)
             {
                 Circle(32,32,31,tint);Circle(32,32,28,dark);Circle(32,32,25,new Color(.22f,.25f,.28f));
+                var image=Load("UI3D/Portraits/"+kind);
+                if(image!=null){
+                    const int segments=64;var m=context.Allocate(segments+1,segments*3,image);var uv=m.uvRegion;
+                    void VertexAt(Vector2 point){m.SetNextVertex(new Vertex{position=new Vector3(point.x*s,point.y*s,Vertex.nearZ),tint=Color.white,uv=new Vector2(Mathf.Lerp(uv.xMin,uv.xMax,point.x/64),Mathf.Lerp(uv.yMax,uv.yMin,point.y/64))});}
+                    VertexAt(new Vector2(32,32));
+                    for(int i=0;i<segments;i++){float a=i*Mathf.PI*2/segments;VertexAt(new Vector2(32+Mathf.Cos(a)*27,32+Mathf.Sin(a)*27));}
+                    for(int i=0;i<segments;i++){m.SetNextIndex(0);m.SetNextIndex((ushort)(i+1));m.SetNextIndex((ushort)((i+1)%segments+1));}
+                    return;
+                }
                 Color hair=kind=="arien"?new Color(.2f,.68f,.76f):kind=="wasp"?new Color(.78f,.63f,.28f):kind=="tigerclaw"?new Color(.73f,.41f,.18f):kind=="shargatha"?new Color(.46f,.34f,.59f):new Color(.28f,.22f,.17f);
                 Color skin=kind=="shargatha"?new Color(.47f,.62f,.47f):kind=="arien"?new Color(.52f,.74f,.77f):new Color(.75f,.58f,.43f);
                 Poly(hair,new Vector2(8,52),new Vector2(15,43),new Vector2(26,39),new Vector2(39,39),new Vector2(51,46),new Vector2(56,54),new Vector2(32,60));
@@ -33,7 +46,7 @@ namespace Goa2.Presentation.UI3D
                 Line(dark,2,new Vector2(25,30),new Vector2(29,29));Line(dark,2,new Vector2(36,29),new Vector2(40,30));
                 Line(light,1,new Vector2(34,32),new Vector2(33,36));Line(dark,1,new Vector2(30,39),new Vector2(36,39));
                 if(kind=="brogan"){Poly(new Color(.5f,.57f,.61f),new Vector2(15,26),new Vector2(18,13),new Vector2(44,13),new Vector2(48,26),new Vector2(36,22),new Vector2(32,28),new Vector2(27,22));Line(light,2,new Vector2(32,12),new Vector2(32,27));}
-                if(kind=="tigerclaw"){Poly(hair,new Vector2(15,23),new Vector2(12,6),new Vector2(27,17));Poly(hair,new Vector2(38,16),new Vector2(51,7),new Vector2(47,26));Line(dark,3,new Vector2(20,30),new Vector2(26,34));Line(dark,3,new Vector2(43,30),new Vector2(39,34));}
+                if(kind=="tigerclaw"){Poly(dark,new Vector2(15,23),new Vector2(20,10),new Vector2(43,10),new Vector2(49,25),new Vector2(45,47),new Vector2(19,47));Line(light,2,new Vector2(23,29),new Vector2(28,30));Line(light,2,new Vector2(37,30),new Vector2(42,29));}
                 if(kind=="wasp"){Line(light,3,new Vector2(17,24),new Vector2(10,12),new Vector2(19,18));Line(light,3,new Vector2(46,22),new Vector2(54,10),new Vector2(45,16));}
                 if(kind=="shargatha"){for(int i=0;i<4;i++){float x=15+i*11;Line(hair,4,new Vector2(x,24),new Vector2(x-4,12),new Vector2(x+3,6));Circle(x+3,6,2,light);}}
                 if(kind=="sabina"){Poly(new Color(.27f,.18f,.12f),new Vector2(13,22),new Vector2(22,13),new Vector2(41,13),new Vector2(51,22));Line(light,2,new Vector2(21,22),new Vector2(44,22));Circle(27,28,4,dark);Circle(38,28,4,dark);}
@@ -41,6 +54,14 @@ namespace Goa2.Presentation.UI3D
                 return;
             }
             if(framed){Poly(tint,new Vector2(9,2),new Vector2(55,2),new Vector2(62,9),new Vector2(62,55),new Vector2(55,62),new Vector2(9,62),new Vector2(2,55),new Vector2(2,9));Poly(dark,new Vector2(10,6),new Vector2(54,6),new Vector2(58,10),new Vector2(58,54),new Vector2(54,58),new Vector2(10,58),new Vector2(6,54),new Vector2(6,10));}
+            var relief=framed?Load("UI3D/CarvedUI/action-"+kind):null;
+            if(relief!=null){
+                var m=context.Allocate(4,6,relief);var uv=m.uvRegion;float size=contentRect.width;
+                var points=new[]{new Vector2(0,0),new Vector2(size,0),new Vector2(size,size),new Vector2(0,size)};
+                var uvs=new[]{new Vector2(uv.xMin,uv.yMax),new Vector2(uv.xMax,uv.yMax),new Vector2(uv.xMax,uv.yMin),new Vector2(uv.xMin,uv.yMin)};
+                for(int i=0;i<4;i++)m.SetNextVertex(new Vertex{position=new Vector3(points[i].x,points[i].y,Vertex.nearZ),tint=Color.white,uv=uvs[i]});
+                foreach(ushort i in new ushort[]{0,1,2,2,3,0})m.SetNextIndex(i);return;
+            }
             Color ink=framed?light:tint;
             switch(kind)
             {

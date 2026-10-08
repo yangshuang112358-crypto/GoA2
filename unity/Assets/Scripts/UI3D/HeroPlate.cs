@@ -26,6 +26,7 @@ namespace Goa2.Presentation.UI3D
         private readonly Func<int> visibleGold;
         private readonly Label level;
         private readonly bool upgrading;
+        private static Texture2D? frame;
         private static readonly Vector2 Circle=new Vector2(35,70);
         public HeroPlate(ContentCatalog catalog,GameView view,PlayerView player,int ownSeat,LevelPreview.Motion? motion=null,Func<int>? visibleGold=null)
         {
@@ -59,10 +60,14 @@ namespace Goa2.Presentation.UI3D
         {
             var p=c.painter2D;bool max=player.Level>=8;float time=Time.realtimeSinceStartup;
             var rim=max?new Color(.74f+.12f*Mathf.Sin(time*3),.28f,1):player.Team==Team.Blue?new Color(.35f,.67f,.88f):new Color(.9f,.43f,.39f);
-            // One continuous brass silhouette: large circular boss blends into a low band.
-            p.fillColor=new Color(.09f,.10f,.13f,.97f);Outline(p);p.Fill();
-            p.strokeColor=new Color(.055f,.035f,.022f);p.lineWidth=5;Outline(p);p.Stroke();
-            p.strokeColor=new Color(.57f,.47f,.30f);p.lineWidth=2.5f;Outline(p);p.Stroke();
+            // The Blender cast frame follows the same continuous outline as the
+            // live experience arcs. No state or card colour is baked into it.
+            bool carved=DrawFrame(c);
+            if(!carved){
+                p.fillColor=new Color(.09f,.10f,.13f,.97f);Outline(p);p.Fill();
+                p.strokeColor=new Color(.055f,.035f,.022f);p.lineWidth=5;Outline(p);p.Stroke();
+                p.strokeColor=new Color(.57f,.47f,.30f);p.lineWidth=2.5f;Outline(p);p.Stroke();
+            }
             p.strokeColor=rim;p.lineWidth=max?2.8f:1.2f;Outline(p);p.Stroke();
             // Readable bevel at the shoulder of the joined band.
             p.strokeColor=new Color(.91f,.81f,.58f,.6f);p.lineWidth=1.2f;p.BeginPath();p.MoveTo(new Vector2(65,58));p.QuadraticCurveTo(new Vector2(78,68),new Vector2(117,67));p.LineTo(new Vector2(239,67));p.Stroke();
@@ -75,7 +80,7 @@ namespace Goa2.Presentation.UI3D
                 p.fillColor=new Color(0,0,0,.3f);Rect(p,x,95,32,3);p.Fill();
                 p.strokeColor=new Color(.055f,.055f,.065f);p.lineWidth=1;Rect(p,x,72,32,26);p.Stroke();
             }
-            p.fillColor=new Color(.035f,.055f,.08f);p.BeginPath();p.Arc(Circle,26,0,360);p.Fill();
+            if(!carved){p.fillColor=new Color(.035f,.055f,.08f);p.BeginPath();p.Arc(Circle,26,0,360);p.Fill();}
             p.strokeColor=new Color(.72f,.66f,.5f);p.lineWidth=1;p.BeginPath();p.Arc(Circle,24,190,350);p.Stroke();
             p.strokeColor=new Color(.015f,.025f,.04f);p.BeginPath();p.Arc(Circle,24,10,170);p.Stroke();
             var next=LevelPreview.Progress(player.Level,visibleGold());int n=Math.Max(1,next.Cost);
@@ -100,6 +105,17 @@ namespace Goa2.Presentation.UI3D
                 var end=start+new Vector2(Mathf.Sin(time*3+i)*3,-7-5*Mathf.Sin(time*4+i));
                 p.strokeColor=new Color(.8f,.4f,1,.65f);p.lineWidth=2;p.BeginPath();p.MoveTo(start);p.QuadraticCurveTo((start+end)*.5f+Vector2.right*4,end);p.Stroke();
             }
+        }
+        private static bool DrawFrame(MeshGenerationContext c)
+        {
+            if(frame==null)frame=Resources.Load<Texture2D>("UI3D/CarvedUI/hero-plate");
+            if(frame==null)return false;
+            var m=c.Allocate(4,6,frame);var uv=m.uvRegion;
+            var points=new[]{new Vector2(0,37),new Vector2(246,37),new Vector2(246,105),new Vector2(0,105)};
+            var uvs=new[]{new Vector2(uv.xMin,uv.yMax),new Vector2(uv.xMax,uv.yMax),new Vector2(uv.xMax,uv.yMin),new Vector2(uv.xMin,uv.yMin)};
+            for(int i=0;i<4;i++)m.SetNextVertex(new Vertex{position=new Vector3(points[i].x,points[i].y,Vertex.nearZ),tint=Color.white,uv=uvs[i]});
+            foreach(ushort i in new ushort[]{0,1,2,2,3,0})m.SetNextIndex(i);
+            return true;
         }
         private static void Outline(Painter2D p)
         {

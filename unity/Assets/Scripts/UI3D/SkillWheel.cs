@@ -13,8 +13,9 @@ namespace Goa2.Presentation.UI3D {
   public readonly Button Alternative;
   public SkillWheel(Team team,string caption,Action confirm,Action alternative) {
    name="skill-wheel";pickingMode=PickingMode.Ignore;style.position=Position.Absolute;style.width=Size;style.height=Size;style.transformOrigin=new TransformOrigin(260,260,0);
-   var steel=new VisualElement{pickingMode=PickingMode.Ignore};steel.StretchToParentSize();Add(steel);
-   steel.generateVisualContent+=c=>{var p=c.painter2D;foreach(var rim in new[]{(173f,12f,new Color(.12f,.15f,.18f)),(171f,3f,new Color(.63f,.67f,.7f)),(163f,2f,new Color(.27f,.31f,.34f))}){p.strokeColor=rim.Item3;p.lineWidth=rim.Item2;p.BeginPath();p.Arc(new Vector2(260,260),rim.Item1,0,360);p.Stroke();}for(int i=0;i<40;i++){float a=i*Mathf.PI/20;p.strokeColor=new Color(.75f,.8f,.85f,.35f);p.lineWidth=1;p.BeginPath();p.MoveTo(new Vector2(260+Mathf.Cos(a)*166,260+Mathf.Sin(a)*166));p.LineTo(new Vector2(260+Mathf.Cos(a)*170,260+Mathf.Sin(a)*170));p.Stroke();}};
+   var steel=new VisualElement{name="carved-wheel-rim",pickingMode=PickingMode.Ignore};
+   steel.style.position=Position.Absolute;steel.style.left=78;steel.style.top=78;steel.style.width=364;steel.style.height=364;
+   steel.style.backgroundImage=new StyleBackground(SkillDiscArtwork.Texture("wheel"));Add(steel);
    Confirm=new Button(confirm){name="wheel-confirm",text=caption};Confirm.style.position=Position.Absolute;Confirm.style.left=210;Confirm.style.top=210;Confirm.style.width=100;Confirm.style.height=100;Confirm.style.fontSize=23;Confirm.style.whiteSpace=WhiteSpace.Normal;Confirm.style.unityTextAlign=TextAnchor.MiddleCenter;
    Color hue=team==Team.Blue ? new Color(.16f,.55f,1) : new Color(.95f,.18f,.25f);
    Confirm.style.backgroundColor=new Color(hue.r,hue.g,hue.b,.28f);Confirm.style.color=Color.white;
@@ -71,7 +72,7 @@ namespace Goa2.Presentation.UI3D {
    SkillDiscArtwork.Draw(context,back?"back":"front",Project,new Color(shade,shade,shade,1));
    if(!back){
     // Card colour is an enamel inlay in the sculpted metal, not an external panel.
-    p.strokeColor=rim*(1-.38f*motion.Press);p.lineWidth=3.5f;p.BeginPath();
+    p.strokeColor=rim*(1-.38f*motion.Press);p.lineWidth=4f;p.BeginPath();
     for(int i=0;i<=96;i++){float a=i*Mathf.PI/48;var point=Project(new Vector2(Mathf.Cos(a)*60,Mathf.Sin(a)*60));if(i==0)p.MoveTo(point);else p.LineTo(point);}p.ClosePath();p.Stroke();
    }
   }

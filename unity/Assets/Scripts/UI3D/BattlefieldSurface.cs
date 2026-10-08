@@ -137,19 +137,27 @@ namespace Goa2.Presentation.UI3D
             if(scene==null || image==null || !(contentRect.width>0 && contentRect.height>0)) return;
             scene.Render(Mathf.CeilToInt(contentRect.width),Mathf.CeilToInt(contentRect.height));image.image=scene.Texture;
             var placed=new List<Rect>();leaders.Clear();
+            // Open skill discs live above the board. Include their occupied areas
+            // so a hero title/level bar cannot sit underneath a readable card face.
+            var reserved=new List<Rect>();
+            if(panel!=null)panel.visualTree.Query<SkillDisc>().ForEach(d=>{
+                if(d.resolvedStyle.display==DisplayStyle.None || d.worldBound.width<20)return;
+                var bounds=d.worldBound;var local=this.WorldToLocal(bounds.position);
+                reserved.Add(new Rect(local.x-4,local.y-4,bounds.width+8,bounds.height+8));
+            });
             foreach(var entry in heroPlates.OrderByDescending(e=>scene.Project(e.cell,contentRect.size,Board3DScene.HeroHeight).y)) {
                 var p=scene.Project(entry.cell,contentRect.size,Board3DScene.HeroHeight+.12f);
                 bool visible=p.x>=0 && p.x<=contentRect.width && p.y>=0 && p.y<=contentRect.height;
                 entry.plate.style.display=visible ? DisplayStyle.Flex : DisplayStyle.None;if(!visible)continue;
                 var offsets=new List<Vector2>{new Vector2(-HeroPlate.Width/2,-HeroPlate.Height-2),new Vector2(-HeroPlate.Width-10,-75),new Vector2(10,-75),new Vector2(-HeroPlate.Width/2,8),new Vector2(-HeroPlate.Width/2,-224)};
-                foreach(var occupied in placed) {
+                foreach(var occupied in placed.Concat(reserved)) {
                     offsets.Add(new Vector2(occupied.x-226-p.x,-94));offsets.Add(new Vector2(occupied.xMax+2-p.x,-94));
                     offsets.Add(new Vector2(-HeroPlate.Width/2,occupied.y-HeroPlate.Height-2-p.y));offsets.Add(new Vector2(-HeroPlate.Width/2,occupied.yMax+2-p.y));
                 }
                 Rect rect=default;float best=float.PositiveInfinity;
                 foreach(var offset in offsets) {
                     var candidate=new Rect(Mathf.Clamp(p.x+offset.x,0,Mathf.Max(0,contentRect.width-HeroPlate.Width)),Mathf.Clamp(p.y+offset.y,0,Mathf.Max(0,contentRect.height-HeroPlate.Height)),HeroPlate.Width,HeroPlate.Height);
-                    float cost=placed.Count(r=>r.Overlaps(candidate))*100000+Vector2.Distance(new Vector2(candidate.center.x,candidate.yMax),p);
+                    float cost=(placed.Count(r=>r.Overlaps(candidate))+reserved.Count(r=>r.Overlaps(candidate)))*100000+Vector2.Distance(new Vector2(candidate.center.x,candidate.yMax),p);
                     if(cost<best) {best=cost;rect=candidate;}
                 }
                 leaders.Add((p,new Vector2(Mathf.Clamp(p.x,rect.x,rect.xMax),Mathf.Clamp(p.y,rect.y,rect.yMax))));

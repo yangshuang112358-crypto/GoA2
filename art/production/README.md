@@ -1,5 +1,23 @@
 # Blender 制作环境
 
+## 2026-10-09 精修资产入口
+
+本轮保留全部旧源文件与用户的 `assets/Workbench.blend`。新生成源分开保存，原 FBX 的 `.meta` GUID 保留；规则、Command/View、engine98、存档和网络身份均未改。验收状态以 `docs/verification/美术精修实装-2026-10-09.md` 为准，不把下文旧环境检查当作新资源的验收。
+
+| 可编辑源 | 生成器 | 运行资产 |
+|---|---|---|
+| `assets/CarvedUI.blend` | `tools/art/build_carved_ui.py` | 技能正背面、石标、环、行动石板、设置浮雕、英雄等级框与九宫格面板 RGBA |
+| `assets/MinionRefinement.blend` | `tools/art/refine_minion_models.py` | 三兵种 FBX，保留持握骨、弓梢标记和既有姿态 |
+| `assets/HeroRefinement.blend` | `tools/art/refine_hero_models.py` | 六英雄 FBX 与实际模型渲染头像 |
+| `assets/RefinedRocks.blend` | `tools/art/build_refined_rocks.py` | 连续岩体、静态中央半盘及贴格布局 |
+| `assets/HeroFX.blend` | `tools/art/build_hero_fx.py` | 水带、暗影带 UV 网格，Unity 驱动流动/消散 |
+
+这些脚本拥有上述**新生成文件**，不是对任意同名手工文件的覆盖授权。手动精修前复制并改名保存，同时停用对应自动生成步骤。英雄默认写入唯一候选目录，检查三视角之后才发布；小兵发布需 `--publish`，替换已有生成源还需 `--replace-generated`。其余生成器会直接更新其清单里的新资产，所以必须在 Unity 关闭时执行，并先查看 Git 差异。
+
+角色材质由 Unity `ActorSurface` 和 `Minion.shader` 根据语义槽名重新设置，不能只验收 Blender 棚拍。当前有 UV、切线与程序表面细节，**没有交付手绘贴图、雕刻法线、柔性蒙皮或英雄专属攻击动作**。后续可选贴图接口为 `UI3D/ActorSurfaces/<slot>-albedo/-normal/-mask`：albedo 为 sRGB；normal 必须为 Default 类型、关闭 sRGB 的原始 RGB 切线法线（不要用 NormalMap 导入压缩）；mask 为线性 R粗糙度/G环境遮蔽。三张齐备才启用，当前不带这组贴图。程序细纹使用稳定 UV 和远景导数过滤，避免动作时滑动。
+
+静态 UI 几何烘焙为透明图片；动态牌名、数值、颜色、经验、状态与交互仍由 Unity 负责。没有将游戏状态烘死，也没有把假透视图片称为实时三维物理按钮。材质/动作/特效均须对照真实棋盘近远景与旋转录像，美术完成度由用户最终确认。
+
 固定版本 Blender 4.5.14 LTS。本机安装已存在，无需重装或购买插件。项目独立偏好放在artifacts/blender-user-config，不改变个人Blender全局设置。通过入口初始化后启用2分钟自动临时保存、3份手动保存备份；这些不能代替Git与美术源文件备份。
 
 ## 入口

@@ -1,0 +1,288 @@
+{
+  "schemaVersion": 1,
+  "generator": "tools/art/refine_hero_models.py",
+  "generatorSha256": "e4a72669d6d03515fdba84fd3cee1ae9aa374c40401a2a35cfa97075e5332e8f",
+  "generatorSnapshot": "artifacts/hero-refinement/runs/20261008T191225Z-ac5bc6c4/source/refine_hero_models.py",
+  "run": "artifacts/hero-refinement/runs/20261008T191225Z-ac5bc6c4",
+  "blend": "artifacts/hero-refinement/runs/20261008T191225Z-ac5bc6c4/source/HeroRefinement.blend",
+  "assets": [
+    {
+      "hero": "wasp",
+      "triangles": 22606,
+      "vertices": 11511,
+      "bones": [
+        "Root",
+        "Hips",
+        "Spine",
+        "Head",
+        "UpperArm.L",
+        "LowerArm.L",
+        "Hand.L",
+        "UpperArm.R",
+        "LowerArm.R",
+        "Hand.R",
+        "UpperLeg.L",
+        "LowerLeg.L",
+        "UpperLeg.R",
+        "LowerLeg.R"
+      ],
+      "materialSlots": [
+        "WhiteArmor",
+        "SkinYellow",
+        "Leather",
+        "Linen",
+        "Shadow",
+        "Bronze",
+        "Glow",
+        "Steel"
+      ],
+      "boundsMinBlender": [
+        -0.48099344968795776,
+        -0.23399999737739563,
+        0.0
+      ],
+      "boundsMaxBlender": [
+        0.5756883025169373,
+        0.19200000166893005,
+        1.9043391942977905
+      ],
+      "heightMeters": 1.9043391942977905,
+      "uvLayer": "HeroSurfaceUV",
+      "tangentExport": true,
+      "stage": "geometry refinement; rigid component weights; no dedicated attack animation",
+      "runtimeSizing": "existing HeroHeight normalization; Blender +Z height, -Y facing; FBX Y up"
+    },
+    {
+      "hero": "shargatha",
+      "triangles": 29662,
+      "vertices": 15013,
+      "bones": [
+        "Root",
+        "Hips",
+        "Spine",
+        "Head",
+        "UpperArm.L",
+        "LowerArm.L",
+        "Hand.L",
+        "UpperArm.R",
+        "LowerArm.R",
+        "Hand.R",
+        "UpperLeg.L",
+        "LowerLeg.L",
+        "UpperLeg.R",
+        "LowerLeg.R"
+      ],
+      "materialSlots": [
+        "SkinGreen",
+        "Leather",
+        "Linen",
+        "Shadow",
+        "Bronze",
+        "TealArmor",
+        "Steel"
+      ],
+      "boundsMinBlender": [
+        -0.7235127687454224,
+        -0.6255132555961609,
+        -0.0275178924202919
+      ],
+      "boundsMaxBlender": [
+        0.8295416831970215,
+        0.3309669494628906,
+        2.0817010402679443
+      ],
+      "heightMeters": 2.1092189326882362,
+      "uvLayer": "HeroSurfaceUV",
+      "tangentExport": true,
+      "stage": "geometry refinement; rigid component weights; no dedicated attack animation",
+      "runtimeSizing": "existing HeroHeight normalization; Blender +Z height, -Y facing; FBX Y up"
+    },
+    {
+      "hero": "brogan",
+      "triangles": 20592,
+      "vertices": 10587,
+      "bones": [
+        "Root",
+        "Hips",
+        "Spine",
+        "Head",
+        "UpperArm.L",
+        "LowerArm.L",
+        "Hand.L",
+        "UpperArm.R",
+        "LowerArm.R",
+        "Hand.R",
+        "UpperLeg.L",
+        "LowerLeg.L",
+        "UpperLeg.R",
+        "LowerLeg.R"
+      ],
+      "materialSlots": [
+        "Steel",
+        "Skin",
+        "Leather",
+        "Linen",
+        "Shadow",
+        "Bronze",
+        "BrownCloth",
+        "RedBeard"
+      ],
+      "boundsMinBlender": [
+        -0.9334999918937683,
+        -0.367000013589859,
+        0.0
+      ],
+      "boundsMaxBlender": [
+        0.9269936084747314,
+        0.257999986410141,
+        1.9140000343322754
+      ],
+      "heightMeters": 1.9140000343322754,
+      "uvLayer": "HeroSurfaceUV",
+      "tangentExport": true,
+      "stage": "geometry refinement; rigid component weights; no dedicated attack animation",
+      "runtimeSizing": "existing HeroHeight normalization; Blender +Z height, -Y facing; FBX Y up"
+    },
+    {
+      "hero": "arien",
+      "triangles": 14526,
+      "vertices": 7453,
+      "bones": [
+        "Root",
+        "Hips",
+        "Spine",
+        "Head",
+        "UpperArm.L",
+        "LowerArm.L",
+        "Hand.L",
+        "UpperArm.R",
+        "LowerArm.R",
+        "Hand.R",
+        "UpperLeg.L",
+        "LowerLeg.L",
+        "UpperLeg.R",
+        "LowerLeg.R"
+      ],
+      "materialSlots": [
+        "TealArmor",
+        "Skin",
+        "Leather",
+        "Linen",
+        "Shadow",
+        "Bronze",
+        "Glow"
+      ],
+      "boundsMinBlender": [
+        -0.48099344968795776,
+        -0.23399999737739563,
+        0.0
+      ],
+      "boundsMaxBlender": [
+        0.5756883025169373,
+        0.257999986410141,
+        1.9043391942977905
+      ],
+      "heightMeters": 1.9043391942977905,
+      "uvLayer": "HeroSurfaceUV",
+      "tangentExport": true,
+      "stage": "geometry refinement; rigid component weights; no dedicated attack animation",
+      "runtimeSizing": "existing HeroHeight normalization; Blender +Z height, -Y facing; FBX Y up"
+    },
+    {
+      "hero": "tigerclaw",
+      "triangles": 9018,
+      "vertices": 4638,
+      "bones": [
+        "Root",
+        "Hips",
+        "Spine",
+        "Head",
+        "UpperArm.L",
+        "LowerArm.L",
+        "Hand.L",
+        "UpperArm.R",
+        "LowerArm.R",
+        "Hand.R",
+        "UpperLeg.L",
+        "LowerLeg.L",
+        "UpperLeg.R",
+        "LowerLeg.R"
+      ],
+      "materialSlots": [
+        "ShadowCloth",
+        "Shadow",
+        "Leather",
+        "Bronze",
+        "Glow",
+        "Steel"
+      ],
+      "boundsMinBlender": [
+        -0.5756883025169373,
+        -0.23399999737739563,
+        0.0
+      ],
+      "boundsMaxBlender": [
+        0.5756883025169373,
+        0.257999986410141,
+        1.9639999866485596
+      ],
+      "heightMeters": 1.9639999866485596,
+      "uvLayer": "HeroSurfaceUV",
+      "tangentExport": true,
+      "stage": "geometry refinement; rigid component weights; no dedicated attack animation",
+      "runtimeSizing": "existing HeroHeight normalization; Blender +Z height, -Y facing; FBX Y up"
+    },
+    {
+      "hero": "sabina",
+      "triangles": 14348,
+      "vertices": 7368,
+      "bones": [
+        "Root",
+        "Hips",
+        "Spine",
+        "Head",
+        "UpperArm.L",
+        "LowerArm.L",
+        "Hand.L",
+        "UpperArm.R",
+        "LowerArm.R",
+        "Hand.R",
+        "UpperLeg.L",
+        "LowerLeg.L",
+        "UpperLeg.R",
+        "LowerLeg.R"
+      ],
+      "materialSlots": [
+        "BrownCloth",
+        "Skin",
+        "Leather",
+        "Linen",
+        "Shadow",
+        "ShadowCloth",
+        "Bronze",
+        "Steel"
+      ],
+      "boundsMinBlender": [
+        -0.48099344968795776,
+        -0.37599998712539673,
+        0.0
+      ],
+      "boundsMaxBlender": [
+        0.4893040359020233,
+        0.2939999997615814,
+        2.0250000953674316
+      ],
+      "heightMeters": 2.0250000953674316,
+      "uvLayer": "HeroSurfaceUV",
+      "tangentExport": true,
+      "stage": "geometry refinement; rigid component weights; no dedicated attack animation",
+      "runtimeSizing": "existing HeroHeight normalization; Blender +Z height, -Y facing; FBX Y up"
+    }
+  ],
+  "limitations": [
+    "Rigid piece weights; no soft deformation validation",
+    "No hero-specific attack clips, LOD, sculpted normal maps or facial animation",
+    "Original stylized forms; not official character designs",
+    "Runtime replacement materials differ from Blender studio materials; inspect Unity separately"
+  ]
+}

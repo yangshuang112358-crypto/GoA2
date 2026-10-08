@@ -1,0 +1,31 @@
+  private IEnumerator VideoSequence(){
+   yield return null;yield return null;QualitySettings.vSyncCount=0;UnityEngine.Application.targetFrameRate=30;
+   DemoCheck(!startupFailed,"Startup failed");
+   Submit(CommandKind.DebugPrepare,"wasp,arien,tigerclaw,sabina");
+   cameraFollow=false;mainFlow=false;browsingWheels.Clear();wheelSeat=null;rightExpanded=false;stageStarted=-100;stageWaiting=false;Render();
+   board3DViewport.StopFollowing();board3DViewport.Focus=BattlePresentationState.Center(catalog);board3DViewport.Zoom=1.5f;
+   yield return new WaitForSecondsRealtime(2);
+   string before=session.ExportSave();
+   demoCaption="Blender 美术精修 · 以下为 Unity 实际渲染";BeginVideo("01-art-battlefield");yield return new WaitForSecondsRealtime(2);DemoShot("overview");
+   var rock=catalog.Cells.Where(c=>c.Obstacle && c.Position.Distance(new Hex(0,0))>3).OrderBy(c=>c.Position.Distance(new Hex(0,0))).First();
+   demoCaption="连续岩体 · 贴格底座、断裂面、静态中央石台";yield return DemoTravel(Board3DGeometry.World(rock.Position),3.8f,3);yield return new WaitForSecondsRealtime(2);DemoShot("rock-close");
+   foreach(var key in new[]{"wasp","arien","tigerclaw","sabina"}){
+    var player=renderedView.Players.First(p=>p.HeroId==key);var hero=renderedView.Units.First(u=>u.Seat==player.Seat);
+    demoCaption=key=="wasp"?"黄蜂 · 白甲曲面、雕刻轮廓、细分支电弧":key=="arien"?"艾瑞恩 · 水纹长衣与脚底流动水带":key=="tigerclaw"?"虎爪 · 人形兜帽、双匕首与消散暗影":"萨彼娜 · 皮衣短裙、长筒袜、牛仔帽与双枪";
+    yield return DemoTravel(Board3DGeometry.World(hero.Position)+Vector3.up*.8f,5.3f,3.5f);yield return new WaitForSecondsRealtime(1.5f);
+    DemoShot("hero-"+key);board.Rotate(1);yield return new WaitForSecondsRealtime(.9f);board.Rotate(1);yield return new WaitForSecondsRealtime(1);board.Rotate(-2);yield return new WaitForSecondsRealtime(.7f);
+   }
+   var unit=renderedView.Units.First(u=>u.Kind=="ranged" && u.Team==Team.Blue);
+   demoCaption="小兵 · 圆润护甲、细化握持和原有动作接线";yield return DemoTravel(Board3DGeometry.World(unit.Position)+Vector3.up*.7f,5,3);
+   board3DViewport.MinionPreviewPose="support";Render();yield return new WaitForSecondsRealtime(2.5f);DemoShot("ranged-support");
+   board3DViewport.MinionPreviewPose="guard";Render();yield return new WaitForSecondsRealtime(2.3f);
+   board3DViewport.MinionPreviewPose="";Render();
+   demoCaption="统一石材与旧黄铜 · 技能环与等级框";
+   var own=renderedView.Units.First(u=>u.Seat==seat);yield return DemoTravel(Board3DGeometry.World(own.Position),2.7f,3);ToggleHeroWheel(seat);yield return new WaitForSecondsRealtime(2);
+   var disc=root.Q<SkillDisc>("skill-gold");if(disc!=null){DemoEnter(disc);for(int i=0;i<22;i++){DemoMove(disc,.5f+.3f*Mathf.Sin(i*.28f),.5f+.3f*Mathf.Cos(i*.28f));yield return new WaitForSecondsRealtime(.065f);}DemoShot("skill-wheel");DemoLeave(disc);}
+   DemoCheck(session.ExportSave()==before,"Art browsing must not change the match");
+   demoCaption="本段为同一局面连续运镜；动作与点击由脚本驱动";yield return new WaitForSecondsRealtime(2);StopVideo();
+  }
+ }
+}
+#endif

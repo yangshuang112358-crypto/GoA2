@@ -49,6 +49,7 @@ namespace Goa2.Presentation.UI3D
                 renderer.receiveShadows = false;
             }
             RegisterMinionRig(instance,id,kind);
+            ContactShadow(cell,kind=="heavy"?.75f:.62f);
             ModeledMinionCount++;
             return true;
         }
@@ -75,8 +76,7 @@ namespace Goa2.Presentation.UI3D
             var shader = Resources.Load<Shader>("UI3D/Minion");
             if (shader == null) throw new InvalidOperationException("Missing minion presentation shader");
             var material = Own(new Material(shader) { name = "Minion " + key, color = ColorOf(html) });
-            material.SetFloat("_Metallic", slot == "Bronze" || slot.StartsWith("Steel", StringComparison.Ordinal) ? .65f : .08f);
-            material.SetFloat("_Emission", slot == "Glow" ? .38f : 0);
+            ActorSurface.Configure(material,slot);
             minionMaterials.Add(key, material);
             return material;
         }

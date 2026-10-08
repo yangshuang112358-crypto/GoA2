@@ -1,0 +1,202 @@
+[
+  {
+    "asset": "front",
+    "path": "unity/Assets/Resources/UI3D/SkillDiscs/front.png",
+    "size": [
+      768,
+      768
+    ],
+    "objects": 62,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "back",
+    "path": "unity/Assets/Resources/UI3D/SkillDiscs/back.png",
+    "size": [
+      768,
+      768
+    ],
+    "objects": 22,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "boot",
+    "path": "unity/Assets/Resources/UI3D/SkillDiscs/boot.png",
+    "size": [
+      320,
+      360
+    ],
+    "objects": 7,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "shield",
+    "path": "unity/Assets/Resources/UI3D/SkillDiscs/shield.png",
+    "size": [
+      320,
+      360
+    ],
+    "objects": 8,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "sword",
+    "path": "unity/Assets/Resources/UI3D/SkillDiscs/sword.png",
+    "size": [
+      320,
+      360
+    ],
+    "objects": 7,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "spark",
+    "path": "unity/Assets/Resources/UI3D/SkillDiscs/spark.png",
+    "size": [
+      320,
+      360
+    ],
+    "objects": 7,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "arrow",
+    "path": "unity/Assets/Resources/UI3D/SkillDiscs/arrow.png",
+    "size": [
+      320,
+      360
+    ],
+    "objects": 7,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "range",
+    "path": "unity/Assets/Resources/UI3D/SkillDiscs/range.png",
+    "size": [
+      320,
+      360
+    ],
+    "objects": 8,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "speed",
+    "path": "unity/Assets/Resources/UI3D/SkillDiscs/speed.png",
+    "size": [
+      512,
+      320
+    ],
+    "objects": 15,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "wheel",
+    "path": "unity/Assets/Resources/UI3D/SkillDiscs/wheel.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "objects": 83,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "response",
+    "path": "unity/Assets/Resources/UI3D/CarvedUI/slab-response.png",
+    "size": [
+      1200,
+      464
+    ],
+    "objects": 41,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "main",
+    "path": "unity/Assets/Resources/UI3D/CarvedUI/slab-main.png",
+    "size": [
+      1200,
+      464
+    ],
+    "objects": 41,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "action-attack",
+    "path": "unity/Assets/Resources/UI3D/CarvedUI/action-attack.png",
+    "size": [
+      256,
+      256
+    ],
+    "objects": 3,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "action-defense",
+    "path": "unity/Assets/Resources/UI3D/CarvedUI/action-defense.png",
+    "size": [
+      256,
+      256
+    ],
+    "objects": 3,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "action-movement",
+    "path": "unity/Assets/Resources/UI3D/CarvedUI/action-movement.png",
+    "size": [
+      256,
+      256
+    ],
+    "objects": 3,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "action-skill",
+    "path": "unity/Assets/Resources/UI3D/CarvedUI/action-skill.png",
+    "size": [
+      256,
+      256
+    ],
+    "objects": 3,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "settings-base",
+    "path": "unity/Assets/Resources/UI3D/CarvedUI/settings-base.png",
+    "size": [
+      520,
+      360
+    ],
+    "objects": 13,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "settings-gear",
+    "path": "unity/Assets/Resources/UI3D/CarvedUI/settings-gear.png",
+    "size": [
+      320,
+      320
+    ],
+    "objects": 4,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "hero-plate",
+    "path": "unity/Assets/Resources/UI3D/CarvedUI/hero-plate.png",
+    "size": [
+      984,
+      272
+    ],
+    "objects": 10,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  },
+  {
+    "asset": "panel",
+    "path": "unity/Assets/Resources/UI3D/CarvedUI/panel.png",
+    "size": [
+      1000,
+      700
+    ],
+    "objects": 16,
+    "representation": "Blender relief baked to RGBA; live Unity text and values"
+  }
+]

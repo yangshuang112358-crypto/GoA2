@@ -19,6 +19,7 @@ namespace Goa2.Presentation.UI3D
         private bool hovered, held, focused;
         private Vector2 pointerTilt;
         private float lastTime = Time.realtimeSinceStartup;
+        private static Texture2D stoneArt,gearArt;
         public float HoverAmount => motion.Hover;
         public float PressAmount => motion.Press;
 
@@ -135,6 +136,13 @@ namespace Goa2.Presentation.UI3D
         {
             var p=context.painter2D;
             float glow=Mathf.Max(motion.Hover,open?.65f:0);
+            if(stoneArt==null)stoneArt=Resources.Load<Texture2D>("UI3D/CarvedUI/settings-base");
+            if(gearArt==null)gearArt=Resources.Load<Texture2D>("UI3D/CarvedUI/settings-gear");
+            if(stoneArt!=null && gearArt!=null){
+                DrawRelief(context,stoneArt,new Rect(0,0,104,72),0,1+glow*.11f);
+                DrawRelief(context,gearArt,new Rect(32,9,40,40),motion.GearAngle,1+glow*.16f);
+                return;
+            }
             // Shadow, dark stone sidewall, bronze rim, then the recessed stone face.
             Polygon(p,Cut(3,9,103,73,13),new Color(0,0,0,.38f));
             if(glow>.01f) {
@@ -164,6 +172,19 @@ namespace Goa2.Presentation.UI3D
                 Circle(p,new Vector2(x,35),3,new Color(.12f,.09f,.06f));
                 Circle(p,new Vector2(x-.5f,34.4f),1.6f,new Color(.67f,.53f,.29f));
             }
+        }
+        private void DrawRelief(MeshGenerationContext context,Texture2D texture,Rect rect,float rotation,float light)
+        {
+            var mesh=context.Allocate(4,6,texture);var uv=mesh.uvRegion;
+            var points=new[]{new Vector2(rect.xMin,rect.yMin),new Vector2(rect.xMax,rect.yMin),new Vector2(rect.xMax,rect.yMax),new Vector2(rect.xMin,rect.yMax)};
+            var coords=new[]{new Vector2(uv.xMin,uv.yMax),new Vector2(uv.xMax,uv.yMax),new Vector2(uv.xMax,uv.yMin),new Vector2(uv.xMin,uv.yMin)};
+            float a=rotation*Mathf.Deg2Rad;
+            for(int i=0;i<4;i++){
+                var v=points[i]-rect.center;v=new Vector2(v.x*Mathf.Cos(a)-v.y*Mathf.Sin(a),v.x*Mathf.Sin(a)+v.y*Mathf.Cos(a));
+                var projected=Project(v+rect.center,rotation==0?0:4);
+                mesh.SetNextVertex(new Vertex{position=new Vector3(projected.x,projected.y,Vertex.nearZ),tint=new Color(light,light,light,1),uv=coords[i]});
+            }
+            foreach(ushort i in new ushort[]{0,1,2,2,3,0})mesh.SetNextIndex(i);
         }
         private void DrawGear(Painter2D p,float glow)
         {
