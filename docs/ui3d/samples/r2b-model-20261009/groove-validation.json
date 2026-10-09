@@ -1,0 +1,63 @@
+{
+  "source_sha256": "47646ee2eac7d6737f877bcff4a5b02c434c072ce74b3d3f4de440c1821649a3",
+  "method": "Evaluated meshes; rays from outside five largest glyph-face triangles along the badge front normal. Detects other socket layers covering magic. Also measures actual vertex depths.",
+  "samples": [
+    {
+      "scene": "01_COMPLETE_SKILLS",
+      "magic": "R2B Magic in recessed 8",
+      "samples": 5,
+      "occluders": [],
+      "depth_below_stone": 0.12099999189376831,
+      "passed": true
+    },
+    {
+      "scene": "01_COMPLETE_SKILLS",
+      "magic": "R2B Magic in recessed 4",
+      "samples": 5,
+      "occluders": [],
+      "depth_below_stone": 0.12099999189376831,
+      "passed": true
+    },
+    {
+      "scene": "02_BADGE_COMPONENTS",
+      "magic": "R2B Magic in recessed 4.001",
+      "samples": 5,
+      "occluders": [],
+      "depth_below_stone": 0.28399999160319567,
+      "passed": true
+    },
+    {
+      "scene": "02_BADGE_COMPONENTS",
+      "magic": "R2B Magic in recessed 2",
+      "samples": 5,
+      "occluders": [],
+      "depth_below_stone": 0.28399999160319567,
+      "passed": true
+    },
+    {
+      "scene": "02_BADGE_COMPONENTS",
+      "magic": "R2B Magic in recessed 8.001",
+      "samples": 5,
+      "occluders": [],
+      "depth_below_stone": 0.28399999160319567,
+      "passed": true
+    },
+    {
+      "scene": "04_GROOVE_MACRO",
+      "magic": "R2B Magic in recessed 4.002",
+      "samples": 5,
+      "occluders": [],
+      "depth_below_stone": 0.28399999160319567,
+      "passed": true
+    },
+    {
+      "scene": "04_GROOVE_MACRO",
+      "magic": "R2B Magic in recessed 4.003",
+      "samples": 5,
+      "occluders": [],
+      "depth_below_stone": 0.28399999160319567,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

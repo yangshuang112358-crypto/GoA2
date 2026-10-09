@@ -1,0 +1,21 @@
+{
+  "video": "R2B01-model-demo.mp4",
+  "source_blend": "art/production/samples/R2B01/R2B01_ComponentSamples.blend",
+  "source_sha256": "47646ee2eac7d6737f877bcff4a5b02c434c072ce74b3d3f4de440c1821649a3",
+  "video_sha256": "fcdd802bfa81ea900c3567bf1ecd75e2781f5b0f17732d1a93ba045bcc405df5",
+  "frame_parts_source": "art/production/samples/R2B01/R2B01_FrameParts.blend",
+  "frame_parts_sha256": "588d0b76873e5f45e1d0d75fa998a22e94490949b70f4e6e380bdb19ba2b7d68",
+  "seconds": 17.2,
+  "dimensions": [
+    720,
+    720
+  ],
+  "fps_encoded": 24,
+  "fps_rendered": 12,
+  "audio": "silent",
+  "provenance": "Actual Blender CPU Cycles frames from saved editable source, with two 0.4s crossfades; no generative images or image-warp animation.",
+  "loop": false,
+  "full_decode_passed": true,
+  "unity_integration": false,
+  "quality_boundary": "Editable structure/material samples; concept-level sculpture, weathering and small-size readability still need user review."
+}

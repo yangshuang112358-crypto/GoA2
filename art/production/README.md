@@ -1,5 +1,9 @@
 # Blender 制作环境
 
+## R2B01 独立模型样板（2026-10-09）
+
+用户选择01深灰石与真实凹刻。可编辑源在 `samples/R2B01/R2B01_ComponentSamples.blend`，由 `tools/art/build_r2b_samples.py` 生成；独立石标、两枚原创技能浮雕、分层旋转环均为实际网格／曲线，未发布Unity。使用与差距见 `docs/ui3d/R2B01模型样本与后续接入-2026-10-09.md`。手工精修前另存新名；重建只允许显式 `--replace-generated` 覆盖该生成源，不能触碰用户Workbench。
+
 ## 2026-10-09 精修资产入口
 
 本轮保留全部旧源文件与用户的 `assets/Workbench.blend`。新生成源分开保存，原 FBX 的 `.meta` GUID 保留；规则、Command/View、engine98、存档和网络身份均未改。验收状态以 `docs/verification/美术精修实装-2026-10-09.md` 为准，不把下文旧环境检查当作新资源的验收。

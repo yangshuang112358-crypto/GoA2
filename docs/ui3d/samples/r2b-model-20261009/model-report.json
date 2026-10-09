@@ -1,0 +1,833 @@
+{
+  "source": "art\\production\\samples\\R2B01\\R2B01_ComponentSamples.blend",
+  "blender": "4.5.14 LTS",
+  "gpu": [
+    {
+      "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "type": "CUDA",
+      "enabled": false
+    },
+    {
+      "name": "AMD Ryzen 9 5900HX with Radeon Graphics",
+      "type": "CPU",
+      "enabled": false
+    }
+  ],
+  "boolean_cuts": 124,
+  "cuts": [
+    {
+      "body": "R2B engraved skill name stone",
+      "feature": "incised 回旋镖",
+      "before_faces": 146,
+      "after_faces": 1158
+    },
+    {
+      "body": "R2B boot cut stone",
+      "feature": "incised 4",
+      "before_faces": 225,
+      "after_faces": 252
+    },
+    {
+      "body": "R2B shield cut stone",
+      "feature": "incised 3",
+      "before_faces": 174,
+      "after_faces": 917
+    },
+    {
+      "body": "R2B shield cut stone",
+      "feature": "symbol shield",
+      "before_faces": 917,
+      "after_faces": 953
+    },
+    {
+      "body": "R2B shield cut stone",
+      "feature": "symbol shield",
+      "before_faces": 953,
+      "after_faces": 989
+    },
+    {
+      "body": "R2B attack cut stone",
+      "feature": "incised 3",
+      "before_faces": 386,
+      "after_faces": 1129
+    },
+    {
+      "body": "R2B attack cut stone",
+      "feature": "symbol attack",
+      "before_faces": 1129,
+      "after_faces": 1155
+    },
+    {
+      "body": "R2B attack cut stone",
+      "feature": "symbol attack",
+      "before_faces": 1155,
+      "after_faces": 1200
+    },
+    {
+      "body": "R2B distance cut stone",
+      "feature": "symbol distance",
+      "before_faces": 146,
+      "after_faces": 724
+    },
+    {
+      "body": "R2B distance cut stone",
+      "feature": "symbol distance",
+      "before_faces": 724,
+      "after_faces": 735
+    },
+    {
+      "body": "R2B distance cut stone",
+      "feature": "symbol distance",
+      "before_faces": 735,
+      "after_faces": 685
+    },
+    {
+      "body": "R2B distance cut stone",
+      "feature": "symbol distance",
+      "before_faces": 685,
+      "after_faces": 711
+    },
+    {
+      "body": "R2B distance cut stone",
+      "feature": "symbol distance",
+      "before_faces": 711,
+      "after_faces": 736
+    },
+    {
+      "body": "R2B distance cut stone",
+      "feature": "symbol distance",
+      "before_faces": 736,
+      "after_faces": 762
+    },
+    {
+      "body": "R2B distance cut stone",
+      "feature": "symbol distance",
+      "before_faces": 762,
+      "after_faces": 788
+    },
+    {
+      "body": "R2B distance cut stone",
+      "feature": "incised 3",
+      "before_faces": 788,
+      "after_faces": 1531
+    },
+    {
+      "body": "R2B hourglass cut stone",
+      "feature": "incised 9",
+      "before_faces": 338,
+      "after_faces": 792
+    },
+    {
+      "body": "R2B engraved skill name stone.001",
+      "feature": "incised 控物",
+      "before_faces": 146,
+      "after_faces": 909
+    },
+    {
+      "body": "R2B boot cut stone.001",
+      "feature": "incised 3",
+      "before_faces": 225,
+      "after_faces": 952
+    },
+    {
+      "body": "R2B shield cut stone.001",
+      "feature": "incised 5",
+      "before_faces": 174,
+      "after_faces": 601
+    },
+    {
+      "body": "R2B shield cut stone.001",
+      "feature": "symbol shield",
+      "before_faces": 601,
+      "after_faces": 637
+    },
+    {
+      "body": "R2B shield cut stone.001",
+      "feature": "symbol shield",
+      "before_faces": 637,
+      "after_faces": 673
+    },
+    {
+      "body": "R2B skill cut stone",
+      "feature": "symbol skill",
+      "before_faces": 290,
+      "after_faces": 300
+    },
+    {
+      "body": "R2B range cut stone",
+      "feature": "symbol range",
+      "before_faces": 562,
+      "after_faces": 1012
+    },
+    {
+      "body": "R2B range cut stone",
+      "feature": "symbol range",
+      "before_faces": 1012,
+      "after_faces": 1462
+    },
+    {
+      "body": "R2B range cut stone",
+      "feature": "incised 2",
+      "before_faces": 1462,
+      "after_faces": 1887
+    },
+    {
+      "body": "R2B hourglass cut stone.001",
+      "feature": "incised 9",
+      "before_faces": 338,
+      "after_faces": 792
+    },
+    {
+      "body": "R2B shield cut stone.002",
+      "feature": "incised 6",
+      "before_faces": 174,
+      "after_faces": 596
+    },
+    {
+      "body": "R2B shield cut stone.002",
+      "feature": "symbol shield",
+      "before_faces": 596,
+      "after_faces": 632
+    },
+    {
+      "body": "R2B shield cut stone.002",
+      "feature": "symbol shield",
+      "before_faces": 632,
+      "after_faces": 668
+    },
+    {
+      "body": "R2B shield cut stone.003",
+      "feature": "incised 8",
+      "before_faces": 174,
+      "after_faces": 755
+    },
+    {
+      "body": "R2B shield cut stone.003",
+      "feature": "symbol shield",
+      "before_faces": 755,
+      "after_faces": 791
+    },
+    {
+      "body": "R2B shield cut stone.003",
+      "feature": "symbol shield",
+      "before_faces": 791,
+      "after_faces": 827
+    },
+    {
+      "body": "R2B shield cut stone.004",
+      "feature": "incised 4",
+      "before_faces": 174,
+      "after_faces": 202
+    },
+    {
+      "body": "R2B shield cut stone.004",
+      "feature": "symbol shield",
+      "before_faces": 202,
+      "after_faces": 238
+    },
+    {
+      "body": "R2B shield cut stone.004",
+      "feature": "symbol shield",
+      "before_faces": 238,
+      "after_faces": 274
+    },
+    {
+      "body": "R2B boot cut stone.002",
+      "feature": "incised 4",
+      "before_faces": 225,
+      "after_faces": 252
+    },
+    {
+      "body": "R2B shield cut stone.005",
+      "feature": "incised 6",
+      "before_faces": 174,
+      "after_faces": 596
+    },
+    {
+      "body": "R2B shield cut stone.005",
+      "feature": "symbol shield",
+      "before_faces": 596,
+      "after_faces": 632
+    },
+    {
+      "body": "R2B shield cut stone.005",
+      "feature": "symbol shield",
+      "before_faces": 632,
+      "after_faces": 668
+    },
+    {
+      "body": "R2B hourglass cut stone.002",
+      "feature": "incised 12",
+      "before_faces": 338,
+      "after_faces": 1012
+    },
+    {
+      "body": "R2B attack cut stone.001",
+      "feature": "incised 3",
+      "before_faces": 386,
+      "after_faces": 1129
+    },
+    {
+      "body": "R2B attack cut stone.001",
+      "feature": "symbol attack",
+      "before_faces": 1129,
+      "after_faces": 1155
+    },
+    {
+      "body": "R2B attack cut stone.001",
+      "feature": "symbol attack",
+      "before_faces": 1155,
+      "after_faces": 1200
+    },
+    {
+      "body": "R2B skill cut stone.001",
+      "feature": "symbol skill",
+      "before_faces": 290,
+      "after_faces": 300
+    },
+    {
+      "body": "R2B range cut stone.001",
+      "feature": "symbol range",
+      "before_faces": 562,
+      "after_faces": 1012
+    },
+    {
+      "body": "R2B range cut stone.001",
+      "feature": "symbol range",
+      "before_faces": 1012,
+      "after_faces": 1462
+    },
+    {
+      "body": "R2B range cut stone.001",
+      "feature": "incised 2",
+      "before_faces": 1462,
+      "after_faces": 1887
+    },
+    {
+      "body": "R2B distance cut stone.001",
+      "feature": "symbol distance",
+      "before_faces": 146,
+      "after_faces": 724
+    },
+    {
+      "body": "R2B distance cut stone.001",
+      "feature": "symbol distance",
+      "before_faces": 724,
+      "after_faces": 735
+    },
+    {
+      "body": "R2B distance cut stone.001",
+      "feature": "symbol distance",
+      "before_faces": 735,
+      "after_faces": 685
+    },
+    {
+      "body": "R2B distance cut stone.001",
+      "feature": "symbol distance",
+      "before_faces": 685,
+      "after_faces": 711
+    },
+    {
+      "body": "R2B distance cut stone.001",
+      "feature": "symbol distance",
+      "before_faces": 711,
+      "after_faces": 736
+    },
+    {
+      "body": "R2B distance cut stone.001",
+      "feature": "symbol distance",
+      "before_faces": 736,
+      "after_faces": 762
+    },
+    {
+      "body": "R2B distance cut stone.001",
+      "feature": "symbol distance",
+      "before_faces": 762,
+      "after_faces": 788
+    },
+    {
+      "body": "R2B distance cut stone.001",
+      "feature": "incised 3",
+      "before_faces": 788,
+      "after_faces": 1531
+    },
+    {
+      "body": "R2B hourglass cut stone.003",
+      "feature": "incised -2",
+      "before_faces": 338,
+      "after_faces": 764
+    },
+    {
+      "body": "R2B shield cut stone.006",
+      "feature": "incised ∞",
+      "before_faces": 174,
+      "after_faces": 691
+    },
+    {
+      "body": "R2B shield cut stone.006",
+      "feature": "symbol shield",
+      "before_faces": 691,
+      "after_faces": 727
+    },
+    {
+      "body": "R2B shield cut stone.006",
+      "feature": "symbol shield",
+      "before_faces": 727,
+      "after_faces": 763
+    },
+    {
+      "body": "R2B attack cut stone.002",
+      "feature": "incised 4",
+      "before_faces": 386,
+      "after_faces": 414
+    },
+    {
+      "body": "R2B attack cut stone.002",
+      "feature": "symbol attack",
+      "before_faces": 414,
+      "after_faces": 440
+    },
+    {
+      "body": "R2B attack cut stone.002",
+      "feature": "symbol attack",
+      "before_faces": 440,
+      "after_faces": 485
+    },
+    {
+      "body": "R2B skill cut stone.002",
+      "feature": "incised 2",
+      "before_faces": 290,
+      "after_faces": 715
+    },
+    {
+      "body": "R2B shield cut stone.007",
+      "feature": "incised 8",
+      "before_faces": 174,
+      "after_faces": 755
+    },
+    {
+      "body": "R2B shield cut stone.007",
+      "feature": "symbol shield",
+      "before_faces": 755,
+      "after_faces": 791
+    },
+    {
+      "body": "R2B shield cut stone.007",
+      "feature": "symbol shield",
+      "before_faces": 791,
+      "after_faces": 827
+    },
+    {
+      "body": "R2B engraved skill name stone.002",
+      "feature": "incised 图标插槽",
+      "before_faces": 146,
+      "after_faces": 1344
+    },
+    {
+      "body": "R2B shield cut stone.008",
+      "feature": "symbol shield",
+      "before_faces": 174,
+      "after_faces": 210
+    },
+    {
+      "body": "R2B shield cut stone.008",
+      "feature": "symbol shield",
+      "before_faces": 210,
+      "after_faces": 246
+    },
+    {
+      "body": "R2B attack cut stone.003",
+      "feature": "symbol attack",
+      "before_faces": 386,
+      "after_faces": 412
+    },
+    {
+      "body": "R2B attack cut stone.003",
+      "feature": "symbol attack",
+      "before_faces": 412,
+      "after_faces": 457
+    },
+    {
+      "body": "R2B distance cut stone.002",
+      "feature": "symbol distance",
+      "before_faces": 146,
+      "after_faces": 724
+    },
+    {
+      "body": "R2B distance cut stone.002",
+      "feature": "symbol distance",
+      "before_faces": 724,
+      "after_faces": 735
+    },
+    {
+      "body": "R2B distance cut stone.002",
+      "feature": "symbol distance",
+      "before_faces": 735,
+      "after_faces": 685
+    },
+    {
+      "body": "R2B distance cut stone.002",
+      "feature": "symbol distance",
+      "before_faces": 685,
+      "after_faces": 711
+    },
+    {
+      "body": "R2B distance cut stone.002",
+      "feature": "symbol distance",
+      "before_faces": 711,
+      "after_faces": 736
+    },
+    {
+      "body": "R2B distance cut stone.002",
+      "feature": "symbol distance",
+      "before_faces": 736,
+      "after_faces": 762
+    },
+    {
+      "body": "R2B distance cut stone.002",
+      "feature": "symbol distance",
+      "before_faces": 762,
+      "after_faces": 788
+    },
+    {
+      "body": "R2B engraved skill name stone.003",
+      "feature": "incised 图标插槽",
+      "before_faces": 146,
+      "after_faces": 1344
+    },
+    {
+      "body": "R2B shield cut stone.009",
+      "feature": "symbol shield",
+      "before_faces": 174,
+      "after_faces": 210
+    },
+    {
+      "body": "R2B shield cut stone.009",
+      "feature": "symbol shield",
+      "before_faces": 210,
+      "after_faces": 246
+    },
+    {
+      "body": "R2B skill cut stone.003",
+      "feature": "symbol skill",
+      "before_faces": 290,
+      "after_faces": 300
+    },
+    {
+      "body": "R2B range cut stone.002",
+      "feature": "symbol range",
+      "before_faces": 562,
+      "after_faces": 1012
+    },
+    {
+      "body": "R2B range cut stone.002",
+      "feature": "symbol range",
+      "before_faces": 1012,
+      "after_faces": 1462
+    },
+    {
+      "body": "R2B engraved skill name stone.004",
+      "feature": "incised 回旋镖",
+      "before_faces": 146,
+      "after_faces": 1158
+    },
+    {
+      "body": "R2B boot cut stone.005",
+      "feature": "incised 4",
+      "before_faces": 225,
+      "after_faces": 252
+    },
+    {
+      "body": "R2B shield cut stone.010",
+      "feature": "incised 3",
+      "before_faces": 174,
+      "after_faces": 917
+    },
+    {
+      "body": "R2B shield cut stone.010",
+      "feature": "symbol shield",
+      "before_faces": 917,
+      "after_faces": 953
+    },
+    {
+      "body": "R2B shield cut stone.010",
+      "feature": "symbol shield",
+      "before_faces": 953,
+      "after_faces": 989
+    },
+    {
+      "body": "R2B attack cut stone.004",
+      "feature": "incised 3",
+      "before_faces": 386,
+      "after_faces": 1129
+    },
+    {
+      "body": "R2B attack cut stone.004",
+      "feature": "symbol attack",
+      "before_faces": 1129,
+      "after_faces": 1155
+    },
+    {
+      "body": "R2B attack cut stone.004",
+      "feature": "symbol attack",
+      "before_faces": 1155,
+      "after_faces": 1200
+    },
+    {
+      "body": "R2B distance cut stone.003",
+      "feature": "symbol distance",
+      "before_faces": 146,
+      "after_faces": 724
+    },
+    {
+      "body": "R2B distance cut stone.003",
+      "feature": "symbol distance",
+      "before_faces": 724,
+      "after_faces": 735
+    },
+    {
+      "body": "R2B distance cut stone.003",
+      "feature": "symbol distance",
+      "before_faces": 735,
+      "after_faces": 685
+    },
+    {
+      "body": "R2B distance cut stone.003",
+      "feature": "symbol distance",
+      "before_faces": 685,
+      "after_faces": 711
+    },
+    {
+      "body": "R2B distance cut stone.003",
+      "feature": "symbol distance",
+      "before_faces": 711,
+      "after_faces": 736
+    },
+    {
+      "body": "R2B distance cut stone.003",
+      "feature": "symbol distance",
+      "before_faces": 736,
+      "after_faces": 762
+    },
+    {
+      "body": "R2B distance cut stone.003",
+      "feature": "symbol distance",
+      "before_faces": 762,
+      "after_faces": 788
+    },
+    {
+      "body": "R2B distance cut stone.003",
+      "feature": "incised 3",
+      "before_faces": 788,
+      "after_faces": 1531
+    },
+    {
+      "body": "R2B hourglass cut stone.006",
+      "feature": "incised 9",
+      "before_faces": 338,
+      "after_faces": 792
+    },
+    {
+      "body": "R2B engraved skill name stone.005",
+      "feature": "incised 图标插槽",
+      "before_faces": 146,
+      "after_faces": 1344
+    },
+    {
+      "body": "R2B shield cut stone.011",
+      "feature": "symbol shield",
+      "before_faces": 174,
+      "after_faces": 210
+    },
+    {
+      "body": "R2B shield cut stone.011",
+      "feature": "symbol shield",
+      "before_faces": 210,
+      "after_faces": 246
+    },
+    {
+      "body": "R2B skill cut stone.004",
+      "feature": "symbol skill",
+      "before_faces": 290,
+      "after_faces": 300
+    },
+    {
+      "body": "R2B range cut stone.003",
+      "feature": "symbol range",
+      "before_faces": 562,
+      "after_faces": 1012
+    },
+    {
+      "body": "R2B range cut stone.003",
+      "feature": "symbol range",
+      "before_faces": 1012,
+      "after_faces": 1462
+    },
+    {
+      "body": "R2B engraved skill name stone.006",
+      "feature": "incised 控物",
+      "before_faces": 146,
+      "after_faces": 909
+    },
+    {
+      "body": "R2B boot cut stone.007",
+      "feature": "incised 3",
+      "before_faces": 225,
+      "after_faces": 952
+    },
+    {
+      "body": "R2B shield cut stone.012",
+      "feature": "incised 5",
+      "before_faces": 174,
+      "after_faces": 601
+    },
+    {
+      "body": "R2B shield cut stone.012",
+      "feature": "symbol shield",
+      "before_faces": 601,
+      "after_faces": 637
+    },
+    {
+      "body": "R2B shield cut stone.012",
+      "feature": "symbol shield",
+      "before_faces": 637,
+      "after_faces": 673
+    },
+    {
+      "body": "R2B skill cut stone.005",
+      "feature": "symbol skill",
+      "before_faces": 290,
+      "after_faces": 300
+    },
+    {
+      "body": "R2B range cut stone.004",
+      "feature": "symbol range",
+      "before_faces": 562,
+      "after_faces": 1012
+    },
+    {
+      "body": "R2B range cut stone.004",
+      "feature": "symbol range",
+      "before_faces": 1012,
+      "after_faces": 1462
+    },
+    {
+      "body": "R2B range cut stone.004",
+      "feature": "incised 2",
+      "before_faces": 1462,
+      "after_faces": 1887
+    },
+    {
+      "body": "R2B hourglass cut stone.008",
+      "feature": "incised 9",
+      "before_faces": 338,
+      "after_faces": 792
+    },
+    {
+      "body": "R2B attack cut stone.005",
+      "feature": "incised 4",
+      "before_faces": 386,
+      "after_faces": 414
+    },
+    {
+      "body": "R2B attack cut stone.005",
+      "feature": "symbol attack",
+      "before_faces": 414,
+      "after_faces": 440
+    },
+    {
+      "body": "R2B attack cut stone.005",
+      "feature": "symbol attack",
+      "before_faces": 440,
+      "after_faces": 485
+    },
+    {
+      "body": "R2B shield cut stone.013",
+      "feature": "incised 4",
+      "before_faces": 174,
+      "after_faces": 202
+    },
+    {
+      "body": "R2B shield cut stone.013",
+      "feature": "symbol shield",
+      "before_faces": 202,
+      "after_faces": 238
+    },
+    {
+      "body": "R2B shield cut stone.013",
+      "feature": "symbol shield",
+      "before_faces": 238,
+      "after_faces": 274
+    }
+  ],
+  "scenes": {
+    "01_COMPLETE_SKILLS": {
+      "objects": 203,
+      "meshes": 90,
+      "vertices": 45250,
+      "frames": [
+        1,
+        96
+      ],
+      "fps": 24
+    },
+    "02_BADGE_COMPONENTS": {
+      "objects": 69,
+      "meshes": 53,
+      "vertices": 41824,
+      "frames": [
+        1,
+        192
+      ],
+      "fps": 24
+    },
+    "03_R2_ROTATING_ASSEMBLY": {
+      "objects": 476,
+      "meshes": 211,
+      "vertices": 78485,
+      "frames": [
+        1,
+        192
+      ],
+      "fps": 24
+    },
+    "04_GROOVE_MACRO": {
+      "objects": 16,
+      "meshes": 10,
+      "vertices": 8892,
+      "frames": [
+        1,
+        192
+      ],
+      "fps": 24
+    }
+  },
+  "runtime_changed": false,
+  "unity_tested": false,
+  "external_image_textures": 0,
+  "ring_metadata": {
+    "frame_start": 0,
+    "frame_end": 480,
+    "video_last_frame": 479,
+    "fps": 24,
+    "duration_seconds": 20.0,
+    "front_limit_z": -0.25,
+    "assembly_plane_z": -0.6700000166893005,
+    "conservative_mesh_max_z": -0.3440000166893005,
+    "outer_turns": -1,
+    "inner_turns": 1,
+    "local_axis": "Each collar's local Y after the carrier X tilt; fixed tilted hoop plane",
+    "collar_tilt_degrees": [
+      35,
+      45,
+      55
+    ],
+    "fixed_skill_angles_degrees": [
+      90,
+      18,
+      -54,
+      -126,
+      162
+    ]
+  }
+}

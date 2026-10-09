@@ -1,0 +1,396 @@
+{
+  "source": "art\\production\\samples\\R2B01\\R2B01_FrameParts.blend",
+  "blender": "4.5.14 LTS",
+  "renderer": "Cycles CPU",
+  "samples": 48,
+  "resolution": [
+    1280,
+    1000
+  ],
+  "external_image_textures": 0,
+  "runtime_changed": false,
+  "source_isolated_from": [
+    "R2B01_ComponentSamples.blend",
+    "Workbench.blend"
+  ],
+  "scenes": {
+    "01_FRAME_PARTS_OVERVIEW": {
+      "geometry": [
+        {
+          "object": "R2B_FP Frame structural shoulder",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Card band seating channel",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Outer bronze retention rim",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Polished outer edge",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Inner artwork retention lip",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Blank deep artwork well",
+          "base_vertices": 256,
+          "evaluated_vertices": 1024,
+          "evaluated_faces": 898,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Retention pin 01",
+          "base_vertices": 256,
+          "evaluated_vertices": 1024,
+          "evaluated_faces": 898,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Retention pin 02",
+          "base_vertices": 256,
+          "evaluated_vertices": 1024,
+          "evaluated_faces": 898,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Retention pin 03",
+          "base_vertices": 256,
+          "evaluated_vertices": 1024,
+          "evaluated_faces": 898,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Retention pin 04",
+          "base_vertices": 256,
+          "evaluated_vertices": 1024,
+          "evaluated_faces": 898,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Replaceable red stone inlay",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Nameplate machined socket",
+          "base_vertices": 12,
+          "evaluated_vertices": 288,
+          "evaluated_faces": 280,
+          "actual_boolean_modifiers": 1
+        },
+        {
+          "object": "R2B_FP Blank name stone insert",
+          "base_vertices": 12,
+          "evaluated_vertices": 144,
+          "evaluated_faces": 146,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Metal backplate with recessed X",
+          "base_vertices": 256,
+          "evaluated_vertices": 2679,
+          "evaluated_faces": 2655,
+          "actual_boolean_modifiers": 2
+        },
+        {
+          "object": "R2B_FP Back aged bronze perimeter",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Back narrow edge highlight",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Back inset turned groove",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Replaceable gold stone inlay",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Replaceable silver stone inlay",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Replaceable red stone inlay.001",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Replaceable green stone inlay",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Replaceable blue stone inlay",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        }
+      ],
+      "editable_boolean_recesses": [
+        {
+          "body": "R2B_FP Nameplate machined socket",
+          "cutter": "R2B_FP CUT nameplate shallow pocket",
+          "feature": "nameplate pocket",
+          "depth": 0.12,
+          "operation": "DIFFERENCE",
+          "solver": "EXACT"
+        },
+        {
+          "body": "R2B_FP Metal backplate with recessed X",
+          "cutter": "R2B_FP CUT discard X bar 01",
+          "feature": "discard X bar 01",
+          "depth": 0.1,
+          "operation": "DIFFERENCE",
+          "solver": "EXACT"
+        },
+        {
+          "body": "R2B_FP Metal backplate with recessed X",
+          "cutter": "R2B_FP CUT discard X bar 02",
+          "feature": "discard X bar 02",
+          "depth": 0.1,
+          "operation": "DIFFERENCE",
+          "solver": "EXACT"
+        }
+      ]
+    },
+    "02_SHALLOW_EXPLODED_ASSEMBLY": {
+      "geometry": [
+        {
+          "object": "R2B_FP Metal backplate with recessed X.001",
+          "base_vertices": 256,
+          "evaluated_vertices": 2679,
+          "evaluated_faces": 2655,
+          "actual_boolean_modifiers": 2
+        },
+        {
+          "object": "R2B_FP Back aged bronze perimeter.001",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Back narrow edge highlight.001",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Back inset turned groove.001",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Frame structural shoulder.001",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Card band seating channel.001",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Outer bronze retention rim.001",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Polished outer edge.001",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Inner artwork retention lip.001",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Blank deep artwork well.001",
+          "base_vertices": 256,
+          "evaluated_vertices": 1024,
+          "evaluated_faces": 898,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Retention pin 01.001",
+          "base_vertices": 256,
+          "evaluated_vertices": 1024,
+          "evaluated_faces": 898,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Retention pin 02.001",
+          "base_vertices": 256,
+          "evaluated_vertices": 1024,
+          "evaluated_faces": 898,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Retention pin 03.001",
+          "base_vertices": 256,
+          "evaluated_vertices": 1024,
+          "evaluated_faces": 898,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Retention pin 04.001",
+          "base_vertices": 256,
+          "evaluated_vertices": 1024,
+          "evaluated_faces": 898,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Replaceable red stone inlay.002",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Nameplate machined socket.001",
+          "base_vertices": 12,
+          "evaluated_vertices": 288,
+          "evaluated_faces": 280,
+          "actual_boolean_modifiers": 1
+        },
+        {
+          "object": "R2B_FP Blank name stone insert.001",
+          "base_vertices": 12,
+          "evaluated_vertices": 144,
+          "evaluated_faces": 146,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Metal backplate with recessed X.002",
+          "base_vertices": 256,
+          "evaluated_vertices": 2679,
+          "evaluated_faces": 2655,
+          "actual_boolean_modifiers": 2
+        },
+        {
+          "object": "R2B_FP Back aged bronze perimeter.002",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Back narrow edge highlight.002",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        },
+        {
+          "object": "R2B_FP Back inset turned groove.002",
+          "base_vertices": 640,
+          "evaluated_vertices": 2560,
+          "evaluated_faces": 2560,
+          "actual_boolean_modifiers": 0
+        }
+      ],
+      "editable_boolean_recesses": [
+        {
+          "body": "R2B_FP Metal backplate with recessed X.001",
+          "cutter": "R2B_FP CUT discard X bar 01.001",
+          "feature": "discard X bar 01",
+          "depth": 0.1,
+          "operation": "DIFFERENCE",
+          "solver": "EXACT"
+        },
+        {
+          "body": "R2B_FP Metal backplate with recessed X.001",
+          "cutter": "R2B_FP CUT discard X bar 02.001",
+          "feature": "discard X bar 02",
+          "depth": 0.1,
+          "operation": "DIFFERENCE",
+          "solver": "EXACT"
+        },
+        {
+          "body": "R2B_FP Nameplate machined socket.001",
+          "cutter": "R2B_FP CUT nameplate shallow pocket.001",
+          "feature": "nameplate pocket",
+          "depth": 0.12,
+          "operation": "DIFFERENCE",
+          "solver": "EXACT"
+        },
+        {
+          "body": "R2B_FP Metal backplate with recessed X.002",
+          "cutter": "R2B_FP CUT discard X bar 01.002",
+          "feature": "discard X bar 01",
+          "depth": 0.1,
+          "operation": "DIFFERENCE",
+          "solver": "EXACT"
+        },
+        {
+          "body": "R2B_FP Metal backplate with recessed X.002",
+          "cutter": "R2B_FP CUT discard X bar 02.002",
+          "feature": "discard X bar 02",
+          "depth": 0.1,
+          "operation": "DIFFERENCE",
+          "solver": "EXACT"
+        }
+      ]
+    }
+  },
+  "note": "Topology report is not visual acceptance."
+}

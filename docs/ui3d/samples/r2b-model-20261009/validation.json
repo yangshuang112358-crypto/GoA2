@@ -1,0 +1,69 @@
+{
+  "checks": {
+    "five_fixed_skill_roots": true,
+    "skills_do_not_rotate": true,
+    "decorative_controls_animate": true,
+    "actual_cut_meshes": true,
+    "magic_is_recessed": true,
+    "range_and_distance_separate": true,
+    "no_image_billboard_icons": true
+  },
+  "passed": true,
+  "fixed_skill_roots": [
+    "R2B_SKILL_FIXED_图标插槽",
+    "R2B_SKILL_FIXED_图标插槽.001",
+    "R2B_SKILL_FIXED_回旋镖.001",
+    "R2B_SKILL_FIXED_图标插槽.002",
+    "R2B_SKILL_FIXED_控物.001"
+  ],
+  "animated_controls": [
+    "R2_OuterOrbit",
+    "R2_RuneOrbit",
+    "R2_Collar01_LocalSpin",
+    "R2_Collar02_LocalSpin",
+    "R2_Collar03_LocalSpin"
+  ],
+  "source": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\GoA2\\Goa2V1\\art\\production\\samples\\R2B01\\R2B01_ComponentSamples.blend",
+  "scope": "Actual saved Blender model only; no Unity gameplay, performance, live values or user visual acceptance.",
+  "clips": [
+    {
+      "name": "ring",
+      "fps": 12,
+      "frames": 96,
+      "seconds": 8.0,
+      "scene": "03_R2_ROTATING_ASSEMBLY",
+      "source_frames": [
+        1,
+        191
+      ],
+      "render": "CPU Cycles; actual animated scene geometry; silent",
+      "loop": false
+    },
+    {
+      "name": "skills",
+      "fps": 12,
+      "frames": 72,
+      "seconds": 6.0,
+      "scene": "01_COMPLETE_SKILLS",
+      "source_frames": [
+        1,
+        143
+      ],
+      "render": "CPU Cycles; actual animated scene geometry; silent",
+      "loop": false
+    },
+    {
+      "name": "grooves",
+      "fps": 12,
+      "frames": 48,
+      "seconds": 4.0,
+      "scene": "04_GROOVE_MACRO",
+      "source_frames": [
+        1,
+        95
+      ],
+      "render": "CPU Cycles; actual animated scene geometry; silent",
+      "loop": false
+    }
+  ]
+}
