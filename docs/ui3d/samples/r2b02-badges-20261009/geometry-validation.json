@@ -1,0 +1,313 @@
+{
+  "source": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\GoA2\\Goa2V1\\art\\production\\samples\\R2B02-Badges\\R2B02_SemanticBadges.blend",
+  "checks": [
+    {
+      "name": "Seven actual stat semantics",
+      "passed": true
+    },
+    {
+      "name": "Every semantic has a separate inner emblem",
+      "passed": true
+    },
+    {
+      "name": "Hourglass is taller than wide",
+      "passed": true
+    },
+    {
+      "name": "Skill with no value has no zero engraved",
+      "passed": true
+    }
+  ],
+  "glyphs": [
+    {
+      "scene": "00_CORRECTED_BOOMERANG",
+      "object": "CORRECTED boot / incised numeral floor 4",
+      "value": "4",
+      "samples": 28,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "00_CORRECTED_BOOMERANG",
+      "object": "CORRECTED shield / incised numeral floor 3",
+      "value": "3",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "00_CORRECTED_BOOMERANG",
+      "object": "CORRECTED sword / incised numeral floor 3",
+      "value": "3",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "00_CORRECTED_BOOMERANG",
+      "object": "CORRECTED distance / incised numeral floor 3",
+      "value": "3",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "00_CORRECTED_BOOMERANG",
+      "object": "CORRECTED hourglass / incised numeral floor 9",
+      "value": "9",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "01_BOOT_AND_HOURGLASS",
+      "object": "BOOT / sculpted side silhouette / incised numeral floor 4",
+      "value": "4",
+      "samples": 28,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "01_BOOT_AND_HOURGLASS",
+      "object": "HOURGLASS / narrow vertical silhouette / incised numeral floor ",
+      "value": "9",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "02_SEVEN_CORE_BADGES",
+      "object": "CORE boot / incised numeral floor 4",
+      "value": "4",
+      "samples": 28,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "02_SEVEN_CORE_BADGES",
+      "object": "CORE shield / incised numeral floor 3",
+      "value": "3",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "02_SEVEN_CORE_BADGES",
+      "object": "CORE sword / incised numeral floor 3",
+      "value": "3",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "02_SEVEN_CORE_BADGES",
+      "object": "CORE range / incised numeral floor 2",
+      "value": "2",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "02_SEVEN_CORE_BADGES",
+      "object": "CORE distance / incised numeral floor 3",
+      "value": "3",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "02_SEVEN_CORE_BADGES",
+      "object": "CORE hourglass / incised numeral floor 9",
+      "value": "9",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "03_CARD_COLORS_AND_MAGIC",
+      "object": "COLOR gold / incised numeral floor 3",
+      "value": "3",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "03_CARD_COLORS_AND_MAGIC",
+      "object": "COLOR silver / incised numeral floor 6",
+      "value": "6",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "03_CARD_COLORS_AND_MAGIC",
+      "object": "COLOR red / incised numeral floor 3",
+      "value": "3",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "03_CARD_COLORS_AND_MAGIC",
+      "object": "COLOR green / incised numeral floor 4",
+      "value": "4",
+      "samples": 28,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "03_CARD_COLORS_AND_MAGIC",
+      "object": "COLOR blue / incised numeral floor 2",
+      "value": "2",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "03_CARD_COLORS_AND_MAGIC",
+      "object": "MAGIC normal / incised numeral floor 3",
+      "value": "3",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "03_CARD_COLORS_AND_MAGIC",
+      "object": "MAGIC green_magic / incised numeral floor 4",
+      "value": "4",
+      "samples": 28,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "03_CARD_COLORS_AND_MAGIC",
+      "object": "MAGIC red_magic / incised numeral floor 2",
+      "value": "2",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH 0 / incised numeral floor 0",
+      "value": "0",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH 1 / incised numeral floor 1",
+      "value": "1",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH 2 / incised numeral floor 2",
+      "value": "2",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH 3 / incised numeral floor 3",
+      "value": "3",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH 4 / incised numeral floor 4",
+      "value": "4",
+      "samples": 28,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH 5 / incised numeral floor 5",
+      "value": "5",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH 6 / incised numeral floor 6",
+      "value": "6",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH 7 / incised numeral floor 7",
+      "value": "7",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH 8 / incised numeral floor 8",
+      "value": "8",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH 9 / incised numeral floor 9",
+      "value": "9",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH 12 / incised numeral floor 12",
+      "value": "12",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH 13 / incised numeral floor 13",
+      "value": "13",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH −2 / incised numeral floor −2",
+      "value": "−2",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH ∞ / incised numeral floor ∞",
+      "value": "∞",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    },
+    {
+      "scene": "04_COMPLETE_NUMERIC_FORMS",
+      "object": "GLYPH ! / incised numeral floor !",
+      "value": "!",
+      "samples": 30,
+      "passed": true,
+      "failures": []
+    }
+  ],
+  "scope": "Model geometry and numerical margins only; user art approval and Unity runtime remain separate.",
+  "passed": true
+}

@@ -1,0 +1,377 @@
+{
+  "source": "art/production/samples/R2B02-Badges/R2B02_SemanticBadges.blend",
+  "donor": "art/production/samples/R2B01-Hero/R2B01_Boomerang.blend",
+  "blender": "4.5.14 LTS",
+  "semantic_kinds": [
+    "boot",
+    "shield",
+    "sword",
+    "skill",
+    "range",
+    "distance",
+    "hourglass"
+  ],
+  "utility_kinds": [
+    "discard",
+    "recover",
+    "reaction",
+    "quickmove",
+    "ultimate"
+  ],
+  "roots": [
+    {
+      "name": "CORRECTED boot",
+      "semantic": "boot",
+      "value": "4",
+      "width": 1.45,
+      "height": 1.5,
+      "inside_emblem": true
+    },
+    {
+      "name": "CORRECTED shield",
+      "semantic": "shield",
+      "value": "3",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "CORRECTED sword",
+      "semantic": "sword",
+      "value": "3",
+      "width": 1.3,
+      "height": 1.8599999999999999,
+      "inside_emblem": true
+    },
+    {
+      "name": "CORRECTED distance",
+      "semantic": "distance",
+      "value": "3",
+      "width": 1.28,
+      "height": 1.88,
+      "inside_emblem": true
+    },
+    {
+      "name": "CORRECTED hourglass",
+      "semantic": "hourglass",
+      "value": "9",
+      "width": 1.14,
+      "height": 1.58,
+      "inside_emblem": true
+    },
+    {
+      "name": "BOOT / sculpted side silhouette",
+      "semantic": "boot",
+      "value": "4",
+      "width": 1.45,
+      "height": 1.5,
+      "inside_emblem": true
+    },
+    {
+      "name": "HOURGLASS / narrow vertical silhouette",
+      "semantic": "hourglass",
+      "value": "9",
+      "width": 1.14,
+      "height": 1.58,
+      "inside_emblem": true
+    },
+    {
+      "name": "CORE boot",
+      "semantic": "boot",
+      "value": "4",
+      "width": 1.45,
+      "height": 1.5,
+      "inside_emblem": true
+    },
+    {
+      "name": "CORE shield",
+      "semantic": "shield",
+      "value": "3",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "CORE sword",
+      "semantic": "sword",
+      "value": "3",
+      "width": 1.3,
+      "height": 1.8599999999999999,
+      "inside_emblem": true
+    },
+    {
+      "name": "CORE skill",
+      "semantic": "skill",
+      "value": "none",
+      "width": 1.24,
+      "height": 1.74,
+      "inside_emblem": true
+    },
+    {
+      "name": "CORE range",
+      "semantic": "range",
+      "value": "2",
+      "width": 1.34,
+      "height": 1.62,
+      "inside_emblem": true
+    },
+    {
+      "name": "CORE distance",
+      "semantic": "distance",
+      "value": "3",
+      "width": 1.28,
+      "height": 1.88,
+      "inside_emblem": true
+    },
+    {
+      "name": "CORE hourglass",
+      "semantic": "hourglass",
+      "value": "9",
+      "width": 1.14,
+      "height": 1.58,
+      "inside_emblem": true
+    },
+    {
+      "name": "COLOR gold",
+      "semantic": "sword",
+      "value": "3",
+      "width": 1.3,
+      "height": 1.8599999999999999,
+      "inside_emblem": true
+    },
+    {
+      "name": "COLOR silver",
+      "semantic": "shield",
+      "value": "6",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "COLOR red",
+      "semantic": "sword",
+      "value": "3",
+      "width": 1.3,
+      "height": 1.8599999999999999,
+      "inside_emblem": true
+    },
+    {
+      "name": "COLOR green",
+      "semantic": "boot",
+      "value": "4",
+      "width": 1.45,
+      "height": 1.5,
+      "inside_emblem": true
+    },
+    {
+      "name": "COLOR blue",
+      "semantic": "range",
+      "value": "2",
+      "width": 1.34,
+      "height": 1.62,
+      "inside_emblem": true
+    },
+    {
+      "name": "COLOR purple",
+      "semantic": "skill",
+      "value": "none",
+      "width": 1.24,
+      "height": 1.74,
+      "inside_emblem": true
+    },
+    {
+      "name": "MAGIC normal",
+      "semantic": "sword",
+      "value": "3",
+      "width": 1.3,
+      "height": 1.8599999999999999,
+      "inside_emblem": true
+    },
+    {
+      "name": "MAGIC green_magic",
+      "semantic": "sword",
+      "value": "4",
+      "width": 1.3,
+      "height": 1.8599999999999999,
+      "inside_emblem": true
+    },
+    {
+      "name": "MAGIC red_magic",
+      "semantic": "sword",
+      "value": "2",
+      "width": 1.3,
+      "height": 1.8599999999999999,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH 0",
+      "semantic": "shield",
+      "value": "0",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH 1",
+      "semantic": "shield",
+      "value": "1",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH 2",
+      "semantic": "shield",
+      "value": "2",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH 3",
+      "semantic": "shield",
+      "value": "3",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH 4",
+      "semantic": "shield",
+      "value": "4",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH 5",
+      "semantic": "shield",
+      "value": "5",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH 6",
+      "semantic": "shield",
+      "value": "6",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH 7",
+      "semantic": "shield",
+      "value": "7",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH 8",
+      "semantic": "shield",
+      "value": "8",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH 9",
+      "semantic": "shield",
+      "value": "9",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH 12",
+      "semantic": "hourglass",
+      "value": "12",
+      "width": 1.14,
+      "height": 1.58,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH 13",
+      "semantic": "hourglass",
+      "value": "13",
+      "width": 1.14,
+      "height": 1.58,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH −2",
+      "semantic": "hourglass",
+      "value": "−2",
+      "width": 1.14,
+      "height": 1.58,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH ∞",
+      "semantic": "shield",
+      "value": "∞",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "GLYPH !",
+      "semantic": "shield",
+      "value": "!",
+      "width": 1.34,
+      "height": 1.68,
+      "inside_emblem": true
+    },
+    {
+      "name": "ACTION discard",
+      "semantic": "discard",
+      "value": "none",
+      "width": 1.26,
+      "height": 1.26,
+      "inside_emblem": true
+    },
+    {
+      "name": "ACTION recover",
+      "semantic": "recover",
+      "value": "none",
+      "width": 1.26,
+      "height": 1.26,
+      "inside_emblem": true
+    },
+    {
+      "name": "ACTION reaction",
+      "semantic": "reaction",
+      "value": "none",
+      "width": 1.26,
+      "height": 1.26,
+      "inside_emblem": true
+    },
+    {
+      "name": "ACTION quickmove",
+      "semantic": "quickmove",
+      "value": "none",
+      "width": 1.26,
+      "height": 1.26,
+      "inside_emblem": true
+    },
+    {
+      "name": "ACTION ultimate",
+      "semantic": "ultimate",
+      "value": "none",
+      "width": 1.26,
+      "height": 1.26,
+      "inside_emblem": true
+    }
+  ],
+  "scenes": [
+    "00_CORRECTED_BOOMERANG",
+    "01_BOOT_AND_HOURGLASS",
+    "02_SEVEN_CORE_BADGES",
+    "03_CARD_COLORS_AND_MAGIC",
+    "04_COMPLETE_NUMERIC_FORMS",
+    "05_ACTION_AND_HISTORY_MARKS"
+  ],
+  "unity_integrated": false,
+  "art_approved": false
+}

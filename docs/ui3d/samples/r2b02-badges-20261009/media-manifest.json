@@ -1,0 +1,70 @@
+{
+  "source": "art/production/samples/R2B02-Badges/R2B02_SemanticBadges.blend",
+  "files": {
+    "art/production/samples/R2B02-Badges/R2B02_SemanticBadges.blend": {
+      "bytes": 6262459,
+      "sha256": "4bbad9ae8f2604fdcc548a8f7ba91ee88c468f4af90879af3ab374230894fee1"
+    },
+    "docs/ui3d/samples/r2b02-badges-20261009/00-complete-button.jpg": {
+      "bytes": 134564,
+      "sha256": "5fd35c25d135c5a0d057b48068b0ea95c6fe2843c9d66202cc99971d0bc7502d"
+    },
+    "docs/ui3d/samples/r2b02-badges-20261009/01-boot-hourglass.jpg": {
+      "bytes": 71977,
+      "sha256": "8cef4730b161ccd6c4ef1b4bd689492dc9f9f7d947dd4a4137991fe8af0ed66e"
+    },
+    "docs/ui3d/samples/r2b02-badges-20261009/02-seven-core.jpg": {
+      "bytes": 94655,
+      "sha256": "cdaea79e73780b27dcc18641976bbc6ae84a7a1d698b063331b024a348340a1b"
+    },
+    "docs/ui3d/samples/r2b02-badges-20261009/03-colors-magic.jpg": {
+      "bytes": 132626,
+      "sha256": "547215aba975e9ee491f9d82fd4db7d1bd052506dcf6521bf773578b5cc01d91"
+    },
+    "docs/ui3d/samples/r2b02-badges-20261009/04-incised-numerals.jpg": {
+      "bytes": 78725,
+      "sha256": "62605c1782bfd8775555aed40185f8fed12f3e81cd3266bc76bc41a71376b26a"
+    },
+    "docs/ui3d/samples/r2b02-badges-20261009/05-action-marks.jpg": {
+      "bytes": 68387,
+      "sha256": "d55ade79c54bb20889e9dd45d94e2c8d28fcb8603dc8aff0da173b45ed2c8268"
+    },
+    "docs/ui3d/samples/r2b02-badges-20261009/geometry-validation.json": {
+      "bytes": 7776,
+      "sha256": "008cc39af1418b1e47f537688f31c70ee098d79352417e41b122f4f88eca93c6"
+    },
+    "docs/ui3d/samples/r2b02-badges-20261009/model-report.json": {
+      "bytes": 7780,
+      "sha256": "b26aa829748fa6c4af8de5c292fb1aafb906b805e906b41afe05ef5525538164"
+    },
+    "docs/ui3d/samples/r2b02-badges-20261009/R2B02-Badges-mobile.mp4": {
+      "bytes": 44871,
+      "sha256": "a1872add0909cd1861defc3e8e56d7623bc9c30910ffae1a8678a1ba26dee54d"
+    },
+    "docs/ui3d/samples/r2b02-badges-20261009/R2B02-Badges-model.zip": {
+      "bytes": 6192785,
+      "sha256": "d9b2e46cd2b1522624d47098b6f3e36d8b36a426b8ae978c9dedeea5b05aadd7"
+    },
+    "docs/ui3d/samples/r2b02-badges-20261009/R2B02-Badges.mp4": {
+      "bytes": 185220,
+      "sha256": "77481cb82114a18719e1f9dc0c47167723e0f55de57bc02ab8fe8e9724647b65"
+    }
+  },
+  "seconds": 4,
+  "fps": 12,
+  "frames": 48,
+  "dimensions": [
+    720,
+    600
+  ],
+  "mobile_dimensions": [
+    480,
+    400
+  ],
+  "audio": "silent",
+  "render": "Real saved Blender geometry rendered with CPU Cycles; actual small-angle pivot, no generated-image substitution.",
+  "decode_passed": true,
+  "zip_crc_passed": true,
+  "unity_integrated": false,
+  "user_art_approval": false
+}
