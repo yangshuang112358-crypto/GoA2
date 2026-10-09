@@ -27,7 +27,8 @@ run('-i',dst/'R2B01-Boomerang.mp4','-vf','scale=480:480','-an','-c:v','libx264',
 for name in ('R2B01-Boomerang.mp4','R2B01-Boomerang-mobile.mp4'):
     run('-i',dst/name,'-f','null','NUL')
 for name in ('model-report.json','groove-validation.json'):
-    shutil.copyfile(src/name,dst/name)
+    # Hash the same LF bytes Git publishes, not Windows text-mode CRLF bytes.
+    (dst/name).write_text((src/name).read_text(encoding='utf8'),encoding='utf8',newline='\n')
 source=root/'art/production/samples/R2B01-Hero/R2B01_Boomerang.blend'
 readme=source.with_name('README.md')
 with zipfile.ZipFile(dst/'R2B01-Boomerang-model.zip','w',zipfile.ZIP_DEFLATED,compresslevel=7) as z:
@@ -43,5 +44,5 @@ manifest={'source':str(source.relative_to(root)).replace('\\','/'),'files':files
           'render':'Real Blender CPU Cycles geometry with an actual small-angle pivot; no imagegen frame or image warping.',
           'modifier_preview':'Last 3 seconds switch primary value to green4 then red2; illustrative material states, not a played match.',
           'decode_passed':True,'zip_crc_passed':True,'unity_integrated':False,'user_art_approval':False}
-(dst/'media-manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf8')
+(dst/'media-manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf8',newline='\n')
 print(json.dumps({f.name:f.stat().st_size for f in dst.iterdir() if f.is_file()},ensure_ascii=False))
