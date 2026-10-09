@@ -1,0 +1,199 @@
+{
+  "source": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\GoA2\\Goa2V1\\art\\production\\samples\\R2B01-Hero\\R2B01_Boomerang.blend",
+  "floors": [
+    {
+      "floor": "Actual recessed patina floor / 回旋镖",
+      "actual_recess": 0.06600000655651095,
+      "samples": [
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 回旋镖",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 回旋镖",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 回旋镖",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 回旋镖",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 回旋镖",
+          "depth_error": 0.0
+        }
+      ],
+      "pass": true
+    },
+    {
+      "floor": "Actual recessed patina floor / 4",
+      "actual_recess": 0.12100000643730158,
+      "samples": [
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 4",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 4",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 4",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 4",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 4",
+          "depth_error": -0.0
+        }
+      ],
+      "pass": true
+    },
+    {
+      "floor": "Actual recessed patina floor / 3",
+      "actual_recess": 0.12100000643730158,
+      "samples": [
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3",
+          "depth_error": -0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3",
+          "depth_error": -0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3",
+          "depth_error": -0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3",
+          "depth_error": 0.0
+        }
+      ],
+      "pass": true
+    },
+    {
+      "floor": "Actual recessed patina floor / 3.001",
+      "actual_recess": 0.12100000643730158,
+      "samples": [
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3.001",
+          "depth_error": -0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3.001",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3.001",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3.001",
+          "depth_error": -0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3.001",
+          "depth_error": 0.0
+        }
+      ],
+      "pass": true
+    },
+    {
+      "floor": "Actual recessed patina floor / 3.002",
+      "actual_recess": 0.12100000643730158,
+      "samples": [
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3.002",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3.002",
+          "depth_error": 0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3.002",
+          "depth_error": -0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3.002",
+          "depth_error": -0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 3.002",
+          "depth_error": 0.0
+        }
+      ],
+      "pass": true
+    },
+    {
+      "floor": "Actual recessed patina floor / 9",
+      "actual_recess": 0.12100000643730158,
+      "samples": [
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 9",
+          "depth_error": -0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 9",
+          "depth_error": -0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 9",
+          "depth_error": -0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 9",
+          "depth_error": -0.0
+        },
+        {
+          "unobstructed": true,
+          "hit": "Actual recessed patina floor / 9",
+          "depth_error": 0.0
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "passed": true,
+  "scope": "Geometric recessed floors and front occlusion, not art approval or Unity readiness."
+}

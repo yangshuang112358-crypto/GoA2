@@ -1,0 +1,67 @@
+{
+  "source": "art/production/samples/R2B01-Hero/R2B01_Boomerang.blend",
+  "files": {
+    "art/production/samples/R2B01-Hero/R2B01_Boomerang.blend": {
+      "bytes": 796706,
+      "sha256": "f235c582166bf1eb158038893cbdfea25ada0da7c6464345d7952b9c22b2d745"
+    },
+    "docs/ui3d/samples/r2b01-hero-20261009/01-front.jpg": {
+      "bytes": 134798,
+      "sha256": "fd5a77d725aa7beeca5f5fdf9d15393c62819dbcc39deb2f4b8a1ad0cda972c7"
+    },
+    "docs/ui3d/samples/r2b01-hero-20261009/02-oblique.jpg": {
+      "bytes": 119825,
+      "sha256": "80438660b3b1d881f7b9b97912e58334934cd241e55755b37602e792569f90e1"
+    },
+    "docs/ui3d/samples/r2b01-hero-20261009/03-groove-green_magic.jpg": {
+      "bytes": 100958,
+      "sha256": "0cd3bb866b6d3d4c5b3fd6163765022776cc01980ecef76519ee6766f5caa4ae"
+    },
+    "docs/ui3d/samples/r2b01-hero-20261009/03-groove-normal.jpg": {
+      "bytes": 94869,
+      "sha256": "e1c2fde2c3a0b5f85f1861a70f98735e63d29eb9584491bcaaa53cf21f7b3908"
+    },
+    "docs/ui3d/samples/r2b01-hero-20261009/03-groove-red_magic.jpg": {
+      "bytes": 102434,
+      "sha256": "1d084e4ac43db5a89316e9919f15087f9b294ec019e0ec6f3deb238e546d4b63"
+    },
+    "docs/ui3d/samples/r2b01-hero-20261009/groove-validation.json": {
+      "bytes": 5563,
+      "sha256": "811edc7ddb466612f798cb5e425cdd431a4e3f123c6231b2c3ec6e1dad7cc0c0"
+    },
+    "docs/ui3d/samples/r2b01-hero-20261009/model-report.json": {
+      "bytes": 8351,
+      "sha256": "b245c19d00f2938b52a5abfd0c1636366159e40dd1700e47210d8cdbc355997c"
+    },
+    "docs/ui3d/samples/r2b01-hero-20261009/R2B01-Boomerang-mobile.mp4": {
+      "bytes": 113508,
+      "sha256": "2e28552eb2916451d7497afb72f4c9e1ffcc071888b189217e03bd94fe9634d8"
+    },
+    "docs/ui3d/samples/r2b01-hero-20261009/R2B01-Boomerang-model.zip": {
+      "bytes": 794607,
+      "sha256": "f90498f7ee1548295aa4983ef5b85447c9428dcd630e2d88c18301407a34b65e"
+    },
+    "docs/ui3d/samples/r2b01-hero-20261009/R2B01-Boomerang.mp4": {
+      "bytes": 450615,
+      "sha256": "85b97e7ff256ae1c6746316e218533613314dbd69605bea80a7a2a87e6b9f207"
+    }
+  },
+  "seconds": 8,
+  "fps": 12,
+  "frames": 96,
+  "dimensions": [
+    640,
+    640
+  ],
+  "mobile_dimensions": [
+    480,
+    480
+  ],
+  "audio": "silent",
+  "render": "Real Blender CPU Cycles geometry with an actual small-angle pivot; no imagegen frame or image warping.",
+  "modifier_preview": "Last 3 seconds switch primary value to green4 then red2; illustrative material states, not a played match.",
+  "decode_passed": true,
+  "zip_crc_passed": true,
+  "unity_integrated": false,
+  "user_art_approval": false
+}

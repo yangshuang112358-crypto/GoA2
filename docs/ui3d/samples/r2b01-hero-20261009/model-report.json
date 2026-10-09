@@ -1,0 +1,344 @@
+{
+  "source": "art\\production\\samples\\R2B01-Hero\\R2B01_Boomerang.blend",
+  "blender": "4.5.14 LTS",
+  "cuts": [
+    {
+      "body": "Name / full lower slate panel",
+      "feature": "recessed 回旋镖",
+      "before": 248,
+      "after": 1791
+    },
+    {
+      "body": "Movement / boot / dressed rim",
+      "feature": "hollow seat beneath stone face",
+      "before": 137,
+      "after": 149
+    },
+    {
+      "body": "Movement / boot / dressed rim",
+      "feature": "edge chip",
+      "before": 149,
+      "after": 152
+    },
+    {
+      "body": "Movement / boot / dressed rim",
+      "feature": "edge chip",
+      "before": 152,
+      "after": 157
+    },
+    {
+      "body": "Defence / shield / dressed rim",
+      "feature": "hollow seat beneath stone face",
+      "before": 100,
+      "after": 112
+    },
+    {
+      "body": "Defence / shield / dressed rim",
+      "feature": "edge chip",
+      "before": 112,
+      "after": 116
+    },
+    {
+      "body": "Defence / shield / dressed rim",
+      "feature": "edge chip",
+      "before": 116,
+      "after": 120
+    },
+    {
+      "body": "Primary / attack / dressed rim",
+      "feature": "hollow seat beneath stone face",
+      "before": 184,
+      "after": 200
+    },
+    {
+      "body": "Primary / attack / dressed rim",
+      "feature": "edge chip",
+      "before": 200,
+      "after": 204
+    },
+    {
+      "body": "Primary / attack / dressed rim",
+      "feature": "edge chip",
+      "before": 204,
+      "after": 207
+    },
+    {
+      "body": "Attack distance / spear and target / dressed rim",
+      "feature": "hollow seat beneath stone face",
+      "before": 90,
+      "after": 100
+    },
+    {
+      "body": "Attack distance / spear and target / dressed rim",
+      "feature": "edge chip",
+      "before": 100,
+      "after": 105
+    },
+    {
+      "body": "Attack distance / spear and target / dressed rim",
+      "feature": "edge chip",
+      "before": 105,
+      "after": 108
+    },
+    {
+      "body": "Initiative / hourglass / dressed rim",
+      "feature": "hollow seat beneath stone face",
+      "before": 152,
+      "after": 170
+    },
+    {
+      "body": "Initiative / hourglass / dressed rim",
+      "feature": "edge chip",
+      "before": 170,
+      "after": 177
+    },
+    {
+      "body": "Initiative / hourglass / dressed rim",
+      "feature": "edge chip",
+      "before": 177,
+      "after": 180
+    },
+    {
+      "body": "Movement / boot / recessed face",
+      "feature": "recessed 4",
+      "before": 137,
+      "after": 168
+    },
+    {
+      "body": "Defence / shield / recessed face",
+      "feature": "recessed 3",
+      "before": 100,
+      "after": 1027
+    },
+    {
+      "body": "Primary / attack / recessed face",
+      "feature": "recessed 3",
+      "before": 184,
+      "after": 1111
+    },
+    {
+      "body": "Attack distance / spear and target / recessed face",
+      "feature": "recessed 3",
+      "before": 90,
+      "after": 1018
+    },
+    {
+      "body": "Initiative / hourglass / recessed face",
+      "feature": "recessed 9",
+      "before": 152,
+      "after": 718
+    },
+    {
+      "body": "VARIANT green_magic / engraved attack face",
+      "feature": "variant recessed 4",
+      "before": 184,
+      "after": 211
+    },
+    {
+      "body": "VARIANT red_magic / engraved attack face",
+      "feature": "variant recessed 2",
+      "before": 184,
+      "after": 717
+    },
+    {
+      "body": "Movement / boot / recessed face",
+      "feature": "Boot cut0",
+      "before": 168,
+      "after": 197
+    },
+    {
+      "body": "Movement / boot / recessed face",
+      "feature": "Boot cut1",
+      "before": 197,
+      "after": 226
+    },
+    {
+      "body": "Movement / boot / recessed face",
+      "feature": "Boot cut2",
+      "before": 226,
+      "after": 256
+    },
+    {
+      "body": "Defence / shield / recessed face",
+      "feature": "Shield cut0",
+      "before": 1027,
+      "after": 1062
+    },
+    {
+      "body": "Defence / shield / recessed face",
+      "feature": "Shield cut1",
+      "before": 1062,
+      "after": 1091
+    },
+    {
+      "body": "Defence / shield / recessed face",
+      "feature": "Shield cut2",
+      "before": 1091,
+      "after": 1120
+    },
+    {
+      "body": "Primary / attack / recessed face",
+      "feature": "Red attack cut0",
+      "before": 1111,
+      "after": 1140
+    },
+    {
+      "body": "Primary / attack / recessed face",
+      "feature": "Red attack cut1",
+      "before": 1140,
+      "after": 1169
+    },
+    {
+      "body": "Primary / attack / recessed face",
+      "feature": "Red attack cut2",
+      "before": 1169,
+      "after": 1199
+    },
+    {
+      "body": "Attack distance / spear and target / recessed face",
+      "feature": "Red distance cut0",
+      "before": 1018,
+      "after": 1047
+    },
+    {
+      "body": "Attack distance / spear and target / recessed face",
+      "feature": "Red distance cut1",
+      "before": 1047,
+      "after": 1076
+    },
+    {
+      "body": "Attack distance / spear and target / recessed face",
+      "feature": "Red distance cut2",
+      "before": 1076,
+      "after": 1098
+    },
+    {
+      "body": "Initiative / hourglass / recessed face",
+      "feature": "Hourglass cut0",
+      "before": 718,
+      "after": 747
+    },
+    {
+      "body": "Initiative / hourglass / recessed face",
+      "feature": "Hourglass cut1",
+      "before": 747,
+      "after": 776
+    },
+    {
+      "body": "Name / full lower slate panel",
+      "feature": "Name slate cut0",
+      "before": 1791,
+      "after": 1823
+    },
+    {
+      "body": "Name / full lower slate panel",
+      "feature": "Name slate cut1",
+      "before": 1823,
+      "after": 1855
+    },
+    {
+      "body": "Name / full lower slate panel",
+      "feature": "Name slate cut2",
+      "before": 1855,
+      "after": 1892
+    },
+    {
+      "body": "Name / full lower slate panel",
+      "feature": "Name slate cut3",
+      "before": 1892,
+      "after": 1924
+    },
+    {
+      "body": "Name / full lower slate panel",
+      "feature": "Name slate cut4",
+      "before": 1924,
+      "after": 1947
+    },
+    {
+      "body": "Name / full lower slate panel",
+      "feature": "Name slate cut5",
+      "before": 1947,
+      "after": 1970
+    },
+    {
+      "body": "Red mineral band segment 00",
+      "feature": "Mineral vein 0",
+      "before": 114,
+      "after": 143
+    },
+    {
+      "body": "Red mineral band segment 02",
+      "feature": "Mineral vein 2",
+      "before": 114,
+      "after": 143
+    },
+    {
+      "body": "Red mineral band segment 05",
+      "feature": "Mineral vein 5",
+      "before": 114,
+      "after": 143
+    },
+    {
+      "body": "Red mineral band segment 07",
+      "feature": "Mineral vein 7",
+      "before": 114,
+      "after": 143
+    },
+    {
+      "body": "Red mineral band segment 09",
+      "feature": "Mineral vein 9",
+      "before": 114,
+      "after": 143
+    },
+    {
+      "body": "Red mineral band segment 11",
+      "feature": "Mineral vein 11",
+      "before": 114,
+      "after": 143
+    },
+    {
+      "body": "Red mineral band segment 14",
+      "feature": "Mineral vein 14",
+      "before": 114,
+      "after": 143
+    },
+    {
+      "body": "Red mineral band segment 16",
+      "feature": "Mineral vein 16",
+      "before": 114,
+      "after": 143
+    },
+    {
+      "body": "Red mineral band segment 19",
+      "feature": "Mineral vein 19",
+      "before": 114,
+      "after": 143
+    },
+    {
+      "body": "Red mineral band segment 22",
+      "feature": "Mineral vein 22",
+      "before": 114,
+      "after": 143
+    },
+    {
+      "body": "Red mineral band segment 25",
+      "feature": "Mineral vein 25",
+      "before": 114,
+      "after": 143
+    }
+  ],
+  "objects": 220,
+  "vertices": 37518,
+  "icon_objects": 52,
+  "unity_integrated": false,
+  "art_acceptance": "pending user review",
+  "values": {
+    "move": 4,
+    "defence": 3,
+    "attack": 3,
+    "attack_distance": 3,
+    "initiative": 9
+  },
+  "external_images": [],
+  "render": "CPU Cycles actual geometry"
+}
