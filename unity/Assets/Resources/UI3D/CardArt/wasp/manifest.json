@@ -1,0 +1,94 @@
+{
+  "Entries": [
+    {
+      "CardId": "wasp-00-闪耀之刃",
+      "IconKey": "wasp/gold",
+      "NameKey": "wasp/name-00"
+    },
+    {
+      "CardId": "wasp-06-静电封锁",
+      "IconKey": "wasp/silver",
+      "NameKey": "wasp/name-06"
+    },
+    {
+      "CardId": "wasp-12-电闪雷鸣",
+      "IconKey": "wasp/purple",
+      "NameKey": "wasp/name-12"
+    },
+    {
+      "CardId": "wasp-01-电击",
+      "IconKey": "wasp/red-base",
+      "NameKey": "wasp/name-01"
+    },
+    {
+      "CardId": "wasp-02-回旋镖",
+      "IconKey": "wasp/red-a",
+      "NameKey": "wasp/name-02"
+    },
+    {
+      "CardId": "wasp-03-电能波",
+      "IconKey": "wasp/red-b",
+      "NameKey": "wasp/name-03"
+    },
+    {
+      "CardId": "wasp-04-雷霆回旋镖",
+      "IconKey": "wasp/red-a",
+      "NameKey": "wasp/name-04"
+    },
+    {
+      "CardId": "wasp-05-电能爆炸",
+      "IconKey": "wasp/red-b",
+      "NameKey": "wasp/name-05"
+    },
+    {
+      "CardId": "wasp-07-抵挡屏障",
+      "IconKey": "wasp/green-base",
+      "NameKey": "wasp/name-07"
+    },
+    {
+      "CardId": "wasp-08-偏转屏障",
+      "IconKey": "wasp/green-a",
+      "NameKey": "wasp/name-08"
+    },
+    {
+      "CardId": "wasp-09-意念操控",
+      "IconKey": "wasp/green-b",
+      "NameKey": "wasp/name-09"
+    },
+    {
+      "CardId": "wasp-10-反射屏障",
+      "IconKey": "wasp/green-a",
+      "NameKey": "wasp/name-10"
+    },
+    {
+      "CardId": "wasp-11-心灵控制",
+      "IconKey": "wasp/green-b",
+      "NameKey": "wasp/name-11"
+    },
+    {
+      "CardId": "wasp-13-控物",
+      "IconKey": "wasp/blue-base",
+      "NameKey": "wasp/name-13"
+    },
+    {
+      "CardId": "wasp-14-动力助推",
+      "IconKey": "wasp/blue-a",
+      "NameKey": "wasp/name-14"
+    },
+    {
+      "CardId": "wasp-15-引力控制",
+      "IconKey": "wasp/blue-b",
+      "NameKey": "wasp/name-15"
+    },
+    {
+      "CardId": "wasp-16-动能震爆",
+      "IconKey": "wasp/blue-a",
+      "NameKey": "wasp/name-16"
+    },
+    {
+      "CardId": "wasp-17-意念黑洞",
+      "IconKey": "wasp/blue-b",
+      "NameKey": "wasp/name-17"
+    }
+  ]
+}

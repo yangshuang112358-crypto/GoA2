@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="37" result="Passed" total="37" passed="37" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 15:12:58Z" end-time="2026-10-09 15:13:15Z" duration="17.0942409">
+  <test-suite type="TestSuite" id="1000" name="Goa2V1" fullname="Goa2V1" runstate="Runnable" testcasecount="2425" result="Passed" start-time="2026-10-09 15:12:58Z" end-time="2026-10-09 15:13:15Z" duration="17.094241" total="37" passed="37" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3863" name="Goa2.UI3D.Tests.dll" fullname="C:/Users/29383/Documents/StudyFile/personal_project/GoA2/Goa2V1/unity/Library/ScriptAssemblies/Goa2.UI3D.Tests.dll" runstate="Runnable" testcasecount="190" result="Passed" start-time="2026-10-09 15:12:58Z" end-time="2026-10-09 15:13:15Z" duration="16.978294" total="37" passed="37" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6180" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="3864" name="Goa2" fullname="Goa2" runstate="Runnable" testcasecount="190" result="Passed" start-time="2026-10-09 15:12:58Z" end-time="2026-10-09 15:13:15Z" duration="16.976711" total="37" passed="37" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="3865" name="UI3D" fullname="Goa2.UI3D" runstate="Runnable" testcasecount="190" result="Passed" start-time="2026-10-09 15:12:58Z" end-time="2026-10-09 15:13:15Z" duration="16.975412" total="37" passed="37" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="3866" name="Tests" fullname="Goa2.UI3D.Tests" runstate="Runnable" testcasecount="190" result="Passed" start-time="2026-10-09 15:12:58Z" end-time="2026-10-09 15:13:15Z" duration="16.970115" total="37" passed="37" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="3635" name="ActionSequenceTests" fullname="Goa2.UI3D.Tests.ActionSequenceTests" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-09 15:12:58Z" end-time="2026-10-09 15:13:15Z" duration="16.823282" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3641" name="AttackAfterMoveDoesNotBecomeAChildOfOrdinaryDefense" fullname="Goa2.UI3D.Tests.ActionSequenceTests.AttackAfterMoveDoesNotBecomeAChildOfOrdinaryDefense" methodname="AttackAfterMoveDoesNotBecomeAChildOfOrdinaryDefense" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1088128065" result="Passed" start-time="2026-10-09 15:12:58Z" end-time="2026-10-09 15:12:59Z" duration="1.011925" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3640" name="DefensePreludeCreatesCommittedDefenseThenPurpleThenDiscard" fullname="Goa2.UI3D.Tests.ActionSequenceTests.DefensePreludeCreatesCommittedDefenseThenPurpleThenDiscard" methodname="DefensePreludeCreatesCommittedDefenseThenPurpleThenDiscard" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1154145291" result="Passed" start-time="2026-10-09 15:12:59Z" end-time="2026-10-09 15:13:01Z" duration="1.822550" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3651" name="FourWayPreviewUsesAlreadyFlippedCoinAndHonorsActualCaptainChoice" fullname="Goa2.UI3D.Tests.ActionSequenceTests.FourWayPreviewUsesAlreadyFlippedCoinAndHonorsActualCaptainChoice" methodname="FourWayPreviewUsesAlreadyFlippedCoinAndHonorsActualCaptainChoice" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="959868843" result="Passed" start-time="2026-10-09 15:13:01Z" end-time="2026-10-09 15:13:01Z" duration="0.195850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3649" name="GroupingExcludesStartedResponsesAndExtraRoots" fullname="Goa2.UI3D.Tests.ActionSequenceTests.GroupingExcludesStartedResponsesAndExtraRoots" methodname="GroupingExcludesStartedResponsesAndExtraRoots" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1951152414" result="Passed" start-time="2026-10-09 15:13:01Z" end-time="2026-10-09 15:13:01Z" duration="0.017398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3637" name="HiddenSelectionsNeverGenerateMainCards" fullname="Goa2.UI3D.Tests.ActionSequenceTests.HiddenSelectionsNeverGenerateMainCards" methodname="HiddenSelectionsNeverGenerateMainCards" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="614121080" result="Passed" start-time="2026-10-09 15:13:01Z" end-time="2026-10-09 15:13:02Z" duration="0.178853" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3639" name="NestedCounterattacksAreDistinctRootsAndDefensesRemainChildren" fullname="Goa2.UI3D.Tests.ActionSequenceTests.NestedCounterattacksAreDistinctRootsAndDefensesRemainChildren" methodname="NestedCounterattacksAreDistinctRootsAndDefensesRemainChildren" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1759875050" result="Passed" start-time="2026-10-09 15:13:02Z" end-time="2026-10-09 15:13:02Z" duration="0.847841" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3636" name="RealDefenseDiscardIsNestedAndIdenticalForAllSeats" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealDefenseDiscardIsNestedAndIdenticalForAllSeats" methodname="RealDefenseDiscardIsNestedAndIdenticalForAllSeats" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="642382804" result="Passed" start-time="2026-10-09 15:13:02Z" end-time="2026-10-09 15:13:03Z" duration="0.562580" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3648" name="RealFixturesHaveStableAcyclicPublicTrace" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-09 15:13:03Z" end-time="2026-10-09 15:13:15Z" duration="11.586793" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3642" name="RealFixturesHaveStableAcyclicPublicTrace(&quot;cloak-repeat&quot;)" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace(&quot;cloak-repeat&quot;)" methodname="RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="802029610" result="Passed" start-time="2026-10-09 15:13:03Z" end-time="2026-10-09 15:13:07Z" duration="4.073147" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3643" name="RealFixturesHaveStableAcyclicPublicTrace(&quot;phantasm-primary&quot;)" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace(&quot;phantasm-primary&quot;)" methodname="RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1005683857" result="Passed" start-time="2026-10-09 15:13:07Z" end-time="2026-10-09 15:13:09Z" duration="2.246147" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3644" name="RealFixturesHaveStableAcyclicPublicTrace(&quot;counterattack-defense&quot;)" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace(&quot;counterattack-defense&quot;)" methodname="RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1560601054" result="Passed" start-time="2026-10-09 15:13:09Z" end-time="2026-10-09 15:13:10Z" duration="0.698963" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3645" name="RealFixturesHaveStableAcyclicPublicTrace(&quot;thunderstorm-pay&quot;)" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace(&quot;thunderstorm-pay&quot;)" methodname="RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1251516890" result="Passed" start-time="2026-10-09 15:13:10Z" end-time="2026-10-09 15:13:12Z" duration="2.031510" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3646" name="RealFixturesHaveStableAcyclicPublicTrace(&quot;poison-dagger-ally&quot;)" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace(&quot;poison-dagger-ally&quot;)" methodname="RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="114923138" result="Passed" start-time="2026-10-09 15:13:12Z" end-time="2026-10-09 15:13:14Z" duration="1.620352" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3647" name="RealFixturesHaveStableAcyclicPublicTrace(&quot;tidal-wave-counterattack&quot;)" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RealFixturesHaveStableAcyclicPublicTrace(&quot;tidal-wave-counterattack&quot;)" methodname="RealFixturesHaveStableAcyclicPublicTrace" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="673101460" result="Passed" start-time="2026-10-09 15:13:14Z" end-time="2026-10-09 15:13:15Z" duration="0.912324" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3638" name="RestoreReconstructsSameTraceAndFollowingPlanningKeepsIt" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RestoreReconstructsSameTraceAndFollowingPlanningKeepsIt" methodname="RestoreReconstructsSameTraceAndFollowingPlanningKeepsIt" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1249532919" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.569372" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3650" name="RouletteCuesAreShort" fullname="Goa2.UI3D.Tests.ActionSequenceTests.RouletteCuesAreShort" methodname="RouletteCuesAreShort" classname="Goa2.UI3D.Tests.ActionSequenceTests" runstate="Runnable" seed="1686350467" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.012632" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3813" name="SkillCardArtTests" fullname="Goa2.UI3D.Tests.SkillCardArtTests" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.102324" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3826" name="FutureOutOfAtlasValuesRemainReadableAndAreNeverClamped" fullname="Goa2.UI3D.Tests.SkillCardArtTests.FutureOutOfAtlasValuesRemainReadableAndAreNeverClamped" methodname="FutureOutOfAtlasValuesRemainReadableAndAreNeverClamped" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" seed="290682827" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.080523" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3825" name="LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning" fullname="Goa2.UI3D.Tests.SkillCardArtTests.LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.012335" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3821" name="LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning(&quot;shield&quot;,&quot;12&quot;,0)" fullname="Goa2.UI3D.Tests.SkillCardArtTests.LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning(&quot;shield&quot;,&quot;12&quot;,0)" methodname="LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" seed="878466270" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.005537" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3822" name="LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning(&quot;sword&quot;,&quot;-3&quot;,-8)" fullname="Goa2.UI3D.Tests.SkillCardArtTests.LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning(&quot;sword&quot;,&quot;-3&quot;,-8)" methodname="LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" seed="713969918" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.001955" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3823" name="LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning(&quot;hourglass&quot;,&quot;15&quot;,7)" fullname="Goa2.UI3D.Tests.SkillCardArtTests.LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning(&quot;hourglass&quot;,&quot;15&quot;,7)" methodname="LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" seed="1059076459" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.002202" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3824" name="LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning(&quot;shield&quot;,&quot;∞&quot;,0)" fullname="Goa2.UI3D.Tests.SkillCardArtTests.LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning(&quot;shield&quot;,&quot;∞&quot;,0)" methodname="LiveValuesHaveRealCavityAssetsAndKeepTheirExactMeaning" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" seed="69485225" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.001381" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3827" name="SkillWithoutNumberDoesNotInventZero" fullname="Goa2.UI3D.Tests.SkillCardArtTests.SkillWithoutNumberDoesNotInventZero" methodname="SkillWithoutNumberDoesNotInventZero" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" seed="1680597722" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.002034" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="3820" name="TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels" fullname="Goa2.UI3D.Tests.SkillCardArtTests.TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.005559" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3815" name="TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels(null,0)" fullname="Goa2.UI3D.Tests.SkillCardArtTests.TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels(null,0)" methodname="TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" seed="408770141" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.004166" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3816" name="TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels(1,1)" fullname="Goa2.UI3D.Tests.SkillCardArtTests.TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels(1,1)" methodname="TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" seed="713693707" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.000108" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3817" name="TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels(2,2)" fullname="Goa2.UI3D.Tests.SkillCardArtTests.TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels(2,2)" methodname="TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" seed="1685669652" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.000054" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3818" name="TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels(3,3)" fullname="Goa2.UI3D.Tests.SkillCardArtTests.TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels(3,3)" methodname="TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" seed="1332633855" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.000049" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3819" name="TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels(4,4)" fullname="Goa2.UI3D.Tests.SkillCardArtTests.TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels(4,4)" methodname="TierGemsUseCardLevelAndNeverInventGoldOrSilverLevels" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" seed="428696029" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.000048" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3814" name="WaspBranchProgressionsKeepIdentityButBaseIsDistinct" fullname="Goa2.UI3D.Tests.SkillCardArtTests.WaspBranchProgressionsKeepIdentityButBaseIsDistinct" methodname="WaspBranchProgressionsKeepIdentityButBaseIsDistinct" classname="Goa2.UI3D.Tests.SkillCardArtTests" runstate="Runnable" seed="1207213063" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.000411" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3828" name="SkillWheelTests" fullname="Goa2.UI3D.Tests.SkillWheelTests" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.021824" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3829" name="DiscardAnimationIsPublicResultOnlyAndConsumedOnce" fullname="Goa2.UI3D.Tests.SkillWheelTests.DiscardAnimationIsPublicResultOnlyAndConsumedOnce" methodname="DiscardAnimationIsPublicResultOnlyAndConsumedOnce" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="828501471" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.004739" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3831" name="DiscardBeatsRemainSequential" fullname="Goa2.UI3D.Tests.SkillWheelTests.DiscardBeatsRemainSequential" methodname="DiscardBeatsRemainSequential" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1806729143" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.000934" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3834" name="MidGameCoinUsesFastHalfTurnTiming" fullname="Goa2.UI3D.Tests.SkillWheelTests.MidGameCoinUsesFastHalfTurnTiming" methodname="MidGameCoinUsesFastHalfTurnTiming" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1897313847" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.012450" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3832" name="OtherHeroSlotNeverUsesPrivateHand" fullname="Goa2.UI3D.Tests.SkillWheelTests.OtherHeroSlotNeverUsesPrivateHand" methodname="OtherHeroSlotNeverUsesPrivateHand" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1727478761" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.001086" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3833" name="OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection" fullname="Goa2.UI3D.Tests.SkillWheelTests.OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection" methodname="OtherHeroWheelUsesPublicEquippedIdentityWithoutOwnSelection" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1190688560" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.000542" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3830" name="RestoreDoesNotReplayHistoryAndRewindClearsFuture" fullname="Goa2.UI3D.Tests.SkillWheelTests.RestoreDoesNotReplayHistoryAndRewindClearsFuture" methodname="RestoreDoesNotReplayHistoryAndRewindClearsFuture" classname="Goa2.UI3D.Tests.SkillWheelTests" runstate="Runnable" seed="1768558313" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.000517" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="3835" name="UpgradeWheelTests" fullname="Goa2.UI3D.Tests.UpgradeWheelTests" classname="Goa2.UI3D.Tests.UpgradeWheelTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.011677" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="3839" name="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop" fullname="Goa2.UI3D.Tests.UpgradeWheelTests.EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop" classname="Goa2.UI3D.Tests.UpgradeWheelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.009889" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3836" name="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop(1)" fullname="Goa2.UI3D.Tests.UpgradeWheelTests.EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop(1)" methodname="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop" classname="Goa2.UI3D.Tests.UpgradeWheelTests" runstate="Runnable" seed="694139622" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.005645" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3837" name="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop(2)" fullname="Goa2.UI3D.Tests.UpgradeWheelTests.EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop(2)" methodname="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop" classname="Goa2.UI3D.Tests.UpgradeWheelTests" runstate="Runnable" seed="1082991522" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.000120" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3838" name="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop(3)" fullname="Goa2.UI3D.Tests.UpgradeWheelTests.EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop(3)" methodname="EveryDiscIsEvenlySpacedAndFirstOriginalIsAtTop" classname="Goa2.UI3D.Tests.UpgradeWheelTests" runstate="Runnable" seed="1700302872" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.000083" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="3840" name="RemainingIsNotNumberOfCandidateColors" fullname="Goa2.UI3D.Tests.UpgradeWheelTests.RemainingIsNotNumberOfCandidateColors" methodname="RemainingIsNotNumberOfCandidateColors" classname="Goa2.UI3D.Tests.UpgradeWheelTests" runstate="Runnable" seed="1955226042" result="Passed" start-time="2026-10-09 15:13:15Z" end-time="2026-10-09 15:13:15Z" duration="0.000794" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Users\29383\Documents\StudyFile\personal_project\GoA2\Goa2V1\artifacts\unity\tests\r2b-card-art-36ebe55be52f4d1c8ffb501551bb15f6.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

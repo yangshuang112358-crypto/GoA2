@@ -1,0 +1,51 @@
+{
+  "hero": "wasp",
+  "cards": 18,
+  "icons": 12,
+  "groups": {
+    "gold": [
+      "wasp-00-闪耀之刃"
+    ],
+    "silver": [
+      "wasp-06-静电封锁"
+    ],
+    "purple": [
+      "wasp-12-电闪雷鸣"
+    ],
+    "red-base": [
+      "wasp-01-电击"
+    ],
+    "red-a": [
+      "wasp-02-回旋镖",
+      "wasp-04-雷霆回旋镖"
+    ],
+    "red-b": [
+      "wasp-03-电能波",
+      "wasp-05-电能爆炸"
+    ],
+    "green-base": [
+      "wasp-07-抵挡屏障"
+    ],
+    "green-a": [
+      "wasp-08-偏转屏障",
+      "wasp-10-反射屏障"
+    ],
+    "green-b": [
+      "wasp-09-意念操控",
+      "wasp-11-心灵控制"
+    ],
+    "blue-base": [
+      "wasp-13-控物"
+    ],
+    "blue-a": [
+      "wasp-14-动力助推",
+      "wasp-16-动能震爆"
+    ],
+    "blue-b": [
+      "wasp-15-引力控制",
+      "wasp-17-意念黑洞"
+    ]
+  },
+  "source": "art/production/assets/CardArt-wasp.blend",
+  "method": "Original editable geometric relief; actual incised card names; CPU Cycles RGBA bake"
+}

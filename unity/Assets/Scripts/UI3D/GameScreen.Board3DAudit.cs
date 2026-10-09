@@ -212,6 +212,18 @@ namespace Goa2.Presentation
             Check(positive.resolvedStyle.color.g>positive.resolvedStyle.color.r && negative.resolvedStyle.color.r>negative.resolvedStyle.color.g,"Live bonus values retain green increases and red reductions");
             Check(root.Q<SkillDisc>("sample-infinity").Q<SkillBadge>("badge-primary").Q<Label>("badge-number").text=="∞","Conditional defense retains infinity");
             Check(session.ExportSave()==before,"Gallery samples do not change real rules or player bonuses");
+            foreach(var sample in root.Query<SkillBadge>().ToList())Check(sample.HasCarvedValue,"Sample reads its actual sculpted numeric asset: "+sample.name);
+            OpenArtSamples(5);yield return new WaitForSecondsRealtime(.8f);
+            Check(root.Q("hero-card-art-samples").Query<SkillDisc>().ToList().Count==18,"Hero art gallery displays all eighteen Wasp cards");
+            var iconKeys=new System.Collections.Generic.HashSet<string>();
+            foreach(var card in catalog.Cards.Where(c=>c.HeroId=="wasp")){
+                var art=SkillCardArt.Find(card);Check(art!=null && SkillCardArt.Texture(art.IconKey)!=null && SkillCardArt.Texture(art.NameKey)!=null,"Unique icon and engraved exact name exist: "+card.Name);
+                iconKeys.Add(art.IconKey);
+                Check(root.Q<SkillDisc>("card-art-"+card.Id).Q<Label>("skill-tier").text==(card.Level??0).ToString(),"Tier reads card level: "+card.Name);
+            }
+            Check(iconKeys.Count==12,"Three base icons, six branch icons, and gold/silver/purple icons");
+            ScreenCapture.CaptureScreenshot(Path.Combine(output,"wasp-card-art.png"));yield return new WaitForSecondsRealtime(.3f);
+            Check(session.ExportSave()==before,"Art identities and level gems never mutate rules");
         }
 
         private IEnumerator AuditSettingsButton(string output, BoardAuditReport report)

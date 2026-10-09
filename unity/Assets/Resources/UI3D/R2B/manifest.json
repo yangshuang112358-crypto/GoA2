@@ -1,0 +1,1096 @@
+{
+  "sample_only": false,
+  "values": [
+    {
+      "kind": "boot",
+      "value": "None",
+      "texture": "boot-none"
+    },
+    {
+      "kind": "boot",
+      "value": "-9",
+      "texture": "boot-n9"
+    },
+    {
+      "kind": "boot",
+      "value": "-8",
+      "texture": "boot-n8"
+    },
+    {
+      "kind": "boot",
+      "value": "-7",
+      "texture": "boot-n7"
+    },
+    {
+      "kind": "boot",
+      "value": "-6",
+      "texture": "boot-n6"
+    },
+    {
+      "kind": "boot",
+      "value": "-5",
+      "texture": "boot-n5"
+    },
+    {
+      "kind": "boot",
+      "value": "-4",
+      "texture": "boot-n4"
+    },
+    {
+      "kind": "boot",
+      "value": "-3",
+      "texture": "boot-n3"
+    },
+    {
+      "kind": "boot",
+      "value": "-2",
+      "texture": "boot-n2"
+    },
+    {
+      "kind": "boot",
+      "value": "-1",
+      "texture": "boot-n1"
+    },
+    {
+      "kind": "boot",
+      "value": "0",
+      "texture": "boot-p0"
+    },
+    {
+      "kind": "boot",
+      "value": "1",
+      "texture": "boot-p1"
+    },
+    {
+      "kind": "boot",
+      "value": "2",
+      "texture": "boot-p2"
+    },
+    {
+      "kind": "boot",
+      "value": "3",
+      "texture": "boot-p3"
+    },
+    {
+      "kind": "boot",
+      "value": "4",
+      "texture": "boot-p4"
+    },
+    {
+      "kind": "boot",
+      "value": "5",
+      "texture": "boot-p5"
+    },
+    {
+      "kind": "boot",
+      "value": "6",
+      "texture": "boot-p6"
+    },
+    {
+      "kind": "boot",
+      "value": "7",
+      "texture": "boot-p7"
+    },
+    {
+      "kind": "boot",
+      "value": "8",
+      "texture": "boot-p8"
+    },
+    {
+      "kind": "boot",
+      "value": "9",
+      "texture": "boot-p9"
+    },
+    {
+      "kind": "boot",
+      "value": "10",
+      "texture": "boot-p10"
+    },
+    {
+      "kind": "boot",
+      "value": "11",
+      "texture": "boot-p11"
+    },
+    {
+      "kind": "boot",
+      "value": "12",
+      "texture": "boot-p12"
+    },
+    {
+      "kind": "boot",
+      "value": "13",
+      "texture": "boot-p13"
+    },
+    {
+      "kind": "boot",
+      "value": "14",
+      "texture": "boot-p14"
+    },
+    {
+      "kind": "boot",
+      "value": "15",
+      "texture": "boot-p15"
+    },
+    {
+      "kind": "boot",
+      "value": "16",
+      "texture": "boot-p16"
+    },
+    {
+      "kind": "boot",
+      "value": "17",
+      "texture": "boot-p17"
+    },
+    {
+      "kind": "boot",
+      "value": "18",
+      "texture": "boot-p18"
+    },
+    {
+      "kind": "boot",
+      "value": "19",
+      "texture": "boot-p19"
+    },
+    {
+      "kind": "boot",
+      "value": "20",
+      "texture": "boot-p20"
+    },
+    {
+      "kind": "boot",
+      "value": "21",
+      "texture": "boot-p21"
+    },
+    {
+      "kind": "boot",
+      "value": "22",
+      "texture": "boot-p22"
+    },
+    {
+      "kind": "boot",
+      "value": "23",
+      "texture": "boot-p23"
+    },
+    {
+      "kind": "boot",
+      "value": "24",
+      "texture": "boot-p24"
+    },
+    {
+      "kind": "boot",
+      "value": "∞",
+      "texture": "boot-inf"
+    },
+    {
+      "kind": "shield",
+      "value": "None",
+      "texture": "shield-none"
+    },
+    {
+      "kind": "shield",
+      "value": "-9",
+      "texture": "shield-n9"
+    },
+    {
+      "kind": "shield",
+      "value": "-8",
+      "texture": "shield-n8"
+    },
+    {
+      "kind": "shield",
+      "value": "-7",
+      "texture": "shield-n7"
+    },
+    {
+      "kind": "shield",
+      "value": "-6",
+      "texture": "shield-n6"
+    },
+    {
+      "kind": "shield",
+      "value": "-5",
+      "texture": "shield-n5"
+    },
+    {
+      "kind": "shield",
+      "value": "-4",
+      "texture": "shield-n4"
+    },
+    {
+      "kind": "shield",
+      "value": "-3",
+      "texture": "shield-n3"
+    },
+    {
+      "kind": "shield",
+      "value": "-2",
+      "texture": "shield-n2"
+    },
+    {
+      "kind": "shield",
+      "value": "-1",
+      "texture": "shield-n1"
+    },
+    {
+      "kind": "shield",
+      "value": "0",
+      "texture": "shield-p0"
+    },
+    {
+      "kind": "shield",
+      "value": "1",
+      "texture": "shield-p1"
+    },
+    {
+      "kind": "shield",
+      "value": "2",
+      "texture": "shield-p2"
+    },
+    {
+      "kind": "shield",
+      "value": "3",
+      "texture": "shield-p3"
+    },
+    {
+      "kind": "shield",
+      "value": "4",
+      "texture": "shield-p4"
+    },
+    {
+      "kind": "shield",
+      "value": "5",
+      "texture": "shield-p5"
+    },
+    {
+      "kind": "shield",
+      "value": "6",
+      "texture": "shield-p6"
+    },
+    {
+      "kind": "shield",
+      "value": "7",
+      "texture": "shield-p7"
+    },
+    {
+      "kind": "shield",
+      "value": "8",
+      "texture": "shield-p8"
+    },
+    {
+      "kind": "shield",
+      "value": "9",
+      "texture": "shield-p9"
+    },
+    {
+      "kind": "shield",
+      "value": "10",
+      "texture": "shield-p10"
+    },
+    {
+      "kind": "shield",
+      "value": "11",
+      "texture": "shield-p11"
+    },
+    {
+      "kind": "shield",
+      "value": "12",
+      "texture": "shield-p12"
+    },
+    {
+      "kind": "shield",
+      "value": "13",
+      "texture": "shield-p13"
+    },
+    {
+      "kind": "shield",
+      "value": "14",
+      "texture": "shield-p14"
+    },
+    {
+      "kind": "shield",
+      "value": "15",
+      "texture": "shield-p15"
+    },
+    {
+      "kind": "shield",
+      "value": "16",
+      "texture": "shield-p16"
+    },
+    {
+      "kind": "shield",
+      "value": "17",
+      "texture": "shield-p17"
+    },
+    {
+      "kind": "shield",
+      "value": "18",
+      "texture": "shield-p18"
+    },
+    {
+      "kind": "shield",
+      "value": "19",
+      "texture": "shield-p19"
+    },
+    {
+      "kind": "shield",
+      "value": "20",
+      "texture": "shield-p20"
+    },
+    {
+      "kind": "shield",
+      "value": "21",
+      "texture": "shield-p21"
+    },
+    {
+      "kind": "shield",
+      "value": "22",
+      "texture": "shield-p22"
+    },
+    {
+      "kind": "shield",
+      "value": "23",
+      "texture": "shield-p23"
+    },
+    {
+      "kind": "shield",
+      "value": "24",
+      "texture": "shield-p24"
+    },
+    {
+      "kind": "shield",
+      "value": "∞",
+      "texture": "shield-inf"
+    },
+    {
+      "kind": "sword",
+      "value": "None",
+      "texture": "sword-none"
+    },
+    {
+      "kind": "sword",
+      "value": "-9",
+      "texture": "sword-n9"
+    },
+    {
+      "kind": "sword",
+      "value": "-8",
+      "texture": "sword-n8"
+    },
+    {
+      "kind": "sword",
+      "value": "-7",
+      "texture": "sword-n7"
+    },
+    {
+      "kind": "sword",
+      "value": "-6",
+      "texture": "sword-n6"
+    },
+    {
+      "kind": "sword",
+      "value": "-5",
+      "texture": "sword-n5"
+    },
+    {
+      "kind": "sword",
+      "value": "-4",
+      "texture": "sword-n4"
+    },
+    {
+      "kind": "sword",
+      "value": "-3",
+      "texture": "sword-n3"
+    },
+    {
+      "kind": "sword",
+      "value": "-2",
+      "texture": "sword-n2"
+    },
+    {
+      "kind": "sword",
+      "value": "-1",
+      "texture": "sword-n1"
+    },
+    {
+      "kind": "sword",
+      "value": "0",
+      "texture": "sword-p0"
+    },
+    {
+      "kind": "sword",
+      "value": "1",
+      "texture": "sword-p1"
+    },
+    {
+      "kind": "sword",
+      "value": "2",
+      "texture": "sword-p2"
+    },
+    {
+      "kind": "sword",
+      "value": "3",
+      "texture": "sword-p3"
+    },
+    {
+      "kind": "sword",
+      "value": "4",
+      "texture": "sword-p4"
+    },
+    {
+      "kind": "sword",
+      "value": "5",
+      "texture": "sword-p5"
+    },
+    {
+      "kind": "sword",
+      "value": "6",
+      "texture": "sword-p6"
+    },
+    {
+      "kind": "sword",
+      "value": "7",
+      "texture": "sword-p7"
+    },
+    {
+      "kind": "sword",
+      "value": "8",
+      "texture": "sword-p8"
+    },
+    {
+      "kind": "sword",
+      "value": "9",
+      "texture": "sword-p9"
+    },
+    {
+      "kind": "sword",
+      "value": "10",
+      "texture": "sword-p10"
+    },
+    {
+      "kind": "sword",
+      "value": "11",
+      "texture": "sword-p11"
+    },
+    {
+      "kind": "sword",
+      "value": "12",
+      "texture": "sword-p12"
+    },
+    {
+      "kind": "sword",
+      "value": "13",
+      "texture": "sword-p13"
+    },
+    {
+      "kind": "sword",
+      "value": "14",
+      "texture": "sword-p14"
+    },
+    {
+      "kind": "sword",
+      "value": "15",
+      "texture": "sword-p15"
+    },
+    {
+      "kind": "sword",
+      "value": "16",
+      "texture": "sword-p16"
+    },
+    {
+      "kind": "sword",
+      "value": "17",
+      "texture": "sword-p17"
+    },
+    {
+      "kind": "sword",
+      "value": "18",
+      "texture": "sword-p18"
+    },
+    {
+      "kind": "sword",
+      "value": "19",
+      "texture": "sword-p19"
+    },
+    {
+      "kind": "sword",
+      "value": "20",
+      "texture": "sword-p20"
+    },
+    {
+      "kind": "sword",
+      "value": "21",
+      "texture": "sword-p21"
+    },
+    {
+      "kind": "sword",
+      "value": "22",
+      "texture": "sword-p22"
+    },
+    {
+      "kind": "sword",
+      "value": "23",
+      "texture": "sword-p23"
+    },
+    {
+      "kind": "sword",
+      "value": "24",
+      "texture": "sword-p24"
+    },
+    {
+      "kind": "sword",
+      "value": "∞",
+      "texture": "sword-inf"
+    },
+    {
+      "kind": "skill",
+      "value": "None",
+      "texture": "skill-none"
+    },
+    {
+      "kind": "hourglass",
+      "value": "None",
+      "texture": "hourglass-none"
+    },
+    {
+      "kind": "hourglass",
+      "value": "-9",
+      "texture": "hourglass-n9"
+    },
+    {
+      "kind": "hourglass",
+      "value": "-8",
+      "texture": "hourglass-n8"
+    },
+    {
+      "kind": "hourglass",
+      "value": "-7",
+      "texture": "hourglass-n7"
+    },
+    {
+      "kind": "hourglass",
+      "value": "-6",
+      "texture": "hourglass-n6"
+    },
+    {
+      "kind": "hourglass",
+      "value": "-5",
+      "texture": "hourglass-n5"
+    },
+    {
+      "kind": "hourglass",
+      "value": "-4",
+      "texture": "hourglass-n4"
+    },
+    {
+      "kind": "hourglass",
+      "value": "-3",
+      "texture": "hourglass-n3"
+    },
+    {
+      "kind": "hourglass",
+      "value": "-2",
+      "texture": "hourglass-n2"
+    },
+    {
+      "kind": "hourglass",
+      "value": "-1",
+      "texture": "hourglass-n1"
+    },
+    {
+      "kind": "hourglass",
+      "value": "0",
+      "texture": "hourglass-p0"
+    },
+    {
+      "kind": "hourglass",
+      "value": "1",
+      "texture": "hourglass-p1"
+    },
+    {
+      "kind": "hourglass",
+      "value": "2",
+      "texture": "hourglass-p2"
+    },
+    {
+      "kind": "hourglass",
+      "value": "3",
+      "texture": "hourglass-p3"
+    },
+    {
+      "kind": "hourglass",
+      "value": "4",
+      "texture": "hourglass-p4"
+    },
+    {
+      "kind": "hourglass",
+      "value": "5",
+      "texture": "hourglass-p5"
+    },
+    {
+      "kind": "hourglass",
+      "value": "6",
+      "texture": "hourglass-p6"
+    },
+    {
+      "kind": "hourglass",
+      "value": "7",
+      "texture": "hourglass-p7"
+    },
+    {
+      "kind": "hourglass",
+      "value": "8",
+      "texture": "hourglass-p8"
+    },
+    {
+      "kind": "hourglass",
+      "value": "9",
+      "texture": "hourglass-p9"
+    },
+    {
+      "kind": "hourglass",
+      "value": "10",
+      "texture": "hourglass-p10"
+    },
+    {
+      "kind": "hourglass",
+      "value": "11",
+      "texture": "hourglass-p11"
+    },
+    {
+      "kind": "hourglass",
+      "value": "12",
+      "texture": "hourglass-p12"
+    },
+    {
+      "kind": "hourglass",
+      "value": "13",
+      "texture": "hourglass-p13"
+    },
+    {
+      "kind": "hourglass",
+      "value": "14",
+      "texture": "hourglass-p14"
+    },
+    {
+      "kind": "hourglass",
+      "value": "15",
+      "texture": "hourglass-p15"
+    },
+    {
+      "kind": "hourglass",
+      "value": "16",
+      "texture": "hourglass-p16"
+    },
+    {
+      "kind": "hourglass",
+      "value": "17",
+      "texture": "hourglass-p17"
+    },
+    {
+      "kind": "hourglass",
+      "value": "18",
+      "texture": "hourglass-p18"
+    },
+    {
+      "kind": "hourglass",
+      "value": "19",
+      "texture": "hourglass-p19"
+    },
+    {
+      "kind": "hourglass",
+      "value": "20",
+      "texture": "hourglass-p20"
+    },
+    {
+      "kind": "hourglass",
+      "value": "21",
+      "texture": "hourglass-p21"
+    },
+    {
+      "kind": "hourglass",
+      "value": "22",
+      "texture": "hourglass-p22"
+    },
+    {
+      "kind": "hourglass",
+      "value": "23",
+      "texture": "hourglass-p23"
+    },
+    {
+      "kind": "hourglass",
+      "value": "24",
+      "texture": "hourglass-p24"
+    },
+    {
+      "kind": "hourglass",
+      "value": "∞",
+      "texture": "hourglass-inf"
+    },
+    {
+      "kind": "range",
+      "value": "None",
+      "texture": "range-none"
+    },
+    {
+      "kind": "range",
+      "value": "-9",
+      "texture": "range-n9"
+    },
+    {
+      "kind": "range",
+      "value": "-8",
+      "texture": "range-n8"
+    },
+    {
+      "kind": "range",
+      "value": "-7",
+      "texture": "range-n7"
+    },
+    {
+      "kind": "range",
+      "value": "-6",
+      "texture": "range-n6"
+    },
+    {
+      "kind": "range",
+      "value": "-5",
+      "texture": "range-n5"
+    },
+    {
+      "kind": "range",
+      "value": "-4",
+      "texture": "range-n4"
+    },
+    {
+      "kind": "range",
+      "value": "-3",
+      "texture": "range-n3"
+    },
+    {
+      "kind": "range",
+      "value": "-2",
+      "texture": "range-n2"
+    },
+    {
+      "kind": "range",
+      "value": "-1",
+      "texture": "range-n1"
+    },
+    {
+      "kind": "range",
+      "value": "0",
+      "texture": "range-p0"
+    },
+    {
+      "kind": "range",
+      "value": "1",
+      "texture": "range-p1"
+    },
+    {
+      "kind": "range",
+      "value": "2",
+      "texture": "range-p2"
+    },
+    {
+      "kind": "range",
+      "value": "3",
+      "texture": "range-p3"
+    },
+    {
+      "kind": "range",
+      "value": "4",
+      "texture": "range-p4"
+    },
+    {
+      "kind": "range",
+      "value": "5",
+      "texture": "range-p5"
+    },
+    {
+      "kind": "range",
+      "value": "6",
+      "texture": "range-p6"
+    },
+    {
+      "kind": "range",
+      "value": "7",
+      "texture": "range-p7"
+    },
+    {
+      "kind": "range",
+      "value": "8",
+      "texture": "range-p8"
+    },
+    {
+      "kind": "range",
+      "value": "9",
+      "texture": "range-p9"
+    },
+    {
+      "kind": "range",
+      "value": "10",
+      "texture": "range-p10"
+    },
+    {
+      "kind": "range",
+      "value": "11",
+      "texture": "range-p11"
+    },
+    {
+      "kind": "range",
+      "value": "12",
+      "texture": "range-p12"
+    },
+    {
+      "kind": "range",
+      "value": "13",
+      "texture": "range-p13"
+    },
+    {
+      "kind": "range",
+      "value": "14",
+      "texture": "range-p14"
+    },
+    {
+      "kind": "range",
+      "value": "15",
+      "texture": "range-p15"
+    },
+    {
+      "kind": "range",
+      "value": "16",
+      "texture": "range-p16"
+    },
+    {
+      "kind": "range",
+      "value": "17",
+      "texture": "range-p17"
+    },
+    {
+      "kind": "range",
+      "value": "18",
+      "texture": "range-p18"
+    },
+    {
+      "kind": "range",
+      "value": "19",
+      "texture": "range-p19"
+    },
+    {
+      "kind": "range",
+      "value": "20",
+      "texture": "range-p20"
+    },
+    {
+      "kind": "range",
+      "value": "21",
+      "texture": "range-p21"
+    },
+    {
+      "kind": "range",
+      "value": "22",
+      "texture": "range-p22"
+    },
+    {
+      "kind": "range",
+      "value": "23",
+      "texture": "range-p23"
+    },
+    {
+      "kind": "range",
+      "value": "24",
+      "texture": "range-p24"
+    },
+    {
+      "kind": "range",
+      "value": "∞",
+      "texture": "range-inf"
+    },
+    {
+      "kind": "distance",
+      "value": "None",
+      "texture": "distance-none"
+    },
+    {
+      "kind": "distance",
+      "value": "-9",
+      "texture": "distance-n9"
+    },
+    {
+      "kind": "distance",
+      "value": "-8",
+      "texture": "distance-n8"
+    },
+    {
+      "kind": "distance",
+      "value": "-7",
+      "texture": "distance-n7"
+    },
+    {
+      "kind": "distance",
+      "value": "-6",
+      "texture": "distance-n6"
+    },
+    {
+      "kind": "distance",
+      "value": "-5",
+      "texture": "distance-n5"
+    },
+    {
+      "kind": "distance",
+      "value": "-4",
+      "texture": "distance-n4"
+    },
+    {
+      "kind": "distance",
+      "value": "-3",
+      "texture": "distance-n3"
+    },
+    {
+      "kind": "distance",
+      "value": "-2",
+      "texture": "distance-n2"
+    },
+    {
+      "kind": "distance",
+      "value": "-1",
+      "texture": "distance-n1"
+    },
+    {
+      "kind": "distance",
+      "value": "0",
+      "texture": "distance-p0"
+    },
+    {
+      "kind": "distance",
+      "value": "1",
+      "texture": "distance-p1"
+    },
+    {
+      "kind": "distance",
+      "value": "2",
+      "texture": "distance-p2"
+    },
+    {
+      "kind": "distance",
+      "value": "3",
+      "texture": "distance-p3"
+    },
+    {
+      "kind": "distance",
+      "value": "4",
+      "texture": "distance-p4"
+    },
+    {
+      "kind": "distance",
+      "value": "5",
+      "texture": "distance-p5"
+    },
+    {
+      "kind": "distance",
+      "value": "6",
+      "texture": "distance-p6"
+    },
+    {
+      "kind": "distance",
+      "value": "7",
+      "texture": "distance-p7"
+    },
+    {
+      "kind": "distance",
+      "value": "8",
+      "texture": "distance-p8"
+    },
+    {
+      "kind": "distance",
+      "value": "9",
+      "texture": "distance-p9"
+    },
+    {
+      "kind": "distance",
+      "value": "10",
+      "texture": "distance-p10"
+    },
+    {
+      "kind": "distance",
+      "value": "11",
+      "texture": "distance-p11"
+    },
+    {
+      "kind": "distance",
+      "value": "12",
+      "texture": "distance-p12"
+    },
+    {
+      "kind": "distance",
+      "value": "13",
+      "texture": "distance-p13"
+    },
+    {
+      "kind": "distance",
+      "value": "14",
+      "texture": "distance-p14"
+    },
+    {
+      "kind": "distance",
+      "value": "15",
+      "texture": "distance-p15"
+    },
+    {
+      "kind": "distance",
+      "value": "16",
+      "texture": "distance-p16"
+    },
+    {
+      "kind": "distance",
+      "value": "17",
+      "texture": "distance-p17"
+    },
+    {
+      "kind": "distance",
+      "value": "18",
+      "texture": "distance-p18"
+    },
+    {
+      "kind": "distance",
+      "value": "19",
+      "texture": "distance-p19"
+    },
+    {
+      "kind": "distance",
+      "value": "20",
+      "texture": "distance-p20"
+    },
+    {
+      "kind": "distance",
+      "value": "21",
+      "texture": "distance-p21"
+    },
+    {
+      "kind": "distance",
+      "value": "22",
+      "texture": "distance-p22"
+    },
+    {
+      "kind": "distance",
+      "value": "23",
+      "texture": "distance-p23"
+    },
+    {
+      "kind": "distance",
+      "value": "24",
+      "texture": "distance-p24"
+    },
+    {
+      "kind": "distance",
+      "value": "∞",
+      "texture": "distance-inf"
+    }
+  ],
+  "source": "art/production/assets/R2BRuntime.blend",
+  "range": [
+    -9,
+    24
+  ],
+  "numeric_method": "Real Blender boolean cavity plus its mesh-derived illumination mask"
+}

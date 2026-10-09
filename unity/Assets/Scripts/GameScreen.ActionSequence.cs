@@ -29,7 +29,7 @@ namespace Goa2.Presentation
                 var slab=(ActionSlab)tile;slab.Accent=CardColor(card.Color);
                 var header=Box("action-card-heading");tile.Add(header);
                 var portrait=new ActionCardGlyph(card.HeroId,p.Team==Team.Blue?new Color(.3f,.65f,1):new Color(1,.36f,.4f),42,true){name="action-portrait-"+n.Id};header.Add(portrait);
-                var icon=new ActionCardGlyph(card.PrimaryFamily,CardColor(card.Color),32,false,true){name="action-skill-"+n.Id};header.Add(icon);
+                var icon=new ActionCardGlyph(card.PrimaryFamily,CardColor(card.Color),32,false,true,card.Id){name="action-skill-"+n.Id};header.Add(icon);
                 var title=Text(card.Name,"action-card-title");header.Add(title);
                 if(n.Role!="main")
                 {

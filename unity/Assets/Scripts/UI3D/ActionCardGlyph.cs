@@ -9,11 +9,12 @@ namespace Goa2.Presentation.UI3D
     public sealed class ActionCardGlyph : VisualElement
     {
         private readonly string kind;private readonly Color tint;private readonly bool portrait,framed;
+        private readonly string cardId;
         private static readonly Dictionary<string,Texture2D> artwork=new Dictionary<string,Texture2D>();
         private static Texture2D Load(string path){if(!artwork.TryGetValue(path,out var value))artwork[path]=value=Resources.Load<Texture2D>(path);return value;}
-        public ActionCardGlyph(string kind,Color tint,float size,bool portrait=false,bool framed=false)
+        public ActionCardGlyph(string kind,Color tint,float size,bool portrait=false,bool framed=false,string cardId="")
         {
-            this.kind=kind;this.tint=tint;this.portrait=portrait;this.framed=framed;
+            this.kind=kind;this.tint=tint;this.portrait=portrait;this.framed=framed;this.cardId=cardId;
             pickingMode=PickingMode.Ignore;style.width=size;style.height=size;style.flexShrink=0;
             generateVisualContent+=Draw;
         }
@@ -54,7 +55,8 @@ namespace Goa2.Presentation.UI3D
                 return;
             }
             if(framed){Poly(tint,new Vector2(9,2),new Vector2(55,2),new Vector2(62,9),new Vector2(62,55),new Vector2(55,62),new Vector2(9,62),new Vector2(2,55),new Vector2(2,9));Poly(dark,new Vector2(10,6),new Vector2(54,6),new Vector2(58,10),new Vector2(58,54),new Vector2(54,58),new Vector2(10,58),new Vector2(6,54),new Vector2(6,10));}
-            var relief=framed?Load("UI3D/CarvedUI/action-"+kind):null;
+            var cardArt=string.IsNullOrEmpty(cardId)?null:SkillCardArt.Find(new Goa2.Domain.CardDefinition{Id=cardId});
+            var relief=cardArt!=null?SkillCardArt.Texture(cardArt.IconKey):framed?Load("UI3D/CarvedUI/action-"+kind):null;
             if(relief!=null){
                 var m=context.Allocate(4,6,relief);var uv=m.uvRegion;float size=contentRect.width;
                 var points=new[]{new Vector2(0,0),new Vector2(size,0),new Vector2(size,size),new Vector2(0,size)};

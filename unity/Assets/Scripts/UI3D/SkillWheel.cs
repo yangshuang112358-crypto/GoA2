@@ -35,17 +35,23 @@ namespace Goa2.Presentation.UI3D {
   public Action<Vector2>? Inspect;
   private readonly SkillWheelState.Motion motion;private readonly Color rim;private readonly Label caption;private readonly VisualElement badges;
   private readonly bool pressed,discarded;private readonly float flipAt;private Vector2 tilt;private bool hover;private float last=Time.realtimeSinceStartup;
+  private readonly Texture2D? artIcon,artName,artFrame;private readonly int tier;
   private Vector2 center=>new Vector2(78,78+motion.Press*5-motion.Hover*5);
   public SkillDisc(string color,CardDefinition? card,PlayerView player,CardZone zone,bool preview,bool allowed,SkillWheelState.Motion motion,float flipAt,Action click,Action right) {
    this.motion=motion;this.flipAt=flipAt;pressed=zone==CardZone.Selected || zone==CardZone.PlayedResolved || zone==CardZone.PlayedUnresolved || preview;discarded=zone==CardZone.Discarded;
+   var art=SkillCardArt.Find(card);artIcon=art==null?null:SkillCardArt.Texture(art.IconKey);artName=art==null?null:SkillCardArt.Texture(art.NameKey);
+   artFrame=SkillDiscArtwork.R2B("front-"+color);tier=SkillCardArt.TierCount(card);
    rim=Board3DScene.ColorOf(color switch {"gold"=>"#E9BD54","silver"=>"#CAD3E0","red"=>"#E25464","green"=>"#52C586","purple"=>"#B16DE8",_=>"#589CED"});
    if(!motion.Ready){motion.Ready=true;motion.Press=pressed?1:0;motion.Flip=discarded && flipAt<=0 ? Mathf.PI:0;}
    name="skill-"+color;style.position=Position.Absolute;style.width=156;style.height=156;style.overflow=Overflow.Visible;
    caption=new Label(card!=null && card.Name.Length==4 ? card.Name.Substring(0,2)+"\n"+card.Name.Substring(2) : card?.Name ?? "?"){name="skill-caption",pickingMode=PickingMode.Ignore};caption.style.position=Position.Absolute;caption.style.left=39;caption.style.top=51;caption.style.width=78;caption.style.height=54;caption.style.fontSize=19;caption.style.whiteSpace=WhiteSpace.Normal;caption.style.unityTextAlign=TextAnchor.MiddleCenter;caption.style.unityFontStyleAndWeight=FontStyle.Bold;caption.style.color=new Color(1,.94f,.80f);caption.style.unityTextOutlineColor=new Color(.02f,.03f,.035f);caption.style.unityTextOutlineWidth=.7f;caption.style.marginLeft=0;caption.style.marginRight=0;Add(caption);
    badges=new VisualElement{pickingMode=PickingMode.Ignore};badges.StretchToParentSize();Add(badges);
+   if(artIcon!=null){caption.text=card?.Name??"";caption.style.top=98;caption.style.left=41;caption.style.width=74;caption.style.height=22;caption.style.fontSize=14;caption.style.whiteSpace=WhiteSpace.NoWrap;}
+   if(artName!=null)caption.style.visibility=Visibility.Hidden;
+   var tierInfo=new Label(tier.ToString()){name="skill-tier",pickingMode=PickingMode.Ignore};tierInfo.style.display=DisplayStyle.None;Add(tierInfo);
    if(card!=null){
     int Bonus(string key)=>(player.EffectiveBonuses ?? player.PermanentBonuses).TryGetValue(key,out int b)?b:0;
-    void Badge(string slot,string kind,int? value,int bonus,bool infinity=false){if(!value.HasValue && !infinity)return;var b=new SkillBadge(kind,infinity?"∞":kind=="spark" && value==0 ? "" : (value!.Value+bonus).ToString(),bonus){name="badge-"+slot};var bounds=SkillDiscArtwork.BadgeRect(slot);b.style.left=bounds.x;b.style.top=bounds.y;badges.Add(b);}
+    void Badge(string slot,string kind,int? value,int bonus,bool infinity=false){if(!value.HasValue && !infinity)return;var b=new SkillBadge(kind,infinity?"∞":kind=="spark" && value==0 ? "" : (value!.Value+bonus).ToString(),bonus,slot=="primary" || slot=="range"?color:""){name="badge-"+slot};var bounds=SkillDiscArtwork.BadgeRect(slot);b.style.left=bounds.x;b.style.top=bounds.y;badges.Add(b);}
     // Fixed semantic positions: movement / defense above, primary / range below, initiative at foot.
     Badge("movement","boot",card.SecondaryMovement,Bonus("移动"));
     Badge("defense","shield",card.SecondaryDefense,Bonus("防御"));
@@ -69,11 +75,18 @@ namespace Goa2.Presentation.UI3D {
    var p=context.painter2D;
    Disc(p,72+motion.Hover*2,new Color(rim.r,rim.g,rim.b,.08f+.22f*motion.Hover));
    float shade=back?1:1-.38f*motion.Press;
-   SkillDiscArtwork.Draw(context,back?"back":"front",Project,new Color(shade,shade,shade,1));
+   if(!back && artFrame!=null)SkillDiscArtwork.Quad(context,artFrame,new Rect(-78,-78,156,156),Project,new Color(shade,shade,shade,1));
+   else SkillDiscArtwork.Draw(context,back?"back":"front",Project,new Color(shade,shade,shade,1));
    if(!back){
+    if(artIcon!=null)SkillDiscArtwork.Quad(context,artIcon,new Rect(-54,-57,108,96),Project,new Color(shade,shade,shade,1));
+    if(artName!=null)SkillDiscArtwork.Quad(context,artName,new Rect(-39,20,78,21),Project,new Color(shade,shade,shade,1));
+    for(int i=0;i<tier;i++){
+     var gem=SkillDiscArtwork.R2B("tier-gem");float x=(i-(tier-1)*.5f)*13;
+     SkillDiscArtwork.Quad(context,gem,new Rect(x-12,-78,24,27),Project,new Color(shade,shade,shade,1));
+    }
     // Card colour is an enamel inlay in the sculpted metal, not an external panel.
-    p.strokeColor=rim*(1-.38f*motion.Press);p.lineWidth=4f;p.BeginPath();
-    for(int i=0;i<=96;i++){float a=i*Mathf.PI/48;var point=Project(new Vector2(Mathf.Cos(a)*60,Mathf.Sin(a)*60));if(i==0)p.MoveTo(point);else p.LineTo(point);}p.ClosePath();p.Stroke();
+    if(artFrame==null){p.strokeColor=rim*(1-.38f*motion.Press);p.lineWidth=4f;p.BeginPath();
+     for(int i=0;i<=96;i++){float a=i*Mathf.PI/48;var point=Project(new Vector2(Mathf.Cos(a)*60,Mathf.Sin(a)*60));if(i==0)p.MoveTo(point);else p.LineTo(point);}p.ClosePath();p.Stroke();}
    }
   }
  }

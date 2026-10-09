@@ -152,6 +152,8 @@ def build_badge(kind,value,collection,materials,font,*,tag=None,stone_key='stone
             # The broad baseline of a serif 2 needs more margin at the
             # shield's sloping lower sides than the other single digits.
             numberxy=(0,-.18);numberheight=.60;numberwidth=.72
+        if kind=='shield' and len(text)>1:
+            numberxy=(0,-.17);numberheight=.55;numberwidth=.73
         if len(text)>1 and text!='∞':numberheight*=.87
         if kind=='hourglass' and len(text)>1:
             # The narrowed waist cannot take a wide two-digit cut at mid-height.
