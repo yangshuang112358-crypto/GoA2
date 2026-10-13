@@ -1,0 +1,77 @@
+{
+  "seconds": 14.335157800000161,
+  "parameter_l1_change": 101.40758286532946,
+  "checkpoint_inference_equal": true,
+  "iterations": 1,
+  "learner_samples": 30,
+  "training_episodes": [
+    {
+      "seed": 17014,
+      "swap": 0,
+      "learner_decisions": 15,
+      "environment_steps": 66,
+      "terminated": false,
+      "truncated": true,
+      "reward": 0,
+      "seconds": 1.8533825000049546
+    },
+    {
+      "seed": 17014,
+      "swap": 1,
+      "learner_decisions": 15,
+      "environment_steps": 64,
+      "terminated": false,
+      "truncated": true,
+      "reward": 0,
+      "seconds": 1.6680187999736518
+    }
+  ],
+  "evaluation": [
+    {
+      "seed": 51014,
+      "swap": 0,
+      "learner_decisions": 15,
+      "environment_steps": 65,
+      "terminated": false,
+      "truncated": true,
+      "reward": 0,
+      "seconds": 2.6513530000229366,
+      "checkpoint": "initial.pt"
+    },
+    {
+      "seed": 51014,
+      "swap": 1,
+      "learner_decisions": 15,
+      "environment_steps": 68,
+      "terminated": false,
+      "truncated": true,
+      "reward": 0,
+      "seconds": 1.7653888000058942,
+      "checkpoint": "initial.pt"
+    },
+    {
+      "seed": 51014,
+      "swap": 0,
+      "learner_decisions": 17,
+      "environment_steps": 67,
+      "terminated": false,
+      "truncated": true,
+      "reward": 0,
+      "seconds": 1.1831480999826454,
+      "checkpoint": "checkpoint-001.pt"
+    },
+    {
+      "seed": 51014,
+      "swap": 1,
+      "learner_decisions": 17,
+      "environment_steps": 65,
+      "terminated": false,
+      "truncated": true,
+      "reward": 0,
+      "seconds": 1.1905375000205822,
+      "checkpoint": "checkpoint-001.pt"
+    }
+  ],
+  "gpu_allocated_mib": 0,
+  "conclusion": "Learning pipeline validation only; no demonstrated strength gain."
+}

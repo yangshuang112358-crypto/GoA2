@@ -1,0 +1,20 @@
+{
+  "games": 2,
+  "terminated": 2,
+  "truncated": 0,
+  "team_wins": 0,
+  "completion_rate": 1.0,
+  "truncation_rate": 0.0,
+  "illegal_commands": 0,
+  "exceptions": 0,
+  "environment_steps": 1067,
+  "learner_decisions": 257,
+  "seconds": 186.4829533000011,
+  "replays": [
+    "replays\\train-0001-62014-0",
+    "replays\\train-0002-62014-1"
+  ],
+  "unity_player_verified": false,
+  "gpu_allocated_mib": 0.0,
+  "conclusion": "Small compatibility sample; not evidence of a strength improvement."
+}

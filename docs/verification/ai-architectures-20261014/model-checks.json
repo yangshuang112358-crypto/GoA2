@@ -1,0 +1,38 @@
+{
+  "checks": [
+    {
+      "architecture": "graph",
+      "windows": 33,
+      "candidates": 145,
+      "seconds": 2.434446100029163,
+      "checkpoint_sha256": "7f1160fa66d1078385adcce41bcc78fdb6aec69587425002118a3f76c2681f77"
+    },
+    {
+      "architecture": "entity",
+      "windows": 33,
+      "candidates": 145,
+      "seconds": 2.4648496999870986,
+      "checkpoint_sha256": "96706aca0a6e5b2cc9c749419707d274d6c854200a87340b290e9df8be810969"
+    },
+    {
+      "architecture": "entity-gru",
+      "windows": 33,
+      "candidates": 145,
+      "seconds": 2.6800495000206865,
+      "checkpoint_sha256": "2eb26c8da94295a54037b0ea4a316a23d52eebb9733df8a68a6f535fa7f11975"
+    }
+  ],
+  "cross_profile_rejections": [
+    {
+      "checkpoint": "entity-gru\\checkpoint-001.pt",
+      "error": "incompatible_checkpoint: migrate explicitly and evaluate again"
+    },
+    {
+      "checkpoint": "cpu-gru-variant\\checkpoint-001.pt",
+      "error": "incompatible_checkpoint: migrate explicitly and evaluate again"
+    }
+  ],
+  "response_inputs_sha256": "fc28f4f8a28ddde82ced49c84f5905dc41e9c53dcab717bdc816fc140fbe4561",
+  "type": "independent response-window forward checks, not complete games",
+  "recurrent_memory": "zero for each independent window; causal memory separately tested in test_sequences"
+}

@@ -1,0 +1,49 @@
+[
+  {
+    "iteration": 1,
+    "samples": 30,
+    "optimizer_steps": 4,
+    "metrics": [
+      {
+        "loss": 0.047049599034445666,
+        "policy_loss": 0.053831194128308946,
+        "value_loss": 5.758300488066327e-05,
+        "kl": 0.0,
+        "grad_norm": 0.17163018882274628,
+        "samples": 7,
+        "chunks": 2,
+        "prefix_replay_steps": 12
+      },
+      {
+        "loss": 0.12678706645965576,
+        "policy_loss": 0.12803833186626434,
+        "value_loss": 0.011758146807551384,
+        "kl": 1.0773539543151855e-05,
+        "grad_norm": 0.7964059114456177,
+        "samples": 8,
+        "chunks": 2,
+        "prefix_replay_steps": 8
+      },
+      {
+        "loss": -0.47855098758425024,
+        "policy_loss": -0.4568115983690534,
+        "value_loss": 3.0997850054908274e-05,
+        "kl": 4.786252975463867e-05,
+        "grad_norm": 0.6484029293060303,
+        "samples": 7,
+        "chunks": 2,
+        "prefix_replay_steps": 16
+      },
+      {
+        "loss": 0.20218975096940994,
+        "policy_loss": 0.21237871795892715,
+        "value_loss": 0.005552780581638217,
+        "kl": 0.00044539570808410645,
+        "grad_norm": 0.482530415058136,
+        "samples": 8,
+        "chunks": 2,
+        "prefix_replay_steps": 12
+      }
+    ]
+  }
+]

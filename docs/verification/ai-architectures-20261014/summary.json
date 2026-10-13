@@ -1,0 +1,129 @@
+{
+  "cpu_runs": {
+    "graph": {
+      "parameters": 202066,
+      "source_commit": "c05115013b3b8ea234c4dc9784a4de0279256c26",
+      "source_status": "",
+      "seconds": 11.848513900011312,
+      "learner_samples": 18,
+      "optimizer_steps": 3,
+      "episodes": 5,
+      "terminated": 0,
+      "truncated": 5,
+      "resources": {
+        "process_tree_peak_rss_mib": 875.99609375,
+        "system_min_available_mib": 5703.2265625,
+        "process_tree_cpu_seconds": 21.90625,
+        "cpu_percent_of_machine": 11.540535291999802,
+        "sampled_seconds": 11.863753199984785
+      }
+    },
+    "entity": {
+      "parameters": 392146,
+      "source_commit": "c05115013b3b8ea234c4dc9784a4de0279256c26",
+      "source_status": "",
+      "seconds": 13.39487099996768,
+      "learner_samples": 29,
+      "optimizer_steps": 4,
+      "episodes": 6,
+      "terminated": 0,
+      "truncated": 6,
+      "resources": {
+        "process_tree_peak_rss_mib": 900.6640625,
+        "system_min_available_mib": 5795.8203125,
+        "process_tree_cpu_seconds": 25.890625,
+        "cpu_percent_of_machine": 12.070012209147258,
+        "sampled_seconds": 13.406482400023378
+      }
+    },
+    "entity-gru": {
+      "parameters": 503698,
+      "source_commit": "c05115013b3b8ea234c4dc9784a4de0279256c26",
+      "source_status": "",
+      "seconds": 14.335157800000161,
+      "learner_samples": 30,
+      "optimizer_steps": 4,
+      "episodes": 6,
+      "terminated": 0,
+      "truncated": 6,
+      "resources": {
+        "process_tree_peak_rss_mib": 733.53515625,
+        "system_min_available_mib": 5958.7734375,
+        "process_tree_cpu_seconds": 27.890625,
+        "cpu_percent_of_machine": 12.150400344142176,
+        "sampled_seconds": 14.346556600008626
+      }
+    },
+    "entity-gru-resume": {
+      "parameters": 503698,
+      "source_commit": "c05115013b3b8ea234c4dc9784a4de0279256c26",
+      "source_status": "",
+      "seconds": 12.316090000036638,
+      "learner_samples": 16,
+      "optimizer_steps": 2,
+      "episodes": 5,
+      "terminated": 0,
+      "truncated": 5,
+      "resources": {
+        "process_tree_peak_rss_mib": 721.0234375,
+        "system_min_available_mib": 5955.5625,
+        "process_tree_cpu_seconds": 23.953125,
+        "cpu_percent_of_machine": 12.143750467360672,
+        "sampled_seconds": 12.3279073999729
+      }
+    },
+    "cpu-gru-variant": {
+      "parameters": 503698,
+      "source_commit": "665139744ff9134fa0e021c749191cb1a1054fd0",
+      "source_status": "",
+      "seconds": 15.010452100017574,
+      "learner_samples": 30,
+      "optimizer_steps": 4,
+      "episodes": 6,
+      "terminated": 0,
+      "truncated": 6,
+      "resources": {
+        "process_tree_peak_rss_mib": 733.59375,
+        "system_min_available_mib": 5990.6484375,
+        "process_tree_cpu_seconds": 27.671875,
+        "cpu_percent_of_machine": 11.512763965179413,
+        "sampled_seconds": 15.022388999990653
+      }
+    }
+  },
+  "formal": {
+    "games": 2,
+    "terminated": 2,
+    "truncated": 0,
+    "team_wins": 0,
+    "completion_rate": 1.0,
+    "truncation_rate": 0.0,
+    "illegal_commands": 0,
+    "exceptions": 0,
+    "environment_steps": 1067,
+    "learner_decisions": 257,
+    "seconds": 186.4829533000011,
+    "replays": [
+      "replays\\train-0001-62014-0",
+      "replays\\train-0002-62014-1"
+    ],
+    "unity_player_verified": false,
+    "gpu_allocated_mib": 0.0,
+    "conclusion": "Small compatibility sample; not evidence of a strength improvement.",
+    "model_game_seconds": [
+      35.92465940001421,
+      54.7807182999677
+    ],
+    "environment_steps_per_game_second": 11.763359869678519,
+    "steps_per_pipeline_second": 5.7217026066907195
+  },
+  "unit_tests": 31,
+  "response_windows_per_model": 33,
+  "candidates_per_model": 145,
+  "gpu_learning_completed": false,
+  "gpu_failure": "4 GiB available system RAM guard; initial evaluation interrupted",
+  "checkpoint_profile_rejections": 2,
+  "raw_files": 565,
+  "raw_zip_sha256": "1d42a318e9c206f196043f841e178673a00ee5dba5b6f8af7bdfce92269a48bb",
+  "raw_zip_bytes": 43699042
+}

@@ -1,0 +1,36 @@
+{
+  "checkpoint": "artifacts\\ai-training\\architecture-20261014\\entity-gru-resume\\checkpoint-002.pt",
+  "output": "artifacts\\ai-training\\architecture-20261014\\formal-gru",
+  "seed": 62014,
+  "pairs": 1,
+  "limit": 1200,
+  "max_minutes": 6,
+  "life": 7,
+  "marks": 3,
+  "device": "cpu",
+  "export_replays": true,
+  "source_commit": "db97b874036f9b8f9804cdac251ee6174856a258",
+  "source_status": "",
+  "checkpoint_sha256": "2ea87e152451af97d63005a70e19c3406d32e13e73b03f381c8ed7103beebde3",
+  "tool_sha256": "6ffdee687219ce5c1ca94d6fb982ae2411ccd1f7af630e8dcdae358dc3757c2b",
+  "python_files": {
+    "bridge.py": "ef91cfc638a407496bf8abdd706af6597e1d478852ad62eeda66833ff28c9216",
+    "curriculum.py": "771f097770e599ed7b874db1e57922c6a45daa3c9e4e8dbfe2d7f10f3cb8ee61",
+    "defense.py": "144471e583d5706f7033f84ebf1a46ba283a19c7079dae79e78644205bba6169",
+    "entities.py": "7d184e229be906b779e0a025c2016e176e39714463216ff2151acbe26fa52ece",
+    "policy.py": "93c3e9e91908821f434391b72ef714e7f4cf5b4666668b197ab8871603c41fe6",
+    "resources.py": "6f84e5055db8730c0d99469450cc03c39223825c188e9c099e929ca8a6cee96d",
+    "sequences.py": "a41fe91797b2d7c2daec91f177832d2e56344214ead512235fa5663f97f1d3e8",
+    "test_sequences.py": "f8f85218964cc9a21b291e5cc3dab9a8174766679c6ca46fa2ba904c4f26446b",
+    "test_trainer.py": "c5fe8d9a4258252d946752eda18d27d44c2f023be72e3b347b9b55bb036896f6",
+    "train.py": "4921b560af5aa11ae51d1c166de083d4eb665ca18a897f15ca8156539e4f9451"
+  },
+  "opponent_pool": [
+    "simple-v1"
+  ],
+  "learner": "one wasp seat; remaining three seats frozen simple",
+  "policy": "greedy",
+  "formal_genesis": true,
+  "training": false,
+  "purpose": "bounded formal compatibility evaluation"
+}
