@@ -14,8 +14,9 @@ import time
 import traceback
 import torch
 from bridge import Bridge
-from policy import CandidateNetwork, Encoder, ENCODER_VERSION, update
+from policy import CandidateNetwork, Encoder, ENCODER_VERSION, MODEL_VERSION, ARCHITECTURES, update
 from resources import ResourceMonitor, require_interactive_memory
+from sequences import Episode, sample_count
 
 
 def write(path, value):
@@ -38,49 +39,67 @@ def configure(device):
 
 
 def checkpoint(path, model, optimizer, encoder, config, cursor, iteration, metrics):
-    payload = dict(format=1, encoder_version=ENCODER_VERSION, encoder_signature=encoder.signature,
+    payload = dict(format=2, model_version=MODEL_VERSION, boundary='episode',
+                   encoder_version=ENCODER_VERSION, encoder_signature=encoder.signature,
                    contract=encoder.contract, shape=model.shape, model=model.state_dict(), optimizer=optimizer.state_dict(),
                    torch_rng=torch.get_rng_state(), cuda_rng=torch.cuda.get_rng_state_all() if next(model.parameters()).is_cuda else [],
                    config=config, cursor=cursor, iteration=iteration, metrics=metrics)
-    torch.save(payload, path)
+    temporary = Path(str(path) + '.partial')
+    torch.save(payload, temporary)
+    os.replace(temporary, path)
     write(str(path) + ".json", {k: v for k, v in payload.items() if k not in ("model", "optimizer", "torch_rng", "cuda_rng")})
 
 
-def load_checkpoint(path, encoder, device):
+def load_checkpoint(path, encoder, device, architecture=None):
     data = torch.load(path, map_location="cpu", weights_only=True)
-    if data["format"] != 1 or data["encoder_version"] != ENCODER_VERSION or data["encoder_signature"] != encoder.signature or data["contract"] != encoder.contract:
+    if data.get("format") != 2 or data.get('model_version') != MODEL_VERSION or data.get('boundary') != 'episode' or data["encoder_version"] != ENCODER_VERSION or data["encoder_signature"] != encoder.signature or data["contract"] != encoder.contract:
         raise ValueError("incompatible_checkpoint: migrate explicitly and evaluate again")
+    if architecture is not None and data['shape']['architecture'] != architecture:
+        raise ValueError('incompatible_checkpoint: architecture mismatch')
     model = CandidateNetwork(**data["shape"]).to(device)
     model.load_state_dict(data["model"])
     return model, data
 
 
-def run_episode(host, model, encoder, device, seed, swap, limit, records=None, life=7, marks=3):
+def run_episode(host, model, encoder, device, seed, swap, limit, records=None, life=7, marks=3, guard=None):
     reply = host.call(op="reset", seed=seed, learner=swap, swap=swap, limit=limit, opponent="simple", life=life, marks=marks)
     count = 0
     started = time.perf_counter()
+    memory = model.initial_memory(device)
+    episode_records = []
     while not (reply["Terminated"] or reply["Truncated"]):
         d = reply["Decision"]
+        if guard:
+            guard()
         if d["Observation"]["Seat"] != swap:
             raise ValueError("foreign-seat observation reached learner")
         s, a = encoder.encode(d)
         with torch.no_grad():
-            dist, v = model(s.to(device), a.to(device))
+            dist, v, next_memory = model.step(s.to(device), a.to(device), memory)
             chosen = dist.sample() if records is not None else dist.probs.argmax()
             old_log = dist.log_prob(chosen).item()
         following = host.call(op="step", revision=d["Revision"], action=d["Actions"][chosen.item()]["Id"])
-        with torch.no_grad():
-            if following["Terminated"]:
-                nv = 0.
-            else:
-                ns, na = encoder.encode(following["Decision"])
-                _, next_value = model(ns.to(device), na.to(device))
-                nv = next_value.item()
+        # Commit exactly once. A bootstrap preview must not advance live memory.
+        memory = next_memory.detach() if next_memory is not None else None
         if records is not None:
-            records.append((s, a, chosen.item(), old_log, following["Reward"], v.item(), nv,
-                            following["Terminated"] or following["Truncated"]))
+            with torch.no_grad():
+                if following['Terminated']:
+                    nv = 0.
+                else:
+                    if following['Decision']['Observation']['Seat'] != swap:
+                        raise ValueError('foreign-seat bootstrap observation')
+                    ns, na = encoder.encode(following["Decision"])
+                    _, next_value, _ = model.step(ns.to(device), na.to(device), memory)
+                    nv = next_value.item()
+            episode_records.append((s, a, chosen.item(), old_log, following["Reward"], v.item(), nv,
+                                    following["Terminated"] or following["Truncated"]))
         reply = following
         count += 1
+    if records is not None and episode_records:
+        if model.recurrent:
+            records.append(Episode(f'{seed}:{swap}', swap, episode_records))
+        else:
+            records.extend(episode_records)
     return dict(seed=seed, swap=swap, learner_decisions=count, environment_steps=reply["EnvironmentSteps"],
                 terminated=reply["Terminated"], truncated=reply["Truncated"], reward=reply["Reward"], seconds=time.perf_counter() - started)
 
@@ -91,16 +110,35 @@ def main():
     parser.add_argument("--dotnet", type=Path, default=Path(os.environ["LOCALAPPDATA"]) / "Goa2V1Toolchain/dotnet/dotnet.exe")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--device", choices=["cpu", "cuda"], default="cpu")
+    parser.add_argument('--architecture', choices=ARCHITECTURES, default='entity')
+    parser.add_argument('--hidden', type=int, default=None)
+    parser.add_argument('--latents', type=int, default=32)
+    parser.add_argument('--memory-dim', type=int, default=128)
+    parser.add_argument('--sequence-length', type=int, default=16)
+    parser.add_argument('--batch-size', type=int, default=32)
+    parser.add_argument('--epochs', type=int, default=3)
+    parser.add_argument('--life', type=int, default=7)
+    parser.add_argument('--marks', type=int, default=3)
     parser.add_argument("--iterations", type=int, default=2)
     parser.add_argument("--rollout", type=int, default=128)
     parser.add_argument("--limit", type=int, default=900)
     parser.add_argument("--seed", type=int, default=701)
     parser.add_argument("--eval-pairs", type=int, default=1)
+    parser.add_argument('--eval-seed', type=int, default=51001)
+    parser.add_argument('--eval-limit', type=int, default=None)
     parser.add_argument("--max-minutes", type=int, default=15)
     parser.add_argument("--resume", type=Path)
     args = parser.parse_args()
+    if args.hidden is None:
+        args.hidden = 64 if args.architecture == 'graph' else 96
+    if args.eval_limit is None:
+        args.eval_limit = args.limit
     if not (1 <= args.iterations <= 10 and 16 <= args.rollout <= 512 and 1 <= args.eval_pairs <= 4 and 1 <= args.max_minutes <= 60 and 1 <= args.limit <= 4000):
         raise ValueError("short-run bounds exceeded; long training requires a separate explicit workflow")
+    if not (8 <= args.hidden <= 256 and args.hidden % 4 == 0 and 1 <= args.latents <= 128 and
+            4 <= args.memory_dim <= 512 and 1 <= args.sequence_length <= args.batch_size <= 128 and
+            1 <= args.epochs <= 5 and 1 <= args.eval_limit <= 4000 and 1 <= args.life <= 100 and 1 <= args.marks <= 20):
+        raise ValueError('invalid model/sequence/rule configuration')
     args.output.mkdir(parents=True, exist_ok=False)
     started = time.perf_counter()
     monitor = ResourceMonitor()
@@ -117,28 +155,38 @@ def main():
     config.update(source_commit=subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=args.root, text=True).strip(),
                   source_status=subprocess.check_output(["git", "status", "--porcelain"], cwd=args.root, text=True),
                   torch_version=str(torch.__version__), python_files={p.name: sha(p) for p in Path(__file__).parent.glob("*.py")},
+                  authority_assemblies={p.name: sha(p) for p in (args.root/'ai/Goa2.Ai.Cli/bin/Release/net10.0').glob('Goa2.*.dll')},
                   opponent_pool=["simple-v1"], gamma=.99, gae_lambda=.95, clip=.2, entropy=.01, lr=.0003,
                   reward="team-terminal-only-v1", discount_clock="learner_decisions", threads=2, seat="wasp swapped 0/1",
-                  curriculum="fixed-roster-formal-genesis", evaluation_seeds=[9001+i for i in range(args.eval_pairs)])
+                  curriculum="fixed-roster-formal-genesis", evaluation_seeds=[args.eval_seed+i for i in range(args.eval_pairs)],
+                  model_version=MODEL_VERSION, checkpoint_format=2, history='complete-public-and-own-history-graph',
+                  recurrent_training='full-prefix-current-weights-no-grad; chunk-TBPTT; episode-owned' if args.architecture == 'entity-gru' else None)
     write(args.output / "manifest.json", config)
     episodes, evaluations, learning = [], [], []
+    host = None
+    def guard():
+        require_interactive_memory()
+        if time.perf_counter()-started > args.max_minutes*60:
+            raise TimeoutError('bounded experiment deadline; preserved partial evidence, not a completed game')
     try:
         with Bridge(args.root, args.dotnet, args.output / "authority") as host:
+            # Reset config before describe: the catalog/contract must describe the chosen rule profile.
+            probe = host.call(op="reset", seed=61, learner=0, swap=0, limit=1, opponent="simple", life=args.life, marks=args.marks)
             description = host.call(op="describe")
             encoder = Encoder(description)
             write(args.output / "public-catalog.json", description)
             # One bounded transport/feature probe, reported separately from evaluations.
-            probe = host.call(op="reset", seed=61, learner=0, swap=0, limit=1, opponent="simple")
             s, a = encoder.encode(probe["Decision"])
             if not probe["Truncated"]:
                 raise RuntimeError("probe expected a learner-boundary truncation")
             cursor, iteration = 0, 0
-            model = CandidateNetwork(**encoder.model_kwargs).to(device)
+            model = CandidateNetwork(**dict(encoder.model_kwargs, hidden=args.hidden, architecture=args.architecture,
+                                            latent_count=args.latents, memory_dim=args.memory_dim)).to(device)
             optimizer = torch.optim.Adam(model.parameters(), lr=.0003, eps=1e-5)
             if args.resume:
-                model, data = load_checkpoint(args.resume, encoder, device)
+                model, data = load_checkpoint(args.resume, encoder, device, args.architecture)
                 # Episode-boundary continuation only; keep original seed/configuration.
-                for key in ("seed", "limit", "rollout", "device"):
+                for key in ("seed", "limit", "rollout", "device", "hidden", "latents", "memory_dim", "sequence_length", "batch_size", "epochs", "life", "marks"):
                     if config[key] != data["config"][key]:
                         raise ValueError("resume configuration mismatch: " + key)
                 if config["python_files"] != data["config"]["python_files"]:
@@ -150,15 +198,17 @@ def main():
                     torch.cuda.set_rng_state_all(data["cuda_rng"])
                 cursor, iteration = data["cursor"], data["iteration"]
             initial = copy.deepcopy(model.state_dict())
+            config['parameter_count'] = sum(p.numel() for p in model.parameters())
+            config['model_shape'] = model.shape
+            write(args.output / 'manifest.json', config)
             checkpoint(args.output / "initial.pt", model, optimizer, encoder, config, cursor, iteration, [])
             # Greedy held-out paired evaluation; not used by the optimizer.
             def evaluate(label):
                 for i in range(args.eval_pairs):
                     for swap in (0, 1):
-                        require_interactive_memory()
-                        if time.perf_counter() - started > args.max_minutes * 60:
-                            return
-                        r = run_episode(host, model, encoder, device, 9001+i, swap, args.limit)
+                        guard()
+                        r = run_episode(host, model, encoder, device, args.eval_seed+i, swap, args.eval_limit,
+                                        life=args.life, marks=args.marks, guard=guard)
                         r["checkpoint"] = label; evaluations.append(r)
                         write(args.output / "evaluation.json", evaluations)
                         print(json.dumps(r), flush=True)
@@ -169,9 +219,13 @@ def main():
                 if time.perf_counter() - started > args.max_minutes * 60:
                     break
                 records = []
-                while len(records) < args.rollout:
+                while sample_count(records, model.recurrent) < args.rollout:
                     require_interactive_memory()
-                    r = run_episode(host, model, encoder, device, args.seed+cursor//2, cursor % 2, args.limit, records)
+                    seed = args.seed+cursor//2
+                    if seed in config['evaluation_seeds']:
+                        raise ValueError('training/evaluation seed overlap')
+                    r = run_episode(host, model, encoder, device, seed, cursor % 2, args.limit, records,
+                                    life=args.life, marks=args.marks, guard=guard)
                     cursor += 1; episodes.append(r)
                     write(args.output / "episodes.json", episodes)
                     print(json.dumps(r), flush=True)
@@ -179,22 +233,25 @@ def main():
                         raise ValueError("step limit exhausted before first learning action; increase limit")
                     if time.perf_counter() - started > args.max_minutes * 60:
                         break
-                metrics = update(model, optimizer, records, device)
+                metrics = update(model, optimizer, records, device, epochs=args.epochs, batch_size=args.batch_size,
+                                 sequence_length=args.sequence_length, guard=guard)
                 if not metrics:
                     raise RuntimeError("no optimizer step executed")
                 iteration += 1
-                learning.append(dict(iteration=iteration, samples=len(records), optimizer_steps=len(metrics), metrics=metrics))
+                samples = sample_count(records, model.recurrent)
+                learning.append(dict(iteration=iteration, samples=samples, optimizer_steps=len(metrics), metrics=metrics))
                 checkpoint(args.output / f"checkpoint-{iteration:03}.pt", model, optimizer, encoder, config, cursor, iteration, learning)
                 write(args.output / "learning.json", learning)
-                print(f"PPO iteration={iteration} samples={len(records)} optimizer_steps={len(metrics)}", flush=True)
+                print(f"PPO iteration={iteration} samples={samples} optimizer_steps={len(metrics)}", flush=True)
             if not learning:
                 raise RuntimeError("time budget exhausted before learning; preserved initial evaluation")
             final_path = args.output / f"checkpoint-{iteration:03}.pt"
             restored, _ = load_checkpoint(final_path, encoder, device)
             with torch.no_grad():
-                before, bv = model(s.to(device), a.to(device))
-                after, av = restored(s.to(device), a.to(device))
+                before, bv, bm = model.step(s.to(device), a.to(device), model.initial_memory(device))
+                after, av, am = restored.step(s.to(device), a.to(device), restored.initial_memory(device))
                 assert torch.equal(before.logits, after.logits) and torch.equal(bv, av), "restored inference differs"
+                assert bm is None or torch.equal(bm, am), 'restored recurrent memory differs'
             evaluate(final_path.name)
             delta = sum((model.state_dict()[k].cpu() - initial[k].cpu()).abs().sum().item() for k in initial)
             write(args.output / "summary.json", dict(seconds=time.perf_counter()-started, parameter_l1_change=delta,
@@ -203,6 +260,8 @@ def main():
                   conclusion="Learning pipeline validation only; no demonstrated strength gain."))
     except Exception:
         write(args.output / "failure.json", dict(error=traceback.format_exc(), seconds=time.perf_counter()-started))
+        if host is not None and host.last_reply is not None:
+            write(args.output / 'failure-policy-input.json', host.last_reply)
         raise
     finally:
         write(args.output / "resources.json", monitor.report())

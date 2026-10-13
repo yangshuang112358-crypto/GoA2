@@ -9,6 +9,7 @@ from pathlib import Path
 class Bridge:
     def __init__(self, root, dotnet, audit, timeout=90):
         self.timeout = timeout
+        self.last_reply = None
         self.messages = queue.Queue()
         self.stderr = open(str(audit) + "-stderr.log", "x", encoding="utf-8")
         self.process = subprocess.Popen(
@@ -41,6 +42,7 @@ class Bridge:
         value = json.loads(line)
         if value.get("Protocol") != 1 or "Error" in value:
             raise RuntimeError(f"Environment protocol failure: {value}")
+        self.last_reply = value
         return value
 
     def close(self):

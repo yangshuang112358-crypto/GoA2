@@ -48,4 +48,4 @@ class ResourceMonitor:
 
 def require_interactive_memory():
     if psutil.virtual_memory().available < 4 * 2**30:
-        raise MemoryError("Less than 4 GiB available; stopped at episode boundary to preserve interaction")
+        raise MemoryError("Less than 4 GiB available; stopped before next decision/update to preserve interaction")
