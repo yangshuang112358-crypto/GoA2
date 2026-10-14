@@ -1,0 +1,111 @@
+{
+  "checked_utc": "2026-10-14T03:04:12.436296+00:00",
+  "status": "batch-005",
+  "deadline": "2026-10-14T10:32:56.960561+00:00",
+  "supervisor_identity_matches": true,
+  "child_identity_matches": true,
+  "children": [
+    {
+      "pid": 9060,
+      "name": "python.exe",
+      "created": 1791946864.1361585,
+      "rss_mib": 4.19140625
+    },
+    {
+      "pid": 25928,
+      "name": "conhost.exe",
+      "created": 1791946864.1457295,
+      "rss_mib": 7.08984375
+    },
+    {
+      "pid": 14808,
+      "name": "python.exe",
+      "created": 1791946864.161622,
+      "rss_mib": 652.55078125
+    },
+    {
+      "pid": 9812,
+      "name": "dotnet.exe",
+      "created": 1791946866.1859837,
+      "rss_mib": 93.39453125
+    },
+    {
+      "pid": 12840,
+      "name": "conhost.exe",
+      "created": 1791946866.1996973,
+      "rss_mib": 7.08203125
+    }
+  ],
+  "available_ram_gib": 4.750556945800781,
+  "completed_batches": 4,
+  "learner_samples": 751,
+  "optimizer_steps": 134,
+  "training_games": 5,
+  "training_terminated": 5,
+  "training_truncated": 0,
+  "training_wins": 1,
+  "evaluation_runs": 16,
+  "evaluation_terminated": 16,
+  "evaluation_truncated": 0,
+  "latest_evaluation": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 136,
+      "environment_steps": 555,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 43.32376820000354,
+      "checkpoint": "checkpoint-004.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 126,
+      "environment_steps": 560,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 41.94194049999351,
+      "checkpoint": "checkpoint-004.pt"
+    }
+  ],
+  "environment_steps": 11538,
+  "sample_game_seconds": 962.1729465001263,
+  "completed_batch_seconds": 1005.8601566999569,
+  "peak_rss_mib": 1103.36328125,
+  "min_ram_mib": 4482.72265625,
+  "cpu_percent": 9.139959444103607,
+  "source_mismatches": [],
+  "failures": [],
+  "checkpoint_hashes": [
+    {
+      "batch": 1,
+      "sha_matches": true
+    },
+    {
+      "batch": 2,
+      "sha_matches": true
+    },
+    {
+      "batch": 3,
+      "sha_matches": true
+    },
+    {
+      "batch": 4,
+      "sha_matches": true
+    }
+  ],
+  "disk_free_gib": 470.4790458679199,
+  "artifacts_mib": 136.5574073791504,
+  "authority_stops_including_probes": {
+    "truncated": 4,
+    "terminated": 21
+  },
+  "authority_restores_all_verified": true,
+  "finished_batch_failures": 0,
+  "scope": "Completed batches 1..4 only. Excludes running batch 5. Probe truncations excluded from game metrics; evaluations include repeated fixed seeds.",
+  "whole_batch_environment_steps_per_second": 11.470779435040022,
+  "gameplay_environment_steps_per_second": 11.991607165810587
+}
