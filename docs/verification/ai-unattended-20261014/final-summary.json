@@ -1,0 +1,207 @@
+{
+  "checked_utc": "2026-10-14T03:34:39.098034+00:00",
+  "status": "failed_preserved",
+  "failed_at_utc": "2026-10-14T03:12:29.829352+00:00",
+  "completed_batches": 6,
+  "attempted_batches": 7,
+  "successful_batch_rate": 0.8571428571428571,
+  "learner_samples": 1173,
+  "optimizer_steps": 187,
+  "training_games": 8,
+  "training_wins": 1,
+  "evaluation_runs_including_repeats": 26,
+  "latest_evaluation": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 92,
+      "environment_steps": 381,
+      "terminated": true,
+      "truncated": false,
+      "reward": 1,
+      "seconds": 18.21669130004011,
+      "checkpoint": "checkpoint-006.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 166,
+      "environment_steps": 740,
+      "terminated": true,
+      "truncated": false,
+      "reward": 1,
+      "seconds": 75.91450359998271,
+      "checkpoint": "checkpoint-006.pt"
+    }
+  ],
+  "authority_stop_counts_including_probes": {
+    "truncated": 7,
+    "terminated": 34,
+    "interrupted": 1
+  },
+  "all_restores_verified": true,
+  "completed_game_durations_seconds": {
+    "min": 12.5258712,
+    "median": 45.10877485,
+    "p90": 74.58153616999999,
+    "max": 89.0977943
+  },
+  "completed_game_environment_steps": 18940,
+  "completed_game_seconds": 1593.3050116,
+  "all_accepted_environment_steps_including_probe_and_interrupted": 19282,
+  "batch_process_seconds": 1678.3486384999705,
+  "peak_rss_mib": 1103.36328125,
+  "sampled_min_available_mib": 4100.89453125,
+  "cpu_percent": 9.072580497106452,
+  "current_ram_gib": 4.673576354980469,
+  "residual_owned_processes": [],
+  "failures": [
+    {
+      "path": "failure.json",
+      "bytes": 674,
+      "sha256": "2e1f0d0185e0f4083f1baf1074aae233ed023eec7e6eadc4ecdac71addd2a31b",
+      "error": "Traceback (most recent call last):\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\tools\\ai_unattended.py\", line 184, in run\n    self.child(training_command(ROOT, directory, latest), f'batch-{batch:03}', TRAIN_MINUTES * 60 + 100)\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\tools\\ai_unattended.py\", line 171, in child\n    raise RuntimeError(f'{label} failed (exit {child.returncode}); preserve its exact seed and stop, no retry')\nRuntimeError: batch-007 failed (exit 1); preserve its exact seed and stop, no retry\n"
+    },
+    {
+      "path": "batch-007\\failure-policy-input.json",
+      "bytes": 487242,
+      "sha256": "8d1582ff3090815737fd4feacb0d745da5a0caf0f71382ad34aeb13d7bdef5c8",
+      "error": "policy-visible input preserved locally"
+    },
+    {
+      "path": "batch-007\\failure.json",
+      "bytes": 1088,
+      "sha256": "0cb59bad481895989a8147b74bb399d07df8fbba79bd1a30045faca8b9a4339f",
+      "error": "Traceback (most recent call last):\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\trainer\\train.py\", line 227, in main\n    r = run_episode(host, model, encoder, device, seed, cursor % 2, args.limit, records,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\trainer\\train.py\", line 73, in run_episode\n    guard()\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\trainer\\train.py\", line 168, in guard\n    require_interactive_memory()\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\trainer\\resources.py\", line 51, in require_interactive_memory\n    raise MemoryError(\"Less than 4 GiB available; stopped before next decision/update to preserve interaction\")\nMemoryError: Less than 4 GiB available; stopped before next decision/update to preserve interaction\n"
+    }
+  ],
+  "final_holdout_performed": false,
+  "unity_player_verified": false,
+  "recording_created": false,
+  "duration_quantiles_method": "inclusive linear interpolation, 34 completed gameplay runs including repeated validation seeds",
+  "formal_game_attempts": 35,
+  "formal_completed": 34,
+  "formal_truncated": 0,
+  "formal_interrupted": 1,
+  "formal_completion_rate": 0.9714285714285714,
+  "formal_truncation_rate": 0,
+  "resource_interruption_rate": 0.02857142857142857,
+  "illegal_command_rejections_observed": 0,
+  "rule_or_protocol_exceptions_observed": 0,
+  "completed_game_decisions_per_second": 11.887240586145158,
+  "all_formal_environment_steps": 19254,
+  "formal_decisions_per_total_batch_second": 11.47199071654643,
+  "checkpoint_progress": [
+    {
+      "iteration": 1,
+      "wins": 0,
+      "games": 2,
+      "sha256": "0bf0c0f78205174ceaf59acb7b93fcb97a564a6b8a19e93c57e4df256470966b"
+    },
+    {
+      "iteration": 2,
+      "wins": 0,
+      "games": 2,
+      "sha256": "e10cd413add172b82be6554751532964d3e8708eabf353743037c05ba1a078ce"
+    },
+    {
+      "iteration": 3,
+      "wins": 0,
+      "games": 2,
+      "sha256": "6572566f4a0c9f2f1e396a65001d5754e66966587d7a13c56f0881e5383e4a79"
+    },
+    {
+      "iteration": 4,
+      "wins": 0,
+      "games": 2,
+      "sha256": "ddf30fbd4f6bf029b594d71a1ed9b80e33d4245d8857e4a45f56bab7127c624d"
+    },
+    {
+      "iteration": 5,
+      "wins": 1,
+      "games": 2,
+      "sha256": "d49e72278dd6cf3253aee4cda2a83e8e61fd34f1c8e1ed6a78fa21699b9b416c"
+    },
+    {
+      "iteration": 6,
+      "wins": 2,
+      "games": 2,
+      "sha256": "3b05b8791f42f688222b2bf6494c56bd943b7b569ebcacbc13f14c7ce5149598"
+    }
+  ],
+  "latest_checkpoint": {
+    "path": "batch-006\\checkpoint-006.pt",
+    "sha256": "3b05b8791f42f688222b2bf6494c56bd943b7b569ebcacbc13f14c7ce5149598",
+    "bytes": 4797154,
+    "iteration": 6,
+    "cursor": 8,
+    "contract": {
+      "ObservationVersion": 5,
+      "ActionVersion": 2,
+      "EngineVersion": 98,
+      "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+      "RulesVersion": "1.0.0-draft.1",
+      "ContentVersion": "1.0.0",
+      "AuthorityHashes": {
+        "Goa2.Domain": "59d6943fc817ceb43e95a3e6b30d7f7820b90b17770413ace4226ef0cb6db692",
+        "Goa2.Rules": "42562af2190b878682a9b26f02b21f7d0743d0cd95e74ef88b297be60c91c56b",
+        "Goa2.Application": "1ae08de414f86fc8d87f9de9d6c5df5a378e1140793ebf651d3eb55aff331edd",
+        "Goa2.Infrastructure": "4aae3cb9b19d0cdd9c0b203f845e62cb5dbf801656f500f6e8759618bd718d6e",
+        "Goa2.Ai": "95e3c6ff6663c89fe66dd99446297c90795afcbfc10c02a05be423ea112647c8"
+      },
+      "RuleProfile": {
+        "Id": "victory-v1-life-7-marks-3",
+        "InitialCombatRegion": "mid",
+        "StartingCrystalLife": 7,
+        "VictoryMarksRequired": 3,
+        "TurnsPerRound": 4,
+        "HandSize": 5
+      }
+    },
+    "shape": {
+      "numeric_dim": 18,
+      "category_dim": 8,
+      "vocabulary_size": 1109,
+      "relation_count": 118,
+      "hidden": 96,
+      "architecture": "entity",
+      "latent_count": 32,
+      "memory_dim": 128
+    },
+    "source_commit": "3bc220989daf0eb016c145a4292d3d7961be1692"
+  },
+  "interrupted_seed": 270144,
+  "interrupted_swap": 0,
+  "interrupted_environment_steps": 314,
+  "interrupted_reward": 0,
+  "automation": {
+    "id": "goa2v1-ai-8",
+    "status": "PAUSED"
+  },
+  "postrun_replay_checks": [
+    {
+      "swap": 0,
+      "commands": 384,
+      "status": "verified_by_CSharp_export",
+      "final_hash": "a0b16fd9a57ff4c71b1565e104bdac7d1a74430bd7c0a1f8a57e7abc8bdcc798",
+      "directory": "replay-checkpoint006-swap0"
+    },
+    {
+      "swap": 1,
+      "commands": 743,
+      "status": "unverified_timeout",
+      "limit_seconds": 60,
+      "error": "subprocess.TimeoutExpired after 60 seconds; Python subprocess.run killed and waited for its own dotnet child; no retry performed.",
+      "attempted_output": "replay-checkpoint006-swap1",
+      "export_created": false
+    }
+  ],
+  "replay_scope": "Post-training C# validation only, excluded from training exception rate. No Unity Player launched.",
+  "source_hashes_verified_at_inspection": true,
+  "checkpoint_hashes_verified_at_inspection": true,
+  "verified_replay_archive": {
+    "path": "checkpoint006-swap0-csharp-verified-replay.zip",
+    "bytes": 74314,
+    "sha256": "727f46c974557c50f93fb815d6f6cd8552980934688e7bf90bc1854f4bd54a58"
+  }
+}
