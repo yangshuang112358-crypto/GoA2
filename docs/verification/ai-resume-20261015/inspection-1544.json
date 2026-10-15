@@ -1,0 +1,207 @@
+{
+  "checked_utc": "2026-10-15T07:44:01.714785+00:00",
+  "status": "batch-025",
+  "updated_utc": "2026-10-15T07:43:59.418452+00:00",
+  "deadline_utc": "2026-10-15T10:36:33.508532+00:00",
+  "within_deadline": true,
+  "supervisor": {
+    "pid": 23560,
+    "created": 1792031793.3205535,
+    "alive": true,
+    "identity_matches": true,
+    "children": [
+      {
+        "pid": 18156,
+        "created": 1792050159.33681,
+        "name": "python.exe",
+        "rss_mib": 4.7578125
+      },
+      {
+        "pid": 1748,
+        "created": 1792050159.3465395,
+        "name": "conhost.exe",
+        "rss_mib": 7.60546875
+      },
+      {
+        "pid": 3392,
+        "created": 1792050159.3654258,
+        "name": "python.exe",
+        "rss_mib": 453.4921875
+      },
+      {
+        "pid": 24288,
+        "created": 1792050161.7763195,
+        "name": "dotnet.exe",
+        "rss_mib": 92.6875
+      },
+      {
+        "pid": 21584,
+        "created": 1792050161.78514,
+        "name": "conhost.exe",
+        "rss_mib": 7.6015625
+      }
+    ]
+  },
+  "child": {
+    "pid": 18156,
+    "created": 1792050159.33681,
+    "alive": true,
+    "identity_matches": true,
+    "children": [
+      {
+        "pid": 1748,
+        "created": 1792050159.3465395,
+        "name": "conhost.exe",
+        "rss_mib": 7.60546875
+      },
+      {
+        "pid": 3392,
+        "created": 1792050159.3654258,
+        "name": "python.exe",
+        "rss_mib": 453.4921875
+      },
+      {
+        "pid": 24288,
+        "created": 1792050161.7763195,
+        "name": "dotnet.exe",
+        "rss_mib": 98.36328125
+      },
+      {
+        "pid": 21584,
+        "created": 1792050161.78514,
+        "name": "conhost.exe",
+        "rss_mib": 7.6015625
+      }
+    ]
+  },
+  "available_ram_gib": 5.508609771728516,
+  "stable_memory_checks": 2,
+  "completed_batches": 24,
+  "new_learner_samples": 4705,
+  "new_optimizer_steps": 726,
+  "new_training_games": 36,
+  "new_training_terminated": 36,
+  "new_training_truncated": 0,
+  "training_wins": 7,
+  "new_evaluation_runs_including_repeats": 96,
+  "new_evaluation_terminated": 96,
+  "new_evaluation_truncated": 0,
+  "latest_evaluation": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 133,
+      "environment_steps": 568,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 45.380849000001035,
+      "checkpoint": "checkpoint-030.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 122,
+      "environment_steps": 550,
+      "terminated": true,
+      "truncated": false,
+      "reward": 1,
+      "seconds": 42.49595099999715,
+      "checkpoint": "checkpoint-030.pt"
+    }
+  ],
+  "authority_stops_including_probes": {
+    "truncated": 24,
+    "terminated": 132
+  },
+  "all_recorded_restores_verified": true,
+  "summary_mismatches": [],
+  "latest_checkpoint": {
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-024\\checkpoint-030.pt",
+    "bytes": 4794530,
+    "sha256": "48f55b6bbdc773d1bf97219b0ebda8c3625d4a64a93214362549817dbc89b5b4",
+    "expected": "48f55b6bbdc773d1bf97219b0ebda8c3625d4a64a93214362549817dbc89b5b4"
+  },
+  "checkpoint_hashes_match": true,
+  "resume_checkpoint_unchanged": true,
+  "source_changes": [],
+  "failures": [],
+  "peak_rss_mib": 1329.1171875,
+  "min_available_ram_mib": 5157.203125,
+  "weighted_cpu_percent_machine": 9.063669573291591,
+  "formal_environment_steps": 69799,
+  "completed_batch_seconds": 5982.00216460001,
+  "gameplay_seconds": 5738.225124599936,
+  "steps_per_batch_second": 11.668166958055114,
+  "steps_per_gameplay_second": 12.163865739733648,
+  "complete_game_seconds": {
+    "min": 12.275845499993011,
+    "median": 38.933257499997126,
+    "p90": 74.83267823999923,
+    "max": 237.96013900000253
+  },
+  "disk_free_gib": 458.6876907348633,
+  "automation_status": "ACTIVE",
+  "automation_unicode_valid": true,
+  "log_tails": {
+    "artifacts\\ai-training\\unattended-20261015-resume\\batch-025.stderr.log": [],
+    "artifacts\\ai-training\\unattended-20261015-resume\\batch-025.stdout.log": [
+      "{\"seed\": 570140, \"swap\": 0, \"learner_decisions\": 133, \"environment_steps\": 568, \"terminated\": true, \"truncated\": false, \"reward\": -1, \"seconds\": 48.83992989999388, \"checkpoint\": \"initial.pt\"}"
+    ],
+    "artifacts\\ai-training\\unattended-20261015-resume.supervisor.stderr.log": [],
+    "artifacts\\ai-training\\unattended-20261015-resume.supervisor.stdout.log": []
+  },
+  "all_checkpoint_inference_equal": true,
+  "nonempty_stderr": [],
+  "checkpoint_contract": {
+    "format": 2,
+    "model_version": 2,
+    "boundary": "episode",
+    "encoder_version": 4,
+    "encoder_signature": "c9252aff61e4f6b01ee9646d4b5305285cfdf8601693fa40b3d8ef503526b6e8",
+    "contract": {
+      "ObservationVersion": 5,
+      "ActionVersion": 2,
+      "EngineVersion": 98,
+      "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+      "RulesVersion": "1.0.0-draft.1",
+      "ContentVersion": "1.0.0",
+      "AuthorityHashes": {
+        "Goa2.Domain": "59d6943fc817ceb43e95a3e6b30d7f7820b90b17770413ace4226ef0cb6db692",
+        "Goa2.Rules": "42562af2190b878682a9b26f02b21f7d0743d0cd95e74ef88b297be60c91c56b",
+        "Goa2.Application": "1ae08de414f86fc8d87f9de9d6c5df5a378e1140793ebf651d3eb55aff331edd",
+        "Goa2.Infrastructure": "4aae3cb9b19d0cdd9c0b203f845e62cb5dbf801656f500f6e8759618bd718d6e",
+        "Goa2.Ai": "95e3c6ff6663c89fe66dd99446297c90795afcbfc10c02a05be423ea112647c8"
+      },
+      "RuleProfile": {
+        "Id": "victory-v1-life-7-marks-3",
+        "InitialCombatRegion": "mid",
+        "StartingCrystalLife": 7,
+        "VictoryMarksRequired": 3,
+        "TurnsPerRound": 4,
+        "HandSize": 5
+      }
+    },
+    "shape": {
+      "numeric_dim": 18,
+      "category_dim": 8,
+      "vocabulary_size": 1109,
+      "relation_count": 118,
+      "hidden": 96,
+      "architecture": "entity",
+      "latent_count": 32,
+      "memory_dim": 128
+    },
+    "cursor": 44,
+    "iteration": 30
+  },
+  "checkpoint_source_commit": "837ac4c5321d8a84254f89257967df70999febde",
+  "parameter_count": 392146,
+  "previous_run": {
+    "learner_samples": 1173,
+    "optimizer_steps": 187
+  },
+  "combined_learner_samples": 5878,
+  "combined_optimizer_steps": 913,
+  "counts_scope": "Completed batches 1-24 only; batch 25 in progress is excluded. Fixed-seed evaluation executions include repeats; deliberate protocol probes are excluded from formal games."
+}
