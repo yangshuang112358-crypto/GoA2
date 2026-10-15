@@ -1,0 +1,162 @@
+{
+  "checked_utc": "2026-10-15T08:39:14.056340+00:00",
+  "status": "waiting_memory",
+  "updated_utc": "2026-10-15T08:39:13.602321+00:00",
+  "deadline_utc": "2026-10-15T10:36:33.508532+00:00",
+  "within_deadline": true,
+  "supervisor": {
+    "pid": 23560,
+    "created": 1792031793.3205535,
+    "alive": true,
+    "identity_matches": true,
+    "children": []
+  },
+  "child": null,
+  "available_ram_gib": 5.966655731201172,
+  "stable_memory_checks": 1,
+  "completed_batches": 35,
+  "new_learner_samples": 7052,
+  "new_optimizer_steps": 1082,
+  "new_training_games": 55,
+  "new_training_terminated": 54,
+  "new_training_truncated": 1,
+  "training_wins": 12,
+  "new_evaluation_runs_including_repeats": 140,
+  "new_evaluation_terminated": 140,
+  "new_evaluation_truncated": 0,
+  "latest_evaluation": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 151,
+      "environment_steps": 623,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 55.63173719999759,
+      "checkpoint": "checkpoint-041.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 129,
+      "environment_steps": 562,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 43.05843079999613,
+      "checkpoint": "checkpoint-041.pt"
+    }
+  ],
+  "authority_stops_including_probes": {
+    "truncated": 36,
+    "terminated": 194
+  },
+  "all_recorded_restores_verified": true,
+  "summary_mismatches": [],
+  "latest_checkpoint": {
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-035\\checkpoint-041.pt",
+    "bytes": 4798882,
+    "sha256": "865a67b62bd1d5e4bb14e8605a8b0672b15ec9d94827ac50eebca649c675b6b9",
+    "expected": "865a67b62bd1d5e4bb14e8605a8b0672b15ec9d94827ac50eebca649c675b6b9"
+  },
+  "model_iteration": 41,
+  "cursor": 63,
+  "checkpoint_source_commit": "8da324d9b26c60ed0c3e9b8d51cae92e9eda7b7e",
+  "checkpoint_hashes_match": true,
+  "resume_checkpoint_unchanged": true,
+  "source_changes": [],
+  "failures": [],
+  "peak_rss_mib": 1407.37890625,
+  "min_available_ram_mib": 4787.8125,
+  "weighted_cpu_percent_machine": 9.027568578344761,
+  "formal_environment_steps": 104449,
+  "completed_batch_seconds": 9095.988689400008,
+  "gameplay_seconds": 8735.199088799942,
+  "steps_per_batch_second": 11.48297382138562,
+  "steps_per_gameplay_second": 11.95725465878871,
+  "complete_game_seconds": {
+    "min": 12.063084499997785,
+    "median": 41.81143305000296,
+    "p90": 72.27368330000027,
+    "max": 237.96013900000253
+  },
+  "disk_free_gib": 458.34485626220703,
+  "automation_status": "ACTIVE",
+  "automation_unicode_valid": true,
+  "nonempty_stderr": [],
+  "log_tails": {
+    "artifacts\\ai-training\\unattended-20261015-resume\\batch-035.stderr.log": [],
+    "artifacts\\ai-training\\unattended-20261015-resume\\batch-035.stdout.log": [
+      "{\"seed\": 570140, \"swap\": 1, \"learner_decisions\": 123, \"environment_steps\": 555, \"terminated\": true, \"truncated\": false, \"reward\": 1, \"seconds\": 43.23664070000086, \"checkpoint\": \"initial.pt\"}",
+      "{\"seed\": 270171, \"swap\": 0, \"learner_decisions\": 304, \"environment_steps\": 1201, \"terminated\": false, \"truncated\": true, \"reward\": 0, \"seconds\": 261.84306749999814}",
+      "PPO iteration=41 samples=304 optimizer_steps=65",
+      "{\"seed\": 570140, \"swap\": 0, \"learner_decisions\": 151, \"environment_steps\": 623, \"terminated\": true, \"truncated\": false, \"reward\": -1, \"seconds\": 55.63173719999759, \"checkpoint\": \"checkpoint-041.pt\"}",
+      "{\"seed\": 570140, \"swap\": 1, \"learner_decisions\": 129, \"environment_steps\": 562, \"terminated\": true, \"truncated\": false, \"reward\": -1, \"seconds\": 43.05843079999613, \"checkpoint\": \"checkpoint-041.pt\"}"
+    ],
+    "artifacts\\ai-training\\unattended-20261015-resume.supervisor.stderr.log": [],
+    "artifacts\\ai-training\\unattended-20261015-resume.supervisor.stdout.log": []
+  },
+  "current_batch_results_excluded_from_completed_counts": [],
+  "previous_run": {
+    "learner_samples": 1173,
+    "optimizer_steps": 187
+  },
+  "combined_learner_samples": 8225,
+  "combined_optimizer_steps": 1269,
+  "truncation_case": {
+    "result": {
+      "Stop": "truncated",
+      "Reward": 0,
+      "EnvironmentSteps": 1201,
+      "Commands": 1204,
+      "Seconds": 261.4487646,
+      "RestoreVerified": true,
+      "Winner": null
+    },
+    "result_path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-035\\authority\\train-0003-270171-0\\result.json",
+    "files": [
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-035\\authority\\train-0003-270171-0\\commands.json",
+        "bytes": 1574236,
+        "sha256": "1494477265436c6a7452a02caa1c2443d930362cff6b69bad458a73b2d94c0e9"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-035\\authority\\train-0003-270171-0\\config.json",
+        "bytes": 143,
+        "sha256": "f21b5a83aea94288647fd2fba00b23ad0d58d1b79e23967ed8d4e7756c410935"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-035\\authority\\train-0003-270171-0\\contract.json",
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-035\\authority\\train-0003-270171-0\\final-save.json",
+        "bytes": 1121519,
+        "sha256": "8dd27850d503d4897aa5bc362475ee616413fec683568fecc2326859f8623b44"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-035\\authority\\train-0003-270171-0\\policy.jsonl.gz",
+        "bytes": 11756558,
+        "sha256": "79f74cc4e91ba0a495f74238ed38460d6cb0ab1657be718d435998720e3ccfb1"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-035\\authority\\train-0003-270171-0\\result.json",
+        "bytes": 167,
+        "sha256": "257803510c088a064a95bff99db9ce4f8377f24ae95e0389151a814fd6ea6a09"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-035\\authority\\train-0003-270171-0\\spectator.jsonl.gz",
+        "bytes": 81503,
+        "sha256": "0a6718bfbfb7e122cdbf99faf5709cf2f256540ee8af43afe3128c0f3d8c5ae7"
+      }
+    ]
+  },
+  "counts_scope": "Completed batches 1-35 only. 54 of 55 training attempts terminated; one step-limit truncation is neither win nor loss. 140 evaluation executions include repeated seeds; 35 protocol probes excluded.",
+  "training_completion_rate": 0.9818181818181818,
+  "training_truncation_rate": 0.01818181818181818,
+  "formal_completion_rate": 0.9948717948717949,
+  "formal_truncation_rate": 0.005128205128205128,
+  "truncation_boundary": "Limit 1200 is checked at the learner next decision, so actual EnvironmentSteps=1201. Bootstrap uses own-seat observation; no artificial terminal reward."
+}
