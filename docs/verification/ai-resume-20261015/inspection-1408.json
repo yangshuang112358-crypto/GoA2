@@ -1,0 +1,213 @@
+{
+  "checked_utc": "2026-10-15T06:08:36.157874+00:00",
+  "status": "batch-005",
+  "updated_utc": "2026-10-15T06:08:33.404132+00:00",
+  "deadline_utc": "2026-10-15T10:36:33.508532+00:00",
+  "supervisor": {
+    "alive": true,
+    "identity_matches": true,
+    "children": [
+      {
+        "pid": 11668,
+        "name": "python.exe",
+        "created": 1792044378.3165236,
+        "rss_mib": 4.7265625
+      },
+      {
+        "pid": 22412,
+        "name": "conhost.exe",
+        "created": 1792044378.326444,
+        "rss_mib": 7.609375
+      },
+      {
+        "pid": 1076,
+        "name": "python.exe",
+        "created": 1792044378.345584,
+        "rss_mib": 610.2265625
+      },
+      {
+        "pid": 12224,
+        "name": "dotnet.exe",
+        "created": 1792044380.676577,
+        "rss_mib": 85.5234375
+      },
+      {
+        "pid": 10496,
+        "name": "conhost.exe",
+        "created": 1792044380.6853552,
+        "rss_mib": 7.60546875
+      }
+    ]
+  },
+  "child": {
+    "alive": true,
+    "identity_matches": true,
+    "children": [
+      {
+        "pid": 22412,
+        "name": "conhost.exe",
+        "created": 1792044378.326444,
+        "rss_mib": 7.609375
+      },
+      {
+        "pid": 1076,
+        "name": "python.exe",
+        "created": 1792044378.345584,
+        "rss_mib": 610.2265625
+      },
+      {
+        "pid": 12224,
+        "name": "dotnet.exe",
+        "created": 1792044380.676577,
+        "rss_mib": 85.5234375
+      },
+      {
+        "pid": 10496,
+        "name": "conhost.exe",
+        "created": 1792044380.6853552,
+        "rss_mib": 7.60546875
+      }
+    ]
+  },
+  "available_ram_gib": 5.472694396972656,
+  "stable_memory_checks": 2,
+  "completed_batches": 4,
+  "new_learner_samples": 760,
+  "new_optimizer_steps": 79,
+  "new_training_games": 6,
+  "new_training_terminated": 6,
+  "new_training_truncated": 0,
+  "new_evaluation_runs_including_repeats": 16,
+  "new_evaluation_terminated": 16,
+  "new_evaluation_truncated": 0,
+  "latest_evaluation": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 116,
+      "environment_steps": 487,
+      "terminated": true,
+      "truncated": false,
+      "reward": 1,
+      "seconds": 30.276374499997473,
+      "checkpoint": "checkpoint-010.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 110,
+      "environment_steps": 504,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 32.006230300001334,
+      "checkpoint": "checkpoint-010.pt"
+    }
+  ],
+  "authority_stops_including_probes": {
+    "truncated": 4,
+    "terminated": 22
+  },
+  "all_recorded_restores_verified": true,
+  "checkpoint_hashes_match": true,
+  "resume_checkpoint_unchanged": true,
+  "source_changes": [],
+  "failures": [],
+  "peak_rss_mib": 1115.42578125,
+  "disk_free_gib": 459.2931022644043,
+  "automation_status": "ACTIVE",
+  "automation_unicode_valid": true,
+  "scope": "Completed new-run batches 1..4 only; running batch 5 excluded. Old-run 1173 samples/187 optimizer steps separate.",
+  "training_episodes": [
+    {
+      "seed": 270144,
+      "swap": 0,
+      "learner_decisions": 207,
+      "environment_steps": 841,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 118.31334549999883
+    },
+    {
+      "seed": 270144,
+      "swap": 1,
+      "learner_decisions": 158,
+      "environment_steps": 684,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 75.83894810000493
+    },
+    {
+      "seed": 270145,
+      "swap": 0,
+      "learner_decisions": 122,
+      "environment_steps": 493,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 39.28610569999728
+    },
+    {
+      "seed": 270145,
+      "swap": 1,
+      "learner_decisions": 89,
+      "environment_steps": 381,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 22.199347199995827
+    },
+    {
+      "seed": 270146,
+      "swap": 0,
+      "learner_decisions": 93,
+      "environment_steps": 365,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 21.010871300000872
+    },
+    {
+      "seed": 270146,
+      "swap": 1,
+      "learner_decisions": 91,
+      "environment_steps": 403,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 24.252011100004893
+    }
+  ],
+  "previous_learner_samples": 1173,
+  "previous_optimizer_steps": 187,
+  "cumulative_learner_samples": 1933,
+  "cumulative_optimizer_steps": 266,
+  "new_training_wins": 0,
+  "completed_batch_seconds": 805.5754734000002,
+  "environment_steps": 10375,
+  "gameplay_seconds": 773.3313380999825,
+  "min_available_ram_mib": 5222.578125,
+  "cpu_percent": 9.290605854027723,
+  "final_holdout_performed": false,
+  "unity_player_verified": false,
+  "whole_batch_decisions_per_second": 12.87899190402536,
+  "gameplay_decisions_per_second": 13.415982889676503,
+  "latest_checkpoint": {
+    "path": "batch-004\\checkpoint-010.pt",
+    "sha256": "a789728829d87fafe7f987d956fd0e5f5ffa7c4ecb7e46bc8670b5e70fbf5764",
+    "iteration": 10,
+    "cursor": 14
+  },
+  "interrupted_case_reexecution": {
+    "old_command_count": 317,
+    "new_command_count": 844,
+    "accepted_command_prefix_equal": true,
+    "first_difference_index": null,
+    "command_headers_equal": true,
+    "config_equal": true,
+    "old_commands_sha256": "f1dfe40ae9c021e70293d664dd99d6e97db44f919fc46b7382e7d5166868ca85",
+    "new_commands_sha256": "a51137462f748b9fb97876704b672fca34e31a53afbddd951fbd98685bda294e"
+  }
+}
