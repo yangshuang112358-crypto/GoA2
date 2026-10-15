@@ -1,0 +1,474 @@
+[
+  {
+    "label": "holdout-initial",
+    "config": {
+      "op": "reset",
+      "seed": 670140,
+      "learner": 0,
+      "swap": 0,
+      "limit": 1200,
+      "opponent": "simple",
+      "life": 7,
+      "marks": 3
+    },
+    "result": {
+      "Stop": "terminated",
+      "Reward": -1,
+      "EnvironmentSteps": 548,
+      "Commands": 551,
+      "Seconds": 42.7403027,
+      "RestoreVerified": true,
+      "Winner": "Red"
+    },
+    "files": [
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0001-670140-0\\commands.json",
+        "bytes": 721642,
+        "sha256": "7412051d95a512c0807d703517a78efe7d526c075371de6742c55e2010c15efe"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0001-670140-0\\config.json",
+        "bytes": 143,
+        "sha256": "25528cb80e03f2a5a9efcde52745dba856900c00987bd1ba64eae4b9d0593ad2"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0001-670140-0\\contract.json",
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0001-670140-0\\final-save.json",
+        "bytes": 539844,
+        "sha256": "0865c77fad7d86f2eaaa2e5cb70df947d996398ff246b2d441d82eee2a66f4ec"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0001-670140-0\\policy.jsonl.gz",
+        "bytes": 2884902,
+        "sha256": "ce40a6587b4af678ae25a1470dab305decec45eff2b9f87e416f7b51168b4737"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0001-670140-0\\result.json",
+        "bytes": 167,
+        "sha256": "bab65d3277cdc6fb663da6eae9da1844454a8b2c22760dc0d0dd7771646bd6f1"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0001-670140-0\\spectator.jsonl.gz",
+        "bytes": 42964,
+        "sha256": "c92b7042e8a4bd5419c59b6e45bed5b484cd0a5ad66c6a9975651a046e8039d3"
+      }
+    ]
+  },
+  {
+    "label": "holdout-initial",
+    "config": {
+      "op": "reset",
+      "seed": 670140,
+      "learner": 1,
+      "swap": 1,
+      "limit": 1200,
+      "opponent": "simple",
+      "life": 7,
+      "marks": 3
+    },
+    "result": {
+      "Stop": "terminated",
+      "Reward": -1,
+      "EnvironmentSteps": 493,
+      "Commands": 496,
+      "Seconds": 31.7416192,
+      "RestoreVerified": true,
+      "Winner": "Blue"
+    },
+    "files": [
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0002-670140-1\\commands.json",
+        "bytes": 649194,
+        "sha256": "deb95d15c4c1a04bb9d074c20652b5d9f969f295a2510091b6921cce61918b30"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0002-670140-1\\config.json",
+        "bytes": 143,
+        "sha256": "5faa6b13d900daf329a58feccd3bb08073a88b78591c4619d95af48f148da5de"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0002-670140-1\\contract.json",
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0002-670140-1\\final-save.json",
+        "bytes": 478696,
+        "sha256": "c1ac548376e119afbd88baa7e7b050059e513402bb03e8c433b240eed95f1b55"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0002-670140-1\\policy.jsonl.gz",
+        "bytes": 2029447,
+        "sha256": "397d69ea52a370be5fcd22d02e9de8d681e194c4f575696dfeac1871b9521720"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0002-670140-1\\result.json",
+        "bytes": 168,
+        "sha256": "0926497b3b503bd6cf2bd3d012ed0d15333d8fae14035fc27a843c252fc386d5"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0002-670140-1\\spectator.jsonl.gz",
+        "bytes": 37654,
+        "sha256": "caa2c042b398ae5319734978761e869adc82a5238a0f89adb4e5093d50023267"
+      }
+    ]
+  },
+  {
+    "label": "holdout-initial",
+    "config": {
+      "op": "reset",
+      "seed": 670141,
+      "learner": 0,
+      "swap": 0,
+      "limit": 1200,
+      "opponent": "simple",
+      "life": 7,
+      "marks": 3
+    },
+    "result": {
+      "Stop": "terminated",
+      "Reward": -1,
+      "EnvironmentSteps": 433,
+      "Commands": 436,
+      "Seconds": 23.2845305,
+      "RestoreVerified": true,
+      "Winner": "Red"
+    },
+    "files": [
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0003-670141-0\\commands.json",
+        "bytes": 570642,
+        "sha256": "055141e364f885d2b519a550b3db6f75ed79c048ba798bad689f2b74f216978a"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0003-670141-0\\config.json",
+        "bytes": 143,
+        "sha256": "6630e8e0f6f0d9f9d749c77d05069a1c38257867d272c4dcc9240321a2166654"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0003-670141-0\\contract.json",
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0003-670141-0\\final-save.json",
+        "bytes": 414816,
+        "sha256": "7bce3d12da83c3c08bea29d3fc0906414a1ae6420ad780cc6021530914b339d9"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0003-670141-0\\policy.jsonl.gz",
+        "bytes": 1711603,
+        "sha256": "5ba7f3027c3e5a95297f6aa532b64ec630735d7548de11b48a2afd497dcc1257"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0003-670141-0\\result.json",
+        "bytes": 167,
+        "sha256": "8ae863494ec3995a40d9cf656aa94d1b0104d5e78c7bf7c5f679137dc24bb7fd"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0003-670141-0\\spectator.jsonl.gz",
+        "bytes": 32637,
+        "sha256": "27c2abde555fb5725c1f180443eafa094acaca38819c69d799d7b58e834abef3"
+      }
+    ]
+  },
+  {
+    "label": "holdout-initial",
+    "config": {
+      "op": "reset",
+      "seed": 670141,
+      "learner": 1,
+      "swap": 1,
+      "limit": 1200,
+      "opponent": "simple",
+      "life": 7,
+      "marks": 3
+    },
+    "result": {
+      "Stop": "terminated",
+      "Reward": -1,
+      "EnvironmentSteps": 385,
+      "Commands": 388,
+      "Seconds": 17.6603153,
+      "RestoreVerified": true,
+      "Winner": "Blue"
+    },
+    "files": [
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0004-670141-1\\commands.json",
+        "bytes": 507900,
+        "sha256": "21c9fd8aa72221f619a44c48c3b24e5264a79186cd2840e2783b3a0a14502b9c"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0004-670141-1\\config.json",
+        "bytes": 143,
+        "sha256": "77e4cb886b7bb25de3df9b2dc3b13f3b2a1dc5f23eafe1322f820cb3728239d3"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0004-670141-1\\contract.json",
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0004-670141-1\\final-save.json",
+        "bytes": 362552,
+        "sha256": "92265a40cddeae85b1d74f064469ea7e723e21f8249c209f913dcd9cb6555751"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0004-670141-1\\policy.jsonl.gz",
+        "bytes": 1151710,
+        "sha256": "b79bfa83507d34dd8f5ba60b276e0cca398232036214e3319f2c2866ab2f806d"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0004-670141-1\\result.json",
+        "bytes": 168,
+        "sha256": "46fd390a4f890811cf34148b28636c34ac1f0467ba525d94e95a0b9ff0398ea6"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-initial\\authority\\train-0004-670141-1\\spectator.jsonl.gz",
+        "bytes": 27478,
+        "sha256": "9bae813e6e6bd0d205b2cae5232ee0eb1315558a886686956ec43a04f48cb053"
+      }
+    ]
+  },
+  {
+    "label": "holdout-final",
+    "config": {
+      "op": "reset",
+      "seed": 670140,
+      "learner": 0,
+      "swap": 0,
+      "limit": 1200,
+      "opponent": "simple",
+      "life": 7,
+      "marks": 3
+    },
+    "result": {
+      "Stop": "terminated",
+      "Reward": 1,
+      "EnvironmentSteps": 671,
+      "Commands": 674,
+      "Seconds": 64.9576177,
+      "RestoreVerified": true,
+      "Winner": "Blue"
+    },
+    "files": [
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0001-670140-0\\commands.json",
+        "bytes": 882978,
+        "sha256": "d9c55f1c89de2948c83aff734343faeb2271875178165e521bd29784241c4ad5"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0001-670140-0\\config.json",
+        "bytes": 143,
+        "sha256": "25528cb80e03f2a5a9efcde52745dba856900c00987bd1ba64eae4b9d0593ad2"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0001-670140-0\\contract.json",
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0001-670140-0\\final-save.json",
+        "bytes": 656620,
+        "sha256": "e1ea28bd523c8fcb6dc1be86ca48238f8a359349798e28a7a846e31be2b8b280"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0001-670140-0\\policy.jsonl.gz",
+        "bytes": 3753308,
+        "sha256": "3b036d8b46f11c49603909cf7ce4f81ec10e7c8831d3675257b5f72be73ca362"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0001-670140-0\\result.json",
+        "bytes": 167,
+        "sha256": "af83b149ecd1b754d9dc02de66edf5166e81992f4526e6bf17ef55148a0a8534"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0001-670140-0\\spectator.jsonl.gz",
+        "bytes": 51352,
+        "sha256": "6451b12cc805b276c8c69b95acc60a43b965f4f4495a6b1b42d146b6bbc466eb"
+      }
+    ]
+  },
+  {
+    "label": "holdout-final",
+    "config": {
+      "op": "reset",
+      "seed": 670140,
+      "learner": 1,
+      "swap": 1,
+      "limit": 1200,
+      "opponent": "simple",
+      "life": 7,
+      "marks": 3
+    },
+    "result": {
+      "Stop": "terminated",
+      "Reward": 1,
+      "EnvironmentSteps": 903,
+      "Commands": 906,
+      "Seconds": 115.462238,
+      "RestoreVerified": true,
+      "Winner": "Red"
+    },
+    "files": [
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0002-670140-1\\commands.json",
+        "bytes": 1184581,
+        "sha256": "4431509069fc6195bbe19cd87343f48e062d6974c916e0b115d9e7753b8b188b"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0002-670140-1\\config.json",
+        "bytes": 143,
+        "sha256": "5faa6b13d900daf329a58feccd3bb08073a88b78591c4619d95af48f148da5de"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0002-670140-1\\contract.json",
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0002-670140-1\\final-save.json",
+        "bytes": 836487,
+        "sha256": "402e18baeec9804e275669f6232005b47b5387c2dd397b83f0d2c09c74894a82"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0002-670140-1\\policy.jsonl.gz",
+        "bytes": 5986205,
+        "sha256": "0b7c5e56e6db643c29847fb21f855ae027f5071b5d9b77fe0c25e77e2cc3eee0"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0002-670140-1\\result.json",
+        "bytes": 166,
+        "sha256": "535f6d139d4c97c9b43c050e929224f5943d9d00936d13107047fed5f4bac800"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0002-670140-1\\spectator.jsonl.gz",
+        "bytes": 60977,
+        "sha256": "4eadeba28bed33c98d3e71bb8f68d4d165ac9d90411719a368d0ce33c23433a6"
+      }
+    ]
+  },
+  {
+    "label": "holdout-final",
+    "config": {
+      "op": "reset",
+      "seed": 670141,
+      "learner": 0,
+      "swap": 0,
+      "limit": 1200,
+      "opponent": "simple",
+      "life": 7,
+      "marks": 3
+    },
+    "result": {
+      "Stop": "terminated",
+      "Reward": -1,
+      "EnvironmentSteps": 711,
+      "Commands": 714,
+      "Seconds": 70.2554339,
+      "RestoreVerified": true,
+      "Winner": "Red"
+    },
+    "files": [
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0003-670141-0\\commands.json",
+        "bytes": 934582,
+        "sha256": "43c71f8114a1bed2cccd593c5994544b40ef2612f490f15daff4d58d3c94c2c6"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0003-670141-0\\config.json",
+        "bytes": 143,
+        "sha256": "6630e8e0f6f0d9f9d749c77d05069a1c38257867d272c4dcc9240321a2166654"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0003-670141-0\\contract.json",
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0003-670141-0\\final-save.json",
+        "bytes": 684992,
+        "sha256": "af0d026ca18fcecce97f39cc0a4f0698766c33a1bcb95d07bc600a4059fcb5d7"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0003-670141-0\\policy.jsonl.gz",
+        "bytes": 4345140,
+        "sha256": "a35cf30e9fef0336dfc3636c687483b80220aaf081e0ee90a14060026c74f9fd"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0003-670141-0\\result.json",
+        "bytes": 167,
+        "sha256": "7f870e09b3adec4512c60fc9fbc9d01b4946bc0e561d1f09d3ce7f4278ae7bff"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0003-670141-0\\spectator.jsonl.gz",
+        "bytes": 52513,
+        "sha256": "eb991b998e0e1c7a7b985302ac3e2fa3a62bb65d07b2fa858a36ae9e5920c822"
+      }
+    ]
+  },
+  {
+    "label": "holdout-final",
+    "config": {
+      "op": "reset",
+      "seed": 670141,
+      "learner": 1,
+      "swap": 1,
+      "limit": 1200,
+      "opponent": "simple",
+      "life": 7,
+      "marks": 3
+    },
+    "result": {
+      "Stop": "terminated",
+      "Reward": -1,
+      "EnvironmentSteps": 569,
+      "Commands": 572,
+      "Seconds": 43.7780324,
+      "RestoreVerified": true,
+      "Winner": "Blue"
+    },
+    "files": [
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0004-670141-1\\commands.json",
+        "bytes": 749307,
+        "sha256": "98ccd4193d8688acf7240a97a76fda3274dc2366cf3808ad20483d8576748df9"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0004-670141-1\\config.json",
+        "bytes": 143,
+        "sha256": "77e4cb886b7bb25de3df9b2dc3b13f3b2a1dc5f23eafe1322f820cb3728239d3"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0004-670141-1\\contract.json",
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0004-670141-1\\final-save.json",
+        "bytes": 561957,
+        "sha256": "390b5b6647f3eb07ed50dc50f8335345fcda8a8e9ecf6673d0999f09f5cc44e5"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0004-670141-1\\policy.jsonl.gz",
+        "bytes": 2722324,
+        "sha256": "83a5df81ec7ac5f7a5536cc8f2e6447ea9bac2a850ce0255fa2d57a5e572caa3"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0004-670141-1\\result.json",
+        "bytes": 168,
+        "sha256": "1bccaa72b22aca705c5fa4220257ada0c1ed1c04df600219385946359d6c3874"
+      },
+      {
+        "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\authority\\train-0004-670141-1\\spectator.jsonl.gz",
+        "bytes": 44812,
+        "sha256": "b34d8c752aba8de99b18b54b945feabb9e8c8d062ae12578e65466317b19c328"
+      }
+    ]
+  }
+]

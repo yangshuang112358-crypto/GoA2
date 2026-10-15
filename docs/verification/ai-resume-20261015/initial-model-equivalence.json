@@ -1,0 +1,15 @@
+{
+  "old_checkpoint": "artifacts\\ai-training\\unattended-20261014\\batch-006\\checkpoint-006.pt",
+  "old_sha256": "3b05b8791f42f688222b2bf6494c56bd943b7b569ebcacbc13f14c7ce5149598",
+  "holdout_initial_checkpoint": "artifacts\\ai-training\\unattended-20261015-resume\\batch-001\\initial.pt",
+  "holdout_initial_sha256": "92371fd282f067648c6029a7845c6297bb7bce2e4f699b13a5c0e2719e341ebe",
+  "model_tensor_count": 66,
+  "all_model_tensors_bitwise_equal": true,
+  "different_tensors": [],
+  "initial_iteration": 6,
+  "old_iteration": 6,
+  "initial_cursor": 8,
+  "old_cursor": 8,
+  "contract_equal": true,
+  "purpose": "Read-only CPU audit of evaluation baseline; no inference, sampling or optimizer update."
+}

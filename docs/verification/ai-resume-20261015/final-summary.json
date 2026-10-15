@@ -1,0 +1,405 @@
+{
+  "checked_utc": "2026-10-15T10:13:35.698440+00:00",
+  "status": "failed_preserved",
+  "started_utc": "2026-10-15T02:36:33.564794+00:00",
+  "finished_utc": "2026-10-15T09:50:43.391703+00:00",
+  "deadline_utc": "2026-10-15T10:36:33.508532+00:00",
+  "wall_seconds_including_waits": 26049.826909,
+  "source_commit_at_launch": "162067f857ced00e3f1f6eff5a9f612c73dd04cc",
+  "latest_model_source_commit": "3cb1c1a48eb8e5cdf8d39e0b85fd641ac49d5347",
+  "frozen_sources_unchanged": true,
+  "source_changes": [],
+  "supervisor": {
+    "alive": false,
+    "identity_matches": false,
+    "expected_pid": 23560,
+    "expected_created": 1792031793.3205535
+  },
+  "remaining_run_processes": [],
+  "completed_batches": 46,
+  "new_learner_samples": 9116,
+  "new_optimizer_steps": 1298,
+  "old_run_learner_samples": 1173,
+  "old_run_optimizer_steps": 187,
+  "combined_learner_samples": 10289,
+  "combined_optimizer_steps": 1485,
+  "training": {
+    "attempts": 71,
+    "terminated": 70,
+    "truncated": 1,
+    "wins": 17,
+    "losses": 53,
+    "completion_rate": 0.9859154929577465,
+    "truncation_rate": 0.014084507042253521,
+    "truncations": [
+      {
+        "seed": 270171,
+        "swap": 0,
+        "learner_decisions": 304,
+        "environment_steps": 1201,
+        "terminated": false,
+        "truncated": true,
+        "reward": 0,
+        "seconds": 261.84306749999814
+      }
+    ]
+  },
+  "repeated_fixed_evaluation": {
+    "executions": 184,
+    "terminated": 184,
+    "truncated": 0,
+    "initial": [
+      {
+        "seed": 570140,
+        "swap": 0,
+        "learner_decisions": 92,
+        "environment_steps": 381,
+        "terminated": true,
+        "truncated": false,
+        "reward": 1,
+        "seconds": 20.841525699994236,
+        "checkpoint": "initial.pt"
+      },
+      {
+        "seed": 570140,
+        "swap": 1,
+        "learner_decisions": 166,
+        "environment_steps": 740,
+        "terminated": true,
+        "truncated": false,
+        "reward": 1,
+        "seconds": 74.92358909999894,
+        "checkpoint": "initial.pt"
+      }
+    ],
+    "final": [
+      {
+        "seed": 570140,
+        "swap": 0,
+        "learner_decisions": 154,
+        "environment_steps": 646,
+        "terminated": true,
+        "truncated": false,
+        "reward": -1,
+        "seconds": 58.973384999997506,
+        "checkpoint": "checkpoint-052.pt"
+      },
+      {
+        "seed": 570140,
+        "swap": 1,
+        "learner_decisions": 177,
+        "environment_steps": 773,
+        "terminated": true,
+        "truncated": false,
+        "reward": -1,
+        "seconds": 86.8721732999984,
+        "checkpoint": "checkpoint-052.pt"
+      }
+    ]
+  },
+  "holdout_comparison": {
+    "holdout-initial": {
+      "results": [
+        {
+          "seed": 670140,
+          "swap": 0,
+          "learner_decisions": 141,
+          "environment_steps": 548,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 42.867432400002144
+        },
+        {
+          "seed": 670140,
+          "swap": 1,
+          "learner_decisions": 116,
+          "environment_steps": 493,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 31.8577587999971
+        },
+        {
+          "seed": 670141,
+          "swap": 0,
+          "learner_decisions": 110,
+          "environment_steps": 433,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 23.366068099996482
+        },
+        {
+          "seed": 670141,
+          "swap": 1,
+          "learner_decisions": 85,
+          "environment_steps": 385,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 17.728951999997662
+        }
+      ],
+      "wins": 0,
+      "terminated": 4,
+      "truncated": 0,
+      "checkpoint": "artifacts\\ai-training\\unattended-20261015-resume\\batch-001\\initial.pt",
+      "checkpoint_sha256": "92371fd282f067648c6029a7845c6297bb7bce2e4f699b13a5c0e2719e341ebe",
+      "manifest_checkpoint_sha256": "92371fd282f067648c6029a7845c6297bb7bce2e4f699b13a5c0e2719e341ebe",
+      "model_iteration": 6,
+      "cursor": 8,
+      "summary_written": true,
+      "manifest_source_commit": "3cb1c1a48eb8e5cdf8d39e0b85fd641ac49d5347",
+      "tool_sha256": "6ffdee687219ce5c1ca94d6fb982ae2411ccd1f7af630e8dcdae358dc3757c2b",
+      "resources": {
+        "process_tree_peak_rss_mib": 518.9296875,
+        "system_min_available_mib": 5659.90234375,
+        "process_tree_cpu_seconds": 175.328125,
+        "cpu_percent_of_machine": 9.392836197200182,
+        "sampled_seconds": 116.66346119999798
+      }
+    },
+    "holdout-final": {
+      "results": [
+        {
+          "seed": 670140,
+          "swap": 0,
+          "learner_decisions": 159,
+          "environment_steps": 671,
+          "terminated": true,
+          "truncated": false,
+          "reward": 1,
+          "seconds": 65.11206899999524
+        },
+        {
+          "seed": 670140,
+          "swap": 1,
+          "learner_decisions": 207,
+          "environment_steps": 903,
+          "terminated": true,
+          "truncated": false,
+          "reward": 1,
+          "seconds": 115.68609989999823
+        },
+        {
+          "seed": 670141,
+          "swap": 0,
+          "learner_decisions": 178,
+          "environment_steps": 711,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 70.46143699999811
+        },
+        {
+          "seed": 670141,
+          "swap": 1,
+          "learner_decisions": 131,
+          "environment_steps": 569,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 43.8767280999964
+        }
+      ],
+      "wins": 2,
+      "terminated": 4,
+      "truncated": 0,
+      "checkpoint": "artifacts\\ai-training\\unattended-20261015-resume\\batch-046\\checkpoint-052.pt",
+      "checkpoint_sha256": "1a84de5742aa181144e20ee4a3bbbecc6c4d0be5adf9702d4e2b12002a7a0857",
+      "manifest_checkpoint_sha256": "1a84de5742aa181144e20ee4a3bbbecc6c4d0be5adf9702d4e2b12002a7a0857",
+      "model_iteration": 52,
+      "cursor": 79,
+      "summary_written": false,
+      "manifest_source_commit": "3cb1c1a48eb8e5cdf8d39e0b85fd641ac49d5347",
+      "tool_sha256": "6ffdee687219ce5c1ca94d6fb982ae2411ccd1f7af630e8dcdae358dc3757c2b",
+      "resources": {
+        "process_tree_peak_rss_mib": 537.55859375,
+        "system_min_available_mib": 5579.58203125,
+        "process_tree_cpu_seconds": 450.25,
+        "cpu_percent_of_machine": 7.904129978509458,
+        "sampled_seconds": 356.02431989999604
+      }
+    }
+  },
+  "formal_games": {
+    "attempts": 263,
+    "terminated": 262,
+    "truncated": 1,
+    "interrupted": 0,
+    "completion_rate": 0.9961977186311787,
+    "truncation_rate": 0.0038022813688212928,
+    "observed_illegal_commands": 0,
+    "observed_game_exceptions": 0,
+    "pipeline_export_exceptions": 1,
+    "pipeline_result": "failed_preserved; first export-replay exceeded 60 seconds after all games completed",
+    "accepted_commands": 146617,
+    "observed_game_exception_rate": 0,
+    "observed_illegal_command_rate": 0
+  },
+  "authority_results_including_probes": {
+    "count": 311,
+    "stops": {
+      "truncated": 49,
+      "terminated": 262
+    },
+    "protocol_probes": 48,
+    "all_restore_verified": true
+  },
+  "latest_checkpoint": {
+    "batch": 46,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-046\\checkpoint-052.pt",
+    "bytes": 4795170,
+    "sha256": "1a84de5742aa181144e20ee4a3bbbecc6c4d0be5adf9702d4e2b12002a7a0857",
+    "expected_sha256": "1a84de5742aa181144e20ee4a3bbbecc6c4d0be5adf9702d4e2b12002a7a0857",
+    "learner_samples": 160,
+    "seconds": 307.6658660999965
+  },
+  "latest_cursor": 79,
+  "latest_iteration": 52,
+  "contract": {
+    "ObservationVersion": 5,
+    "ActionVersion": 2,
+    "EngineVersion": 98,
+    "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+    "RulesVersion": "1.0.0-draft.1",
+    "ContentVersion": "1.0.0",
+    "AuthorityHashes": {
+      "Goa2.Domain": "59d6943fc817ceb43e95a3e6b30d7f7820b90b17770413ace4226ef0cb6db692",
+      "Goa2.Rules": "42562af2190b878682a9b26f02b21f7d0743d0cd95e74ef88b297be60c91c56b",
+      "Goa2.Application": "1ae08de414f86fc8d87f9de9d6c5df5a378e1140793ebf651d3eb55aff331edd",
+      "Goa2.Infrastructure": "4aae3cb9b19d0cdd9c0b203f845e62cb5dbf801656f500f6e8759618bd718d6e",
+      "Goa2.Ai": "95e3c6ff6663c89fe66dd99446297c90795afcbfc10c02a05be423ea112647c8"
+    },
+    "RuleProfile": {
+      "Id": "victory-v1-life-7-marks-3",
+      "InitialCombatRegion": "mid",
+      "StartingCrystalLife": 7,
+      "VictoryMarksRequired": 3,
+      "TurnsPerRound": 4,
+      "HandSize": 5
+    }
+  },
+  "model_shape": {
+    "numeric_dim": 18,
+    "category_dim": 8,
+    "vocabulary_size": 1109,
+    "relation_count": 118,
+    "hidden": 96,
+    "architecture": "entity",
+    "latent_count": 32,
+    "memory_dim": 128
+  },
+  "model_parameters": 392146,
+  "config": {
+    "device": "cpu",
+    "threads": 2,
+    "rollout": 128,
+    "limit": 1200,
+    "epochs": 2,
+    "batch_size": 4,
+    "seed": 270140,
+    "eval_seed": 570140,
+    "life": 7,
+    "marks": 3,
+    "lr": 0.0003,
+    "clip": 0.2,
+    "entropy": 0.01,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "reward": "team-terminal-only-v1",
+    "opponent_pool": [
+      "simple-v1"
+    ],
+    "seat": "wasp swapped 0/1"
+  },
+  "checks": {
+    "summary_mismatches": [],
+    "checkpoint_hashes_match": true,
+    "holdout_checkpoint_hashes_match": true,
+    "resume_checkpoint_unchanged": true
+  },
+  "resources": {
+    "process_tree_peak_rss_mib": 1407.37890625,
+    "system_min_available_mib": 4787.8125,
+    "weighted_cpu_percent_of_machine": 8.942455627018383,
+    "sampled_seconds": 13038.181483700006,
+    "current_available_gib": 6.0002288818359375,
+    "disk_free_gib": 457.6994094848633
+  },
+  "speed": {
+    "formal_environment_steps": 145828,
+    "formal_gameplay_seconds": 12527.62514679994,
+    "gameplay_steps_per_second": 11.640514326632,
+    "completed_batch_steps_per_second": 11.230903518468844,
+    "completed_batch_seconds": 12564.884006700006,
+    "completed_batch_environment_steps": 141115,
+    "game_seconds": {
+      "min": 12.063084499997785,
+      "median": 42.947353749998,
+      "p90": 76.02912799999758,
+      "max": 237.96013900000253
+    }
+  },
+  "failures": [
+    {
+      "path": "artifacts\\ai-training\\unattended-20261015-resume\\failure.json",
+      "bytes": 619,
+      "sha256": "4becf24220216e16229f3f8a36b5ddd67f119487b36be4ba0fc8831b8d9aa1b6",
+      "error": "Traceback (most recent call last):\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\tools\\ai_unattended.py\", line 245, in run\n    self.child(command, label, 15 * 60 + 100)\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\tools\\ai_unattended.py\", line 211, in child\n    raise RuntimeError(f'{label} failed (exit {child.returncode}); preserve its exact seed and stop, no retry')\nRuntimeError: holdout-final failed (exit 1); preserve its exact seed and stop, no retry\n"
+    },
+    {
+      "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\failure-policy-input.json",
+      "bytes": 133,
+      "sha256": "f48c38fc761d56e0d406ba081d1cf9ce46dc27e19f1ef885161e72b83050859b"
+    },
+    {
+      "path": "artifacts\\ai-training\\unattended-20261015-resume\\holdout-final\\failure.json",
+      "bytes": 2744,
+      "sha256": "463e5009f66730620ef63b6931670a6be5604ccece3530244959fdefbcc1f86b",
+      "error": "Traceback (most recent call last):\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\tools\\evaluate-ai-checkpoint.py\", line 81, in main\n    done = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', timeout=60,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\29383\\miniconda3\\envs\\markdown-mas-tutorial\\Lib\\subprocess.py\", line 550, in run\n    stdout, stderr = process.communicate(input, timeout=timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\29383\\miniconda3\\envs\\markdown-mas-tutorial\\Lib\\subprocess.py\", line 1209, in communicate\n    stdout, stderr = self._communicate(input, endtime, timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\29383\\miniconda3\\envs\\markdown-mas-tutorial\\Lib\\subprocess.py\", line 1630, in _communicate\n    raise TimeoutExpired(self.args, orig_timeout)\nsubprocess.TimeoutExpired: Command '['C:\\\\Users\\\\29383\\\\AppData\\\\Local\\\\Goa2V1Toolchain\\\\dotnet\\\\dotnet.exe', 'C:\\\\Users\\\\29383\\\\Documents\\\\StudyFile\\\\personal_project\\\\Goa2V1-ai-training\\\\ai\\\\Goa2.Ai.Cli\\\\bin\\\\Release\\\\net10.0\\\\Goa2.Ai.Cli.dll', 'export-replay', 'C:\\\\Users\\\\29383\\\\Documents\\\\StudyFile\\\\personal_project\\\\Goa2V1-ai-training\\\\artifacts\\\\ai-training\\\\unattended-20261015-resume\\\\holdout-final\\\\authority\\\\train-0001-670140-0', 'C:\\\\Users\\\\29383\\\\Documents\\\\StudyFile\\\\personal_project\\\\Goa2V1-ai-training\\\\artifacts\\\\ai-training\\\\unattended-20261015-resume\\\\holdout-final\\\\replays\\\\train-0001-670140-0']' timed out after 60 seconds\n"
+    }
+  ],
+  "replay_export": {
+    "attempted": 1,
+    "successful": 0,
+    "timeout_seconds": 60,
+    "failed_authority": "holdout-final/authority/train-0001-670140-0",
+    "failed_commands": 674,
+    "remaining_formal_exports_not_attempted": 3,
+    "unity_player_verified": false,
+    "existing_historical_csharp_zip": {
+      "path": "docs\\verification\\ai-unattended-20261014\\checkpoint006-swap0-csharp-verified-replay.zip",
+      "bytes": 74314,
+      "sha256": "727f46c974557c50f93fb815d6f6cd8552980934688e7bf90bc1854f4bd54a58"
+    }
+  },
+  "baseline_equivalence": {
+    "old_checkpoint": "artifacts\\ai-training\\unattended-20261014\\batch-006\\checkpoint-006.pt",
+    "old_sha256": "3b05b8791f42f688222b2bf6494c56bd943b7b569ebcacbc13f14c7ce5149598",
+    "holdout_initial_checkpoint": "artifacts\\ai-training\\unattended-20261015-resume\\batch-001\\initial.pt",
+    "holdout_initial_sha256": "92371fd282f067648c6029a7845c6297bb7bce2e4f699b13a5c0e2719e341ebe",
+    "model_tensor_count": 66,
+    "all_model_tensors_bitwise_equal": true,
+    "different_tensors": [],
+    "initial_iteration": 6,
+    "old_iteration": 6,
+    "initial_cursor": 8,
+    "old_cursor": 8,
+    "contract_equal": true,
+    "purpose": "Read-only CPU audit of evaluation baseline; no inference, sampling or optimizer update."
+  },
+  "automation": {
+    "id": "goa2v1-ai-8",
+    "name": "Goa2V1 AI\u8bad\u7ec3\u5de1\u68c0\uff088\u5c0f\u65f6\uff09",
+    "status": "PAUSED",
+    "unchanged_identity_prompt_schedule_and_creation": true,
+    "unicode_valid": true,
+    "updated_at": 1792059141936
+  },
+  "final_holdout_result_scope": "All four gameplay results completed and were written before replay export failed. This report reconstructs their aggregate from preserved results.json and authority result.json, without rewriting the failed raw run or fabricating its missing summary.json.",
+  "model_input_coverage_complete": false,
+  "unity_player_verified": false,
+  "training_or_export_restarted": false
+}

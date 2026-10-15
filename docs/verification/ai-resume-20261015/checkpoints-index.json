@@ -1,0 +1,416 @@
+[
+  {
+    "batch": 1,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-001\\checkpoint-007.pt",
+    "bytes": 4795234,
+    "sha256": "3b448a4788901e0e410fe23a828a57e63256c89c9076f11aedf545ae693b439a",
+    "expected_sha256": "3b448a4788901e0e410fe23a828a57e63256c89c9076f11aedf545ae693b439a",
+    "learner_samples": 207,
+    "seconds": 269.6313334000006
+  },
+  {
+    "batch": 2,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-002\\checkpoint-008.pt",
+    "bytes": 4794978,
+    "sha256": "69042949368485b8fe93a70809123f30bd2b9d7df847618a7bb6650bdf5493b5",
+    "expected_sha256": "69042949368485b8fe93a70809123f30bd2b9d7df847618a7bb6650bdf5493b5",
+    "learner_samples": 158,
+    "seconds": 205.55810889999702
+  },
+  {
+    "batch": 3,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-003\\checkpoint-009.pt",
+    "bytes": 4796578,
+    "sha256": "54f59ff52f5bcb28ddebcf889f06ee131a25db23d1360e57650f8d2c83486886",
+    "expected_sha256": "54f59ff52f5bcb28ddebcf889f06ee131a25db23d1360e57650f8d2c83486886",
+    "learner_samples": 211,
+    "seconds": 180.85767860000487
+  },
+  {
+    "batch": 4,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-004\\checkpoint-010.pt",
+    "bytes": 4794722,
+    "sha256": "a789728829d87fafe7f987d956fd0e5f5ffa7c4ecb7e46bc8670b5e70fbf5764",
+    "expected_sha256": "a789728829d87fafe7f987d956fd0e5f5ffa7c4ecb7e46bc8670b5e70fbf5764",
+    "learner_samples": 184,
+    "seconds": 149.5283524999977
+  },
+  {
+    "batch": 5,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-005\\checkpoint-011.pt",
+    "bytes": 4796962,
+    "sha256": "b816c6a4a48bf7997933f20f226b31a44972df420a7bc031438ca0629c4651b2",
+    "expected_sha256": "b816c6a4a48bf7997933f20f226b31a44972df420a7bc031438ca0629c4651b2",
+    "learner_samples": 289,
+    "seconds": 242.562494100006
+  },
+  {
+    "batch": 6,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-006\\checkpoint-012.pt",
+    "bytes": 4795426,
+    "sha256": "9a9aaa4fa621424eebad7584ec66b83a52bcb115dc8964fee5ac9a02ec85a834",
+    "expected_sha256": "9a9aaa4fa621424eebad7584ec66b83a52bcb115dc8964fee5ac9a02ec85a834",
+    "learner_samples": 146,
+    "seconds": 228.17186480000237
+  },
+  {
+    "batch": 7,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-007\\checkpoint-013.pt",
+    "bytes": 4799970,
+    "sha256": "abebdcdb93886274fda4447b9483e657028d39513e57bcef447a5d4a803ee343",
+    "expected_sha256": "abebdcdb93886274fda4447b9483e657028d39513e57bcef447a5d4a803ee343",
+    "learner_samples": 253,
+    "seconds": 284.96004840000387
+  },
+  {
+    "batch": 8,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-008\\checkpoint-014.pt",
+    "bytes": 4794594,
+    "sha256": "f34cbeec3bc79129b54f4cb2d6049a8d72cddef20d150d7f3c5ea96a891058c8",
+    "expected_sha256": "f34cbeec3bc79129b54f4cb2d6049a8d72cddef20d150d7f3c5ea96a891058c8",
+    "learner_samples": 213,
+    "seconds": 157.8961879999988
+  },
+  {
+    "batch": 9,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-009\\checkpoint-015.pt",
+    "bytes": 4795106,
+    "sha256": "3dae8090b4382af0c8f51b22b8a906d5148f1f265ac862d34b6746540f347bea",
+    "expected_sha256": "3dae8090b4382af0c8f51b22b8a906d5148f1f265ac862d34b6746540f347bea",
+    "learner_samples": 142,
+    "seconds": 195.05559159999393
+  },
+  {
+    "batch": 10,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-010\\checkpoint-016.pt",
+    "bytes": 4800098,
+    "sha256": "66becd91e73abf4d4654948156a070b29621d75ef9112ae3a2c95089be804338",
+    "expected_sha256": "66becd91e73abf4d4654948156a070b29621d75ef9112ae3a2c95089be804338",
+    "learner_samples": 157,
+    "seconds": 255.32609840000077
+  },
+  {
+    "batch": 11,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-011\\checkpoint-017.pt",
+    "bytes": 4798882,
+    "sha256": "7cf3f92dd4cee5ed5bbfdf24819ab61d25a7fa203cadc6215cc30206912f9207",
+    "expected_sha256": "7cf3f92dd4cee5ed5bbfdf24819ab61d25a7fa203cadc6215cc30206912f9207",
+    "learner_samples": 215,
+    "seconds": 233.139665900002
+  },
+  {
+    "batch": 12,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-012\\checkpoint-018.pt",
+    "bytes": 4794722,
+    "sha256": "34dd0745acb2bd6301d75057db767a3b0802f7943d2e3fd19760084e8691abb1",
+    "expected_sha256": "34dd0745acb2bd6301d75057db767a3b0802f7943d2e3fd19760084e8691abb1",
+    "learner_samples": 194,
+    "seconds": 271.95274600000266
+  },
+  {
+    "batch": 13,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-013\\checkpoint-019.pt",
+    "bytes": 4794594,
+    "sha256": "c4ad39a0d99e069c9ed432a85260d981d3ed51956bd2d38ec3526e57a07e450f",
+    "expected_sha256": "c4ad39a0d99e069c9ed432a85260d981d3ed51956bd2d38ec3526e57a07e450f",
+    "learner_samples": 180,
+    "seconds": 259.01581989999977
+  },
+  {
+    "batch": 14,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-014\\checkpoint-020.pt",
+    "bytes": 4794722,
+    "sha256": "93d1d66f6558475ebba7a75ef9ee3d037c939cfb6fc8105e8a339d5a0cd78306",
+    "expected_sha256": "93d1d66f6558475ebba7a75ef9ee3d037c939cfb6fc8105e8a339d5a0cd78306",
+    "learner_samples": 195,
+    "seconds": 292.72495250000065
+  },
+  {
+    "batch": 15,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-015\\checkpoint-021.pt",
+    "bytes": 4794914,
+    "sha256": "1ec0b76671cedb819d771c53f1b77a7a7b0a904d3a90f4a79844cd3cd2ce38da",
+    "expected_sha256": "1ec0b76671cedb819d771c53f1b77a7a7b0a904d3a90f4a79844cd3cd2ce38da",
+    "learner_samples": 164,
+    "seconds": 248.45992350000597
+  },
+  {
+    "batch": 16,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-016\\checkpoint-022.pt",
+    "bytes": 4797346,
+    "sha256": "13450fd6e34b2d9c7fda196515e3f959b8a4006118efad60e9bd720920ff1549",
+    "expected_sha256": "13450fd6e34b2d9c7fda196515e3f959b8a4006118efad60e9bd720920ff1549",
+    "learner_samples": 215,
+    "seconds": 255.59842850000132
+  },
+  {
+    "batch": 17,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-017\\checkpoint-023.pt",
+    "bytes": 4796194,
+    "sha256": "517f68940b01d27bbbeb4fa2f8213c6ad91fa48e47b4ba9b1e2db993f6e20c01",
+    "expected_sha256": "517f68940b01d27bbbeb4fa2f8213c6ad91fa48e47b4ba9b1e2db993f6e20c01",
+    "learner_samples": 150,
+    "seconds": 279.2179488999973
+  },
+  {
+    "batch": 18,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-018\\checkpoint-024.pt",
+    "bytes": 4798306,
+    "sha256": "baa2af485b654723a9a050ae7d19a4ac6f8f07b9535ffcc305165de32d64b8bd",
+    "expected_sha256": "baa2af485b654723a9a050ae7d19a4ac6f8f07b9535ffcc305165de32d64b8bd",
+    "learner_samples": 193,
+    "seconds": 280.32742159999907
+  },
+  {
+    "batch": 19,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-019\\checkpoint-025.pt",
+    "bytes": 4796962,
+    "sha256": "fc0f3743d0d78a58842a9938d8878d89c0c2d9979544619a01998abbf09da262",
+    "expected_sha256": "fc0f3743d0d78a58842a9938d8878d89c0c2d9979544619a01998abbf09da262",
+    "learner_samples": 173,
+    "seconds": 279.88282120000076
+  },
+  {
+    "batch": 20,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-020\\checkpoint-026.pt",
+    "bytes": 4795810,
+    "sha256": "75d4be3b4a509bfb18020efa56dda3492378d59e89232108b6d16bf87d0db150",
+    "expected_sha256": "75d4be3b4a509bfb18020efa56dda3492378d59e89232108b6d16bf87d0db150",
+    "learner_samples": 193,
+    "seconds": 206.08092000000033
+  },
+  {
+    "batch": 21,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-021\\checkpoint-027.pt",
+    "bytes": 4795106,
+    "sha256": "0848574648dfa390c0ea271fd29ffa63d6972eadbfd11802af0dc3befef77b1b",
+    "expected_sha256": "0848574648dfa390c0ea271fd29ffa63d6972eadbfd11802af0dc3befef77b1b",
+    "learner_samples": 193,
+    "seconds": 229.5168543999971
+  },
+  {
+    "batch": 22,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-022\\checkpoint-028.pt",
+    "bytes": 4795874,
+    "sha256": "fdb41d6e04960abce70b3d6e46bacb07d93bb73a1076129c79afacace54a7789",
+    "expected_sha256": "fdb41d6e04960abce70b3d6e46bacb07d93bb73a1076129c79afacace54a7789",
+    "learner_samples": 206,
+    "seconds": 275.9656679999971
+  },
+  {
+    "batch": 23,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-023\\checkpoint-029.pt",
+    "bytes": 4797218,
+    "sha256": "9fa0e0192f1be30651b119f3086f490127efb97118f71b12f52d8bc3812f055b",
+    "expected_sha256": "9fa0e0192f1be30651b119f3086f490127efb97118f71b12f52d8bc3812f055b",
+    "learner_samples": 262,
+    "seconds": 450.1947153000001
+  },
+  {
+    "batch": 24,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-024\\checkpoint-030.pt",
+    "bytes": 4794530,
+    "sha256": "48f55b6bbdc773d1bf97219b0ebda8c3625d4a64a93214362549817dbc89b5b4",
+    "expected_sha256": "48f55b6bbdc773d1bf97219b0ebda8c3625d4a64a93214362549817dbc89b5b4",
+    "learner_samples": 212,
+    "seconds": 250.3765201999995
+  },
+  {
+    "batch": 25,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-025\\checkpoint-031.pt",
+    "bytes": 4795618,
+    "sha256": "d601d4589fe5fdddb61f210e2a79dcda2c355ff02e355e7b8fa3a81e5b856c30",
+    "expected_sha256": "d601d4589fe5fdddb61f210e2a79dcda2c355ff02e355e7b8fa3a81e5b856c30",
+    "learner_samples": 198,
+    "seconds": 335.04596740000125
+  },
+  {
+    "batch": 26,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-026\\checkpoint-032.pt",
+    "bytes": 4794722,
+    "sha256": "20fc859e691e3e15bda2123aef79a97d05f2f4d69e4787ce5e5b7d390cb1e569",
+    "expected_sha256": "20fc859e691e3e15bda2123aef79a97d05f2f4d69e4787ce5e5b7d390cb1e569",
+    "learner_samples": 205,
+    "seconds": 307.03173270000116
+  },
+  {
+    "batch": 27,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-027\\checkpoint-033.pt",
+    "bytes": 4795170,
+    "sha256": "ce48851a22a4e29c13d1adc4bed3ff466d030f85c2e2040c275eda66a95b1aa6",
+    "expected_sha256": "ce48851a22a4e29c13d1adc4bed3ff466d030f85c2e2040c275eda66a95b1aa6",
+    "learner_samples": 292,
+    "seconds": 333.0918273999996
+  },
+  {
+    "batch": 28,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-028\\checkpoint-034.pt",
+    "bytes": 4797026,
+    "sha256": "3df7e54cd10810c1e15b97791da3a94a5576bf47f2d7fce41f1cefc7460c33d5",
+    "expected_sha256": "3df7e54cd10810c1e15b97791da3a94a5576bf47f2d7fce41f1cefc7460c33d5",
+    "learner_samples": 227,
+    "seconds": 257.76071729999967
+  },
+  {
+    "batch": 29,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-029\\checkpoint-035.pt",
+    "bytes": 4797218,
+    "sha256": "319f53882dd393353c0415fea56fd65ce8ee49854b2b0bb8731e59bbd8e3ee69",
+    "expected_sha256": "319f53882dd393353c0415fea56fd65ce8ee49854b2b0bb8731e59bbd8e3ee69",
+    "learner_samples": 151,
+    "seconds": 234.64661550000164
+  },
+  {
+    "batch": 30,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-030\\checkpoint-036.pt",
+    "bytes": 4796066,
+    "sha256": "e01bd337ad66d1e22c6ba6e986015657aa51ba16e05d1ff760ee3dc44b2ead1b",
+    "expected_sha256": "e01bd337ad66d1e22c6ba6e986015657aa51ba16e05d1ff760ee3dc44b2ead1b",
+    "learner_samples": 154,
+    "seconds": 244.01448850000452
+  },
+  {
+    "batch": 31,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-031\\checkpoint-037.pt",
+    "bytes": 4794786,
+    "sha256": "bc688c71e05af013f7b517aa3a3b864e046002508bcc25d99660ceaca3d9baa6",
+    "expected_sha256": "bc688c71e05af013f7b517aa3a3b864e046002508bcc25d99660ceaca3d9baa6",
+    "learner_samples": 231,
+    "seconds": 283.4680451999957
+  },
+  {
+    "batch": 32,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-032\\checkpoint-038.pt",
+    "bytes": 4794786,
+    "sha256": "60256beeea02d86a0dd41393965e9687f4680eef9c56f30d7862e1e1e2183ae4",
+    "expected_sha256": "60256beeea02d86a0dd41393965e9687f4680eef9c56f30d7862e1e1e2183ae4",
+    "learner_samples": 204,
+    "seconds": 243.334761099999
+  },
+  {
+    "batch": 33,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-033\\checkpoint-039.pt",
+    "bytes": 4796002,
+    "sha256": "4f57058d9a994d5b7df792bd691f92f6b74bbb278244da047599c04ecb914bf9",
+    "expected_sha256": "4f57058d9a994d5b7df792bd691f92f6b74bbb278244da047599c04ecb914bf9",
+    "learner_samples": 228,
+    "seconds": 232.53628369999933
+  },
+  {
+    "batch": 34,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-034\\checkpoint-040.pt",
+    "bytes": 4799714,
+    "sha256": "18c535265467c9a0abf0b566d059fecf85ba5ebe3039e5be610aef74142b96b2",
+    "expected_sha256": "18c535265467c9a0abf0b566d059fecf85ba5ebe3039e5be610aef74142b96b2",
+    "learner_samples": 153,
+    "seconds": 199.55028859999584
+  },
+  {
+    "batch": 35,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-035\\checkpoint-041.pt",
+    "bytes": 4798882,
+    "sha256": "865a67b62bd1d5e4bb14e8605a8b0672b15ec9d94827ac50eebca649c675b6b9",
+    "expected_sha256": "865a67b62bd1d5e4bb14e8605a8b0672b15ec9d94827ac50eebca649c675b6b9",
+    "learner_samples": 304,
+    "seconds": 443.50579740000103
+  },
+  {
+    "batch": 36,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-036\\checkpoint-042.pt",
+    "bytes": 4794594,
+    "sha256": "baaa9a4f9f196b0f2801e3828f72d51c0c986d530ef446ac901519259ab7dc82",
+    "expected_sha256": "baaa9a4f9f196b0f2801e3828f72d51c0c986d530ef446ac901519259ab7dc82",
+    "learner_samples": 222,
+    "seconds": 284.6608653000003
+  },
+  {
+    "batch": 37,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-037\\checkpoint-043.pt",
+    "bytes": 4794914,
+    "sha256": "0c56b1bcb5c0a55311084df9e7523ebeaf65cf39ea5f928987173c446682e164",
+    "expected_sha256": "0c56b1bcb5c0a55311084df9e7523ebeaf65cf39ea5f928987173c446682e164",
+    "learner_samples": 183,
+    "seconds": 251.36111769999843
+  },
+  {
+    "batch": 38,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-038\\checkpoint-044.pt",
+    "bytes": 4796962,
+    "sha256": "d4ddd32a4019e86324c1a3326341fa24880b285063c20d79e2d042ba2e6076d3",
+    "expected_sha256": "d4ddd32a4019e86324c1a3326341fa24880b285063c20d79e2d042ba2e6076d3",
+    "learner_samples": 144,
+    "seconds": 295.52734160000546
+  },
+  {
+    "batch": 39,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-039\\checkpoint-045.pt",
+    "bytes": 4794274,
+    "sha256": "db885a2f801d85d836698f21cbfa3e7bd6e4db5269b5ed5ffe10369abe003d72",
+    "expected_sha256": "db885a2f801d85d836698f21cbfa3e7bd6e4db5269b5ed5ffe10369abe003d72",
+    "learner_samples": 263,
+    "seconds": 359.23871489999874
+  },
+  {
+    "batch": 40,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-040\\checkpoint-046.pt",
+    "bytes": 4794274,
+    "sha256": "e4b78eae544367d51118d2aecf20117d9ab4fd4d2611fa1af808ec6e25d80fee",
+    "expected_sha256": "e4b78eae544367d51118d2aecf20117d9ab4fd4d2611fa1af808ec6e25d80fee",
+    "learner_samples": 170,
+    "seconds": 328.3484516000026
+  },
+  {
+    "batch": 41,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-041\\checkpoint-047.pt",
+    "bytes": 4794978,
+    "sha256": "2b4ef94f00fe0aea9c33eface5bcb981f5806ae6d6655364d899dd3370ec8a5f",
+    "expected_sha256": "2b4ef94f00fe0aea9c33eface5bcb981f5806ae6d6655364d899dd3370ec8a5f",
+    "learner_samples": 131,
+    "seconds": 304.0828479999982
+  },
+  {
+    "batch": 42,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-042\\checkpoint-048.pt",
+    "bytes": 4796898,
+    "sha256": "bb9af1e48794516f5a31c10fbe0b21670e582e547e5837f3c47c6c6469b12773",
+    "expected_sha256": "bb9af1e48794516f5a31c10fbe0b21670e582e547e5837f3c47c6c6469b12773",
+    "learner_samples": 159,
+    "seconds": 303.1381346999988
+  },
+  {
+    "batch": 43,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-043\\checkpoint-049.pt",
+    "bytes": 4795682,
+    "sha256": "d358cd1d77c5b93d9593341016a79b40a5b70a3558e775e72189135d9bbc79a9",
+    "expected_sha256": "d358cd1d77c5b93d9593341016a79b40a5b70a3558e775e72189135d9bbc79a9",
+    "learner_samples": 144,
+    "seconds": 282.3950322000019
+  },
+  {
+    "batch": 44,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-044\\checkpoint-050.pt",
+    "bytes": 4796770,
+    "sha256": "fa5e76814ad1b077219a776f3a70b37d262b7fd2e7f195426862539fd99b99ee",
+    "expected_sha256": "fa5e76814ad1b077219a776f3a70b37d262b7fd2e7f195426862539fd99b99ee",
+    "learner_samples": 189,
+    "seconds": 361.57134360000055
+  },
+  {
+    "batch": 45,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-045\\checkpoint-051.pt",
+    "bytes": 4794402,
+    "sha256": "c8b7fd35e0c62491db9280a32358cbcacb52f95284d92e38bfdd006754125d26",
+    "expected_sha256": "c8b7fd35e0c62491db9280a32358cbcacb52f95284d92e38bfdd006754125d26",
+    "learner_samples": 299,
+    "seconds": 390.90560159999586
+  },
+  {
+    "batch": 46,
+    "path": "artifacts\\ai-training\\unattended-20261015-resume\\batch-046\\checkpoint-052.pt",
+    "bytes": 4795170,
+    "sha256": "1a84de5742aa181144e20ee4a3bbbecc6c4d0be5adf9702d4e2b12002a7a0857",
+    "expected_sha256": "1a84de5742aa181144e20ee4a3bbbecc6c4d0be5adf9702d4e2b12002a7a0857",
+    "learner_samples": 160,
+    "seconds": 307.6658660999965
+  }
+]
