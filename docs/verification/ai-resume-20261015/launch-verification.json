@@ -1,0 +1,25 @@
+{
+  "status": "waiting_memory",
+  "started_utc": "2026-10-15T02:36:33.564794+00:00",
+  "deadline_utc": "2026-10-15T10:36:33.508532+00:00",
+  "pid": 23560,
+  "identity_matches": true,
+  "available_gib": 5.054039001464844,
+  "completed_batches": 0,
+  "resume": {
+    "path": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\artifacts\\ai-training\\unattended-20261014\\batch-006\\checkpoint-006.pt",
+    "sha256": "3b05b8791f42f688222b2bf6494c56bd943b7b569ebcacbc13f14c7ce5149598",
+    "iteration": 6,
+    "cursor": 8,
+    "next_seed": 270144,
+    "next_swap": 0
+  },
+  "children": [],
+  "automation": {
+    "id": "goa2v1-ai-8",
+    "status": "ACTIVE",
+    "name": "Goa2V1 AI\u8bad\u7ec3\u5de1\u68c0\uff088\u5c0f\u65f6\uff09",
+    "prompt_contains_replacement_character": false,
+    "interval_minutes": 30
+  }
+}
