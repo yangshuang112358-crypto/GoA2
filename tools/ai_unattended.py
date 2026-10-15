@@ -18,6 +18,8 @@ ROOT = Path(__file__).resolve().parents[1]
 GIB = 2 ** 30
 TRAIN_MINUTES = 20
 FINAL_RESERVE = 35 * 60
+START_AVAILABLE_GIB = 6
+START_STABLE_CHECKS = 3
 
 
 def stamp():
@@ -95,8 +97,34 @@ def completed_checkpoint(directory):
     return checkpoint, summary
 
 
+def resume_metadata(root, checkpoint):
+    """Inspect proven provenance without importing torch during a low-memory wait.
+
+    The trainer still loads and validates the actual model, optimizer and RNG.
+    This sidecar preflight does not replace that authoritative checkpoint check.
+    """
+    checkpoint = checkpoint.resolve()
+    latest, _ = completed_checkpoint(checkpoint.parent)
+    if latest.resolve() != checkpoint:
+        raise ValueError('resume must use the latest fully evaluated checkpoint in its batch')
+    metadata = read(Path(str(checkpoint) + '.json'))
+    if metadata['format'] != 2 or metadata['boundary'] != 'episode':
+        raise ValueError('resume requires a version-2 episode-boundary checkpoint')
+    config = metadata['config']
+    for key, directory, pattern in [('python_files', root / 'ai/trainer', '*.py'),
+                                    ('authority_assemblies', root / 'ai/Goa2.Ai.Cli/bin/Release/net10.0', 'Goa2.*.dll')]:
+        current = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in directory.glob(pattern)}
+        if not current or current != config[key]:
+            raise ValueError('resume provenance mismatch: ' + key)
+    return dict(path=str(checkpoint), sha256=hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
+                iteration=metadata['iteration'], cursor=metadata['cursor'],
+                next_seed=config['seed'] + metadata['cursor'] // 2, next_swap=metadata['cursor'] % 2)
+
+
 class Runner:
-    def __init__(self, output, hours):
+    def __init__(self, output, hours, resume=None):
+        self.resume = resume.resolve() if resume is not None else None
+        provenance = resume_metadata(ROOT, self.resume) if self.resume is not None else None
         self.output = output
         output.mkdir(parents=True, exist_ok=False)
         self.started = time.time()
@@ -107,7 +135,10 @@ class Runner:
                           pid=os.getpid(), process_created=psutil.Process().create_time(),
                           source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
                           hours=hours, architecture='entity', device='cpu', threads=2, batches=[], final_evaluations=[],
-                          resource_policy={'start_available_gib': 5, 'in_run_available_gib': 4,
+                          resume=provenance,
+                          resource_policy={'start_available_gib': START_AVAILABLE_GIB,
+                                           'start_stable_checks': START_STABLE_CHECKS, 'check_interval_seconds': 10,
+                                           'in_run_available_gib': 4,
                                            'minimum_disk_free_gib': 25, 'maximum_artifacts_gib': 10},
                           authority='existing C# engine', opponent_pool=['simple-v1'],
                           conclusion='No strength improvement is established by starting this run.')
@@ -123,17 +154,26 @@ class Runner:
     def check_source_and_disk(self):
         if fingerprint(ROOT) != self.sources:
             raise RuntimeError('source/authority changed; stop rather than mix rule or trainer versions')
+        if self.resume is not None and hashlib.sha256(self.resume.read_bytes()).hexdigest() != self.state['resume']['sha256']:
+            raise RuntimeError('resume checkpoint changed after preflight')
         used = sum(p.stat().st_size for p in self.output.rglob('*') if p.is_file())
         if shutil.disk_usage(self.output).free < 25 * GIB or used > 10 * GIB:
             raise RuntimeError('disk budget reached; all artifacts retained')
 
     def wait_resources(self, until):
+        stable_checks = 0
         while time.time() < until:
             if (self.output / 'STOP').exists():
                 return False
-            if psutil.virtual_memory().available >= 5 * GIB:
-                return True
-            self.publish(status='waiting_memory', reason='Need 5 GiB free before launching; no seed consumed.')
+            if psutil.virtual_memory().available >= START_AVAILABLE_GIB * GIB:
+                stable_checks += 1
+                if stable_checks >= START_STABLE_CHECKS:
+                    self.publish(status='resources_ready', reason=None)
+                    return True
+            else:
+                stable_checks = 0
+            self.publish(status='waiting_memory', memory_stable_checks=stable_checks,
+                         reason=f'Need {START_AVAILABLE_GIB} GiB free for {START_STABLE_CHECKS} consecutive checks; no seed consumed.')
             time.sleep(10)
         return False
 
@@ -150,7 +190,7 @@ class Runner:
             try:
                 if os.name == 'nt':
                     process.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
-                self.publish(status=label, child_pid=child.pid, child_created=process.create_time())
+                self.publish(status=label, reason=None, child_pid=child.pid, child_created=process.create_time())
                 stop_at = min(time.time() + maximum_seconds, self.deadline)
                 while child.poll() is None:
                     if time.time() >= stop_at:
@@ -171,7 +211,7 @@ class Runner:
                 raise RuntimeError(f'{label} failed (exit {child.returncode}); preserve its exact seed and stop, no retry')
 
     def run(self):
-        latest = None
+        latest = self.resume
         try:
             batch = 0
             while may_start_batch(time.time(), self.deadline) and batch < 300:
@@ -190,7 +230,7 @@ class Runner:
                 self.publish(status='batch_complete', latest_checkpoint=str(latest))
                 if (self.output / 'STOP').exists():
                     break
-            if latest is not None and not (self.output / 'STOP').exists():
+            if self.state['batches'] and not (self.output / 'STOP').exists():
                 # New fixed holdout seeds never used by training or per-batch validation.
                 for label, checkpoint in [('holdout-initial', self.output / 'batch-001/initial.pt'),
                                           ('holdout-final', latest)]:
@@ -205,7 +245,7 @@ class Runner:
                     self.child(command, label, 15 * 60 + 100)
                     self.state['final_evaluations'].append(dict(label=label, summary=read(self.output / label / 'summary.json')))
             self.publish(status='stopped_by_request' if (self.output / 'STOP').exists() else
-                         ('completed_budget' if latest is not None else 'no_training_resource_window'), finished_utc=stamp())
+                         ('completed_budget' if self.state['batches'] else 'no_training_resource_window'), finished_utc=stamp())
         except Exception:
             failure = dict(error=traceback.format_exc(), at_utc=stamp())
             save(self.output / 'failure.json', failure)
@@ -217,6 +257,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--hours', type=float, default=8)
+    parser.add_argument('--resume', type=Path, help='Explicit, fully evaluated checkpoint from an earlier run')
     args = parser.parse_args()
     if not 1 <= args.hours <= 8:
         raise ValueError('authorized workflow is bounded to 1..8 hours')
@@ -226,7 +267,7 @@ def main():
     artifacts = ROOT / 'artifacts/ai-training'
     artifacts.mkdir(parents=True, exist_ok=True)
     with exclusive_lock(artifacts / 'unattended.lock'):
-        Runner(args.output.resolve(), args.hours).run()
+        Runner(args.output.resolve(), args.hours, args.resume).run()
 
 
 if __name__ == '__main__':
