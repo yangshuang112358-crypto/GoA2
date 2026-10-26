@@ -1,0 +1,205 @@
+{
+  "checked_utc": "2026-10-26T21:34:10.087478+00:00",
+  "status": "batch-041",
+  "deadline_utc": "2026-10-27T02:03:24.764152+00:00",
+  "within_deadline": true,
+  "supervisor": {
+    "pid": 18596,
+    "recorded_created": 1793037804.5728304,
+    "alive": true,
+    "identity_matches": true,
+    "actual_created": 1793037804.5728304,
+    "tree": [
+      {
+        "pid": 18596,
+        "created": 1793037804.5728304,
+        "name": "python.exe",
+        "rss_mib": 33.27734375
+      },
+      {
+        "pid": 6552,
+        "created": 1793050179.2177691,
+        "name": "python.exe",
+        "rss_mib": 4.2421875
+      },
+      {
+        "pid": 20400,
+        "created": 1793050179.2259676,
+        "name": "conhost.exe",
+        "rss_mib": 7.6640625
+      },
+      {
+        "pid": 25940,
+        "created": 1793050179.243524,
+        "name": "python.exe",
+        "rss_mib": 641.9296875
+      },
+      {
+        "pid": 16232,
+        "created": 1793050181.7752254,
+        "name": "dotnet.exe",
+        "rss_mib": 83.6640625
+      },
+      {
+        "pid": 18508,
+        "created": 1793050181.7859442,
+        "name": "conhost.exe",
+        "rss_mib": 7.6796875
+      }
+    ]
+  },
+  "child": {
+    "pid": 6552,
+    "recorded_created": 1793050179.2177691,
+    "alive": true,
+    "identity_matches": true,
+    "actual_created": 1793050179.2177691,
+    "tree": [
+      {
+        "pid": 6552,
+        "created": 1793050179.2177691,
+        "name": "python.exe",
+        "rss_mib": 4.2421875
+      },
+      {
+        "pid": 20400,
+        "created": 1793050179.2259676,
+        "name": "conhost.exe",
+        "rss_mib": 7.6640625
+      },
+      {
+        "pid": 25940,
+        "created": 1793050179.243524,
+        "name": "python.exe",
+        "rss_mib": 641.9296875
+      },
+      {
+        "pid": 16232,
+        "created": 1793050181.7752254,
+        "name": "dotnet.exe",
+        "rss_mib": 85.3515625
+      },
+      {
+        "pid": 18508,
+        "created": 1793050181.7859442,
+        "name": "conhost.exe",
+        "rss_mib": 7.6796875
+      }
+    ]
+  },
+  "available_ram_gib": 6.138851165771484,
+  "completed_batches": 40,
+  "new_learner_samples": 7624,
+  "new_optimizer_steps": 1319,
+  "training_games": 56,
+  "training_terminated": 56,
+  "training_truncated": 0,
+  "training_wins": 10,
+  "evaluation_runs_including_repeats": 160,
+  "evaluation_terminated": 160,
+  "evaluation_truncated": 0,
+  "latest_evaluation": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 131,
+      "environment_steps": 556,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 43.33903660008218,
+      "checkpoint": "checkpoint-092.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 137,
+      "environment_steps": 604,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 50.9771250000922,
+      "checkpoint": "checkpoint-092.pt"
+    }
+  ],
+  "formal_truncations": [],
+  "authority_stops_including_probes": {
+    "truncated": 41,
+    "terminated": 221
+  },
+  "probes": 41,
+  "all_restores_verified": true,
+  "failed_checkpoint_checks": [],
+  "resume_checkpoint_unchanged": true,
+  "frozen_files": 129,
+  "source_changes": [],
+  "failures": [],
+  "nonempty_stderr": [],
+  "current_batch_learning_excluded_from_completed_counts": [
+    {
+      "batch": "batch-041",
+      "learning": [
+        {
+          "iteration": 93,
+          "samples": 240,
+          "optimizer_steps": 9
+        }
+      ],
+      "checkpoints": [
+        {
+          "path": "artifacts\\ai-training\\unattended-20261027-resume\\batch-041\\checkpoint-093.pt",
+          "bytes": 4794530,
+          "sha256": "5367b87f7f5a30b6d1fa9d647ae6e5bb309074de07ea5477572f237520aedccf"
+        }
+      ],
+      "excluded_from_complete_totals": true
+    }
+  ],
+  "process_tree_peak_rss_mib": 1291.58984375,
+  "system_min_available_mib": 5682.01171875,
+  "weighted_cpu_percent_machine": 8.964740465922187,
+  "completed_batch_seconds": 11288.277884399868,
+  "environment_steps_per_second_including_evaluation_and_update": 10.872340427551837,
+  "disk_free_gib": 454.580379486084,
+  "final_evaluations": [],
+  "final_evaluation_summaries": [],
+  "previous_runs": {
+    "learner_samples": 10289,
+    "optimizer_steps": 1485
+  },
+  "git_head": "a3f13dfc6ffd3a4690e99af4add5f98e5fd9ae3d",
+  "unity_verified_this_run": false,
+  "strength_improvement_established": false,
+  "format": 1,
+  "milestone": "50 completed new training games",
+  "formal_completed_batch_games": 216,
+  "formal_completion_rate": 1,
+  "formal_truncation_rate": 0,
+  "observed_illegal_command_errors": 0,
+  "observed_gameplay_exceptions": 0,
+  "observed_interrupted_games": 0,
+  "error_evidence_scope": "Completed authority results and inspected failure records/stderr; active unfinished games are neither complete nor interrupted.",
+  "completed_batch_probes": 40,
+  "partial_batch_excluded_from_completed_totals": true,
+  "observation_coverage_complete": false,
+  "unattended_deadline_extended": false,
+  "source_frozen_commit": "6aba2b9bebec6ce0b1655845c6b8df681268c6b1",
+  "checkpoint_verified_count": 40,
+  "latest_verified_checkpoint": {
+    "batch": 40,
+    "checkpoint": "artifacts\\ai-training\\unattended-20261027-resume\\batch-040\\checkpoint-092.pt",
+    "sha256": "a740316a7c95e7a67d76868bb05181dbfbee5066c655833b2649e4a5e215eb30",
+    "hash_ok": true,
+    "reload_equal": true,
+    "summary_matches": true,
+    "learning_samples_match": true,
+    "paired_results_match": true,
+    "paired_hash_match": true,
+    "contract_matches": true,
+    "iteration": 92,
+    "cursor": 135
+  },
+  "all_checkpoint_hash_reload_summary_learning_pair_contract_checks_passed": true,
+  "full_local_inspection_path": "artifacts\\ai-training\\unattended-20261027-resume\\inspection-20261027-053410.json",
+  "full_local_inspection_sha256": "171ddd1faa1cc1c1b616b7fa5d9cde324130723027c9a853b76db1bbbe0413cb"
+}
