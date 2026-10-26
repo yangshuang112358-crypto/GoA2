@@ -15,6 +15,7 @@ from bridge import Bridge
 from entities import Encoder
 from train import configure, load_checkpoint, run_episode, sha, write
 from resources import ResourceMonitor, require_interactive_memory
+from ai_replay_export import export_replay, evaluation_summary, write as atomic_write
 
 
 def main():
@@ -29,20 +30,29 @@ def main():
     p.add_argument('--marks', type=int, default=3)
     p.add_argument('--device', choices=['cpu', 'cuda'], default='cpu')
     p.add_argument('--export-replays', action='store_true')
+    p.add_argument('--replay-timeout-seconds', type=int, default=180)
     args = p.parse_args()
     if not (1 <= args.pairs <= 4 and 1 <= args.limit <= 4000 and 1 <= args.max_minutes <= 30):
         raise ValueError('bounded evaluation limits exceeded')
+    if not 1 <= args.replay_timeout_seconds <= 300:
+        raise ValueError('bounded replay timeout exceeded')
     args.output.mkdir(parents=True, exist_ok=False)
     monitor = ResourceMonitor(); started = time.perf_counter(); host = None
     config = {k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()}
     config.update(source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
                   source_status=subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT, text=True),
                   checkpoint_sha256=sha(args.checkpoint), tool_sha256=sha(__file__),
+                  replay_tool_sha256=sha(ROOT/'tools/ai_replay_export.py'),
                   python_files={f.name: sha(f) for f in (ROOT/'ai/trainer').glob('*.py')},
                   opponent_pool=['simple-v1'], learner='one wasp seat; remaining three seats frozen simple',
                   policy='greedy', formal_genesis=True, training=False, purpose='bounded formal compatibility evaluation')
     write(args.output/'manifest.json', config)
-    results = []
+    results = []; replays = []; stage = 'gameplay'
+    replay_status = 'pending' if args.export_replays else 'not_requested'
+    def publish_summary(game_exceptions=0, replay_exceptions=0):
+        atomic_write(args.output/'summary.json', evaluation_summary(results, args.pairs*2,
+            time.perf_counter()-started, replays, replay_status, game_exceptions, replay_exceptions,
+            torch.cuda.max_memory_allocated()/2**20 if args.device == 'cuda' else 0.))
     def guard():
         require_interactive_memory()
         if time.perf_counter()-started > args.max_minutes*60:
@@ -66,36 +76,31 @@ def main():
                                          life=args.life, marks=args.marks, guard=guard)
                     results.append(result)
                     write(args.output/'results.json', results)
+                    publish_summary()
                     print(json.dumps(result), flush=True)
-        replays = []
+        # Persist complete gameplay before optional replay work; failures remain failures.
+        publish_summary()
+        stage = 'replay'
         if args.export_replays:
+            replay_status = 'exporting'; publish_summary()
             for directory in sorted((args.output/'authority').glob('train-*')):
                 result = json.loads((directory/'result.json').read_text(encoding='utf-8-sig'))
                 if result['Stop'] != 'terminated':
                     continue
                 guard()
                 dest = args.output/'replays'/directory.name
-                dest.parent.mkdir(exist_ok=True)
-                command = [str(dotnet), str(ROOT/'ai/Goa2.Ai.Cli/bin/Release/net10.0/Goa2.Ai.Cli.dll'),
-                           'export-replay', str(directory.resolve()), str(dest.resolve())]
-                done = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', timeout=60,
-                                      creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
-                (dest.parent/(directory.name+'.log')).write_text(done.stdout+done.stderr, encoding='utf-8')
-                if done.returncode:
-                    raise RuntimeError('authoritative replay export failed: '+directory.name)
+                export_replay(ROOT, dotnet, directory, dest, args.replay_timeout_seconds, guard)
                 replays.append(str(dest.relative_to(args.output)))
-        total = len(results); terminated = sum(r['terminated'] for r in results)
-        write(args.output/'summary.json', dict(games=total, terminated=terminated,
-              truncated=sum(r['truncated'] for r in results), team_wins=sum(r['terminated'] and r['reward'] > 0 for r in results),
-              completion_rate=terminated/total, truncation_rate=sum(r['truncated'] for r in results)/total,
-              illegal_commands=0, exceptions=0, environment_steps=sum(r['environment_steps'] for r in results),
-              learner_decisions=sum(r['learner_decisions'] for r in results), seconds=time.perf_counter()-started,
-              replays=replays, unity_player_verified=False,
-              gpu_allocated_mib=torch.cuda.max_memory_allocated()/2**20 if device.type == 'cuda' else 0.,
-              conclusion='Small compatibility sample; not evidence of a strength improvement.'))
+                publish_summary()
+            replay_status = 'complete'
+        publish_summary()
     except Exception:
-        write(args.output/'failure.json', dict(error=traceback.format_exc(), completed_results=results))
-        if host is not None and host.last_reply is not None:
+        error = traceback.format_exc()
+        if stage == 'replay':
+            replay_status = 'failed'
+        publish_summary(game_exceptions=int(stage == 'gameplay'), replay_exceptions=int(stage == 'replay'))
+        write(args.output/'failure.json', dict(error=error, stage=stage, completed_results=results))
+        if stage == 'gameplay' and host is not None and host.last_reply is not None:
             write(args.output/'failure-policy-input.json', host.last_reply)
         raise
     finally:

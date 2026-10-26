@@ -153,6 +153,26 @@ class UnattendedTests(unittest.TestCase):
             child.assert_not_called()
             self.assertEqual(runner.state['status'], 'no_training_resource_window')
 
+    def test_failed_final_export_keeps_completed_game_summary_and_fixed_holdout(self):
+        with tempfile.TemporaryDirectory() as d:
+            runner = Runner(Path(d)/'new', 8, holdout_seed=670270)
+            runner.state['batches'] = [{'fixture': 'already completed training'}]
+            captured = []
+            def child(command, label, maximum):
+                captured.append(command)
+                directory = runner.output/label; directory.mkdir()
+                save(directory/'summary.json', {'games': 4, 'gameplay_complete': True,
+                    'pipeline_complete': False, 'replay_status': 'failed'})
+                raise RuntimeError('export timeout fixture')
+            with patch('ai_unattended.may_start_batch', return_value=False), \
+                 patch.object(runner, 'wait_resources', return_value=True), patch.object(runner, 'child', side_effect=child):
+                with self.assertRaises(RuntimeError):
+                    runner.run()
+            self.assertEqual(runner.state['status'], 'failed_preserved')
+            self.assertEqual(runner.state['final_evaluations'][0]['summary']['games'], 4)
+            self.assertEqual(captured[0][captured[0].index('--seed')+1], '670270')
+            self.assertEqual(runner.state['holdout_seeds'], [670270, 670271])
+
 
 if __name__ == '__main__':
     unittest.main()

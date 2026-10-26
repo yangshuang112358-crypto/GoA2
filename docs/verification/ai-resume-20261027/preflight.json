@@ -1,0 +1,72 @@
+{
+  "checked_utc": "2026-10-26T18:00:49.880011+00:00",
+  "unit_tests": {
+    "command": ".venv-ai/Scripts/python.exe -m unittest discover -s tools -p test_ai_*.py -v",
+    "tests": 24,
+    "passed": 24,
+    "seconds": 15.224
+  },
+  "replays": [
+    {
+      "name": "old-674",
+      "commands": 674,
+      "seconds": 77.04700000002049,
+      "state_hash": "e1ea28bd523c8fcb6dc1be86ca48238f8a359349798e28a7a846e31be2b8b280",
+      "input_sha256": {
+        "commands.json": "d9c55f1c89de2948c83aff734343faeb2271875178165e521bd29784241c4ad5",
+        "final-save.json": "e1ea28bd523c8fcb6dc1be86ca48238f8a359349798e28a7a846e31be2b8b280",
+        "contract.json": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      "csharp_scenario_verified": true,
+      "unity_player_verified": false,
+      "resources": {
+        "process_tree_peak_rss_mib": 138.87109375,
+        "system_min_available_mib": 7148.296875,
+        "process_tree_cpu_seconds": 71.015625,
+        "cpu_percent_of_machine": 5.7592369013193965,
+        "sampled_seconds": 77.06709480006248
+      }
+    },
+    {
+      "name": "old-906",
+      "commands": 906,
+      "seconds": 143.5,
+      "state_hash": "402e18baeec9804e275669f6232005b47b5387c2dd397b83f0d2c09c74894a82",
+      "input_sha256": {
+        "commands.json": "4431509069fc6195bbe19cd87343f48e062d6974c916e0b115d9e7753b8b188b",
+        "final-save.json": "402e18baeec9804e275669f6232005b47b5387c2dd397b83f0d2c09c74894a82",
+        "contract.json": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      "csharp_scenario_verified": true,
+      "unity_player_verified": false,
+      "resources": {
+        "process_tree_peak_rss_mib": 159.0,
+        "system_min_available_mib": 7088.890625,
+        "process_tree_cpu_seconds": 134.609375,
+        "cpu_percent_of_machine": 5.862280613018378,
+        "sampled_seconds": 143.51216689997818
+      }
+    }
+  ],
+  "archive": {
+    "path": "docs\\verification\\ai-resume-20261027\\checkpoint052-csharp-replays.zip",
+    "bytes": 283239,
+    "sha256": "cd5c9c1d7815416080f0833886d4a9938aedfb9ad2afff8ef359dffaa1c1bb01"
+  },
+  "resume": {
+    "path": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\artifacts\\ai-training\\unattended-20261015-resume\\batch-046\\checkpoint-052.pt",
+    "sha256": "1a84de5742aa181144e20ee4a3bbbecc6c4d0be5adf9702d4e2b12002a7a0857",
+    "iteration": 52,
+    "cursor": 79,
+    "next_seed": 270179,
+    "next_swap": 1
+  },
+  "old_failure_unchanged": true,
+  "new_holdout_seeds": [
+    670270,
+    670271
+  ],
+  "previous_samples": 10289,
+  "previous_optimizer_steps": 1485,
+  "no_csharp_or_trainer_changes": true
+}

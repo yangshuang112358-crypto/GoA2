@@ -37,10 +37,10 @@ def read(path):
 
 
 def fingerprint(root):
-    names = subprocess.check_output(['git', 'ls-files', '-z', 'ai', 'src', 'content/canonical'], cwd=root).decode().split('\0')
+    names = subprocess.check_output(['git', 'ls-files', '-z', 'ai', 'src', 'core/com.goa2.core/Runtime', 'content/canonical'], cwd=root).decode().split('\0')
     paths = [root / n for n in names if n and Path(n).suffix in ('.py', '.cs', '.json', '.csproj', '.props')]
     paths += list((root / 'ai/Goa2.Ai.Cli/bin/Release/net10.0').glob('Goa2.*.dll'))
-    paths += [root / 'tools/evaluate-ai-checkpoint.py', root / 'tools/ai_unattended.py']
+    paths += [root / 'tools/evaluate-ai-checkpoint.py', root / 'tools/ai_unattended.py', root / 'tools/ai_replay_export.py']
     return {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(set(paths))}
 
 
@@ -122,8 +122,9 @@ def resume_metadata(root, checkpoint):
 
 
 class Runner:
-    def __init__(self, output, hours, resume=None):
+    def __init__(self, output, hours, resume=None, holdout_seed=670140):
         self.resume = resume.resolve() if resume is not None else None
+        self.holdout_seed = holdout_seed
         provenance = resume_metadata(ROOT, self.resume) if self.resume is not None else None
         self.output = output
         output.mkdir(parents=True, exist_ok=False)
@@ -135,7 +136,7 @@ class Runner:
                           pid=os.getpid(), process_created=psutil.Process().create_time(),
                           source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
                           hours=hours, architecture='entity', device='cpu', threads=2, batches=[], final_evaluations=[],
-                          resume=provenance,
+                          resume=provenance, holdout_seeds=[holdout_seed, holdout_seed+1],
                           resource_policy={'start_available_gib': START_AVAILABLE_GIB,
                                            'start_stable_checks': START_STABLE_CHECKS, 'check_interval_seconds': 10,
                                            'in_run_available_gib': 4,
@@ -239,11 +240,17 @@ class Runner:
                         return
                     command = [sys.executable, '-u', str(ROOT / 'tools/evaluate-ai-checkpoint.py'),
                                '--checkpoint', str(checkpoint), '--output', str(self.output / label),
-                               '--seed', '670140', '--pairs', '2', '--limit', '1200', '--max-minutes', '15']
+                               '--seed', str(self.holdout_seed), '--pairs', '2', '--limit', '1200', '--max-minutes', '15']
                     if label == 'holdout-final':
                         command += ['--export-replays']
-                    self.child(command, label, 15 * 60 + 100)
-                    self.state['final_evaluations'].append(dict(label=label, summary=read(self.output / label / 'summary.json')))
+                    try:
+                        self.child(command, label, 15 * 60 + 100)
+                    finally:
+                        summary_path = self.output / label / 'summary.json'
+                        if summary_path.exists():
+                            self.state['final_evaluations'].append(dict(label=label, summary=read(summary_path)))
+                    if not read(summary_path)['pipeline_complete']:
+                        raise RuntimeError('evaluation or replay pipeline incomplete; preserve and stop')
             self.publish(status='stopped_by_request' if (self.output / 'STOP').exists() else
                          ('completed_budget' if self.state['batches'] else 'no_training_resource_window'), finished_utc=stamp())
         except Exception:
@@ -258,16 +265,19 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--hours', type=float, default=8)
     parser.add_argument('--resume', type=Path, help='Explicit, fully evaluated checkpoint from an earlier run')
+    parser.add_argument('--holdout-seed', type=int, default=670140)
     args = parser.parse_args()
     if not 1 <= args.hours <= 8:
         raise ValueError('authorized workflow is bounded to 1..8 hours')
+    if not 0 <= args.holdout_seed < 2147483647:
+        raise ValueError('holdout seed out of range')
     branch = subprocess.check_output(['git', 'branch', '--show-current'], cwd=ROOT, text=True).strip()
     if branch != 'feature/ai-training':
         raise ValueError('run only in the independent AI branch')
     artifacts = ROOT / 'artifacts/ai-training'
     artifacts.mkdir(parents=True, exist_ok=True)
     with exclusive_lock(artifacts / 'unattended.lock'):
-        Runner(args.output.resolve(), args.hours, args.resume).run()
+        Runner(args.output.resolve(), args.hours, args.resume, args.holdout_seed).run()
 
 
 if __name__ == '__main__':
