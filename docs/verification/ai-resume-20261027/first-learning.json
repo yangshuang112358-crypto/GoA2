@@ -1,0 +1,30 @@
+{
+  "checked_utc": "2026-10-26T18:08:38.623621+00:00",
+  "status": "batch-001",
+  "supervisor_identity_matches": true,
+  "completed_batches": 0,
+  "first_batch_updates": 51,
+  "first_batch_updated_samples": 211,
+  "available_gib": 6.026454925537109,
+  "automation_status": "ACTIVE",
+  "deadline_utc": "2026-10-27T02:03:24.764152+00:00",
+  "source_changes": [],
+  "failure_files": [],
+  "stdout_tail": [
+    "{\"seed\": 570140, \"swap\": 0, \"learner_decisions\": 154, \"environment_steps\": 646, \"terminated\": true, \"truncated\": false, \"reward\": -1, \"seconds\": 65.62958179996349, \"checkpoint\": \"initial.pt\"}",
+    "{\"seed\": 570140, \"swap\": 1, \"learner_decisions\": 177, \"environment_steps\": 773, \"terminated\": true, \"truncated\": false, \"reward\": -1, \"seconds\": 90.9766872000182, \"checkpoint\": \"initial.pt\"}",
+    "{\"seed\": 270179, \"swap\": 1, \"learner_decisions\": 67, \"environment_steps\": 268, \"terminated\": true, \"truncated\": false, \"reward\": -1, \"seconds\": 12.884211100055836}",
+    "{\"seed\": 270180, \"swap\": 0, \"learner_decisions\": 144, \"environment_steps\": 602, \"terminated\": true, \"truncated\": false, \"reward\": -1, \"seconds\": 63.306625400087796}",
+    "PPO iteration=53 samples=211 optimizer_steps=51"
+  ],
+  "counts_scope": "First optimizer update only; batch-end paired evaluation is still pending, so completed_batches remains zero.",
+  "training_episodes_completed": 2,
+  "model_iteration": 53,
+  "previous_samples": 10289,
+  "previous_optimizer_steps": 1485,
+  "checkpoint": {
+    "path": "artifacts\\ai-training\\unattended-20261027-resume\\batch-001\\checkpoint-053.pt",
+    "bytes": 4797794,
+    "sha256": "a1d8310695439d5f2b0b00d49e5caedc8db442ea10e3777321447969a7e20796"
+  }
+}
