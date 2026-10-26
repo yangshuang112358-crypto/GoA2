@@ -1,0 +1,106 @@
+{
+  "checked_utc": "2026-10-26T18:05:27.351694+00:00",
+  "status": "batch-001",
+  "started_utc": "2026-10-26T18:03:24.824046+00:00",
+  "deadline_utc": "2026-10-27T02:03:24.764152+00:00",
+  "source_commit": "6aba2b9bebec6ce0b1655845c6b8df681268c6b1",
+  "supervisor": {
+    "pid": 18596,
+    "created": 1793037804.5728304,
+    "identity_matches": true,
+    "alive": true,
+    "children": [
+      {
+        "pid": 8880,
+        "created": 1793037824.9317367,
+        "name": "python.exe"
+      },
+      {
+        "pid": 19832,
+        "created": 1793037824.9396818,
+        "name": "conhost.exe"
+      },
+      {
+        "pid": 28388,
+        "created": 1793037824.9565256,
+        "name": "python.exe"
+      },
+      {
+        "pid": 24372,
+        "created": 1793037827.4839096,
+        "name": "dotnet.exe"
+      },
+      {
+        "pid": 17312,
+        "created": 1793037827.4926736,
+        "name": "conhost.exe"
+      }
+    ]
+  },
+  "child": {
+    "pid": 8880,
+    "created": 1793037824.9317367,
+    "identity_matches": true,
+    "alive": true,
+    "children": [
+      {
+        "pid": 19832,
+        "created": 1793037824.9396818,
+        "name": "conhost.exe"
+      },
+      {
+        "pid": 28388,
+        "created": 1793037824.9565256,
+        "name": "python.exe"
+      },
+      {
+        "pid": 24372,
+        "created": 1793037827.4839096,
+        "name": "dotnet.exe"
+      },
+      {
+        "pid": 17312,
+        "created": 1793037827.4926736,
+        "name": "conhost.exe"
+      }
+    ]
+  },
+  "available_gib": 6.429386138916016,
+  "resource_policy": {
+    "start_available_gib": 6,
+    "start_stable_checks": 3,
+    "check_interval_seconds": 10,
+    "in_run_available_gib": 4,
+    "minimum_disk_free_gib": 25,
+    "maximum_artifacts_gib": 10
+  },
+  "resume": {
+    "path": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\artifacts\\ai-training\\unattended-20261015-resume\\batch-046\\checkpoint-052.pt",
+    "sha256": "1a84de5742aa181144e20ee4a3bbbecc6c4d0be5adf9702d4e2b12002a7a0857",
+    "iteration": 52,
+    "cursor": 79,
+    "next_seed": 270179,
+    "next_swap": 1
+  },
+  "holdout_seeds": [
+    670270,
+    670271
+  ],
+  "completed_batches": 0,
+  "new_learner_samples": 0,
+  "source_changes": [],
+  "failure_files": [],
+  "log_tails": {
+    "batch-001.stderr.log": [],
+    "batch-001.stdout.log": [
+      "{\"seed\": 570140, \"swap\": 0, \"learner_decisions\": 154, \"environment_steps\": 646, \"terminated\": true, \"truncated\": false, \"reward\": -1, \"seconds\": 65.62958179996349, \"checkpoint\": \"initial.pt\"}"
+    ]
+  },
+  "automation": {
+    "id": "goa2v1-ai-8",
+    "name": "Goa2V1 AI\u8bad\u7ec3\u5de1\u68c0\uff088\u5c0f\u65f6\uff09",
+    "status": "ACTIVE",
+    "unicode_valid": true,
+    "rrule": "RRULE:FREQ=MINUTELY;INTERVAL=30;UNTIL=20261027T023824Z"
+  }
+}
