@@ -1,0 +1,234 @@
+{
+  "checked_utc": "2026-10-27T03:16:21.051234+00:00",
+  "status": "batch-015",
+  "updated_utc": "2026-10-27T03:16:18.039295+00:00",
+  "deadline_utc": "2026-10-27T10:15:21.456626+00:00",
+  "within_deadline": true,
+  "supervisor": {
+    "pid": 27416,
+    "recorded_created": 1793067321.26685,
+    "actual_created": 1793067321.26685,
+    "alive": true,
+    "identity_matches": true,
+    "tree": [
+      {
+        "pid": 27416,
+        "created": 1793067321.26685,
+        "name": "python.exe"
+      },
+      {
+        "pid": 4604,
+        "created": 1793070827.9087846,
+        "name": "python.exe"
+      },
+      {
+        "pid": 1324,
+        "created": 1793070827.9182348,
+        "name": "conhost.exe"
+      },
+      {
+        "pid": 17396,
+        "created": 1793070827.9338312,
+        "name": "python.exe"
+      },
+      {
+        "pid": 5800,
+        "created": 1793070830.5938733,
+        "name": "dotnet.exe"
+      },
+      {
+        "pid": 12628,
+        "created": 1793070830.6073422,
+        "name": "conhost.exe"
+      }
+    ]
+  },
+  "child": {
+    "pid": 4604,
+    "recorded_created": 1793070827.9087846,
+    "actual_created": 1793070827.9087846,
+    "alive": true,
+    "identity_matches": true,
+    "tree": [
+      {
+        "pid": 4604,
+        "created": 1793070827.9087846,
+        "name": "python.exe"
+      },
+      {
+        "pid": 1324,
+        "created": 1793070827.9182348,
+        "name": "conhost.exe"
+      },
+      {
+        "pid": 17396,
+        "created": 1793070827.9338312,
+        "name": "python.exe"
+      },
+      {
+        "pid": 5800,
+        "created": 1793070830.5938733,
+        "name": "dotnet.exe"
+      },
+      {
+        "pid": 12628,
+        "created": 1793070830.6073422,
+        "name": "conhost.exe"
+      }
+    ]
+  },
+  "available_ram_gib": 5.862476348876953,
+  "completed_batches": 14,
+  "new_learner_samples": 2651,
+  "new_optimizer_steps": 333,
+  "training_games": 19,
+  "training_terminated": 18,
+  "training_truncated": 1,
+  "training_wins": 5,
+  "fixed_evaluations_including_repeats": 56,
+  "evaluation_terminated": 56,
+  "evaluation_truncated": 0,
+  "latest_fixed_evaluation": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 120,
+      "environment_steps": 507,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 34.30007669981569,
+      "checkpoint": "checkpoint-152.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 129,
+      "environment_steps": 570,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 44.887932900106534,
+      "checkpoint": "checkpoint-152.pt"
+    }
+  ],
+  "formal_truncations": [
+    {
+      "seed": 270249,
+      "swap": 1,
+      "learner_decisions": 269,
+      "environment_steps": 1203,
+      "terminated": false,
+      "truncated": true,
+      "reward": 0,
+      "seconds": 249.5998687001411
+    }
+  ],
+  "authority_stops_including_probes": {
+    "truncated": 16,
+    "terminated": 77
+  },
+  "probes": 15,
+  "all_restores_verified": true,
+  "failed_checkpoint_checks": [],
+  "resume_checkpoint_unchanged": true,
+  "frozen_files": 129,
+  "source_changes": [],
+  "failures": [],
+  "nonempty_stderr": [],
+  "process_tree_peak_rss_mib": 1363.11328125,
+  "system_min_available_mib": 5479.40234375,
+  "weighted_cpu_percent_machine": 9.117242874638691,
+  "completed_batch_seconds": 3113.428486600984,
+  "environment_steps_per_second_including_evaluation_and_update": 11.728549461518394,
+  "disk_free_gib": 451.7173767089844,
+  "automation_status": "ACTIVE",
+  "automation_unicode_valid": true,
+  "final_evaluations": [],
+  "previous_runs": {
+    "learner_samples": 26559,
+    "optimizer_steps": 3916
+  },
+  "git_head": "181893427f6a1f2168ce5f9113e467e3e8f9cb58",
+  "git_branch": "feature/ai-training",
+  "git_status": "",
+  "unity_verified_this_run": false,
+  "strength_improvement_established": false,
+  "first_formal_truncation_evidence": {
+    "directory": "artifacts\\ai-training\\unattended-20261027-continuation\\batch-014\\authority\\train-0004-270249-1",
+    "result": {
+      "Stop": "truncated",
+      "Reward": 0,
+      "EnvironmentSteps": 1203,
+      "Commands": 1206,
+      "Seconds": 249.110818,
+      "RestoreVerified": true,
+      "Winner": null
+    },
+    "config": {
+      "op": "reset",
+      "seed": 270249,
+      "learner": 1,
+      "swap": 1,
+      "limit": 1200,
+      "opponent": "simple",
+      "life": 7,
+      "marks": 3
+    },
+    "files": {
+      "commands.json": {
+        "bytes": 1577559,
+        "sha256": "8c193c59f1c4fd167c448873c8ef1e8da28f6ba2b48017a5aa9d99207545a4c0"
+      },
+      "config.json": {
+        "bytes": 143,
+        "sha256": "c43d47f26628da906bc5f4ff8fd24eb24b271d96107401230bb56b579db7b844"
+      },
+      "contract.json": {
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      "final-save.json": {
+        "bytes": 1108638,
+        "sha256": "3a389c01f06c3b12ca3f805bc00fd25073b027855d5b31181eb110e120e6b221"
+      },
+      "policy.jsonl.gz": {
+        "bytes": 10397307,
+        "sha256": "552055dfa98359cdbc77dadc4447c2c82415e4199b526e4e2d9c404d10b96015"
+      },
+      "result.json": {
+        "bytes": 166,
+        "sha256": "a799e2f0b94dbceed585fc1add8b13fc890be940023f326cce1eaba68eadebfd"
+      },
+      "spectator.jsonl.gz": {
+        "bytes": 79644,
+        "sha256": "a2cb0a408ebaad25c1b478dfe175cbe421ac15fa477a5881a682465e44858b15"
+      }
+    },
+    "counted_as_win_or_loss": false,
+    "paired_policy_and_spectator_kept_separate": true
+  },
+  "active_learning_excluded_from_completed_totals": {
+    "batch": 15,
+    "iteration": 153,
+    "cursor": 221,
+    "samples": 134,
+    "optimizer_steps": 18,
+    "checkpoint_sha256": "066b0a5ed4239d0934ba35c3076eb873aa0351c1bec6f1c70b5fd01511514b89",
+    "paired_evaluation_may_be_pending": true
+  },
+  "last_checkpoint": {
+    "batch": 14,
+    "checkpoint": "artifacts\\ai-training\\unattended-20261027-continuation\\batch-014\\checkpoint-152.pt",
+    "sha256": "f57cf15e1922c8a68c831394a53843306b123b207af885274235b05adfbd657f",
+    "hash_ok": true,
+    "reload_equal": true,
+    "summary_matches": true,
+    "learning_samples_match": true,
+    "paired_results_match": true,
+    "contract_matches": true,
+    "iteration": 152,
+    "cursor": 220
+  },
+  "checkpoint_checks_all_passed": true
+}
