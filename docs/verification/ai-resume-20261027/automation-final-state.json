@@ -1,0 +1,20 @@
+{
+  "id": "goa2v1-ai-8",
+  "name": "Goa2V1 AI训练巡检（8小时）",
+  "status": "PAUSED",
+  "rrule": "RRULE:FREQ=MINUTELY;INTERVAL=30;UNTIL=20261027T023824Z",
+  "preserved_fields": [
+    "version",
+    "id",
+    "kind",
+    "name",
+    "prompt",
+    "rrule",
+    "target_thread_id",
+    "created_at"
+  ],
+  "name_and_prompt_unchanged": true,
+  "unicode_replacement_characters": false,
+  "updated_at": 1793065243395,
+  "other_automations_modified": false
+}

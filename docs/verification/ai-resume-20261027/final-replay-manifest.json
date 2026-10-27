@@ -1,0 +1,141 @@
+{
+  "archive": "checkpoint138-csharp-replays.zip",
+  "bytes": 414054,
+  "sha256": "055b4d139dde7a367307585bff457bba309ea0791f9f133aed203c15303cbcb5",
+  "replays": [
+    {
+      "id": "train-0001-670270-0",
+      "commands": 611,
+      "seconds": 56.21899999980815,
+      "state_hash": "cb19e37a0b9d4b23dff075206c9de17ace9433eaf5ea996a599097306519045a",
+      "source": "artifacts/ai-training/unattended-20261027-resume/holdout-final/authority/train-0001-670270-0",
+      "command_equality": true,
+      "every_step_accepted_and_passed": true,
+      "terminal_verified": true,
+      "unity_verified": false,
+      "files": {
+        "scenario.json": {
+          "bytes": 800007,
+          "sha256": "02304855e725239729eb865990440543483cc2abbb69e10784e6141aa1d1d440"
+        },
+        "scenario-report.json": {
+          "bytes": 454205,
+          "sha256": "1755304d9afbfbf3c0160d39411ae02be08e063470d7c66c720d65e730b5766e"
+        },
+        "final-save.json": {
+          "bytes": 588439,
+          "sha256": "cb19e37a0b9d4b23dff075206c9de17ace9433eaf5ea996a599097306519045a"
+        },
+        "result.json": {
+          "bytes": 141,
+          "sha256": "f9532e691ae508fdbac980b8cb61a0171468bf81cf3fa72b8c21bcec0462f83f"
+        },
+        "contract.json": {
+          "bytes": 915,
+          "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+        }
+      }
+    },
+    {
+      "id": "train-0002-670270-1",
+      "commands": 413,
+      "seconds": 22.844000000040978,
+      "state_hash": "85cddbccd85d6754524e43007adfd5ad397c95d173d90ef354524b33fc3179aa",
+      "source": "artifacts/ai-training/unattended-20261027-resume/holdout-final/authority/train-0002-670270-1",
+      "command_equality": true,
+      "every_step_accepted_and_passed": true,
+      "terminal_verified": true,
+      "unity_verified": false,
+      "files": {
+        "scenario.json": {
+          "bytes": 541214,
+          "sha256": "32705ee08c164a4a90bcaaed32ef598e1583791c7d981dbbaa4d730b789a8e47"
+        },
+        "scenario-report.json": {
+          "bytes": 307274,
+          "sha256": "b166eb051a664e44640d8bfdb4849450aa26e3de521ac79e23f7a9536c19ae5c"
+        },
+        "final-save.json": {
+          "bytes": 399873,
+          "sha256": "85cddbccd85d6754524e43007adfd5ad397c95d173d90ef354524b33fc3179aa"
+        },
+        "result.json": {
+          "bytes": 141,
+          "sha256": "3ea3d871361beb575afaf42d1dfd3c7e1acb4d3011360abfdb845de489f1679f"
+        },
+        "contract.json": {
+          "bytes": 915,
+          "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+        }
+      }
+    },
+    {
+      "id": "train-0003-670271-0",
+      "commands": 604,
+      "seconds": 54.96900000004098,
+      "state_hash": "f000aa52520b54538e29f87d25ed19af32b533eaa7b045f4b0491858d319806b",
+      "source": "artifacts/ai-training/unattended-20261027-resume/holdout-final/authority/train-0003-670271-0",
+      "command_equality": true,
+      "every_step_accepted_and_passed": true,
+      "terminal_verified": true,
+      "unity_verified": false,
+      "files": {
+        "scenario.json": {
+          "bytes": 790925,
+          "sha256": "c689f1b53ec5747ece319ddbd88dca26a3e13b6b8172f8c329b4c7c16ae0998f"
+        },
+        "scenario-report.json": {
+          "bytes": 449093,
+          "sha256": "3bb95fb623e63db7bf1774debee506a22b7c23d560453e143d1a016cc9c89f0d"
+        },
+        "final-save.json": {
+          "bytes": 584485,
+          "sha256": "f000aa52520b54538e29f87d25ed19af32b533eaa7b045f4b0491858d319806b"
+        },
+        "result.json": {
+          "bytes": 141,
+          "sha256": "70645c0d4381ceba5fc780b5a17202ae0729139125facc73cf55059197e7ed2e"
+        },
+        "contract.json": {
+          "bytes": 915,
+          "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+        }
+      }
+    },
+    {
+      "id": "train-0004-670271-1",
+      "commands": 576,
+      "seconds": 49.42100000008941,
+      "state_hash": "a76ff5a245999ccf1a557441c83acc680854c4a7a332ef32da07c3516190085a",
+      "source": "artifacts/ai-training/unattended-20261027-resume/holdout-final/authority/train-0004-670271-1",
+      "command_equality": true,
+      "every_step_accepted_and_passed": true,
+      "terminal_verified": true,
+      "unity_verified": false,
+      "files": {
+        "scenario.json": {
+          "bytes": 754841,
+          "sha256": "7562a53838c2b82d6cdd9a520a6a1f18e3829176e1e466b286be56fa61433016"
+        },
+        "scenario-report.json": {
+          "bytes": 428596,
+          "sha256": "4ed2970090572ee9e1f829c39bb3a7073cc7ac4d1a9cfde992db962228d3f00d"
+        },
+        "final-save.json": {
+          "bytes": 562840,
+          "sha256": "a76ff5a245999ccf1a557441c83acc680854c4a7a332ef32da07c3516190085a"
+        },
+        "result.json": {
+          "bytes": 141,
+          "sha256": "8a7f1616a8ffa843f63419bc2f3e8eaacfe888b3c60c765f3113270a9806098c"
+        },
+        "contract.json": {
+          "bytes": 915,
+          "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+        }
+      }
+    }
+  ],
+  "policy_inputs_in_archive": false,
+  "unity_verified": false
+}

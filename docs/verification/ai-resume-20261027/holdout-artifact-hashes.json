@@ -1,0 +1,282 @@
+[
+  {
+    "directory": "artifacts/ai-training/unattended-20261027-resume/holdout-initial/authority/train-0001-670270-0",
+    "files": {
+      "commands.json": {
+        "bytes": 873616,
+        "sha256": "f0e25a6b9253710a0bf190b2a0dabf6ea674fbace86b8887d4343db26beaad97"
+      },
+      "config.json": {
+        "bytes": 143,
+        "sha256": "f0b94b3943fa08baf493dc9ab18a9f252faaf39c0c8baf8fe705964f8280d2cd"
+      },
+      "contract.json": {
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      "final-save.json": {
+        "bytes": 639440,
+        "sha256": "ead9188285e3f4188bd5c4d85582a3cb80cc539d7062c0a5ef92e7e52a57ce92"
+      },
+      "policy.jsonl.gz": {
+        "bytes": 3698641,
+        "sha256": "bf5f151c2b5fcdc8761a0292d30f9fb080246d7f3c4d783f76add358602ae63a"
+      },
+      "result.json": {
+        "bytes": 167,
+        "sha256": "8bffd3f22267251366aad1d3fa14d53cffe0d28913a2a6be9f04e6b3a3ba81e1"
+      },
+      "spectator.jsonl.gz": {
+        "bytes": 49359,
+        "sha256": "af151866bcaa9e767b98ef6e4a315e00f7cf3b96d88368f754b905ef2f9a2f32"
+      }
+    },
+    "counterexample_initial_win_final_loss": false,
+    "policy_and_spectator_separate": true
+  },
+  {
+    "directory": "artifacts/ai-training/unattended-20261027-resume/holdout-initial/authority/train-0002-670270-1",
+    "files": {
+      "commands.json": {
+        "bytes": 757382,
+        "sha256": "86f5f3843c0b847cc7c6bb0a39cdc074bc199a9c142f384853bca59de11ec850"
+      },
+      "config.json": {
+        "bytes": 143,
+        "sha256": "1c81b4db7943f041085ac9ea39668a0debb590c35a3d7a84032bd6975472d4df"
+      },
+      "contract.json": {
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      "final-save.json": {
+        "bytes": 563788,
+        "sha256": "84650fafafaae8f2a9a59e20ec1cf1894493b3ccb1972ea4eec1f901ff0e826b"
+      },
+      "policy.jsonl.gz": {
+        "bytes": 2717939,
+        "sha256": "09fbfd14385fc62ef57255e86aa345662320e717400398324cbad72b5a4076b4"
+      },
+      "result.json": {
+        "bytes": 168,
+        "sha256": "e0efc041d8f85b2a4e554c14df95e7f03adb879649732bff26da5f56fc9133d6"
+      },
+      "spectator.jsonl.gz": {
+        "bytes": 45100,
+        "sha256": "bd5cc06622d820515627fe899f3c1d52fc3d3c69f32963937032b48943c6cde6"
+      }
+    },
+    "counterexample_initial_win_final_loss": false,
+    "policy_and_spectator_separate": true
+  },
+  {
+    "directory": "artifacts/ai-training/unattended-20261027-resume/holdout-initial/authority/train-0003-670271-0",
+    "files": {
+      "commands.json": {
+        "bytes": 873104,
+        "sha256": "c066ec59f3e0cf9ce72a72fb4044c6b32256ed813f032b4bc65d2a9ede337a50"
+      },
+      "config.json": {
+        "bytes": 143,
+        "sha256": "fb7aedcfae6118733809f600014c68202170140a12fa9ddff747514344ca3d5c"
+      },
+      "contract.json": {
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      "final-save.json": {
+        "bytes": 632938,
+        "sha256": "0c9318065322fb1bc91501db6de52f146ba09cc811fe6e6be809c68d9c830dcd"
+      },
+      "policy.jsonl.gz": {
+        "bytes": 3582833,
+        "sha256": "1bf84d494dc023b0370b27802038ad30673d2b282214a8cc7c2bbb3cbb6cf7ce"
+      },
+      "result.json": {
+        "bytes": 167,
+        "sha256": "acdff4e68f4b71650ec58ba37c468f09dec381dd4f95b8b357045ca9977183dc"
+      },
+      "spectator.jsonl.gz": {
+        "bytes": 48438,
+        "sha256": "26c157a8633008f7c749c3108a0a61971c52cd0ea6d522d2975379a803b535a8"
+      }
+    },
+    "counterexample_initial_win_final_loss": true,
+    "policy_and_spectator_separate": true
+  },
+  {
+    "directory": "artifacts/ai-training/unattended-20261027-resume/holdout-initial/authority/train-0004-670271-1",
+    "files": {
+      "commands.json": {
+        "bytes": 834567,
+        "sha256": "3291d63f7a17ddd3375f37aaa3d64a9e028d50f893a7206e9cbcd8c139c83131"
+      },
+      "config.json": {
+        "bytes": 143,
+        "sha256": "ed15049927d581ad911db6e94bc1bc994af5dcd0a77cdf306271eba2a94e1cf6"
+      },
+      "contract.json": {
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      "final-save.json": {
+        "bytes": 622583,
+        "sha256": "9b6c9ba313ffad01259fd86b08270864fed5afeda0417512daa1040ea2cbc3a7"
+      },
+      "policy.jsonl.gz": {
+        "bytes": 3179224,
+        "sha256": "d1b5394785fa1adee91567df2af193b1a279f770ad37954de70432ab53726d81"
+      },
+      "result.json": {
+        "bytes": 168,
+        "sha256": "84f99b5810e9aef83bdde806cfa6a4ee512a04db34563aeb34489f9c40a1a0dd"
+      },
+      "spectator.jsonl.gz": {
+        "bytes": 49087,
+        "sha256": "ea5ff92da70ab04794b0910d6bb936b1fdf867efc8a442b84ccfa11972b26da3"
+      }
+    },
+    "counterexample_initial_win_final_loss": false,
+    "policy_and_spectator_separate": true
+  },
+  {
+    "directory": "artifacts/ai-training/unattended-20261027-resume/holdout-final/authority/train-0001-670270-0",
+    "files": {
+      "commands.json": {
+        "bytes": 800007,
+        "sha256": "02304855e725239729eb865990440543483cc2abbb69e10784e6141aa1d1d440"
+      },
+      "config.json": {
+        "bytes": 143,
+        "sha256": "f0b94b3943fa08baf493dc9ab18a9f252faaf39c0c8baf8fe705964f8280d2cd"
+      },
+      "contract.json": {
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      "final-save.json": {
+        "bytes": 588439,
+        "sha256": "cb19e37a0b9d4b23dff075206c9de17ace9433eaf5ea996a599097306519045a"
+      },
+      "policy.jsonl.gz": {
+        "bytes": 3220921,
+        "sha256": "dec2a03db4a360f089608da26c9845763d60d229c74524e862406c863f1b471b"
+      },
+      "result.json": {
+        "bytes": 167,
+        "sha256": "f6f43fd4a1a10abddfd9bad754d174301a33144c75b7c1c1d6c1273040086d9d"
+      },
+      "spectator.jsonl.gz": {
+        "bytes": 45851,
+        "sha256": "51bfd98a9f123e81d42236e56d4afbc72900e528a224f06c9afca0f1020e410c"
+      }
+    },
+    "counterexample_initial_win_final_loss": false,
+    "policy_and_spectator_separate": true
+  },
+  {
+    "directory": "artifacts/ai-training/unattended-20261027-resume/holdout-final/authority/train-0002-670270-1",
+    "files": {
+      "commands.json": {
+        "bytes": 541214,
+        "sha256": "32705ee08c164a4a90bcaaed32ef598e1583791c7d981dbbaa4d730b789a8e47"
+      },
+      "config.json": {
+        "bytes": 143,
+        "sha256": "1c81b4db7943f041085ac9ea39668a0debb590c35a3d7a84032bd6975472d4df"
+      },
+      "contract.json": {
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      "final-save.json": {
+        "bytes": 399873,
+        "sha256": "85cddbccd85d6754524e43007adfd5ad397c95d173d90ef354524b33fc3179aa"
+      },
+      "policy.jsonl.gz": {
+        "bytes": 1359527,
+        "sha256": "4e0ad25b63ccaafad907a948f5869cb0e1f39093f366a1fd4e24423b7526496e"
+      },
+      "result.json": {
+        "bytes": 168,
+        "sha256": "eec6eec951433a7191f7bf5daeb5fa8137151b064eca8ae075650a442f5c8c7b"
+      },
+      "spectator.jsonl.gz": {
+        "bytes": 30822,
+        "sha256": "f0176efb568355ee6b7c87c45e00f63d96f1c28a8d8670534077f54be3831468"
+      }
+    },
+    "counterexample_initial_win_final_loss": false,
+    "policy_and_spectator_separate": true
+  },
+  {
+    "directory": "artifacts/ai-training/unattended-20261027-resume/holdout-final/authority/train-0003-670271-0",
+    "files": {
+      "commands.json": {
+        "bytes": 790925,
+        "sha256": "c689f1b53ec5747ece319ddbd88dca26a3e13b6b8172f8c329b4c7c16ae0998f"
+      },
+      "config.json": {
+        "bytes": 143,
+        "sha256": "fb7aedcfae6118733809f600014c68202170140a12fa9ddff747514344ca3d5c"
+      },
+      "contract.json": {
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      "final-save.json": {
+        "bytes": 584485,
+        "sha256": "f000aa52520b54538e29f87d25ed19af32b533eaa7b045f4b0491858d319806b"
+      },
+      "policy.jsonl.gz": {
+        "bytes": 3228352,
+        "sha256": "ea65651125bee3c454df2024efe71d728c90893849e84e80abb26e874e6cb5ae"
+      },
+      "result.json": {
+        "bytes": 167,
+        "sha256": "418b05cd250f9a34bda44fe3ef85712e513e9c575da33e933d71d2ae99b7b314"
+      },
+      "spectator.jsonl.gz": {
+        "bytes": 44983,
+        "sha256": "1677ef6e33377005a6d83379c09fa5ce62b1d4bb62f32a7a18781e20d1bf870a"
+      }
+    },
+    "counterexample_initial_win_final_loss": true,
+    "policy_and_spectator_separate": true
+  },
+  {
+    "directory": "artifacts/ai-training/unattended-20261027-resume/holdout-final/authority/train-0004-670271-1",
+    "files": {
+      "commands.json": {
+        "bytes": 754841,
+        "sha256": "7562a53838c2b82d6cdd9a520a6a1f18e3829176e1e466b286be56fa61433016"
+      },
+      "config.json": {
+        "bytes": 143,
+        "sha256": "ed15049927d581ad911db6e94bc1bc994af5dcd0a77cdf306271eba2a94e1cf6"
+      },
+      "contract.json": {
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      "final-save.json": {
+        "bytes": 562840,
+        "sha256": "a76ff5a245999ccf1a557441c83acc680854c4a7a332ef32da07c3516190085a"
+      },
+      "policy.jsonl.gz": {
+        "bytes": 2632559,
+        "sha256": "a8095f416acc8e7cbe572af8bd2996b2afa6e5aa1cca38e3976045ea6937eec4"
+      },
+      "result.json": {
+        "bytes": 168,
+        "sha256": "9ab65ffa85c13663b3d36b864cdcfad362470550a778395bb9790da5f813ad54"
+      },
+      "spectator.jsonl.gz": {
+        "bytes": 43798,
+        "sha256": "cf589f9e5c4bd8e5b36cf3f609a9526b2d509548a6e69a4ff9ffbb63d1c725cc"
+      }
+    },
+    "counterexample_initial_win_final_loss": false,
+    "policy_and_spectator_separate": true
+  }
+]

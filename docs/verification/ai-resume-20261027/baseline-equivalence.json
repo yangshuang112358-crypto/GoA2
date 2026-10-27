@@ -1,0 +1,21 @@
+{
+  "source": "artifacts/ai-training/unattended-20261015-resume/batch-046/checkpoint-052.pt",
+  "source_sha256": "1a84de5742aa181144e20ee4a3bbbecc6c4d0be5adf9702d4e2b12002a7a0857",
+  "initial": "artifacts/ai-training/unattended-20261027-resume/batch-001/initial.pt",
+  "initial_sha256": "6b7be37da491a401b6adee30543acc0ef2de2ffa46a05ebd65b18941161d5cd9",
+  "tensor_count": 66,
+  "parameter_count": 392146,
+  "bitwise_equal": {
+    "model": true,
+    "optimizer": true,
+    "torch_rng": true,
+    "cuda_rng": true,
+    "contract": true,
+    "shape": true,
+    "cursor": true,
+    "iteration": true
+  },
+  "iteration": 52,
+  "cursor": 79,
+  "note": "Checkpoint serialization/configuration differs; model and optimizer/RNG state are identical."
+}

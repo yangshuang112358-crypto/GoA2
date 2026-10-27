@@ -1,0 +1,15 @@
+{
+  "checked_utc": "2026-10-27T01:40:06.207531+00:00",
+  "recorded_identities": 69,
+  "live_matching_identities": [],
+  "pid_reuse_ignored": [
+    {
+      "pid": 12300,
+      "recorded_created": 1793043256.0851283,
+      "actual_created": 1793065204.538374
+    }
+  ],
+  "run_path_or_ai_cli_matches": [],
+  "inaccessible_candidate_pids": [],
+  "terminated_by_audit": false
+}
