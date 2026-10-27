@@ -1,0 +1,630 @@
+{
+  "checked_utc": "2026-10-27T02:13:14.821075+00:00",
+  "source_commit": "14ae9766fab9a3e981148ae34cb00ca7b0a485b7",
+  "resume": {
+    "path": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\artifacts\\ai-training\\unattended-20261027-resume\\batch-086\\checkpoint-138.pt",
+    "sha256": "168265a10515a11205ea8e5f13b1e8557337a630debc79b5358674677306568a",
+    "iteration": 138,
+    "cursor": 201,
+    "next_seed": 270240,
+    "next_swap": 1
+  },
+  "frozen_unchanged": true,
+  "active_training_processes": [],
+  "exclusive_lock_available": true,
+  "ram_available_gib": 6.541908264160156,
+  "disk_free_gib": 452.3097457885742,
+  "ppo_audit": {
+    "batches": 86,
+    "early_stopped_batches": 82,
+    "planned_optimizer_steps": 8196,
+    "actual_optimizer_steps": 2431,
+    "actual_planned_fraction": 0.29660810151293315,
+    "median_actual_steps": 21.5,
+    "scope": "Inferred from configured 2 epochs, minibatch4 and existing early-stop return; not a replay of update data. Does not establish cause of low win rate.",
+    "batches_detail": [
+      {
+        "iteration": 53,
+        "samples": 211,
+        "planned_optimizer_steps": 106,
+        "actual_optimizer_steps": 51,
+        "stopped_early": true
+      },
+      {
+        "iteration": 54,
+        "samples": 157,
+        "planned_optimizer_steps": 80,
+        "actual_optimizer_steps": 21,
+        "stopped_early": true
+      },
+      {
+        "iteration": 55,
+        "samples": 135,
+        "planned_optimizer_steps": 68,
+        "actual_optimizer_steps": 51,
+        "stopped_early": true
+      },
+      {
+        "iteration": 56,
+        "samples": 282,
+        "planned_optimizer_steps": 142,
+        "actual_optimizer_steps": 18,
+        "stopped_early": true
+      },
+      {
+        "iteration": 57,
+        "samples": 154,
+        "planned_optimizer_steps": 78,
+        "actual_optimizer_steps": 6,
+        "stopped_early": true
+      },
+      {
+        "iteration": 58,
+        "samples": 137,
+        "planned_optimizer_steps": 70,
+        "actual_optimizer_steps": 12,
+        "stopped_early": true
+      },
+      {
+        "iteration": 59,
+        "samples": 293,
+        "planned_optimizer_steps": 148,
+        "actual_optimizer_steps": 10,
+        "stopped_early": true
+      },
+      {
+        "iteration": 60,
+        "samples": 279,
+        "planned_optimizer_steps": 140,
+        "actual_optimizer_steps": 20,
+        "stopped_early": true
+      },
+      {
+        "iteration": 61,
+        "samples": 128,
+        "planned_optimizer_steps": 64,
+        "actual_optimizer_steps": 14,
+        "stopped_early": true
+      },
+      {
+        "iteration": 62,
+        "samples": 245,
+        "planned_optimizer_steps": 124,
+        "actual_optimizer_steps": 14,
+        "stopped_early": true
+      },
+      {
+        "iteration": 63,
+        "samples": 266,
+        "planned_optimizer_steps": 134,
+        "actual_optimizer_steps": 21,
+        "stopped_early": true
+      },
+      {
+        "iteration": 64,
+        "samples": 168,
+        "planned_optimizer_steps": 84,
+        "actual_optimizer_steps": 28,
+        "stopped_early": true
+      },
+      {
+        "iteration": 65,
+        "samples": 148,
+        "planned_optimizer_steps": 74,
+        "actual_optimizer_steps": 56,
+        "stopped_early": true
+      },
+      {
+        "iteration": 66,
+        "samples": 178,
+        "planned_optimizer_steps": 90,
+        "actual_optimizer_steps": 16,
+        "stopped_early": true
+      },
+      {
+        "iteration": 67,
+        "samples": 239,
+        "planned_optimizer_steps": 120,
+        "actual_optimizer_steps": 45,
+        "stopped_early": true
+      },
+      {
+        "iteration": 68,
+        "samples": 161,
+        "planned_optimizer_steps": 82,
+        "actual_optimizer_steps": 27,
+        "stopped_early": true
+      },
+      {
+        "iteration": 69,
+        "samples": 185,
+        "planned_optimizer_steps": 94,
+        "actual_optimizer_steps": 8,
+        "stopped_early": true
+      },
+      {
+        "iteration": 70,
+        "samples": 160,
+        "planned_optimizer_steps": 80,
+        "actual_optimizer_steps": 33,
+        "stopped_early": true
+      },
+      {
+        "iteration": 71,
+        "samples": 179,
+        "planned_optimizer_steps": 90,
+        "actual_optimizer_steps": 11,
+        "stopped_early": true
+      },
+      {
+        "iteration": 72,
+        "samples": 370,
+        "planned_optimizer_steps": 186,
+        "actual_optimizer_steps": 26,
+        "stopped_early": true
+      },
+      {
+        "iteration": 73,
+        "samples": 140,
+        "planned_optimizer_steps": 70,
+        "actual_optimizer_steps": 34,
+        "stopped_early": true
+      },
+      {
+        "iteration": 74,
+        "samples": 163,
+        "planned_optimizer_steps": 82,
+        "actual_optimizer_steps": 52,
+        "stopped_early": true
+      },
+      {
+        "iteration": 75,
+        "samples": 146,
+        "planned_optimizer_steps": 74,
+        "actual_optimizer_steps": 51,
+        "stopped_early": true
+      },
+      {
+        "iteration": 76,
+        "samples": 174,
+        "planned_optimizer_steps": 88,
+        "actual_optimizer_steps": 31,
+        "stopped_early": true
+      },
+      {
+        "iteration": 77,
+        "samples": 144,
+        "planned_optimizer_steps": 72,
+        "actual_optimizer_steps": 19,
+        "stopped_early": true
+      },
+      {
+        "iteration": 78,
+        "samples": 176,
+        "planned_optimizer_steps": 88,
+        "actual_optimizer_steps": 41,
+        "stopped_early": true
+      },
+      {
+        "iteration": 79,
+        "samples": 147,
+        "planned_optimizer_steps": 74,
+        "actual_optimizer_steps": 17,
+        "stopped_early": true
+      },
+      {
+        "iteration": 80,
+        "samples": 230,
+        "planned_optimizer_steps": 116,
+        "actual_optimizer_steps": 45,
+        "stopped_early": true
+      },
+      {
+        "iteration": 81,
+        "samples": 172,
+        "planned_optimizer_steps": 86,
+        "actual_optimizer_steps": 84,
+        "stopped_early": true
+      },
+      {
+        "iteration": 82,
+        "samples": 172,
+        "planned_optimizer_steps": 86,
+        "actual_optimizer_steps": 39,
+        "stopped_early": true
+      },
+      {
+        "iteration": 83,
+        "samples": 212,
+        "planned_optimizer_steps": 106,
+        "actual_optimizer_steps": 26,
+        "stopped_early": true
+      },
+      {
+        "iteration": 84,
+        "samples": 170,
+        "planned_optimizer_steps": 86,
+        "actual_optimizer_steps": 31,
+        "stopped_early": true
+      },
+      {
+        "iteration": 85,
+        "samples": 186,
+        "planned_optimizer_steps": 94,
+        "actual_optimizer_steps": 25,
+        "stopped_early": true
+      },
+      {
+        "iteration": 86,
+        "samples": 177,
+        "planned_optimizer_steps": 90,
+        "actual_optimizer_steps": 24,
+        "stopped_early": true
+      },
+      {
+        "iteration": 87,
+        "samples": 292,
+        "planned_optimizer_steps": 146,
+        "actual_optimizer_steps": 19,
+        "stopped_early": true
+      },
+      {
+        "iteration": 88,
+        "samples": 173,
+        "planned_optimizer_steps": 88,
+        "actual_optimizer_steps": 38,
+        "stopped_early": true
+      },
+      {
+        "iteration": 89,
+        "samples": 161,
+        "planned_optimizer_steps": 82,
+        "actual_optimizer_steps": 82,
+        "stopped_early": false
+      },
+      {
+        "iteration": 90,
+        "samples": 129,
+        "planned_optimizer_steps": 66,
+        "actual_optimizer_steps": 66,
+        "stopped_early": false
+      },
+      {
+        "iteration": 91,
+        "samples": 150,
+        "planned_optimizer_steps": 76,
+        "actual_optimizer_steps": 76,
+        "stopped_early": false
+      },
+      {
+        "iteration": 92,
+        "samples": 235,
+        "planned_optimizer_steps": 118,
+        "actual_optimizer_steps": 31,
+        "stopped_early": true
+      },
+      {
+        "iteration": 93,
+        "samples": 240,
+        "planned_optimizer_steps": 120,
+        "actual_optimizer_steps": 9,
+        "stopped_early": true
+      },
+      {
+        "iteration": 94,
+        "samples": 152,
+        "planned_optimizer_steps": 76,
+        "actual_optimizer_steps": 7,
+        "stopped_early": true
+      },
+      {
+        "iteration": 95,
+        "samples": 164,
+        "planned_optimizer_steps": 82,
+        "actual_optimizer_steps": 13,
+        "stopped_early": true
+      },
+      {
+        "iteration": 96,
+        "samples": 235,
+        "planned_optimizer_steps": 118,
+        "actual_optimizer_steps": 34,
+        "stopped_early": true
+      },
+      {
+        "iteration": 97,
+        "samples": 184,
+        "planned_optimizer_steps": 92,
+        "actual_optimizer_steps": 32,
+        "stopped_early": true
+      },
+      {
+        "iteration": 98,
+        "samples": 180,
+        "planned_optimizer_steps": 90,
+        "actual_optimizer_steps": 11,
+        "stopped_early": true
+      },
+      {
+        "iteration": 99,
+        "samples": 171,
+        "planned_optimizer_steps": 86,
+        "actual_optimizer_steps": 6,
+        "stopped_early": true
+      },
+      {
+        "iteration": 100,
+        "samples": 175,
+        "planned_optimizer_steps": 88,
+        "actual_optimizer_steps": 88,
+        "stopped_early": false
+      },
+      {
+        "iteration": 101,
+        "samples": 256,
+        "planned_optimizer_steps": 128,
+        "actual_optimizer_steps": 123,
+        "stopped_early": true
+      },
+      {
+        "iteration": 102,
+        "samples": 166,
+        "planned_optimizer_steps": 84,
+        "actual_optimizer_steps": 22,
+        "stopped_early": true
+      },
+      {
+        "iteration": 103,
+        "samples": 187,
+        "planned_optimizer_steps": 94,
+        "actual_optimizer_steps": 20,
+        "stopped_early": true
+      },
+      {
+        "iteration": 104,
+        "samples": 172,
+        "planned_optimizer_steps": 86,
+        "actual_optimizer_steps": 10,
+        "stopped_early": true
+      },
+      {
+        "iteration": 105,
+        "samples": 148,
+        "planned_optimizer_steps": 74,
+        "actual_optimizer_steps": 7,
+        "stopped_early": true
+      },
+      {
+        "iteration": 106,
+        "samples": 197,
+        "planned_optimizer_steps": 100,
+        "actual_optimizer_steps": 34,
+        "stopped_early": true
+      },
+      {
+        "iteration": 107,
+        "samples": 283,
+        "planned_optimizer_steps": 142,
+        "actual_optimizer_steps": 20,
+        "stopped_early": true
+      },
+      {
+        "iteration": 108,
+        "samples": 136,
+        "planned_optimizer_steps": 68,
+        "actual_optimizer_steps": 19,
+        "stopped_early": true
+      },
+      {
+        "iteration": 109,
+        "samples": 153,
+        "planned_optimizer_steps": 78,
+        "actual_optimizer_steps": 18,
+        "stopped_early": true
+      },
+      {
+        "iteration": 110,
+        "samples": 253,
+        "planned_optimizer_steps": 128,
+        "actual_optimizer_steps": 54,
+        "stopped_early": true
+      },
+      {
+        "iteration": 111,
+        "samples": 128,
+        "planned_optimizer_steps": 64,
+        "actual_optimizer_steps": 42,
+        "stopped_early": true
+      },
+      {
+        "iteration": 112,
+        "samples": 141,
+        "planned_optimizer_steps": 72,
+        "actual_optimizer_steps": 14,
+        "stopped_early": true
+      },
+      {
+        "iteration": 113,
+        "samples": 147,
+        "planned_optimizer_steps": 74,
+        "actual_optimizer_steps": 19,
+        "stopped_early": true
+      },
+      {
+        "iteration": 114,
+        "samples": 156,
+        "planned_optimizer_steps": 78,
+        "actual_optimizer_steps": 34,
+        "stopped_early": true
+      },
+      {
+        "iteration": 115,
+        "samples": 299,
+        "planned_optimizer_steps": 150,
+        "actual_optimizer_steps": 14,
+        "stopped_early": true
+      },
+      {
+        "iteration": 116,
+        "samples": 136,
+        "planned_optimizer_steps": 68,
+        "actual_optimizer_steps": 54,
+        "stopped_early": true
+      },
+      {
+        "iteration": 117,
+        "samples": 161,
+        "planned_optimizer_steps": 82,
+        "actual_optimizer_steps": 33,
+        "stopped_early": true
+      },
+      {
+        "iteration": 118,
+        "samples": 159,
+        "planned_optimizer_steps": 80,
+        "actual_optimizer_steps": 26,
+        "stopped_early": true
+      },
+      {
+        "iteration": 119,
+        "samples": 182,
+        "planned_optimizer_steps": 92,
+        "actual_optimizer_steps": 22,
+        "stopped_early": true
+      },
+      {
+        "iteration": 120,
+        "samples": 246,
+        "planned_optimizer_steps": 124,
+        "actual_optimizer_steps": 39,
+        "stopped_early": true
+      },
+      {
+        "iteration": 121,
+        "samples": 311,
+        "planned_optimizer_steps": 156,
+        "actual_optimizer_steps": 20,
+        "stopped_early": true
+      },
+      {
+        "iteration": 122,
+        "samples": 223,
+        "planned_optimizer_steps": 112,
+        "actual_optimizer_steps": 50,
+        "stopped_early": true
+      },
+      {
+        "iteration": 123,
+        "samples": 165,
+        "planned_optimizer_steps": 84,
+        "actual_optimizer_steps": 11,
+        "stopped_early": true
+      },
+      {
+        "iteration": 124,
+        "samples": 135,
+        "planned_optimizer_steps": 68,
+        "actual_optimizer_steps": 14,
+        "stopped_early": true
+      },
+      {
+        "iteration": 125,
+        "samples": 136,
+        "planned_optimizer_steps": 68,
+        "actual_optimizer_steps": 28,
+        "stopped_early": true
+      },
+      {
+        "iteration": 126,
+        "samples": 167,
+        "planned_optimizer_steps": 84,
+        "actual_optimizer_steps": 10,
+        "stopped_early": true
+      },
+      {
+        "iteration": 127,
+        "samples": 141,
+        "planned_optimizer_steps": 72,
+        "actual_optimizer_steps": 17,
+        "stopped_early": true
+      },
+      {
+        "iteration": 128,
+        "samples": 288,
+        "planned_optimizer_steps": 144,
+        "actual_optimizer_steps": 17,
+        "stopped_early": true
+      },
+      {
+        "iteration": 129,
+        "samples": 145,
+        "planned_optimizer_steps": 74,
+        "actual_optimizer_steps": 17,
+        "stopped_early": true
+      },
+      {
+        "iteration": 130,
+        "samples": 158,
+        "planned_optimizer_steps": 80,
+        "actual_optimizer_steps": 5,
+        "stopped_early": true
+      },
+      {
+        "iteration": 131,
+        "samples": 153,
+        "planned_optimizer_steps": 78,
+        "actual_optimizer_steps": 4,
+        "stopped_early": true
+      },
+      {
+        "iteration": 132,
+        "samples": 258,
+        "planned_optimizer_steps": 130,
+        "actual_optimizer_steps": 4,
+        "stopped_early": true
+      },
+      {
+        "iteration": 133,
+        "samples": 169,
+        "planned_optimizer_steps": 86,
+        "actual_optimizer_steps": 25,
+        "stopped_early": true
+      },
+      {
+        "iteration": 134,
+        "samples": 151,
+        "planned_optimizer_steps": 76,
+        "actual_optimizer_steps": 15,
+        "stopped_early": true
+      },
+      {
+        "iteration": 135,
+        "samples": 153,
+        "planned_optimizer_steps": 78,
+        "actual_optimizer_steps": 11,
+        "stopped_early": true
+      },
+      {
+        "iteration": 136,
+        "samples": 234,
+        "planned_optimizer_steps": 118,
+        "actual_optimizer_steps": 5,
+        "stopped_early": true
+      },
+      {
+        "iteration": 137,
+        "samples": 177,
+        "planned_optimizer_steps": 90,
+        "actual_optimizer_steps": 23,
+        "stopped_early": true
+      },
+      {
+        "iteration": 138,
+        "samples": 275,
+        "planned_optimizer_steps": 138,
+        "actual_optimizer_steps": 12,
+        "stopped_early": true
+      }
+    ]
+  }
+}
