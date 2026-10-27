@@ -1,0 +1,342 @@
+{
+  "games": [
+    {
+      "evaluation": "holdout-initial",
+      "seed": 670272,
+      "swap": 0,
+      "files": [
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0001-670272-0/config.json",
+          "bytes": 143,
+          "sha256": "bfdf3dd47d7f067eb9acfd86f268d8aaa5409da08abaa8fb43bdfa0991de5437"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0001-670272-0/contract.json",
+          "bytes": 915,
+          "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0001-670272-0/commands.json",
+          "bytes": 1107427,
+          "sha256": "a7eda40ad487d12a856f7d8d89c4255b52c27ad5bc30176dda9ea355a084df35"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0001-670272-0/final-save.json",
+          "bytes": 822213,
+          "sha256": "3adb0abe0d54ae23b3f135fa1b73bda13f140abb51c6abcb2a49fa23590a1d01"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0001-670272-0/result.json",
+          "bytes": 168,
+          "sha256": "9c441ac22ca8fabade1f5ae80c11b470b34679fe8526a84fa4bba0a6929d63c4"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0001-670272-0/policy.jsonl.gz",
+          "bytes": 5727054,
+          "sha256": "66e412cf2102f85e4b387e61add55e81d3c1e33bafc7fb5b3c8cedd61bdd963f"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0001-670272-0/spectator.jsonl.gz",
+          "bytes": 63512,
+          "sha256": "21d9bb7d0890e6ad5ea47ba8bd1f61e51f01f7c0fdaca6caf7acc57f0d3d733d"
+        }
+      ]
+    },
+    {
+      "evaluation": "holdout-initial",
+      "seed": 670272,
+      "swap": 1,
+      "files": [
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0002-670272-1/config.json",
+          "bytes": 143,
+          "sha256": "bb8699b547494e2d760e4458547a930c78ff0a492800d305ea99f39e313d222d"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0002-670272-1/contract.json",
+          "bytes": 915,
+          "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0002-670272-1/commands.json",
+          "bytes": 990898,
+          "sha256": "9dd00ce9d274f136aef3b7d445e09c65ae8fdc408412803dab6fb75a9a87f319"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0002-670272-1/final-save.json",
+          "bytes": 739809,
+          "sha256": "5f618572c0f51eefd4cb460f719c2a01f4a013314bb2908c76c2c46a18c3843d"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0002-670272-1/result.json",
+          "bytes": 168,
+          "sha256": "0f2ed89c9056077136853ed75e54678d9355e11063c9334c34915b6619f31197"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0002-670272-1/policy.jsonl.gz",
+          "bytes": 4462052,
+          "sha256": "98689773b13089997e0883b1c16cbc1bf7e40eb5f96c70adc7d0fad19e08ad64"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0002-670272-1/spectator.jsonl.gz",
+          "bytes": 57422,
+          "sha256": "70cb8cf525c41a774e985573d78b83bd6503050735a625639e14343a94be1d42"
+        }
+      ]
+    },
+    {
+      "evaluation": "holdout-initial",
+      "seed": 670273,
+      "swap": 0,
+      "files": [
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0003-670273-0/config.json",
+          "bytes": 143,
+          "sha256": "d0084a8f65e985fd5e220260da83c557a70e8d2f91c21b27d268eca9480ad7dc"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0003-670273-0/contract.json",
+          "bytes": 915,
+          "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0003-670273-0/commands.json",
+          "bytes": 818950,
+          "sha256": "8be43ecde774d3c786c74b57989e8d705a50179cd166097565cd3a2758c6583f"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0003-670273-0/final-save.json",
+          "bytes": 609656,
+          "sha256": "2bb76991e6c4253d1a1ea335b5c4e2b995f6c03960d9039b53f6175a5254e90f"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0003-670273-0/result.json",
+          "bytes": 167,
+          "sha256": "c18a5511d1e302cb27ab011f90ebc2ec26664a1df00f32dca92770bbd740a61d"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0003-670273-0/policy.jsonl.gz",
+          "bytes": 3255687,
+          "sha256": "059c53d6a02c6fcf4e4e60d809c3e4d7945ddf2559d22e53617fc25891f4fb73"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0003-670273-0/spectator.jsonl.gz",
+          "bytes": 48294,
+          "sha256": "7eb8deb604ca93c06680c9411b87dfd9080728c04db7d53d157572d66195a22e"
+        }
+      ]
+    },
+    {
+      "evaluation": "holdout-initial",
+      "seed": 670273,
+      "swap": 1,
+      "files": [
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0004-670273-1/config.json",
+          "bytes": 143,
+          "sha256": "cc5c580cb612448afc9411837a4cfa443dcc6b2f0c96d3a3ca02a60dca67e04d"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0004-670273-1/contract.json",
+          "bytes": 915,
+          "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0004-670273-1/commands.json",
+          "bytes": 908104,
+          "sha256": "f8d4101fabe1422f3dd70d793f99596e73959d69406d3f47058ab56f05c2421a"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0004-670273-1/final-save.json",
+          "bytes": 663656,
+          "sha256": "f95b78eb559ab9fcca6e0f2d13c72aa5077fbab2ef8f5e6e2b13605b42a1a1c5"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0004-670273-1/result.json",
+          "bytes": 168,
+          "sha256": "fd8b28d356fa6e5e4fe011ce6e7375b3bf9fcf72f38dbec6650c26faa1b0a157"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0004-670273-1/policy.jsonl.gz",
+          "bytes": 3530966,
+          "sha256": "43763e89b1c61440bb44bc872bd1354bcce2e6ed894d74f432925fa2fad72e8b"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-initial/authority/train-0004-670273-1/spectator.jsonl.gz",
+          "bytes": 51733,
+          "sha256": "8f2b0b663269a7960332c57c5aa3c28a3089494b8e425cf153fea0abd7511d04"
+        }
+      ]
+    },
+    {
+      "evaluation": "holdout-final",
+      "seed": 670272,
+      "swap": 0,
+      "files": [
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0001-670272-0/config.json",
+          "bytes": 143,
+          "sha256": "bfdf3dd47d7f067eb9acfd86f268d8aaa5409da08abaa8fb43bdfa0991de5437"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0001-670272-0/contract.json",
+          "bytes": 915,
+          "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0001-670272-0/commands.json",
+          "bytes": 682555,
+          "sha256": "f7dda817ff66493d56c6358d0225b53b3fc0d597f5e4e0e8bb23856898501af2"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0001-670272-0/final-save.json",
+          "bytes": 522247,
+          "sha256": "50fe952ae7434b16045caf92fea2836b5c4170872d8cb2eaef9890c000abbf98"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0001-670272-0/result.json",
+          "bytes": 167,
+          "sha256": "1af707fa4ccd9fc71831524b9e862e68486242a3ef69357e8c1ec0a83508a2fc"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0001-670272-0/policy.jsonl.gz",
+          "bytes": 2257962,
+          "sha256": "8f7ab8217c73b68684165a77e39d7e3b0556e59f61e87054267ff376570b3bfd"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0001-670272-0/spectator.jsonl.gz",
+          "bytes": 41568,
+          "sha256": "bfe67856ba52534890976cb56eb9330766a0dafcff5d4c46c77420c5315193e8"
+        }
+      ]
+    },
+    {
+      "evaluation": "holdout-final",
+      "seed": 670272,
+      "swap": 1,
+      "files": [
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0002-670272-1/config.json",
+          "bytes": 143,
+          "sha256": "bb8699b547494e2d760e4458547a930c78ff0a492800d305ea99f39e313d222d"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0002-670272-1/contract.json",
+          "bytes": 915,
+          "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0002-670272-1/commands.json",
+          "bytes": 961498,
+          "sha256": "d4e5f73e300153994fccc86ceaf3e9e46d2d680007142b997ddafe9e6e6b6768"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0002-670272-1/final-save.json",
+          "bytes": 726928,
+          "sha256": "f392c3134e056403b0e48d50e2ff55d29235df771cefba837d2b9d9fc714df91"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0002-670272-1/result.json",
+          "bytes": 167,
+          "sha256": "7fb709d128654b8055f71120cede4aedcdcbdaa8c9b65b07a08ce63d81142c51"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0002-670272-1/policy.jsonl.gz",
+          "bytes": 4259375,
+          "sha256": "feb894816689c6a435a7e56f841cce08bd45d59500f8a97f13fe8cdc521122ff"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0002-670272-1/spectator.jsonl.gz",
+          "bytes": 57076,
+          "sha256": "d11ddbc5ad470c9f16257c821403aab42018fb15fbc0613ea95ab08e79a812eb"
+        }
+      ]
+    },
+    {
+      "evaluation": "holdout-final",
+      "seed": 670273,
+      "swap": 0,
+      "files": [
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0003-670273-0/config.json",
+          "bytes": 143,
+          "sha256": "d0084a8f65e985fd5e220260da83c557a70e8d2f91c21b27d268eca9480ad7dc"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0003-670273-0/contract.json",
+          "bytes": 915,
+          "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0003-670273-0/commands.json",
+          "bytes": 1022517,
+          "sha256": "2567e14fe549be55b17e204dfe5bb1c22f3b5d2eb978c35f5e3c72f5707e71dc"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0003-670273-0/final-save.json",
+          "bytes": 746846,
+          "sha256": "53a430bd6c1fb1e959319dbbac6a8ad7c7120938289d00dc836a1494748a6d08"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0003-670273-0/result.json",
+          "bytes": 167,
+          "sha256": "d6a2d3720ca8e0bccbb66d339fb49a33b77cfd25389aa9e26aa6eb975afb68da"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0003-670273-0/policy.jsonl.gz",
+          "bytes": 5054847,
+          "sha256": "7adbd717b7ef8ec246d3216866dbc9dbe9851954b1279c9def7d4931516c1764"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0003-670273-0/spectator.jsonl.gz",
+          "bytes": 57609,
+          "sha256": "04cc5ec2376814ede3bdbd82d2c1694068697ae6dccb7823065a0ee9991bccd3"
+        }
+      ]
+    },
+    {
+      "evaluation": "holdout-final",
+      "seed": 670273,
+      "swap": 1,
+      "files": [
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0004-670273-1/config.json",
+          "bytes": 143,
+          "sha256": "cc5c580cb612448afc9411837a4cfa443dcc6b2f0c96d3a3ca02a60dca67e04d"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0004-670273-1/contract.json",
+          "bytes": 915,
+          "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0004-670273-1/commands.json",
+          "bytes": 1284859,
+          "sha256": "9a58c55ebaf48a5033b2c4e2a58d00576f47e1e9d8d1b9ca3dac19ff96ba59fb"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0004-670273-1/final-save.json",
+          "bytes": 946191,
+          "sha256": "6fb1ed502db53ca196e37ce8b03ce5a42f7de68ca882b896aba40d0389b8cdda"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0004-670273-1/result.json",
+          "bytes": 169,
+          "sha256": "81204384ff54e138a0697efcea8194c55e62a7e820134e47b7eacc568a1156f5"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0004-670273-1/policy.jsonl.gz",
+          "bytes": 7358375,
+          "sha256": "b04b1e40fa7aa3095195e28cdf4beabca4fa33342b5e2863af49de044b0ba9d3"
+        },
+        {
+          "path": "artifacts/ai-training/unattended-20261027-continuation/holdout-final/authority/train-0004-670273-1/spectator.jsonl.gz",
+          "bytes": 74855,
+          "sha256": "f99195ab65d071b525f002be5bba2877c09179dbabb55a8b2718c6316204367c"
+        }
+      ]
+    }
+  ],
+  "policy_and_spectator_files_separate": true,
+  "policy_inputs_committed": false
+}

@@ -1,0 +1,197 @@
+{
+  "initial_iteration": 138,
+  "final_iteration": 224,
+  "seed_use": "predeclared holdout; not used for training or selection",
+  "holdouts": {
+    "holdout-initial": {
+      "summary": {
+        "games": 4,
+        "expected_games": 4,
+        "terminated": 4,
+        "truncated": 0,
+        "team_wins": 2,
+        "completion_rate": 1.0,
+        "truncation_rate": 0.0,
+        "illegal_commands": 0,
+        "exceptions": 0,
+        "replay_exceptions": 0,
+        "environment_steps": 2907,
+        "learner_decisions": 663,
+        "seconds": 303.4693531000521,
+        "gameplay_complete": true,
+        "replay_status": "not_requested",
+        "replays": [],
+        "pipeline_complete": true,
+        "unity_player_verified": false,
+        "gpu_allocated_mib": 0.0,
+        "conclusion": "Small compatibility sample; not evidence of a strength improvement."
+      },
+      "results": [
+        {
+          "seed": 670272,
+          "swap": 0,
+          "learner_decisions": 198,
+          "environment_steps": 842,
+          "terminated": true,
+          "truncated": false,
+          "reward": 1,
+          "seconds": 106.12122639990412
+        },
+        {
+          "seed": 670272,
+          "swap": 1,
+          "learner_decisions": 169,
+          "environment_steps": 753,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 79.8979232001584
+        },
+        {
+          "seed": 670273,
+          "swap": 0,
+          "learner_decisions": 145,
+          "environment_steps": 622,
+          "terminated": true,
+          "truncated": false,
+          "reward": 1,
+          "seconds": 53.18505059997551
+        },
+        {
+          "seed": 670273,
+          "swap": 1,
+          "learner_decisions": 151,
+          "environment_steps": 690,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 63.40850879997015
+        }
+      ],
+      "checkpoint_sha256": "f998228f8b7890fde8e1dfc15bd8591121de5427badf026994e7019a1f63576a",
+      "checkpoint": "artifacts/ai-training/unattended-20261027-continuation/batch-001/initial.pt"
+    },
+    "holdout-final": {
+      "summary": {
+        "games": 4,
+        "expected_games": 4,
+        "terminated": 4,
+        "truncated": 0,
+        "team_wins": 0,
+        "completion_rate": 1.0,
+        "truncation_rate": 0.0,
+        "illegal_commands": 0,
+        "exceptions": 0,
+        "replay_exceptions": 0,
+        "environment_steps": 3005,
+        "learner_decisions": 684,
+        "seconds": 741.2775905998424,
+        "gameplay_complete": true,
+        "replay_status": "complete",
+        "replays": [
+          "replays\\train-0001-670272-0",
+          "replays\\train-0002-670272-1",
+          "replays\\train-0003-670273-0",
+          "replays\\train-0004-670273-1"
+        ],
+        "pipeline_complete": true,
+        "unity_player_verified": false,
+        "gpu_allocated_mib": 0.0,
+        "conclusion": "Small compatibility sample; not evidence of a strength improvement."
+      },
+      "results": [
+        {
+          "seed": 670272,
+          "swap": 0,
+          "learner_decisions": 121,
+          "environment_steps": 518,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 37.10872850008309
+        },
+        {
+          "seed": 670272,
+          "swap": 1,
+          "learner_decisions": 164,
+          "environment_steps": 731,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 74.40679450007156
+        },
+        {
+          "seed": 670273,
+          "swap": 0,
+          "learner_decisions": 184,
+          "environment_steps": 778,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 86.64891989994794
+        },
+        {
+          "seed": 670273,
+          "swap": 1,
+          "learner_decisions": 215,
+          "environment_steps": 978,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 148.0956941000186
+        }
+      ],
+      "checkpoint_sha256": "ecdb3840038c83fc53ff08bb3c4baf705212a7379940ce28027c7099bbae7141",
+      "checkpoint": "artifacts/ai-training/unattended-20261027-continuation/batch-086/checkpoint-224.pt"
+    }
+  },
+  "fixed_initial": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 125,
+      "environment_steps": 512,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 41.693856899859384,
+      "checkpoint": "initial.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 99,
+      "environment_steps": 443,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 26.357410199940205,
+      "checkpoint": "initial.pt"
+    }
+  ],
+  "fixed_final": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 178,
+      "environment_steps": 765,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 85.75389139982872,
+      "checkpoint": "checkpoint-224.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 99,
+      "environment_steps": 439,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 24.674817000050098,
+      "checkpoint": "checkpoint-224.pt"
+    }
+  ],
+  "strength_improvement_established": false
+}

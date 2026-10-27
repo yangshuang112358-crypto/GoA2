@@ -1,0 +1,527 @@
+{
+  "actual_updates": 1298,
+  "full_two_pass_minibatches": 8156,
+  "ratio": 0.15914664051005395,
+  "batches_fewer_than_full": 86,
+  "total_batches": 86,
+  "formula": "2 * ceil(samples / 4) per completed iteration; hypothetical full two passes",
+  "interpretation": "Consistent with existing approximate KL early stop. Not a measure of unique sample coverage or evidence of why the held-out score declined. No protection or training settings were changed.",
+  "rows": [
+    {
+      "batch": 1,
+      "samples": 149,
+      "optimizer_steps": 9,
+      "full_two_pass_minibatches": 76
+    },
+    {
+      "batch": 2,
+      "samples": 181,
+      "optimizer_steps": 18,
+      "full_two_pass_minibatches": 92
+    },
+    {
+      "batch": 3,
+      "samples": 166,
+      "optimizer_steps": 37,
+      "full_two_pass_minibatches": 84
+    },
+    {
+      "batch": 4,
+      "samples": 159,
+      "optimizer_steps": 20,
+      "full_two_pass_minibatches": 80
+    },
+    {
+      "batch": 5,
+      "samples": 175,
+      "optimizer_steps": 17,
+      "full_two_pass_minibatches": 88
+    },
+    {
+      "batch": 6,
+      "samples": 238,
+      "optimizer_steps": 39,
+      "full_two_pass_minibatches": 120
+    },
+    {
+      "batch": 7,
+      "samples": 253,
+      "optimizer_steps": 22,
+      "full_two_pass_minibatches": 128
+    },
+    {
+      "batch": 8,
+      "samples": 130,
+      "optimizer_steps": 20,
+      "full_two_pass_minibatches": 66
+    },
+    {
+      "batch": 9,
+      "samples": 241,
+      "optimizer_steps": 4,
+      "full_two_pass_minibatches": 122
+    },
+    {
+      "batch": 10,
+      "samples": 133,
+      "optimizer_steps": 16,
+      "full_two_pass_minibatches": 68
+    },
+    {
+      "batch": 11,
+      "samples": 155,
+      "optimizer_steps": 42,
+      "full_two_pass_minibatches": 78
+    },
+    {
+      "batch": 12,
+      "samples": 161,
+      "optimizer_steps": 55,
+      "full_two_pass_minibatches": 82
+    },
+    {
+      "batch": 13,
+      "samples": 163,
+      "optimizer_steps": 13,
+      "full_two_pass_minibatches": 82
+    },
+    {
+      "batch": 14,
+      "samples": 347,
+      "optimizer_steps": 21,
+      "full_two_pass_minibatches": 174
+    },
+    {
+      "batch": 15,
+      "samples": 134,
+      "optimizer_steps": 18,
+      "full_two_pass_minibatches": 68
+    },
+    {
+      "batch": 16,
+      "samples": 278,
+      "optimizer_steps": 18,
+      "full_two_pass_minibatches": 140
+    },
+    {
+      "batch": 17,
+      "samples": 229,
+      "optimizer_steps": 9,
+      "full_two_pass_minibatches": 116
+    },
+    {
+      "batch": 18,
+      "samples": 220,
+      "optimizer_steps": 9,
+      "full_two_pass_minibatches": 110
+    },
+    {
+      "batch": 19,
+      "samples": 156,
+      "optimizer_steps": 9,
+      "full_two_pass_minibatches": 78
+    },
+    {
+      "batch": 20,
+      "samples": 133,
+      "optimizer_steps": 28,
+      "full_two_pass_minibatches": 68
+    },
+    {
+      "batch": 21,
+      "samples": 182,
+      "optimizer_steps": 40,
+      "full_two_pass_minibatches": 92
+    },
+    {
+      "batch": 22,
+      "samples": 157,
+      "optimizer_steps": 30,
+      "full_two_pass_minibatches": 80
+    },
+    {
+      "batch": 23,
+      "samples": 227,
+      "optimizer_steps": 6,
+      "full_two_pass_minibatches": 114
+    },
+    {
+      "batch": 24,
+      "samples": 135,
+      "optimizer_steps": 32,
+      "full_two_pass_minibatches": 68
+    },
+    {
+      "batch": 25,
+      "samples": 299,
+      "optimizer_steps": 20,
+      "full_two_pass_minibatches": 150
+    },
+    {
+      "batch": 26,
+      "samples": 131,
+      "optimizer_steps": 42,
+      "full_two_pass_minibatches": 66
+    },
+    {
+      "batch": 27,
+      "samples": 307,
+      "optimizer_steps": 39,
+      "full_two_pass_minibatches": 154
+    },
+    {
+      "batch": 28,
+      "samples": 142,
+      "optimizer_steps": 32,
+      "full_two_pass_minibatches": 72
+    },
+    {
+      "batch": 29,
+      "samples": 271,
+      "optimizer_steps": 12,
+      "full_two_pass_minibatches": 136
+    },
+    {
+      "batch": 30,
+      "samples": 176,
+      "optimizer_steps": 10,
+      "full_two_pass_minibatches": 88
+    },
+    {
+      "batch": 31,
+      "samples": 159,
+      "optimizer_steps": 15,
+      "full_two_pass_minibatches": 80
+    },
+    {
+      "batch": 32,
+      "samples": 202,
+      "optimizer_steps": 5,
+      "full_two_pass_minibatches": 102
+    },
+    {
+      "batch": 33,
+      "samples": 135,
+      "optimizer_steps": 27,
+      "full_two_pass_minibatches": 68
+    },
+    {
+      "batch": 34,
+      "samples": 147,
+      "optimizer_steps": 24,
+      "full_two_pass_minibatches": 74
+    },
+    {
+      "batch": 35,
+      "samples": 152,
+      "optimizer_steps": 28,
+      "full_two_pass_minibatches": 76
+    },
+    {
+      "batch": 36,
+      "samples": 152,
+      "optimizer_steps": 8,
+      "full_two_pass_minibatches": 76
+    },
+    {
+      "batch": 37,
+      "samples": 205,
+      "optimizer_steps": 41,
+      "full_two_pass_minibatches": 104
+    },
+    {
+      "batch": 38,
+      "samples": 160,
+      "optimizer_steps": 5,
+      "full_two_pass_minibatches": 80
+    },
+    {
+      "batch": 39,
+      "samples": 148,
+      "optimizer_steps": 4,
+      "full_two_pass_minibatches": 74
+    },
+    {
+      "batch": 40,
+      "samples": 132,
+      "optimizer_steps": 19,
+      "full_two_pass_minibatches": 66
+    },
+    {
+      "batch": 41,
+      "samples": 299,
+      "optimizer_steps": 6,
+      "full_two_pass_minibatches": 150
+    },
+    {
+      "batch": 42,
+      "samples": 281,
+      "optimizer_steps": 6,
+      "full_two_pass_minibatches": 142
+    },
+    {
+      "batch": 43,
+      "samples": 271,
+      "optimizer_steps": 15,
+      "full_two_pass_minibatches": 136
+    },
+    {
+      "batch": 44,
+      "samples": 260,
+      "optimizer_steps": 15,
+      "full_two_pass_minibatches": 130
+    },
+    {
+      "batch": 45,
+      "samples": 139,
+      "optimizer_steps": 6,
+      "full_two_pass_minibatches": 70
+    },
+    {
+      "batch": 46,
+      "samples": 270,
+      "optimizer_steps": 7,
+      "full_two_pass_minibatches": 136
+    },
+    {
+      "batch": 47,
+      "samples": 145,
+      "optimizer_steps": 23,
+      "full_two_pass_minibatches": 74
+    },
+    {
+      "batch": 48,
+      "samples": 185,
+      "optimizer_steps": 13,
+      "full_two_pass_minibatches": 94
+    },
+    {
+      "batch": 49,
+      "samples": 161,
+      "optimizer_steps": 9,
+      "full_two_pass_minibatches": 82
+    },
+    {
+      "batch": 50,
+      "samples": 128,
+      "optimizer_steps": 19,
+      "full_two_pass_minibatches": 64
+    },
+    {
+      "batch": 51,
+      "samples": 166,
+      "optimizer_steps": 14,
+      "full_two_pass_minibatches": 84
+    },
+    {
+      "batch": 52,
+      "samples": 235,
+      "optimizer_steps": 18,
+      "full_two_pass_minibatches": 118
+    },
+    {
+      "batch": 53,
+      "samples": 151,
+      "optimizer_steps": 20,
+      "full_two_pass_minibatches": 76
+    },
+    {
+      "batch": 54,
+      "samples": 153,
+      "optimizer_steps": 19,
+      "full_two_pass_minibatches": 78
+    },
+    {
+      "batch": 55,
+      "samples": 162,
+      "optimizer_steps": 6,
+      "full_two_pass_minibatches": 82
+    },
+    {
+      "batch": 56,
+      "samples": 144,
+      "optimizer_steps": 13,
+      "full_two_pass_minibatches": 72
+    },
+    {
+      "batch": 57,
+      "samples": 185,
+      "optimizer_steps": 12,
+      "full_two_pass_minibatches": 94
+    },
+    {
+      "batch": 58,
+      "samples": 260,
+      "optimizer_steps": 5,
+      "full_two_pass_minibatches": 130
+    },
+    {
+      "batch": 59,
+      "samples": 163,
+      "optimizer_steps": 3,
+      "full_two_pass_minibatches": 82
+    },
+    {
+      "batch": 60,
+      "samples": 172,
+      "optimizer_steps": 3,
+      "full_two_pass_minibatches": 86
+    },
+    {
+      "batch": 61,
+      "samples": 129,
+      "optimizer_steps": 3,
+      "full_two_pass_minibatches": 66
+    },
+    {
+      "batch": 62,
+      "samples": 262,
+      "optimizer_steps": 6,
+      "full_two_pass_minibatches": 132
+    },
+    {
+      "batch": 63,
+      "samples": 236,
+      "optimizer_steps": 4,
+      "full_two_pass_minibatches": 118
+    },
+    {
+      "batch": 64,
+      "samples": 143,
+      "optimizer_steps": 9,
+      "full_two_pass_minibatches": 72
+    },
+    {
+      "batch": 65,
+      "samples": 179,
+      "optimizer_steps": 10,
+      "full_two_pass_minibatches": 90
+    },
+    {
+      "batch": 66,
+      "samples": 193,
+      "optimizer_steps": 8,
+      "full_two_pass_minibatches": 98
+    },
+    {
+      "batch": 67,
+      "samples": 143,
+      "optimizer_steps": 5,
+      "full_two_pass_minibatches": 72
+    },
+    {
+      "batch": 68,
+      "samples": 144,
+      "optimizer_steps": 7,
+      "full_two_pass_minibatches": 72
+    },
+    {
+      "batch": 69,
+      "samples": 134,
+      "optimizer_steps": 12,
+      "full_two_pass_minibatches": 68
+    },
+    {
+      "batch": 70,
+      "samples": 181,
+      "optimizer_steps": 7,
+      "full_two_pass_minibatches": 92
+    },
+    {
+      "batch": 71,
+      "samples": 158,
+      "optimizer_steps": 3,
+      "full_two_pass_minibatches": 80
+    },
+    {
+      "batch": 72,
+      "samples": 229,
+      "optimizer_steps": 9,
+      "full_two_pass_minibatches": 116
+    },
+    {
+      "batch": 73,
+      "samples": 165,
+      "optimizer_steps": 7,
+      "full_two_pass_minibatches": 84
+    },
+    {
+      "batch": 74,
+      "samples": 282,
+      "optimizer_steps": 8,
+      "full_two_pass_minibatches": 142
+    },
+    {
+      "batch": 75,
+      "samples": 276,
+      "optimizer_steps": 4,
+      "full_two_pass_minibatches": 138
+    },
+    {
+      "batch": 76,
+      "samples": 266,
+      "optimizer_steps": 12,
+      "full_two_pass_minibatches": 134
+    },
+    {
+      "batch": 77,
+      "samples": 145,
+      "optimizer_steps": 10,
+      "full_two_pass_minibatches": 74
+    },
+    {
+      "batch": 78,
+      "samples": 177,
+      "optimizer_steps": 18,
+      "full_two_pass_minibatches": 90
+    },
+    {
+      "batch": 79,
+      "samples": 238,
+      "optimizer_steps": 6,
+      "full_two_pass_minibatches": 120
+    },
+    {
+      "batch": 80,
+      "samples": 152,
+      "optimizer_steps": 11,
+      "full_two_pass_minibatches": 76
+    },
+    {
+      "batch": 81,
+      "samples": 137,
+      "optimizer_steps": 8,
+      "full_two_pass_minibatches": 70
+    },
+    {
+      "batch": 82,
+      "samples": 131,
+      "optimizer_steps": 5,
+      "full_two_pass_minibatches": 66
+    },
+    {
+      "batch": 83,
+      "samples": 192,
+      "optimizer_steps": 5,
+      "full_two_pass_minibatches": 96
+    },
+    {
+      "batch": 84,
+      "samples": 185,
+      "optimizer_steps": 9,
+      "full_two_pass_minibatches": 94
+    },
+    {
+      "batch": 85,
+      "samples": 150,
+      "optimizer_steps": 10,
+      "full_two_pass_minibatches": 76
+    },
+    {
+      "batch": 86,
+      "samples": 198,
+      "optimizer_steps": 7,
+      "full_two_pass_minibatches": 100
+    }
+  ]
+}

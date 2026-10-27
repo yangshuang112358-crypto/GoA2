@@ -1,0 +1,240 @@
+{
+  "checked_utc": "2026-10-27T09:48:31.081544+00:00",
+  "status": "completed_budget",
+  "started_utc": "2026-10-27T02:15:21.514469+00:00",
+  "finished_utc": "2026-10-27T09:36:59.360650+00:00",
+  "deadline_utc": "2026-10-27T10:15:21.456626+00:00",
+  "finished_before_deadline": true,
+  "source_commit_frozen_at_launch": "3d467bb3d5de50b2ad1ea94f2b9eee9de43629cd",
+  "source_commit_last_batch": "17ce6f85fc61ac04d5bea80b80467cfa7b86e846",
+  "frozen_files_verified": 129,
+  "checkpoint_checks_verified": 86,
+  "new_batches": 86,
+  "new_learner_samples": 16175,
+  "new_optimizer_steps": 1298,
+  "training_games": 122,
+  "training_wins": 20,
+  "fixed_evaluation_games_including_repeats": 344,
+  "holdout_games": 8,
+  "formal_games": 474,
+  "formal_completed": 471,
+  "formal_truncated": 3,
+  "formal_interrupted": 0,
+  "formal_completion_rate": 0.9936708860759493,
+  "formal_truncation_rate": 0.006329113924050633,
+  "observed_illegal_commands": 0,
+  "observed_gameplay_exceptions": 0,
+  "replay_exceptions": 0,
+  "failure_files": [],
+  "nonempty_stderr": [],
+  "probe_truncations_separate": 88,
+  "all_authority_restores_verified": true,
+  "previous_runs": {
+    "learner_samples": 26559,
+    "optimizer_steps": 3916
+  },
+  "cumulative": {
+    "learner_samples": 42734,
+    "optimizer_steps": 5214
+  },
+  "final_checkpoint": {
+    "path": "artifacts/ai-training/unattended-20261027-continuation/batch-086/checkpoint-224.pt",
+    "bytes": 4794402,
+    "sha256": "ecdb3840038c83fc53ff08bb3c4baf705212a7379940ce28027c7099bbae7141",
+    "iteration": 224,
+    "cursor": 323
+  },
+  "contract": {
+    "ObservationVersion": 5,
+    "ActionVersion": 2,
+    "EngineVersion": 98,
+    "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+    "RulesVersion": "1.0.0-draft.1",
+    "ContentVersion": "1.0.0",
+    "AuthorityHashes": {
+      "Goa2.Domain": "59d6943fc817ceb43e95a3e6b30d7f7820b90b17770413ace4226ef0cb6db692",
+      "Goa2.Rules": "42562af2190b878682a9b26f02b21f7d0743d0cd95e74ef88b297be60c91c56b",
+      "Goa2.Application": "1ae08de414f86fc8d87f9de9d6c5df5a378e1140793ebf651d3eb55aff331edd",
+      "Goa2.Infrastructure": "4aae3cb9b19d0cdd9c0b203f845e62cb5dbf801656f500f6e8759618bd718d6e",
+      "Goa2.Ai": "95e3c6ff6663c89fe66dd99446297c90795afcbfc10c02a05be423ea112647c8"
+    },
+    "RuleProfile": {
+      "Id": "victory-v1-life-7-marks-3",
+      "InitialCombatRegion": "mid",
+      "StartingCrystalLife": 7,
+      "VictoryMarksRequired": 3,
+      "TurnsPerRound": 4,
+      "HandSize": 5
+    }
+  },
+  "shape": {
+    "numeric_dim": 18,
+    "category_dim": 8,
+    "vocabulary_size": 1109,
+    "relation_count": 118,
+    "hidden": 96,
+    "architecture": "entity",
+    "latent_count": 32,
+    "memory_dim": 128
+  },
+  "training_configuration": {
+    "device": "cpu",
+    "architecture": "entity",
+    "hidden": 96,
+    "latents": 32,
+    "memory_dim": 128,
+    "sequence_length": 4,
+    "batch_size": 4,
+    "epochs": 2,
+    "life": 7,
+    "marks": 3,
+    "iterations": 1,
+    "rollout": 128,
+    "limit": 1200,
+    "seed": 270140,
+    "eval_pairs": 1,
+    "eval_seed": 570140,
+    "eval_limit": 1200,
+    "max_minutes": 20,
+    "source_commit": "17ce6f85fc61ac04d5bea80b80467cfa7b86e846",
+    "torch_version": "2.5.1+cu118",
+    "opponent_pool": [
+      "simple-v1"
+    ],
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip": 0.2,
+    "entropy": 0.01,
+    "lr": 0.0003,
+    "reward": "team-terminal-only-v1",
+    "discount_clock": "learner_decisions",
+    "threads": 2,
+    "seat": "wasp swapped 0/1",
+    "curriculum": "fixed-roster-formal-genesis",
+    "evaluation_seeds": [
+      570140
+    ],
+    "model_version": 2,
+    "checkpoint_format": 2,
+    "history": "complete-public-and-own-history-graph",
+    "recurrent_training": null,
+    "parameter_count": 392146,
+    "model_shape": {
+      "numeric_dim": 18,
+      "category_dim": 8,
+      "vocabulary_size": 1109,
+      "relation_count": 118,
+      "hidden": 96,
+      "architecture": "entity",
+      "latent_count": 32,
+      "memory_dim": 128
+    }
+  },
+  "resources_and_speed": {
+    "process_tree_peak_rss_mib": 1363.11328125,
+    "system_min_available_mib": 5254.640625,
+    "weighted_cpu_percent_machine": 8.829690846249202,
+    "sampled_seconds": 24092.562980601564,
+    "wall_seconds": 26497.846181,
+    "batch_seconds": 23046.631601301488,
+    "training_environment_steps": 69448,
+    "formal_environment_steps": 263131,
+    "batch_environment_steps_per_second": 11.160806683154268,
+    "gameplay_environment_steps_per_second": 11.392140334506866,
+    "learner_samples_per_wall_hour": 2197.5370980058447,
+    "training_attempt_duration_seconds": {
+      "count": 122,
+      "min": 15.855094200000167,
+      "median": 54.41619224997703,
+      "p95": 90.11030230502365,
+      "max": 249.5998687001411
+    },
+    "training_duration_seconds": {
+      "count": 121,
+      "min": 15.855094200000167,
+      "median": 54.18716269987635,
+      "p95": 89.72176190000027,
+      "max": 114.88084820006043
+    },
+    "formal_attempt_duration_seconds": {
+      "count": 474,
+      "min": 10.07855589990504,
+      "median": 44.56648665003013,
+      "p95": 88.14633127998094,
+      "max": 249.5998687001411
+    },
+    "formal_duration_seconds": {
+      "count": 471,
+      "min": 10.07855589990504,
+      "median": 44.470672900089994,
+      "p95": 87.2294905501185,
+      "max": 187.49683570000343
+    },
+    "available_ram_gib_at_audit": 6.129840850830078,
+    "gpu_learning": false
+  },
+  "holdout_initial_wins": 2,
+  "holdout_final_wins": 0,
+  "fixed_initial_wins": 0,
+  "fixed_final_wins": 0,
+  "baseline_bitwise_equivalent": true,
+  "replay_archive": {
+    "path": "checkpoint224-csharp-replays.zip",
+    "bytes": 563456,
+    "sha256": "16d3aeea02382515e0c2767c489d8c1df88eb184e4fe8f45eddf4d65385c5c95"
+  },
+  "verified_csharp_replays": 4,
+  "unity_verified": false,
+  "strength_improvement_established": false,
+  "process_check": "final-process-check.json",
+  "notes": [
+    "All complete-game timing excludes export; aggregate holdout summary timing includes replay export.",
+    "Fixed evaluations are repeated measurements, not independent games for estimating generalization.",
+    "No new source changes, training, replays, Unity validation or video were run by this audit.",
+    "Duration distributions marked training_duration_seconds/formal_duration_seconds include only terminal games; attempt distributions include three truncations."
+  ],
+  "training_completed": 121,
+  "training_truncated": 1,
+  "training_losses": 101,
+  "fixed_evaluation_completed": 342,
+  "fixed_evaluation_truncated": 2,
+  "observed_illegal_command_rate": 0.0,
+  "observed_gameplay_exception_rate": 0.0,
+  "interruption_rate": 0.0,
+  "opponent_pool": [
+    "simple-v1"
+  ],
+  "holdout_seeds": [
+    670272,
+    670273
+  ],
+  "formal_authority_commands": 264553,
+  "legal_environment_steps_per_gameplay_second": 11.392140334506866,
+  "legal_environment_step_definition": "Accepted formal C# decisions including fixed opponent and environment progression; learner samples count only the one learning seat. No rejected command observed.",
+  "frozen_source_manifest": "final-source-hashes.json",
+  "truncation_manifest": "truncation-manifest.json",
+  "evaluation_pipeline": {
+    "holdout-initial": {
+      "gameplay_complete": true,
+      "pipeline_complete": true,
+      "replay_status": "not_requested",
+      "replay_exceptions": 0,
+      "illegal_commands": 0,
+      "exceptions": 0
+    },
+    "holdout-final": {
+      "gameplay_complete": true,
+      "pipeline_complete": true,
+      "replay_status": "complete",
+      "replay_exceptions": 0,
+      "illegal_commands": 0,
+      "exceptions": 0
+    }
+  },
+  "automation": {
+    "id": "goa2v1-ai-8",
+    "status": "PAUSED",
+    "verification": "automation-pause.json",
+    "no_automatic_new_round": true
+  }
+}

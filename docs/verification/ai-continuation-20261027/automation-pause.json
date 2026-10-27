@@ -1,0 +1,10 @@
+{
+  "checked_utc": "2026-10-27T09:50:31.804036+00:00",
+  "id": "goa2v1-ai-8",
+  "name": "Goa2V1 AI\u8bad\u7ec3\u5de1\u68c0\uff088\u5c0f\u65f6\uff09",
+  "status": "PAUSED",
+  "prompt_sha256": "8c78c57dad5e935d0d64a9227c0410c430230b983563cf6fe65a2d88ddca83d5",
+  "other_fields_preserved_and_readback_verified": true,
+  "unicode_valid": true,
+  "new_training_scheduled": false
+}
