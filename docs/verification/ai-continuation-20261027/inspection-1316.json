@@ -1,0 +1,182 @@
+{
+  "checked_utc": "2026-10-27T05:16:13.189947+00:00",
+  "status": "batch-041",
+  "updated_utc": "2026-10-27T05:16:09.764985+00:00",
+  "deadline_utc": "2026-10-27T10:15:21.456626+00:00",
+  "within_deadline": true,
+  "supervisor": {
+    "pid": 27416,
+    "recorded_created": 1793067321.26685,
+    "actual_created": 1793067321.26685,
+    "alive": true,
+    "identity_matches": true,
+    "tree": [
+      {
+        "pid": 27416,
+        "created": 1793067321.26685,
+        "name": "python.exe"
+      },
+      {
+        "pid": 25560,
+        "created": 1793077884.3944695,
+        "name": "python.exe"
+      },
+      {
+        "pid": 24096,
+        "created": 1793077884.4021325,
+        "name": "conhost.exe"
+      },
+      {
+        "pid": 26720,
+        "created": 1793077884.4196815,
+        "name": "python.exe"
+      },
+      {
+        "pid": 18176,
+        "created": 1793077886.9998553,
+        "name": "dotnet.exe"
+      },
+      {
+        "pid": 15168,
+        "created": 1793077887.0097425,
+        "name": "conhost.exe"
+      }
+    ]
+  },
+  "child": {
+    "pid": 25560,
+    "recorded_created": 1793077884.3944695,
+    "actual_created": 1793077884.3944695,
+    "alive": true,
+    "identity_matches": true,
+    "tree": [
+      {
+        "pid": 25560,
+        "created": 1793077884.3944695,
+        "name": "python.exe"
+      },
+      {
+        "pid": 24096,
+        "created": 1793077884.4021325,
+        "name": "conhost.exe"
+      },
+      {
+        "pid": 26720,
+        "created": 1793077884.4196815,
+        "name": "python.exe"
+      },
+      {
+        "pid": 18176,
+        "created": 1793077886.9998553,
+        "name": "dotnet.exe"
+      },
+      {
+        "pid": 15168,
+        "created": 1793077887.0097425,
+        "name": "conhost.exe"
+      }
+    ]
+  },
+  "available_ram_gib": 5.863040924072266,
+  "completed_batches": 40,
+  "new_learner_samples": 7420,
+  "new_optimizer_steps": 863,
+  "training_games": 56,
+  "training_terminated": 55,
+  "training_truncated": 1,
+  "training_wins": 15,
+  "fixed_evaluations_including_repeats": 160,
+  "evaluation_terminated": 160,
+  "evaluation_truncated": 0,
+  "latest_fixed_evaluation": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 133,
+      "environment_steps": 576,
+      "terminated": true,
+      "truncated": false,
+      "reward": 1,
+      "seconds": 45.72747440007515,
+      "checkpoint": "checkpoint-178.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 126,
+      "environment_steps": 567,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 44.64069929998368,
+      "checkpoint": "checkpoint-178.pt"
+    }
+  ],
+  "formal_truncations": [
+    {
+      "seed": 270249,
+      "swap": 1,
+      "learner_decisions": 269,
+      "environment_steps": 1203,
+      "terminated": false,
+      "truncated": true,
+      "reward": 0,
+      "seconds": 249.5998687001411
+    }
+  ],
+  "authority_stops_including_probes": {
+    "truncated": 42,
+    "terminated": 219
+  },
+  "probes": 41,
+  "all_restores_verified": true,
+  "failed_checkpoint_checks": [],
+  "resume_checkpoint_unchanged": true,
+  "frozen_files": 129,
+  "source_changes": [],
+  "failures": [],
+  "nonempty_stderr": [],
+  "process_tree_peak_rss_mib": 1363.11328125,
+  "system_min_available_mib": 5479.40234375,
+  "weighted_cpu_percent_machine": 9.048092376247448,
+  "completed_batch_seconds": 9475.448208100861,
+  "environment_steps_per_second_including_evaluation_and_update": 11.673959645036197,
+  "disk_free_gib": 453.6931343078613,
+  "automation_status": "ACTIVE",
+  "automation_unicode_valid": true,
+  "final_evaluations": [],
+  "previous_runs": {
+    "learner_samples": 26559,
+    "optimizer_steps": 3916
+  },
+  "git_head": "3dc51bb3d47df99c43db96b3656f3b1f0251e625",
+  "git_branch": "feature/ai-training",
+  "git_status": "",
+  "unity_verified_this_run": false,
+  "strength_improvement_established": false,
+  "active_learning_excluded_from_completed_totals": {
+    "batch": 41,
+    "iteration": 179,
+    "cursor": 259,
+    "samples": 299,
+    "optimizer_steps": 6,
+    "checkpoint_sha256": "a7b582d8a2daac7d96e78ebb9710d5232370a2511e31716e38d442962d4fd583",
+    "paired_evaluation_may_be_pending": true
+  },
+  "checkpoint_checks_all_passed": true,
+  "last_checkpoint": {
+    "batch": 40,
+    "checkpoint": "artifacts\\ai-training\\unattended-20261027-continuation\\batch-040\\checkpoint-178.pt",
+    "sha256": "286ab4d7d48f81e5cc198ff3f9cb38087063d083a0e4413c8a028c5de846dd0d",
+    "hash_ok": true,
+    "reload_equal": true,
+    "summary_matches": true,
+    "learning_samples_match": true,
+    "paired_results_match": true,
+    "contract_matches": true,
+    "iteration": 178,
+    "cursor": 257
+  },
+  "completed_batch_probes": 40,
+  "first_formal_truncation_evidence": "inspection-1116.json"
+}
