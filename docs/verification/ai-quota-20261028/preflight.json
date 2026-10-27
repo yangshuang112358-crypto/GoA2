@@ -1,0 +1,40 @@
+{
+  "checked_utc": "2026-10-27T17:54:58.309162+00:00",
+  "source_before_changes": "c9dc4e63e6e17e2c261167af41837a4db2a35abf",
+  "resume": {
+    "path": "C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\artifacts\\ai-training\\unattended-20261027-continuation\\batch-086\\checkpoint-224.pt",
+    "sha256": "ecdb3840038c83fc53ff08bb3c4baf705212a7379940ce28027c7099bbae7141",
+    "iteration": 224,
+    "cursor": 323,
+    "next_seed": 270301,
+    "next_swap": 1
+  },
+  "frozen_files": 130,
+  "available_ram_gib": 7.547206878662109,
+  "total_ram_gib": 15.404876708984375,
+  "cpu_physical": 8,
+  "cpu_logical": 16,
+  "gpu": "NVIDIA GeForce RTX 3070 Laptop GPU",
+  "gpu_driver": "30.0.14.7151",
+  "tests": {
+    "command": ".venv-ai/Scripts/python.exe -m unittest discover -s tools -p test_ai_*.py -v",
+    "passed": 36,
+    "seconds": 11.8,
+    "game_rules_or_unity_not_tested": true
+  },
+  "previous_runs": {
+    "learner_samples": 42734,
+    "optimizer_steps": 5214
+  },
+  "configuration": {
+    "no_total_hour_limit": true,
+    "segment_hours": 4,
+    "lease_seconds": 5400,
+    "drain_seconds": 1320,
+    "first_holdout_seed": 670280,
+    "threads": 2,
+    "device": "cpu"
+  },
+  "no_new_learning_claimed": true,
+  "trainer_model_authority_resume_provenance_verified": true
+}

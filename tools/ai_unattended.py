@@ -41,6 +41,7 @@ def fingerprint(root):
     paths = [root / n for n in names if n and Path(n).suffix in ('.py', '.cs', '.json', '.csproj', '.props')]
     paths += list((root / 'ai/Goa2.Ai.Cli/bin/Release/net10.0').glob('Goa2.*.dll'))
     paths += [root / 'tools/evaluate-ai-checkpoint.py', root / 'tools/ai_unattended.py', root / 'tools/ai_replay_export.py']
+    paths += [p for p in [root / 'tools/ai_quota_watch.py'] if p.exists()]
     return {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(set(paths))}
 
 
