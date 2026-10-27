@@ -1,0 +1,328 @@
+{
+  "checked_utc": "2026-10-27T18:03:46.463416+00:00",
+  "status": "segment_running",
+  "campaign_started_utc": "2026-10-27T17:55:39.050923+00:00",
+  "no_total_hour_limit": true,
+  "supervisor": {
+    "pid": 21624,
+    "recorded_created": 1793123738.8025584,
+    "alive": true,
+    "identity_matches": true,
+    "actual_created": 1793123738.8025584,
+    "tree": [
+      {
+        "pid": 21624,
+        "created": 1793123738.8025584,
+        "name": "python.exe"
+      },
+      {
+        "pid": 7524,
+        "created": 1793123739.173856,
+        "name": "python.exe"
+      },
+      {
+        "pid": 13376,
+        "created": 1793123739.184362,
+        "name": "conhost.exe"
+      },
+      {
+        "pid": 27276,
+        "created": 1793123739.2074983,
+        "name": "python.exe"
+      },
+      {
+        "pid": 26608,
+        "created": 1793124069.8628943,
+        "name": "python.exe"
+      },
+      {
+        "pid": 15836,
+        "created": 1793124069.8705196,
+        "name": "conhost.exe"
+      },
+      {
+        "pid": 20816,
+        "created": 1793124069.8884616,
+        "name": "python.exe"
+      },
+      {
+        "pid": 7072,
+        "created": 1793124072.3923576,
+        "name": "dotnet.exe"
+      },
+      {
+        "pid": 11024,
+        "created": 1793124072.4011617,
+        "name": "conhost.exe"
+      }
+    ]
+  },
+  "lease_expires_utc": "2026-10-27T19:33:13.727283+00:00",
+  "lease_valid": true,
+  "segments": [
+    {
+      "directory": "artifacts/ai-training/quota-20261028/segment-001",
+      "status": "batch-002",
+      "deadline_utc": "2026-10-27T21:55:39.441492+00:00",
+      "supervisor": {
+        "pid": 27276,
+        "recorded_created": 1793123739.2074983,
+        "alive": true,
+        "identity_matches": true,
+        "actual_created": 1793123739.2074983,
+        "tree": [
+          {
+            "pid": 27276,
+            "created": 1793123739.2074983,
+            "name": "python.exe"
+          },
+          {
+            "pid": 26608,
+            "created": 1793124069.8628943,
+            "name": "python.exe"
+          },
+          {
+            "pid": 15836,
+            "created": 1793124069.8705196,
+            "name": "conhost.exe"
+          },
+          {
+            "pid": 20816,
+            "created": 1793124069.8884616,
+            "name": "python.exe"
+          },
+          {
+            "pid": 7072,
+            "created": 1793124072.3923576,
+            "name": "dotnet.exe"
+          },
+          {
+            "pid": 11024,
+            "created": 1793124072.4011617,
+            "name": "conhost.exe"
+          }
+        ]
+      },
+      "child": {
+        "pid": 26608,
+        "recorded_created": 1793124069.8628943,
+        "alive": true,
+        "identity_matches": true,
+        "actual_created": 1793124069.8628943,
+        "tree": [
+          {
+            "pid": 26608,
+            "created": 1793124069.8628943,
+            "name": "python.exe"
+          },
+          {
+            "pid": 15836,
+            "created": 1793124069.8705196,
+            "name": "conhost.exe"
+          },
+          {
+            "pid": 20816,
+            "created": 1793124069.8884616,
+            "name": "python.exe"
+          },
+          {
+            "pid": 7072,
+            "created": 1793124072.3923576,
+            "name": "dotnet.exe"
+          },
+          {
+            "pid": 11024,
+            "created": 1793124072.4011617,
+            "name": "conhost.exe"
+          }
+        ]
+      },
+      "completed_batches": 1,
+      "resume_iteration": 224,
+      "holdout_seeds": [
+        670280,
+        670281
+      ]
+    }
+  ],
+  "completed_batches": 1,
+  "new_learner_samples": 227,
+  "new_optimizer_steps": 17,
+  "training_attempts": 2,
+  "training_completed": 2,
+  "training_truncated": 0,
+  "training_wins": 1,
+  "fixed_evaluations": 4,
+  "fixed_completed": 4,
+  "fixed_truncated": 0,
+  "authority_stops_including_holdouts": {
+    "terminated": 9
+  },
+  "probes_separate": 2,
+  "all_authority_restores_verified": true,
+  "failed_checkpoint_checks": [],
+  "active_batches_excluded": [
+    {
+      "segment": "segment-001",
+      "batch": "batch-002",
+      "excluded_from_completed_totals": true,
+      "training_episodes": [
+        {
+          "seed": 270302,
+          "swap": 1,
+          "learner_decisions": 72,
+          "environment_steps": 323,
+          "terminated": true,
+          "truncated": false,
+          "reward": -1,
+          "seconds": 17.0998909000773
+        }
+      ]
+    }
+  ],
+  "holdout_summaries": [],
+  "available_ram_gib": 6.557239532470703,
+  "process_tree_peak_rss_mib": 980.42578125,
+  "system_min_available_mib": 6741.453125,
+  "weighted_cpu_percent_machine": 9.009835153341221,
+  "frozen_files": 130,
+  "source_changes": [],
+  "resume_checkpoint_unchanged": true,
+  "failures": [],
+  "nonempty_stderr": [],
+  "previous_runs": {
+    "learner_samples": 42734,
+    "optimizer_steps": 5214
+  },
+  "strength_improvement_established": false,
+  "unity_verified": false,
+  "git_head": "aee471d8cb1fe524c2ecf071efbb771353a0791f",
+  "git_status": "?? tools/renew-ai-supervision.py\n?? tools/test_ai_quota_renew.py",
+  "last_checkpoint": {
+    "segment": "segment-001",
+    "batch": 1,
+    "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-001/checkpoint-225.pt",
+    "sha256": "592fc7e1ae42c7257e05fcbbb73ed07abc9740a00682effcac2d06cd4cdae6e6",
+    "iteration": 225,
+    "cursor": 325,
+    "hash_ok": true,
+    "reload_equal": true,
+    "summary_matches": true,
+    "samples_match": true,
+    "paired_results_match": true,
+    "contract_matches": true
+  },
+  "checkpoint_checks_all_passed": true,
+  "first_new_optimization_reported": true,
+  "first_new_optimization_reported_beijing": "2026-10-28T02:01:43+08:00",
+  "lease_readback": {
+    "session_id": "b6196049-0b0d-458d-a194-4415f864d77e",
+    "pid": 21624,
+    "process_created": 1793123738.8025584,
+    "renewed_utc": "2026-10-27T18:03:13.727283+00:00",
+    "expires_utc": "2026-10-27T19:33:13.727283+00:00"
+  },
+  "automation": {
+    "id": "goa2v1-ai-8",
+    "status": "ACTIVE",
+    "interval_minutes": 30,
+    "unicode_and_fields_readback_verified": true,
+    "uses_external_renewal_entrypoint": true
+  },
+  "external_renewal": {
+    "path": "tools/renew-ai-supervision.py",
+    "sha256": "1914c7199f94d37417e80c4fb302df08b51be7239a30543c034d2244c7cfd04d",
+    "real_cli_tests_passed": 2,
+    "test_seconds": 0.697,
+    "live_renewal_passed": true,
+    "same_frozen_validation_function": true
+  },
+  "batch_001_summary": {
+    "seconds": 284.2874147000257,
+    "parameter_l1_change": 153.11789427480835,
+    "checkpoint_inference_equal": true,
+    "iterations": 1,
+    "learner_samples": 227,
+    "training_episodes": [
+      {
+        "seed": 270301,
+        "swap": 1,
+        "learner_decisions": 84,
+        "environment_steps": 355,
+        "terminated": true,
+        "truncated": false,
+        "reward": -1,
+        "seconds": 20.833529999945313
+      },
+      {
+        "seed": 270302,
+        "swap": 0,
+        "learner_decisions": 143,
+        "environment_steps": 620,
+        "terminated": true,
+        "truncated": false,
+        "reward": 1,
+        "seconds": 64.95468099997379
+      }
+    ],
+    "evaluation": [
+      {
+        "seed": 570140,
+        "swap": 0,
+        "learner_decisions": 178,
+        "environment_steps": 765,
+        "terminated": true,
+        "truncated": false,
+        "reward": -1,
+        "seconds": 93.52030909992754,
+        "checkpoint": "initial.pt"
+      },
+      {
+        "seed": 570140,
+        "swap": 1,
+        "learner_decisions": 99,
+        "environment_steps": 439,
+        "terminated": true,
+        "truncated": false,
+        "reward": -1,
+        "seconds": 26.097242900170386,
+        "checkpoint": "initial.pt"
+      },
+      {
+        "seed": 570140,
+        "swap": 0,
+        "learner_decisions": 131,
+        "environment_steps": 563,
+        "terminated": true,
+        "truncated": false,
+        "reward": 1,
+        "seconds": 46.020799699937925,
+        "checkpoint": "checkpoint-225.pt"
+      },
+      {
+        "seed": 570140,
+        "swap": 1,
+        "learner_decisions": 101,
+        "environment_steps": 440,
+        "terminated": true,
+        "truncated": false,
+        "reward": -1,
+        "seconds": 26.182002200046554,
+        "checkpoint": "checkpoint-225.pt"
+      }
+    ],
+    "gpu_allocated_mib": 0,
+    "conclusion": "Learning pipeline validation only; no demonstrated strength gain."
+  },
+  "observed_training_interruptions": 0,
+  "observed_illegal_commands": 0,
+  "observed_gameplay_exceptions": 0,
+  "operator_entrypoint_error": {
+    "command": "tools/ai_quota_watch.py renew",
+    "error": "NameError: name 'json' is not defined",
+    "scope": "External renewal CLI before renewal function evaluation; existing lease and training unchanged.",
+    "resolution": "Separate external inspector entry point imports json and calls original validated renew; live frozen files unchanged.",
+    "original_cli_repair_deferred_until_campaign_stops": true,
+    "not_counted_as_training_exception": true
+  }
+}
