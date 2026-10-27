@@ -1,0 +1,52 @@
+{
+  "checked_utc": "2026-10-27T02:16:39.817954+00:00",
+  "status": "batch-001",
+  "started_utc": "2026-10-27T02:15:21.514469+00:00",
+  "deadline_utc": "2026-10-27T10:15:21.456626+00:00",
+  "pid": 27416,
+  "created": 1793067321.26685,
+  "pid_identity_matches": true,
+  "child_pid": 23044,
+  "child_created": 1793067341.6226292,
+  "child_identity_matches": true,
+  "tree": [
+    {
+      "pid": 23044,
+      "created": 1793067341.6226292,
+      "name": "python.exe"
+    },
+    {
+      "pid": 24024,
+      "created": 1793067341.6307204,
+      "name": "conhost.exe"
+    },
+    {
+      "pid": 3844,
+      "created": 1793067341.646546,
+      "name": "python.exe"
+    },
+    {
+      "pid": 17648,
+      "created": 1793067344.2162995,
+      "name": "dotnet.exe"
+    },
+    {
+      "pid": 24824,
+      "created": 1793067344.2299943,
+      "name": "conhost.exe"
+    }
+  ],
+  "ram_available_gib": 5.956512451171875,
+  "frozen_files": 129,
+  "frozen_unchanged": true,
+  "batches": 0,
+  "stderr_bytes": 0,
+  "automation": {
+    "id": "goa2v1-ai-8",
+    "status": "ACTIVE",
+    "name": "Goa2V1 AI训练巡检（8小时）",
+    "rrule": "RRULE:FREQ=MINUTELY;INTERVAL=30;UNTIL=20261027T104521Z",
+    "prompt_readback_equal": true,
+    "unicode_valid": true
+  }
+}

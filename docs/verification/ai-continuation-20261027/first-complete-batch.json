@@ -1,0 +1,98 @@
+{
+  "checked_utc": "2026-10-27T02:20:30.579270+00:00",
+  "status": "batch-002",
+  "completed_batches": 1,
+  "new_learner_samples": 149,
+  "new_optimizer_steps": 9,
+  "training_episodes": [
+    {
+      "seed": 270240,
+      "swap": 1,
+      "learner_decisions": 149,
+      "environment_steps": 669,
+      "terminated": true,
+      "truncated": false,
+      "reward": 1,
+      "seconds": 74.13108359999023
+    }
+  ],
+  "evaluation": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 125,
+      "environment_steps": 512,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 41.693856899859384,
+      "checkpoint": "initial.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 99,
+      "environment_steps": 443,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 26.357410199940205,
+      "checkpoint": "initial.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 122,
+      "environment_steps": 509,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 37.30577340000309,
+      "checkpoint": "checkpoint-139.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 68,
+      "environment_steps": 285,
+      "terminated": true,
+      "truncated": false,
+      "reward": 1,
+      "seconds": 11.287581899901852,
+      "checkpoint": "checkpoint-139.pt"
+    }
+  ],
+  "checkpoint_sha256": "ed4d1d6176d8a8cffe90ee5f90a3d12e095e02b9f9c1204620c3324637dbffa9",
+  "checkpoint_inference_equal": true,
+  "paired_results_and_contract_verified": true,
+  "checkpoint_iteration": 139,
+  "cursor": 202,
+  "formal_completed": 5,
+  "probe_truncated": 1,
+  "all_restore_verified": true,
+  "frozen_files_unchanged": 129,
+  "supervisor": {
+    "pid": 27416,
+    "created": 1793067321.26685,
+    "identity_matches": true
+  },
+  "child": {
+    "pid": 28484,
+    "created": 1793067561.8342233,
+    "identity_matches": true
+  },
+  "available_ram_gib": 5.875148773193359,
+  "resources": {
+    "process_tree_peak_rss_mib": 1001.50390625,
+    "system_min_available_mib": 5557.01953125,
+    "process_tree_cpu_seconds": 292.1875,
+    "cpu_percent_of_machine": 9.313770929639437,
+    "sampled_seconds": 196.07223419984803
+  },
+  "seconds": 196.05929510015994,
+  "failure_files": [],
+  "batch_stderr_bytes": 0,
+  "source_commit": "3d467bb3d5de50b2ad1ea94f2b9eee9de43629cd",
+  "unity_verified": false,
+  "strength_improvement_established": false
+}

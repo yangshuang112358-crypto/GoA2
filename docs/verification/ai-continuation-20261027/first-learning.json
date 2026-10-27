@@ -1,0 +1,29 @@
+{
+  "checked_utc": "2026-10-27T02:18:49.841677+00:00",
+  "status": "batch-001",
+  "completed_batches": 0,
+  "ram_available_gib": 5.840309143066406,
+  "learning_exists": true,
+  "checkpoint_exists": true,
+  "failure_paths": [],
+  "learning": [
+    {
+      "iteration": 139,
+      "samples": 149,
+      "optimizer_steps": 9
+    }
+  ],
+  "checkpoint_sha256": "ed4d1d6176d8a8cffe90ee5f90a3d12e095e02b9f9c1204620c3324637dbffa9",
+  "training_episodes": [
+    {
+      "seed": 270240,
+      "swap": 1,
+      "learner_decisions": 149,
+      "environment_steps": 669,
+      "terminated": true,
+      "truncated": false,
+      "reward": 1,
+      "seconds": 74.13108359999023
+    }
+  ]
+}
