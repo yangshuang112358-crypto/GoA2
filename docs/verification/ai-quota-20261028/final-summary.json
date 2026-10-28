@@ -1,0 +1,1907 @@
+{
+  "format": 1,
+  "checked_utc": "2026-10-28T02:18:21.284337+00:00",
+  "status": "failed_preserved",
+  "start_utc": "2026-10-27T17:55:39.050923+00:00",
+  "finish_utc": "2026-10-28T02:13:39.778360+00:00",
+  "stop_reason": "lease_expired",
+  "no_total_hour_limit": true,
+  "lease": {
+    "session_id": "b6196049-0b0d-458d-a194-4415f864d77e",
+    "pid": 21624,
+    "process_created": 1793123738.8025584,
+    "renewed_utc": "2026-10-27T18:57:48.418597+00:00",
+    "expires_utc": "2026-10-27T20:27:48.418597+00:00"
+  },
+  "system_sleep_events": [
+    {
+      "utc": "2026-10-28T02:13:39.7016004Z",
+      "event_id": 1,
+      "provider": "Microsoft-Windows-Power-Troubleshooter",
+      "record_id": 47268,
+      "fields": {
+        "WakeTime": "2026-10-28T02:13:38.6691990Z",
+        "SleepTime": "2026-10-27T19:02:45.2535987Z",
+        "EffectiveState": "4",
+        "TargetState": "4"
+      },
+      "idle_reason": false
+    },
+    {
+      "utc": "2026-10-27T19:02:45.8834580Z",
+      "event_id": 42,
+      "provider": "Microsoft-Windows-Kernel-Power",
+      "record_id": 47258,
+      "fields": {
+        "Reason": "7",
+        "EffectiveState": "4",
+        "TargetState": "4"
+      },
+      "idle_reason": true
+    }
+  ],
+  "cause": "System idle sleep; on resume lease and segment deadline had expired. Quota exhaustion is not supported by the evidence.",
+  "ordinary_usage_allowed_at_closeout": true,
+  "completed_batches": 14,
+  "new_learner_samples": 2574,
+  "new_optimizer_steps": 166,
+  "previous_runs": {
+    "learner_samples": 42734,
+    "optimizer_steps": 5214
+  },
+  "totals": {
+    "learner_samples": 45308,
+    "optimizer_steps": 5380
+  },
+  "latest_verified_checkpoint": {
+    "segment": "segment-001",
+    "batch": 14,
+    "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-014/checkpoint-238.pt",
+    "sha256": "7500f56280cc1f0b5e22d526165fa155e35aec0f13692b18ed9990112559df01",
+    "iteration": 238,
+    "cursor": 343,
+    "hash_ok": true,
+    "reload_equal": true,
+    "summary_matches": true,
+    "samples_match": true,
+    "paired_results_match": true,
+    "contract_matches": true
+  },
+  "outer_latest_checkpoint_is_stale": true,
+  "next_training_if_new_run_authorized": {
+    "cursor": 343,
+    "seed": 270311,
+    "swap": 1
+  },
+  "stats": {
+    "formal": {
+      "attempts": 79,
+      "stops": {
+        "terminated": 78,
+        "interrupted": 1
+      },
+      "complete_rate_percent": 98.73417721518987,
+      "truncated_rate_percent": 0.0,
+      "interrupted_rate_percent": 1.2658227848101267,
+      "terminal_wins": 14
+    },
+    "training": {
+      "attempts": 21,
+      "stops": {
+        "terminated": 20,
+        "interrupted": 1
+      },
+      "complete_rate_percent": 95.23809523809524,
+      "truncated_rate_percent": 0.0,
+      "interrupted_rate_percent": 4.761904761904762,
+      "terminal_wins": 4
+    },
+    "fixed_evaluation": {
+      "attempts": 58,
+      "stops": {
+        "terminated": 58
+      },
+      "complete_rate_percent": 100.0,
+      "truncated_rate_percent": 0.0,
+      "interrupted_rate_percent": 0.0,
+      "terminal_wins": 10
+    }
+  },
+  "formal_episodes": [
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-001/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 765,
+        "Commands": 768,
+        "Seconds": 93.3134868,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-001/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 439,
+        "Commands": 442,
+        "Seconds": 26.0492624,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-001/authority/train-0003-270301-1",
+      "seed": 270301,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 355,
+        "Commands": 358,
+        "Seconds": 20.7863072,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-001/authority/train-0004-270302-0",
+      "seed": 270302,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 620,
+        "Commands": 623,
+        "Seconds": 64.7993056,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-001/authority/train-0005-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 563,
+        "Commands": 566,
+        "Seconds": 45.869823,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-001/authority/train-0006-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 440,
+        "Commands": 443,
+        "Seconds": 26.1093972,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-002/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 563,
+        "Commands": 566,
+        "Seconds": 50.5396153,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-002/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 440,
+        "Commands": 443,
+        "Seconds": 26.0542124,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-002/authority/train-0003-270302-1",
+      "seed": 270302,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 323,
+        "Commands": 326,
+        "Seconds": 17.0516959,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-002/authority/train-0004-270303-0",
+      "seed": 270303,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 595,
+        "Commands": 598,
+        "Seconds": 62.3561231,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-002/authority/train-0005-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 562,
+        "Commands": 565,
+        "Seconds": 46.0819036,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-002/authority/train-0006-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 516,
+        "Commands": 519,
+        "Seconds": 37.9078063,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-003/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 562,
+        "Commands": 565,
+        "Seconds": 50.5815525,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-003/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 516,
+        "Commands": 519,
+        "Seconds": 37.1955016,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-003/authority/train-0003-270303-1",
+      "seed": 270303,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 318,
+        "Commands": 321,
+        "Seconds": 16.8321781,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-003/authority/train-0004-270304-0",
+      "seed": 270304,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 599,
+        "Commands": 602,
+        "Seconds": 60.8431647,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-003/authority/train-0005-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 607,
+        "Commands": 610,
+        "Seconds": 52.0347692,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-003/authority/train-0006-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 441,
+        "Commands": 444,
+        "Seconds": 24.9553654,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-004/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 607,
+        "Commands": 610,
+        "Seconds": 55.6694946,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-004/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 441,
+        "Commands": 444,
+        "Seconds": 24.9858884,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-004/authority/train-0003-270304-1",
+      "seed": 270304,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 608,
+        "Commands": 611,
+        "Seconds": 61.24939,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-004/authority/train-0004-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 562,
+        "Commands": 565,
+        "Seconds": 46.5004065,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-004/authority/train-0005-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 568,
+        "Commands": 571,
+        "Seconds": 46.1788519,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-005/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 562,
+        "Commands": 565,
+        "Seconds": 47.0130425,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-005/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 568,
+        "Commands": 571,
+        "Seconds": 44.8233429,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-005/authority/train-0003-270305-0",
+      "seed": 270305,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 608,
+        "Commands": 611,
+        "Seconds": 60.3788125,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-005/authority/train-0004-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 627,
+        "Commands": 630,
+        "Seconds": 56.0037839,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-005/authority/train-0005-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 510,
+        "Commands": 513,
+        "Seconds": 35.2030986,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-006/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 627,
+        "Commands": 630,
+        "Seconds": 58.1613942,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-006/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 510,
+        "Commands": 513,
+        "Seconds": 34.8243176,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-006/authority/train-0003-270305-1",
+      "seed": 270305,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 869,
+        "Commands": 872,
+        "Seconds": 122.8871856,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-006/authority/train-0004-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 624,
+        "Commands": 627,
+        "Seconds": 55.6458221,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-006/authority/train-0005-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 556,
+        "Commands": 559,
+        "Seconds": 42.3497295,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-007/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 624,
+        "Commands": 627,
+        "Seconds": 57.4588161,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-007/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 556,
+        "Commands": 559,
+        "Seconds": 42.2045017,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-007/authority/train-0003-270306-0",
+      "seed": 270306,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 384,
+        "Commands": 387,
+        "Seconds": 23.0185362,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-007/authority/train-0004-270306-1",
+      "seed": 270306,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 679,
+        "Commands": 682,
+        "Seconds": 72.5705705,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-007/authority/train-0005-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 566,
+        "Commands": 569,
+        "Seconds": 43.6981659,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-007/authority/train-0006-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 568,
+        "Commands": 571,
+        "Seconds": 43.8299628,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-008/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 566,
+        "Commands": 569,
+        "Seconds": 46.77414,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-008/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 568,
+        "Commands": 571,
+        "Seconds": 43.9621191,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-008/authority/train-0003-270307-0",
+      "seed": 270307,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 647,
+        "Commands": 650,
+        "Seconds": 66.9142186,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-008/authority/train-0004-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 688,
+        "Commands": 691,
+        "Seconds": 68.2132766,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-008/authority/train-0005-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 569,
+        "Commands": 572,
+        "Seconds": 44.228595,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-009/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 688,
+        "Commands": 691,
+        "Seconds": 70.4111949,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-009/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 569,
+        "Commands": 572,
+        "Seconds": 44.40433,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-009/authority/train-0003-270307-1",
+      "seed": 270307,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 429,
+        "Commands": 432,
+        "Seconds": 28.9970347,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-009/authority/train-0004-270308-0",
+      "seed": 270308,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 507,
+        "Commands": 510,
+        "Seconds": 39.9840746,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-009/authority/train-0005-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 544,
+        "Commands": 547,
+        "Seconds": 42.6934243,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-009/authority/train-0006-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 397,
+        "Commands": 400,
+        "Seconds": 20.1084004,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-010/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 544,
+        "Commands": 547,
+        "Seconds": 43.8010669,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-010/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 397,
+        "Commands": 400,
+        "Seconds": 19.7477888,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-010/authority/train-0003-270308-1",
+      "seed": 270308,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": 1,
+        "EnvironmentSteps": 276,
+        "Commands": 279,
+        "Seconds": 12.16027,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-010/authority/train-0004-270309-0",
+      "seed": 270309,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 613,
+        "Commands": 616,
+        "Seconds": 61.9535701,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-010/authority/train-0005-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 545,
+        "Commands": 548,
+        "Seconds": 41.8892035,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-010/authority/train-0006-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 570,
+        "Commands": 573,
+        "Seconds": 45.2095722,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-011/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 545,
+        "Commands": 548,
+        "Seconds": 43.7842058,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-011/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 570,
+        "Commands": 573,
+        "Seconds": 44.0525899,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-011/authority/train-0003-270309-1",
+      "seed": 270309,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 640,
+        "Commands": 643,
+        "Seconds": 63.7658447,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-011/authority/train-0004-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 558,
+        "Commands": 561,
+        "Seconds": 43.5082279,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-011/authority/train-0005-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 400,
+        "Commands": 403,
+        "Seconds": 19.2418868,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-012/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 558,
+        "Commands": 561,
+        "Seconds": 47.1026472,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-012/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 400,
+        "Commands": 403,
+        "Seconds": 20.0108473,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-012/authority/train-0003-270310-0",
+      "seed": 270310,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 764,
+        "Commands": 767,
+        "Seconds": 98.6795167,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-012/authority/train-0004-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 557,
+        "Commands": 560,
+        "Seconds": 44.1051106,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-012/authority/train-0005-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 584,
+        "Commands": 587,
+        "Seconds": 47.4010714,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-013/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 557,
+        "Commands": 560,
+        "Seconds": 46.457276,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-013/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 584,
+        "Commands": 587,
+        "Seconds": 46.2285598,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-013/authority/train-0003-270310-1",
+      "seed": 270310,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 620,
+        "Commands": 623,
+        "Seconds": 61.5930852,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-013/authority/train-0004-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 544,
+        "Commands": 547,
+        "Seconds": 41.1404882,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-013/authority/train-0005-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 337,
+        "Commands": 340,
+        "Seconds": 13.8775039,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 544,
+        "Commands": 547,
+        "Seconds": 44.5236344,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 337,
+        "Commands": 340,
+        "Seconds": 13.8363532,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0003-270311-0",
+      "seed": 270311,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 558,
+        "Commands": 561,
+        "Seconds": 50.4736357,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "training"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0004-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 542,
+        "Commands": 545,
+        "Seconds": 40.2795964,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0005-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 397,
+        "Commands": 400,
+        "Seconds": 18.8510073,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0001-570140-0",
+      "seed": 570140,
+      "swap": 0,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 542,
+        "Commands": 545,
+        "Seconds": 44.3110103,
+        "RestoreVerified": true,
+        "Winner": "Red"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0002-570140-1",
+      "seed": 570140,
+      "swap": 1,
+      "result": {
+        "Stop": "terminated",
+        "Reward": -1,
+        "EnvironmentSteps": 397,
+        "Commands": 400,
+        "Seconds": 19.8263657,
+        "RestoreVerified": true,
+        "Winner": "Blue"
+      },
+      "kind": "fixed_evaluation"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1",
+      "seed": 270311,
+      "swap": 1,
+      "result": {
+        "Stop": "interrupted",
+        "Reward": 0,
+        "EnvironmentSteps": 614,
+        "Commands": 617,
+        "Seconds": 25914.0118993,
+        "RestoreVerified": true,
+        "Winner": null
+      },
+      "kind": "training"
+    }
+  ],
+  "probes": {
+    "count": 15,
+    "stops": {
+      "truncated": 15
+    }
+  },
+  "interrupted": [
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1",
+      "seed": 270311,
+      "swap": 1,
+      "result": {
+        "Stop": "interrupted",
+        "Reward": 0,
+        "EnvironmentSteps": 614,
+        "Commands": 617,
+        "Seconds": 25914.0118993,
+        "RestoreVerified": true,
+        "Winner": null
+      },
+      "kind": "training"
+    }
+  ],
+  "interrupted_batch_had_no_learning_or_new_checkpoint": true,
+  "observed_illegal_commands": 0,
+  "observed_rule_exceptions": 0,
+  "gameplay_timeout_interruptions": 1,
+  "observed_gameplay_timeout_rate_percent": 1.2658227848101267,
+  "pipeline_failures": 2,
+  "fixed_initial": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 178,
+      "environment_steps": 765,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 93.52030909992754,
+      "checkpoint": "initial.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 99,
+      "environment_steps": 439,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 26.097242900170386,
+      "checkpoint": "initial.pt"
+    }
+  ],
+  "fixed_final": [
+    {
+      "seed": 570140,
+      "swap": 0,
+      "learner_decisions": 129,
+      "environment_steps": 542,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 40.38977560005151,
+      "checkpoint": "checkpoint-238.pt"
+    },
+    {
+      "seed": 570140,
+      "swap": 1,
+      "learner_decisions": 87,
+      "environment_steps": 397,
+      "terminated": true,
+      "truncated": false,
+      "reward": -1,
+      "seconds": 18.911741700023413,
+      "checkpoint": "checkpoint-238.pt"
+    }
+  ],
+  "holdout": {
+    "seeds": [
+      670280,
+      670281
+    ],
+    "gameplay_complete": false,
+    "pipeline_complete": false,
+    "replay_status": "not_started",
+    "replay_exceptions": 0,
+    "reason": "Stopped before held-out evaluation; no post-failure evaluation run."
+  },
+  "performance": {
+    "scope": "14 completed batches; excludes interrupted batch and system sleep",
+    "environment_steps": 41161,
+    "batch_seconds": 3516.2599238995463,
+    "environment_steps_per_second": 11.705903684831208,
+    "complete_training_seconds_median": 61.16386385005899,
+    "complete_training_seconds_p95": 100.11236483494287,
+    "process_tree_peak_rss_mib": 1098.0,
+    "system_min_available_mib": 6042.35546875,
+    "cpu_percent_machine": 9.041093518176126,
+    "interrupted_batch_resources_missing": true
+  },
+  "checkpoint_checks": [
+    {
+      "segment": "segment-001",
+      "batch": 1,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-001/checkpoint-225.pt",
+      "sha256": "592fc7e1ae42c7257e05fcbbb73ed07abc9740a00682effcac2d06cd4cdae6e6",
+      "iteration": 225,
+      "cursor": 325,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 2,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-002/checkpoint-226.pt",
+      "sha256": "c8d6b22dd9bf1732255acc553bd3def1763510c98d6e626efeb3feb3712aaf55",
+      "iteration": 226,
+      "cursor": 327,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 3,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-003/checkpoint-227.pt",
+      "sha256": "f814cd2bb6306035b6cf685369bae71e2da3dcc433be4e6dacb589c30b141aee",
+      "iteration": 227,
+      "cursor": 329,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 4,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-004/checkpoint-228.pt",
+      "sha256": "ccf7341ea04165ce21ce05fef9d63bbceb4dbe8c04ead455c0aeabb7a5a42397",
+      "iteration": 228,
+      "cursor": 330,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 5,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-005/checkpoint-229.pt",
+      "sha256": "d15ad280e96e862f72101000c681c3605d0e51f753a13e8057d073789ea03ced",
+      "iteration": 229,
+      "cursor": 331,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 6,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-006/checkpoint-230.pt",
+      "sha256": "f0b7db1c1714725b3c3a46abaaba33dd6ef43c33cfeab3af4202b05ca76b6d33",
+      "iteration": 230,
+      "cursor": 332,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 7,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-007/checkpoint-231.pt",
+      "sha256": "6211fe9829f4851f1079d51a6de505c3e6d56ab92bb1522a98b86bd7c2f2137b",
+      "iteration": 231,
+      "cursor": 334,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 8,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-008/checkpoint-232.pt",
+      "sha256": "d66513d1db2998ff28f6450ed9b0266d292e0f90ee6fa598c9ae076e26992fed",
+      "iteration": 232,
+      "cursor": 335,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 9,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-009/checkpoint-233.pt",
+      "sha256": "a11cac78cead01ece579508fda39942f2cea158ee081cc96ea29d2dd45683c06",
+      "iteration": 233,
+      "cursor": 337,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 10,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-010/checkpoint-234.pt",
+      "sha256": "d62489b3e8b0126fb4f82e9b262f5429e0ce5f0f4e5f9fabd0292c7550c93ada",
+      "iteration": 234,
+      "cursor": 339,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 11,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-011/checkpoint-235.pt",
+      "sha256": "3fe993ca6a43bbca51aa57173eb7b6d12d5927d3d8badde3adbb2bd2a8186211",
+      "iteration": 235,
+      "cursor": 340,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 12,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-012/checkpoint-236.pt",
+      "sha256": "a2584356aacc65063f9c8ca67a3e8b7b3ce2100510838ef8074e23d1ed3585c1",
+      "iteration": 236,
+      "cursor": 341,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 13,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-013/checkpoint-237.pt",
+      "sha256": "3fdd3a22246abe403974881b7486a2ccc158aabfa1d8f76832d94bdc71214a34",
+      "iteration": 237,
+      "cursor": 342,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    },
+    {
+      "segment": "segment-001",
+      "batch": 14,
+      "checkpoint": "artifacts/ai-training/quota-20261028/segment-001/batch-014/checkpoint-238.pt",
+      "sha256": "7500f56280cc1f0b5e22d526165fa155e35aec0f13692b18ed9990112559df01",
+      "iteration": 238,
+      "cursor": 343,
+      "hash_ok": true,
+      "reload_equal": true,
+      "summary_matches": true,
+      "samples_match": true,
+      "paired_results_match": true,
+      "contract_matches": true
+    }
+  ],
+  "frozen_files": 130,
+  "frozen_changes": [],
+  "resume_checkpoint_unchanged": true,
+  "original_source_commit": "aee471d8cb1fe524c2ecf071efbb771353a0791f",
+  "checkpoint_source_commit": "d2c43bbf68e127562b83363f224aecd1b2d4c513",
+  "contract": {
+    "ObservationVersion": 5,
+    "ActionVersion": 2,
+    "EngineVersion": 98,
+    "ContentHash": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7",
+    "RulesVersion": "1.0.0-draft.1",
+    "ContentVersion": "1.0.0",
+    "AuthorityHashes": {
+      "Goa2.Domain": "59d6943fc817ceb43e95a3e6b30d7f7820b90b17770413ace4226ef0cb6db692",
+      "Goa2.Rules": "42562af2190b878682a9b26f02b21f7d0743d0cd95e74ef88b297be60c91c56b",
+      "Goa2.Application": "1ae08de414f86fc8d87f9de9d6c5df5a378e1140793ebf651d3eb55aff331edd",
+      "Goa2.Infrastructure": "4aae3cb9b19d0cdd9c0b203f845e62cb5dbf801656f500f6e8759618bd718d6e",
+      "Goa2.Ai": "95e3c6ff6663c89fe66dd99446297c90795afcbfc10c02a05be423ea112647c8"
+    },
+    "RuleProfile": {
+      "Id": "victory-v1-life-7-marks-3",
+      "InitialCombatRegion": "mid",
+      "StartingCrystalLife": 7,
+      "VictoryMarksRequired": 3,
+      "TurnsPerRound": 4,
+      "HandSize": 5
+    }
+  },
+  "process_cleanup": {
+    "recorded_identities_checked": 25,
+    "remaining_matching_identities": [],
+    "reused_pids_not_touched": [],
+    "campaign_command_matches": [],
+    "processes_stopped_by_this_inspection": 0
+  },
+  "disk": {
+    "free_gib": 447.6898994445801,
+    "campaign_gib": 0.4283407600596547
+  },
+  "failures": [
+    {
+      "path": "artifacts/ai-training/quota-20261028/failure.json",
+      "bytes": 613,
+      "sha256": "e3a67e8eabff1dc251f378281ff3bd720e9325dcef59e8c5ea8e6eeba2d57785",
+      "error": "Traceback (most recent call last):\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\tools\\ai_quota_watch.py\", line 215, in run\n    if not self.run_segment(directory, seed):\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\tools\\ai_quota_watch.py\", line 189, in run_segment\n    raise TimeoutError('segment supervisor exceeded its own hard deadline')\nTimeoutError: segment supervisor exceeded its own hard deadline\n"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/failure.json",
+      "bytes": 880,
+      "sha256": "57856bf1f252c782ec54cdd99de0b83801d61401f72d4d2e1eb07feb72a002b8",
+      "error": "Traceback (most recent call last):\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\trainer\\train.py\", line 227, in main\n    r = run_episode(host, model, encoder, device, seed, cursor % 2, args.limit, records,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\trainer\\train.py\", line 73, in run_episode\n    guard()\n  File \"C:\\Users\\29383\\Documents\\StudyFile\\personal_project\\Goa2V1-ai-training\\ai\\trainer\\train.py\", line 170, in guard\n    raise TimeoutError('bounded experiment deadline; preserved partial evidence, not a completed game')\nTimeoutError: bounded experiment deadline; preserved partial evidence, not a completed game\n"
+    }
+  ],
+  "retained_interruption_files": [
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/commands.json",
+      "bytes": 807676,
+      "sha256": "8ba4968092da28d60c93bd98acac513bd7efe132a4a2beb20ff496b3a83d8cfc"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/config.json",
+      "bytes": 143,
+      "sha256": "30ff494676ccec0b297121e1e86a57eef689e3a237b4d4d59369e7799aa501ce"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/contract.json",
+      "bytes": 915,
+      "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/final-save.json",
+      "bytes": 601426,
+      "sha256": "23e98241e78506fa7d9647ae9f11294f48656559379541de18b366d59b8a2f90"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/policy.jsonl.gz",
+      "bytes": 2967887,
+      "sha256": "c795167e5aba2e79086de09b18406a1230d379c0224d41f912b8c9b064c42328"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/result.json",
+      "bytes": 169,
+      "sha256": "02d97edb2702c82c59319069af994014efdf3d12e2524b291b71d5879017c883"
+    },
+    {
+      "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/spectator.jsonl.gz",
+      "bytes": 47390,
+      "sha256": "a1e67b84bbdd50cf484994a91fefc8730f51108424a3c96fb9cbe1d71e2ca30a"
+    }
+  ],
+  "preserved_cases_bundle": {
+    "path": "docs/verification/ai-quota-20261028/checkpoint238-preserved-cases.zip",
+    "bytes": 236816,
+    "sha256": "9c3480d8499267af44d05585e0fa3a6d8bdc9b050fb62a932a7bd950f5661290",
+    "cases": [
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0004-570140-0",
+        "seed": 570140,
+        "swap": 0,
+        "result": {
+          "Stop": "terminated",
+          "Reward": -1,
+          "EnvironmentSteps": 542,
+          "Commands": 545,
+          "Seconds": 40.2795964,
+          "RestoreVerified": true,
+          "Winner": "Red"
+        },
+        "kind": "fixed_evaluation"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0005-570140-1",
+        "seed": 570140,
+        "swap": 1,
+        "result": {
+          "Stop": "terminated",
+          "Reward": -1,
+          "EnvironmentSteps": 397,
+          "Commands": 400,
+          "Seconds": 18.8510073,
+          "RestoreVerified": true,
+          "Winner": "Blue"
+        },
+        "kind": "fixed_evaluation"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1",
+        "seed": 270311,
+        "swap": 1,
+        "result": {
+          "Stop": "interrupted",
+          "Reward": 0,
+          "EnvironmentSteps": 614,
+          "Commands": 617,
+          "Seconds": 25914.0118993,
+          "RestoreVerified": true,
+          "Winner": null
+        },
+        "kind": "training"
+      }
+    ],
+    "manifest": [
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0004-570140-0/commands.json",
+        "bytes": 713776,
+        "sha256": "44f72c2762c6f897687c4f1d0cc9bbeba0e9be1202d4c591e55d36492db07a10"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0004-570140-0/config.json",
+        "bytes": 143,
+        "sha256": "3888de7913f6c12040d0439e315881a985dd335d23c78750a85e7d024d52ebc0"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0004-570140-0/content/canonical/cards.json",
+        "bytes": 90480,
+        "sha256": "9fd571abe38f4711fa1a891f3696b9253057a2c21360fd4a62a1302351386192"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0004-570140-0/content/canonical/heroes.json",
+        "bytes": 744,
+        "sha256": "f3f7c0c318b17738541dd8b6269f74865f0d66452acb5bcb2e5ae6627c783b6b"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0004-570140-0/content/canonical/map.json",
+        "bytes": 40625,
+        "sha256": "8c4e20deee6540fdd6a675cb17523d1933cad5746938418ce8b02ff3f03dc77e"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0004-570140-0/content/canonical/ruleset.json",
+        "bytes": 1198,
+        "sha256": "9d568d0ba085ac7378a3397ade4db784f6e5026d34fbef311f5b511bfe17f390"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0004-570140-0/content/manifest.json",
+        "bytes": 822,
+        "sha256": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0004-570140-0/contract.json",
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0004-570140-0/final-save.json",
+        "bytes": 523931,
+        "sha256": "f4490d2a7bd21c6af4f45d9861b8306755393f0958c89227f8a68e78192deff6"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0004-570140-0/result.json",
+        "bytes": 167,
+        "sha256": "8b4f60d8f0bf1413e94b3e3ea21bd4e83380a8f739f5105cf7a115d521801e6b"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0005-570140-1/commands.json",
+        "bytes": 523795,
+        "sha256": "b851f84a08ca2affa30b5f69ea78f6f8edf4d6c0a83d4684a22482dd4a9e6e67"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0005-570140-1/config.json",
+        "bytes": 143,
+        "sha256": "741b51e40817b041581dfeec496f399e197be55315623723f66fd032f58f8b0e"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0005-570140-1/content/canonical/cards.json",
+        "bytes": 90480,
+        "sha256": "9fd571abe38f4711fa1a891f3696b9253057a2c21360fd4a62a1302351386192"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0005-570140-1/content/canonical/heroes.json",
+        "bytes": 744,
+        "sha256": "f3f7c0c318b17738541dd8b6269f74865f0d66452acb5bcb2e5ae6627c783b6b"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0005-570140-1/content/canonical/map.json",
+        "bytes": 40625,
+        "sha256": "8c4e20deee6540fdd6a675cb17523d1933cad5746938418ce8b02ff3f03dc77e"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0005-570140-1/content/canonical/ruleset.json",
+        "bytes": 1198,
+        "sha256": "9d568d0ba085ac7378a3397ade4db784f6e5026d34fbef311f5b511bfe17f390"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0005-570140-1/content/manifest.json",
+        "bytes": 822,
+        "sha256": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0005-570140-1/contract.json",
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0005-570140-1/final-save.json",
+        "bytes": 384556,
+        "sha256": "f3f0d436da9b9c710ecdd8000deaedad7c03d7b5a1926095fa0bda482a6fdc06"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-014/authority/train-0005-570140-1/result.json",
+        "bytes": 168,
+        "sha256": "916f0127d81d4494ba87e4182bd9560e4eea67ffe6cdd0c27772d473dee88d7f"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/commands.json",
+        "bytes": 807676,
+        "sha256": "8ba4968092da28d60c93bd98acac513bd7efe132a4a2beb20ff496b3a83d8cfc"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/config.json",
+        "bytes": 143,
+        "sha256": "30ff494676ccec0b297121e1e86a57eef689e3a237b4d4d59369e7799aa501ce"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/content/canonical/cards.json",
+        "bytes": 90480,
+        "sha256": "9fd571abe38f4711fa1a891f3696b9253057a2c21360fd4a62a1302351386192"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/content/canonical/heroes.json",
+        "bytes": 744,
+        "sha256": "f3f7c0c318b17738541dd8b6269f74865f0d66452acb5bcb2e5ae6627c783b6b"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/content/canonical/map.json",
+        "bytes": 40625,
+        "sha256": "8c4e20deee6540fdd6a675cb17523d1933cad5746938418ce8b02ff3f03dc77e"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/content/canonical/ruleset.json",
+        "bytes": 1198,
+        "sha256": "9d568d0ba085ac7378a3397ade4db784f6e5026d34fbef311f5b511bfe17f390"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/content/manifest.json",
+        "bytes": 822,
+        "sha256": "e91b2db215bf63f527cab03ceb09565bcb9a3f9cb055bd26235330fbb36568b7"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/contract.json",
+        "bytes": 915,
+        "sha256": "f6617e2347b202492ad50608a7420ba7249383b4e6b98edd960acc64cea12039"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/final-save.json",
+        "bytes": 601426,
+        "sha256": "23e98241e78506fa7d9647ae9f11294f48656559379541de18b366d59b8a2f90"
+      },
+      {
+        "path": "artifacts/ai-training/quota-20261028/segment-001/batch-015/authority/train-0003-270311-1/result.json",
+        "bytes": 169,
+        "sha256": "02d97edb2702c82c59319069af994014efdf3d12e2524b291b71d5879017c883"
+      }
+    ],
+    "full_command_replay_verified": false,
+    "snapshot_restore_verified": true,
+    "unity_verified": false,
+    "zip_integrity_verified": true,
+    "file_count": 30
+  },
+  "strength_improvement_established": false,
+  "unity_verified": false,
+  "restarted": false,
+  "lease_renewed": false,
+  "known_operator_cli_defect": "Original ai_quota_watch.py renew misses json import; external renewal entry point had succeeded. No relation demonstrated to sleep timeout; no code altered during closeout.",
+  "automation": {
+    "id": "goa2v1-ai-8",
+    "status": "deleted",
+    "reason": "Campaign terminal failure; obsolete heartbeat removed after evidence preservation.",
+    "configuration_absent_verified": true,
+    "previous_configuration_saved_locally": true,
+    "checked_utc": "2026-10-28T02:20:57.437719+00:00"
+  }
+}

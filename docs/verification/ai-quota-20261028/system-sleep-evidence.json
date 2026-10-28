@@ -1,0 +1,27 @@
+[
+  {
+    "utc": "2026-10-28T02:13:39.7016004Z",
+    "event_id": 1,
+    "provider": "Microsoft-Windows-Power-Troubleshooter",
+    "record_id": 47268,
+    "fields": {
+      "WakeTime": "2026-10-28T02:13:38.6691990Z",
+      "SleepTime": "2026-10-27T19:02:45.2535987Z",
+      "EffectiveState": "4",
+      "TargetState": "4"
+    },
+    "idle_reason": false
+  },
+  {
+    "utc": "2026-10-27T19:02:45.8834580Z",
+    "event_id": 42,
+    "provider": "Microsoft-Windows-Kernel-Power",
+    "record_id": 47258,
+    "fields": {
+      "Reason": "7",
+      "EffectiveState": "4",
+      "TargetState": "4"
+    },
+    "idle_reason": true
+  }
+]
